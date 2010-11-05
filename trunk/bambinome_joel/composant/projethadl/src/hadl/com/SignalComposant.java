@@ -1,8 +1,14 @@
-package hadl;
+package hadl.com;
 
-public class SignalComposant {
+import java.io.Serializable;
+
+public class SignalComposant implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1476259902237096043L;
 	private String name;
 	private int port;
 	
@@ -59,7 +65,6 @@ public class SignalComposant {
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return "Signal Composant: "+name+" "+port;
 	}
 	

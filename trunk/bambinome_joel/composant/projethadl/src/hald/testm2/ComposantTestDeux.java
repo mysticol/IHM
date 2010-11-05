@@ -1,4 +1,4 @@
-package test;
+package hald.testm2;
 
 import hadl.Composant;
 
@@ -7,7 +7,7 @@ public class ComposantTestDeux extends Composant{
 	
 	public ComposantTestDeux() {
 		super("ComposantDeux");
-		// TODO Auto-generated constructor stub
+	
 	}
 
 

@@ -1,4 +1,4 @@
-package test;
+package hald.testm2;
 
 import hadl.Connector;
 
