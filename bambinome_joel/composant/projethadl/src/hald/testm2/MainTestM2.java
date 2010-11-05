@@ -1,6 +1,6 @@
 package hald.testm2;
 
-import java.lang.reflect.InvocationTargetException;
+
 
 import hadl.Composant;
 import hadl.Configuration;
