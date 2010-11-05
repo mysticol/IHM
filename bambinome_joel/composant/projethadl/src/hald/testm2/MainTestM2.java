@@ -1,4 +1,4 @@
-package test;
+package hald.testm2;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -54,14 +54,7 @@ public class MainTestM2 {
 			
 			System.out.println(config.appelPortOut(1));
 			
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e){
 			e.printStackTrace();
 		}
 		

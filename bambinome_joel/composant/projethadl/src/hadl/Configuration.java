@@ -6,6 +6,7 @@ package hadl;
 import hadl.com.Attachement;
 import hadl.com.Binding;
 import hadl.com.Lien;
+import hadl.com.SignalComposant;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -20,6 +21,29 @@ public class Configuration extends BriqueComposant implements Observer {
 	//sert pour l'enchainement des actions entre composant et connecteur
 	private HashMap<SignalComposant, Lien> roadMap;
 	private HashMap<Integer, Binding> portServiceMapIng;
+	/* TODO:
+	//ici rajouter put etre une map pour le binding 
+	//map dans laquel on irait piocher si on ne trouve pas dans la roadmap
+	//ça éviterais d'avoir a spécifier des trucs sur le binding
+	 * 
+	 */
+	
+	
+	/*TODO:
+	// Rajouter une file d'évément qui permet de reprendre le traitement si on 
+	 * lancer le bousin
+	 * mettre un booléen start/stop pour à froid a chaud tout ça
+	 * permettrais des choses p'etre intéressante
+	 * 
+	 * 
+	 */
+	
+	/*
+	 * 
+	 */
+	
+	
+	
 	
 	private HashMap<String, BriqueComposant> bibComposant;
 	private HashMap<String , Connector> bibConnector;
@@ -55,7 +79,7 @@ public class Configuration extends BriqueComposant implements Observer {
 			SignalComposant recu=(SignalComposant) arg;
 			Lien glien=roadMap.get(recu);
 			if (glien !=null){
-				System.out.println("truc" + glien);
+				System.out.println(glien);
 				//le binding sert pour notify les observer de la configuration
 				if (glien instanceof Binding){
 					Binding temp= (Binding) glien;
@@ -81,7 +105,8 @@ public class Configuration extends BriqueComposant implements Observer {
 					
 					try {
 						
-						Method m= this.getMethodByName(conn, temp.getMethod());
+						Object[] tab = {Value};
+						Method m= this.getMethodByName(conn, temp.getMethod(),tab );
 						if( m!=null){
 							//invocation du lien attachement en passant les argument passer a la glue
 							
