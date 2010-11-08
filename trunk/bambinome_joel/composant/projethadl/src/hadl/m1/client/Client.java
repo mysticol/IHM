@@ -22,7 +22,6 @@ public class Client extends Composant {
 	}
 	
 	public String envoi(String mess){
-		// Envoi sur le portOut du message
 		return mess;
 	}
 	
