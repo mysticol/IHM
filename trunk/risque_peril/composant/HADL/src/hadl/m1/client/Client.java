@@ -7,17 +7,15 @@ public class Client extends Composant {
 	public Client(){
 		this.contraintes = "";
 		this.proprietes = "";
-	
-		this.setPort(1, "envoie");
-		this.setPort(2, "reception");
-						
+		
+		this.setPortIn(3, "envoie");
+		this.setPortOut("envoie", 1);
+		this.setPortIn(2, "reception");
 	}
 	
-	public void envoie(String data){
-		Object[] arg = new Object[2];
-		arg[0] = new Integer(1);
-		arg[1] = data;		
-		this.notifyObservers(arg);
+	public void envoie(){
+		String data = "Joel";
+		this.notifier("envoie", data);
 	}
 	
 	public void reception(String data){

@@ -6,15 +6,13 @@ public class TestNom extends Composant {
 
 	public TestNom() {
 		super();
-		this.setPort(1, "nom");
+		this.setPortIn(1, "nom");
+		this.setPortOut("nom", 2);
 	}
 
 	public void nom(String val){
-		Object[] data = new Object[2];
-		data[0] = 2;
-		data[1] = val + "ta mere !!!";
-		this.setChanged();
-		this.notifyObservers(data);
+		val = val + "ta mere !!!";
+		this.notifier("nom", val);
 	}
 	
 }
