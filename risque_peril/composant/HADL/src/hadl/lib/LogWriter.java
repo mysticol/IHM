@@ -24,6 +24,7 @@ public class LogWriter {
 	
 	private boolean withDate = true;
 	private DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss:SSS");
+	private String separateur = "---------------------------------------------------------------------";
 	
 	// Constructeur
 	private LogWriter(){
@@ -66,6 +67,12 @@ public class LogWriter {
 	}
 	public static boolean isLogUnique() {
 		return logUnique;
+	}
+	public void setSeparateur(String separateur) {
+		this.separateur = separateur;
+	}
+	public String getSeparateur() {
+		return separateur;
 	}
 
 	public static LogWriter getInstance() {
@@ -182,12 +189,15 @@ public class LogWriter {
 
             // Connect print stream to the output stream
             p = new PrintStream( out );
+            
+            psUnique = p;
         }
         catch (Exception e)
         {
                 System.err.println ("Error writing to file");
         }			
-	}	
+	}
+	
 	
 	public void close(String id){
 		// On ferme le fichier de log associe à l'id
@@ -197,7 +207,8 @@ public class LogWriter {
 	public void close(){
 		// On ferme le fichier de log associe à l'id
 		psUnique.close();
-	}	
+	}
+	
 	
 	public void write(String id, String log){
 		// On ecrit dans le log file
@@ -217,6 +228,7 @@ public class LogWriter {
 		}
 	}
 	
+	
 	public void writejl(String id, String log){
 		write(id, log);
 		logMap.get(id).println("");
@@ -227,12 +239,13 @@ public class LogWriter {
 		psUnique.println("");
 	}
 	
+	
 	public void writesep(String id){
-		logMap.get(id).println("---------------------------------------------------------------------");
+		logMap.get(id).println(separateur);
 	}
 	
 	public void writesep(){
-		psUnique.println("---------------------------------------------------------------------");
+		psUnique.println(separateur);
 	}	
 
 }
