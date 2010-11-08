@@ -56,6 +56,46 @@ public class Attachement extends Lien{
 				+ ", getNomComposantFrom()=" + getNomComposantFrom()
 				+ ", getClass()=" + getClass() + "]";
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((method == null) ? 0 : method.hashCode());
+		result = prime * result
+				+ ((nameComposantTo == null) ? 0 : nameComposantTo.hashCode());
+		result = prime * result
+				+ ((nameConnector == null) ? 0 : nameConnector.hashCode());
+		result = prime * result + portComposantTo;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Attachement other = (Attachement) obj;
+		if (method == null) {
+			if (other.method != null)
+				return false;
+		} else if (!method.equals(other.method))
+			return false;
+		if (nameComposantTo == null) {
+			if (other.nameComposantTo != null)
+				return false;
+		} else if (!nameComposantTo.equals(other.nameComposantTo))
+			return false;
+		if (nameConnector == null) {
+			if (other.nameConnector != null)
+				return false;
+		} else if (!nameConnector.equals(other.nameConnector))
+			return false;
+		if (portComposantTo != other.portComposantTo)
+			return false;
+		return true;
+	}
 	
 
 

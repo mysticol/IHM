@@ -27,6 +27,34 @@ public abstract class Lien {
 				+ ", nomComposantFrom=" + nomComposantFrom + ", getClass()="
 				+ getClass() + "]";
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result
+				+ ((nomComposantFrom == null) ? 0 : nomComposantFrom.hashCode());
+		result = prime * result + portComposantFrom;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Lien other = (Lien) obj;
+		if (nomComposantFrom == null) {
+			if (other.nomComposantFrom != null)
+				return false;
+		} else if (!nomComposantFrom.equals(other.nomComposantFrom))
+			return false;
+		if (portComposantFrom != other.portComposantFrom)
+			return false;
+		return true;
+	}
 	
 	
 	
