@@ -50,11 +50,11 @@ public class MainTestM2 {
 		Object [] tab = {"Ponay"};
 		
 		try {
-			config.removeComposant("ComposantDeux");
+			config.removeComposant("ComposantUn");
 			
 			config.appelPortIn(1, tab);
 			
-			config.addComposant(composdeux);
+			config.addComposant(composun);
 			
 			System.out.println(config.appelPortOut(1));
 			

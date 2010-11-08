@@ -1,4 +1,4 @@
-package hadl.com;
+package hadl.com.event;
 
 import java.io.Serializable;
 
