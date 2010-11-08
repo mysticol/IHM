@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT Configuration (id, Configuration*, Composant*, Connecteur*, Binding*, Attachement*, MappingInOut*>
+
+<!ELEMENT Id (Nom, Class)>
+<!ELEMENT Nom(#PCDATA)>
+<!ELEMENT Class(#PCDATA)>
+
+<!ELEMENT Connecteur(id)>
+
+<!ELEMENT Composant(id,MappingServicePort* , MappingInOut*>
+
+<!ELEMENT MappingInOut(in, out)>
+<!ELEMENT in (#PCDATA)>
+<!ELEMENT out (#PCDATA)>
+
+<!ELEMENT MappingServicePort(port, service)>
+<!ELEMENT port (#PCDATA)>
+<!ELEMENT service (#PCDATA)>
+
+
+<!ELEMENT Binding(portComposantFrom,  nomComposantFrom, portBindConfig)>
+<!ELEMENT portComposantFrom (#PCDATA)>
+<!ELEMENT nomComposantFrom (#PCDATA)>
+<!ELEMENT portBindConfig (#PCDATA)>
+
+<!ELEMENT Attachement( portComposantFrom,  nomComposantFrom,
+			 nameConnector,  method,  portComposantTo,  nameComposantTo)>
+<!ELEMENT nameConnector (#PCDATA)>
+<!ELEMENT method (#PCDATA)>
+<!ELEMENT portComposantTo (#PCDATA)>
+<!ELEMENT nameComposantTo (#PCDATA)>
+
+
+

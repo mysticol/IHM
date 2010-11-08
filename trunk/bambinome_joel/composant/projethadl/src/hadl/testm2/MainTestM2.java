@@ -23,7 +23,7 @@ public class MainTestM2 {
 		
 		Connector con= new Connecteur();
 		
-		Lien attach= new Attachement(2, "ComposantUn", "TestConnect", "rien", "ComposantDeux", 1);
+		Lien attach= new Attachement(2, "ComposantUn", "TestConnect", "rien",  1, "ComposantDeux");
 		
 		Lien bindIn= new Binding(1, "ComposantUn", 1);
 		Lien bindOut= new Binding(1, "ComposantDeux", 1);
