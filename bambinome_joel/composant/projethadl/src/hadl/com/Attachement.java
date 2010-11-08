@@ -39,8 +39,8 @@ public class Attachement extends Lien{
 	}
 
 	public Attachement(int portComposantFrom, String nomComposantFrom,
-			String nameConnector, String method, String nameComposantTo,
-			int portComposantTo) {
+			String nameConnector, String method, int portComposantTo, String nameComposantTo
+			) {
 		super(portComposantFrom, nomComposantFrom);
 		this.nameConnector = nameConnector;
 		this.method = method;
