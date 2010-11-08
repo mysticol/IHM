@@ -12,5 +12,9 @@ public class SecurityQuery extends Connector {
 	public SecurityQuery(String name) {
 		super(name);
 	}
+	
+	public String secuQMethod(String mess){
+		return mess;
+	}
 
 }
