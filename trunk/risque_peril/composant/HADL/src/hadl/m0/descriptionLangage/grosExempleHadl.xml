@@ -1,0 +1,59 @@
+<composant name = "confGlobal">
+	<composants>
+		<composant name = "nom1">
+			<port name = "nom-port1" />
+			<port name = "nom-port2" />
+		</composant>
+			
+		<composant name = "conf1">
+			<port name = "nom-port1" />
+			<port name = "nom-port2" />
+						
+			<composants>
+				<composant name = "nom2">
+					<port private name = "nom-port1" />
+					<port name = "nom-port2" />
+					<service name = "nom-service" />
+						<port input name = "nom-port2" />
+						<port output name = "nom-port2"/>
+					</service>
+				</composant>					
+			<composants>
+	
+			
+	
+		</composant>
+
+	</composants>
+	
+	<attachements>
+		<attachement Portfrom="" Roleto="" />
+		
+	</attachements>
+
+	<connecteurs>
+		<connecteur>
+<glu name=”glu1”>
+	<roleFrom name=””/>
+	<roleFrom name=””/>
+<roleTo name=””/>
+</glu>
+		</connecteur>
+	</connecteurs>
+
+	<bindings>
+		<bindingIn from = “” to “” />
+		<bindingOut from = “” “” />
+	</bindings>
+	
+</composant>
+
+
+
+
+
+
+
+
+
+
