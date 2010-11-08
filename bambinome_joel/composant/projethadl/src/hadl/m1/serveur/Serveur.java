@@ -32,9 +32,9 @@ public class Serveur extends Configuration {
 		this.addConnector(secuQuery);
 		this.addConnector(sqlQuery);
 		
-		Lien lienCR= new Attachement(1, "ConnectionManager", "ClearenceRequest", "crMethod",  1, "SecurityDB");
+		Lien lienCR= new Attachement(2, "ConnectionManager", "ClearenceRequest", "crMethod",  1, "SecurityDB");
 		Lien lienSecuQ= new Attachement(2, "SecurityDB", "SecurityQuery", "secuQMethod",  1, "db");
-		Lien lienSQLQ= new Attachement(2, "db", "SQLQuery", "SQLMethod",  2, "ConnectionManager");
+		Lien lienSQLQ= new Attachement(2, "db", "SQLQuery", "SQLMethod",  3, "ConnectionManager");
 
 		
 		Lien bindIn= new Binding(1, "ConnectionManager", 1);
