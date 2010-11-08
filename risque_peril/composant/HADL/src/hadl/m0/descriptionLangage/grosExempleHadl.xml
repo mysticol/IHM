@@ -1,52 +1,45 @@
-<composant name = "confGlobal">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration SYSTEM "dtdHadl.dtd">
+<configuration nom = "confGlobal">
+
+	<contraintes />
+	<proprietes />
+
 	<composants>
-		<composant name = "nom1">
-			<port name = "nom-port1" />
-			<port name = "nom-port2" />
-		</composant>
-			
-		<composant name = "conf1">
-			<port name = "nom-port1" />
-			<port name = "nom-port2" />
-						
-			<composants>
-				<composant name = "nom2">
-					<port private name = "nom-port1" />
-					<port name = "nom-port2" />
-					<service name = "nom-service" />
-						<port input name = "nom-port2" />
-						<port output name = "nom-port2"/>
-					</service>
-				</composant>					
-			<composants>
-	
-			
-	
-		</composant>
-
+		<composant nom = "nom2">
+			<contraintes />
+			<proprietes />
+			<port nom = "nom-port1" visibilite = "publique" />
+			<port nom = "nom-port2" visibilite = "publique" />
+			<service nom = "nom-service" >
+				<portService nom = "nom-port3" type = "in" />
+				<portService nom = "nom-port4" type = "out" />
+			</service>
+		</composant>	
 	</composants>
-	
+			
 	<attachements>
-		<attachement Portfrom="" Roleto="" />
-		
+		<attachement portFrom="nom-prot1" roleTo="nom-port2" />
 	</attachements>
-
+	
+	
+	
 	<connecteurs>
-		<connecteur>
-<glu name=”glu1”>
-	<roleFrom name=””/>
-	<roleFrom name=””/>
-<roleTo name=””/>
-</glu>
+		<connecteur nom="con1">
+			<glue nom="glu1">
+				<roleFrom nom="rf1"/>
+				<roleFrom nom="rf2"/>
+				<roleTo nom="rt1"/>
+			</glue>
 		</connecteur>
 	</connecteurs>
 
 	<bindings>
-		<bindingIn from = “” to “” />
-		<bindingOut from = “” “” />
+		<bindingIn portComposant="pc1" portConfiguration="pcf1" />
+		<bindingOut portComposant="pc3" portConfiguration="pcf2"/>
 	</bindings>
 	
-</composant>
+</configuration>
 
 
 

@@ -4,15 +4,16 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 
+import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
-public class GestionXml {
+public class ParserXml {
 	
-		org.jdom.Document document;
+		Document document;
 		static Element racine;
 	
-	public GestionXml() {
+	public ParserXml() {
 		
 	      //On crée une instance de SAXBuilder
 		  SAXBuilder sxb = new SAXBuilder(true);
@@ -20,7 +21,7 @@ public class GestionXml {
 		      {
 	         //On crée un nouveau document JDOM avec en argument le fichier XML
 	         //Le parsing est terminé ;)			 
-	         document = sxb.build(new File("src/parser/xml/exempleHadl.xml"));
+	         document = sxb.build(new File("src/hadl/m0/descriptionLangage/exempleHadl.xml"));
 	      }
 	      catch(Exception e){}
 
@@ -33,7 +34,7 @@ public class GestionXml {
 	}
 	
 	//Ajouter cette méthodes à la classe JDOM2
-	static void afficheALL()
+	public void afficheALL()
 	{
 	   //On crée une List contenant tous les noeuds "etudiant" de l'Element racine
 	   Element composants = racine.getChild("composants");
@@ -46,7 +47,7 @@ public class GestionXml {
 	   {
 	      //On recrée l'Element courant à chaque tour de boucle afin de
 	      //pouvoir utiliser les méthodes propres aux Element comme :
-	      //selectionner un noeud fils, modifier du texte, etc...
+	      //sélectionner un noeud fils, modifier du texte, etc...
 	      Element courant = (Element)i.next();
 	      //On affiche le nom de l'element courant
 	      System.out.println(courant.getAttributeValue("nom"));
