@@ -12,5 +12,9 @@ public class Rpc extends Connector {
 	public Rpc(String name) {
 		super(name);
 	}
+	
+	public String rpcMethod(String mess){
+		return mess;
+	}
 
 }

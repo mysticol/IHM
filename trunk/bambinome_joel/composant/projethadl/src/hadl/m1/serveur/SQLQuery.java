@@ -12,5 +12,9 @@ public class SQLQuery extends Connector {
 	public SQLQuery(String name) {
 		super(name);
 	}
+	
+	public String SQLMethod(String mess){
+		return mess;
+	}
 
 }

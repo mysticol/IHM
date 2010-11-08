@@ -13,4 +13,7 @@ public class ClearenceRequest extends Connector {
 		super(name);
 	}
 
+	public String crMethod(String mess){
+		return mess;
+	}
 }
