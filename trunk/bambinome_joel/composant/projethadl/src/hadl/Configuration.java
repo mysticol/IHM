@@ -2,12 +2,13 @@ package hadl;
 
 import hadl.com.Attachement;
 import hadl.com.Binding;
+import hadl.com.EventComposant;
 import hadl.com.Lien;
 import hadl.com.SignalComposant;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
-
+import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -26,12 +27,11 @@ public class Configuration extends BriqueComposant implements Observer {
 	 * traitement si on lancer le bousin mettre un booléen start/stop pour à
 	 * froid a chaud tout ça permettrais des choses p'etre intéressante
 	 */
-	
 
 	// Conservation de l'ordre dans la file très important !
 	// Si on peut exécuter que un et pas toute la file pas grave
 
-	
+	private LinkedList<EventComposant> eventQueue;
 
 	/*
 	 * 
@@ -47,7 +47,7 @@ public class Configuration extends BriqueComposant implements Observer {
 		this.bibConnector = new HashMap<String, Connector>();
 		this.portServiceMapIng = new HashMap<Integer, Binding>();
 		this.bindingMap = new HashMap<SignalComposant, Binding>();
-
+		this.eventQueue = new LinkedList<EventComposant>();
 	}
 
 	/*
@@ -60,8 +60,13 @@ public class Configuration extends BriqueComposant implements Observer {
 		Binding bind = this.portServiceMapIng.get(i);
 		// on récupére le composant sur lequel on délègue
 		BriqueComposant comp = bibComposant.get(bind.getNomComposantFrom());
-		// délégation du service
+		// délégation du service, si il est présent
+		if( comp!=null){
 		comp.appelPortIn(bind.getPortComposantFrom(), agrs);
+		}else{
+			//ajout dans la liste truc
+			// soucis au niveau du retraitement
+		}
 	}
 
 	@Override
@@ -79,32 +84,11 @@ public class Configuration extends BriqueComposant implements Observer {
 			// méthode
 			if (gAttach != null) {
 				System.out.println(gAttach);
-				Attachement temp = (Attachement) gAttach;
 				Object Value = bibComposant.get(recu.getName()).appelPortOut(
 						recu.getPort());
+				// on tranfert à la méthode de traitement
+				traitementEvent(new EventComposant(Value, gAttach, recu));
 
-				BriqueComposant cible = bibComposant.get(temp
-						.getNameComposantTo());
-				Connector conn = bibConnector.get(temp.getNameConnector());
-
-				try {
-					Object[] tab = { Value };
-					Method m = this
-							.getMethodByName(conn, temp.getMethod(), tab);
-					if (m != null) {
-						// invocation du lien attachement en passant les
-						// argument passer a la glue
-
-						Object[] tav = { m.invoke(conn, Value) };
-
-						cible.appelPortIn(temp.getPortComposantTo(), tav);
-					} else {
-						throw new InvocationTargetException(new Throwable(
-								"Methode Inconnue"));
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
 				// sinon si il y a un binding on fini
 			} else if (gBind != null) {
 
@@ -144,17 +128,34 @@ public class Configuration extends BriqueComposant implements Observer {
 
 	}
 
-	private final void reload() {
+	private final void retraitementEventQueue() {
+
+		
+		boolean traitementFile = !eventQueue.isEmpty();
+		
+		
+		while (traitementFile) {
+
+			EventComposant com = eventQueue.peekFirst();
+			if (com != null) {
+				traitementFile = traitementEvent(com);
+				if (traitementFile) {
+					eventQueue.removeFirst();
+				}
+			} else {
+				traitementFile = false;
+			}
+		}
 
 	}
-	
+
 	/*
 	 * Ajout d'un composant et reprise du fonctionnement si besoin
 	 */
 	public final void addComposant(BriqueComposant brique) {
 		bibComposant.put(brique.getName(), brique);
 		brique.addObserver(this);
-		this.reload();
+		this.retraitementEventQueue();
 	}
 
 	/*
@@ -162,7 +163,7 @@ public class Configuration extends BriqueComposant implements Observer {
 	 */
 	public final void addConnector(Connector con) {
 		bibConnector.put(con.getName(), con);
-		this.reload();
+		this.retraitementEventQueue();
 	}
 
 	// on enlève l'objet mais pas la référence
@@ -177,20 +178,20 @@ public class Configuration extends BriqueComposant implements Observer {
 		bibConnector.put(con, null);
 	}
 
-	//	suppression définitive
+	// suppression définitive
 	public final void deleteComposant(String com) {
 		BriqueComposant comp = bibComposant.get(com);
 		comp.deleteObserver(this);
 		bibComposant.remove(comp);
 	}
-	
-	//	suppression définitive
+
+	// suppression définitive
 	public final void deleteConnector(String con) {
 		bibConnector.remove(con);
 	}
 
-	//Inverse de l'ajout de lien
-	//on supprime simplement le lien des maps
+	// Inverse de l'ajout de lien
+	// on supprime simplement le lien des maps
 	public final void deleteLien(Lien li) {
 
 		if (li instanceof Binding) {
@@ -206,4 +207,41 @@ public class Configuration extends BriqueComposant implements Observer {
 
 	}
 
+	private final boolean traitementEvent(EventComposant ev) {
+
+		boolean result = false;
+
+		if (this.roadMap.containsKey(ev.getSignal())) {
+			Attachement gAttach = ev.getAttach();
+			Object Value = ev.getValue();
+
+			BriqueComposant cible = bibComposant.get(gAttach
+					.getNameComposantTo());
+			Connector conn = bibConnector.get(gAttach.getNameConnector());
+
+			if (cible != null && conn != null) {
+				try {
+					Object[] tab = { Value };
+					Method m = this.getMethodByName(conn, gAttach.getMethod(),
+							tab);
+					if (m != null) {
+						// invocation du lien attachement en passant les
+						// argument passer a la glue
+						Object[] tav = { m.invoke(conn, Value) };
+						cible.appelPortIn(gAttach.getPortComposantTo(), tav);
+						result = true;
+					} else {
+						throw new InvocationTargetException(new Throwable(
+								"Methode Inconnue"));
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else {
+				eventQueue.add(ev);
+			}
+		}
+
+		return result;
+	}
 }
