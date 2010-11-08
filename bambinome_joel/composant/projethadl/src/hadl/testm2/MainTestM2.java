@@ -21,7 +21,7 @@ public class MainTestM2 {
 		Composant composun= new ComposantTestUn();
 		Composant composdeux= new ComposantTestDeux();
 		
-		Connector con= new Connecteur();
+		Connector con= new ConnecteurTest();
 		
 		Lien attach= new Attachement(2, "ComposantUn", "TestConnect", "rien",  1, "ComposantDeux");
 		
@@ -35,6 +35,7 @@ public class MainTestM2 {
 		
 		composun.addMappingPortService(composUnBind);
 		composun.addMapingInOut(inoutun);
+		
 		composdeux.addMappingPortService(composDeuxBind);
 		
 		
