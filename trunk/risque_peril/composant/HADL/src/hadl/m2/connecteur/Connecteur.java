@@ -6,9 +6,11 @@ import java.util.Map;
 
 public abstract class Connecteur extends IConnecteur {
 
+	// attribut  
 	protected Map<Integer,String> rolesFrom;
 	protected Map<String,Integer> rolesTo;
 	
+	// constructor
 	public Connecteur(Map<Integer, String> rolesFrom,Map<String,Integer> rolesTo) {
 		super();
 		this.rolesFrom = rolesFrom;
@@ -20,12 +22,15 @@ public abstract class Connecteur extends IConnecteur {
 		this.rolesFrom = new HashMap<Integer, String>();
 		this.rolesTo = new HashMap<String, Integer>();
 	}
+	// ---------------------------------------
 
+	// methode de mise a jour des liaison entre les glues et les roles
 	public void setGlue(Integer roleFrom, String glue, Integer roleTo){
 		this.rolesFrom.put(roleFrom, glue);
 		this.rolesTo.put(glue, roleTo);
 	}
 	
+	// method d'affichage d'un connecteur
 	public void print(){
 		System.out.println(this.getClass().getName());
 		System.out.println("Roles from :");
@@ -38,6 +43,7 @@ public abstract class Connecteur extends IConnecteur {
 		}
 	}
 	
+	// méthode d'activation d'un port en sortie
 	public void notifier(String methode , Object data){
 		if(this.rolesTo.containsKey(methode)){
 			Object[] datas = new Object[2];
@@ -50,6 +56,7 @@ public abstract class Connecteur extends IConnecteur {
 		}
 	}
 	
+	// methode a appelé pour lancer les glues, activation d'un port d'entré
 	public void glue(Integer port, Object data) {
 		if(this.rolesFrom.containsKey(port)){
 			try {

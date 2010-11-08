@@ -24,6 +24,11 @@ public class CS extends Configuration {
 		this.addAttachement(rpc, 2, serveur, 1);
 		
 		this.addBinding(1, client, 3);
+		this.launch(1);
+		this.removeAttachement(serveur, 2);
+		this.launch(1);
+		this.addAttachement(serveur, 2, rpc, 3);
+		
 	}
 
 	public void start() {

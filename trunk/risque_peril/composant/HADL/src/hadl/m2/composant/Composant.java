@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Composant extends IComposant {
-		
+	
+	// attribut
 	protected String contraintes;
 	protected String proprietes;
 
@@ -26,7 +27,8 @@ public abstract class Composant extends IComposant {
 		this.portsIn = new HashMap<Integer, String>();
 		this.portsOut = new HashMap<String, Integer>();
 	}
-
+	// -------------------------------
+	
 	// getters and setters
 	public String getContraintes() {
 		return contraintes;
@@ -49,6 +51,7 @@ public abstract class Composant extends IComposant {
 		this.portsOut.put(method, port);
 	}
 	
+	// method d'affichage d'un connecteur
 	public void print(){
 		System.out.println(this.getClass().getName());
 		System.out.println("Contraintes : " + contraintes );
@@ -63,6 +66,7 @@ public abstract class Composant extends IComposant {
 		}
 	}
 	
+	// méthode d'activation d'un port en sortie
 	public void notifier(String methodeName , Object data){
 		if(this.portsOut.containsKey(methodeName)){
 			Object[] datas = new Object[2];
@@ -81,19 +85,14 @@ public abstract class Composant extends IComposant {
 			try {
 				this.getClass().getDeclaredMethod(this.portsIn.get(port), data.getClass()).invoke(this, data);
 			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else{
@@ -106,19 +105,14 @@ public abstract class Composant extends IComposant {
 			try {
 				this.getClass().getDeclaredMethod(this.portsIn.get(port)).invoke(this);
 			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else{

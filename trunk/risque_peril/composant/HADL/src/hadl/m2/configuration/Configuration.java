@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Observable;
 
+import hadl.lib.LogWriter;
 import hadl.m2.composant.Composant;
 import hadl.m2.composant.IComposant;
 import hadl.m2.connecteur.IConnecteur;
@@ -59,10 +60,11 @@ public class Configuration extends Composant implements IConfiguration {
 	protected Map<IComposant , Map<Integer, To>> composInterne;
 	protected Map<IConnecteur , Map<Integer, To>> connectsInterne;
 	protected Map<Integer , To> bindingIn;
+	
+	protected LogWriter lw;
 	// -------------------------------------------------------
 	
 	// Constructeur 
-	
 	public Configuration(String contraintes, String proprietes,
 			Map<Integer, String> portsIn, Map<String, Integer> portsOut,
 			Map<IComposant, Map<Integer, To>> composInterne,
@@ -72,6 +74,7 @@ public class Configuration extends Composant implements IConfiguration {
 		this.composInterne = composInterne;
 		this.connectsInterne = connectsInterne;
 		this.bindingIn = bindingIn;
+		this.lw = LogWriter.getInstance();
 		
 		// lancement de l'observation sur les composants internes de la configuration
 		for(IComposant c : this.composInterne.keySet()){
@@ -88,9 +91,11 @@ public class Configuration extends Composant implements IConfiguration {
 		super();
 		this.composInterne = new HashMap<IComposant, Map<Integer,To>>();
 		this.connectsInterne = new HashMap<IConnecteur, Map<Integer,To>>();
-		this.bindingIn = new HashMap<Integer, Configuration.To>();		
+		this.bindingIn = new HashMap<Integer, Configuration.To>();
+		this.lw = LogWriter.getInstance();
 	}
 	
+	// methode d'affichage d'une configuration
 	public void print(){
 		System.out.println("Composants internes :");
 		for(IComposant c : this.composInterne.keySet()){
@@ -154,6 +159,7 @@ public class Configuration extends Composant implements IConfiguration {
 		}
 	}
 	
+	// method appelée depuis l'exterieur pour lancer une méthode liée à un port
 	public void launch(Integer port, Object data){
 		if(this.bindingIn.containsKey(port)){
 			To dest = this.bindingIn.get(port);
