@@ -6,18 +6,12 @@ public class TestConnect extends Connecteur {
 
 	public TestConnect() {
 		super();
-		
-		this.setGlue(1, "article");
-		
+		this.setGlue(1, "article", 2);
+
 	}
 
 	public void article(String val){
-		Object[] data = new Object[2];
-		data[0] = 2;
-		data[1] = val + " venant de ";
-		this.setChanged();
-		this.notifyObservers(data);
+		val = val + " venant de ";
+		this.notifier("article",val);
 	}
-	
-	
 }

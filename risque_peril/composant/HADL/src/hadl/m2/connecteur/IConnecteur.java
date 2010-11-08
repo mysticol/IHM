@@ -5,5 +5,6 @@ import java.util.Observable;
 public abstract class IConnecteur extends Observable{
 	
 	public abstract void glue(Integer port, Object data);
+	public abstract void print();
 	
 }

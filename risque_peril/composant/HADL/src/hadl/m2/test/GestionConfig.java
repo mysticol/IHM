@@ -20,7 +20,7 @@ public class GestionConfig implements Observer{
 		
 		config.addAttachement(compo1, 2, connect, 1);
 		config.addAttachement(connect, 2, compo2, 1);
-		
+				
 		config.addBinding(1, compo1, 1);
 		config.addBinding(compo2, 2, 2);
 		
