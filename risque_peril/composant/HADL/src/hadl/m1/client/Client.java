@@ -14,13 +14,11 @@ public class Client extends Composant {
 	}
 	
 	public void envoie(){
-		String data = "Joel";
+		String data = "moi";
 		this.notifier("envoie", data);
 	}
 	
 	public void reception(String data){
 		System.out.println(data);
 	}
-	
-	
 }
