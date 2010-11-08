@@ -1,6 +1,6 @@
 package hadl;
 
-import hadl.com.SignalComposant;
+import hadl.com.event.SignalComposant;
 import hadl.param.MappingPortService;
 
 import java.lang.reflect.InvocationTargetException;

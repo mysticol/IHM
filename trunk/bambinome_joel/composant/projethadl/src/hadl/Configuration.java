@@ -2,9 +2,12 @@ package hadl;
 
 import hadl.com.Attachement;
 import hadl.com.Binding;
-import hadl.com.EventComposant;
 import hadl.com.Lien;
-import hadl.com.SignalComposant;
+import hadl.com.event.EventAttachement;
+import hadl.com.event.EventBinding;
+import hadl.com.event.EventComposant;
+import hadl.com.event.SignalComposant;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -61,11 +64,12 @@ public class Configuration extends BriqueComposant implements Observer {
 		// on récupére le composant sur lequel on délègue
 		BriqueComposant comp = bibComposant.get(bind.getNomComposantFrom());
 		// délégation du service, si il est présent
-		if( comp!=null){
-		comp.appelPortIn(bind.getPortComposantFrom(), agrs);
-		}else{
-			//ajout dans la liste truc
+		if (comp != null) {
+			comp.appelPortIn(bind.getPortComposantFrom(), agrs);
+		} else {
+			// ajout dans la liste truc
 			// soucis au niveau du retraitement
+			eventQueue.add(new EventBinding(agrs, bind, i));
 		}
 	}
 
@@ -87,7 +91,16 @@ public class Configuration extends BriqueComposant implements Observer {
 				Object Value = bibComposant.get(recu.getName()).appelPortOut(
 						recu.getPort());
 				// on tranfert à la méthode de traitement
-				traitementEvent(new EventComposant(Value, gAttach, recu));
+
+				BriqueComposant cible = bibComposant.get(gAttach
+						.getNameComposantTo());
+				Connector conn = bibConnector.get(gAttach.getNameConnector());
+
+				if (conn == null || cible == null) {
+					eventQueue.add(new EventAttachement(Value, gAttach, recu));
+				} else {
+					traitementEvent(new EventAttachement(Value, gAttach, recu));
+				}
 
 				// sinon si il y a un binding on fini
 			} else if (gBind != null) {
@@ -130,10 +143,8 @@ public class Configuration extends BriqueComposant implements Observer {
 
 	private final void retraitementEventQueue() {
 
-		
 		boolean traitementFile = !eventQueue.isEmpty();
-		
-		
+
 		while (traitementFile) {
 
 			EventComposant com = eventQueue.peekFirst();
@@ -210,36 +221,62 @@ public class Configuration extends BriqueComposant implements Observer {
 	private final boolean traitementEvent(EventComposant ev) {
 
 		boolean result = false;
+		if (ev instanceof EventAttachement) {
+			EventAttachement event = (EventAttachement) ev;
+			if (this.roadMap.containsKey(event.getSignal())) {
+				Attachement gAttach = event.getAttach();
+				Object Value = event.getValue();
 
-		if (this.roadMap.containsKey(ev.getSignal())) {
-			Attachement gAttach = ev.getAttach();
-			Object Value = ev.getValue();
+				BriqueComposant cible = bibComposant.get(gAttach
+						.getNameComposantTo());
+				Connector conn = bibConnector.get(gAttach.getNameConnector());
 
-			BriqueComposant cible = bibComposant.get(gAttach
-					.getNameComposantTo());
-			Connector conn = bibConnector.get(gAttach.getNameConnector());
-
-			if (cible != null && conn != null) {
-				try {
-					Object[] tab = { Value };
-					Method m = this.getMethodByName(conn, gAttach.getMethod(),
-							tab);
-					if (m != null) {
-						// invocation du lien attachement en passant les
-						// argument passer a la glue
-						Object[] tav = { m.invoke(conn, Value) };
-						cible.appelPortIn(gAttach.getPortComposantTo(), tav);
-						result = true;
-					} else {
-						throw new InvocationTargetException(new Throwable(
-								"Methode Inconnue"));
+				if (cible != null && conn != null) {
+					try {
+						Object[] tab = { Value };
+						Method m = this.getMethodByName(conn,
+								gAttach.getMethod(), tab);
+						if (m != null) {
+							// invocation du lien attachement en passant les
+							// argument passer a la glue
+							Object[] tav = { m.invoke(conn, Value) };
+							cible.appelPortIn(gAttach.getPortComposantTo(), tav);
+							result = true;
+						} else {
+							throw new InvocationTargetException(new Throwable(
+									"Methode Inconnue"));
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
+				}
+			} else {
+				result = true;
+			}
+		} else if (ev instanceof EventBinding) {
+			//retraitement d'un appel event bind 
+			EventBinding event = (EventBinding) ev;
+
+			// Récupération du bind correspondant
+			Binding bind = event.getBind();
+			Object[] args = event.getValues();
+
+			
+			if (portServiceMapIng.get(event.getPort()).equals(bind)) {
+				// on récupére le composant sur lequel on délègue
+				BriqueComposant comp = bibComposant.get(bind
+						.getNomComposantFrom());
+				// délégation du service, si il est présent
+				try {
+					comp.appelPortIn(bind.getPortComposantFrom(), args);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+
 			} else {
-				eventQueue.add(ev);
+				result = true;
 			}
+
 		}
 
 		return result;

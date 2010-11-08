@@ -1,21 +1,16 @@
-package hadl.com;
+package hadl.com.event;
 
-public class EventComposant {
+import hadl.com.Attachement;
 
-	
-	private Object value;
+public class EventAttachement implements EventComposant{
+
 	private Attachement attach;
 	private SignalComposant signal;
-	public EventComposant(Object value, Attachement attach,
-			SignalComposant signal) {
-		this.value = value;
+	private Object value;
+	public EventAttachement(Object value,Attachement attach, SignalComposant signal
+			) {
 		this.attach = attach;
 		this.signal = signal;
-	}
-	public Object getValue() {
-		return value;
-	}
-	public void setValue(Object value) {
 		this.value = value;
 	}
 	public Attachement getAttach() {
@@ -29,6 +24,12 @@ public class EventComposant {
 	}
 	public void setSignal(SignalComposant signal) {
 		this.signal = signal;
+	}
+	public Object getValue() {
+		return value;
+	}
+	public void setValue(Object value) {
+		this.value = value;
 	}
 	@Override
 	public int hashCode() {
@@ -47,7 +48,7 @@ public class EventComposant {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EventComposant other = (EventComposant) obj;
+		EventAttachement other = (EventAttachement) obj;
 		if (attach == null) {
 			if (other.attach != null)
 				return false;
@@ -65,6 +66,7 @@ public class EventComposant {
 			return false;
 		return true;
 	}
+	
 	
 	
 	
