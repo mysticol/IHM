@@ -2,9 +2,9 @@ package hadl.testm2;
 
 import hadl.Connector;
 
-public class Connecteur extends Connector{
+public class ConnecteurTest extends Connector{
 
-	public Connecteur() {
+	public ConnecteurTest() {
 		super("TestConnect");
 	}
 

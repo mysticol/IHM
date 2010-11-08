@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configuration SYSTEM "../parseur/hadlsyntaxe.dtd">
+
+<Configuration>
+	<Id>
+		<Nom>ConfigTest</Nom>
+		<Class>ConfigurationTest</Class>
+	</Id>
+	<Composant>
+		<Id>
+			<Nom>ComposantUn</Nom>
+			<Class>ComposantTestUn</Class>
+		</Id>
+		<MappingServicePort>
+			<port>1</port>
+			<service>message</service>
+		</MappingServicePort>
+		<MappingInOut>
+			<in>1</in>
+			<out>2</out>
+		</MappingInOut>
+	</Composant>
+	<Composant>
+		<Id>
+			<Nom>ComposantDeux</Nom>
+			<Class>ComposantTestDeux</Class>
+		</Id>
+		<MappingServicePort>
+			<port>1</port>
+			<service>chainage</service>
+		</MappingServicePort>
+	</Composant>
+	<Connecteur>
+		<Id>
+			<Nom>TestConnect</Nom>
+			<Class>ConnecteurTest</Class>
+		</Id>
+	</Connecteur>
+
+	<Binding>
+		<portComposantFrom>1</portComposantFrom>
+		<nomComposantFrom>ComposantUn</nomComposantFrom>
+		<portBindConfig>1</portBindConfig>
+	</Binding>
+
+	<Binding>
+		<portComposantFrom>1</portComposantFrom>
+		<nomComposantFrom>ComposantDeux</nomComposantFrom>
+		<portBindConfig>1</portBindConfig>
+	</Binding>
+
+	<Attachement>
+		<portComposantFrom>2</portComposantFrom>
+		<nomComposantFrom>ComposantUn</nomComposantFrom>
+		<nameConnector>TestConnect</nameConnector>
+		<method>test</method>
+		<portComposantTo>1</portComposantTo>
+		<nameComposantTo>ComposantDeux</nameComposantTo>
+	</Attachement>
+
+
+</Configuration>
