@@ -12,9 +12,9 @@ public abstract class BriqueComposant  extends ObjectHadl{
 	private HashMap<Integer, Object> portValueMap;
 
 	/*
-	 * Maping entré sortie pour les appel sur les port
-	 * si il y a une entré 2 pour la valeur 1 signifie que l'appel de port 1
-	 * écrira son résultat sur 2. Il faudra s'adresser a cet map pour connaitre la sortie
+	 * Mapping entré sortie pour les appel sur les port
+	 * si il y a une entrée 2 pour la valeur 1 signifie que l'appel de port 1
+	 * écrira son résultat sur 2. Il faudra s'adresser a cette map pour connaitre la sortie
 	 * 
 	 */
 	private HashMap<Integer,Integer> mapingInOut;
