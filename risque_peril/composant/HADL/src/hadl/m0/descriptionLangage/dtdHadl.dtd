@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- On a forcément une configuration qui englobe tout. -->
+<!ELEMENT configuration (contraintes, proprietes, composants, attachements, connecteurs, bindings)>
+<!ATTLIST configuration	
+				nom ID  #REQUIRED>
+
+<!-- Les contraintes et les proprietes sont de simples donnees -->
+<!ELEMENT contraintes (#PCDATA)>
+<!ELEMENT proprietes (#PCDATA)>
+
+<!-- Dans les composants d'une configuration, on peut avoir soit des composants simples, -->
+<!-- soit des configurations. Il doit y avoir au moins un composant ou configuration. -->
+<!ELEMENT composants ( (composant | configuration)+ )>
+
+<!-- Un composant simple doit avoir un nom. -->
+<!ELEMENT composant (contraintes, proprietes, port*, service*)>
+<!ATTLIST composant	
+				nom ID #REQUIRED>
+
+<!-- Un port doit être publique ou privé -->
+<!-- Un port doit avoir un nom -->
+<!ELEMENT port EMPTY>
+<!ATTLIST port
+			nom ID #REQUIRED
+			visibilite (prive|publique) #REQUIRED>
+
+<!-- Un service doit être rattaché à au moins un port d'entrée et seulement un port -->
+<!-- en sortie !! pour le moment, un service n'a pas de limitation sur ses ports !! -->
+<!-- Un service doit avoir un nom -->
+<!ELEMENT service (portService*)>
+<!ATTLIST service
+				nom ID #REQUIRED>
+
+<!-- Un portService doit obligatoirement avoir un nom et un tyoe -->
+<!ELEMENT portService EMPTY>
+<!ATTLIST portService
+				nom ID #REQUIRED
+				type (in|out) #REQUIRED>
+
+
+<!-- Il peut y avoir 0..n liens d'attachement -->
+<!ELEMENT attachements (attachement*)>
+
+<!-- Un attachement lie un portFrom et un roleTo -->
+<!ELEMENT attachement EMPTY>
+<!ATTLIST attachement
+				portFrom CDATA #REQUIRED
+				roleTo CDATA #REQUIRED>
+
+<!-- Il peut y avoir 0..n connecteurs -->
+<!ELEMENT connecteurs (connecteur*)>
+
+<!-- Un connecteur est composé d'une ou plusieurs glue(s) -->
+<!ELEMENT connecteur (glue+)>
+<!ATTLIST connecteur
+				nom ID #REQUIRED>
+
+<!-- Une glue est rattachée à plusieurs rolesFrom, et un seul roleTo -->
+<!ELEMENT glue (roleFrom+,roleTo)>
+<!ATTLIST glue
+				nom ID #REQUIRED>
+
+<!-- un roleFrom doit avoir un nom -->	
+<!ELEMENT roleFrom EMPTY>
+<!ATTLIST roleFrom
+				nom CDATA #REQUIRED>
+
+<!-- un roleTo doit avoir un nom -->					
+<!ELEMENT roleTo EMPTY>
+<!ATTLIST roleTo
+				nom CDATA #REQUIRED>				
+
+<!-- Il peut y avoir 0..n liens binding -->
+<!ELEMENT bindings (bindingIn|bindingOut)*>
+
+<!-- Un bindingIn lie un port composant et un port configuration -->
+<!ELEMENT bindingIn EMPTY>
+<!ATTLIST bindingIn
+				portComposant CDATA #REQUIRED
+				portConfiguration CDATA #REQUIRED>
+
+<!-- Un bindingOut lie un port composant et un port configuration -->
+<!ELEMENT bindingOut EMPTY>
+<!ATTLIST bindingOut
+				portComposant CDATA #REQUIRED
+				portConfiguration CDATA #REQUIRED>
+
+
