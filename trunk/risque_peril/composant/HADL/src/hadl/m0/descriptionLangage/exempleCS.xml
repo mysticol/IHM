@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration SYSTEM "dtdHadl.dtd">
+<configuration nom = "CS">
+
+	<contraintes />
+	<proprietes />
+
+	<composants>
+		<composant nom = "Client">
+			<contraintes />
+			<proprietes />
+			<service nom = "envoie" >
+				<portService nom = "3" type = "in" />
+				<portService nom = "1" type = "out" />
+			</service>
+			<service nom = "reception" >
+				<portService nom = "2" type = "in" />
+			</service>			
+		</composant>
+		
+		<configuration nom="Serveur">
+		
+			<contraintes></contraintes>
+			<proprietes></proprietes>
+			
+			<composants>
+				<composant nom = "ConnectionManager">
+					<contraintes />
+					<proprietes />
+					<service nom = "arriverSortir" >
+						<portService nom = "ExternalSocket" type = "in" />
+						<portService nom = "ExternalSocket" type = "out" />
+					</service>
+					<service nom = "dialogSecuDB" >
+						<portService nom = "SecurityCheck" type = "in" />
+						<portService nom = "SecurityCheck" type = "out" />
+					</service>
+					<service nom = "dialogDB" >
+						<portService nom = "DbQuery" type = "in" />
+						<portService nom = "DbQuery" type = "out" />
+					</service>					
+				</composant>
+				
+				<composant nom = "DataBase">
+					<contraintes />
+					<proprietes />
+					<service nom = "traiteQuery" >
+						<portService nom = "3" type = "in" />
+						<portService nom = "1" type = "out" />
+					</service>
+				</composant>
+				
+				<composant nom = "Client">
+					<contraintes />
+					<proprietes />
+					<service nom = "envoie" >
+						<portService nom = "3" type = "in" />
+						<portService nom = "1" type = "out" />
+					</service>
+					<service nom = "reception" >
+						<portService nom = "2" type = "in" />
+					</service>			
+				</composant>
+				
+			</composants>
+					
+			<attachements>
+			</attachements>
+			
+			<connecteurs>
+			</connecteurs>
+			
+			<bindings>
+			</bindings>
+			
+		</configuration>
+
+	</composants>
+			
+	<attachements>
+		<attachement portFrom="nom-prot1" roleTo="nom-port2" />
+	</attachements>
+	
+	
+	
+	<connecteurs>
+		<connecteur nom="con1">
+			<glue nom="glu1">
+				<roleFrom nom="rf1"/>
+				<roleFrom nom="rf2"/>
+				<roleTo nom="rt1"/>
+			</glue>
+		</connecteur>
+	</connecteurs>
+
+	<bindings>
+		<bindingIn portComposant="pc1" portConfiguration="pcf1" />
+		<bindingOut portComposant="pc3" portConfiguration="pcf2"/>
+	</bindings>
+	
+</configuration>
+
+
+
+
+
+
+
+
+
+
