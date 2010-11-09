@@ -273,13 +273,11 @@ public class LogWriter {
 	
 	
 	public void writewarn(String id, String warningMessage){
-		write(id, "");
 		write(id, "Warning : !! " + warningMessage + " !!");
 		write(id, "");
 	}
 	
 	public void writewarn(String warningMessage){
-		write("");
 		write("Warning : !! " + warningMessage + " !!");
 		write("");
 	}	

@@ -4,22 +4,44 @@ import hadl.m2.composant.Composant;
 
 public class ConnectionManager extends Composant {
 
+	private String query;
+	
 	public ConnectionManager() {
 		super();
+		query = "";
 		
-		this.setPortIn(1, "arriver");
-		this.setPortOut("arriver", 2);
+		this.setPortIn("External-Socket", "arriver");
+		this.setPortIn("Security-Check","verif");
+		this.setPortIn("DB-Query", "sortir");
 		
-		this.setPortIn(3, "sortir");
-		this.setPortOut("sortir", 4);		
+		this.setPortOut("arriver", "Security-Check");
+		this.setPortOut("sortir", "External-Socket");	
+		this.setPortOut("lauchQuery","DB-Query");
 	}
 
 	public void arriver(String cmd){
-		this.notifier("arriver", cmd);		
+		// System.out.println(3 +" - "+cmd);
+		query = cmd;
+		this.notifier("arriver", cmd);
 	}
 	
 	public void sortir(String rep){
+		// System.out.println(16 + " - " + rep);
 		this.notifier("sortir", rep);		
+	}
+	
+	public void verif(String rep){
+		// System.out.println(11 +" - "+rep);
+		if(rep.equals("OK")){
+			this.launchQuery();
+		}else{
+			this.sortir(rep);
+		}
+	}
+
+	private void launchQuery() {
+		// System.out.println(12 +" - "+query);
+		this.notifier("lauchQuery", query);	
 	}
 	
 }

@@ -19,8 +19,8 @@ public abstract class Configuration extends Composant implements IConfiguration 
 		
 	protected class ToConnect implements To{
 		IConnecteur connect;
-		Integer rolesFrom;
-		public ToConnect(IConnecteur connect, Integer rolesFrom) {
+		String rolesFrom;
+		public ToConnect(IConnecteur connect, String rolesFrom) {
 			super();
 			this.connect = connect;
 			this.rolesFrom = rolesFrom;
@@ -32,8 +32,8 @@ public abstract class Configuration extends Composant implements IConfiguration 
 	
 	protected class ToCompo implements To{
 		IComposant compo;
-		Integer portIn;
-		public ToCompo(IComposant compo, Integer portIn) {
+		String portIn;
+		public ToCompo(IComposant compo, String portIn) {
 			super();
 			this.compo = compo;
 			this.portIn = portIn;
@@ -44,8 +44,8 @@ public abstract class Configuration extends Composant implements IConfiguration 
 	}
 	
 	protected class ToPortConfig implements To{
-		Integer portConfig;
-		public ToPortConfig(Integer portConfig) {
+		String portConfig;
+		public ToPortConfig(String portConfig) {
 			super();
 			this.portConfig = portConfig;
 		}
@@ -57,19 +57,19 @@ public abstract class Configuration extends Composant implements IConfiguration 
 		
 	
 	// Attribut
-	protected Map<IComposant , Map<Integer, To>> composInterne;
-	protected Map<IConnecteur , Map<Integer, To>> connectsInterne;
-	protected Map<Integer , To> bindingIn;
+	protected Map<IComposant , Map<String, To>> composInterne;
+	protected Map<IConnecteur , Map<String, To>> connectsInterne;
+	protected Map<String , To> bindingIn;
 	
 	protected LogWriter lw;
 	// -------------------------------------------------------
 	
 	// Constructeur 
 	public Configuration(String contraintes, String proprietes,
-			Map<Integer, String> portsIn, Map<String, Integer> portsOut,
-			Map<IComposant, Map<Integer, To>> composInterne,
-			Map<IConnecteur, Map<Integer, To>> connectsInterne,
-			Map<Integer, To> bindingIn) {
+			Map<String, String> portsIn, Map<String, String> portsOut,
+			Map<IComposant, Map<String, To>> composInterne,
+			Map<IConnecteur, Map<String, To>> connectsInterne,
+			Map<String, To> bindingIn) {
 		super(contraintes, proprietes, portsIn, portsOut);
 		this.composInterne = composInterne;
 		this.connectsInterne = connectsInterne;
@@ -90,9 +90,9 @@ public abstract class Configuration extends Composant implements IConfiguration 
 
 	public Configuration(){
 		super();
-		this.composInterne = new HashMap<IComposant, Map<Integer,To>>();
-		this.connectsInterne = new HashMap<IConnecteur, Map<Integer,To>>();
-		this.bindingIn = new HashMap<Integer, Configuration.To>();
+		this.composInterne = new HashMap<IComposant, Map<String,To>>();
+		this.connectsInterne = new HashMap<IConnecteur, Map<String,To>>();
+		this.bindingIn = new HashMap<String, Configuration.To>();
 		this.lw = LogWriter.getInstance();
 		this.lw.init(this.getClass().getName());
 	}
@@ -103,7 +103,7 @@ public abstract class Configuration extends Composant implements IConfiguration 
 		for(IComposant c : this.composInterne.keySet()){
 			System.out.println(c.getClass().getName());
 			System.out.println("Attachements :");
-			for(Integer p : this.composInterne.get(c).keySet()){
+			for(String p : this.composInterne.get(c).keySet()){
 				System.out.println("     - " + p + " -> " + this.composInterne.get(c).get(p).toString());
 			}
 		}
@@ -111,12 +111,12 @@ public abstract class Configuration extends Composant implements IConfiguration 
 		for(IConnecteur c : this.connectsInterne.keySet()){
 			System.out.println(c.getClass().getName());
 			System.out.println("Attachements :");
-			for(Integer p : this.connectsInterne.get(c).keySet()){
+			for(String p : this.connectsInterne.get(c).keySet()){
 				System.out.println("     - " + p + " -> " + this.connectsInterne.get(c).get(p).toString());
 			}
 		}
 		System.out.println("Bindings :");
-		for(Integer p : this.bindingIn.keySet()){
+		for(String p : this.bindingIn.keySet()){
 			System.out.println("     - " + p + " -> " + this.bindingIn.get(p).toString());
 		}
 	}
@@ -145,7 +145,7 @@ public abstract class Configuration extends Composant implements IConfiguration 
 					((ToConnect)dest).connect.glue(((ToConnect)dest).rolesFrom, args[1]);
 				}
 			}else{
-				this.lw.writejl(this.getClass().getName(), "le lien activer n'existe pas ou plus!!");
+				this.lw.writewarn(this.getClass().getName(), "Le lien activer " + o.getClass().getName()+":"+ args[0] + " n'existe pas ou plus!!");
 			}
 		}else if(o instanceof IConnecteur){
 			// on test si le lien existe
@@ -154,33 +154,33 @@ public abstract class Configuration extends Composant implements IConfiguration 
 				To dest = connectsInterne.get(o).get(args[0]);
 				((ToCompo)dest).compo.launch(((ToCompo)dest).portIn, args[1]);
 			}else{
-				this.lw.writewarn(this.getClass().getName(), "le lien activer n'existe pas ou plus");
+				this.lw.writewarn(this.getClass().getName(), "Le lien activer " + o.getClass().getName()+":"+ args[0] + " n'existe pas ou plus!!");
 			}
 		}else{
-			this.lw.writewarn(this.getClass().getName(), "Une classe non autorisé est gérer pas "+this.getClass().getName());
+			this.lw.writewarn(this.getClass().getName(), "Une classe non autorisé est gérer pas " + this.getClass().getName());
 		}
 	}
 	
 	// method appelée depuis l'exterieur pour lancer une méthode liée à un port
-	public void launch(Integer port, Object data){
+	public void launch(String port, Object data){
 		if(this.bindingIn.containsKey(port)){
 			To dest = this.bindingIn.get(port);
 			if(dest instanceof ToCompo){
 				((ToCompo)dest).compo.launch(((ToCompo)dest).portIn, data);
 			}
 		}else{
-			this.lw.writewarn(this.getClass().getName(), "Port non lier a un service");
+			this.lw.writewarn(this.getClass().getName(), "Le Port "+ this.getClass().getName() + ":"+port+" est non lier a un service");
 		}
 	}
 	
-	public void launch(Integer port){
+	public void launch(String port){
 		if(this.bindingIn.containsKey(port)){
 			To dest = this.bindingIn.get(port);
 			if(dest instanceof ToCompo){
 				((ToCompo)dest).compo.launch(((ToCompo)dest).portIn);
 			}
 		}else{
-			this.lw.writewarn(this.getClass().getName(), "Port non lier a un service");
+			this.lw.writewarn(this.getClass().getName(), "Le Port "+ this.getClass().getName() + ":"+port+" est non lier a un service");
 		}
 	}
 	
@@ -190,31 +190,31 @@ public abstract class Configuration extends Composant implements IConfiguration 
 	public void addComposant(IComposant newCompo) {
 		newCompo.addObserver(this);
 		this.lw.writejl(this.getClass().getName(), "Ajout du composant : " + newCompo.getClass().getName());
-		this.composInterne.put(newCompo, new HashMap<Integer, Configuration.To>());
+		this.composInterne.put(newCompo, new HashMap<String, Configuration.To>());
 	}
 
 	public void addConnecteur(IConnecteur newConnect) {
 		newConnect.addObserver(this);
 		this.lw.writejl(this.getClass().getName(), "Ajout du connecteur : " + newConnect.getClass().getName());
-		this.connectsInterne.put(newConnect,new HashMap<Integer, Configuration.To>());	
+		this.connectsInterne.put(newConnect,new HashMap<String, Configuration.To>());	
 	}
 
-	public void addAttachement(IComposant compoDepart, Integer portOut,	IConnecteur connectArriver, Integer rolesFrom) {
+	public void addAttachement(IComposant compoDepart, String portOut,	IConnecteur connectArriver, String rolesFrom) {
 		this.lw.writejl(this.getClass().getName(), "Ajout du lien d'attachement : " + compoDepart.getClass().getName()+":"+portOut+" -> "+connectArriver.getClass().getName()+":"+rolesFrom);
 		this.composInterne.get(compoDepart).put(portOut, new ToConnect(connectArriver, rolesFrom)); 
 	}
 
-	public void addAttachement(IConnecteur connectDepart, Integer rolesTo, IComposant compoArriver, Integer portIn) {
+	public void addAttachement(IConnecteur connectDepart, String rolesTo, IComposant compoArriver, String portIn) {
 		this.lw.writejl(this.getClass().getName(), "Ajout du lien d'attachement : " + connectDepart.getClass().getName()+":"+rolesTo+" -> "+compoArriver.getClass().getName()+":"+portIn);
 		this.connectsInterne.get(connectDepart).put(rolesTo, new ToCompo(compoArriver, portIn));
 	}
 
-	public void addBinding(Integer portConfigDepart, IComposant compoDest, Integer portCompo) {
+	public void addBinding(String portConfigDepart, IComposant compoDest, String portCompo) {
 		this.lw.writejl(this.getClass().getName(), "Ajout du lien binding : " + this.getClass().getName()+":"+portConfigDepart+" -> "+compoDest.getClass().getName()+":"+portCompo);
 		this.bindingIn.put(portConfigDepart, new ToCompo(compoDest,portCompo));
 	}
 	
-	public void addBinding(IComposant compoDepart, Integer portCompo, Integer portConfigDest) {
+	public void addBinding(IComposant compoDepart, String portCompo, String portConfigDest) {
 		this.lw.writejl(this.getClass().getName(), "Ajout du lien binding : " + compoDepart.getClass().getName()+":"+portCompo+" -> "+ this.getClass().getName()+":"+portConfigDest);
 		this.composInterne.get(compoDepart).put(portCompo, new ToPortConfig(portConfigDest));
 	}
@@ -224,8 +224,8 @@ public abstract class Configuration extends Composant implements IConfiguration 
 			this.lw.write(this.getClass().getName(), "Debut de la destruction du Composant : " +compo.getClass().getName());
 			// on recherche dans les connecteur les lien attachement vers le composant a suprimer
 			for(IConnecteur c : this.connectsInterne.keySet()){
-				LinkedList<Integer> compoToRemove = new LinkedList<Integer>();
-				for(Integer p :  this.connectsInterne.get(c).keySet()){
+				LinkedList<String> compoToRemove = new LinkedList<String>();
+				for(String p :  this.connectsInterne.get(c).keySet()){
 					To dest = this.connectsInterne.get(c).get(p);
 					if((dest instanceof ToCompo) && (((ToCompo)dest).compo.equals(compo))){
 						// si le lien tester est un lien vers le composant a suprimer on le stock dans une liste
@@ -234,15 +234,15 @@ public abstract class Configuration extends Composant implements IConfiguration 
 					}
 				}
 				// on suprime les lien lier au composant
-				for(Integer p : compoToRemove){
+				for(String p : compoToRemove){
 					this.lw.write(this.getClass().getName(), "     Destruction du lien : " + c.getClass().getName()+ ":" + p + " -> " + this.connectsInterne.get(c).get(p).toString());
 					this.connectsInterne.get(c).remove(p);
 				}
 			}
 			
 			// on recherche les lien binding vers le composant a suprimer
-			LinkedList<Integer> compoToRemove = new LinkedList<Integer>();
-			for(Integer p : this.bindingIn.keySet()){
+			LinkedList<String> compoToRemove = new LinkedList<String>();
+			for(String p : this.bindingIn.keySet()){
 				ToCompo c = (ToCompo) this.bindingIn.get(p);
 				if(c.compo.equals(compo)){
 					// si le lien tester est un lien vers le composant a suprimer on le stock dans une liste
@@ -251,15 +251,16 @@ public abstract class Configuration extends Composant implements IConfiguration 
 				}
 			}
 			// on suprime les lien lier au composant
-			for(Integer p : compoToRemove){
+			for(String p : compoToRemove){
 				this.lw.write(this.getClass().getName(), "     Destruction du lien : " + this.getClass().getName()+ ":" + p + " -> " + this.connectsInterne.get(p).toString());
 				this.bindingIn.remove(p);
 			}
 			
 			// on suprime le composant
-			for(Integer p  : this.composInterne.get(compo).keySet() ){
+			for(String p  : this.composInterne.get(compo).keySet() ){
 				this.lw.write(this.getClass().getName(), "     Destruction du lien : " + this.getClass().getName()+ ":" + p + " -> " + this.composInterne.get(compo).get(p).toString());
 			}
+			compo.deleteObserver(this);
 			this.composInterne.remove(compo);
 			this.lw.writejl(this.getClass().getName(), "Fin de la destruction du Composant : " + compo.getClass().getName());
 		}else{
@@ -272,8 +273,8 @@ public abstract class Configuration extends Composant implements IConfiguration 
 			this.lw.write(this.getClass().getName(), "Debut de la destruction du Connecteur : " + connect.getClass().getName());
 			// on recherche dans les composant les lien attachement vers le connecteur a suprimer
 			for(IComposant c : this.composInterne.keySet()){
-				LinkedList<Integer> connectToRemove = new LinkedList<Integer>();
-				for(Integer p :  this.composInterne.get(c).keySet()){
+				LinkedList<String> connectToRemove = new LinkedList<String>();
+				for(String p :  this.composInterne.get(c).keySet()){
 					To dest = this.composInterne.get(c).get(p);
 					if((dest instanceof ToConnect) && (((ToConnect)dest).connect.equals(connect))){
 						// si le lien tester est un lien vers le connecteur a suprimer on le stock dans une liste
@@ -282,16 +283,17 @@ public abstract class Configuration extends Composant implements IConfiguration 
 					}
 				}
 				// on suprime les lien lier au composant
-				for(Integer p : connectToRemove){
+				for(String p : connectToRemove){
 					this.lw.write(this.getClass().getName(), "     Destruction du lien : " + c.getClass().getName()+ ":" + p + " -> " + this.connectsInterne.get(c).get(p).toString());
 					this.composInterne.get(c).remove(p);
 				}
 			}
 			
 			// on suprime le connecteur
-			for(Integer p  : this.connectsInterne.get(connect).keySet() ){
+			for(String p  : this.connectsInterne.get(connect).keySet() ){
 				this.lw.write(this.getClass().getName(), "     Destruction du lien : " + this.getClass().getName()+ ":" + p + " -> " + this.connectsInterne.get(connect).get(p).toString());
 			}
+			connect.deleteObserver(this);
 			this.connectsInterne.remove(connect);
 			this.lw.writejl(this.getClass().getName(), "Fin de la destruction du Connecteur : " + connect.getClass().getName());
 		}else{
@@ -299,22 +301,22 @@ public abstract class Configuration extends Composant implements IConfiguration 
 		}
 	}
 
-	public void removeAttachement(IComposant compoDepart, Integer portOut) {
+	public void removeAttachement(IComposant compoDepart, String portOut) {
 		this.lw.writejl(this.getClass().getName(), "Destruction du lien d'attachement : " + compoDepart.getClass().getName()+":"+portOut+" -> "+ this.composInterne.get(compoDepart).get(portOut).toString());
 		this.composInterne.get(compoDepart).remove(portOut);
 	}
 
-	public void removeAttachement(IConnecteur connectDepart, Integer rolesTo) {
+	public void removeAttachement(IConnecteur connectDepart, String rolesTo) {
 		this.lw.writejl(this.getClass().getName(), "Destruction du lien d'attachement : " + connectDepart.getClass().getName()+":"+rolesTo+" -> "+ this.composInterne.get(connectDepart).get(rolesTo).toString());
 		this.connectsInterne.get(connectDepart).remove(rolesTo);
 	}
 
-	public void removeBinding(Integer portConfigDepart) {
+	public void removeBinding(String portConfigDepart) {
 		this.lw.writejl(this.getClass().getName(), "Destruction du lien binding : " + this.getClass().getName()+":"+portConfigDepart+" -> "+ this.bindingIn.get(portConfigDepart).toString());
 		this.bindingIn.remove(portConfigDepart);
 	}
 
-	public void removeBinding(IComposant compoDepart, Integer portCompo) {
+	public void removeBinding(IComposant compoDepart, String portCompo) {
 		this.lw.writejl(this.getClass().getName(), "Destruction du lien binding : " + compoDepart.getClass().getName()+":"+portCompo+" -> "+ this.composInterne.get(compoDepart).get(portCompo).toString());
 		this.composInterne.get(compoDepart).remove(portCompo);
 	}

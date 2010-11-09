@@ -9,6 +9,7 @@ public class mainClientServeur {
 	 */
 	public static void main(String[] args) {
 		CS cs = new CS();
+		cs.init();
 		cs.start();
 	}
 }

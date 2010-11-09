@@ -6,8 +6,7 @@ public class TestConnect extends Connecteur {
 
 	public TestConnect() {
 		super();
-		this.setGlue(1, "article", 2);
-
+		this.setGlue("1", "article", "2");
 	}
 
 	public void article(String val){

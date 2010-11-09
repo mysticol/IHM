@@ -7,35 +7,41 @@ import hadl.m2.configuration.Configuration;
 
 public class CS extends Configuration {
 
+	public Client client;
+	public Serveur serveur;
+	public RPC rpc;
+	
 	public CS() {
-		super();
+		super();	
+	}
+
+	public void init(){
+		client = new Client();
+		serveur = new Serveur();
+		rpc = new RPC();
 		
-		Client client = new Client();
-		Serveur serveur = new Serveur();
-		RPC rpc = new RPC();
+		serveur.init();
 		
 		this.addComposant(client);
 		this.addComposant(serveur);
 		this.addConnecteur(rpc);
 		
-		this.addAttachement(client, 1, rpc, 1);
-		this.addAttachement(rpc, 4, client, 2);
-		this.addAttachement(serveur, 2, rpc, 3);
-		this.addAttachement(rpc, 2, serveur, 1);
+		this.addAttachement(client, "Send-Request", rpc, "1");
+		this.addAttachement(rpc, "4", client, "Send-Request");
+		this.addAttachement(serveur, "Receive-Request", rpc, "3");
+		this.addAttachement(rpc, "2", serveur, "Receive-Request");
 		
-		this.addBinding(1, client, 3);
-		
-		
-		this.launch(1);
-		this.removeComposant(serveur);
-		this.launch(1);
-		this.addComposant(serveur);
-		this.addAttachement(serveur, 2, rpc, 3);
-		this.addAttachement(rpc, 2, serveur, 1);
+		this.addBinding("Start-CS", client, "Start");
 	}
-
+	
 	public void start() {
-		this.launch(1);
+		this.launch("Start-CS");
+		/*this.removeComposant(serveur);
+		this.launch("start-CS");
+		this.addComposant(serveur);
+		this.addAttachement(serveur, "Receive-Request", rpc, "3");
+		this.addAttachement(rpc, "2", serveur, "Receive-Request");
+		this.launch("start-CS");*/
 	}
 
 }

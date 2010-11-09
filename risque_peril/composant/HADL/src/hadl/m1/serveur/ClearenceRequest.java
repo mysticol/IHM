@@ -6,12 +6,17 @@ public class ClearenceRequest extends Connecteur {
 
 	public ClearenceRequest() {
 		super();
-		this.setGlue(1,"glue",2);
+		this.setGlue("1","glueAller","2");
+		this.setGlue("3","glueRetour","4");
 	}
 
-	public void glue(String cmd){	
-		this.notifier("glue", cmd);
+	public void glueAller(String cmd){
+		// System.out.println(4 +" - "+cmd);
+		this.notifier("glueAller", cmd);
 	}
 	
-	
+	public void glueRetour(String rep){
+		// System.out.println(10 +" - "+rep);
+		this.notifier("glueRetour", rep);
+	}
 }

@@ -6,8 +6,8 @@ public class TestNom extends Composant {
 
 	public TestNom() {
 		super();
-		this.setPortIn(1, "nom");
-		this.setPortOut("nom", 2);
+		this.setPortIn("1", "nom");
+		this.setPortOut("nom", "2");
 	}
 
 	public void nom(String val){

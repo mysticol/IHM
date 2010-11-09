@@ -6,8 +6,8 @@ public class TestEnvoiCoucou extends Composant {
 
 	public TestEnvoiCoucou() {
 		super();
-		this.setPortIn(1, "coucou");
-		this.setPortOut("coucou", 2);
+		this.setPortIn("1", "coucou");
+		this.setPortOut("coucou", "2");
 	}
 
 	public void coucou(){
