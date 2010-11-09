@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- On a forcément une configuration qui englobe tout. -->
-<!ELEMENT configuration (contraintes, proprietes, composants, attachements, connecteurs, bindings)>
+<!ELEMENT configuration (contraintes, proprietes, portConfiguration*, composants, connecteurs, attachements, bindings)>
 <!ATTLIST configuration	
-				nom ID  #REQUIRED>
+				nom CDATA  #REQUIRED>
 
 <!-- Les contraintes et les proprietes sont de simples donnees -->
 <!ELEMENT contraintes (#PCDATA)>
 <!ELEMENT proprietes (#PCDATA)>
+
+<!-- Un portConfiguration doit avoir un nom -->
+<!ELEMENT portConfiguration EMPTY>
+<!ATTLIST portConfiguration
+			nom CDATA #REQUIRED>
 
 <!-- Dans les composants d'une configuration, on peut avoir soit des composants simples, -->
 <!-- soit des configurations. Il doit y avoir au moins un composant ou configuration. -->
@@ -16,13 +21,13 @@
 <!-- Un composant simple doit avoir un nom. -->
 <!ELEMENT composant (contraintes, proprietes, port*, service*)>
 <!ATTLIST composant	
-				nom ID #REQUIRED>
+				nom CDATA #REQUIRED>
 
 <!-- Un port doit être publique ou privé -->
 <!-- Un port doit avoir un nom -->
 <!ELEMENT port EMPTY>
 <!ATTLIST port
-			nom ID #REQUIRED
+			nom CDATA #REQUIRED
 			visibilite (prive|publique) #REQUIRED>
 
 <!-- Un service doit être rattaché à au moins un port d'entrée et seulement un port -->
@@ -30,23 +35,14 @@
 <!-- Un service doit avoir un nom -->
 <!ELEMENT service (portService*)>
 <!ATTLIST service
-				nom ID #REQUIRED>
+				nom CDATA #REQUIRED>
 
 <!-- Un portService doit obligatoirement avoir un nom et un tyoe -->
 <!ELEMENT portService EMPTY>
 <!ATTLIST portService
-				nom ID #REQUIRED
+				nom CDATA #REQUIRED
 				type (in|out) #REQUIRED>
 
-
-<!-- Il peut y avoir 0..n liens d'attachement -->
-<!ELEMENT attachements (attachement*)>
-
-<!-- Un attachement lie un portFrom et un roleTo -->
-<!ELEMENT attachement EMPTY>
-<!ATTLIST attachement
-				portFrom CDATA #REQUIRED
-				roleTo CDATA #REQUIRED>
 
 <!-- Il peut y avoir 0..n connecteurs -->
 <!ELEMENT connecteurs (connecteur*)>
@@ -54,12 +50,12 @@
 <!-- Un connecteur est composé d'une ou plusieurs glue(s) -->
 <!ELEMENT connecteur (glue+)>
 <!ATTLIST connecteur
-				nom ID #REQUIRED>
+				nom CDATA #REQUIRED>
 
 <!-- Une glue est rattachée à plusieurs rolesFrom, et un seul roleTo -->
 <!ELEMENT glue (roleFrom+,roleTo)>
 <!ATTLIST glue
-				nom ID #REQUIRED>
+				nom CDATA #REQUIRED>
 
 <!-- un roleFrom doit avoir un nom -->	
 <!ELEMENT roleFrom EMPTY>
@@ -69,21 +65,36 @@
 <!-- un roleTo doit avoir un nom -->					
 <!ELEMENT roleTo EMPTY>
 <!ATTLIST roleTo
-				nom CDATA #REQUIRED>				
+				nom CDATA #REQUIRED>	
+				
+
+<!-- Il peut y avoir 0..n liens d'attachement -->
+<!ELEMENT attachements (attachement*)>
+
+<!-- Un attachement lie un portFrom et un roleTo -->
+<!ELEMENT attachement (fromComposant, fromPort, toConnecteur, toRole)>
+<!ATTLIST attachement
+				compoToConnec (oui|non) #REQUIRED>
+
+<!-- ComposantFrom, portFrom, ConnecteurTo et roleTo sont de simples données -->
+<!ELEMENT fromComposant (#PCDATA)>
+<!ELEMENT fromPort (#PCDATA)>
+<!ELEMENT toConnecteur (#PCDATA)>
+<!ELEMENT toRole (#PCDATA)>
+			
 
 <!-- Il peut y avoir 0..n liens binding -->
-<!ELEMENT bindings (bindingIn|bindingOut)*>
+<!ELEMENT bindings (binding)*>
 
-<!-- Un bindingIn lie un port composant et un port configuration -->
-<!ELEMENT bindingIn EMPTY>
-<!ATTLIST bindingIn
-				portComposant CDATA #REQUIRED
-				portConfiguration CDATA #REQUIRED>
+<!-- Un binding lie un port composant et un port configuration -->
+<!ELEMENT binding (composantToBind, portComposant, portConfig)  >
+<!ATTLIST binding
+				in (oui|non) #REQUIRED>
 
-<!-- Un bindingOut lie un port composant et un port configuration -->
-<!ELEMENT bindingOut EMPTY>
-<!ATTLIST bindingOut
-				portComposant CDATA #REQUIRED
-				portConfiguration CDATA #REQUIRED>
+<!-- composantToBind, portComposant et portConfig sont de simples donnees -->
+<!ELEMENT composantToBind (#PCDATA)>
+<!ELEMENT portComposant (#PCDATA)>
+<!ELEMENT portConfig (#PCDATA)>
+
 
 
