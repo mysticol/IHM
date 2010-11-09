@@ -177,6 +177,7 @@ public class Configuration extends BriqueComposant implements Observer {
 		this.retraitementEventQueue();
 	}
 
+	//TODO rajouter dans ajout/delete/remove ce qui ne fonctionne plus en enlevant un élément
 	// on enlève l'objet mais pas la référence
 	public final void removeComposant(String brique) {
 		BriqueComposant comp = bibComposant.get(brique);

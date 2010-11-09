@@ -1,4 +1,4 @@
-package hadl.param;
+package hadl.com.param;
 
 public class InOutMapping {
 

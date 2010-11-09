@@ -8,8 +8,8 @@ import hadl.Connector;
 import hadl.com.Attachement;
 import hadl.com.Binding;
 import hadl.com.Lien;
-import hadl.param.InOutMapping;
-import hadl.param.MappingPortService;
+import hadl.com.param.InOutMapping;
+import hadl.com.param.MappingPortService;
 
 public class MainTestM2 {
 
