@@ -265,6 +265,18 @@ public class LogWriter {
 		psUnique.println("");
 	}
 	
+	public void writewarn(String id, String warningMessage){
+		logMap.get(id).println("");
+		logMap.get(id).println("Warning : !! " + warningMessage + " !!");
+		logMap.get(id).println("");
+	}
+	
+	public void writewarn(String warningMessage){
+		psUnique.println("");
+		psUnique.println("Warning : !! " + warningMessage + " !!");
+		psUnique.println("");
+	}	
+	
 	
 	
 	
