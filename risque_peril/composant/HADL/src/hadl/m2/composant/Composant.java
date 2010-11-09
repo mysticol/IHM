@@ -43,11 +43,11 @@ public abstract class Composant extends IComposant {
 		this.proprietes = proprietes;
 	}
 
-	protected void setPortIn(String port , String method){
+	public void setPortIn(String port , String method){
 		this.portsIn.put(port, method);
 	}
 	
-	protected void setPortOut(String method , String port){
+	public void setPortOut(String method , String port){
 		this.portsOut.put(method, port);
 	}
 	
