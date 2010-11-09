@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration SYSTEM "dtdHadl.dtd">
-<configuration nom="confGlobal">
+<configuration nom="confGlobal" classPath="">
 
 	<contraintes />
 	<proprietes />
 	
 	<composants>
-		<composant nom="comp1">
+		<composant nom="comp1" classPath="">
 			<contraintes />
 			<proprietes />
 		</composant>
 	</composants>
 	
-	<attachements>
-	</attachements>
-	
 	<connecteurs>
 	</connecteurs>	
+	
+	<attachements>
+	</attachements>
 	
 	<bindings>
 	</bindings>	

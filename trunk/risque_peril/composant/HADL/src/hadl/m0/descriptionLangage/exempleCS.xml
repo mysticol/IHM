@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration SYSTEM "dtdHadl.dtd">
-<configuration nom = "CS">
+<configuration nom = "CS" classPath="hadl.m1.CS.CS">
 
 	<contraintes />
 	<proprietes />
@@ -8,10 +8,10 @@
 	<portConfiguration nom="Start-CS" />
 
 	<composants>
-		<composant nom = "Client">
+		<composant nom = "Client" classPath="hadl.m1.client.Client">
 			<contraintes />
 			<proprietes />
-			<service nom = "envoie" >
+			<service nom = "menu" >
 				<portService nom = "Start" type = "in" />
 				<portService nom = "Send-Request" type = "out" />
 			</service>
@@ -20,7 +20,7 @@
 			</service>			
 		</composant>
 		
-		<configuration nom="Serveur">
+		<configuration nom="Serveur" classPath="hadl.m1.serveur.Serveur">
 		
 			<contraintes></contraintes>
 			<proprietes></proprietes>
@@ -29,7 +29,7 @@
 			
 			<composants>
 			
-				<composant nom = "ConnectionManager">
+				<composant nom = "ConnectionManager" classPath="hadl.m1.serveur.ConnectionManager">
 					<contraintes />
 					<proprietes />
 					<service nom = "arriver" >
@@ -48,7 +48,7 @@
 					</service>				
 				</composant>
 				 
-				<composant nom = "DataBase">
+				<composant nom = "DataBase" classPath="hadl.m1.serveur.DataBase">
 					<contraintes />
 					<proprietes />
 					<service nom = "traiteQuery" >
@@ -61,7 +61,7 @@
 					</service>
 				</composant>
 
-				<composant nom = "SecurityDB">
+				<composant nom = "SecurityDB" classPath="hadl.m1.serveur.SecurityDB">
 					<contraintes />
 					<proprietes />
 					<service nom = "aVerifier" >
@@ -78,7 +78,7 @@
 					
 			<connecteurs>
 					
-				<connecteur nom="ClearenceRequest">
+				<connecteur nom="ClearenceRequest" classPath="hadl.m1.serveur.ClearenceRequest">
 					<glue nom="glueAller">
 						<roleFrom nom="1"/>
 						<roleTo nom="2"/>
@@ -89,7 +89,7 @@
 					</glue>
 				</connecteur>
 				
-				<connecteur nom="SQLQuery">
+				<connecteur nom="SQLQuery" classPath="hadl.m1.serveur.SQLQuery">
 					<glue nom="glueAller">
 						<roleFrom nom="1"/>
 						<roleTo nom="2"/>
@@ -100,7 +100,7 @@
 					</glue>
 				</connecteur>								
 			
-				<connecteur nom="SecurityQuery">
+				<connecteur nom="SecurityQuery" classPath="hadl.m1.serveur.SecurityQuery">
 					<glue nom="glueAller">
 						<roleFrom nom="1"/>
 						<roleTo nom="2"/>
@@ -224,7 +224,7 @@
 	</composants>
 	
 	<connecteurs>
-		<connecteur nom="rpc">
+		<connecteur nom="rpc" classPath="hadl.m1.RPC.RPC">
 			<glue nom="glueAller">
 				<roleFrom nom="1"/>
 				<roleTo nom="2"/>
@@ -246,14 +246,14 @@
 		</attachement>
 		
 		<attachement compoToConnec="non">
-			<fromComposant>Configuration</fromComposant>
+			<fromComposant>Serveur</fromComposant>
 			<fromPort>Receive-Request</fromPort>
 			<toConnecteur>rpc</toConnecteur>
 			<toRole>2</toRole>
 		</attachement>
 		
 		<attachement compoToConnec="oui">
-			<fromComposant>Configuration</fromComposant>
+			<fromComposant>Serveur</fromComposant>
 			<fromPort>Receive-Request</fromPort>
 			<toConnecteur>rpc</toConnecteur>
 			<toRole>3</toRole>
