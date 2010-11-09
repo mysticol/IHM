@@ -5,16 +5,18 @@
 	<contraintes />
 	<proprietes />
 
+	<portConfiguration nom="Start-CS" />
+
 	<composants>
 		<composant nom = "Client">
 			<contraintes />
 			<proprietes />
 			<service nom = "envoie" >
-				<portService nom = "3" type = "in" />
-				<portService nom = "1" type = "out" />
+				<portService nom = "Start" type = "in" />
+				<portService nom = "Send-Request" type = "out" />
 			</service>
 			<service nom = "reception" >
-				<portService nom = "2" type = "in" />
+				<portService nom = "Send-Request" type = "in" />
 			</service>			
 		</composant>
 		
@@ -23,79 +25,255 @@
 			<contraintes></contraintes>
 			<proprietes></proprietes>
 			
+			<portConfiguration nom="Receive-Request" />
+			
 			<composants>
+			
 				<composant nom = "ConnectionManager">
 					<contraintes />
 					<proprietes />
-					<service nom = "arriverSortir" >
-						<portService nom = "ExternalSocket" type = "in" />
-						<portService nom = "ExternalSocket" type = "out" />
+					<service nom = "arriver" >
+						<portService nom = "External-Socket" type = "in" />
+						<portService nom = "Security-Check" type = "out" />						
 					</service>
-					<service nom = "dialogSecuDB" >
-						<portService nom = "SecurityCheck" type = "in" />
-						<portService nom = "SecurityCheck" type = "out" />
+					<service nom = "sortir" >
+						<portService nom = "DB-Query" type = "in" />
+						<portService nom = "External-Socket" type = "out" />
 					</service>
-					<service nom = "dialogDB" >
-						<portService nom = "DbQuery" type = "in" />
-						<portService nom = "DbQuery" type = "out" />
-					</service>					
+					<service nom = "verif" >
+						<portService nom = "Security-Check" type = "in" />
+					</service>							
+					<service nom = "lauchQuery" >
+						<portService nom = "DB-Query" type = "out" />
+					</service>				
 				</composant>
-				
+				 
 				<composant nom = "DataBase">
 					<contraintes />
 					<proprietes />
 					<service nom = "traiteQuery" >
-						<portService nom = "3" type = "in" />
-						<portService nom = "1" type = "out" />
+						<portService nom = "Query-Int" type = "in" />
+						<portService nom = "Query-Int" type = "out" />
+					</service>
+					<service nom = "verifTable" >
+						<portService nom = "Security-Manager" type = "in" />
+						<portService nom = "Security-Manager" type = "out" />
 					</service>
 				</composant>
-				
-				<composant nom = "Client">
+
+				<composant nom = "SecurityDB">
 					<contraintes />
 					<proprietes />
-					<service nom = "envoie" >
-						<portService nom = "3" type = "in" />
-						<portService nom = "1" type = "out" />
+					<service nom = "aVerifier" >
+						<portService nom = "Security-Auth" type = "in" />
+						<portService nom = "C-Query" type = "out" />
 					</service>
-					<service nom = "reception" >
-						<portService nom = "2" type = "in" />
-					</service>			
+					<service nom = "retour" >
+						<portService nom = "C-Query" type = "in" />
+						<portService nom = "Security-Auth" type = "out" />
+					</service>
 				</composant>
 				
 			</composants>
 					
-			<attachements>
-			</attachements>
-			
 			<connecteurs>
-			</connecteurs>
+					
+				<connecteur nom="ClearenceRequest">
+					<glue nom="glueAller">
+						<roleFrom nom="1"/>
+						<roleTo nom="2"/>
+					</glue>
+					<glue nom="glueRetour">
+						<roleFrom nom="3"/>
+						<roleTo nom="4" />
+					</glue>
+				</connecteur>
+				
+				<connecteur nom="SQLQuery">
+					<glue nom="glueAller">
+						<roleFrom nom="1"/>
+						<roleTo nom="2"/>
+					</glue>
+					<glue nom="glueRetour">
+						<roleFrom nom="3"/>
+						<roleTo nom="4" />
+					</glue>
+				</connecteur>								
 			
+				<connecteur nom="SecurityQuery">
+					<glue nom="glueAller">
+						<roleFrom nom="1"/>
+						<roleTo nom="2"/>
+					</glue>
+					<glue nom="glueRetour">
+						<roleFrom nom="3"/>
+						<roleTo nom="4" />
+					</glue>
+				</connecteur>
+							
+			</connecteurs>					
+					
+			<attachements>
+			
+				<!-- Définition des attachements avec le connecteur ClearenceRequest -->
+				<attachement compoToConnec="oui">
+					<fromComposant>ConnectionManager</fromComposant>
+					<fromPort>Security-Check</fromPort>
+					<toConnecteur>ClearenceRequest</toConnecteur>
+					<toRole>1</toRole>
+				</attachement>
+				
+				<attachement compoToConnec="non">
+					<fromComposant>SecurityDB</fromComposant>
+					<fromPort>Security-Auth</fromPort>
+					<toConnecteur>ClearenceRequest</toConnecteur>
+					<toRole>2</toRole>
+				</attachement>				
+				
+				<attachement compoToConnec="oui">
+					<fromComposant>SecurityDB</fromComposant>
+					<fromPort>Security-Auth</fromPort>
+					<toConnecteur>ClearenceRequest</toConnecteur>
+					<toRole>3</toRole>
+				</attachement>				
+				
+				<attachement compoToConnec="non">
+					<fromComposant>ConnectionManager</fromComposant>
+					<fromPort>Security-Check</fromPort>
+					<toConnecteur>ClearenceRequest</toConnecteur>
+					<toRole>4</toRole>
+				</attachement>				
+				
+				
+				<!-- Définition des attachements avec le connecteur SecurityQuery -->							
+				<attachement compoToConnec="oui">
+					<fromComposant>SecurityDB</fromComposant>
+					<fromPort>C-Query</fromPort>
+					<toConnecteur>SecurityQuery</toConnecteur>
+					<toRole>1</toRole>
+				</attachement>
+				
+				<attachement compoToConnec="non">
+					<fromComposant>DataBase</fromComposant>
+					<fromPort>Security-Manager</fromPort>
+					<toConnecteur>SecurityQuery</toConnecteur>
+					<toRole>2</toRole>
+				</attachement>				
+				
+				<attachement compoToConnec="oui">
+					<fromComposant>DataBase</fromComposant>
+					<fromPort>Security-Manager</fromPort>
+					<toConnecteur>SecurityQuery</toConnecteur>
+					<toRole>3</toRole>
+				</attachement>				
+				
+				<attachement compoToConnec="non">
+					<fromComposant>SecurityDB</fromComposant>
+					<fromPort>C-Query</fromPort>
+					<toConnecteur>SecurityQuery</toConnecteur>
+					<toRole>4</toRole>
+				</attachement>
+							
+				<!-- Définition des attachements avec le connecteur SQLQuery -->							
+				<attachement compoToConnec="oui">
+					<fromComposant>ConnectionManager</fromComposant>
+					<fromPort>DB-Query</fromPort>
+					<toConnecteur>SQLQuery</toConnecteur>
+					<toRole>1</toRole>
+				</attachement>
+				
+				<attachement compoToConnec="non">
+					<fromComposant>DataBase</fromComposant>
+					<fromPort>Query-Int</fromPort>
+					<toConnecteur>SQLQuery</toConnecteur>
+					<toRole>2</toRole>
+				</attachement>				
+				
+				<attachement compoToConnec="oui">
+					<fromComposant>DataBase</fromComposant>
+					<fromPort>Query-Int</fromPort>
+					<toConnecteur>SQLQuery</toConnecteur>
+					<toRole>3</toRole>
+				</attachement>				
+				
+				<attachement compoToConnec="non">
+					<fromComposant>ConnectionManager</fromComposant>
+					<fromPort>DB-Query</fromPort>
+					<toConnecteur>SQLQuery</toConnecteur>
+					<toRole>4</toRole>
+				</attachement>			
+			
+			</attachements>
+		
 			<bindings>
+				<binding in="oui">
+					<composantToBind>ConnectionManager</composantToBind>
+					<portComposant>External-Socket</portComposant>	
+					<portConfig>Receive-Request</portConfig>
+				</binding>
+				
+				<binding in="non">
+					<composantToBind>ConnectionManager</composantToBind>
+					<portComposant>External-Socket</portComposant>	
+					<portConfig>Receive-Request</portConfig>
+				</binding>				
 			</bindings>
 			
 		</configuration>
 
 	</composants>
-			
-	<attachements>
-		<attachement portFrom="nom-prot1" roleTo="nom-port2" />
-	</attachements>
-	
-	
 	
 	<connecteurs>
-		<connecteur nom="con1">
-			<glue nom="glu1">
-				<roleFrom nom="rf1"/>
-				<roleFrom nom="rf2"/>
-				<roleTo nom="rt1"/>
+		<connecteur nom="rpc">
+			<glue nom="glueAller">
+				<roleFrom nom="1"/>
+				<roleTo nom="2"/>
+			</glue>
+			<glue nom="glueRetour">
+				<roleFrom nom="3"/>
+				<roleTo nom="4" />
 			</glue>
 		</connecteur>
 	</connecteurs>
+			
+	<attachements>
+		<!-- Définition des attachements avec le connecteur rpc -->
+		<attachement compoToConnec="oui">
+			<fromComposant>Client</fromComposant>
+			<fromPort>Send-Request</fromPort>
+			<toConnecteur>rpc</toConnecteur>
+			<toRole>1</toRole>
+		</attachement>
+		
+		<attachement compoToConnec="non">
+			<fromComposant>Configuration</fromComposant>
+			<fromPort>Receive-Request</fromPort>
+			<toConnecteur>rpc</toConnecteur>
+			<toRole>2</toRole>
+		</attachement>
+		
+		<attachement compoToConnec="oui">
+			<fromComposant>Configuration</fromComposant>
+			<fromPort>Receive-Request</fromPort>
+			<toConnecteur>rpc</toConnecteur>
+			<toRole>3</toRole>
+		</attachement>		
+		
+		<attachement compoToConnec="non">
+			<fromComposant>Client</fromComposant>
+			<fromPort>Send-Request</fromPort>
+			<toConnecteur>rpc</toConnecteur>
+			<toRole>4</toRole>
+		</attachement>		
+		
+	</attachements>
 
 	<bindings>
-		<bindingIn portComposant="pc1" portConfiguration="pcf1" />
-		<bindingOut portComposant="pc3" portConfiguration="pcf2"/>
+			<binding in="oui">
+				<composantToBind>Client</composantToBind>
+				<portComposant>Start</portComposant>	
+				<portConfig>Start-CS</portConfig>
+			</binding>
 	</bindings>
 	
 </configuration>
