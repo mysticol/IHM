@@ -19,9 +19,9 @@ public abstract class Connecteur extends IConnecteur {
 		this.rolesTo = rolesTo;
 	}
 
-	public Connecteur(String nom) {
+	public Connecteur() {
 		super();
-		this.nom = nom;
+		this.nom = this.getClass().getName();;
 		this.rolesFrom = new HashMap<String, String>();
 		this.rolesTo = new HashMap<String, String>();
 	}

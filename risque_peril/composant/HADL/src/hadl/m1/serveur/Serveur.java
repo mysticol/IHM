@@ -11,18 +11,18 @@ public class Serveur extends Configuration {
 	public SecurityQuery sqConnect;
 	public SQLQuery sqlqConnect;
 		
-	public Serveur(String nom) {
-		super(nom);
+	public Serveur() {
+		super();
 	}
 	
 	public void init(){
-		cmCompo = new ConnectionManager("ConnectionManager");
-		sdbCompo = new SecurityDB("SecurityDB");
-		dbCompo = new DataBase("DataBase");
+		cmCompo = new ConnectionManager();
+		sdbCompo = new SecurityDB();
+		dbCompo = new DataBase();
 
-		crConnect = new ClearenceRequest("ClearenceRequest");
-		sqConnect = new SecurityQuery("SecurityQuery");
-		sqlqConnect = new SQLQuery("SQLQuery");
+		crConnect = new ClearenceRequest();
+		sqConnect = new SecurityQuery();
+		sqlqConnect = new SQLQuery();
 		
 		this.addComposant(cmCompo);	
 		this.addComposant(sdbCompo);

@@ -4,8 +4,8 @@ import hadl.m2.connecteur.Connecteur;
 
 public class TestConnect extends Connecteur {
 
-	public TestConnect(String nom) {
-		super(nom);
+	public TestConnect() {
+		super();
 		this.setGlue("1", "article", "2");
 	}
 

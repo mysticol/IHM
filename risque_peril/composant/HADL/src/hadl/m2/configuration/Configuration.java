@@ -89,13 +89,14 @@ public abstract class Configuration extends Composant implements IConfiguration 
 		}
 	}
 
-	public Configuration(String nom){
-		super(nom);
+	public Configuration(){
+		super();
 		this.composInterne = new HashMap<IComposant, Map<String,To>>();
 		this.connectsInterne = new HashMap<IConnecteur, Map<String,To>>();
 		this.bindingIn = new HashMap<String, Configuration.To>();
 		this.lw = LogWriter.getInstance();
 		this.lw.init(this.getClass().getName());
+		this.nom = this.getClass().getName();
 	}
 	
 	public IComposant getComposant(String name){
