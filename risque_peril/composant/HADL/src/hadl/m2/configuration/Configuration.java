@@ -103,7 +103,7 @@ public abstract class Configuration extends Composant implements IConfiguration 
 		IComposant compo = null;
 		
 		for(IComposant c : this.composInterne.keySet()){
-			if(c.getClass().getName().equalsIgnoreCase(name)){
+			if(c.getNom().equalsIgnoreCase(name)){
 				compo = c;
 			}
 		}
@@ -114,7 +114,7 @@ public abstract class Configuration extends Composant implements IConfiguration 
 		IConnecteur connect = null;
 		
 		for(IConnecteur c : this.connectsInterne.keySet()){
-			if(c.getClass().getName().equalsIgnoreCase(name)){
+			if(c.getNom().equalsIgnoreCase(name)){
 				connect = c;
 			}
 		}
