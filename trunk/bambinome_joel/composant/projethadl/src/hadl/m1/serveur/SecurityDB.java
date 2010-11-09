@@ -1,8 +1,8 @@
 package hadl.m1.serveur;
 
 import hadl.Composant;
-import hadl.param.InOutMapping;
-import hadl.param.MappingPortService;
+import hadl.com.param.InOutMapping;
+import hadl.com.param.MappingPortService;
 
 public class SecurityDB extends Composant {
 
