@@ -97,6 +97,28 @@ public abstract class Configuration extends Composant implements IConfiguration 
 		this.lw.init(this.getClass().getName());
 	}
 	
+	public IComposant getComposant(String name){
+		IComposant compo = null;
+		
+		for(IComposant c : this.composInterne.keySet()){
+			if(c.getClass().getName().equalsIgnoreCase(name)){
+				compo = c;
+			}
+		}
+		return compo;
+	}
+	
+	public IConnecteur getConnecteur(String name){
+		IConnecteur connect = null;
+		
+		for(IConnecteur c : this.connectsInterne.keySet()){
+			if(c.getClass().getName().equalsIgnoreCase(name)){
+				connect = c;
+			}
+		}
+		return connect;
+	}
+	
 	// methode d'affichage d'une configuration
 	public void print(){
 		System.out.println("Composants internes :");
