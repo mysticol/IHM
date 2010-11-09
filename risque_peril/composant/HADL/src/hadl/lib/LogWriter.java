@@ -211,7 +211,7 @@ public class LogWriter {
 	
 	
 	public void write(String id, String log){
-		// On ecrit dans le log file
+		// On écrit dans le log file
 		if (withDate) {
 			logMap.get(id).println(dateFormat.format(new Date()) + "  |  " +log);
 		} else {
@@ -246,6 +246,30 @@ public class LogWriter {
 	
 	public void writesep(){
 		psUnique.println(separateur);
-	}	
+	}
+	
+	
+	public void writeerr(String id, String errorMessage){
+		logMap.get(id).println("");
+		logMap.get(id).println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		logMap.get(id).println("!! " + errorMessage);
+		logMap.get(id).println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		logMap.get(id).println("");
+	}
+	
+	public void writeerr(String errorMessage){
+		psUnique.println("");
+		psUnique.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		psUnique.println("!! " + errorMessage);
+		psUnique.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		psUnique.println("");
+	}
+	
+	
+	
+	
+	
+	
+	
 
 }
