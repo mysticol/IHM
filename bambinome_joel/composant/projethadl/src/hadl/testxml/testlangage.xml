@@ -4,12 +4,12 @@
 <Configuration>
 	<Id>
 		<Nom>ConfigTest</Nom>
-		<Class>ConfigurationTest</Class>
+		<Class>hadl.testm2.ConfigurationTest</Class>
 	</Id>
 	<Composant>
 		<Id>
 			<Nom>ComposantUn</Nom>
-			<Class>ComposantTestUn</Class>
+			<Class>hadl.testm2.ComposantTestUn</Class>
 		</Id>
 		<MappingServicePort>
 			<port>1</port>
@@ -23,7 +23,7 @@
 	<Composant>
 		<Id>
 			<Nom>ComposantDeux</Nom>
-			<Class>ComposantTestDeux</Class>
+			<Class>hadl.testm2.ComposantTestDeux</Class>
 		</Id>
 		<MappingServicePort>
 			<port>1</port>
@@ -33,15 +33,11 @@
 	<Connecteur>
 		<Id>
 			<Nom>TestConnect</Nom>
-			<Class>ConnecteurTest</Class>
+			<Class>hadl.testm2.ConnecteurTest</Class>
 		</Id>
 	</Connecteur>
 
-	<Binding>
-		<portComposantFrom>1</portComposantFrom>
-		<nomComposantFrom>ComposantUn</nomComposantFrom>
-		<portBindConfig>1</portBindConfig>
-	</Binding>
+
 
 	<Binding>
 		<portComposantFrom>1</portComposantFrom>
@@ -49,14 +45,22 @@
 		<portBindConfig>1</portBindConfig>
 	</Binding>
 
+	<Binding>
+		<portComposantFrom>1</portComposantFrom>
+		<nomComposantFrom>ComposantUn</nomComposantFrom>
+		<portBindConfig>1</portBindConfig>
+	</Binding>
+
+
 	<Attachement>
 		<portComposantFrom>2</portComposantFrom>
 		<nomComposantFrom>ComposantUn</nomComposantFrom>
 		<nameConnector>TestConnect</nameConnector>
-		<method>test</method>
+		<method>rien</method>
 		<portComposantTo>1</portComposantTo>
 		<nameComposantTo>ComposantDeux</nameComposantTo>
 	</Attachement>
+
 
 
 </Configuration>

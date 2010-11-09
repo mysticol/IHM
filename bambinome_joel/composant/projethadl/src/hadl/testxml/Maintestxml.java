@@ -2,6 +2,7 @@ package hadl.testxml;
 
 import java.io.File;
 
+import hadl.Configuration;
 import hadl.parseur.Parseur;
 
 public class Maintestxml {
@@ -12,7 +13,22 @@ public class Maintestxml {
 		
 		Parseur parse= new Parseur();
 		
-		parse.parse(new File("src/hadl/testxml/testlangage.xml"));
+		Configuration config=parse.parse(new File("src/hadl/testxml/testlangage.xml"));
+		
+		
+		Object [] tab = {"Ponay"};
+		
+	
+			
+			
+			config.appelPortIn(1, tab);
+			
+			
+			
+			System.out.println(config.appelPortOut(1));
+			
+	
+		
 		
 		
 	}

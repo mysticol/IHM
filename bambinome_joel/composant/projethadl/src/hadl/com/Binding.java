@@ -9,7 +9,7 @@ public class Binding extends Lien {
 	}
 
 	private int portBindConfig;
-	
+	private BindingType type;
 	
 	
 	
@@ -50,6 +50,14 @@ public class Binding extends Lien {
 		if (portBindConfig != other.portBindConfig)
 			return false;
 		return true;
+	}
+
+	public void setType(BindingType type) {
+		this.type = type;
+	}
+
+	public BindingType getType() {
+		return type;
 	}
 
 
