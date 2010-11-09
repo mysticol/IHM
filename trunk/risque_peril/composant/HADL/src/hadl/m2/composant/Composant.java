@@ -42,7 +42,7 @@ public abstract class Composant extends IComposant {
 	public void setProprietes(String proprietes) {
 		this.proprietes = proprietes;
 	}
-
+	
 	public void setPortIn(String port , String method){
 		this.portsIn.put(port, method);
 	}

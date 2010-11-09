@@ -19,7 +19,7 @@ public class Client extends Composant {
 	}
 	
 	public void menu(){
-		System.out.print("Entrez votre requete : ");
+		System.out.print("Entrez votre requete ( quit pour terminer ): ");
 		BufferedReader waiter = new BufferedReader(new InputStreamReader(System.in));
 		String req = "";
 		try {
