@@ -15,7 +15,7 @@ public class SecurityDB extends Composant {
 		users = new LinkedList<String>();
 		
 		users.add("moi");
-		users.add("jhon");
+		users.add("john");
 		users.add("bob");
 		users.add("lewis");
 		users.add("dieux");
