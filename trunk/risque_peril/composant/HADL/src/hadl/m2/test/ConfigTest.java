@@ -4,7 +4,7 @@ import hadl.m2.configuration.Configuration;
 
 public class ConfigTest extends Configuration {
 
-	public ConfigTest(String nom) {
-		super(nom);
+	public ConfigTest() {
+		super();
 	}
 }

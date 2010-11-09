@@ -8,7 +8,7 @@ public class mainClientServeur {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		CS cs = new CS("cs");
+		CS cs = new CS();
 		cs.init();
 		cs.start();
 	}

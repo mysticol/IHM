@@ -6,8 +6,8 @@ public class ConnectionManager extends Composant {
 
 	private String query;
 	
-	public ConnectionManager(String nom) {
-		super(nom);
+	public ConnectionManager() {
+		super();
 		query = "";
 		
 		this.setPortIn("External-Socket", "arriver");

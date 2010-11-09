@@ -9,8 +9,8 @@ public class DataBase extends Composant {
 
 	private Map<String,Map<String,String>> DB;
 
-	public DataBase(String nom) {
-		super(nom);
+	public DataBase() {
+		super();
 		Map<String,String> surnom = new HashMap<String, String>();
 		surnom.put("charles", "peril");
 		surnom.put("vincent", "risque");

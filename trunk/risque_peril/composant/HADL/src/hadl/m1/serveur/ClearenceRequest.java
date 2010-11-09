@@ -4,8 +4,8 @@ import hadl.m2.connecteur.Connecteur;
 
 public class ClearenceRequest extends Connecteur {
 
-	public ClearenceRequest(String nom) {
-		super(nom);
+	public ClearenceRequest() {
+		super();
 		this.setGlue("1","glueAller","2");
 		this.setGlue("3","glueRetour","4");
 	}

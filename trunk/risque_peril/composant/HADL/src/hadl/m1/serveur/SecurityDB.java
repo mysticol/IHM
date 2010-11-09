@@ -9,8 +9,8 @@ public class SecurityDB extends Composant {
 
 	private List<String> users;	
 	
-	public SecurityDB(String nom) {
-		super(nom);
+	public SecurityDB() {
+		super();
 		
 		users = new LinkedList<String>();
 		

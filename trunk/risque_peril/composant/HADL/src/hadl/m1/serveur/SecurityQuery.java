@@ -4,8 +4,8 @@ import hadl.m2.connecteur.Connecteur;
 
 public class SecurityQuery extends Connecteur {
 
-	public SecurityQuery(String nom) {
-		super(nom);
+	public SecurityQuery() {
+		super();
 		this.setGlue("1","glueAller","2");
 		this.setGlue("3","glueRetour","4");
 	}

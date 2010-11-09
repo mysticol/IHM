@@ -26,8 +26,8 @@ public abstract class Composant extends IComposant {
 		this.nom = nom;
 	}
 	
-	public Composant(String nom) {
-		this.nom = nom;
+	public Composant() {
+		this.nom = this.getClass().getName();
 		this.portsIn = new HashMap<String, String>();
 		this.portsOut = new HashMap<String, String>();
 	}
