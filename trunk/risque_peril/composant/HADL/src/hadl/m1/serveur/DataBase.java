@@ -49,13 +49,14 @@ public class DataBase extends Composant {
 	}
 	
 	public void traiteQuery(String cmd){
-		// System.out.println(14 + " - " + cmd);
+		//System.out.println(14 + " - " + cmd);
 		String[] elt = cmd.split(" ");
 		String rep ="Erreur DataBase inconnu";
 		
 		if(elt[2].equalsIgnoreCase("INSERT")){
 			if(elt.length == 5){
 				DB.get(elt[1]).put(elt[3], elt[4]);
+				rep = "Insertion effectuée";
 			}else{
 				rep = "Erreur : format du INSERT incorect - <USER> <TABLE> INSERT <KEY> <VALUE>";
 			}
