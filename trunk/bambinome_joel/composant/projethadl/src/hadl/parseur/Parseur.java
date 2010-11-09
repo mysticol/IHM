@@ -150,9 +150,6 @@ public class Parseur {
 			biType= BindingType.valueOf(type);
 			
 		}
-		
-		
-		
 		return new Binding(Integer.parseInt(bind
 				.getChildText("portComposantFrom")),
 				bind.getChildText("nomComposantFrom"), Integer.parseInt(bind
