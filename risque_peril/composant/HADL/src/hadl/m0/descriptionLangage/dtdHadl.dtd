@@ -3,7 +3,8 @@
 <!-- On a forcément une configuration qui englobe tout. -->
 <!ELEMENT configuration (contraintes, proprietes, portConfiguration*, composants, connecteurs, attachements, bindings)>
 <!ATTLIST configuration	
-				nom CDATA  #REQUIRED>
+				nom CDATA  #REQUIRED
+				classPath CDATA #REQUIRED>
 
 <!-- Les contraintes et les proprietes sont de simples donnees -->
 <!ELEMENT contraintes (#PCDATA)>
@@ -21,7 +22,8 @@
 <!-- Un composant simple doit avoir un nom. -->
 <!ELEMENT composant (contraintes, proprietes, port*, service*)>
 <!ATTLIST composant	
-				nom CDATA #REQUIRED>
+				nom CDATA #REQUIRED
+				classPath CDATA #REQUIRED>
 
 <!-- Un port doit être publique ou privé -->
 <!-- Un port doit avoir un nom -->
@@ -37,7 +39,7 @@
 <!ATTLIST service
 				nom CDATA #REQUIRED>
 
-<!-- Un portService doit obligatoirement avoir un nom et un tyoe -->
+<!-- Un portService doit obligatoirement avoir un nom et un type -->
 <!ELEMENT portService EMPTY>
 <!ATTLIST portService
 				nom CDATA #REQUIRED
@@ -50,7 +52,8 @@
 <!-- Un connecteur est composé d'une ou plusieurs glue(s) -->
 <!ELEMENT connecteur (glue+)>
 <!ATTLIST connecteur
-				nom CDATA #REQUIRED>
+				nom CDATA #REQUIRED
+				classPath CDATA #REQUIRED>
 
 <!-- Une glue est rattachée à plusieurs rolesFrom, et un seul roleTo -->
 <!ELEMENT glue (roleFrom+,roleTo)>
