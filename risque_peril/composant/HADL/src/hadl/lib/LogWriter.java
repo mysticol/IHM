@@ -210,71 +210,78 @@ public class LogWriter {
 	}
 	
 	
+	private void writeDate(String id){
+		if(withDate) {
+			logMap.get(id).print(dateFormat.format(new Date()) + "  |  ");
+		}
+	}
+
+	private void writeDate(){
+		if(withDate) {
+			psUnique.print(dateFormat.format(new Date()) + "  |  ");
+		}
+	}
+	
 	public void write(String id, String log){
 		// On écrit dans le log file
-		if (withDate) {
-			logMap.get(id).println(dateFormat.format(new Date()) + "  |  " +log);
-		} else {
-			logMap.get(id).println(log);
-		}
+		writeDate(id);
+		logMap.get(id).println(log);
 	}
 	
 	public void write(String log){
 		// On écrit dans le log file
-		if (withDate) {
-			psUnique.println(dateFormat.format(new Date()) + "  |  " +log);
-		} else {
-			psUnique.println(log);
-		}
+		writeDate();
+		psUnique.println(log);
 	}
 	
 	
 	public void writejl(String id, String log){
 		write(id, log);
-		logMap.get(id).println("");
+		write(id, "");
 	}
 	
 	public void writejl(String log){
 		write(log);
-		psUnique.println("");
+		write("");
 	}
 	
 	
 	public void writesep(String id){
-		logMap.get(id).println(separateur);
+		write(id, separateur);
 	}
 	
 	public void writesep(){
-		psUnique.println(separateur);
+		write(separateur);
 	}
 	
 	
 	public void writeerr(String id, String errorMessage){
-		logMap.get(id).println("");
-		logMap.get(id).println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		logMap.get(id).println("!! " + errorMessage);
-		logMap.get(id).println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		logMap.get(id).println("");
+		write(id, "");
+		write(id, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		write(id, "!! " + errorMessage);
+		write(id, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		write(id, "");
 	}
 	
 	public void writeerr(String errorMessage){
-		psUnique.println("");
-		psUnique.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		psUnique.println("!! " + errorMessage);
-		psUnique.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		psUnique.println("");
+		write("");
+		write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		write("!! " + errorMessage);
+		write("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		write("");
 	}
 	
+	
 	public void writewarn(String id, String warningMessage){
-		logMap.get(id).println("");
-		logMap.get(id).println("Warning : !! " + warningMessage + " !!");
-		logMap.get(id).println("");
+		write(id, "");
+		write(id, "Warning : !! " + warningMessage + " !!");
+		write(id, "");
 	}
 	
 	public void writewarn(String warningMessage){
-		psUnique.println("");
-		psUnique.println("Warning : !! " + warningMessage + " !!");
-		psUnique.println("");
+		write("");
+		write("Warning : !! " + warningMessage + " !!");
+		write("");
 	}	
 	
 	
