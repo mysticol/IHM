@@ -5,6 +5,7 @@ import hadl.Configuration;
 import hadl.Connector;
 import hadl.com.Attachement;
 import hadl.com.Binding;
+import hadl.com.BindingType;
 import hadl.com.param.InOutMapping;
 import hadl.com.param.MappingPortService;
 
@@ -17,11 +18,7 @@ import org.jdom.input.SAXBuilder;
 
 public class Parseur {
 
-	/**
-	 * TODO : parseur pour le langage qui renvoie une collection de config ou
-	 * une config.
-	 * 
-	 */
+	
 
 	public Configuration parse(File file) throws Exception {
 		Document document;
@@ -32,10 +29,7 @@ public class Parseur {
 		document = sxb.build(file);
 		racine = document.getRootElement();
 
-		// System.out.println(.getChildren());
-
 		return this.parseConfiguration(racine);
-
 	}
 
 	private Configuration parseConfiguration(Element config) {
@@ -150,10 +144,19 @@ public class Parseur {
 	}
 
 	private Binding parseBinding(Element bind) {
+		String type=bind.getChildText("type");
+		BindingType biType=BindingType.BOTH;
+		if (type!=null){
+			biType= BindingType.valueOf(type);
+			
+		}
+		
+		
+		
 		return new Binding(Integer.parseInt(bind
 				.getChildText("portComposantFrom")),
 				bind.getChildText("nomComposantFrom"), Integer.parseInt(bind
-						.getChildText("portBindConfig")));
+						.getChildText("portBindConfig")), biType);
 	}
 
 	private MappingPortService parseMappingPortService(Element el) {

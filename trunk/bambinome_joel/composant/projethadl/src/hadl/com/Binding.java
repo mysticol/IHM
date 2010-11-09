@@ -6,6 +6,7 @@ public class Binding extends Lien {
 			int portBindConfig) {
 		super(portComposantFrom, nomComposantFrom);
 		this.portBindConfig = portBindConfig;
+		this.type= BindingType.BOTH;
 	}
 
 	private int portBindConfig;
@@ -13,6 +14,13 @@ public class Binding extends Lien {
 	
 	
 	
+
+	public Binding(int portComposantFrom, String nomComposantFrom,
+			int portBindConfig, BindingType type) {
+		super(portComposantFrom, nomComposantFrom);
+		this.portBindConfig = portBindConfig;
+		this.type = type;
+	}
 
 	public int getPortBindConfig() {
 		return portBindConfig;
@@ -22,12 +30,20 @@ public class Binding extends Lien {
 		this.portBindConfig = portBindConfig;
 	}
 
+
+
+	public void setType(BindingType type) {
+		this.type = type;
+	}
+
+	public BindingType getType() {
+		return type;
+	}
+
 	@Override
 	public String toString() {
-		return "Binding [portBindConfig=" + portBindConfig
-				+ ", getPortComposantFrom()=" + getPortComposantFrom()
-				+ ", getNomComposantFrom()=" + getNomComposantFrom()
-				+ ", getClass()=" + getClass() + "]";
+		return "Binding [portBindConfig=" + portBindConfig + ", type=" + type
+				+ "]";
 	}
 
 	@Override
@@ -35,6 +51,7 @@ public class Binding extends Lien {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + portBindConfig;
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -49,15 +66,9 @@ public class Binding extends Lien {
 		Binding other = (Binding) obj;
 		if (portBindConfig != other.portBindConfig)
 			return false;
+		if (type != other.type)
+			return false;
 		return true;
-	}
-
-	public void setType(BindingType type) {
-		this.type = type;
-	}
-
-	public BindingType getType() {
-		return type;
 	}
 
 

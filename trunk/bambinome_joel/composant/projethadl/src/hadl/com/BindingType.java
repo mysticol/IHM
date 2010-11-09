@@ -1,8 +1,9 @@
 package hadl.com;
 
 public enum BindingType {
-ENTREE,
-SORTIE
+IN,
+OUT,
+BOTH
 	
 	
 }

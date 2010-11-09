@@ -7,6 +7,7 @@ import hadl.Configuration;
 import hadl.Connector;
 import hadl.com.Attachement;
 import hadl.com.Binding;
+import hadl.com.BindingType;
 import hadl.com.Lien;
 import hadl.com.param.InOutMapping;
 import hadl.com.param.MappingPortService;
@@ -26,7 +27,7 @@ public class MainTestM2 {
 		Lien attach= new Attachement(2, "ComposantUn", "TestConnect", "rien",  1, "ComposantDeux");
 		
 		Lien bindIn= new Binding(1, "ComposantUn", 1);
-		Lien bindOut= new Binding(1, "ComposantDeux", 1);
+		Lien bindOut= new Binding(1, "ComposantDeux", 1, BindingType.OUT);
 		
 		InOutMapping inoutun= new InOutMapping(1, 2);
 		
