@@ -4,8 +4,8 @@ import hadl.m2.connecteur.Connecteur;
 
 public class RPC extends Connecteur {
 
-	public RPC() {
-		super();
+	public RPC(String nom) {
+		super(nom);
 		
 		this.setGlue("1", "glueAller", "2");
 		this.setGlue("3", "glueRetour", "4");

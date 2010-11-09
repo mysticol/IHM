@@ -4,8 +4,8 @@ import hadl.m2.composant.Composant;
 
 public class TestNom extends Composant {
 
-	public TestNom() {
-		super();
+	public TestNom(String nom) {
+		super(nom);
 		this.setPortIn("1", "nom");
 		this.setPortOut("nom", "2");
 	}

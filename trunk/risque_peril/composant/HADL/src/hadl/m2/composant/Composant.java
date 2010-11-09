@@ -7,6 +7,8 @@ import java.util.Map;
 public abstract class Composant extends IComposant {
 	
 	// attribut
+	protected String nom;
+	
 	protected String contraintes;
 	protected String proprietes;
 
@@ -15,23 +17,32 @@ public abstract class Composant extends IComposant {
 	
 	/* constructeur */
 	public Composant(String contraintes, String proprietes,
-			Map<String, String> portsIn, Map<String,String> portsOut) {
+			Map<String, String> portsIn, Map<String,String> portsOut,String nom) {
 		super();
 		this.contraintes = contraintes;
 		this.proprietes = proprietes;
 		this.portsIn = portsIn;
 		this.portsOut = portsOut;
+		this.nom = nom;
 	}
 	
-	public Composant() {
+	public Composant(String nom) {
+		this.nom = nom;
 		this.portsIn = new HashMap<String, String>();
 		this.portsOut = new HashMap<String, String>();
 	}
 	// -------------------------------
 	
 	// getters and setters
+	
 	public String getContraintes() {
 		return contraintes;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 	public void setContraintes(String contraintes) {
 		this.contraintes = contraintes;

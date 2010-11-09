@@ -69,8 +69,9 @@ public abstract class Configuration extends Composant implements IConfiguration 
 			Map<String, String> portsIn, Map<String, String> portsOut,
 			Map<IComposant, Map<String, To>> composInterne,
 			Map<IConnecteur, Map<String, To>> connectsInterne,
-			Map<String, To> bindingIn) {
-		super(contraintes, proprietes, portsIn, portsOut);
+			Map<String, To> bindingIn,
+			String nom) {
+		super(contraintes, proprietes, portsIn, portsOut, nom);
 		this.composInterne = composInterne;
 		this.connectsInterne = connectsInterne;
 		this.bindingIn = bindingIn;
@@ -88,8 +89,8 @@ public abstract class Configuration extends Composant implements IConfiguration 
 		}
 	}
 
-	public Configuration(){
-		super();
+	public Configuration(String nom){
+		super(nom);
 		this.composInterne = new HashMap<IComposant, Map<String,To>>();
 		this.connectsInterne = new HashMap<IConnecteur, Map<String,To>>();
 		this.bindingIn = new HashMap<String, Configuration.To>();

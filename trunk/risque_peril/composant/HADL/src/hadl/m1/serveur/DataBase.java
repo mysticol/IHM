@@ -9,14 +9,14 @@ public class DataBase extends Composant {
 
 	private Map<String,Map<String,String>> DB;
 
-	public DataBase() {
-		super();
-		Map<String,String> nom = new HashMap<String, String>();
-		nom.put("charles", "peril");
-		nom.put("vincent", "risque");
-		nom.put("manoel", "joel");
-		nom.put("anthony", "bambinome");
-		nom.put("frederic", "pedofred");
+	public DataBase(String nom) {
+		super(nom);
+		Map<String,String> surnom = new HashMap<String, String>();
+		surnom.put("charles", "peril");
+		surnom.put("vincent", "risque");
+		surnom.put("manoel", "joel");
+		surnom.put("anthony", "bambinome");
+		surnom.put("frederic", "pedofred");
 		
 		Map<String,String> taille = new HashMap<String, String>();
 		taille.put("peril", "moyen");
@@ -27,7 +27,7 @@ public class DataBase extends Composant {
 		
 		DB = new HashMap<String, Map<String,String>>();
 		
-		this.DB.put("nom", nom);
+		this.DB.put("surnom", surnom);
 		this.DB.put("taille", taille);
 		
 		this.setPortIn("Security-Manager", "verifTable");
