@@ -7,11 +7,11 @@ import java.util.Map;
 public abstract class Connecteur extends IConnecteur {
 
 	// attribut  
-	protected Map<Integer,String> rolesFrom;
-	protected Map<String,Integer> rolesTo;
+	protected Map<String,String> rolesFrom;
+	protected Map<String,String> rolesTo;
 	
 	// constructor
-	public Connecteur(Map<Integer, String> rolesFrom,Map<String,Integer> rolesTo) {
+	public Connecteur(Map<String, String> rolesFrom,Map<String,String> rolesTo) {
 		super();
 		this.rolesFrom = rolesFrom;
 		this.rolesTo = rolesTo;
@@ -19,13 +19,13 @@ public abstract class Connecteur extends IConnecteur {
 
 	public Connecteur() {
 		super();
-		this.rolesFrom = new HashMap<Integer, String>();
-		this.rolesTo = new HashMap<String, Integer>();
+		this.rolesFrom = new HashMap<String, String>();
+		this.rolesTo = new HashMap<String, String>();
 	}
 	// ---------------------------------------
 
 	// methode de mise a jour des liaison entre les glues et les roles
-	public void setGlue(Integer roleFrom, String glue, Integer roleTo){
+	public void setGlue(String roleFrom, String glue, String roleTo){
 		this.rolesFrom.put(roleFrom, glue);
 		this.rolesTo.put(glue, roleTo);
 	}
@@ -34,7 +34,7 @@ public abstract class Connecteur extends IConnecteur {
 	public void print(){
 		System.out.println(this.getClass().getName());
 		System.out.println("Roles from :");
-		for(Integer p : this.rolesFrom.keySet()){
+		for(String p : this.rolesFrom.keySet()){
 			System.out.println("     - " + p + " -> " + this.rolesFrom.get(p));
 		}
 		System.out.println("Roles to :");
@@ -57,7 +57,7 @@ public abstract class Connecteur extends IConnecteur {
 	}
 	
 	// methode a appelé pour lancer les glues, activation d'un port d'entré
-	public void glue(Integer port, Object data) {
+	public void glue(String port, Object data) {
 		if(this.rolesFrom.containsKey(port)){
 			try {
 				this.getClass().getDeclaredMethod(this.rolesFrom.get(port), data.getClass()).invoke(this, data);
@@ -82,7 +82,7 @@ public abstract class Connecteur extends IConnecteur {
 		}
 	}
 	
-	public void glue(Integer port){
+	public void glue(String port){
 		if(this.rolesFrom.containsKey(port)){
 			try {
 				this.getClass().getDeclaredMethod(this.rolesFrom.get(port)).invoke(this);

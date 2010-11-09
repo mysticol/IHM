@@ -10,12 +10,12 @@ public abstract class Composant extends IComposant {
 	protected String contraintes;
 	protected String proprietes;
 
-	protected Map<Integer,String> portsIn;
-	protected Map<String,Integer> portsOut;
+	protected Map<String,String> portsIn;
+	protected Map<String,String> portsOut;
 	
 	/* constructeur */
 	public Composant(String contraintes, String proprietes,
-			Map<Integer, String> portsIn, Map<String,Integer> portsOut) {
+			Map<String, String> portsIn, Map<String,String> portsOut) {
 		super();
 		this.contraintes = contraintes;
 		this.proprietes = proprietes;
@@ -24,8 +24,8 @@ public abstract class Composant extends IComposant {
 	}
 	
 	public Composant() {
-		this.portsIn = new HashMap<Integer, String>();
-		this.portsOut = new HashMap<String, Integer>();
+		this.portsIn = new HashMap<String, String>();
+		this.portsOut = new HashMap<String, String>();
 	}
 	// -------------------------------
 	
@@ -43,11 +43,11 @@ public abstract class Composant extends IComposant {
 		this.proprietes = proprietes;
 	}
 
-	protected void setPortIn(Integer port , String method){
+	protected void setPortIn(String port , String method){
 		this.portsIn.put(port, method);
 	}
 	
-	protected void setPortOut(String method , Integer port){
+	protected void setPortOut(String method , String port){
 		this.portsOut.put(method, port);
 	}
 	
@@ -57,7 +57,7 @@ public abstract class Composant extends IComposant {
 		System.out.println("Contraintes : " + contraintes );
 		System.out.println("Proprietes : " + proprietes );
 		System.out.println("Port d'entrées :");
-		for(Integer p : this.portsIn.keySet()){
+		for(String p : this.portsIn.keySet()){
 			System.out.println("     - " + p + " -> " + this.portsIn.get(p));
 		}
 		System.out.println("Port de sorties :");
@@ -80,7 +80,7 @@ public abstract class Composant extends IComposant {
 	}
 	
 	// method appelée depuis l'exterieur pour lancer une méthode liée à un port
-	public void launch(Integer port, Object data){
+	public void launch(String port, Object data){
 		if(this.portsIn.containsKey(port)){
 			try {
 				this.getClass().getDeclaredMethod(this.portsIn.get(port), data.getClass()).invoke(this, data);
@@ -100,7 +100,7 @@ public abstract class Composant extends IComposant {
 		}
 	}
 	
-	public void launch(Integer port){
+	public void launch(String port){
 		if(this.portsIn.containsKey(port)){
 			try {
 				this.getClass().getDeclaredMethod(this.portsIn.get(port)).invoke(this);
