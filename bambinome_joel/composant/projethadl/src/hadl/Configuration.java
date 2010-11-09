@@ -2,6 +2,7 @@ package hadl;
 
 import hadl.com.Attachement;
 import hadl.com.Binding;
+import hadl.com.BindingType;
 import hadl.com.Lien;
 import hadl.com.event.EventAttachement;
 import hadl.com.event.EventBinding;
@@ -25,11 +26,7 @@ public class Configuration extends BriqueComposant implements Observer {
 	private HashMap<SignalComposant, Binding> bindingMap;
 	private HashMap<Integer, Binding> portServiceMapIng;
 
-	/*
-	 * TODO: // Rajouter une file d'évément qui permet de reprendre le
-	 * traitement si on lancer le bousin mettre un booléen start/stop pour à
-	 * froid a chaud tout ça permettrais des choses p'etre intéressante
-	 */
+
 
 	// Conservation de l'ordre dans la file très important !
 	// Si on peut exécuter que un et pas toute la file pas grave
@@ -128,8 +125,10 @@ public class Configuration extends BriqueComposant implements Observer {
 		// ajout dans le maping binding si le lien est un binding
 		if (li instanceof Binding) {
 			Binding temp = (Binding) li;
+			if( ((Binding) li).getType()!= BindingType.OUT){
 			this.portServiceMapIng
 					.put(((Binding) li).getPortBindConfig(), temp);
+			}
 			this.bindingMap.put(new SignalComposant(li.getNomComposantFrom(),
 					li.getPortComposantFrom()), (Binding) li);
 
@@ -208,7 +207,9 @@ public class Configuration extends BriqueComposant implements Observer {
 
 		if (li instanceof Binding) {
 			Binding temp = (Binding) li;
+			
 			this.portServiceMapIng.remove(temp.getPortBindConfig());
+			
 			this.bindingMap.remove(new SignalComposant(temp
 					.getNomComposantFrom(), temp.getPortComposantFrom()));
 

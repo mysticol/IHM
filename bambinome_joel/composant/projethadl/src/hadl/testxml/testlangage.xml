@@ -37,19 +37,20 @@
 		</Id>
 	</Connecteur>
 
+	<Binding>
+		<portComposantFrom>1</portComposantFrom>
+		<nomComposantFrom>ComposantUn</nomComposantFrom>
+		<portBindConfig>1</portBindConfig>
+	</Binding>
 
 
 	<Binding>
 		<portComposantFrom>1</portComposantFrom>
 		<nomComposantFrom>ComposantDeux</nomComposantFrom>
 		<portBindConfig>1</portBindConfig>
+		<type>OUT</type>
 	</Binding>
 
-	<Binding>
-		<portComposantFrom>1</portComposantFrom>
-		<nomComposantFrom>ComposantUn</nomComposantFrom>
-		<portBindConfig>1</portBindConfig>
-	</Binding>
 
 
 	<Attachement>
