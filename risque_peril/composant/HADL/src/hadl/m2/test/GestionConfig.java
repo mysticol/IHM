@@ -7,11 +7,11 @@ public class GestionConfig implements Observer{
 	
 	public GestionConfig() {
 
-		TestEnvoiCoucou compo1 = new TestEnvoiCoucou();
-		TestNom compo2 = new TestNom();
-		TestConnect connect = new TestConnect();
+		TestEnvoiCoucou compo1 = new TestEnvoiCoucou("TestEnvoiCoucou");
+		TestNom compo2 = new TestNom("TestNom");
+		TestConnect connect = new TestConnect("TestConnect");
 		
-		ConfigTest config = new ConfigTest();
+		ConfigTest config = new ConfigTest("ConfigTest");
 		config.addObserver(this);
 		
 		config.addComposant(compo1);

@@ -8,7 +8,8 @@ import hadl.m2.composant.Composant;
 
 public class Client extends Composant {
 
-	public Client(){
+	public Client(String nom){
+		super(nom);
 		this.contraintes = "";
 		this.proprietes = "";
 		

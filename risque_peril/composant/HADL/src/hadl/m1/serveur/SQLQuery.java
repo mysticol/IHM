@@ -3,8 +3,8 @@ package hadl.m1.serveur;
 import hadl.m2.connecteur.Connecteur;
 
 public class SQLQuery extends Connecteur {
-	public SQLQuery() {
-		super();
+	public SQLQuery(String nom) {
+		super(nom);
 		
 		this.setGlue("1","glueAller","2");
 		this.setGlue("3","glueRetour","4");

@@ -7,18 +7,21 @@ import java.util.Map;
 public abstract class Connecteur extends IConnecteur {
 
 	// attribut  
+	protected String nom;
 	protected Map<String,String> rolesFrom;
 	protected Map<String,String> rolesTo;
 	
 	// constructor
-	public Connecteur(Map<String, String> rolesFrom,Map<String,String> rolesTo) {
+	public Connecteur(Map<String, String> rolesFrom,Map<String,String> rolesTo, String nom) {
 		super();
+		this.nom = nom ;
 		this.rolesFrom = rolesFrom;
 		this.rolesTo = rolesTo;
 	}
 
-	public Connecteur() {
+	public Connecteur(String nom) {
 		super();
+		this.nom = nom;
 		this.rolesFrom = new HashMap<String, String>();
 		this.rolesTo = new HashMap<String, String>();
 	}
@@ -29,7 +32,12 @@ public abstract class Connecteur extends IConnecteur {
 		this.rolesFrom.put(roleFrom, glue);
 		this.rolesTo.put(glue, roleTo);
 	}
-	
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
 	// method d'affichage d'un connecteur
 	public void print(){
 		System.out.println(this.getClass().getName());

@@ -11,14 +11,15 @@ public class CS extends Configuration {
 	public Serveur serveur;
 	public RPC rpc;
 	
-	public CS() {
-		super();	
+	public CS(String nom) {
+		super(nom);	
 	}
 
 	public void init(){
-		client = new Client();
-		serveur = new Serveur();
-		rpc = new RPC();
+		
+		client = new Client("client");
+		serveur = new Serveur("serveur");
+		rpc = new RPC("rpc");
 		
 		serveur.init();
 		
