@@ -26,8 +26,6 @@ public class Configuration extends BriqueComposant implements Observer {
 	private HashMap<SignalComposant, Binding> bindingMap;
 	private HashMap<Integer, Binding> portServiceMapIng;
 
-
-
 	// Conservation de l'ordre dans la file très important !
 	// Si on peut exécuter que un et pas toute la file pas grave
 
@@ -125,9 +123,9 @@ public class Configuration extends BriqueComposant implements Observer {
 		// ajout dans le maping binding si le lien est un binding
 		if (li instanceof Binding) {
 			Binding temp = (Binding) li;
-			if( ((Binding) li).getType()!= BindingType.OUT){
-			this.portServiceMapIng
-					.put(((Binding) li).getPortBindConfig(), temp);
+			if (((Binding) li).getType() != BindingType.OUT) {
+				this.portServiceMapIng.put(((Binding) li).getPortBindConfig(),
+						temp);
 			}
 			this.bindingMap.put(new SignalComposant(li.getNomComposantFrom(),
 					li.getPortComposantFrom()), (Binding) li);
@@ -163,6 +161,7 @@ public class Configuration extends BriqueComposant implements Observer {
 	 * Ajout d'un composant et reprise du fonctionnement si besoin
 	 */
 	public final void addComposant(BriqueComposant brique) {
+		//diagnosticComposant(brique.getName());
 		bibComposant.put(brique.getName(), brique);
 		brique.addObserver(this);
 		this.retraitementEventQueue();
@@ -172,13 +171,15 @@ public class Configuration extends BriqueComposant implements Observer {
 	 * Ajout d'un connecteur et reprise du fonctionnement si besoin
 	 */
 	public final void addConnector(Connector con) {
+		//diagnosticConnecteur(con.getName());
 		bibConnector.put(con.getName(), con);
 		this.retraitementEventQueue();
 	}
 
-	//TODO rajouter dans ajout/delete/remove ce qui ne fonctionne plus en enlevant un élément
+	
 	// on enlève l'objet mais pas la référence
 	public final void removeComposant(String brique) {
+		diagnosticComposant(brique);
 		BriqueComposant comp = bibComposant.get(brique);
 		comp.deleteObserver(this);
 		bibComposant.put(brique, null);
@@ -186,11 +187,13 @@ public class Configuration extends BriqueComposant implements Observer {
 
 	// on enlève l'objet mais pas la référence
 	public final void removeConnector(String con) {
+		diagnosticConnecteur(con);
 		bibConnector.put(con, null);
 	}
 
 	// suppression définitive
 	public final void deleteComposant(String com) {
+		diagnosticComposant(com);
 		BriqueComposant comp = bibComposant.get(com);
 		comp.deleteObserver(this);
 		bibComposant.remove(comp);
@@ -198,6 +201,7 @@ public class Configuration extends BriqueComposant implements Observer {
 
 	// suppression définitive
 	public final void deleteConnector(String con) {
+		diagnosticConnecteur(con);
 		bibConnector.remove(con);
 	}
 
@@ -207,9 +211,9 @@ public class Configuration extends BriqueComposant implements Observer {
 
 		if (li instanceof Binding) {
 			Binding temp = (Binding) li;
-			
+
 			this.portServiceMapIng.remove(temp.getPortBindConfig());
-			
+
 			this.bindingMap.remove(new SignalComposant(temp
 					.getNomComposantFrom(), temp.getPortComposantFrom()));
 
@@ -256,14 +260,13 @@ public class Configuration extends BriqueComposant implements Observer {
 				result = true;
 			}
 		} else if (ev instanceof EventBinding) {
-			//retraitement d'un appel event bind 
+			// retraitement d'un appel event bind
 			EventBinding event = (EventBinding) ev;
 
 			// Récupération du bind correspondant
 			Binding bind = event.getBind();
 			Object[] args = event.getValues();
 
-			
 			if (portServiceMapIng.get(event.getPort()).equals(bind)) {
 				// on récupére le composant sur lequel on délègue
 				BriqueComposant comp = bibComposant.get(bind
@@ -282,5 +285,44 @@ public class Configuration extends BriqueComposant implements Observer {
 		}
 
 		return result;
+	}
+
+	private void diagnosticComposant(String nom) {
+		System.out.println("En retirant le composant portant le nom: " + nom
+				+ " \n" + "cela affectera les éléments suivant :");
+
+		String attachNeed = "Attachement(s) : ";
+		for (Attachement attach : roadMap.values()) {
+			if (attach.getNameComposantTo().equalsIgnoreCase(nom)
+					|| attach.getNomComposantFrom().equalsIgnoreCase(nom)) {
+				attachNeed += "\n" + attach.toString();
+			}
+		}
+		System.out.println(attachNeed);
+
+		String bindingNeed = "Bindind(s) : ";
+		for (Binding attach : bindingMap.values()) {
+			if (attach.getNomComposantFrom().equalsIgnoreCase(nom)) {
+				bindingNeed += "\n" + attach.toString();
+			}
+		}
+		System.out.println(bindingNeed);
+
+	}
+
+	private void diagnosticConnecteur(String nom) {
+
+		System.out.println("En retirant le connecteur portant le nom: " + nom
+				+ " \n" + "cela affectera les éléments suivant :");
+
+		String attachNeed = "Attachement(s) : ";
+		for (Attachement attach : roadMap.values()) {
+			if (attach.getNameConnector().equalsIgnoreCase(nom)
+					) {
+				attachNeed += "\n" + attach.toString();
+			}
+		}
+		System.out.println(attachNeed);
+
 	}
 }
