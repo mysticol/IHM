@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="processManagerModule"
+    targetNamespace="http://enterprise.netbeans.org/bpel/ProcessManagerModule/processManagerModule"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/ProcessManagerModule/processManagerModule"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/Exchanges">
+    <import namespace="http://j2ee.netbeans.org/wsdl/ProcessManagerModule/ScubaDiving" location="ScubaDiving.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" location="DolphinDivingAgency/dolphinDivingAgency.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/LunchService/lunchService" location="LunchService/lunchService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/TaxiService/taxiService" location="TaxiService/taxiService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="DolphinAgency" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" partnerLinkType="tns:dolphinDivingAgency" partnerRole="dolphinDivingAgencyPortTypeRole"/>
+        <partnerLink name="LunchService" xmlns:tns="http://j2ee.netbeans.org/wsdl/LunchService/lunchService" partnerLinkType="tns:lunchService" partnerRole="lunchServicePortTypeRole"/>
+        <partnerLink name="TaxiService" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiService" partnerLinkType="tns:taxiService" partnerRole="taxiServicePortTypeRole"/>
+        <partnerLink name="HotelReception" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManagerModule/ScubaDiving" partnerLinkType="tns:ScubaDiving" myRole="ScubaDivingPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="TaxiServiceOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiService" messageType="tns:taxiServiceOperationResponse"/>
+        <variable name="TaxiServiceOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiService" messageType="tns:taxiServiceOperationRequest"/>
+        <variable name="LunchServiceOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/LunchService/lunchService" messageType="tns:lunchServiceOperationResponse"/>
+        <variable name="LunchServiceOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/LunchService/lunchService" messageType="tns:lunchServiceOperationRequest"/>
+        <variable name="DolphinDivingAgencyOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" messageType="tns:dolphinDivingAgencyOperationResponse"/>
+        <variable name="DolphinDivingAgencyOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" messageType="tns:dolphinDivingAgencyOperationRequest"/>
+        <variable name="ScubaDivingOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManagerModule/ScubaDiving" messageType="tns:ScubaDivingOperationResponse"/>
+        <variable name="ScubaDivingOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManagerModule/ScubaDiving" messageType="tns:ScubaDivingOperationRequest"/>
+    </variables>
+    <sequence>
+        <receive name="HotelReceive" createInstance="yes" partnerLink="HotelReception" operation="ScubaDivingOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManagerModule/ScubaDiving" portType="tns:ScubaDivingPortType" variable="ScubaDivingOperationIn"/>
+        <assign name="Assign1">
+            <copy>
+                <from>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:guestName</from>
+                <to>$DolphinDivingAgencyOperationIn.DolphinDivingRequest/ns0:BookingName</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:requestDate</from>
+                <to>$DolphinDivingAgencyOperationIn.DolphinDivingRequest/ns0:requestDate</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:numberOfDivers</from>
+                <to>$DolphinDivingAgencyOperationIn.DolphinDivingRequest/ns0:numberOfDivers</to>
+            </copy>
+            <copy>
+                <from>'Hotel de merde'</from>
+                <to>$DolphinDivingAgencyOperationIn.DolphinDivingRequest/ns0:hotelName</to>
+            </copy>
+        </assign>
+        <invoke name="InvokeDolphins" partnerLink="DolphinAgency" operation="dolphinDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" portType="tns:dolphinDivingAgencyPortType" inputVariable="DolphinDivingAgencyOperationIn" outputVariable="DolphinDivingAgencyOperationOut"/>
+        <assign name="DolphinOut">
+            <copy>
+                <from>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:startTime</from>
+                <to>$TaxiServiceOperationIn.TaxiRequest/ns0:departFromHotelTime</to>
+            </copy>
+            <copy>
+                <from>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:endTime</from>
+                <to>$TaxiServiceOperationIn.TaxiRequest/ns0:arriveAtHotelTime</to>
+            </copy>
+            <copy>
+                <from>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:address</from>
+                <to>$TaxiServiceOperationIn.TaxiRequest/ns0:destinationAddress</to>
+            </copy>
+            <copy>
+                <from>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:divingBookingID</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingBookingID</to>
+            </copy>
+            <copy>
+                <from>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:instructorName</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:instructorName</to>
+            </copy>
+            <copy>
+                <from>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:startTime</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingStartingTime</to>
+            </copy>
+            <copy>
+                <from>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:endTime</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingEndTime</to>
+            </copy>
+            <copy>
+                <from>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:price</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:totalPrice</to>
+            </copy>
+            <copy>
+                <from>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:address</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingAgencyAddress</to>
+            </copy>
+            <copy>
+                <from>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:divingAgencyName</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingAgencyName</to>
+            </copy>
+        </assign>
+        <if name="IfLunchIncluded">
+            <condition>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:lunchInclued</condition>
+            <sequence name="Sequence1">
+                <assign name="LunchAssign">
+                    <copy>
+                        <from>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:guestName</from>
+                            <to>$LunchServiceOperationIn.LunchRequest/ns0:guestName</to>
+                    </copy>
+                        <copy>
+                        <from>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:roomNumber</from>
+                            <to>$LunchServiceOperationIn.LunchRequest/ns0:roomNumber</to>
+                    </copy>
+                        <copy>
+                        <from>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:numberOfDivers</from>
+                            <to>$LunchServiceOperationIn.LunchRequest/ns0:numberOfLunches</to>
+                    </copy>
+                        <copy>
+                        <from>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:requestDate</from>
+                            <to>$LunchServiceOperationIn.LunchRequest/ns0:lunchDate</to>
+                    </copy>
+                </assign>
+                <invoke name="InvokeLunch" partnerLink="LunchService" operation="lunchServiceOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/LunchService/lunchService" portType="tns:lunchServicePortType" inputVariable="LunchServiceOperationIn" outputVariable="LunchServiceOperationOut"/>
+            </sequence>
+        </if>
+        <assign name="AssignTaxiIn">
+            <copy>
+                <from>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:numberOfDivers</from>
+                <to>$TaxiServiceOperationIn.TaxiRequest/ns0:numberOfTravelers</to>
+            </copy>
+            <copy>
+                <from>'Hotel de merde'</from>
+                <to>$TaxiServiceOperationIn.TaxiRequest/ns0:hotelName</to>
+            </copy>
+        </assign>
+        <invoke name="InvokeTaxi" partnerLink="TaxiService" operation="taxiServiceOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiService" portType="tns:taxiServicePortType" inputVariable="TaxiServiceOperationIn" outputVariable="TaxiServiceOperationOut"/>
+        <assign name="AssignTaxiOut">
+            <copy>
+                <from>$TaxiServiceOperationOut.TaxiBooking/ns0:taxiBookingID</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:taxiBookingID</to>
+            </copy>
+            <copy>
+                <from>$TaxiServiceOperationOut.TaxiBooking/ns0:departFromDestinationTime</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:taxiReturnTime</to>
+            </copy>
+            <copy>
+                <from>$TaxiServiceOperationIn.TaxiRequest/ns0:departFromHotelTime</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:taxiDepartureTime</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingBookingID</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingBookingID</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingAgencyName</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingAgencyName</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingAgencyAddress</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingAgencyAddress</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:instructorName</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:instructorName</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingStartingTime</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingStartingTime</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingEndTime</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingEndTime</to>
+            </copy>
+            <copy>
+                <from>$TaxiServiceOperationOut.TaxiBooking/ns0:price + $ScubaDivingOperationOut.ScubaDivingResponse/ns0:totalPrice</from>
+                <to>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:totalPrice</to>
+            </copy>
+        </assign>
+        <reply name="Reply1" partnerLink="HotelReception" operation="ScubaDivingOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManagerModule/ScubaDiving" portType="tns:ScubaDivingPortType" variable="ScubaDivingOperationOut"/>
+    </sequence>
+</process>
+
+
