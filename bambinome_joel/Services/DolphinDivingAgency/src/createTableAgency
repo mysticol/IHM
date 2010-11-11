@@ -1,0 +1,110 @@
+/* Dolphin */
+DROP TABLE booking;
+DROP TABLE planing;
+
+CREATE TABLE booking (
+                        bookingId INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+                        startTime TIMESTAMP,
+                        endTime TIMESTAMP,
+                        instructorName VARCHAR(30),
+                        adress VARCHAR(30),
+                        price DOUBLE,
+
+                        bookingName VARCHAR(30),
+                        hotelName VARCHAR(30),
+                        requestDate DATE,
+                        numberOfDivers INT
+                      );
+
+CREATE TABLE planing (
+                        jour VARCHAR(2) PRIMARY KEY,
+                        instructorName VARCHAR(30)
+                      );
+
+INSERT INTO planing VALUES('01', 'john');
+INSERT INTO planing VALUES('02', 'john');
+INSERT INTO planing VALUES('03', 'john');
+INSERT INTO planing VALUES('04', 'john');
+INSERT INTO planing VALUES('05', 'john');
+INSERT INTO planing VALUES('06', 'john');
+INSERT INTO planing VALUES('07', 'john');
+INSERT INTO planing VALUES('08', 'john');
+INSERT INTO planing VALUES('09', 'john');
+INSERT INTO planing VALUES('10', 'john');
+INSERT INTO planing VALUES('11', 'bob');
+INSERT INTO planing VALUES('12', 'bob');
+INSERT INTO planing VALUES('13', 'bob');
+INSERT INTO planing VALUES('14', 'bob');
+INSERT INTO planing VALUES('15', 'bob');
+INSERT INTO planing VALUES('16', 'bob');
+INSERT INTO planing VALUES('17', 'bob');
+INSERT INTO planing VALUES('18', 'bob');
+INSERT INTO planing VALUES('19', 'bob');
+INSERT INTO planing VALUES('20', 'bob');
+INSERT INTO planing VALUES('21', 'lewis');
+INSERT INTO planing VALUES('22', 'lewis');
+INSERT INTO planing VALUES('23', 'lewis');
+INSERT INTO planing VALUES('24', 'lewis');
+INSERT INTO planing VALUES('25', 'lewis');
+INSERT INTO planing VALUES('26', 'lewis');
+INSERT INTO planing VALUES('27', 'lewis');
+INSERT INTO planing VALUES('28', 'lewis');
+INSERT INTO planing VALUES('29', 'lewis');
+INSERT INTO planing VALUES('30', 'lewis');
+INSERT INTO planing VALUES('31', 'marcus');
+
+
+/* Shark */
+DROP TABLE booking;
+DROP TABLE planing;
+
+CREATE TABLE booking (
+                        bookingId INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+                        startTime DATETIME,
+                        endTime DATETIME,
+                        instructorName VARCHAR(30),
+                        adress VARCHAR(30),
+                        price DOUBLE,
+
+                        bookingName VARCHAR(30),
+                        hotelName VARCHAR(30),
+                        requestDate DATE,
+                        numberOfDivers INT
+                      );
+
+CREATE TABLE planing (
+                        jour VARCHAR(2) PRIMARY KEY,
+                        instructorName VARCHAR(30)
+                      );
+
+INSERT INTO planing VALUES('01', 'joel');
+INSERT INTO planing VALUES('02', 'joel');
+INSERT INTO planing VALUES('03', 'joel');
+INSERT INTO planing VALUES('04', 'joel');
+INSERT INTO planing VALUES('05', 'joel');
+INSERT INTO planing VALUES('06', 'joel');
+INSERT INTO planing VALUES('07', 'joel');
+INSERT INTO planing VALUES('08', 'joel');
+INSERT INTO planing VALUES('09', 'joel');
+INSERT INTO planing VALUES('10', 'joel');
+INSERT INTO planing VALUES('11', 'alfred');
+INSERT INTO planing VALUES('12', 'alfred');
+INSERT INTO planing VALUES('13', 'alfred');
+INSERT INTO planing VALUES('14', 'alfred');
+INSERT INTO planing VALUES('15', 'alfred');
+INSERT INTO planing VALUES('16', 'alfred');
+INSERT INTO planing VALUES('17', 'alfred');
+INSERT INTO planing VALUES('18', 'alfred');
+INSERT INTO planing VALUES('19', 'alfred');
+INSERT INTO planing VALUES('20', 'alfred');
+INSERT INTO planing VALUES('21', 'antoine');
+INSERT INTO planing VALUES('22', 'antoine');
+INSERT INTO planing VALUES('23', 'antoine');
+INSERT INTO planing VALUES('24', 'antoine');
+INSERT INTO planing VALUES('25', 'antoine');
+INSERT INTO planing VALUES('26', 'antoine');
+INSERT INTO planing VALUES('27', 'antoine');
+INSERT INTO planing VALUES('28', 'antoine');
+INSERT INTO planing VALUES('29', 'antoine');
+INSERT INTO planing VALUES('30', 'antoine');
+INSERT INTO planing VALUES('31', 'fernand');
