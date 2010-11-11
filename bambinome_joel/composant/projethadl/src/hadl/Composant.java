@@ -22,7 +22,10 @@ public  class Composant extends BriqueComposant  {
 		this.portServiceMapIng= new HashMap<Integer, String>();
 	}
 
-	
+	/*
+	 * 
+	 * Mapping des méthodes sur un port du composant
+	 */
 	public final void  appelPortIn(Integer i, Object[] agrs) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException{
 		Integer portOut=getOutForIn(i);
 		
@@ -36,11 +39,12 @@ public  class Composant extends BriqueComposant  {
 		}
 	}
 	
-	
+	//ajout d'un mapping
 	public final void addMappingPortService( MappingPortService mapping){
 		portServiceMapIng.put(mapping.getPort(), mapping.getService());
 	}
 	
+	//enlèvement d'un mapping
 	public final void removeMappingPortService( int port){
 		portServiceMapIng.remove(port);
 	}
