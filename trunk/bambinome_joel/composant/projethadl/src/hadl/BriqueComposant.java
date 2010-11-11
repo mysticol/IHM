@@ -43,9 +43,10 @@ public abstract class BriqueComposant  extends ObjectHadl{
 	}
 
 	
-	
+	//methode pour l'appel d'un port en entré
 	public abstract void  appelPortIn(Integer i, Object[] agrs) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException;
 	
+	//methode pour l'appel d'un port en sortie
 	public final Object appelPortOut(Integer i){
 		return portValueMap.get(i);
 	}
@@ -54,7 +55,7 @@ public abstract class BriqueComposant  extends ObjectHadl{
 
 
 	
-	
+	//obtenir le port de sortie correspondant au port d'entré
 	public final Integer getOutForIn(Integer in){
 		Integer temp=this.mapingInOut.get(in);
 		if (temp==null){
@@ -63,14 +64,16 @@ public abstract class BriqueComposant  extends ObjectHadl{
 		return temp;
 	}
 	
+	//ajouter un mapping port d'entré/ port de sortie
 	public final void addMapingInOut(InOutMapping inout){
 		this.mapingInOut.put(inout.getIn(), inout.getOut());
 	}
 	
-	
+	//retirer un mapping port d'entré/ port de sortie
 	public final void removeInOut(Integer in){
 		mapingInOut.remove(in);
 	}
+	
 	
 	protected final Method getMethodByName(Object cible, String name){
 		Method resul=null;
