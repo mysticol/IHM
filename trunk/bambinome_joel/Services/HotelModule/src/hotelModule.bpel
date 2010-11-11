@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="hotelModule"
+    targetNamespace="http://enterprise.netbeans.org/bpel/HotelModule/hotelModule"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/HotelModule/hotelModule"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/Exchanges">
+    <import namespace="http://j2ee.netbeans.org/wsdl/HotelModule/DivingBooking" location="DivingBooking.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/ProcessManagerModule/ScubaDiving" location="ProcessManagerModule/ScubaDiving.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="ProcessManager" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManagerModule/ScubaDiving" partnerLinkType="tns:ScubaDiving" partnerRole="ScubaDivingPortTypeRole"/>
+        <partnerLink name="Formulaire" xmlns:tns="http://j2ee.netbeans.org/wsdl/HotelModule/DivingBooking" partnerLinkType="tns:DivingBooking" myRole="DivingBookingPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="DivingBookingOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/HotelModule/DivingBooking" messageType="tns:DivingBookingOperationResponse"/>
+        <variable name="ScubaDivingOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManagerModule/ScubaDiving" messageType="tns:ScubaDivingOperationResponse"/>
+        <variable name="ScubaDivingOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManagerModule/ScubaDiving" messageType="tns:ScubaDivingOperationRequest"/>
+        <variable name="DivingBookingOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/HotelModule/DivingBooking" messageType="tns:DivingBookingOperationRequest"/>
+    </variables>
+    <sequence>
+        <receive name="ivingBookingRequest" createInstance="yes" partnerLink="Formulaire" operation="DivingBookingOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/HotelModule/DivingBooking" portType="tns:DivingBookingPortType" variable="DivingBookingOperationIn"/>
+        <assign name="mapDataToSend">
+            <copy>
+                <from>$DivingBookingOperationIn.ScubaDivingRequest/ns0:guestName</from>
+                <to>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:guestName</to>
+            </copy>
+            <copy>
+                <from>$DivingBookingOperationIn.ScubaDivingRequest/ns0:roomNumber</from>
+                <to>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:roomNumber</to>
+            </copy>
+            <copy>
+                <from>$DivingBookingOperationIn.ScubaDivingRequest/ns0:requestDate</from>
+                <to>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:requestDate</to>
+            </copy>
+            <copy>
+                <from>$DivingBookingOperationIn.ScubaDivingRequest/ns0:numberOfDivers</from>
+                <to>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:numberOfDivers</to>
+            </copy>
+            <copy>
+                <from>$DivingBookingOperationIn.ScubaDivingRequest/ns0:lunchInclued</from>
+                <to>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:lunchInclued</to>
+            </copy>
+            <copy>
+                <from>$DivingBookingOperationIn.ScubaDivingRequest/ns0:interest/ns0:Caves</from>
+                <to>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:interest/ns0:Caves</to>
+            </copy>
+            <copy>
+                <from>$DivingBookingOperationIn.ScubaDivingRequest/ns0:interest/ns0:Dolphins</from>
+                <to>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:interest/ns0:Dolphins</to>
+            </copy>
+            <copy>
+                <from>$DivingBookingOperationIn.ScubaDivingRequest/ns0:interest/ns0:Sharks</from>
+                <to>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:interest/ns0:Sharks</to>
+            </copy>
+            <copy>
+                <from>$DivingBookingOperationIn.ScubaDivingRequest/ns0:interest/ns0:Wrecks</from>
+                <to>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:interest/ns0:Wrecks</to>
+            </copy>
+        </assign>
+        <invoke name="SendScubaDiving" partnerLink="ProcessManager" operation="ScubaDivingOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManagerModule/ScubaDiving" portType="tns:ScubaDivingPortType" inputVariable="ScubaDivingOperationIn" outputVariable="ScubaDivingOperationOut"/>
+        <assign name="mapDataResponse">
+            <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingBookingID</from>
+                <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:divingBookingID</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:taxiBookingID</from>
+                <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:taxiBookingID</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingAgencyName</from>
+                <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:divingAgencyName</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingAgencyAddress</from>
+                <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:divingAgencyAddress</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:instructorName</from>
+                <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:instructorName</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingStartingTime</from>
+                <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:divingStartingTime</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingEndTime</from>
+                <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:divingEndTime</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:taxiDepartureTime</from>
+                <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:taxiDepartureTime</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:taxiReturnTime</from>
+                <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:taxiReturnTime</to>
+            </copy>
+            <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:totalPrice</from>
+                <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:totalPrice</to>
+            </copy>
+        </assign>
+        <reply name="DivingBookingResponse" partnerLink="Formulaire" operation="DivingBookingOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/HotelModule/DivingBooking" portType="tns:DivingBookingPortType" variable="DivingBookingOperationOut"/>
+    </sequence>
+</process>
+
