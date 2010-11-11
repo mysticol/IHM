@@ -1,0 +1,6 @@
+INSERT INTO booking VALUES (Default, '2001-05-10-01.00.00', '2001-05-10-01.00.00', 'instructor', 'adress', 20, 'bookingName', 'hotelName', '2001-05-01', 1);
+
+date : 1991-03-02
+timestamp : 1991-03-02-08.30.00
+xsd:datetime : 1991-03-02T08:30:00+00:00
+xsd:date : 1991-03-02+00:00

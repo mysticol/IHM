@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="dolphinDivingAgency"
+    targetNamespace="http://enterprise.netbeans.org/bpel/DolphinDivingAgency/dolphinDivingAgency"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/DolphinDivingAgency/dolphinDivingAgency"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://j2ee.netbeans.org/xsd/tableSchema" xmlns:ns1="http://xml.netbeans.org/schema/Exchanges">
+    <import namespace="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" location="dolphinDivingAgency.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgencyPlanningTable" location="dolphinDivingAgencyPlanningTable.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgencyBookingTable" location="dolphinDivingAgencyBookingTable.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="PlanningTable" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgencyPlanningTable" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="BookingTable" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgencyBookingTable" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="ProcessManager" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" partnerLinkType="tns:dolphinDivingAgency" myRole="dolphinDivingAgencyPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="DolphinDivingAgencyOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" messageType="tns:dolphinDivingAgencyOperationResponse"/>
+        <variable name="FindOut1" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgencyBookingTable" messageType="tns:outputMsg"/>
+        <variable name="FindIn1" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgencyBookingTable" messageType="tns:inputMsg"/>
+        <variable name="InsertOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgencyBookingTable" messageType="tns:RetMsg"/>
+        <variable name="InsertIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgencyBookingTable" messageType="tns:inputMsg"/>
+        <variable name="FindOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgencyPlanningTable" messageType="tns:outputMsg"/>
+        <variable name="FindIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgencyPlanningTable" messageType="tns:inputMsg"/>
+        <variable name="DolphinDivingAgencyOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" messageType="tns:dolphinDivingAgencyOperationRequest"/>
+    </variables>
+    <sequence>
+        <receive name="Receive1" createInstance="yes" partnerLink="ProcessManager" operation="dolphinDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" portType="tns:dolphinDivingAgencyPortType" variable="DolphinDivingAgencyOperationIn"/>
+        <assign name="mapJour">
+            <copy>
+                <from>substring(string($DolphinDivingAgencyOperationIn.DolphinDivingRequest/ns1:requestDate), 9, 2)</from>
+                <to>$FindIn.part/ns0:PLANING_Record/ns0:JOUR</to>
+            </copy>
+        </assign>
+        <invoke name="getInstructorName" partnerLink="PlanningTable" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgencyPlanningTable" portType="tns:jdbcPortType" inputVariable="FindIn" outputVariable="FindOut"/>
+        <assign name="mapDataToInsert">
+            <copy>
+                <from>$DolphinDivingAgencyOperationIn.DolphinDivingRequest/ns1:BookingName</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:BOOKINGNAME</to>
+            </copy>
+            <copy>
+                <from>$DolphinDivingAgencyOperationIn.DolphinDivingRequest/ns1:hotelName</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:HOTELNAME</to>
+            </copy>
+            <copy>
+                <from>concat(substring-before(string($DolphinDivingAgencyOperationIn.DolphinDivingRequest/ns1:requestDate), '+'), '-10.00.00')</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:STARTTIME</to>
+            </copy>
+            <copy>
+                <from>concat(substring-before(string($DolphinDivingAgencyOperationIn.DolphinDivingRequest/ns1:requestDate), '+'), '-18.00.00')</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:ENDTIME</to>
+            </copy>
+            <copy>
+                <from>substring-before(string($DolphinDivingAgencyOperationIn.DolphinDivingRequest/ns1:requestDate), '+')</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:REQUESTDATE</to>
+            </copy>
+            <copy>
+                <from>500 * $DolphinDivingAgencyOperationIn.DolphinDivingRequest/ns1:numberOfDivers</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:PRICE</to>
+            </copy>
+            <copy>
+                <from>$DolphinDivingAgencyOperationIn.DolphinDivingRequest/ns1:numberOfDivers</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:NUMBEROFDIVERS</to>
+            </copy>
+            <copy>
+                <from>'42,rue des Dauphins'</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:ADRESS</to>
+            </copy>
+            <copy>
+                <from>$FindOut.part/ns0:PLANING_Record/ns0:INSTRUCTORNAME</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:INSTRUCTORNAME</to>
+            </copy>
+        </assign>
+        <invoke name="InsertBooking" partnerLink="BookingTable" operation="insert" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgencyBookingTable" portType="tns:jdbcPortType" inputVariable="InsertIn" outputVariable="InsertOut"/>
+        <invoke name="getBooking" partnerLink="BookingTable" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgencyBookingTable" portType="tns:jdbcPortType" inputVariable="FindIn1" outputVariable="FindOut1"/>
+        <assign name="mapBooking">
+            <copy>
+                <from>$FindOut1.part/ns0:BOOKING_Record/ns0:BOOKINGID</from>
+                <to>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns1:divingBookingID</to>
+            </copy>
+            <copy>
+                <from>$FindOut1.part/ns0:BOOKING_Record/ns0:STARTTIME</from>
+                <to>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns1:startTime</to>
+            </copy>
+            <copy>
+                <from>$FindOut1.part/ns0:BOOKING_Record/ns0:ENDTIME</from>
+                <to>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns1:endTime</to>
+            </copy>
+            <copy>
+                <from>$FindOut1.part/ns0:BOOKING_Record/ns0:INSTRUCTORNAME</from>
+                <to>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns1:instructorName</to>
+            </copy>
+            <copy>
+                <from>$FindOut1.part/ns0:BOOKING_Record/ns0:ADRESS</from>
+                <to>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns1:address</to>
+            </copy>
+            <copy>
+                <from>$FindOut1.part/ns0:BOOKING_Record/ns0:PRICE</from>
+                <to>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns1:price</to>
+            </copy>
+            <copy>
+                <from>'Agence Dauphins'</from>
+                <to>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns1:divingAgencyName</to>
+            </copy>
+        </assign>
+        <reply name="Reply1" partnerLink="ProcessManager" operation="dolphinDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" portType="tns:dolphinDivingAgencyPortType" variable="DolphinDivingAgencyOperationOut"/>
+    </sequence>
+</process>
+
+
