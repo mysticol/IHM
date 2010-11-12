@@ -1,6 +1,6 @@
 package hadl.m1.serveur;
 
-import hadl.Connector;
+import hadl.m2.Connector;
 
 public class SecurityQuery extends Connector {
 

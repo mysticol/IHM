@@ -1,6 +1,6 @@
-package hadl;
+package hadl.m2;
 
-import hadl.com.param.InOutMapping;
+import hadl.m2.com.param.InOutMapping;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

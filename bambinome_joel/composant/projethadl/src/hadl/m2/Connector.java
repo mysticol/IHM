@@ -1,4 +1,4 @@
-package hadl;
+package hadl.m2;
 
 
 

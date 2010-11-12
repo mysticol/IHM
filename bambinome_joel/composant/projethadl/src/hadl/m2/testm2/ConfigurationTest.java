@@ -1,6 +1,6 @@
-package hadl.testm2;
+package hadl.m2.testm2;
 
-import hadl.Configuration;
+import hadl.m2.Configuration;
 
 
 

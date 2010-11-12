@@ -1,7 +1,7 @@
-package hadl;
+package hadl.m2;
 
-import hadl.com.event.SignalComposant;
-import hadl.com.param.MappingPortService;
+import hadl.m2.com.event.SignalComposant;
+import hadl.m2.com.param.MappingPortService;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

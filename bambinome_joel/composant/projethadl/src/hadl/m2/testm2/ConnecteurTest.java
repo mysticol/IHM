@@ -1,6 +1,6 @@
-package hadl.testm2;
+package hadl.m2.testm2;
 
-import hadl.Connector;
+import hadl.m2.Connector;
 
 public class ConnecteurTest extends Connector{
 

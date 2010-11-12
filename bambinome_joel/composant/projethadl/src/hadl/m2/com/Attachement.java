@@ -1,4 +1,4 @@
-package hadl.com;
+package hadl.m2.com;
 
 
 public class Attachement extends Lien{

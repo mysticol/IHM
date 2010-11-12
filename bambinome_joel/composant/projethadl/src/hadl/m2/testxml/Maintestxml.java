@@ -1,9 +1,9 @@
-package hadl.testxml;
+package hadl.m2.testxml;
 
 import java.io.File;
 
-import hadl.Configuration;
-import hadl.parseur.Parseur;
+import hadl.m2.Configuration;
+import hadl.m2.parseur.Parseur;
 
 public class Maintestxml {
 

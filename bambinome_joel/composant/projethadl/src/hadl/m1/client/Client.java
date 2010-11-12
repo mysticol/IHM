@@ -1,7 +1,7 @@
 package hadl.m1.client;
 
-import hadl.Composant;
-import hadl.com.param.MappingPortService;
+import hadl.m2.Composant;
+import hadl.m2.com.param.MappingPortService;
 
 public class Client extends Composant {
 

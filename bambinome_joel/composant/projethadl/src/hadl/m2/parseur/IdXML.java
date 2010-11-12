@@ -1,4 +1,4 @@
-package hadl.parseur;
+package hadl.m2.parseur;
 
 public class IdXML {
 

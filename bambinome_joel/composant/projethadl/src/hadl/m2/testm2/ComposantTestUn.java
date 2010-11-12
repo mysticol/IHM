@@ -1,6 +1,6 @@
-package hadl.testm2;
+package hadl.m2.testm2;
 
-import hadl.Composant;
+import hadl.m2.Composant;
 
 public class ComposantTestUn extends Composant{
 	

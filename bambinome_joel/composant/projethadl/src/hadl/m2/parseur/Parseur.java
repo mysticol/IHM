@@ -1,13 +1,13 @@
-package hadl.parseur;
+package hadl.m2.parseur;
 
-import hadl.Composant;
-import hadl.Configuration;
-import hadl.Connector;
-import hadl.com.Attachement;
-import hadl.com.Binding;
-import hadl.com.BindingType;
-import hadl.com.param.InOutMapping;
-import hadl.com.param.MappingPortService;
+import hadl.m2.Composant;
+import hadl.m2.Configuration;
+import hadl.m2.Connector;
+import hadl.m2.com.Attachement;
+import hadl.m2.com.Binding;
+import hadl.m2.com.BindingType;
+import hadl.m2.com.param.InOutMapping;
+import hadl.m2.com.param.MappingPortService;
 
 import java.io.File;
 import java.util.List;
