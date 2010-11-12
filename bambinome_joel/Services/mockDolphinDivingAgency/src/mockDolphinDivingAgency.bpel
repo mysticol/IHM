@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="mockDolphinDivingAgency"
+    targetNamespace="http://enterprise.netbeans.org/bpel/mockDolphinDivingAgency/mockDolphinDivingAgency"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/mockDolphinDivingAgency/mockDolphinDivingAgency"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/Exchanges">
+    <import namespace="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" location="dolphinDivingAgency.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="ProcessManager" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" partnerLinkType="tns:dolphinDivingAgency" myRole="dolphinDivingAgencyPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="DolphinDivingAgencyOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" messageType="tns:dolphinDivingAgencyOperationResponse"/>
+        <variable name="DolphinDivingAgencyOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" messageType="tns:dolphinDivingAgencyOperationRequest"/>
+    </variables>
+    <sequence>
+        <receive name="Receive1" createInstance="yes" partnerLink="ProcessManager" operation="dolphinDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" portType="tns:dolphinDivingAgencyPortType" variable="DolphinDivingAgencyOperationIn"/>
+        <assign name="Assign1">
+            <copy>
+                <from>20</from>
+                <to>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:divingBookingID</to>
+            </copy>
+            <copy>
+                <from>'1991-01-02T08:30:00'</from>
+                <to>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:startTime</to>
+            </copy>
+            <copy>
+                <from>'1991-01-02T09:30:00'</from>
+                <to>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:endTime</to>
+            </copy>
+            <copy>
+                <from>'Bambinome'</from>
+                <to>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:instructorName</to>
+            </copy>
+            <copy>
+                <from>'rue du trou'</from>
+                <to>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:address</to>
+            </copy>
+            <copy>
+                <from>42</from>
+                <to>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:price</to>
+            </copy>
+            <copy>
+                <from>'Agence Dauphins'</from>
+                <to>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:divingAgencyName</to>
+            </copy>
+        </assign>
+        <reply name="Reply1" partnerLink="ProcessManager" operation="dolphinDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" portType="tns:dolphinDivingAgencyPortType" variable="DolphinDivingAgencyOperationOut"/>
+    </sequence>
+</process>
+
