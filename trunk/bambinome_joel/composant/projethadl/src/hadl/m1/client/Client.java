@@ -1,7 +1,7 @@
 package hadl.m1.client;
 
 import hadl.m2.Composant;
-import hadl.m2.com.param.MappingPortService;
+
 
 public class Client extends Composant {
 
@@ -13,12 +13,9 @@ public class Client extends Composant {
 	/*
 	 * Le client a deux service : l'envoie de données et la réception de données
 	 */
-	public Client(String name) {
-		super(name);
-		MappingPortService servEnvoi= new MappingPortService(1, "envoi");
-		MappingPortService servReception= new MappingPortService(2, "reception");
-		this.addMappingPortService(servEnvoi);
-		this.addMappingPortService(servReception);
+	public Client() {
+		super("cl1");
+		
 	}
 	
 	public String envoi(String mess){
