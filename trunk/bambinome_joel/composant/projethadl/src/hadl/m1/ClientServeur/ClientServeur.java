@@ -1,12 +1,12 @@
 package hadl.m1.ClientServeur;
 
-import hadl.Configuration;
-import hadl.com.Attachement;
-import hadl.com.Binding;
-import hadl.com.Lien;
 import hadl.m1.client.Client;
 import hadl.m1.rpc.Rpc;
 import hadl.m1.serveur.Serveur;
+import hadl.m2.Configuration;
+import hadl.m2.com.Attachement;
+import hadl.m2.com.Binding;
+import hadl.m2.com.Lien;
 
 public class ClientServeur extends Configuration {
 

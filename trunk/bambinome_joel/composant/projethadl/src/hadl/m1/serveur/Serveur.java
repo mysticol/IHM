@@ -1,9 +1,9 @@
 package hadl.m1.serveur;
 
-import hadl.Configuration;
-import hadl.com.Attachement;
-import hadl.com.Binding;
-import hadl.com.Lien;
+import hadl.m2.Configuration;
+import hadl.m2.com.Attachement;
+import hadl.m2.com.Binding;
+import hadl.m2.com.Lien;
 
 
 public class Serveur extends Configuration {

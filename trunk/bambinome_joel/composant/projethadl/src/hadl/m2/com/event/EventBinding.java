@@ -1,6 +1,6 @@
-package hadl.com.event;
+package hadl.m2.com.event;
 
-import hadl.com.Binding;
+import hadl.m2.com.Binding;
 
 import java.util.Arrays;
 

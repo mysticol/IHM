@@ -1,4 +1,4 @@
-package hadl.com.event;
+package hadl.m2.com.event;
 
 
 

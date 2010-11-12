@@ -1,6 +1,6 @@
-package hadl.com.event;
+package hadl.m2.com.event;
 
-import hadl.com.Attachement;
+import hadl.m2.com.Attachement;
 
 public class EventAttachement implements EventComposant{
 

@@ -1,6 +1,6 @@
-package hadl.testm2;
+package hadl.m2.testm2;
 
-import hadl.Composant;
+import hadl.m2.Composant;
 
 public class ComposantTestDeux extends Composant{
 	private static final long serialVersionUID = -2057496817509533929L;

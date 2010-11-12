@@ -1,16 +1,16 @@
-package hadl.testm2;
+package hadl.m2.testm2;
 
 
 
-import hadl.Composant;
-import hadl.Configuration;
-import hadl.Connector;
-import hadl.com.Attachement;
-import hadl.com.Binding;
-import hadl.com.BindingType;
-import hadl.com.Lien;
-import hadl.com.param.InOutMapping;
-import hadl.com.param.MappingPortService;
+import hadl.m2.Composant;
+import hadl.m2.Configuration;
+import hadl.m2.Connector;
+import hadl.m2.com.Attachement;
+import hadl.m2.com.Binding;
+import hadl.m2.com.BindingType;
+import hadl.m2.com.Lien;
+import hadl.m2.com.param.InOutMapping;
+import hadl.m2.com.param.MappingPortService;
 
 public class MainTestM2 {
 

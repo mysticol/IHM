@@ -1,6 +1,6 @@
 package hadl.m1.rpc;
 
-import hadl.Connector;
+import hadl.m2.Connector;
 
 public class Rpc extends Connector {
 

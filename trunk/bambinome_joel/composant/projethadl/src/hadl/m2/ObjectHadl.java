@@ -1,4 +1,4 @@
-package hadl;
+package hadl.m2;
 
 import java.io.Serializable;
 import java.util.Observable;

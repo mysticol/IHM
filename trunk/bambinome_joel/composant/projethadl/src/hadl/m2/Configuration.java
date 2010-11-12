@@ -1,13 +1,13 @@
-package hadl;
+package hadl.m2;
 
-import hadl.com.Attachement;
-import hadl.com.Binding;
-import hadl.com.BindingType;
-import hadl.com.Lien;
-import hadl.com.event.EventAttachement;
-import hadl.com.event.EventBinding;
-import hadl.com.event.EventComposant;
-import hadl.com.event.SignalComposant;
+import hadl.m2.com.Attachement;
+import hadl.m2.com.Binding;
+import hadl.m2.com.BindingType;
+import hadl.m2.com.Lien;
+import hadl.m2.com.event.EventAttachement;
+import hadl.m2.com.event.EventBinding;
+import hadl.m2.com.event.EventComposant;
+import hadl.m2.com.event.SignalComposant;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
