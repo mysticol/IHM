@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="http://j2ee.netbeans.org/wsdl/HotelModule/DivingBooking" xmlns:ns2="http://enterprise.netbeans.org/bpel/HotelModule/hotelModule" xmlns:ns3="http://enterprise.netbeans.org/bpel/ProcessManagerModule/processManagerModule" xmlns:ns4="http://enterprise.netbeans.org/bpel/mockLunchService/mockLunchService" xmlns:ns5="http://enterprise.netbeans.org/bpel/mockTaxiService/mockTaxiService" xmlns:ns6="http://enterprise.netbeans.org/bpel/mockDolphinDivingAgency/mockDolphinDivingAgency" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/jbi ./jbi.xsd">
+    <service-assembly>
+        <identification>
+            <name>DivingBookingCompositeServiceMock</name>
+            <description>Represents the Service Assembly of DivingBookingCompositeServiceMock</description>
+        </identification>
+        <service-unit>
+            <identification>
+                <name>DivingBookingCompositeServiceMock-ProcessManagerModule</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>ProcessManagerModule.jar</artifacts-zip>
+                <component-name>sun-bpel-engine</component-name>
+            </target>
+        </service-unit>
+        <service-unit>
+            <identification>
+                <name>DivingBookingCompositeServiceMock-HotelModule</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>HotelModule.jar</artifacts-zip>
+                <component-name>sun-bpel-engine</component-name>
+            </target>
+        </service-unit>
+        <service-unit>
+            <identification>
+                <name>DivingBookingCompositeServiceMock-mockLunchService</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>mockLunchService.jar</artifacts-zip>
+                <component-name>sun-bpel-engine</component-name>
+            </target>
+        </service-unit>
+        <service-unit>
+            <identification>
+                <name>DivingBookingCompositeServiceMock-mockTaxiService</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>mockTaxiService.jar</artifacts-zip>
+                <component-name>sun-bpel-engine</component-name>
+            </target>
+        </service-unit>
+        <service-unit>
+            <identification>
+                <name>DivingBookingCompositeServiceMock-mockDolphinDivingAgency</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>mockDolphinDivingAgency.jar</artifacts-zip>
+                <component-name>sun-bpel-engine</component-name>
+            </target>
+        </service-unit>
+        <service-unit>
+            <identification>
+                <name>DivingBookingCompositeServiceMock-sun-http-binding</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>sun-http-binding.jar</artifacts-zip>
+                <component-name>sun-http-binding</component-name>
+            </target>
+        </service-unit>
+        <connections>
+            <connection>
+                <consumer endpoint-name="DivingBookingPortTypeBindingPort" service-name="ns1:DivingBookingService"/>
+                <provider endpoint-name="DivingBookingPortTypeRole_myRole" service-name="ns2:Formulaire"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="ScubaDivingPortTypeRole_partnerRole" service-name="ns2:ProcessManager"/>
+                <provider endpoint-name="ScubaDivingPortTypeRole_myRole" service-name="ns3:HotelReception"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="lunchServicePortTypeRole_partnerRole" service-name="ns3:LunchService"/>
+                <provider endpoint-name="lunchServicePortTypeRole_myRole" service-name="ns4:ProcessManager"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="taxiServicePortTypeRole_partnerRole" service-name="ns3:TaxiService"/>
+                <provider endpoint-name="taxiServicePortTypeRole_myRole" service-name="ns5:ProcessManager"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="dolphinDivingAgencyPortTypeRole_partnerRole" service-name="ns3:DolphinAgency"/>
+                <provider endpoint-name="dolphinDivingAgencyPortTypeRole_myRole" service-name="ns6:ProcessManager"/>
+            </connection>
+        </connections>
+    </service-assembly>
+</jbi>
