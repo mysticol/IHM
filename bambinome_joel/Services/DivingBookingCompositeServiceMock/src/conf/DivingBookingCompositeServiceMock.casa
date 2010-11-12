@@ -23,7 +23,7 @@
             <provides endpoint="endpoint6"/>
             <consumes endpoint="endpoint7"/>
         </service-engine-service-unit>
-        <service-engine-service-unit artifacts-zip="mockLunchService.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="DivingBookingCompositeServiceMock-mockLunchService" unit-name="mockLunchService" unknown="false" x="136" y="465">
+        <service-engine-service-unit artifacts-zip="mockLunchService.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="DivingBookingCompositeServiceMock-mockLunchService" unit-name="mockLunchService" unknown="false" x="169" y="490">
             <provides endpoint="endpoint8"/>
         </service-engine-service-unit>
         <service-engine-service-unit artifacts-zip="mockTaxiService.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="DivingBookingCompositeServiceMock-mockTaxiService" unit-name="mockTaxiService" unknown="false" x="142" y="604">
@@ -57,7 +57,6 @@
         <link xlink:href="../jbiServiceUnits/META-INF/ProcessManagerModule/src/_references/_projects/TaxiService/src/taxiService.wsdl#xpointer(/definitions/portType[@name='taxiServicePortType'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/mockDolphinDivingAgency/dolphinDivingAgency.wsdl#xpointer(/definitions/portType[@name='dolphinDivingAgencyPortType'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/mockLunchService/lunchService.wsdl#xpointer(/definitions/portType[@name='lunchServicePortType'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/mockProcessManager/ScubaDiving.wsdl#xpointer(/definitions/portType[@name='ScubaDivingPortType'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/mockTaxiService/taxiService.wsdl#xpointer(/definitions/portType[@name='taxiServicePortType'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/ProcessManagerModule/ScubaDiving.wsdl#xpointer(/definitions/portType[@name='ScubaDivingPortType'])" xlink:type="simple"/>
     </porttypes>
@@ -73,3 +72,4 @@
         <region name="External Modules" width="200"/>
     </regions>
 </casa>
+
