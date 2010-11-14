@@ -1,0 +1,13 @@
+#TeXlipse project settings
+#Sun Nov 14 16:34:45 CET 2010
+builderNum=2
+outputDir=pdf/
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=petitRapport-HADL.tex
+outputFile=petitRapport-Hadl.pdf
+langSpell=en
+markDer=true
+srcDir=src/
