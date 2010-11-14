@@ -6,7 +6,7 @@ import java.util.Map;
 
 import hadl.m2.composant.Composant;
 
-public abstract class ComposantSimple extends Composant {
+public abstract class ComposantSimple extends Composant implements IComposantSimple {
 	
 	/* attributs */
 	protected Map<String,String> portsIn;
