@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="DolphinDivingAgency/dolphinDivingAgency.wsdl" uri="src/_references/_projects/DolphinDivingAgency/src/dolphinDivingAgency.wsdl"/>
-    <system systemId="exchanges.xsd" uri="src/_references/_projects/DolphinDivingAgency/src/exchanges.xsd"/>
-    <system systemId="LunchService/lunchService.wsdl" uri="src/_references/_projects/LunchService/src/lunchService.wsdl"/>
-    <system systemId="TaxiService/taxiService.wsdl" uri="src/_references/_projects/TaxiService/src/taxiService.wsdl"/>
-</catalog>
