@@ -1,5 +1,7 @@
 package hadl.m0;
 
+import java.lang.reflect.InvocationTargetException;
+
 import hadl.m1.ClientServeur.ClientServeur;
 import hadl.m1.client.Client;
 import hadl.m1.rpc.Rpc;
@@ -12,6 +14,7 @@ import hadl.m1.serveur.SecurityQuery;
 import hadl.m1.serveur.Serveur;
 import hadl.m2.com.Attachement;
 import hadl.m2.com.Binding;
+import hadl.m2.com.BindingType;
 import hadl.m2.com.Lien;
 import hadl.m2.com.param.InOutMapping;
 import hadl.m2.com.param.MappingPortService;
@@ -19,7 +22,7 @@ import hadl.m2.com.param.MappingPortService;
 public class MainM0Instanclassque {
 
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {
 		
 		//Client serveur
 		
@@ -76,9 +79,9 @@ public class MainM0Instanclassque {
 		
 		
 		
-		ClearenceRequest cr = new ClearenceRequest("ClearenceRequest");
-		SecurityQuery secuQuery = new SecurityQuery("SecurityQuery");
-		SQLQuery sqlQuery = new SQLQuery("SQLQuery");
+		ClearenceRequest cr = new ClearenceRequest();
+		SecurityQuery secuQuery = new SecurityQuery();
+		SQLQuery sqlQuery = new SQLQuery();
 		
 		serveur.addComposant(cm);
 		serveur.addComposant(secuDb);
@@ -93,8 +96,10 @@ public class MainM0Instanclassque {
 		Lien lienSQLQ= new Attachement(2, "db", "SQLQuery", "SQLMethod",  3, "ConnectionManager");
 
 		
-		Lien bindIn= new Binding(1, "ConnectionManager", 1);
+		Lien bindout = new Binding(4,"ConnectionManager", 1,BindingType.OUT);
+		Lien bindIn= new Binding(1, "ConnectionManager", 1, BindingType.IN);
 		
+		serveur.addLien(bindout);
 		serveur.addLien(lienCR);
 		serveur.addLien(lienSecuQ);
 		serveur.addLien(lienSQLQ);
@@ -107,7 +112,7 @@ public class MainM0Instanclassque {
 		
 		
 		
-		Rpc rpc = new Rpc("rpc");
+		Rpc rpc = new Rpc();
 		
 		clientServ.addComposant(client);
 		clientServ.addComposant(serveur);
@@ -115,14 +120,22 @@ public class MainM0Instanclassque {
 		
 		Lien lienCS= new Attachement(1, "cl1", "rpc", "rpcMethod",  1, "serv1");
 
-		Lien bindCl= new Binding(1, "cl1", 1);
-		Lien bindSrv= new Binding(1, "serv1", 1);
+		Lien bindCl= new Binding(1, "cl1", 1, BindingType.IN);
+		Lien bindSrv= new Binding(1, "serv1", 1, BindingType.OUT);
 		
 		clientServ.addLien(lienCS);
 		clientServ.addLien(bindCl);
 		clientServ.addLien(bindSrv);
 		//fin client serveur
 		
+		
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		
+		Object[] tab={"Bambinome"};
+		
+		clientServ.appelPortIn(1, tab);
+		
+		System.out.println(clientServ.appelPortOut(1));
 		
 		
 		

@@ -9,8 +9,8 @@ public class ClearenceRequest extends Connector {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ClearenceRequest(String name) {
-		super(name);
+	public ClearenceRequest() {
+		super("ClearenceRequest");
 	}
 
 	public String crMethod(String mess){

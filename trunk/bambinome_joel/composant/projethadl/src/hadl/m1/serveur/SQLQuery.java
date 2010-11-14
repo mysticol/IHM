@@ -9,8 +9,8 @@ public class SQLQuery extends Connector {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public SQLQuery(String name) {
-		super(name);
+	public SQLQuery() {
+		super("SQLQuery");
 	}
 	
 	public String SQLMethod(String mess){

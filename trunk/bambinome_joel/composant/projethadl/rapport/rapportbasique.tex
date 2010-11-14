@@ -1,0 +1,121 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{ifpdf}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[nottoc, notlof, notlot]{tocbibind}
+\usepackage[unicode=true,pdftex,colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black]{hyperref}
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\parindent 0.8cm
+%\setlength{\parskip}{0.5em plus 0.2em minus 0.2em}
+
+\title{Projet Androïd : RoadMap}
+\author{Anthony \textsc{Caillaud} Manoël \textsc{Fortun} Vincent
+\textsc{Pottier} Charles \textsc{Dejean}}
+\date{\today}
+\ifpdf
+\pdfinfo {
+/Author (Anthony Caillaud Manoël Fortun Vincent Pottier Charles Dejean)
+/Title (RoadMapJDR)
+/Subject (RoadMapJDR)
+/Keywords ()
+/CreationDate (D:20100329212218)
+}
+\fi
+
+
+\begin{document}
+
+\maketitle
+
+\clearpage
+\tableofcontents
+\clearpage
+\section{Concept haut-niveau du produit}
+
+%Donner le nom que vous voulez!
+AndroJDR(nom provisoire de l'application), permet de stocker des fiches de personnage de jeu de roles, et à partir de ces fiches d'effectué des jets de dés. L'application offre aussi des fonctionnalités de communication entre joueurs. Les utilisateurs visés sont des rolistes expérimenté ou novice disposant d'un smartsphone ou d'une tablette pc. L'outil proposera une interface simple, intuitive s'appuyant sur les écrans tactile adaptable pour différent format d'écrans.
+
+\section{La population d'utilisateurs}
+\label{utilisateurs}
+
+Les utilisateurs visés sont des utilisateurs novices. En effet, ceux-ci auront
+une excellente connaissance du domaine mais pas d'applications similaires.
+Cette application, représentant une simplification de certains aspects du jeu,
+s'addresse autant à un joueur occasionnel qu'à un joueur régulier.\\
+
+L'Interface Homme-Machine devra donc comprendre des fonctionnalités bien
+adaptées aux type de joueurs(Joueur ou MJ) et faciles d'accès. Elle devra être
+claire pour permettre à l'utilisateur de bien visualiser toutes les données(Le
+joueur doit pouvoir identifier toutes les caractéristiques et les compétences de
+son personnage facilement). Le fait qu'aucune application similaire n'existe,
+la prise en main de l'application devra être facile et donc avoir une interface
+simple et intuitive.
+
+
+\section{Objectifs en termes d'utilisabilité}
+
+Comme cité dans la section \ref{utilisateurs}, ces objectifs ont été fixés pour
+des utilisateurs novices ayant une bonne connaissance du jeu de rôle et aucune
+connaissance d'applications similaires.\\
+
+Ces objectifs sont les suivants :
+
+\begin{itemize}
+  \item Faciliter l'accès à différentes fiches de personnages.
+	\item Permettre la gestion de différent jeux de roles via des modèles de fiche et de rêgles
+\item Permettre à des utilisateurs avancés de définir de nouveau modèles de fiche et de rêgles
+  \item Faciliter le jet de dés de différents types(dé 6,dé 10,etc)en fonction
+  du jeu, des caractéristiques et des compétences du personnage joué.
+  \item Faciliter la communication entre deux joueur(ou entre joueur et MJ)
+  grâce à un chat.
+  \item Tâches récurrentes: Affichage de fiches de personnages et jets de dés.
+\end{itemize}
+
+\clearpage
+
+\section{Les contraintes de haut-niveau}
+% Section à développer
+\subsection{Contraintes matérielles}
+
+Cette application est réalisée pour être une application pour téléphone mobile
+tactile ou tablette graphique tactile. De plus, elle sera développée en Java et
+sera donc portable sur différents systèmes d'exploitations.
+
+\subsection{Contraintes budgétaires}
+
+Les services qui pourront être utilisé par l'application devront être gratuit, le budget étant nul.
+
+\section{Les fonctionnalités}
+
+\subsection{Pour tous les utilisateurs}
+Les fonctionnalités disponibles pour tous les utilisateurs sont les suivantes :
+
+\begin{itemize}
+  \item Accéder et visualiser toutes ses fiches de personnages.
+  \item Créer, éditer, supprimer une fiche de personnage.
+  \item Effectuer des jets de dés de différents types.
+  \item Effectuer des jets de dés en fonction de certaines caractéristiques et
+  compétences d'un personnage au cours d'une partie.
+  \item Chatter avec un ou plusieurs des joueurs ou avec le MJ.
+\end{itemize}
+
+\subsection{Pour le MJ}
+Le MJ possède, quant à lui, des fonctionnalités spécifiques en plus de celles
+citées précédemment.
+
+Ces fonctionnalités sont les suivantes :
+
+\begin{itemize}
+  \item Visualiser les fiches des personnages participant à une partie.
+  \item Gestion du chat et visualisation de toutes les discussions.
+\item Gestion de la visualisation des jets de dés effectués par les joueurs
+\item Interface facilitante pour l'affichage de nombreuse fiche en même temps, permettant au MJ la gestion de ses pnj 
+\item Possibilté de la gestion des dégats reçu par les différents joueurs
+\end{itemize}
+
+\clearpage
+  
+\end{document}

@@ -87,6 +87,7 @@ public abstract class BriqueComposant  extends ObjectHadl{
 	
 	protected final Method getMethodByName(Object cible, String name, Object[] param){
 		
+		
 		Class<?>[] classes= new Class[param.length];
 		Method resul=null;
 		

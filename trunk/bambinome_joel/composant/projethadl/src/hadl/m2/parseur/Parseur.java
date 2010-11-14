@@ -147,7 +147,7 @@ public class Parseur {
 		String type=bind.getChildText("type");
 		BindingType biType=BindingType.BOTH;
 		if (type!=null){
-			biType= BindingType.valueOf(type);
+			biType= BindingType.valueOf(type.toUpperCase());
 			
 		}
 		return new Binding(Integer.parseInt(bind
