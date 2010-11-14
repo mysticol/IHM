@@ -35,7 +35,7 @@ public  class Composant extends BriqueComposant  {
 			this.setChanged();
 			this.notifyObservers(new SignalComposant(getName(), portOut));
 		}else{
-			throw new InvocationTargetException(new Throwable("Methode Inconnue"));
+			throw new InvocationTargetException(new Throwable("Methode Inconnue" + getName() + " port num:" +i));
 		}
 	}
 	

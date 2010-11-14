@@ -3,10 +3,183 @@
 
 
 <Configuration>
-<Id>
-<Nom>ClientServ</Nom>
-<Class>hadl.m1.ClientServeur.ClientServeur</Class>
-</Id>
+	<Id>
+		<Nom>ClientServ</Nom>
+		<Class>hadl.m1.ClientServeur.ClientServeur</Class>
+	</Id>
+
+	<Configuration>
+		<Id>
+			<Nom>serv1</Nom>
+			<Class>hadl.m1.serveur.Serveur</Class>
+		</Id>
+
+		<Composant>
+			<Id>
+				<Nom>ConnectionManager</Nom>
+				<Class>hadl.m1.serveur.ConnectionManager</Class>
+			</Id>
+			<MappingServicePort>
+				<port>1</port>
+				<service>entre</service>
+			</MappingServicePort>
+			<MappingServicePort>
+				<port>3</port>
+				<service>sort</service>
+			</MappingServicePort>
+			<MappingInOut>
+				<in>1</in>
+				<out>2</out>
+			</MappingInOut>
+			<MappingInOut>
+				<in>3</in>
+				<out>4</out>
+			</MappingInOut>
+		</Composant>
+
+		<Composant>
+			<Id>
+				<Nom>db</Nom>
+				<Class>hadl.m1.serveur.Database</Class>
+			</Id>
+
+			<MappingServicePort>
+				<port>1</port>
+				<service>repQuery</service>
+			</MappingServicePort>
+			<MappingInOut>
+				<in>1</in>
+				<out>2</out>
+			</MappingInOut>
+		</Composant>
+
+		<Composant>
+			<Id>
+				<Nom>SecurityDB</Nom>
+				<Class>hadl.m1.serveur.SecurityDB</Class>
+			</Id>
+			<MappingServicePort>
+				<port>1</port>
+				<service>secu</service>
+			</MappingServicePort>
+			<MappingInOut>
+				<in>1</in>
+				<out>2</out>
+			</MappingInOut>
+
+		</Composant>
+
+		<Connecteur>
+			<Id>
+				<Nom>SQLQuery</Nom>
+				<Class>hadl.m1.serveur.SQLQuery</Class>
+			</Id>
+		</Connecteur>
+		<Connecteur>
+			<Id>
+				<Nom>SecurityQuery</Nom>
+				<Class>hadl.m1.serveur.SecurityQuery</Class>
+			</Id>
+		</Connecteur>
+		<Connecteur>
+			<Id>
+				<Nom>ClearenceRequest</Nom>
+				<Class>hadl.m1.serveur.ClearenceRequest</Class>
+			</Id>
+		</Connecteur>
+
+		<Binding>
+			<portComposantFrom>4</portComposantFrom>
+			<nomComposantFrom>ConnectionManager</nomComposantFrom>
+			<portBindConfig>1</portBindConfig>
+			<type>OUT</type>
+		</Binding>
+
+		<Binding>
+			<portComposantFrom>1</portComposantFrom>
+			<nomComposantFrom>ConnectionManager</nomComposantFrom>
+			<portBindConfig>1</portBindConfig>
+			<type>IN</type>
+		</Binding>
+
+		<Attachement>
+			<portComposantFrom>2</portComposantFrom>
+			<nomComposantFrom>ConnectionManager</nomComposantFrom>
+			<nameConnector>ClearenceRequest</nameConnector>
+			<method>crMethod</method>
+			<portComposantTo>1</portComposantTo>
+			<nameComposantTo>SecurityDB</nameComposantTo>
+		</Attachement>
+
+		<Attachement>
+			<portComposantFrom>2</portComposantFrom>
+			<nomComposantFrom>SecurityDB</nomComposantFrom>
+			<nameConnector>SecurityQuery</nameConnector>
+			<method>secuQMethod</method>
+			<portComposantTo>1</portComposantTo>
+			<nameComposantTo>db</nameComposantTo>
+		</Attachement>
+
+		<Attachement>
+			<portComposantFrom>2</portComposantFrom>
+			<nomComposantFrom>db</nomComposantFrom>
+			<nameConnector>SQLQuery</nameConnector>
+			<method>SQLMethod</method>
+			<portComposantTo>3</portComposantTo>
+			<nameComposantTo>ConnectionManager</nameComposantTo>
+		</Attachement>
+	</Configuration>
+
+	<Composant>
+		<Id>
+			<Nom>cl1</Nom>
+			<Class>hadl.m1.client.Client</Class>
+		</Id>
+		<MappingServicePort>
+			<port>1</port>
+			<service>envoi</service>
+		</MappingServicePort>
+
+		<MappingServicePort>
+			<port>2</port>
+			<service>reception</service>
+		</MappingServicePort>
+	</Composant>
+
+	<Connecteur>
+		<Id>
+			<Nom>rpc</Nom>
+			<Class>hadl.m1.rpc.Rpc</Class>
+		</Id>
+	</Connecteur>
+
+	<Binding>
+		<portComposantFrom>1</portComposantFrom>
+		<nomComposantFrom>cl1</nomComposantFrom>
+		<portBindConfig>1</portBindConfig>
+		<type>IN</type>
+
+	</Binding>
+
+	<Binding>
+		<portComposantFrom>1</portComposantFrom>
+		<nomComposantFrom>serv1</nomComposantFrom>
+		<portBindConfig>1</portBindConfig>
+		<type>OUT</type>
+
+	</Binding>
+
+
+	<Attachement>
+		<portComposantFrom>1</portComposantFrom>
+		<nomComposantFrom>cl1</nomComposantFrom>
+		<nameConnector>rpc</nameConnector>
+		<method>rpcMethod</method>
+		<portComposantTo>1</portComposantTo>
+		<nameComposantTo>serv1</nameComposantTo>
+
+	</Attachement>
+
 
 
 

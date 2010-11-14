@@ -9,8 +9,8 @@ public class SecurityQuery extends Connector {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public SecurityQuery(String name) {
-		super(name);
+	public SecurityQuery() {
+		super("SecurityQuery");
 	}
 	
 	public String secuQMethod(String mess){

@@ -61,6 +61,7 @@ public class Configuration extends BriqueComposant implements Observer {
 		BriqueComposant comp = bibComposant.get(bind.getNomComposantFrom());
 		// délégation du service, si il est présent
 		if (comp != null) {
+			
 			comp.appelPortIn(bind.getPortComposantFrom(), agrs);
 		} else {
 			//si le composant n'est pas là on ajoute un évènement dans la liste d'évènement à retraiter ensuite
@@ -321,9 +322,9 @@ public class Configuration extends BriqueComposant implements Observer {
 
 				if (cible != null && conn != null) {
 					try {
-						Object[] tab = { Value };
-						Method m = this.getMethodByName(conn,
-								gAttach.getMethod(), tab);
+						//Object[] tab = { Value };
+						Method m =this.getMethodByName(conn, gAttach.getMethod());
+						//Method m = this.getMethodByName(conn,	gAttach.getMethod(), tab);
 						if (m != null) {
 							// invocation du lien attachement en passant les
 							// argument passer a la glue

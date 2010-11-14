@@ -16,6 +16,13 @@ public class MainM0XML {
 		
 		System.out.println(config);
 	
+		
+			Object[] tab={"Bambinome"};
+		
+			config.appelPortIn(1, tab);
+		
+		System.out.println(config.appelPortOut(1));
+		
 	}
 	
 }
