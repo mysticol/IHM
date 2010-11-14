@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns0="http://enterprise.netbeans.org/bpel/mockLunchService/mockLunchService" xmlns:ns1="http://j2ee.netbeans.org/wsdl/LunchService/lunchService" xmlns:ns2="http://www.sun.com/jbi/descriptor/service-unit" version="1.0">
+    <services binding-component="false">
+        <provides endpoint-name="lunchServicePortTypeRole_myRole" interface-name="ns1:lunchServicePortType" service-name="ns0:ProcessManager">
+            <ns2:display-name>ProcessManager</ns2:display-name>
+            <ns2:process-name>mockLunchService</ns2:process-name>
+            <ns2:file-path>mockLunchService.bpel</ns2:file-path>
+        </provides>
+    </services>
+</jbi>

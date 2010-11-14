@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="ProcessManagerModule/ScubaDiving.wsdl" uri="HotelModule/src/_references/_projects/ProcessManagerModule/src/ScubaDiving.wsdl"/>
+    <system systemId="exchanges.xsd" uri="HotelModule/src/_references/_projects/ProcessManagerModule/src/exchanges.xsd"/>
+
+    <system systemId="DolphinDivingAgency/dolphinDivingAgency.wsdl" uri="ProcessManagerSimple/src/_references/_projects/DolphinDivingAgency/src/dolphinDivingAgency.wsdl"/>
+    <system systemId="exchanges.xsd" uri="ProcessManagerSimple/src/_references/_projects/DolphinDivingAgency/src/exchanges.xsd"/>
+    <system systemId="mockLunchService/lunchService.wsdl" uri="ProcessManagerSimple/src/_references/_projects/mockLunchService/src/lunchService.wsdl"/>
+    <system systemId="mockTaxiService/taxiService.wsdl" uri="ProcessManagerSimple/src/_references/_projects/mockTaxiService/src/taxiService.wsdl"/>
+    <system systemId="mockSharkDivingAgency/sharkDivingAgency.wsdl" uri="ProcessManagerSimple/src/_references/_projects/mockSharkDivingAgency/src/sharkDivingAgency.wsdl"/>
+    <system systemId="mockWreckAndCaveDivingAgency/WACDivingAgency.wsdl" uri="ProcessManagerSimple/src/_references/_projects/mockWreckAndCaveDivingAgency/src/WACDivingAgency.wsdl"/>
+
+
+
+
+
+</catalog>
