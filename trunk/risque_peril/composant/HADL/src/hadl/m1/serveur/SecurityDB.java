@@ -3,9 +3,9 @@ package hadl.m1.serveur;
 import java.util.LinkedList;
 import java.util.List;
 
-import hadl.m2.composant.Composant;
+import hadl.m2.composantSimple.ComposantSimple;
 
-public class SecurityDB extends Composant {
+public class SecurityDB extends ComposantSimple {
 
 	private List<String> users;	
 	

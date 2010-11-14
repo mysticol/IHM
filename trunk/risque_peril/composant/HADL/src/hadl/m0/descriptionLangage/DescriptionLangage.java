@@ -2,6 +2,7 @@ package hadl.m0.descriptionLangage;
 
 import hadl.lib.LogWriter;
 import hadl.m2.composant.Composant;
+import hadl.m2.composantSimple.ComposantSimple;
 import hadl.m2.configuration.Configuration;
 import hadl.m2.connecteur.Connecteur;
 import hadl.m2.connecteur.IConnecteur;
@@ -67,7 +68,7 @@ public class DescriptionLangage {
 			
 			lw.writejl("On créé le composant " + nomComposant);
 			
-			Composant composantObject = (Composant) Class.forName(composant.getAttributeValue("classPath")).newInstance();
+			ComposantSimple composantObject = (ComposantSimple) Class.forName(composant.getAttributeValue("classPath")).newInstance();
 			composantObject.setNom(nomComposant);
 			
 			lw.writejl("On récupère les contraintes et propriétés de " + nomComposant);

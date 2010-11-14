@@ -4,9 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import hadl.m2.composant.Composant;
+import hadl.m2.composantSimple.ComposantSimple;
 
-public class Client extends Composant {
+public class Client extends ComposantSimple {
 
 	public Client(){
 		super();

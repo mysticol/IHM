@@ -3,9 +3,9 @@ package hadl.m1.serveur;
 import java.util.HashMap;
 import java.util.Map;
 
-import hadl.m2.composant.Composant;
+import hadl.m2.composantSimple.ComposantSimple;
 
-public class DataBase extends Composant {
+public class DataBase extends ComposantSimple {
 
 	private Map<String,Map<String,String>> DB;
 

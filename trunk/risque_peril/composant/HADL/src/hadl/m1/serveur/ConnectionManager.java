@@ -1,8 +1,8 @@
 package hadl.m1.serveur;
 
-import hadl.m2.composant.Composant;
+import hadl.m2.composantSimple.ComposantSimple;
 
-public class ConnectionManager extends Composant {
+public class ConnectionManager extends ComposantSimple {
 
 	private String query;
 	
