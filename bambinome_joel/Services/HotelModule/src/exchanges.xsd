@@ -16,10 +16,10 @@
     </xsd:complexType>
     <xsd:complexType name="DivingInterest">
         <xsd:sequence>
-            <xsd:element name="Caves" type="xsd:string"/>
-            <xsd:element name="Dolphins" type="xsd:string"/>
-            <xsd:element name="Sharks" type="xsd:string"/>
-            <xsd:element name="Wrecks" type="xsd:string"/>
+            <xsd:element name="Caves" type="xsd:boolean"/>
+            <xsd:element name="Dolphins" type="xsd:boolean"/>
+            <xsd:element name="Sharks" type="xsd:boolean"/>
+            <xsd:element name="Wrecks" type="xsd:boolean"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="ScubaDivingBooking">
@@ -36,7 +36,7 @@
             <xsd:element name="totalPrice" type="xsd:double"/>
         </xsd:sequence>
     </xsd:complexType>
-     
+
     <xsd:complexType name="LunchRequest">
          <xsd:sequence>
              <xsd:element name="guestName" type="xsd:string"/>
@@ -71,7 +71,7 @@
             <xsd:element name="numberOfDivers" type="xsd:int"/>
         </xsd:sequence>
     </xsd:complexType>
-    
+
     <xsd:complexType name="DivingBooking">
         <xsd:sequence>
             <xsd:element name="divingBookingID" type="xsd:long"/>
@@ -91,4 +91,5 @@
     <xsd:element name="DivingQuery" type="tns:DivingRequest"/>
     <xsd:element name="DivingResponse" type="tns:DivingBooking"/>
 </xsd:schema>
+
 
