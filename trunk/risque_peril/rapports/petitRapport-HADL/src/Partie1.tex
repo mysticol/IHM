@@ -15,7 +15,7 @@ gestion de configuration.
 \section{Architecture globale}
 \subsection{Le modèle abstrait}
 Les classes du modèle abstrait sont dans les packages hadl.m2.*. Il y a le
-composant, la configuration et le connecteur.
+composant, la configuration, le composant simple et le connecteur.
 \subsection{L'implémentation concrète}
 L'implémentation concrète se trouve sous les packages hadl.m1.*. Elle contient
 le connecteur RPC, le composant Client, la configuration Serveur. Cette dernière
@@ -24,7 +24,9 @@ les composants ConnectionManager, DataBase et SecurityDB.
 \subsection{Le langage de description}
 Il est contenu dans le package hadl.m0.descriptionLangage. Il contient le
 fichier .xml décrivant la configuration CS, le fichier .dtd qui permet de
-vérifier si le .xml de description est correct syntaxiquement correct.
+vérifier si le .xml de description est correct syntaxiquement correct et la
+classe \emph{DescriptionLangage}, qui gère le processus d'instanciation des
+classes.
 
 \section{Choix d'implémentation}
 \subsection{Pattern Oberver}
@@ -40,11 +42,12 @@ Ainsi, quand un composant veut communiquer, il le fait savoir à la configuratio
 parent qui prend alors en charge l'acheminement du message.
 
 \subsection{Pattern Composite}
-Nous utilisons un dérivé du pattern composite, au niveau du composant et de la
-configuration.
+Nous utilisons un pattern composite au niveau du composant, du composant simple
+et de la configuration.
 
 Une configuration et un composant simple dérivent de la classe composant, car
 ils ont les mêmes fonctionnalités basiques que le composant, c'est-à-dire
-d'avoir un nom, des contraintes et des propriétés.
+d'avoir un nom, des contraintes et des propriétés. Et une configuration est
+composée de composants (entre autre).
 
 \clearpage
