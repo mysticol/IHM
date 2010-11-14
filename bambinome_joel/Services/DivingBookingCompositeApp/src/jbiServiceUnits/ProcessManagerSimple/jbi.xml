@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns0="http://enterprise.netbeans.org/bpel/ProcessManagerSimple/processManagerSimple" xmlns:ns1="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" xmlns:ns2="http://j2ee.netbeans.org/wsdl/mockSharkDivingAgency/sharkDivingAgency" xmlns:ns3="http://j2ee.netbeans.org/wsdl/mockWreckAndCaveDivingAgency/WACDivingAgency" xmlns:ns4="http://j2ee.netbeans.org/wsdl/LunchService/lunchService" xmlns:ns5="http://j2ee.netbeans.org/wsdl/TaxiService/taxiService" xmlns:ns6="http://j2ee.netbeans.org/wsdl/ProcessManagerModule/ScubaDiving" xmlns:ns7="http://www.sun.com/jbi/descriptor/service-unit" version="1.0">
+    <services binding-component="false">
+        <provides endpoint-name="ScubaDivingPortTypeRole_myRole" interface-name="ns6:ScubaDivingPortType" service-name="ns0:ProcessManager">
+            <ns7:display-name>ProcessManager</ns7:display-name>
+            <ns7:process-name>processManagerSimple</ns7:process-name>
+            <ns7:file-path>processManagerSimple.bpel</ns7:file-path>
+        </provides>
+        <consumes endpoint-name="dolphinDivingAgencyPortTypeRole_partnerRole" interface-name="ns1:dolphinDivingAgencyPortType" service-name="ns0:DolphinAgency">
+            <ns7:display-name>DolphinAgency</ns7:display-name>
+            <ns7:process-name>processManagerSimple</ns7:process-name>
+            <ns7:file-path>processManagerSimple.bpel</ns7:file-path>
+        </consumes>
+        <consumes endpoint-name="sharkDivingAgencyPortTypeRole_partnerRole" interface-name="ns2:sharkDivingAgencyPortType" service-name="ns0:SharkAgency">
+            <ns7:display-name>SharkAgency</ns7:display-name>
+            <ns7:process-name>processManagerSimple</ns7:process-name>
+            <ns7:file-path>processManagerSimple.bpel</ns7:file-path>
+        </consumes>
+        <consumes endpoint-name="WACDivingAgencyPortTypeRole_partnerRole" interface-name="ns3:WACDivingAgencyPortType" service-name="ns0:WACAgency">
+            <ns7:display-name>WACAgency</ns7:display-name>
+            <ns7:process-name>processManagerSimple</ns7:process-name>
+            <ns7:file-path>processManagerSimple.bpel</ns7:file-path>
+        </consumes>
+        <consumes endpoint-name="lunchServicePortTypeRole_partnerRole" interface-name="ns4:lunchServicePortType" service-name="ns0:LunchService">
+            <ns7:display-name>LunchService</ns7:display-name>
+            <ns7:process-name>processManagerSimple</ns7:process-name>
+            <ns7:file-path>processManagerSimple.bpel</ns7:file-path>
+        </consumes>
+        <consumes endpoint-name="taxiServicePortTypeRole_partnerRole" interface-name="ns5:taxiServicePortType" service-name="ns0:TaxiService">
+            <ns7:display-name>TaxiService</ns7:display-name>
+            <ns7:process-name>processManagerSimple</ns7:process-name>
+            <ns7:file-path>processManagerSimple.bpel</ns7:file-path>
+        </consumes>
+    </services>
+</jbi>
