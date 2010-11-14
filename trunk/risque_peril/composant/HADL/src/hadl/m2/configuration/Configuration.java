@@ -28,7 +28,7 @@ public abstract class Configuration extends Composant implements IConfiguration 
 			this.rolesFrom = rolesFrom;
 		}
 		public String toString() {
-			return(rolesFrom + ":" + connect.getClass().getName());
+			return(rolesFrom + ":" + connect.getNom());
 		}
 	}
 	
@@ -41,7 +41,7 @@ public abstract class Configuration extends Composant implements IConfiguration 
 			this.portIn = portIn;
 		}
 		public String toString() {
-			return(portIn + ":" + compo.getClass().getName());
+			return(portIn + ":" + compo.getNom());
 		}
 	}
 	
@@ -138,25 +138,26 @@ public abstract class Configuration extends Composant implements IConfiguration 
 	
 	// methode d'affichage d'une configuration
 	public void print(){
+		System.out.println(this.getNom());
+		System.out.println("  | lien interne au depart de son interface :");
+		for(String p : this.bindingIn.keySet()){
+			System.out.println("  |- " + p + " -> " + this.bindingIn.get(p).toString());
+		}
 		System.out.println("Composants internes :");
 		for(IComposant c : this.composInterne.keySet()){
-			System.out.println(c.getClass().getName());
-			System.out.println("Attachements :");
+			System.out.println(" " + c.getNom());
+			System.out.println("  | lien au depart de ce composant :");
 			for(String p : this.composInterne.get(c).keySet()){
-				System.out.println("     - " + p + " -> " + this.composInterne.get(c).get(p).toString());
+				System.out.println("  |- " + p + " -> " + this.composInterne.get(c).get(p).toString());
 			}
 		}
 		System.out.println("Connecteurs internes :");
 		for(IConnecteur c : this.connectsInterne.keySet()){
-			System.out.println(c.getClass().getName());
-			System.out.println("Attachements :");
+			System.out.println(" " + c.getNom());
+			System.out.println("  | lien au depart de ce connecteur :");
 			for(String p : this.connectsInterne.get(c).keySet()){
-				System.out.println("     - " + p + " -> " + this.connectsInterne.get(c).get(p).toString());
+				System.out.println("  |- "  + p + " -> " + this.connectsInterne.get(c).get(p).toString());
 			}
-		}
-		System.out.println("Bindings :");
-		for(String p : this.bindingIn.keySet()){
-			System.out.println("     - " + p + " -> " + this.bindingIn.get(p).toString());
 		}
 	}
 	
@@ -259,7 +260,9 @@ public abstract class Configuration extends Composant implements IConfiguration 
 	}
 	
 	public void removeComposant(IComposant compo) {
+		
 		if(this.composInterne.containsKey(compo)){
+			
 			this.lw.write(this.getClass().getName(), "Debut de la destruction du Composant : " +compo.getNom());
 			// on recherche dans les connecteur les lien attachement vers le composant a suprimer
 			for(IConnecteur c : this.connectsInterne.keySet()){
@@ -272,7 +275,7 @@ public abstract class Configuration extends Composant implements IConfiguration 
 						// this.connectsInterne.get(c).put(p,null);
 					}
 				}
-				// on suprime les lien lier au composant
+				// on suprime les lien d'attachement lier au composant
 				for(String p : compoToRemove){
 					this.lw.write(this.getClass().getName(), "     Destruction du lien : " + c.getNom()+ ":" + p + " -> " + this.connectsInterne.get(c).get(p).toString());
 					this.connectsInterne.get(c).remove(p);
@@ -286,12 +289,11 @@ public abstract class Configuration extends Composant implements IConfiguration 
 				if(c.compo.equals(compo)){
 					// si le lien tester est un lien vers le composant a suprimer on le stock dans une liste
 					compoToRemove.add(p);
-					//this.bindingIn.put(p, null);
 				}
 			}
-			// on suprime les lien lier au composant
+			// on suprime les lien binding lier au composant
 			for(String p : compoToRemove){
-				this.lw.write(this.getClass().getName(), "     Destruction du lien : " + this.getNom()+ ":" + p + " -> " + this.connectsInterne.get(p).toString());
+				this.lw.write(this.getClass().getName(), "     Destruction du lien : " + this.getNom()+ ":" + p + " -> " + this.bindingIn.get(p).toString());
 				this.bindingIn.remove(p);
 			}
 			
@@ -308,7 +310,7 @@ public abstract class Configuration extends Composant implements IConfiguration 
 	}
 
 	public void removeConnecteur(IConnecteur connect) {
-		if(this.composInterne.containsKey(connect)){
+		if(this.connectsInterne.containsKey(connect)){
 			this.lw.write(this.getClass().getName(), "Debut de la destruction du Connecteur : " + connect.getNom());
 			// on recherche dans les composant les lien attachement vers le connecteur a suprimer
 			for(IComposant c : this.composInterne.keySet()){
@@ -318,12 +320,11 @@ public abstract class Configuration extends Composant implements IConfiguration 
 					if((dest instanceof ToConnect) && (((ToConnect)dest).connect.equals(connect))){
 						// si le lien tester est un lien vers le connecteur a suprimer on le stock dans une liste
 						connectToRemove.add(p);
-						//this.composInterne.get(c).put(p,null);
 					}
 				}
 				// on suprime les lien lier au composant
 				for(String p : connectToRemove){
-					this.lw.write(this.getClass().getName(), "     Destruction du lien : " + c.getNom()+ ":" + p + " -> " + this.connectsInterne.get(c).get(p).toString());
+					this.lw.write(this.getClass().getName(), "     Destruction du lien : " + c.getNom()+ ":" + p + " -> " + this.composInterne.get(c).get(p).toString());
 					this.composInterne.get(c).remove(p);
 				}
 			}
@@ -336,7 +337,7 @@ public abstract class Configuration extends Composant implements IConfiguration 
 			this.connectsInterne.remove(connect);
 			this.lw.writejl(this.getClass().getName(), "Fin de la destruction du Connecteur : " + connect.getNom());
 		}else{
-			this.lw.writewarn(this.getClass().getName(),"Impossible de le suprimer le Connecteur : "+ connect.getNom()+ " : Composant inexistant");
+			this.lw.writewarn(this.getClass().getName(),"Impossible de le suprimer le Connecteur : "+ connect.getNom()+ " : Connecteur inexistant");
 		}
 	}
 

@@ -1,8 +1,10 @@
 package hadl.m0.descriptionLangage;
 
+import java.util.List;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
 
 import hadl.m2.composant.Composant;
 import hadl.m2.composant.IComposant;
@@ -15,6 +17,7 @@ public class MainDescriptionLangage {
 
 	static IConfiguration root;
 	static IConfiguration cour;
+	static List<IConfiguration> way = new LinkedList<IConfiguration>();
 	
 	/**
 	 * @param args
@@ -22,6 +25,7 @@ public class MainDescriptionLangage {
 	public static void main(String[] args) {
 		DescriptionLangage test = new DescriptionLangage("src/hadl/m0/descriptionLangage/exempleCS.xml");
 		root = test.analyse();
+		way.add(root);
 		start();
 	}
 	
@@ -38,27 +42,29 @@ public class MainDescriptionLangage {
 			System.out.println(" ------------------------ MENU --------------------------");
 			System.out.println(" 1 - activer l'un des ports de la configuration racine");
 			System.out.println(" 2 - afficher le contenu de la configuraton courante");
-			System.out.println(" 3 - changer de configuration courante");
+			System.out.println(" 3 - prendre comme configuration courante l'un des fils de la configuration courante actuelle");
+			System.out.println(" 4 - prendre comme configuration courante le pere de la configuration courante actuelle");
 			System.out.println(" --------------------------------------------------------");
-			System.out.println(" 4 - retirer un composant a la configuration courante");
-			System.out.println(" 5 - ajouter un composant a la configuration courante");
+			System.out.println(" 5 - retirer un composant a la configuration courante");
+			System.out.println(" 6 - ajouter un composant a la configuration courante");
 			System.out.println(" --------------------------------------------------------");
-			System.out.println(" 6 - retirer un connecteur a la configuration courante");
-			System.out.println(" 7 - ajouter un connecteur a la configuration courante");
+			System.out.println(" 7 - retirer un connecteur a la configuration courante");
+			System.out.println(" 8 - ajouter un connecteur a la configuration courante");
 			System.out.println(" --------------------------------------------------------");
-			System.out.println(" 8 - retirer un lien a la configuration courante");
-			System.out.println(" 9 - ajouter un lien a la configuration courante");
-			System.out.println(" --------------------------------------------------------");
-			System.out.println(" 10 - activer un port de la configuration racine");
+			System.out.println(" 9 - retirer un lien a la configuration courante");
+			System.out.println("10 - ajouter un lien a la configuration courante");
 			System.out.print(" --> choix : ");
 			
 			try {
 				choix = waiter.readLine();
 			
 				switch(Integer.valueOf(choix)){
-				case 1 :System.out.print(" ----> quel port : ");
+				case 1 :for(String p : cour.getListPort()){
+							System.out.println("  " + p);
+						}
+						System.out.print("  --> port a activer : ");
 						choix = waiter.readLine();
-						cour.launch(choix);
+						root.launch(choix);
 						break;
 						
 				case 2 :System.out.println(" --------------------------------------------------------" );
@@ -67,17 +73,30 @@ public class MainDescriptionLangage {
 						break;
 						
 				case 3 :System.out.println(" --------------------------------------------------------" );
+						int i=0;
 						for(IComposant c : cour.getListComposant()){
 							if(c instanceof Configuration){
+								i++;
 								System.out.println("  "+ c.getNom());
 							}
 						}
-						System.out.print(" ----> quel configuration : ");
-						choix = waiter.readLine();
-						cour = (IConfiguration) cour.getComposant(choix);
+						if(i ==0 ){
+							System.out.println(" ----> la configuration courante actuelle ne possede pas de configuration interne");
+						}else{
+							System.out.print(" ----> quel configuration : ");
+							choix = waiter.readLine();
+							way.add(cour);
+							cour = (IConfiguration) cour.getComposant(choix);
+						}
 						break;		
-				
 				case 4 :System.out.println(" --------------------------------------------------------" );
+						if(cour.equals(root)){
+							System.out.println(" ----> la configuration courante actuelle est la configuration racine");
+						}else{
+							cour = way.remove(way.size()-1);
+						}
+						break;
+				case 5 :System.out.println(" --------------------------------------------------------" );
 						for(IComposant c : cour.getListComposant()){
 							System.out.println("  "+ c.getNom());
 						}
@@ -86,7 +105,7 @@ public class MainDescriptionLangage {
 						cour.removeComposant(cour.getComposant(choix));
 						break;
 				
-				case 5 :System.out.println(" --------------------------------------------------------" );
+				case 6 :System.out.println(" --------------------------------------------------------" );
 						System.out.print(" ----> composant a ajouter : ");
 						choix = waiter.readLine();
 						IComposant newCompo;
@@ -105,7 +124,7 @@ public class MainDescriptionLangage {
 						} 
 						break;
 					
-				case 6 :System.out.println(" --------------------------------------------------------" );
+				case 7 :System.out.println(" --------------------------------------------------------" );
 						for(IConnecteur c : cour.getListConnecteur()){
 							System.out.println("  "+ c.getNom());
 						}
@@ -114,7 +133,7 @@ public class MainDescriptionLangage {
 						cour.removeConnecteur(cour.getConnecteur(choix));
 						break;
 						
-				case 7 :System.out.println(" --------------------------------------------------------" );
+				case 8 :System.out.println(" --------------------------------------------------------" );
 						System.out.print(" ----> composant a ajouter : ");
 						choix = waiter.readLine();
 						IConnecteur newConnect;
@@ -133,7 +152,7 @@ public class MainDescriptionLangage {
 						} 
 						break;
 						
-				case 8 :System.out.println(" --------------------------------------------------------" );
+				case 9 :System.out.println(" --------------------------------------------------------" );
 						System.out.println(" -------------------- Type du lien ---------------------- ");
 						System.out.println(" 1 - partant d'un composant");
 						System.out.println(" 2 - partant d'un connecteur");
@@ -176,7 +195,7 @@ public class MainDescriptionLangage {
 						}
 						break;
 						
-				case 9 :System.out.println(" --------------------------------------------------------" );
+				case 10:System.out.println(" --------------------------------------------------------" );
 						System.out.println(" -------------------- Type du lien ---------------------- ");
 						System.out.println(" 1 - composant -> connecteur");
 						System.out.println(" 2 - connecteur -> composant");
@@ -267,15 +286,7 @@ public class MainDescriptionLangage {
 								break;
 						}
 						break;	
-				
-				case 10:for(String p : cour.getListPort()){
-							System.out.println("  " + p);
-						}
-						System.out.print("  --> port a activer : ");
-						choix = waiter.readLine();
-						root.launch(choix);
-						break;
-						
+										
 				default:fin = true;
 						break;
 				}
