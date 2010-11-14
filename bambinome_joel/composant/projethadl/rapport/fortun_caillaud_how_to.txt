@@ -13,4 +13,4 @@ Le package hadl.m2 contient toutes les classes du m2
 Le package hadl.m1 contient toutes les classes du m1
 
 
-Des diagrammes de classe de l'architecture effective se trouve dans le dossier rapport
+Des diagrammes de classe de l'architecture effective se trouve dans le dossier diagrammes
