@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="mockWreckAndCaveDivingAgency"
+    targetNamespace="http://enterprise.netbeans.org/bpel/mockWreckAndCaveDivingAgency/mockWreckAndCaveDivingAgency"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/mockWreckAndCaveDivingAgency/mockWreckAndCaveDivingAgency"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/Exchanges">
+    <import namespace="http://j2ee.netbeans.org/wsdl/mockWreckAndCaveDivingAgency/WACDivingAgency" location="WACDivingAgency.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="ProcessManager" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockWreckAndCaveDivingAgency/WACDivingAgency" partnerLinkType="tns:WACDivingAgency" myRole="WACDivingAgencyPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="WACDivingAgencyOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockWreckAndCaveDivingAgency/WACDivingAgency" messageType="tns:WACDivingAgencyOperationResponse"/>
+        <variable name="WACDivingAgencyOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockWreckAndCaveDivingAgency/WACDivingAgency" messageType="tns:WACDivingAgencyOperationRequest"/>
+    </variables>
+    <sequence>
+        <receive name="Receive1" createInstance="yes" partnerLink="ProcessManager" operation="WACDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockWreckAndCaveDivingAgency/WACDivingAgency" portType="tns:WACDivingAgencyPortType" variable="WACDivingAgencyOperationIn"/>
+        <assign name="Assign1">
+            <copy>
+                <from>666</from>
+                <to>$WACDivingAgencyOperationOut.WACDivingBooking/ns0:divingBookingID</to>
+            </copy>
+            <copy>
+                <from>10</from>
+                <to>$WACDivingAgencyOperationOut.WACDivingBooking/ns0:price</to>
+            </copy>
+            <copy>
+                <from>'1991-01-02T08:30:00'</from>
+                <to>$WACDivingAgencyOperationOut.WACDivingBooking/ns0:startTime</to>
+            </copy>
+            <copy>
+                <from>'1991-01-02T09:30:00'</from>
+                <to>$WACDivingAgencyOperationOut.WACDivingBooking/ns0:endTime</to>
+            </copy>
+            <copy>
+                <from>'john bob'</from>
+                <to>$WACDivingAgencyOperationOut.WACDivingBooking/ns0:instructorName</to>
+            </copy>
+            <copy>
+                <from>"rue de l'epave"</from>
+                <to>$WACDivingAgencyOperationOut.WACDivingBooking/ns0:address</to>
+            </copy>
+            <copy>
+                <from>"Agence de l'epave"</from>
+                <to>$WACDivingAgencyOperationOut.WACDivingBooking/ns0:divingAgencyName</to>
+            </copy>
+        </assign>
+        <reply name="Reply1" partnerLink="ProcessManager" operation="WACDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockWreckAndCaveDivingAgency/WACDivingAgency" portType="tns:WACDivingAgencyPortType" variable="WACDivingAgencyOperationOut"/>
+    </sequence>
+</process>
+
