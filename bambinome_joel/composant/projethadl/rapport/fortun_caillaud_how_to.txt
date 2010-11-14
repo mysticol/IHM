@@ -1,13 +1,13 @@
 HOW TO composant Fortun, Caillaud.
 
-Il ya deux façon d'instancier un m1, soit avec un langage xml défini dans : 
+Il y a deux façon d'instancier un m1, soit à l'aide d'un langage xml défini dans : 
 hadl/m2/parseur/hadlsyntaxe.dtd
-L'autre façon est d'instancier directement les classes java correspondantes aux différents concepts.
+Soit instancier directement les classes java correspondant aux différents concepts.
 
 
-On retrouve dans le package hadl.m0 les deux exemples de l'instanciation de l'exemple client serveur.
-MainM0XML.java pour lancer l'exemple défini dans un xml
-MainM0InstanceClassque.java pour l'exemple instancié classiquement en java.
+On retrouve dans le package hadl.m0 les deux exemples de l'instanciation de l'exemple client serveur:
+	- MainM0XML.java pour lancer l'exemple défini dans un xml
+	- MainM0InstanceClassque.java pour l'exemple instancié classiquement en java.
 
 Le package hadl.m2 contient toutes les classes du m2
 Le package hadl.m1 contient toutes les classes du m1
