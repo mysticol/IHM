@@ -67,12 +67,11 @@ public abstract class Configuration extends Composant implements IConfiguration 
 	
 	// Constructeur 
 	public Configuration(String contraintes, String proprietes,
-			Map<String, String> portsIn, Map<String, String> portsOut,
 			Map<IComposant, Map<String, To>> composInterne,
 			Map<IConnecteur, Map<String, To>> connectsInterne,
 			Map<String, To> bindingIn,
 			String nom) {
-		super(contraintes, proprietes, portsIn, portsOut, nom);
+		super(contraintes, proprietes, nom);
 		this.composInterne = composInterne;
 		this.connectsInterne = connectsInterne;
 		this.bindingIn = bindingIn;
@@ -189,7 +188,7 @@ public abstract class Configuration extends Composant implements IConfiguration 
 		}else if(o instanceof IConnecteur){
 			// on test si le lien existe
 			if(connectsInterne.get(o).containsKey(args[0])){
-				// on recupère le destinataire des données que le composant veux envoyer
+				// on récupère le destinataire des données que le composant veux envoyer
 				To dest = connectsInterne.get(o).get(args[0]);
 				((ToCompo)dest).compo.launch(((ToCompo)dest).portIn, args[1]);
 			}else{
