@@ -1,9 +1,11 @@
 package hadl.m2.configuration;
 
+import java.awt.List;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Observable;
+import java.util.Set;
 
 import hadl.lib.LogWriter;
 import hadl.m2.composant.Composant;
@@ -99,6 +101,14 @@ public abstract class Configuration extends Composant implements IConfiguration 
 		this.nom = this.getClass().getName();
 	}
 	
+	public Set<IComposant> getListComposant(){
+		return this.composInterne.keySet();
+	}
+	
+	public Set<IConnecteur> getListConnecteur(){
+		return this.connectsInterne.keySet();
+	}
+	
 	public IComposant getComposant(String name){
 		IComposant compo = null;
 		
@@ -120,6 +130,10 @@ public abstract class Configuration extends Composant implements IConfiguration 
 		}
 		
 		return connect;
+	}
+	
+	public Set<String> getListPort(){
+		return this.bindingIn.keySet();
 	}
 	
 	// methode d'affichage d'une configuration

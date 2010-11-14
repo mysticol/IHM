@@ -1,9 +1,7 @@
 package hadl.m0.descriptionLangage;
 
 import hadl.lib.LogWriter;
-import hadl.m1.CS.CS;
 import hadl.m2.composant.Composant;
-import hadl.m2.composant.IComposant;
 import hadl.m2.configuration.Configuration;
 import hadl.m2.connecteur.Connecteur;
 import hadl.m2.connecteur.IConnecteur;

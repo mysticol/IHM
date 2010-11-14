@@ -4,6 +4,7 @@ import hadl.m2.composant.IComposant;
 import hadl.m2.connecteur.IConnecteur;
 
 import java.util.Observer;
+import java.util.Set;
 
 public interface IConfiguration extends Observer {
 
@@ -22,6 +23,14 @@ public interface IConfiguration extends Observer {
 	public void removeAttachement(IConnecteur connectDepart , String rolesTo);
 	public void removeBinding(String portConfigDepart);
 	public void removeBinding(IComposant compoDepart , String portCompo);
+	public String getNom();
+	public void launch(String choix);
+	public void print();
+	public Set<IComposant> getListComposant();
+	public IComposant getComposant(String choix);
+	public Set<IConnecteur> getListConnecteur();
+	public IConnecteur getConnecteur(String choix);
+	public Set<String> getListPort();
 	
 	
 }
