@@ -68,10 +68,6 @@
                 <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:divingBookingID</to>
             </copy>
             <copy>
-                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:taxiBookingID</from>
-                <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:taxiBookingID</to>
-            </copy>
-            <copy>
                 <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:divingAgencyName</from>
                 <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:divingAgencyName</to>
             </copy>
@@ -92,6 +88,10 @@
                 <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:divingEndTime</to>
             </copy>
             <copy>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:totalPrice</from>
+                <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:totalPrice</to>
+            </copy>
+            <copy>
                 <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:taxiDepartureTime</from>
                 <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:taxiDepartureTime</to>
             </copy>
@@ -100,12 +100,16 @@
                 <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:taxiReturnTime</to>
             </copy>
             <copy>
-                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:totalPrice</from>
-                <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:totalPrice</to>
+                <from>$ScubaDivingOperationOut.ScubaDivingResponse/ns0:taxiBookingID</from>
+                <to>$DivingBookingOperationOut.ScubaDivingBooking/ns0:taxiBookingID</to>
             </copy>
         </assign>
         <reply name="DivingBookingResponse" partnerLink="Formulaire" operation="DivingBookingOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/HotelModule/DivingBooking" portType="tns:DivingBookingPortType" variable="DivingBookingOperationOut"/>
     </sequence>
 </process>
+
+
+
+
 
 
