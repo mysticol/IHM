@@ -28,7 +28,7 @@ public abstract class Configuration extends Composant implements IConfiguration 
 			this.rolesFrom = rolesFrom;
 		}
 		public String toString() {
-			return(rolesFrom + ":" + connect.getNom());
+			return(connect.getNom() + ":" + rolesFrom);
 		}
 	}
 	
@@ -41,7 +41,7 @@ public abstract class Configuration extends Composant implements IConfiguration 
 			this.portIn = portIn;
 		}
 		public String toString() {
-			return(portIn + ":" + compo.getNom());
+			return(compo.getNom()+ ":" + portIn);
 		}
 	}
 	
@@ -52,7 +52,7 @@ public abstract class Configuration extends Composant implements IConfiguration 
 			this.portConfig = portConfig;
 		}
 		public String toString() {
-			return("" + portConfig);
+			return(portConfig);
 		}
 	}
 	// -------------------------------------------------------
