@@ -24,7 +24,23 @@
                 <id>dist_se</id>
             </reference>
             <reference>
+                <foreign-project>mockSharkDivingAgency</foreign-project>
+                <artifact-type>jar</artifact-type>
+                <script>build.xml</script>
+                <target>dist_se</target>
+                <clean-target>clean</clean-target>
+                <id>dist_se</id>
+            </reference>
+            <reference>
                 <foreign-project>mockTaxiService</foreign-project>
+                <artifact-type>jar</artifact-type>
+                <script>build.xml</script>
+                <target>dist_se</target>
+                <clean-target>clean</clean-target>
+                <id>dist_se</id>
+            </reference>
+            <reference>
+                <foreign-project>mockWreckAndCaveDivingAgency</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>dist_se</target>

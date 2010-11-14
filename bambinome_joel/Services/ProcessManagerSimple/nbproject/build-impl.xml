@@ -103,7 +103,9 @@
     <target name="deps-jar-dist" depends="init" unless="${no.dependencies}">
         <ant target="dist_se" inheritall="false" antfile="${project.DolphinDivingAgency}/build.xml"/>
         <ant target="dist_se" inheritall="false" antfile="${project.mockLunchService}/build.xml"/>
+        <ant target="dist_se" inheritall="false" antfile="${project.mockSharkDivingAgency}/build.xml"/>
         <ant target="dist_se" inheritall="false" antfile="${project.mockTaxiService}/build.xml"/>
+        <ant target="dist_se" inheritall="false" antfile="${project.mockWreckAndCaveDivingAgency}/build.xml"/>
     </target>
     <target name="do-dist" depends="init,pre-dist">
         <mkdir dir="${build.dir}"/>
@@ -136,7 +138,9 @@
     <target name="deps-clean" depends="init" unless="${no.dependencies}">
         <ant target="clean" inheritall="false" antfile="${project.DolphinDivingAgency}/build.xml"/>
         <ant target="clean" inheritall="false" antfile="${project.mockLunchService}/build.xml"/>
+        <ant target="clean" inheritall="false" antfile="${project.mockSharkDivingAgency}/build.xml"/>
         <ant target="clean" inheritall="false" antfile="${project.mockTaxiService}/build.xml"/>
+        <ant target="clean" inheritall="false" antfile="${project.mockWreckAndCaveDivingAgency}/build.xml"/>
     </target>
     <target name="do-clean" depends="init,pre-clean">
         <delete dir="${build.dir}"/>

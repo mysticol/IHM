@@ -4,7 +4,11 @@
     <system systemId="DolphinDivingAgency/dolphinDivingAgency.wsdl" uri="nb-uri:DolphinDivingAgency#src/dolphinDivingAgency.wsdl"/>
     <system systemId="mockLunchService/lunchService.wsdl" uri="nb-uri:mockLunchService#src/lunchService.wsdl"/>
     <system systemId="mockTaxiService/taxiService.wsdl" uri="nb-uri:mockTaxiService#src/taxiService.wsdl"/>
+    <system systemId="mockSharkDivingAgency/sharkDivingAgency.wsdl" uri="nb-uri:mockSharkDivingAgency#src/sharkDivingAgency.wsdl"/>
+    <system systemId="mockWreckAndCaveDivingAgency/WACDivingAgency.wsdl" uri="nb-uri:mockWreckAndCaveDivingAgency#src/WACDivingAgency.wsdl"/>
 </catalog>
+
+
 
 
 
