@@ -37,7 +37,7 @@
                 <to>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:instructorName</to>
             </copy>
             <copy>
-                <from>'rue du trou'</from>
+                <from>'rue du dauphin'</from>
                 <to>$DolphinDivingAgencyOperationOut.DolphinDivingBooking/ns0:address</to>
             </copy>
             <copy>
@@ -52,4 +52,5 @@
         <reply name="Reply1" partnerLink="ProcessManager" operation="dolphinDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" portType="tns:dolphinDivingAgencyPortType" variable="DolphinDivingAgencyOperationOut"/>
     </sequence>
 </process>
+
 
