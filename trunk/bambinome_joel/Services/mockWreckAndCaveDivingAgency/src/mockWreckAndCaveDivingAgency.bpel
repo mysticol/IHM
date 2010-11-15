@@ -18,6 +18,11 @@
         <variable name="WACDivingAgencyOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockWreckAndCaveDivingAgency/WACDivingAgency" messageType="tns:WACDivingAgencyOperationRequest"/>
     </variables>
     <sequence>
+        <sxt:trace>
+            <sxt:log level="info" location="onStart">
+                <from>'mock WAC'</from>
+            </sxt:log>
+        </sxt:trace>
         <receive name="Receive1" createInstance="yes" partnerLink="ProcessManager" operation="WACDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockWreckAndCaveDivingAgency/WACDivingAgency" portType="tns:WACDivingAgencyPortType" variable="WACDivingAgencyOperationIn"/>
         <assign name="Assign1">
             <copy>
@@ -52,4 +57,5 @@
         <reply name="Reply1" partnerLink="ProcessManager" operation="WACDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockWreckAndCaveDivingAgency/WACDivingAgency" portType="tns:WACDivingAgencyPortType" variable="WACDivingAgencyOperationOut"/>
     </sequence>
 </process>
+
 
