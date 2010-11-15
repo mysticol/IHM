@@ -18,6 +18,11 @@
         <variable name="LunchServiceOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/LunchService/lunchService" messageType="tns:lunchServiceOperationResponse"/>
     </variables>
     <sequence>
+        <sxt:trace>
+            <sxt:log level="info" location="onStart">
+                <from>'mock Lunch'</from>
+            </sxt:log>
+        </sxt:trace>
         <receive name="Receive1" createInstance="yes" partnerLink="ProcessManager" operation="lunchServiceOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/LunchService/lunchService" portType="tns:lunchServicePortType" variable="LunchServiceOperationIn"/>
         <assign name="Assign1">
             <copy>
@@ -28,4 +33,5 @@
         <reply name="Reply1" partnerLink="ProcessManager" operation="lunchServiceOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/LunchService/lunchService" portType="tns:lunchServicePortType" variable="LunchServiceOperationOut"/>
     </sequence>
 </process>
+
 
