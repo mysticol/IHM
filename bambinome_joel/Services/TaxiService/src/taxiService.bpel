@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="taxiService"
+    targetNamespace="http://enterprise.netbeans.org/bpel/TaxiService/taxiService"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/TaxiService/taxiService"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/Exchanges" xmlns:ns1="http://j2ee.netbeans.org/xsd/tableSchema">
+    <import namespace="http://j2ee.netbeans.org/wsdl/TaxiService/taxiServiceTable" location="taxiServiceTable.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/ProcessManager/taxiRequest" location="taxiRequest.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="ProcessManager" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManager/taxiRequest" partnerLinkType="tns:taxiRequest" myRole="taxiRequestPortTypeRole"/>
+        <partnerLink name="TaxiServiceDB" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiServiceTable" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="TaxiRequestOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManager/taxiRequest" messageType="tns:taxiRequestOperationResponse"/>
+        <variable name="TaxiRequestOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManager/taxiRequest" messageType="tns:taxiRequestOperationRequest"/>
+        <variable name="FindOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiServiceTable" messageType="tns:outputMsg"/>
+        <variable name="FindIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiServiceTable" messageType="tns:inputMsg"/>
+        <variable name="InsertOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiServiceTable" messageType="tns:RetMsg"/>
+        <variable name="InsertIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiServiceTable" messageType="tns:inputMsg"/>
+    </variables>
+    <sequence>
+        <receive name="Receive1" createInstance="yes" partnerLink="ProcessManager" operation="taxiRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManager/taxiRequest" portType="tns:taxiRequestPortType" variable="TaxiRequestOperationIn"></receive>
+        <assign name="AssignForInsert">
+            <sxt:trace>
+                <sxt:log level="info" location="onStart">
+                    <from>'taxiService : calcul des prix et temp de voyage'</from>
+                </sxt:log>
+            </sxt:trace>
+            <copy>
+                <from>translate(string($TaxiRequestOperationIn.request/ns0:departFromHotelTime), 'T', ' ')</from>
+                <to>$InsertIn.part/ns1:BOOKING_Record/ns1:DEPARTFROMHOTELTIME</to>
+            </copy>
+            <copy>
+                <from>$TaxiRequestOperationIn.request/ns0:destinationAddress</from>
+                <to>$InsertIn.part/ns1:BOOKING_Record/ns1:DESTINATIONADDRESS</to>
+            </copy>
+            <copy>
+                <from>$TaxiRequestOperationIn.request/ns0:hotelName</from>
+                <to>$InsertIn.part/ns1:BOOKING_Record/ns1:HOTELNAME</to>
+            </copy>
+            <copy>
+                <from>$TaxiRequestOperationIn.request/ns0:numberOfTravelers</from>
+                <to>$InsertIn.part/ns1:BOOKING_Record/ns1:NUMBEROFTRAVELERS</to>
+            </copy>
+            <copy>
+                <from>50</from>
+                <to>$InsertIn.part/ns1:BOOKING_Record/ns1:PRICE</to>
+            </copy>
+            <copy>
+                <from>translate(concat(substring(string($TaxiRequestOperationIn.request/ns0:departFromHotelTime), 1, 14), '3', substring(string($TaxiRequestOperationIn.request/ns0:departFromHotelTime), 16, 4)), 'T', ' ')</from>
+                <to>$InsertIn.part/ns1:BOOKING_Record/ns1:ARRIVEATDESTINATIONTIME</to>
+            </copy>
+            <copy>
+                <from>translate(concat(substring(string($TaxiRequestOperationIn.request/ns0:arriveAtHotelTime), 1, 11), string(number(substring(string($TaxiRequestOperationIn.request/ns0:arriveAtHotelTime), 12, 2)) - 1), ':3', substring(string($TaxiRequestOperationIn.request/ns0:arriveAtHotelTime), 16, 4)), 'T', ' ')</from>
+                <to>$InsertIn.part/ns1:BOOKING_Record/ns1:DEPARTFROMDESTINATIONTIME</to>
+            </copy>
+            <copy>
+                <from>translate(string($TaxiRequestOperationIn.request/ns0:arriveAtHotelTime), 'T', ' ')</from>
+                <to>$InsertIn.part/ns1:BOOKING_Record/ns1:ARRIVEATHOTELTIME</to>
+            </copy>
+        </assign>
+        <invoke name="InvokInsert" partnerLink="TaxiServiceDB" operation="insert" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiServiceTable" portType="tns:jdbcPortType" inputVariable="InsertIn" outputVariable="InsertOut">
+            <sxt:trace>
+                <sxt:log level="info" location="onStart">
+                    <from>'taxiService : Insertion du voyage dans la base de donnée'</from>
+                </sxt:log>
+            </sxt:trace>
+        </invoke>
+        <assign name="AssignForFind">
+            <copy>
+                <from>$InsertIn.part/ns1:BOOKING_Record/ns1:ARRIVEATDESTINATIONTIME</from>
+                <to>$FindIn.part/ns1:BOOKING_Record/ns1:ARRIVEATDESTINATIONTIME</to>
+            </copy>
+            <copy>
+                <from>$InsertIn.part/ns1:BOOKING_Record/ns1:DEPARTFROMDESTINATIONTIME</from>
+                <to>$FindIn.part/ns1:BOOKING_Record/ns1:DEPARTFROMDESTINATIONTIME</to>
+            </copy>
+            <copy>
+                <from>$InsertIn.part/ns1:BOOKING_Record/ns1:PRICE</from>
+                <to>$FindIn.part/ns1:BOOKING_Record/ns1:PRICE</to>
+            </copy>
+            <copy>
+                <from>$InsertIn.part/ns1:BOOKING_Record/ns1:DEPARTFROMHOTELTIME</from>
+                <to>$FindIn.part/ns1:BOOKING_Record/ns1:DEPARTFROMHOTELTIME</to>
+            </copy>
+            <copy>
+                <from>$InsertIn.part/ns1:BOOKING_Record/ns1:ARRIVEATHOTELTIME</from>
+                <to>$FindIn.part/ns1:BOOKING_Record/ns1:ARRIVEATHOTELTIME</to>
+            </copy>
+            <copy>
+                <from>$InsertIn.part/ns1:BOOKING_Record/ns1:DESTINATIONADDRESS</from>
+                <to>$FindIn.part/ns1:BOOKING_Record/ns1:DESTINATIONADDRESS</to>
+            </copy>
+            <copy>
+                <from>$InsertIn.part/ns1:BOOKING_Record/ns1:HOTELNAME</from>
+                <to>$FindIn.part/ns1:BOOKING_Record/ns1:HOTELNAME</to>
+            </copy>
+            <copy>
+                <from>$InsertIn.part/ns1:BOOKING_Record/ns1:NUMBEROFTRAVELERS</from>
+                <to>$FindIn.part/ns1:BOOKING_Record/ns1:NUMBEROFTRAVELERS</to>
+            </copy>
+        </assign>
+        <invoke name="InvokeFind" partnerLink="TaxiServiceDB" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiServiceTable" portType="tns:jdbcPortType" inputVariable="FindIn" outputVariable="FindOut">
+            <sxt:trace>
+                <sxt:log level="info" location="onStart">
+                    <from>'taxiService : Recuperation du BookingID'</from>
+                </sxt:log>
+            </sxt:trace>
+        </invoke>
+        <assign name="AssignForReply">
+            <copy>
+                <from>$FindOut.part/ns1:BOOKING_Record/ns1:BOOKINGID</from>
+                <to>$TaxiRequestOperationOut.responce/ns0:taxiBookingID</to>
+            </copy>
+            <copy>
+                <from>$FindOut.part/ns1:BOOKING_Record/ns1:ARRIVEATDESTINATIONTIME</from>
+                <to>$TaxiRequestOperationOut.responce/ns0:arriveAtDestinationTime</to>
+            </copy>
+            <copy>
+                <from>$FindOut.part/ns1:BOOKING_Record/ns1:DEPARTFROMDESTINATIONTIME</from>
+                <to>$TaxiRequestOperationOut.responce/ns0:departFromDestinationTime</to>
+            </copy>
+            <copy>
+                <from>$FindOut.part/ns1:BOOKING_Record/ns1:PRICE</from>
+                <to>$TaxiRequestOperationOut.responce/ns0:price</to>
+            </copy>
+        </assign>
+        <reply name="Reply1" partnerLink="ProcessManager" operation="taxiRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManager/taxiRequest" portType="tns:taxiRequestPortType" variable="TaxiRequestOperationOut">
+            <sxt:trace>
+                <sxt:log level="info" location="onStart">
+                    <from>"taxiService : Envoie de la reservation d'un taxi au process Manager"</from>
+                </sxt:log>
+            </sxt:trace>
+        </reply>
+    </sequence>
+</process>
+
+
