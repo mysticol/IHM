@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="ProcessManagerModule/ScubaDiving.wsdl" uri="src/_references/_projects/ProcessManagerModule/src/ScubaDiving.wsdl"/>
-    <system systemId="exchanges.xsd" uri="src/_references/_projects/ProcessManagerModule/src/exchanges.xsd"/>
-</catalog>

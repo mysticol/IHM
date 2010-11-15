@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="http://j2ee.netbeans.org/wsdl/HotelModule/DivingBooking" xmlns:ns2="http://enterprise.netbeans.org/bpel/HotelModule/hotelModule" xmlns:ns3="http://enterprise.netbeans.org/bpel/ProcessManagerSimple/processManagerSimple" xmlns:ns4="http://enterprise.netbeans.org/bpel/mockWreckAndCaveDivingAgency/mockWreckAndCaveDivingAgency" xmlns:ns5="http://enterprise.netbeans.org/bpel/mockLunchService/mockLunchService" xmlns:ns6="http://enterprise.netbeans.org/bpel/mockSharkDivingAgency/mockSharkDivingAgency" xmlns:ns7="http://enterprise.netbeans.org/bpel/mockTaxiService/mockTaxiService" xmlns:ns8="http://enterprise.netbeans.org/bpel/mockDolphinDivingAgency/mockDolphinDivingAgency" version="1.0">
-    <services binding-component="true">
-        <consumes endpoint-name="DivingBookingPortTypeBindingPort" interface-name="ns1:DivingBookingPortType" service-name="ns1:DivingBookingService"/>
-    </services>
-</jbi>
