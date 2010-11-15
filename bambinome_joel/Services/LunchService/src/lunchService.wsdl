@@ -11,7 +11,9 @@
     <message name="lunchServiceOperationRequest">
         <part name="LunchRequest" type="ns:LunchRequest"/>
     </message>
-    <message name="lunchServiceOperationResponse"/>
+    <message name="lunchServiceOperationResponse">
+        <part name="LunchResponse" type="xsd:string"/>
+    </message>
     <portType name="lunchServicePortType">
         <operation name="lunchServiceOperation">
             <input name="input1" message="tns:lunchServiceOperationRequest"/>
@@ -19,10 +21,11 @@
         </operation>
     </portType>
     <plnk:partnerLinkType name="lunchService">
-        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes.
 In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
 A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
         <plnk:role name="lunchServicePortTypeRole" portType="tns:lunchServicePortType"/>
     </plnk:partnerLinkType>
 </definitions>
+
 
