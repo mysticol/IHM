@@ -295,7 +295,7 @@
             </else>
         </if>
         <if name="IfLunch">
-            <condition>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:lunchInclued</condition>
+            <condition>'True' = $ScubaDivingOperationIn.ScubaDivingRequest/ns0:lunchInclued</condition>
             <sequence name="Sequence1">
                 <assign name="Assign3">
                     <copy>
@@ -340,6 +340,7 @@
         <reply name="Reply1" partnerLink="ProcessManager" operation="ScubaDivingOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManagerModule/ScubaDiving" portType="tns:ScubaDivingPortType" variable="ScubaDivingOperationOut"/>
     </sequence>
 </process>
+
 
 
 
