@@ -18,6 +18,11 @@
         <variable name="SharkDivingAgencyOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockSharkDivingAgency/sharkDivingAgency" messageType="tns:sharkDivingAgencyOperationRequest"/>
     </variables>
     <sequence>
+        <sxt:trace>
+            <sxt:log level="info" location="onStart">
+                <from>'mock Requins'</from>
+            </sxt:log>
+        </sxt:trace>
         <receive name="Receive1" createInstance="yes" partnerLink="ProcessManager" operation="sharkDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockSharkDivingAgency/sharkDivingAgency" portType="tns:sharkDivingAgencyPortType" variable="SharkDivingAgencyOperationIn"/>
         <assign name="Assign1">
             <copy>
@@ -52,5 +57,6 @@
         <reply name="Reply1" partnerLink="ProcessManager" operation="sharkDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockSharkDivingAgency/sharkDivingAgency" portType="tns:sharkDivingAgencyPortType" variable="SharkDivingAgencyOperationOut"/>
     </sequence>
 </process>
+
 
 
