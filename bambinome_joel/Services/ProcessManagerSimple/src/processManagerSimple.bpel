@@ -42,18 +42,8 @@
     <sequence>
         <receive name="Receive1" createInstance="yes" partnerLink="ProcessManager" operation="ScubaDivingOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManagerModule/ScubaDiving" portType="tns:ScubaDivingPortType" variable="ScubaDivingOperationIn"/>
         <if name="IfDolphins">
-            <sxt:trace>
-                <sxt:log level="info" location="onStart">
-                    <from>concat($ScubaDivingOperationIn.ScubaDivingRequest/ns0:interest/ns0:Dolphins, $ScubaDivingOperationIn.ScubaDivingRequest/ns0:interest/ns0:Sharks)</from>
-                </sxt:log>
-            </sxt:trace>
             <condition>'True' = $ScubaDivingOperationIn.ScubaDivingRequest/ns0:interest/ns0:Dolphins</condition>
             <sequence name="Sequence2">
-                <sxt:trace>
-                    <sxt:log level="info" location="onStart">
-                        <from>'if dauphins'</from>
-                    </sxt:log>
-                </sxt:trace>
                 <assign name="Assign1">
                     <copy>
                         <from>$ScubaDivingOperationIn.ScubaDivingRequest/ns0:guestName</from>
@@ -75,7 +65,7 @@
                 <invoke name="Invoke1" partnerLink="DolphinAgency" operation="dolphinDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/DolphinDivingAgency/dolphinDivingAgency" portType="tns:dolphinDivingAgencyPortType" inputVariable="DolphinDivingAgencyOperationIn" outputVariable="DolphinDivingAgencyOperationOut">
                     <sxt:trace>
                         <sxt:log level="info" location="onStart">
-                            <from>'invoke dauphins'</from>
+                            <from>'Invoke Dauphins'</from>
                         </sxt:log>
                     </sxt:trace>
                 </invoke>
@@ -132,11 +122,6 @@
             </sequence>
             <else>
                 <if name="IfSharks">
-                    <sxt:trace>
-                        <sxt:log level="info" location="onStart">
-                            <from>'if requins'</from>
-                        </sxt:log>
-                    </sxt:trace>
                     <condition>'True' = $ScubaDivingOperationIn.ScubaDivingRequest/ns0:interest/ns0:Sharks</condition>
                     <sequence name="Sequence3">
                         <assign name="Assign6">
@@ -160,10 +145,7 @@
                         <invoke name="Invoke4" partnerLink="SharkAgency" operation="sharkDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockSharkDivingAgency/sharkDivingAgency" portType="tns:sharkDivingAgencyPortType" inputVariable="SharkDivingAgencyOperationIn" outputVariable="SharkDivingAgencyOperationOut">
                             <sxt:trace>
                                 <sxt:log level="info" location="onStart">
-                                    <from>'invoke requins'</from>
-                                </sxt:log>
-                                <sxt:log level="info" location="onComplete">
-                                    <from>'invoke requins complete'</from>
+                                    <from>'Invoke Requins'</from>
                                 </sxt:log>
                             </sxt:trace>
                         </invoke>
@@ -238,7 +220,13 @@
                                     <to>$WACDivingAgencyOperationIn.WACDivingRequest/ns0:hotelName</to>
                                 </copy>
                             </assign>
-                            <invoke name="Invoke5" partnerLink="WACAgency" operation="WACDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockWreckAndCaveDivingAgency/WACDivingAgency" portType="tns:WACDivingAgencyPortType" inputVariable="WACDivingAgencyOperationIn" outputVariable="WACDivingAgencyOperationOut"/>
+                            <invoke name="Invoke5" partnerLink="WACAgency" operation="WACDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockWreckAndCaveDivingAgency/WACDivingAgency" portType="tns:WACDivingAgencyPortType" inputVariable="WACDivingAgencyOperationIn" outputVariable="WACDivingAgencyOperationOut">
+                                <sxt:trace>
+                                    <sxt:log level="info" location="onStart">
+                                        <from>'Invoke WAC'</from>
+                                    </sxt:log>
+                                </sxt:trace>
+                            </invoke>
                             <assign name="Assign10">
                                 <copy>
                                     <from>$WACDivingAgencyOperationOut.WACDivingBooking/ns0:startTime</from>
@@ -315,10 +303,22 @@
                         <to>$LunchServiceOperationIn1.LunchRequest/ns0:numberOfLunches</to>
                     </copy>
                 </assign>
-                <invoke name="Invoke2" partnerLink="LunchService" operation="lunchServiceOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/LunchService/lunchService" portType="tns:lunchServicePortType" inputVariable="LunchServiceOperationIn1" outputVariable="LunchServiceOperationOut1"/>
+                <invoke name="Invoke2" partnerLink="LunchService" operation="lunchServiceOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/LunchService/lunchService" portType="tns:lunchServicePortType" inputVariable="LunchServiceOperationIn1" outputVariable="LunchServiceOperationOut1">
+                    <sxt:trace>
+                        <sxt:log level="info" location="onStart">
+                            <from>'Invoke Lunch'</from>
+                        </sxt:log>
+                    </sxt:trace>
+                </invoke>
             </sequence>
         </if>
-        <invoke name="Invoke3" partnerLink="TaxiService" operation="taxiServiceOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiService" portType="tns:taxiServicePortType" inputVariable="TaxiServiceOperationIn" outputVariable="TaxiServiceOperationOut"/>
+        <invoke name="Invoke3" partnerLink="TaxiService" operation="taxiServiceOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiService" portType="tns:taxiServicePortType" inputVariable="TaxiServiceOperationIn" outputVariable="TaxiServiceOperationOut">
+            <sxt:trace>
+                <sxt:log level="info" location="onStart">
+                    <from>'Invoke Taxi'</from>
+                </sxt:log>
+            </sxt:trace>
+        </invoke>
         <assign name="Assign5">
             <copy>
                 <from>$TaxiServiceOperationOut.TaxiBooking/ns0:taxiBookingID</from>
@@ -340,6 +340,7 @@
         <reply name="Reply1" partnerLink="ProcessManager" operation="ScubaDivingOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManagerModule/ScubaDiving" portType="tns:ScubaDivingPortType" variable="ScubaDivingOperationOut"/>
     </sequence>
 </process>
+
 
 
 
