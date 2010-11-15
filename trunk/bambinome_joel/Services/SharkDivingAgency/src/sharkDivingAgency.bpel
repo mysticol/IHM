@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="sharkDivingAgency"
+    targetNamespace="http://enterprise.netbeans.org/bpel/SharkDivingAgency/sharkDivingAgency"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/SharkDivingAgency/sharkDivingAgency"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://j2ee.netbeans.org/xsd/tableSchema" xmlns:ns1="http://xml.netbeans.org/schema/Exchanges">
+    <import namespace="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgency" location="sharkDivingAgency.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgencyPlanningTable" location="sharkDivingAgencyPlanningTable.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgencyBookingTable" location="sharkDivingAgencyBookingTable.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="PlanningTable" xmlns:tns="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgencyPlanningTable" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="BookingTable" xmlns:tns="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgencyBookingTable" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="ProcessManager" xmlns:tns="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgency" partnerLinkType="tns:sharkDivingAgency" myRole="sharkDivingAgencyPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="FindOut1" xmlns:tns="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgencyBookingTable" messageType="tns:outputMsg"/>
+        <variable name="FindIn1" xmlns:tns="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgencyBookingTable" messageType="tns:inputMsg"/>
+        <variable name="InsertOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgencyBookingTable" messageType="tns:RetMsg"/>
+        <variable name="InsertIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgencyBookingTable" messageType="tns:inputMsg"/>
+        <variable name="FindOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgencyPlanningTable" messageType="tns:outputMsg"/>
+        <variable name="FindIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgencyPlanningTable" messageType="tns:inputMsg"/>
+        <variable name="SharkDivingAgencyOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgency" messageType="tns:sharkDivingAgencyOperationResponse"/>
+        <variable name="SharkDivingAgencyOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgency" messageType="tns:sharkDivingAgencyOperationRequest"/>
+    </variables>
+    <sequence>
+        <receive name="Receive1" createInstance="yes" partnerLink="ProcessManager" operation="sharkDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgency" portType="tns:sharkDivingAgencyPortType" variable="SharkDivingAgencyOperationIn"/>
+        <assign name="mapJour">
+            <copy>
+                <from>substring(string($SharkDivingAgencyOperationIn.SharkDivingAgencyRequest/ns1:requestDate), 9, 2)</from>
+                <to>$FindIn.part/ns0:PLANING_Record/ns0:JOUR</to>
+            </copy>
+        </assign>
+        <invoke name="Invoke1" partnerLink="PlanningTable" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgencyPlanningTable" portType="tns:jdbcPortType" inputVariable="FindIn" outputVariable="FindOut"/>
+        <assign name="mapDataToInsert">
+            <copy>
+                <from>concat(substring-before(string($SharkDivingAgencyOperationIn.SharkDivingAgencyRequest/ns1:requestDate), '+'), '-10.00.00')</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:STARTTIME</to>
+            </copy>
+            <copy>
+                <from>concat(substring-before(string($SharkDivingAgencyOperationIn.SharkDivingAgencyRequest/ns1:requestDate), '+'), '-18.00.00')</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:ENDTIME</to>
+            </copy>
+            <copy>
+                <from>$FindOut.part/ns0:PLANING_Record/ns0:INSTRUCTORNAME</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:INSTRUCTORNAME</to>
+            </copy>
+            <copy>
+                <from>'42,rue des requins'</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:ADRESS</to>
+            </copy>
+            <copy>
+                <from>700 * $SharkDivingAgencyOperationIn.SharkDivingAgencyRequest/ns1:numberOfDivers</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:PRICE</to>
+            </copy>
+            <copy>
+                <from>$SharkDivingAgencyOperationIn.SharkDivingAgencyRequest/ns1:BookingName</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:BOOKINGNAME</to>
+            </copy>
+            <copy>
+                <from>$SharkDivingAgencyOperationIn.SharkDivingAgencyRequest/ns1:hotelName</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:HOTELNAME</to>
+            </copy>
+            <copy>
+                <from>substring-before(string($SharkDivingAgencyOperationIn.SharkDivingAgencyRequest/ns1:requestDate), '+')</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:REQUESTDATE</to>
+            </copy>
+            <copy>
+                <from>$SharkDivingAgencyOperationIn.SharkDivingAgencyRequest/ns1:numberOfDivers</from>
+                <to>$InsertIn.part/ns0:BOOKING_Record/ns0:NUMBEROFDIVERS</to>
+            </copy>
+        </assign>
+        <invoke name="Invoke2" partnerLink="BookingTable" operation="insert" xmlns:tns="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgencyBookingTable" portType="tns:jdbcPortType" inputVariable="InsertIn" outputVariable="InsertOut"/>
+        <invoke name="Invoke3" partnerLink="BookingTable" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgencyBookingTable" portType="tns:jdbcPortType" inputVariable="FindIn1" outputVariable="FindOut1"/>
+        <assign name="mapBooking">
+            <copy>
+                <from>$FindOut1.part/ns0:BOOKING_Record/ns0:BOOKINGID</from>
+                <to>$SharkDivingAgencyOperationOut.SharkDivingAgencyBooking/ns1:divingBookingID</to>
+            </copy>
+            <copy>
+                <from>$FindOut1.part/ns0:BOOKING_Record/ns0:STARTTIME</from>
+                <to>$SharkDivingAgencyOperationOut.SharkDivingAgencyBooking/ns1:startTime</to>
+            </copy>
+            <copy>
+                <from>$FindOut1.part/ns0:BOOKING_Record/ns0:ENDTIME</from>
+                <to>$SharkDivingAgencyOperationOut.SharkDivingAgencyBooking/ns1:endTime</to>
+            </copy>
+            <copy>
+                <from>$FindOut1.part/ns0:BOOKING_Record/ns0:INSTRUCTORNAME</from>
+                <to>$SharkDivingAgencyOperationOut.SharkDivingAgencyBooking/ns1:instructorName</to>
+            </copy>
+            <copy>
+                <from>$FindOut1.part/ns0:BOOKING_Record/ns0:ADRESS</from>
+                <to>$SharkDivingAgencyOperationOut.SharkDivingAgencyBooking/ns1:address</to>
+            </copy>
+            <copy>
+                <from>$FindOut1.part/ns0:BOOKING_Record/ns0:PRICE</from>
+                <to>$SharkDivingAgencyOperationOut.SharkDivingAgencyBooking/ns1:price</to>
+            </copy>
+            <copy>
+                <from>'Agence Requins'</from>
+                <to>$SharkDivingAgencyOperationOut.SharkDivingAgencyBooking/ns1:divingAgencyName</to>
+            </copy>
+        </assign>
+        <reply name="Reply1" partnerLink="ProcessManager" operation="sharkDivingAgencyOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/SharkDivingAgency/sharkDivingAgency" portType="tns:sharkDivingAgencyPortType" variable="SharkDivingAgencyOperationOut"/>
+    </sequence>
+</process>
+
