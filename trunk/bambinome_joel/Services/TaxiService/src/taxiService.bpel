@@ -26,11 +26,6 @@
     <sequence>
         <receive name="Receive1" createInstance="yes" partnerLink="ProcessManager" operation="taxiRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManager/taxiRequest" portType="tns:taxiRequestPortType" variable="TaxiRequestOperationIn"></receive>
         <assign name="AssignForInsert">
-            <sxt:trace>
-                <sxt:log level="info" location="onStart">
-                    <from>'taxiService : calcul des prix et temp de voyage'</from>
-                </sxt:log>
-            </sxt:trace>
             <copy>
                 <from>translate(string($TaxiRequestOperationIn.request/ns0:departFromHotelTime), 'T', ' ')</from>
                 <to>$InsertIn.part/ns1:BOOKING_Record/ns1:DEPARTFROMHOTELTIME</to>
@@ -64,13 +59,7 @@
                 <to>$InsertIn.part/ns1:BOOKING_Record/ns1:ARRIVEATHOTELTIME</to>
             </copy>
         </assign>
-        <invoke name="InvokInsert" partnerLink="TaxiServiceDB" operation="insert" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiServiceTable" portType="tns:jdbcPortType" inputVariable="InsertIn" outputVariable="InsertOut">
-            <sxt:trace>
-                <sxt:log level="info" location="onStart">
-                    <from>'taxiService : Insertion du voyage dans la base de donnée'</from>
-                </sxt:log>
-            </sxt:trace>
-        </invoke>
+        <invoke name="InvokInsert" partnerLink="TaxiServiceDB" operation="insert" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiServiceTable" portType="tns:jdbcPortType" inputVariable="InsertIn" outputVariable="InsertOut"></invoke>
         <assign name="AssignForFind">
             <copy>
                 <from>$InsertIn.part/ns1:BOOKING_Record/ns1:ARRIVEATDESTINATIONTIME</from>
@@ -105,13 +94,7 @@
                 <to>$FindIn.part/ns1:BOOKING_Record/ns1:NUMBEROFTRAVELERS</to>
             </copy>
         </assign>
-        <invoke name="InvokeFind" partnerLink="TaxiServiceDB" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiServiceTable" portType="tns:jdbcPortType" inputVariable="FindIn" outputVariable="FindOut">
-            <sxt:trace>
-                <sxt:log level="info" location="onStart">
-                    <from>'taxiService : Recuperation du BookingID'</from>
-                </sxt:log>
-            </sxt:trace>
-        </invoke>
+        <invoke name="InvokeFind" partnerLink="TaxiServiceDB" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiServiceTable" portType="tns:jdbcPortType" inputVariable="FindIn" outputVariable="FindOut"></invoke>
         <assign name="AssignForReply">
             <copy>
                 <from>$FindOut.part/ns1:BOOKING_Record/ns1:BOOKINGID</from>
@@ -130,14 +113,9 @@
                 <to>$TaxiRequestOperationOut.responce/ns0:price</to>
             </copy>
         </assign>
-        <reply name="Reply1" partnerLink="ProcessManager" operation="taxiRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManager/taxiRequest" portType="tns:taxiRequestPortType" variable="TaxiRequestOperationOut">
-            <sxt:trace>
-                <sxt:log level="info" location="onStart">
-                    <from>"taxiService : Envoie de la reservation d'un taxi au process Manager"</from>
-                </sxt:log>
-            </sxt:trace>
-        </reply>
+        <reply name="Reply1" partnerLink="ProcessManager" operation="taxiRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ProcessManager/taxiRequest" portType="tns:taxiRequestPortType" variable="TaxiRequestOperationOut"></reply>
     </sequence>
 </process>
+
 
 
