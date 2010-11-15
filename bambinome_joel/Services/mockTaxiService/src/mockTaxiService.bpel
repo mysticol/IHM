@@ -18,6 +18,11 @@
         <variable name="TaxiServiceOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiService" messageType="tns:taxiServiceOperationResponse"/>
     </variables>
     <sequence>
+        <sxt:trace>
+            <sxt:log level="info" location="onStart">
+                <from>'mock Taxi'</from>
+            </sxt:log>
+        </sxt:trace>
         <receive name="Receive1" createInstance="yes" partnerLink="ProcessManager" operation="taxiServiceOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiService" portType="tns:taxiServicePortType" variable="TaxiServiceOperationIn"/>
         <assign name="Assign1">
             <copy>
@@ -29,15 +34,17 @@
                 <to>$TaxiServiceOperationOut.TaxiBooking/ns0:price</to>
             </copy>
             <copy>
-                <from>sxxf:current-time()</from>
-                <to>$TaxiServiceOperationOut.TaxiBooking/ns0:arriveAtDestinationTime</to>
+                <from>'1991-01-02T09:30:00'</from>
+                <to>$TaxiServiceOperationOut.TaxiBooking/ns0:departFromDestinationTime</to>
             </copy>
             <copy>
-                <from>sxxf:current-time()</from>
-                <to>$TaxiServiceOperationOut.TaxiBooking/ns0:departFromDestinationTime</to>
+                <from>'1991-01-02T08:30:00'</from>
+                <to>$TaxiServiceOperationOut.TaxiBooking/ns0:arriveAtDestinationTime</to>
             </copy>
         </assign>
         <reply name="Reply1" partnerLink="ProcessManager" operation="taxiServiceOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/TaxiService/taxiService" portType="tns:taxiServicePortType" variable="TaxiServiceOperationOut"/>
     </sequence>
 </process>
+
+
 
