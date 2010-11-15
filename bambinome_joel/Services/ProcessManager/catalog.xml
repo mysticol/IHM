@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <nextCatalog catalog="nbproject/private/cache/retriever/catalog.xml"/>
+    <system systemId="DolphinDivingAgency/dolphinDivingAgency.wsdl" uri="nb-uri:DolphinDivingAgency#src/dolphinDivingAgency.wsdl"/>
+    <system systemId="SharkDivingAgency/sharkDivingAgency.wsdl" uri="nb-uri:SharkDivingAgency#src/sharkDivingAgency.wsdl"/>
+    <system systemId="WACDivingAgency/wacDivingAgency.wsdl" uri="nb-uri:WACDivingAgency#src/wacDivingAgency.wsdl"/>
+    <system systemId="LunchService/lunchService.wsdl" uri="nb-uri:LunchService#src/lunchService.wsdl"/>
+    <system systemId="TaxiService/taxiServiceTable.wsdl" uri="nb-uri:TaxiService#src/taxiServiceTable.wsdl"/>
+    <system systemId="TaxiService/taxiRequest.wsdl" uri="nb-uri:TaxiService#src/taxiRequest.wsdl"/>
+</catalog>
+
+
+
+
+
+
+
