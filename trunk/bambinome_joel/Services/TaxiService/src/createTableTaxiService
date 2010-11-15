@@ -1,0 +1,15 @@
+/* TaxiService */
+DROP TABLE booking;
+
+CREATE TABLE booking (
+                        bookingID INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+                        arriveAtDestinationTime VARCHAR(30),
+                        departFromDestinationTime VARCHAR(30),
+                        price DOUBLE,
+
+                        departFromHotelTime VARCHAR(30),
+                        arriveAtHotelTime VARCHAR(30),
+                        destinationAddress VARCHAR(30),
+                        hotelName VARCHAR(30),
+                        numberOfTravelers INT
+                      );
