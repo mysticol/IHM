@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <nextCatalog catalog="nbproject/private/cache/retriever/catalog.xml"/>
-    <system systemId="file:/C:/Documents%20and%20Settings/zigmon/workspace/service/tp9/types.xsd" uri="src/types.xsd"/>
-</catalog>
-
