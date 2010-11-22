@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<casa xmlns="http://java.sun.com/xml/ns/casa" xmlns:ns1="http://j2ee.netbeans.org/wsdl/mockReception/Reception" xmlns:ns2="http://enterprise.netbeans.org/bpel/mockReception/mockReception" xmlns:xlink="http://www.w3.org/2000/xlink">
+    <endpoints>
+        <endpoint endpoint-name="ReceptionPortTypeBindingPort" interface-name="ns1:ReceptionPortType" name="endpoint1" service-name="ns1:ReceptionService"/>
+        <endpoint display-name="InterfaceWeb" endpoint-name="ReceptionPortTypeRole_myRole" file-path="mockReception.bpel" interface-name="ns1:ReceptionPortType" name="endpoint2" process-name="mockReception" service-name="ns2:InterfaceWeb"/>
+    </endpoints>
+    <service-units>
+        <service-engine-service-unit artifacts-zip="mockReception.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="mockProcess-mockReception" unit-name="mockReception" unknown="false" x="147" y="99">
+            <provides endpoint="endpoint2"/>
+        </service-engine-service-unit>
+        <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="mockProcess-sun-http-binding" unit-name="sun-http-binding">
+            <ports>
+                <port x="67" y="39">
+                    <link xlink:href="../jbiasa/mockReception/Reception.wsdl#xpointer(/definitions/service[@name='ReceptionService']/port[@name='ReceptionPortTypeBindingPort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint1"/>
+                    <provides endpoint="endpoint1"/>
+                </port>
+            </ports>
+        </binding-component-service-unit>
+    </service-units>
+    <connections>
+        <connection consumer="endpoint1" provider="endpoint2" state="unchanged"/>
+    </connections>
+    <porttypes>
+        <link xlink:href="../jbiasa/mockReception/Reception.wsdl#xpointer(/definitions/portType[@name='ReceptionPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/mockReception/Reception.wsdl#xpointer(/definitions/portType[@name='ReceptionPortType'])" xlink:type="simple"/>
+    </porttypes>
+    <bindings>
+        <link xlink:href="../jbiasa/mockReception/Reception.wsdl#xpointer(/definitions/binding[@name='ReceptionPortTypeBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/mockReception/Reception.wsdl#xpointer(/definitions/binding[@name='ReceptionPortTypeBinding'])" xlink:type="simple"/>
+    </bindings>
+    <services>
+        <link xlink:href="../jbiasa/mockReception/Reception.wsdl#xpointer(/definitions/service[@name='ReceptionService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/mockReception/Reception.wsdl#xpointer(/definitions/service[@name='ReceptionService'])" xlink:type="simple"/>
+    </services>
+    <regions>
+        <region name="WSDL Endpoints" width="150"/>
+        <region name="JBI Modules" width="500"/>
+        <region name="External Modules" width="200"/>
+    </regions>
+</casa>
