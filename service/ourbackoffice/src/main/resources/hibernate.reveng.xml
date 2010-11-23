@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-schema="ROOT"/>
+  <table-filter match-name="LOCALISATION"/>
+  <table-filter match-name="MANIFESTATION"/>
+  <table-filter match-name="HOTEL"/>
+  <table-filter match-name="RESERVATION_MANIF"/>
+  <table-filter match-name="CLIENT"/>
+  <table-filter match-name="VOYAGE"/>
+  <table-filter match-name="RESTAURANT"/>
+  <table-filter match-name="TYPE_MANIFESTATION"/>
+  <table-filter match-name="RESERVATION"/>
+  <table-filter match-name="RESERVATION_HOTEL"/>
+  <table-filter match-name="RESERVATION_RESTAU"/>
+</hibernate-reverse-engineering>
