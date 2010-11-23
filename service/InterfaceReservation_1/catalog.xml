@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Users/JulienSambre/Documents/NetBeansProjects/InterfaceReservation/web/WEB-INF/wsdl/Reception.wsdl" uri="src/conf/xml-resources/web-service-references/Reception/wsdl/Reception.wsdl"/>
+    <system systemId="file:/C:/Users/JulienSambre/Documents/NetBeansProjects/InterfaceReservation/web/WEB-INF/wsdl/types.xsd" uri="src/conf/xml-resources/web-service-references/Reception/wsdl/types.xsd"/>
+</catalog>
