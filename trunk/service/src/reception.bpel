@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="reception"
+    targetNamespace="http://enterprise.netbeans.org/bpel/Reception/reception"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/Reception/reception"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/types" xmlns:ns1="http://j2ee.netbeans.org/xsd/tableSchema">
+    <import namespace="http://j2ee.netbeans.org/wsdl/Reception/Reception" location="Reception.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/Reception/Pays" location="Pays.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/Reception/Ville" location="Ville.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/Reception/TypeManifestation" location="TypeManifestation.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/Reception/Manifestations" location="Manifestations.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/Reception/IDTypeManif" location="IDTypeManif.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/Reception/LocalisationID" location="LocalisationID.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/Reception/Hotel" location="Hotel.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/Reception/Restaurant" location="Restaurant.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="Pays" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Pays" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="Ville" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Ville" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="TypeManifestation" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/TypeManifestation" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="IdTypeManif" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/IDTypeManif" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="LocalisationID" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/LocalisationID" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="Manifestations" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Manifestations" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="Hotels" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Hotel" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="Restaurant" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Restaurant" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="Interface" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Reception" partnerLinkType="tns:Reception" myRole="ReceptionPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="FindOutRestaurant" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Restaurant" messageType="tns:outputMsg"/>
+        <variable name="FindInRestaurant" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Restaurant" messageType="tns:inputMsg"/>
+        <variable name="FindOutHotel" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Hotel" messageType="tns:outputMsg"/>
+        <variable name="FindInHotel" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Hotel" messageType="tns:inputMsg"/>
+        <variable name="FindOutLocalisation" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/LocalisationID" messageType="tns:outputMsg"/>
+        <variable name="FindInLocalisation" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/LocalisationID" messageType="tns:inputMsg"/>
+        <variable name="FindOutIdTypeManif" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/IDTypeManif" messageType="tns:outputMsg"/>
+        <variable name="FindInIdTypeManif" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/IDTypeManif" messageType="tns:inputMsg"/>
+        <variable name="FindOutIDTypeManif" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/TypeManifestation" messageType="tns:outputMsg"/>
+        <variable name="FindInIDTypeManif" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/TypeManifestation" messageType="tns:inputMsg"/>
+        <variable name="FindOutManifs" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Manifestations" messageType="tns:outputMsg"/>
+        <variable name="FindInManifs" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Manifestations" messageType="tns:inputMsg"/>
+        <variable name="FindOutTypeManif" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/TypeManifestation" messageType="tns:outputMsg"/>
+        <variable name="FindInTypeManif" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/TypeManifestation" messageType="tns:inputMsg"/>
+        <variable name="FindOut1" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Ville" messageType="tns:outputMsg"/>
+        <variable name="FindIn1" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Ville" messageType="tns:inputMsg"/>
+        <variable name="FindOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Pays" messageType="tns:outputMsg"/>
+        <variable name="FindIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Pays" messageType="tns:inputMsg"/>
+        <variable name="ReceptionOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Reception" messageType="tns:ReceptionOperationResponse"/>
+        <variable name="ReceptionOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Reception" messageType="tns:ReceptionOperationRequest"/>
+    </variables>
+    <sequence>
+        <receive name="ReceiveInterface" createInstance="yes" partnerLink="Interface" operation="ReceptionOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Reception" portType="tns:ReceptionPortType" variable="ReceptionOperationIn"/>
+        <if name="IfPaysVide">
+            <condition>string($ReceptionOperationIn.InterfaceRequest/ns0:Pays) = ''</condition>
+            <sequence name="Sequence2">
+                <invoke name="InvokePays" partnerLink="Pays" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Pays" portType="tns:jdbcPortType" inputVariable="FindIn" outputVariable="FindOut"/>
+                <assign name="PaysOut">
+                    <copy>
+                        <from>$FindOut.part/ns1:LOCALISATION_Record/ns1:PAYS</from>
+                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Pays</to>
+                    </copy>
+                </assign>
+            </sequence>
+            <else>
+                <if name="IfVilleVide">
+                    <condition>string($ReceptionOperationIn.InterfaceRequest/ns0:Ville) = ''</condition>
+                    <sequence name="Sequence1">
+                        <assign name="VilleIn">
+                            <copy>
+                                <from>$ReceptionOperationIn.InterfaceRequest/ns0:Pays</from>
+                                <to>$FindIn1.part/ns1:LOCALISATION_Record/ns1:PAYS</to>
+                            </copy>
+                        </assign>
+                        <invoke name="InvokeVille" partnerLink="Ville" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Ville" portType="tns:jdbcPortType" inputVariable="FindIn1" outputVariable="FindOut1"/>
+                        <assign name="VillOut">
+                            <copy>
+                                <from>$FindOut1.part/ns1:LOCALISATION_Record/ns1:VILLE</from>
+                                <to>$ReceptionOperationOut.InterfaceResponse/ns0:Ville</to>
+                            </copy>
+                        </assign>
+                    </sequence>
+                    <else>
+                        <if name="IfDateNonVide">
+                            <condition>string($ReceptionOperationIn.InterfaceRequest/ns0:Date) != ''</condition>
+                            <sequence name="Sequence3">
+                                <invoke name="InvokeTypeManif" partnerLink="TypeManifestation" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/TypeManifestation" portType="tns:jdbcPortType" inputVariable="FindInTypeManif" outputVariable="FindOutTypeManif"/>
+                                <assign name="TypeManifOut">
+                                    <copy>
+                                        <from>$FindOutTypeManif.part/ns1:TYPE_MANIFESTATION_Record/ns1:NOM_TYPE</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:TypeManifestation</to>
+                                    </copy>
+                                </assign>
+                                <assign name="NomToID">
+                                    <copy>
+                                        <from>$ReceptionOperationIn.InterfaceRequest/ns0:TypeManifestation</from>
+                                        <to>$FindInIdTypeManif.part/ns1:TYPE_MANIFESTATION_Record/ns1:NOM_TYPE</to>
+                                    </copy>
+                                </assign>
+                                <invoke name="InvokeIDTypeManif" partnerLink="IdTypeManif" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/IDTypeManif" portType="tns:jdbcPortType" inputVariable="FindInIdTypeManif" outputVariable="FindOutIdTypeManif"/>
+                                <assign name="LocalisationIn">
+                                    <copy>
+                                        <from>$ReceptionOperationIn.InterfaceRequest/ns0:Ville</from>
+                                        <to>$FindInLocalisation.part/ns1:LOCALISATION_Record/ns1:VILLE</to>
+                                    </copy>
+                                </assign>
+                                <invoke name="InvokeLocalisationID" partnerLink="LocalisationID" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/LocalisationID" portType="tns:jdbcPortType" inputVariable="FindInLocalisation" outputVariable="FindOutLocalisation"/>
+                                <assign name="ManifIn">
+                                    <copy>
+                                        <from>$FindOutIdTypeManif.part/ns1:TYPE_MANIFESTATION_Record/ns1:TYPE_ID</from>
+                                        <to>$FindInManifs.part/ns1:MANIFESTATION_Record/ns1:FK_ID_TYPE</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$ReceptionOperationIn.InterfaceRequest/ns0:Date</from>
+                                        <to>$FindInManifs.part/ns1:MANIFESTATION_Record/ns1:DATE</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$FindOutLocalisation.part/ns1:LOCALISATION_Record/ns1:LOCALISATION_ID</from>
+                                        <to>$FindInManifs.part/ns1:MANIFESTATION_Record/ns1:FK_LOCALISATION_ID</to>
+                                    </copy>
+                                </assign>
+                                <invoke name="InvokeManifs" partnerLink="Manifestations" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Manifestations" portType="tns:jdbcPortType" inputVariable="FindInManifs" outputVariable="FindOutManifs"/>
+                                <assign name="ManifsOut">
+                                    <copy>
+                                        <from>$FindOutManifs.part/ns1:MANIFESTATION_Record/ns1:MANIFESTATION_ID</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Manifestation/ns0:ID</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$FindOutManifs.part/ns1:MANIFESTATION_Record/ns1:NB_PLACE</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Manifestation/ns0:PlacesRestantes</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$FindOutManifs.part/ns1:MANIFESTATION_Record/ns1:NOM_MANIFESTATION</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Manifestation/ns0:Nom</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$FindOutManifs.part/ns1:MANIFESTATION_Record/ns1:ADRESSE</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Manifestation/ns0:Adresse</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$FindOutManifs.part/ns1:MANIFESTATION_Record/ns1:DESCRIPTION</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Manifestation/ns0:Description</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$FindOutManifs.part/ns1:MANIFESTATION_Record/ns1:PRIX</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Manifestation/ns0:Prix</to>
+                                    </copy>
+                                </assign>
+                                <assign name="HotelIn">
+                                    <copy>
+                                        <from>$FindOutLocalisation.part/ns1:LOCALISATION_Record/ns1:LOCALISATION_ID</from>
+                                        <to>$FindInHotel.part/ns1:HOTEL_Record/ns1:FK_LOCALISATION_ID</to>
+                                    </copy>
+                                </assign>
+                                <invoke name="InvokeHotel" partnerLink="Hotels" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Hotel" portType="tns:jdbcPortType" inputVariable="FindInHotel" outputVariable="FindOutHotel"/>
+                                <assign name="HotelOut">
+                                    <copy>
+                                        <from>$FindOutHotel.part/ns1:HOTEL_Record/ns1:HOTEL_ID</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotel/ns0:ID</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$FindOutHotel.part/ns1:HOTEL_Record/ns1:NOM_HOTEL</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotel/ns0:Nom</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$FindOutHotel.part/ns1:HOTEL_Record/ns1:ADRESSE</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotel/ns0:Adresse</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$FindOutHotel.part/ns1:HOTEL_Record/ns1:NB_CHAMBRE</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotel/ns0:PlacesRestantes</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$FindOutHotel.part/ns1:HOTEL_Record/ns1:RANK_HOTEL</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotel/ns0:Rank</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$FindOutHotel.part/ns1:HOTEL_Record/ns1:PRIX</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotel/ns0:Prix</to>
+                                    </copy>
+                                </assign>
+                                <assign name="RestaurantIn">
+                                    <copy>
+                                        <from>$FindOutLocalisation.part/ns1:LOCALISATION_Record/ns1:LOCALISATION_ID</from>
+                                        <to>$FindInRestaurant.part/ns1:RESTAURANT_Record/ns1:FK_LOCALISATION_ID</to>
+                                    </copy>
+                                </assign>
+                                <invoke name="InvokeRestaurant" partnerLink="Restaurant" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Restaurant" portType="tns:jdbcPortType" inputVariable="FindInRestaurant" outputVariable="FindOutRestaurant"/>
+                                <assign name="RestaurantOut">
+                                    <copy>
+                                        <from>$FindOutRestaurant.part/ns1:RESTAURANT_Record/ns1:RESTAURANT_ID</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurant/ns0:ID</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$FindOutRestaurant.part/ns1:RESTAURANT_Record/ns1:ADRESSE</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurant/ns0:Adresse</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$FindOutRestaurant.part/ns1:RESTAURANT_Record/ns1:NOM_RESTAURANT</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurant/ns0:Nom</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$FindOutRestaurant.part/ns1:RESTAURANT_Record/ns1:NB_COUVERTS</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurant/ns0:PlacesRestantes</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$FindOutRestaurant.part/ns1:RESTAURANT_Record/ns1:RATE_RESTAURANT</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurant/ns0:Rank</to>
+                                    </copy>
+                                    <copy>
+                                        <from>$FindOutRestaurant.part/ns1:RESTAURANT_Record/ns1:PRIX</from>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurant/ns0:Prix</to>
+                                    </copy>
+                                </assign>
+                            </sequence>
+                        </if>
+                    </else>
+                </if>
+            </else>
+        </if>
+        <reply name="ReplyInterface" partnerLink="Interface" operation="ReceptionOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Reception" portType="tns:ReceptionPortType" variable="ReceptionOperationOut"/>
+    </sequence>
+</process>
+
+
+
+
