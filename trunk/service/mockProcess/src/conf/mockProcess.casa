@@ -11,7 +11,7 @@
         <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="mockProcess-sun-http-binding" unit-name="sun-http-binding">
             <ports>
                 <port x="67" y="39">
-                    <link xlink:href="../jbiasa/mockReception/Reception.wsdl#xpointer(/definitions/service[@name='ReceptionService']/port[@name='ReceptionPortTypeBindingPort'])" xlink:type="simple"/>
+                    <link xlink:href="../jbiServiceUnits/mockReception/Reception.wsdl#xpointer(/definitions/service[@name='ReceptionService']/port[@name='ReceptionPortTypeBindingPort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint1"/>
                     <provides endpoint="endpoint1"/>
                 </port>
@@ -22,15 +22,12 @@
         <connection consumer="endpoint1" provider="endpoint2" state="unchanged"/>
     </connections>
     <porttypes>
-        <link xlink:href="../jbiasa/mockReception/Reception.wsdl#xpointer(/definitions/portType[@name='ReceptionPortType'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/mockReception/Reception.wsdl#xpointer(/definitions/portType[@name='ReceptionPortType'])" xlink:type="simple"/>
     </porttypes>
     <bindings>
-        <link xlink:href="../jbiasa/mockReception/Reception.wsdl#xpointer(/definitions/binding[@name='ReceptionPortTypeBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/mockReception/Reception.wsdl#xpointer(/definitions/binding[@name='ReceptionPortTypeBinding'])" xlink:type="simple"/>
     </bindings>
     <services>
-        <link xlink:href="../jbiasa/mockReception/Reception.wsdl#xpointer(/definitions/service[@name='ReceptionService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/mockReception/Reception.wsdl#xpointer(/definitions/service[@name='ReceptionService'])" xlink:type="simple"/>
     </services>
     <regions>
