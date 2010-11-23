@@ -37,12 +37,15 @@
                         </copy>
                     </assign>
                     <else>
-                        <assign name="Assign1">
-                            <copy>
-                                <from>'Moscou'</from>
-                                <to>$ReceptionOperationOut.response/ns0:Ville</to>
-                            </copy>
-                        </assign>
+                        <if name="IfDateNotNull">
+                            <condition>'' != string($ReceptionOperationIn.request/ns0:Date)</condition>
+                            <assign name="AssignTypeManif">
+                                <copy>
+                                    <from>'Beuverie'</from>
+                                    <to>$ReceptionOperationOut.response/ns0:TypeManifestation</to>
+                                </copy>
+                            </assign>
+                        </if>
                     </else>
                 </if>
             </else>
@@ -50,6 +53,10 @@
         <reply name="Reply1" partnerLink="InterfaceWeb" operation="ReceptionOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockReception/Reception" portType="tns:ReceptionPortType" variable="ReceptionOperationOut"/>
     </sequence>
 </process>
+
+
+
+
 
 
 
