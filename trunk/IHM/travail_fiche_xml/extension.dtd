@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!ELEMENT fiche (personnage ,caracteristiquesPrincipales ,caracteristiquesSecondaire , competences )>
+<!ELEMENT personnage (info*)>
+<!ELEMENT info (#PCDATA)>
+<!ELEMENT caracteristique (#PCDATA)>
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT competence (#PCDATA)>
+<!ELEMENT caracteristiquesPrincipales (caracteristique+)>
+<!ELEMENT caracteristiquesSecondaire (caracteristique+)>
+<!ELEMENT competences (categorie+)>
+<!ELEMENT categorie (nom, competence+)>
+
+
+
+
