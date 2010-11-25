@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE fiche SYSTEM "extension.dtd" >
+<fiche>
+	<personnage>
+		<info>joueurs</info>
+		<info>nature</info>
+		<info>attitude</info>
+		<info>chronique</info>
+	</personnage>
+
+	<caracteristiquesPrincipales>
+		<caracteristique>force</caracteristique>
+		<caracteristique>dext</caracteristique>
+		<caracteristique>vigueur</caracteristique>
+		<caracteristique>astuce</caracteristique>
+		<caracteristique>tt</caracteristique>
+		<caracteristique>fff</caracteristique>
+		<caracteristique>fff</caracteristique>
+	</caracteristiquesPrincipales>
+
+<caracteristiquesSecondaire>
+
+<caracteristique>volonte</caracteristique>
+
+
+
+</caracteristiquesSecondaire>
+
+<competences> 
+<categorie>
+<nom>competence</nom>
+<competence>bagarre</competence>
+</categorie>
+
+</competences>
+
+
+
+
+
+
+</fiche>
