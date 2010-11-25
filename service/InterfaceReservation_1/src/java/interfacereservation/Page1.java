@@ -9,10 +9,16 @@ import com.sun.rave.web.ui.appbase.AbstractPageBean;
 import com.sun.webui.jsf.component.TextField;
 import com.sun.webui.jsf.model.Option;
 import com.sun.webui.jsf.model.SingleSelectOptionsList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import javax.faces.FacesException;
 import javax.faces.event.ValueChangeEvent;
 import javax.xml.ws.WebServiceRef;
 import org.netbeans.j2ee.wsdl.mockreception.reception.ReceptionService;
+import org.netbeans.xml.schema.types.Hotel;
+import org.netbeans.xml.schema.types.Manifestation;
+import org.netbeans.xml.schema.types.Restaurant;
 
 /**
  * <p>Page bean that corresponds to a similarly named JSP page.  This
@@ -36,9 +42,12 @@ public class Page1 extends AbstractPageBean {
     private static String ville = "";
     private static String dateReservation = "";
     private static String type = "";
-    private static String nomHotel = "";
-    private static String nomRestaurant = "";
-    private static String nomManif = "";
+    private static Hotel hotel = new Hotel();
+    private static Restaurant restaurant = new Restaurant();
+    private static Manifestation manif = new Manifestation();
+    private static List<Hotel> listHotel = new LinkedList<Hotel>();
+    private static List<Restaurant> listRestaurant = new LinkedList<Restaurant>();
+    private static List<Manifestation> listManif = new LinkedList<Manifestation>();
 
 
     private static Option[] paysOption = { new Option("","") };
@@ -249,7 +258,68 @@ public class Page1 extends AbstractPageBean {
     @Override
     public void destroy() {
     }
-    
+
+    private static String descriptionEvenement;
+
+    /**
+     * Get the value of descriptionEvenement
+     *
+     * @return the value of descriptionEvenement
+     */
+    public String getDescriptionEvenement() {
+        return descriptionEvenement;
+    }
+
+    /**
+     * Set the value of descriptionEvenement
+     *
+     * @param descriptionEvenement new value of descriptionEvenement
+     */
+    public void setDescriptionEvenement(String descriptionEvenement) {
+        this.descriptionEvenement = descriptionEvenement;
+    }
+
+    private static String rankRestaurant;
+
+    /**
+     * Get the value of rankRestaurant
+     *
+     * @return the value of rankRestaurant
+     */
+    public String getRankRestaurant() {
+        return rankRestaurant;
+    }
+
+    /**
+     * Set the value of rankRestaurant
+     *
+     * @param rankRestaurant new value of rankRestaurant
+     */
+    public void setRankRestaurant(String rankRestaurant) {
+        this.rankRestaurant = rankRestaurant;
+    }
+
+
+    private static String rankHotel;
+
+    /**
+     * Get the value of rankHotel
+     *
+     * @return the value of rankHotel
+     */
+    public String getRankHotel() {
+        return rankHotel;
+    }
+
+    /**
+     * Set the value of rankHotel
+     *
+     * @param rankHotel new value of rankHotel
+     */
+    public void setRankHotel(String rankHotel) {
+        this.rankHotel = rankHotel;
+    }
+
     /**
      * <p>Return a reference to the scoped data bean.</p>
      *
@@ -284,6 +354,134 @@ public class Page1 extends AbstractPageBean {
     public void nom_processValueChange(ValueChangeEvent event) {
         nom = (String) event.getNewValue();
     }
+
+    public void nomManifdropDown_processValueChange(ValueChangeEvent event) {
+
+        String nomManif = (String) event.getNewValue();
+
+        boolean trouve = false;
+        Iterator ir = listManif.iterator();
+
+        while(ir.hasNext() && !trouve){
+
+            Manifestation maniftmp = (Manifestation) ir.next();
+
+            if(maniftmp.getNom().equalsIgnoreCase(nomManif)){
+                trouve = true;
+                manif = maniftmp;
+            }
+
+        }
+
+        System.out.println("On change le type de réservation : " + event.getNewValue());
+        System.out.println("Date : " + dateReservation);
+        System.out.println("Pays : " + pays);
+        System.out.println("Ville : " + ville);
+        System.out.println("-------------------------------------------------");
+
+        setDescriptionEvenement(manif.getDescription());
+
+    }
+
+    public void typeDropDown_processValueChange(ValueChangeEvent event) {
+
+        type = (String) event.getNewValue();
+        System.out.println("On change le type de réservation : " + type);
+        System.out.println("Date : " + dateReservation);
+        System.out.println("Pays : " + pays);
+        System.out.println("Ville : " + ville);
+        System.out.println("-------------------------------------------------");
+
+        if (!type.equalsIgnoreCase("")){
+
+            try { // Call Web Service Operation
+                org.netbeans.j2ee.wsdl.mockreception.reception.ReceptionPortType port = service.getReceptionPortTypeBindingPort();
+                // TODO initialize WS operation arguments here
+                org.netbeans.xml.schema.types.InterfaceRequest request = new org.netbeans.xml.schema.types.InterfaceRequest();
+
+                request.setDate(dateReservation);
+                request.setVille(ville);
+                request.setPays(pays);
+                request.setTypeManifestation(type);
+
+                // TODO process result here
+                org.netbeans.xml.schema.types.InterfaceResponse result = port.receptionOperation(request);
+
+                //We catch the name of manifestations, the hotels and the restaurants returned by the Reception Web Services
+
+                //We always set the first option to the empty string in order to
+                //force the user to make a choice
+                listManif = result.getManifestation();
+
+                int taille = result.getManifestation().size();
+                Option[] resultManifs = new Option[taille+1];
+                resultManifs[0] = new Option("","");
+                int i = 1;
+
+                System.out.println("Debut de la recuperation des manifestations");
+
+                for(Manifestation maniftmp : result.getManifestation()){
+                    System.out.println("    Manif lue : " + maniftmp.getNom());
+                    resultManifs[i++] = new Option(maniftmp.getNom(),maniftmp.getNom());
+                }
+
+                nomManifOption = resultManifs;
+
+                nomManifdropDownDefaultOptions.setOptions(nomManifOption);
+
+
+                //We always set the first option to the empty string in order to
+                //force the user to make a choice
+                listHotel = result.getHotel();
+
+                taille = result.getHotel().size();
+                Option[] resultHotels = new Option[taille+1];
+                resultHotels[0] = new Option("","");
+                i = 1;
+
+                System.out.println("Debut de la recuperation des hotels");
+
+                for(Hotel hoteltmp : result.getHotel()){
+                    System.out.println("    Hotel lu : " + hoteltmp.getNom());
+                    resultHotels[i++] = new Option(hoteltmp.getNom(),hoteltmp.getNom());
+                }
+
+                nomHotelOption = resultHotels;
+
+                nomHotelDropDownDefaultOptions.setOptions(nomHotelOption);
+
+
+                //We always set the first option to the empty string in order to
+                //force the user to make a choice
+                listRestaurant = result.getRestaurant();
+
+                taille = result.getRestaurant().size();
+                Option[] resultRestos = new Option[taille+1];
+                resultRestos[0] = new Option("","");
+                i = 1;
+
+                System.out.println("Debut de la recuperation des restaurants");
+
+                for(Restaurant restotmp : result.getRestaurant()){
+                    System.out.println("    Resto lu : " + restotmp.getNom());
+                    resultRestos[i++] = new Option(restotmp.getNom(),restotmp.getNom());
+                }
+
+                nomRestaurantOption = resultRestos;
+
+                nomRestaurantDropDownDefaultOptions.setOptions(nomRestaurantOption);
+
+
+            } catch (Exception ex) {
+                // TODO handle custom exceptions here
+            }
+
+        } else {
+            resetOptionExceptType();
+        }
+
+    }
+
 
     public void date_processValueChange(ValueChangeEvent event) {
 
@@ -494,5 +692,6 @@ public class Page1 extends AbstractPageBean {
         nomRestaurantDropDownDefaultOptions.setOptions(nomRestaurantOption);
 
     }
+
 }
 
