@@ -28,18 +28,25 @@
                         <webuijsf:staticText id="titrePage"
                             style="font-size: 24px; height: 48px; left: 192px; top: 24px; position: absolute; text-decoration: underline; width: 312px" text="Formulaire de Réservation"/>
                         <webuijsf:pageSeparator id="pageSeparator1" style="height: 24px; left: 96px; top: 288px; position: absolute; width: 480px"/>
-                        <webuijsf:dropDown id="nomManifdropDown" items="#{Page1.nomManifdropDownDefaultOptions.options}" label="Nom :" style="left: 144px; top: 456px; position: absolute"/>
-                        <webuijsf:dropDown id="typeDropDown" items="#{Page1.typeDropDownDefaultOptions.options}" label="Type :" style="left: 144px; top: 408px; position: absolute"/>
-                        <webuijsf:textArea id="description" style="left: 384px; top: 408px; position: absolute" valueChangeListenerExpression="#{Page1.description_processValueChange}"/>
+                        <webuijsf:dropDown id="nomManifdropDown" items="#{Page1.nomManifdropDownDefaultOptions.options}" label="Nom :"
+                            onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'nomManifdropDown');"
+                            style="left: 144px; top: 456px; position: absolute" valueChangeListenerExpression="#{Page1.nomManifdropDown_processValueChange}"/>
+                        <webuijsf:dropDown id="typeDropDown" items="#{Page1.typeDropDownDefaultOptions.options}" label="Type :"
+                            onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'typeDropDown');"
+                            style="left: 144px; top: 408px; position: absolute" valueChangeListenerExpression="#{Page1.typeDropDown_processValueChange}"/>
+                        <webuijsf:textArea disabled="true" id="description" immediate="true" style="left: 384px; top: 408px; position: absolute"
+                            text="#{Page1.descriptionEvenement}" valueChangeListenerExpression="#{Page1.description_processValueChange}"/>
                         <webuijsf:pageSeparator id="pageSeparator2" style="height: 24px; left: 96px; top: 504px; position: absolute; width: 480px"/>
-                        <webuijsf:staticText id="titreConcert" style="font-size: 24px; left: 288px; top: 336px; position: absolute; text-decoration: underline" text="Concert"/>
+                        <webuijsf:staticText id="titreConcert" style="font-size: 24px; left: 288px; top: 336px; position: absolute; text-decoration: underline" text="Evénement"/>
                         <webuijsf:staticText id="titreHotel" style="font-size: 24px; left: 168px; top: 552px; position: absolute; text-decoration: underline" text="Hôtel"/>
                         <webuijsf:staticText id="titreRestaurant"
                             style="font-size: 24px; left: 408px; top: 552px; position: absolute; text-decoration: underline" text="Restaurant"/>
-                        <webuijsf:dropDown id="nomHotelDropDown" items="#{Page1.nomHotelDropDownDefaultOptions.options}" label="Nom :" style="left: 144px; top: 600px; position: absolute"/>
-                        <webuijsf:dropDown id="nomRestaurantDropDown" items="#{Page1.nomRestaurantDropDownDefaultOptions.options}" label="Nom :" style="left: 408px; top: 600px; position: absolute"/>
-                        <webuijsf:staticText id="avisHotel" style="left: 192px; top: 648px; position: absolute"/>
-                        <webuijsf:staticText id="avisRestaurant" style="position: absolute; left: 456px; top: 648px"/>
+                        <webuijsf:dropDown id="nomHotelDropDown" items="#{Page1.nomHotelDropDownDefaultOptions.options}" label="Nom :"
+                            onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'nomHotelDropDown');" style="left: 144px; top: 600px; position: absolute"/>
+                        <webuijsf:dropDown id="nomRestaurantDropDown" items="#{Page1.nomRestaurantDropDownDefaultOptions.options}" label="Nom :"
+                            onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'nomRestaurantDropDown');" style="left: 408px; top: 600px; position: absolute"/>
+                        <webuijsf:staticText id="avisHotel" style="left: 192px; top: 648px; position: absolute" text="#{Page1.rankHotel}"/>
+                        <webuijsf:staticText id="avisRestaurant" style="position: absolute; left: 456px; top: 648px" text="#{Page1.rankRestaurant}"/>
                         <webuijsf:label id="labelPrixHotel" style="left: 96px; top: 648px; position: absolute" text="Avis moyen : "/>
                         <webuijsf:label id="labelPrixHotel1" style="left: 360px; top: 648px; position: absolute" text="Avis moyen : "/>
                         <webuijsf:button id="valider" style="height: 24px; left: 263px; top: 792px; position: absolute; width: 143px" text="Valider"/>
