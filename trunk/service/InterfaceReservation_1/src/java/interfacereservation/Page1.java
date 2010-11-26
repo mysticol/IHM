@@ -79,6 +79,10 @@ public class Page1 extends AbstractPageBean {
         typeDropDownDefaultOptions.setOptions(typeOption);
         villeDropDownDefaultOptions.setOptions(villeOption);
 
+        setDescriptionEvenement(descriptionEvenement);
+        setRankHotel(rankHotel);
+        setRankRestaurant(rankRestaurant);
+
     }
     private SingleSelectOptionsList paysDropDownDefaultOptions = new SingleSelectOptionsList();
 
@@ -259,7 +263,7 @@ public class Page1 extends AbstractPageBean {
     public void destroy() {
     }
 
-    private static String descriptionEvenement;
+    private static String descriptionEvenement = "";
 
     /**
      * Get the value of descriptionEvenement
@@ -279,7 +283,7 @@ public class Page1 extends AbstractPageBean {
         this.descriptionEvenement = descriptionEvenement;
     }
 
-    private static String rankRestaurant;
+    private static String rankRestaurant = "";
 
     /**
      * Get the value of rankRestaurant
@@ -300,7 +304,7 @@ public class Page1 extends AbstractPageBean {
     }
 
 
-    private static String rankHotel;
+    private static String rankHotel = "";
 
     /**
      * Get the value of rankHotel
@@ -379,7 +383,14 @@ public class Page1 extends AbstractPageBean {
         System.out.println("Ville : " + ville);
         System.out.println("-------------------------------------------------");
 
-        setDescriptionEvenement(manif.getDescription());
+
+        if(nomManif.equalsIgnoreCase("")) {
+            setDescriptionEvenement("");
+        } else {
+            setDescriptionEvenement(manif.getDescription());
+        }
+
+
 
     }
 
@@ -491,49 +502,7 @@ public class Page1 extends AbstractPageBean {
         System.out.println("Ville : " + ville);
         System.out.println("-------------------------------------------------");
 
-        if(!ville.equalsIgnoreCase("") && !dateReservation.equalsIgnoreCase("")){
-
-            try { // Call Web Service Operation
-                org.netbeans.j2ee.wsdl.mockreception.reception.ReceptionPortType port = service.getReceptionPortTypeBindingPort();
-                // TODO initialize WS operation arguments here
-                org.netbeans.xml.schema.types.InterfaceRequest request = new org.netbeans.xml.schema.types.InterfaceRequest();
-
-                request.setDate(dateReservation);
-                request.setVille(ville);
-                request.setPays(pays);
-
-                // TODO process result here
-                org.netbeans.xml.schema.types.InterfaceResponse result = port.receptionOperation(request);
-
-                //We catch the type of manifestation returned by the Reception Web Services
-
-                //We always set the first option to the empty string in order to
-                //force the user to choose a type of manifestation
-                int taille = result.getTypeManifestation().size();
-                Option[] resultTypes = new Option[taille+1];
-                resultTypes[0] = new Option("","");
-                int i = 1;
-
-                System.out.println("Debut de la recuperation des types de manifestation");
-
-                for(String typetmp : result.getTypeManifestation()){
-                    System.out.println("    Type lu : " + typetmp);
-                    resultTypes[i++] = new Option(typetmp,typetmp);
-                }
-
-                typeOption = resultTypes;
-
-                typeDropDownDefaultOptions.setOptions(typeOption);
-
-                resetOptionExceptType();
-
-            } catch (Exception ex) {
-                // TODO handle custom exceptions here
-            }
-
-        } else {
-            resetOptionFromType();
-        }
+        resetOptionFromType();
 
     }
 
@@ -545,49 +514,7 @@ public class Page1 extends AbstractPageBean {
         System.out.println("Date : " + dateReservation);
         System.out.println("-------------------------------------------------");
 
-        if(!ville.equalsIgnoreCase("") && !dateReservation.equalsIgnoreCase("")){
-
-            try { // Call Web Service Operation
-                org.netbeans.j2ee.wsdl.mockreception.reception.ReceptionPortType port = service.getReceptionPortTypeBindingPort();
-                // TODO initialize WS operation arguments here
-                org.netbeans.xml.schema.types.InterfaceRequest request = new org.netbeans.xml.schema.types.InterfaceRequest();
-
-                request.setDate(dateReservation);
-                request.setVille(ville);
-                request.setPays(pays);
-
-                // TODO process result here
-                org.netbeans.xml.schema.types.InterfaceResponse result = port.receptionOperation(request);
-
-                //We catch the type of manifestation returned by the Reception Web Services
-
-                //We always set the first option to the empty string in order to
-                //force the user to choose a type of manifestation
-                int taille = result.getTypeManifestation().size();
-                Option[] resultTypes = new Option[taille+1];
-                resultTypes[0] = new Option("","");
-                int i = 1;
-
-                System.out.println("Debut de la recuperation des types de manifestation");
-
-                for(String typetmp : result.getTypeManifestation()){
-                    System.out.println("    Type lu : " + typetmp);
-                    resultTypes[i++] = new Option(typetmp,typetmp);
-                }
-
-                typeOption = resultTypes;
-
-                typeDropDownDefaultOptions.setOptions(typeOption);
-
-                resetOptionExceptType();
-
-            } catch (Exception ex) {
-                // TODO handle custom exceptions here
-            }
-
-        } else {
-            resetOptionFromType();
-        }
+        resetOptionFromType();
 
     }
 
@@ -676,6 +603,10 @@ public class Page1 extends AbstractPageBean {
         nomRestaurantDropDownDefaultOptions.setOptions(nomRestaurantOption);
         typeDropDownDefaultOptions.setOptions(typeOption);
 
+        setDescriptionEvenement("");
+        setRankHotel("");
+        setRankRestaurant("");
+
     }
 
     private void resetOptionExceptType() {
@@ -691,6 +622,61 @@ public class Page1 extends AbstractPageBean {
         nomManifdropDownDefaultOptions.setOptions(nomManifOption);
         nomRestaurantDropDownDefaultOptions.setOptions(nomRestaurantOption);
 
+        setDescriptionEvenement("");
+        setRankHotel("");
+        setRankRestaurant("");
+
+    }
+
+    public String chercher_action() {
+        // TODO: Process the action. Return value is a navigation
+        // case name where null will return to the same page.
+
+        if(!ville.equalsIgnoreCase("") && !dateReservation.equalsIgnoreCase("")){
+
+            try { // Call Web Service Operation
+                org.netbeans.j2ee.wsdl.mockreception.reception.ReceptionPortType port = service.getReceptionPortTypeBindingPort();
+                // TODO initialize WS operation arguments here
+                org.netbeans.xml.schema.types.InterfaceRequest request = new org.netbeans.xml.schema.types.InterfaceRequest();
+
+                request.setDate(dateReservation);
+                request.setVille(ville);
+                request.setPays(pays);
+
+                // TODO process result here
+                org.netbeans.xml.schema.types.InterfaceResponse result = port.receptionOperation(request);
+
+                //We catch the type of manifestation returned by the Reception Web Services
+
+                //We always set the first option to the empty string in order to
+                //force the user to choose a type of manifestation
+                int taille = result.getTypeManifestation().size();
+                Option[] resultTypes = new Option[taille+1];
+                resultTypes[0] = new Option("","");
+                int i = 1;
+
+                System.out.println("Debut de la recuperation des types de manifestation");
+
+                for(String typetmp : result.getTypeManifestation()){
+                    System.out.println("    Type lu : " + typetmp);
+                    resultTypes[i++] = new Option(typetmp,typetmp);
+                }
+
+                typeOption = resultTypes;
+
+                typeDropDownDefaultOptions.setOptions(typeOption);
+
+                resetOptionExceptType();
+
+            } catch (Exception ex) {
+                // TODO handle custom exceptions here
+            }
+
+        } else {
+            resetOptionFromType();
+        }
+
+        return null;
     }
 
 }
