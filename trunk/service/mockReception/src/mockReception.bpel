@@ -50,9 +50,95 @@
                 </if>
             </else>
         </if>
+        <if name="IfTypeManifNonVide">
+            <condition>string($ReceptionOperationIn.request/ns0:TypeManifestation) != ''</condition>
+            <assign name="Assign1">
+                <copy>
+                    <from>'idmanif'</from>
+                    <to>$ReceptionOperationOut.response/ns0:Manifestation/ns0:ID</to>
+                </copy>
+                <copy>
+                    <from>'Concert de fou'</from>
+                    <to>$ReceptionOperationOut.response/ns0:Manifestation/ns0:Nom</to>
+                </copy>
+                <copy>
+                    <from>'2, rue des fous'</from>
+                    <to>$ReceptionOperationOut.response/ns0:Manifestation/ns0:Adresse</to>
+                </copy>
+                <copy>
+                    <from>'concert de fous'</from>
+                    <to>$ReceptionOperationOut.response/ns0:Manifestation/ns0:Description</to>
+                </copy>
+                <copy>
+                    <from>150</from>
+                    <to>$ReceptionOperationOut.response/ns0:Manifestation/ns0:Prix</to>
+                </copy>
+                <copy>
+                    <from>50</from>
+                    <to>$ReceptionOperationOut.response/ns0:Manifestation/ns0:PlacesRestantes</to>
+                </copy>
+                <copy>
+                    <from>'idhotel'</from>
+                    <to>$ReceptionOperationOut.response/ns0:Hotel/ns0:ID</to>
+                </copy>
+                <copy>
+                    <from>'Hotel de merde'</from>
+                    <to>$ReceptionOperationOut.response/ns0:Hotel/ns0:Nom</to>
+                </copy>
+                <copy>
+                    <from>'4, rue de la merde'</from>
+                    <to>$ReceptionOperationOut.response/ns0:Hotel/ns0:Adresse</to>
+                </copy>
+                <copy>
+                    <from>50</from>
+                    <to>$ReceptionOperationOut.response/ns0:Hotel/ns0:Prix</to>
+                </copy>
+                <copy>
+                    <from>5</from>
+                    <to>$ReceptionOperationOut.response/ns0:Hotel/ns0:Rank</to>
+                </copy>
+                <copy>
+                    <from>35</from>
+                    <to>$ReceptionOperationOut.response/ns0:Hotel/ns0:PrixMoyen</to>
+                </copy>
+                <copy>
+                    <from>10</from>
+                    <to>$ReceptionOperationOut.response/ns0:Hotel/ns0:PlacesRestantes</to>
+                </copy>
+                <copy>
+                    <from>'idresto'</from>
+                    <to>$ReceptionOperationOut.response/ns0:Restaurant/ns0:ID</to>
+                </copy>
+                <copy>
+                    <from>'Resto de merde'</from>
+                    <to>$ReceptionOperationOut.response/ns0:Restaurant/ns0:Nom</to>
+                </copy>
+                <copy>
+                    <from>"5, rue de l'hotel"</from>
+                    <to>$ReceptionOperationOut.response/ns0:Restaurant/ns0:Adresse</to>
+                </copy>
+                <copy>
+                    <from>50</from>
+                    <to>$ReceptionOperationOut.response/ns0:Restaurant/ns0:Prix</to>
+                </copy>
+                <copy>
+                    <from>5</from>
+                    <to>$ReceptionOperationOut.response/ns0:Restaurant/ns0:Rank</to>
+                </copy>
+                <copy>
+                    <from>12</from>
+                    <to>$ReceptionOperationOut.response/ns0:Restaurant/ns0:PlacesRestantes</to>
+                </copy>
+                <copy>
+                    <from>10</from>
+                    <to>$ReceptionOperationOut.response/ns0:Restaurant/ns0:PrixMoyen</to>
+                </copy>
+            </assign>
+        </if>
         <reply name="Reply1" partnerLink="InterfaceWeb" operation="ReceptionOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockReception/Reception" portType="tns:ReceptionPortType" variable="ReceptionOperationOut"/>
     </sequence>
 </process>
+
 
 
 
