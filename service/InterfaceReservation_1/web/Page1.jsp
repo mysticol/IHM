@@ -51,6 +51,7 @@
                         <webuijsf:label id="labelPrixHotel1" style="left: 360px; top: 648px; position: absolute" text="Avis moyen : "/>
                         <webuijsf:button id="valider" style="height: 24px; left: 263px; top: 792px; position: absolute; width: 143px" text="Valider"/>
                         <webuijsf:pageSeparator id="pageSeparator3" style="position: absolute; left: 96px; top: 696px; width: 480px; height: 24px"/>
+                        <webuijsf:button actionExpression="#{Page1.chercher_action}" id="chercher" style="left: 287px; top: 288px; position: absolute" text="Chercher un événement"/>
                     </webuijsf:form>
                 </webuijsf:body>
             </webuijsf:html>
