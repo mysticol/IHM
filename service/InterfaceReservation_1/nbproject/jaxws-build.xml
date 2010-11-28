@@ -16,7 +16,7 @@
     </target>
     <target name="wsimport-client-Reception" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/Reception"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/Reception" destdir="${build.generated.dir}/jax-wsCache/Reception" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/Reception/wsdl/Reception.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="file:/C:/Users/JulienSambre/Documents/NetBeansProjects/InterfaceReservation/web/WEB-INF/wsdl/Reception.wsdl" xnocompile="true">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/Reception" destdir="${build.generated.dir}/jax-wsCache/Reception" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/Reception/wsdl/Reception.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="file:/C:/Users/JulienSambre/Documents/NetBeansProjects/mockReception/src/Reception.wsdl" xnocompile="true">
             <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/Reception/wsdl/Reception.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/Reception"/>
         </wsimport>
@@ -27,8 +27,24 @@
         </copy>
     </target>
     <target name="wsimport-client-clean-Reception" depends="-init-project">
-        <delete dir="${build.generated.sources.dir}/jax-ws/org/netbeans/j2ee/wsdl/mockreception/reception"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/org/netbeans/j2ee/wsdl/reception/reception"/>
         <delete dir="${build.generated.dir}/jax-wsCache/Reception"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-Reception"/>
+    <target name="wsimport-client-Reservation" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/Reservation"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/Reservation" destdir="${build.generated.dir}/jax-wsCache/Reservation" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/Reservation/wsdl/Reservation.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="file:/C:/Users/JulienSambre/Documents/NetBeansProjects/mockReservation/src/Reservation.wsdl" xnocompile="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/Reservation/wsdl/Reservation.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/Reservation"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/Reservation">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-Reservation" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/org/netbeans/j2ee/wsdl/mockreservation/reservation"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/Reservation"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-Reception, wsimport-client-Reservation"/>
 </project>

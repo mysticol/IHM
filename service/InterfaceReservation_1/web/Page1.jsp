@@ -14,19 +14,21 @@
                 </webuijsf:head>
                 <webuijsf:body id="body1" style="-rave-layout: grid">
                     <webuijsf:form id="form1">
-                        <webuijsf:textField id="nom" label="Nom : " style="left: 120px; top: 120px; position: absolute" valueChangeListenerExpression="#{Page1.nom_processValueChange}"/>
-                        <webuijsf:textField id="prenom" label="Prénom :" style="left: 360px; top: 120px; position: absolute" valueChangeListenerExpression="#{Page1.prenom_processValueChange}"/>
-                        <webuijsf:dropDown id="paysDropDown" items="#{Page1.paysDropDownDefaultOptions.options}" label="Pays :"
-                            onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'paysDropDown');"
-                            style="left: 144px; top: 192px; position: absolute" valueChangeListenerExpression="#{Page1.paysDropDown_processValueChange}"/>
-                        <webuijsf:dropDown id="villeDropDown" items="#{Page1.villeDropDownDefaultOptions.options}" label="Ville :"
-                            onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'villeDropDown');"
-                            style="left: 144px; top: 240px; position: absolute" valueChangeListenerExpression="#{Page1.villeDropDown_processValueChange}"/>
+                        <webuijsf:textField id="nom" label="Nom : " onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'nom');"
+                            style="left: 120px; top: 72px; position: absolute" valueChangeListenerExpression="#{Page1.nom_processValueChange}"/>
+                        <webuijsf:textField id="prenom" label="Prénom :" onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'prenom');"
+                            style="left: 312px; top: 72px; position: absolute" valueChangeListenerExpression="#{Page1.prenom_processValueChange}"/>
+                        <webuijsf:dropDown id="paysArriveeDropDown" items="#{Page1.paysArriveeDropDownDefaultOptions.options}" label="Pays d'arrivée :"
+                            onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'paysArriveeDropDown');"
+                            style="left: 384px; top: 192px; position: absolute" valueChangeListenerExpression="#{Page1.paysArriveeDropDown_processValueChange}"/>
+                        <webuijsf:dropDown id="villeArriveeDropDown" items="#{Page1.villeArriveeDropDownDefaultOptions.options}" label="Ville d'arrivée :"
+                            onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'villeArriveeDropDown');"
+                            style="left: 384px; top: 240px; position: absolute" valueChangeListenerExpression="#{Page1.villeArriveeDropDown_processValueChange}"/>
                         <webuijsf:textField binding="#{Page1.date}" id="date" immediate="true" label="Date :"
-                            onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'date');" style="left: 360px; top: 192px; position: absolute" valueChangeListenerExpression="#{Page1.date_processValueChange}"/>
-                        <webuijsf:staticText id="formatDate" style="left: 408px; top: 216px; position: absolute" text="(format : YYYY-MM-DD)"/>
+                            onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'date');" style="left: 240px; top: 120px; position: absolute" valueChangeListenerExpression="#{Page1.date_processValueChange}"/>
+                        <webuijsf:staticText id="formatDate" style="left: 288px; top: 144px; position: absolute" text="(format : YYYY-MM-DD)"/>
                         <webuijsf:staticText id="titrePage"
-                            style="font-size: 24px; height: 48px; left: 192px; top: 24px; position: absolute; text-decoration: underline; width: 312px" text="Formulaire de Réservation"/>
+                            style="font-size: 24px; height: 48px; left: 192px; top: 0px; position: absolute; text-decoration: underline; width: 312px" text="Formulaire de Réservation"/>
                         <webuijsf:pageSeparator id="pageSeparator1" style="height: 24px; left: 96px; top: 288px; position: absolute; width: 480px"/>
                         <webuijsf:dropDown id="nomManifdropDown" items="#{Page1.nomManifdropDownDefaultOptions.options}" label="Nom :"
                             onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'nomManifdropDown');"
@@ -42,16 +44,25 @@
                         <webuijsf:staticText id="titreRestaurant"
                             style="font-size: 24px; left: 408px; top: 552px; position: absolute; text-decoration: underline" text="Restaurant"/>
                         <webuijsf:dropDown id="nomHotelDropDown" items="#{Page1.nomHotelDropDownDefaultOptions.options}" label="Nom :"
-                            onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'nomHotelDropDown');" style="left: 144px; top: 600px; position: absolute"/>
+                            onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'nomHotelDropDown');"
+                            style="left: 144px; top: 600px; position: absolute" valueChangeListenerExpression="#{Page1.nomHotelDropDown_processValueChange}"/>
                         <webuijsf:dropDown id="nomRestaurantDropDown" items="#{Page1.nomRestaurantDropDownDefaultOptions.options}" label="Nom :"
-                            onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'nomRestaurantDropDown');" style="left: 408px; top: 600px; position: absolute"/>
+                            onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'nomRestaurantDropDown');"
+                            style="left: 408px; top: 600px; position: absolute" valueChangeListenerExpression="#{Page1.nomRestaurantDropDown_processValueChange}"/>
                         <webuijsf:staticText id="avisHotel" style="left: 192px; top: 648px; position: absolute" text="#{Page1.rankHotel}"/>
                         <webuijsf:staticText id="avisRestaurant" style="position: absolute; left: 456px; top: 648px" text="#{Page1.rankRestaurant}"/>
                         <webuijsf:label id="labelPrixHotel" style="left: 96px; top: 648px; position: absolute" text="Avis moyen : "/>
                         <webuijsf:label id="labelPrixHotel1" style="left: 360px; top: 648px; position: absolute" text="Avis moyen : "/>
-                        <webuijsf:button id="valider" style="height: 24px; left: 263px; top: 792px; position: absolute; width: 143px" text="Valider"/>
+                        <webuijsf:button actionExpression="#{Page1.valider_action}" id="valider"
+                            style="height: 24px; left: 263px; top: 792px; position: absolute; width: 143px" text="Valider"/>
                         <webuijsf:pageSeparator id="pageSeparator3" style="position: absolute; left: 96px; top: 696px; width: 480px; height: 24px"/>
                         <webuijsf:button actionExpression="#{Page1.chercher_action}" id="chercher" style="left: 287px; top: 288px; position: absolute" text="Chercher un événement"/>
+                        <webuijsf:textField id="paysDepartTextField" label="Pays de départ :"
+                            onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'paysDepartTextField');"
+                            style="left: 120px; top: 192px; position: absolute" valueChangeListenerExpression="#{Page1.paysDepartTextField_processValueChange}"/>
+                        <webuijsf:textField id="villeDepartTextField" label="Ville de départ :"
+                            onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'villeDepartTextField');"
+                            style="position: absolute; left: 120px; top: 240px" valueChangeListenerExpression="#{Page1.villeDepartTextField_processValueChange}"/>
                     </webuijsf:form>
                 </webuijsf:body>
             </webuijsf:html>
