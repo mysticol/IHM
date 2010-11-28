@@ -15,10 +15,12 @@ import java.util.List;
 import javax.faces.FacesException;
 import javax.faces.event.ValueChangeEvent;
 import javax.xml.ws.WebServiceRef;
-import org.netbeans.j2ee.wsdl.mockreception.reception.ReceptionService;
-import org.netbeans.xml.schema.types.Hotel;
-import org.netbeans.xml.schema.types.Manifestation;
-import org.netbeans.xml.schema.types.Restaurant;
+import org.netbeans.j2ee.wsdl.mockreservation.reservation.ReservationService;
+import org.netbeans.j2ee.wsdl.reception.reception.ReceptionService;
+import org.netbeans.xml.schema.types.Hotels;
+import org.netbeans.xml.schema.types.Manifestations;
+import org.netbeans.xml.schema.types.Restaurants;
+import org.netbeans.xml.schema.types.Voyage;
 
 /**
  * <p>Page bean that corresponds to a similarly named JSP page.  This
@@ -33,13 +35,17 @@ import org.netbeans.xml.schema.types.Restaurant;
  */
 
 public class Page1 extends AbstractPageBean {
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/Reservation.wsdl")
+    private ReservationService service_1;
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/Reception.wsdl")
     private ReceptionService service;
 
     private static String nom = "";
     private static String prenom = "";
-    private static String pays = "";
-    private static String ville = "";
+    private static String paysDepart = "";
+    private static String villeDepart = "";
+    private static String paysArrivee = "";
+    private static String villeArrivee = "";
     private static String dateReservation = "";
     private static String type = "";
     private static Hotel hotel = new Hotel();
@@ -50,8 +56,8 @@ public class Page1 extends AbstractPageBean {
     private static List<Manifestation> listManif = new LinkedList<Manifestation>();
 
 
-    private static Option[] paysOption = { new Option("","") };
-    private static Option[] villeOption = { new Option("","") };
+    private static Option[] paysArriveeOption = { new Option("","") };
+    private static Option[] villeArriveeOption = { new Option("","") };
     private static Option[] typeOption = { new Option("","") };
     private static Option[] nomHotelOption = { new Option("","") };
     private static Option[] nomRestaurantOption = { new Option("","") };
@@ -75,32 +81,32 @@ public class Page1 extends AbstractPageBean {
         nomHotelDropDownDefaultOptions.setOptions(nomHotelOption);
         nomManifdropDownDefaultOptions.setOptions(nomManifOption);
         nomRestaurantDropDownDefaultOptions.setOptions(nomRestaurantOption);
-        paysDropDownDefaultOptions.setOptions(paysOption);
+        paysArriveeDropDownDefaultOptions.setOptions(paysArriveeOption);
         typeDropDownDefaultOptions.setOptions(typeOption);
-        villeDropDownDefaultOptions.setOptions(villeOption);
+        villeArriveeDropDownDefaultOptions.setOptions(villeArriveeOption);
 
         setDescriptionEvenement(descriptionEvenement);
         setRankHotel(rankHotel);
         setRankRestaurant(rankRestaurant);
 
     }
-    private SingleSelectOptionsList paysDropDownDefaultOptions = new SingleSelectOptionsList();
+    private SingleSelectOptionsList paysArriveeDropDownDefaultOptions = new SingleSelectOptionsList();
 
-    public SingleSelectOptionsList getPaysDropDownDefaultOptions() {
-        return paysDropDownDefaultOptions;
+    public SingleSelectOptionsList getPaysArriveeDropDownDefaultOptions() {
+        return paysArriveeDropDownDefaultOptions;
     }
 
-    public void setPaysDropDownDefaultOptions(SingleSelectOptionsList ssol) {
-        this.paysDropDownDefaultOptions = ssol;
+    public void setPaysArriveeDropDownDefaultOptions(SingleSelectOptionsList ssol) {
+        this.paysArriveeDropDownDefaultOptions = ssol;
     }
-    private SingleSelectOptionsList villeDropDownDefaultOptions = new SingleSelectOptionsList();
+    private SingleSelectOptionsList villeArriveeDropDownDefaultOptions = new SingleSelectOptionsList();
 
-    public SingleSelectOptionsList getVilleDropDownDefaultOptions() {
-        return villeDropDownDefaultOptions;
+    public SingleSelectOptionsList getVilleArriveeDropDownDefaultOptions() {
+        return villeArriveeDropDownDefaultOptions;
     }
 
-    public void setVilleDropDownDefaultOptions(SingleSelectOptionsList ssol) {
-        this.villeDropDownDefaultOptions = ssol;
+    public void setVilleArriveeDropDownDefaultOptions(SingleSelectOptionsList ssol) {
+        this.villeArriveeDropDownDefaultOptions = ssol;
     }
     private SingleSelectOptionsList nomManifdropDownDefaultOptions = new SingleSelectOptionsList();
 
@@ -185,7 +191,7 @@ public class Page1 extends AbstractPageBean {
 
             // We request all the countries available
             try { // Call Web Service Operation
-                org.netbeans.j2ee.wsdl.mockreception.reception.ReceptionPortType port = service.getReceptionPortTypeBindingPort();
+                org.netbeans.j2ee.wsdl.reception.reception.ReceptionPortType port = service.getReceptionPortTypeBindingPort();
                 // TODO initialize WS operation arguments here
                 org.netbeans.xml.schema.types.InterfaceRequest request = new org.netbeans.xml.schema.types.InterfaceRequest();
                 // TODO process result here
@@ -209,8 +215,8 @@ public class Page1 extends AbstractPageBean {
                 }
                 System.out.println("-------------------------------------------------");
 
-                paysOption = resultPays;
-                paysDropDownDefaultOptions.setOptions(paysOption);
+                paysArriveeOption = resultPays;
+                paysArriveeDropDownDefaultOptions.setOptions(paysArriveeOption);
 
             } catch (Exception ex) {
                 System.out.println("Erreur dans la reception d'un message");
@@ -359,6 +365,77 @@ public class Page1 extends AbstractPageBean {
         nom = (String) event.getNewValue();
     }
 
+    public void paysDepartTextField_processValueChange(ValueChangeEvent event) {
+        paysDepart = (String) event.getNewValue();
+    }
+
+    public void villeDepartTextField_processValueChange(ValueChangeEvent event) {
+        villeDepart = (String) event.getNewValue();
+    }
+
+    public void nomRestaurantDropDown_processValueChange(ValueChangeEvent event) {
+
+        String nomRestaurant = (String) event.getNewValue();
+
+        boolean trouve = false;
+        Iterator ir = listRestaurant.iterator();
+
+        while(ir.hasNext() && !trouve){
+
+            Restaurant restauranttmp = (Restaurant) ir.next();
+
+            if(restauranttmp.getNom().equalsIgnoreCase(nomRestaurant)){
+                trouve = true;
+                restaurant = restauranttmp;
+            }
+
+        }
+
+        System.out.println("On change le nom du restaurant : " + event.getNewValue());
+        System.out.println("Type manif : " + type);
+        System.out.println("Nom manif : " + manif.getNom());
+        System.out.println("-------------------------------------------------");
+
+
+        if(nomRestaurant.equalsIgnoreCase("")) {
+            setRankRestaurant("");
+        } else {
+            setRankRestaurant(restaurant.getPrixMoyen().toString());
+        }
+    }
+
+    public void nomHotelDropDown_processValueChange(ValueChangeEvent event) {
+
+        String nomHotel = (String) event.getNewValue();
+
+        boolean trouve = false;
+        Iterator ir = listHotel.iterator();
+
+        while(ir.hasNext() && !trouve){
+
+            Hotel hoteltmp = (Hotel) ir.next();
+
+            if(hoteltmp.getNom().equalsIgnoreCase(nomHotel)){
+                trouve = true;
+                hotel = hoteltmp;
+            }
+
+        }
+
+        System.out.println("On change le nom de l'Hotel : " + event.getNewValue());
+        System.out.println("Type manif : " + type);
+        System.out.println("Nom manif : " + manif.getNom());
+        System.out.println("-------------------------------------------------");
+
+
+        if(nomHotel.equalsIgnoreCase("")) {
+            setRankHotel("");
+        } else {
+            setRankHotel(hotel.getPrixMoyen().toString());
+        }
+
+    }
+
     public void nomManifdropDown_processValueChange(ValueChangeEvent event) {
 
         String nomManif = (String) event.getNewValue();
@@ -377,10 +454,11 @@ public class Page1 extends AbstractPageBean {
 
         }
 
-        System.out.println("On change le type de réservation : " + event.getNewValue());
+        System.out.println("On change le nom de la manif : " + event.getNewValue());
         System.out.println("Date : " + dateReservation);
-        System.out.println("Pays : " + pays);
-        System.out.println("Ville : " + ville);
+        System.out.println("Pays : " + paysArrivee);
+        System.out.println("Ville : " + villeArrivee);
+        System.out.println("Type manif : " + type);
         System.out.println("-------------------------------------------------");
 
 
@@ -390,8 +468,6 @@ public class Page1 extends AbstractPageBean {
             setDescriptionEvenement(manif.getDescription());
         }
 
-
-
     }
 
     public void typeDropDown_processValueChange(ValueChangeEvent event) {
@@ -399,20 +475,20 @@ public class Page1 extends AbstractPageBean {
         type = (String) event.getNewValue();
         System.out.println("On change le type de réservation : " + type);
         System.out.println("Date : " + dateReservation);
-        System.out.println("Pays : " + pays);
-        System.out.println("Ville : " + ville);
+        System.out.println("Pays : " + paysArrivee);
+        System.out.println("Ville : " + villeArrivee);
         System.out.println("-------------------------------------------------");
 
         if (!type.equalsIgnoreCase("")){
 
             try { // Call Web Service Operation
-                org.netbeans.j2ee.wsdl.mockreception.reception.ReceptionPortType port = service.getReceptionPortTypeBindingPort();
+                org.netbeans.j2ee.wsdl.reception.reception.ReceptionPortType port = service.getReceptionPortTypeBindingPort();
                 // TODO initialize WS operation arguments here
                 org.netbeans.xml.schema.types.InterfaceRequest request = new org.netbeans.xml.schema.types.InterfaceRequest();
 
                 request.setDate(dateReservation);
-                request.setVille(ville);
-                request.setPays(pays);
+                request.setVille(villeArrivee);
+                request.setPays(paysArrivee);
                 request.setTypeManifestation(type);
 
                 // TODO process result here
@@ -422,16 +498,16 @@ public class Page1 extends AbstractPageBean {
 
                 //We always set the first option to the empty string in order to
                 //force the user to make a choice
-                listManif = result.getManifestation();
+                listManif = toListManifs(result.getManifestations());
 
-                int taille = result.getManifestation().size();
+                int taille = listManif.size();
                 Option[] resultManifs = new Option[taille+1];
                 resultManifs[0] = new Option("","");
                 int i = 1;
 
                 System.out.println("Debut de la recuperation des manifestations");
 
-                for(Manifestation maniftmp : result.getManifestation()){
+                for(Manifestation maniftmp : listManif){
                     System.out.println("    Manif lue : " + maniftmp.getNom());
                     resultManifs[i++] = new Option(maniftmp.getNom(),maniftmp.getNom());
                 }
@@ -443,16 +519,16 @@ public class Page1 extends AbstractPageBean {
 
                 //We always set the first option to the empty string in order to
                 //force the user to make a choice
-                listHotel = result.getHotel();
+                listHotel = toListHotels(result.getHotels());
 
-                taille = result.getHotel().size();
+                taille = listHotel.size();
                 Option[] resultHotels = new Option[taille+1];
                 resultHotels[0] = new Option("","");
                 i = 1;
 
                 System.out.println("Debut de la recuperation des hotels");
 
-                for(Hotel hoteltmp : result.getHotel()){
+                for(Hotel hoteltmp : listHotel){
                     System.out.println("    Hotel lu : " + hoteltmp.getNom());
                     resultHotels[i++] = new Option(hoteltmp.getNom(),hoteltmp.getNom());
                 }
@@ -464,16 +540,16 @@ public class Page1 extends AbstractPageBean {
 
                 //We always set the first option to the empty string in order to
                 //force the user to make a choice
-                listRestaurant = result.getRestaurant();
+                listRestaurant = toListRestaurants(result.getRestaurants());
 
-                taille = result.getRestaurant().size();
+                taille = listRestaurant.size();
                 Option[] resultRestos = new Option[taille+1];
                 resultRestos[0] = new Option("","");
                 i = 1;
 
                 System.out.println("Debut de la recuperation des restaurants");
 
-                for(Restaurant restotmp : result.getRestaurant()){
+                for(Restaurant restotmp : listRestaurant){
                     System.out.println("    Resto lu : " + restotmp.getNom());
                     resultRestos[i++] = new Option(restotmp.getNom(),restotmp.getNom());
                 }
@@ -498,19 +574,19 @@ public class Page1 extends AbstractPageBean {
 
         dateReservation = (String) event.getNewValue();
         System.out.println("On change la date : " + dateReservation);
-        System.out.println("Pays : " + pays);
-        System.out.println("Ville : " + ville);
+        System.out.println("Pays : " + paysArrivee);
+        System.out.println("Ville : " + villeArrivee);
         System.out.println("-------------------------------------------------");
 
         resetOptionFromType();
 
     }
 
-    public void villeDropDown_processValueChange(ValueChangeEvent event) {
+    public void villeArriveeDropDown_processValueChange(ValueChangeEvent event) {
 
-        ville = (String) event.getNewValue();
-        System.out.println("On change le nom de la ville : " + ville);
-        System.out.println("Pays : " + pays);
+        villeArrivee = (String) event.getNewValue();
+        System.out.println("On change le nom de la ville : " + villeArrivee);
+        System.out.println("Pays : " + paysArrivee);
         System.out.println("Date : " + dateReservation);
         System.out.println("-------------------------------------------------");
 
@@ -518,21 +594,21 @@ public class Page1 extends AbstractPageBean {
 
     }
 
-    public void paysDropDown_processValueChange(ValueChangeEvent event) {
+    public void paysArriveeDropDown_processValueChange(ValueChangeEvent event) {
 
-        pays = (String) event.getNewValue();
-        System.out.println("On change le nom du pays : " + pays);
-        System.out.println("Ville : " + ville);
+        paysArrivee = (String) event.getNewValue();
+        System.out.println("On change le nom du pays : " + paysArrivee);
+        System.out.println("Ville : " + villeArrivee);
         System.out.println("Date : " + dateReservation);
         System.out.println("-------------------------------------------------");
 
         // We request all the cities available, in the country 'pays'
         try { // Call Web Service Operation
-            org.netbeans.j2ee.wsdl.mockreception.reception.ReceptionPortType port = service.getReceptionPortTypeBindingPort();
+            org.netbeans.j2ee.wsdl.reception.reception.ReceptionPortType port = service.getReceptionPortTypeBindingPort();
             // TODO initialize WS operation arguments here
             org.netbeans.xml.schema.types.InterfaceRequest request = new org.netbeans.xml.schema.types.InterfaceRequest();
 
-            request.setPays(pays);
+            request.setPays(paysArrivee);
 
             // TODO process result here
             org.netbeans.xml.schema.types.InterfaceResponse result = port.receptionOperation(request);
@@ -553,9 +629,9 @@ public class Page1 extends AbstractPageBean {
                 resultVilles[i++] = new Option(villetmp,villetmp);
             }
 
-            villeOption = resultVilles;
+            villeArriveeOption = resultVilles;
 
-            villeDropDownDefaultOptions.setOptions(villeOption);
+            villeArriveeDropDownDefaultOptions.setOptions(villeArriveeOption);
 
             resetOptionFromType();
 
@@ -570,12 +646,29 @@ public class Page1 extends AbstractPageBean {
         // TODO: Process the action. Return value is a navigation
         // case name where null will return to the same page.
 
+
         try { // Call Web Service Operation
-            org.netbeans.j2ee.wsdl.mockreception.reception.ReceptionPortType port = service.getReceptionPortTypeBindingPort();
+            org.netbeans.j2ee.wsdl.mockreservation.reservation.ReservationPortType port = service_1.getReservationPort();
             // TODO initialize WS operation arguments here
-            org.netbeans.xml.schema.types.InterfaceRequest request = new org.netbeans.xml.schema.types.InterfaceRequest();
+            org.netbeans.xml.schema.types.ReservationRequest reservationRequest = new org.netbeans.xml.schema.types.ReservationRequest();
+
+            reservationRequest.setNom(nom);
+            reservationRequest.setPrenom(prenom);
+            reservationRequest.setDate(dateReservation);
+
+            Voyage voyage = new Voyage();
+            voyage.setPaysDepart(paysDepart);
+            voyage.setVilleDepart(villeDepart);
+            voyage.setPaysArrivee(paysArrivee);
+            voyage.setVilleArriver(villeArrivee);
+
+            reservationRequest.setVoyage(voyage);
+            reservationRequest.setIdManif(manif.getId());
+            reservationRequest.setIdHotel(hotel.getId());
+            reservationRequest.setIdRestau(restaurant.getId());
+
             // TODO process result here
-            org.netbeans.xml.schema.types.InterfaceResponse result = port.receptionOperation(request);
+            java.lang.String result = port.reservationOperation(reservationRequest);
             System.out.println("Result = "+result);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
@@ -632,16 +725,16 @@ public class Page1 extends AbstractPageBean {
         // TODO: Process the action. Return value is a navigation
         // case name where null will return to the same page.
 
-        if(!ville.equalsIgnoreCase("") && !dateReservation.equalsIgnoreCase("")){
+        if(!villeArrivee.equalsIgnoreCase("") && !dateReservation.equalsIgnoreCase("")){
 
             try { // Call Web Service Operation
-                org.netbeans.j2ee.wsdl.mockreception.reception.ReceptionPortType port = service.getReceptionPortTypeBindingPort();
+                org.netbeans.j2ee.wsdl.reception.reception.ReceptionPortType port = service.getReceptionPortTypeBindingPort();
                 // TODO initialize WS operation arguments here
                 org.netbeans.xml.schema.types.InterfaceRequest request = new org.netbeans.xml.schema.types.InterfaceRequest();
 
                 request.setDate(dateReservation);
-                request.setVille(ville);
-                request.setPays(pays);
+                request.setVille(villeArrivee);
+                request.setPays(paysArrivee);
 
                 // TODO process result here
                 org.netbeans.xml.schema.types.InterfaceResponse result = port.receptionOperation(request);
@@ -677,6 +770,69 @@ public class Page1 extends AbstractPageBean {
         }
 
         return null;
+
+    }
+
+
+    private List<Manifestation> toListManifs(Manifestations manifs){
+        List<Manifestation> listManifs = new LinkedList<Manifestation>();
+
+        for(int i = 0; i < manifs.getID().size(); i++){
+            String id = manifs.getID().get(i);
+            String nomManif = manifs.getNom().get(i);
+            String adresse = manifs.getAdresse().get(i);
+            String description = manifs.getDescription().get(i);
+            Float prix = manifs.getPrix().get(i);
+            int placesRestantes = manifs.getPlacesRestantes().get(i);
+
+            Manifestation maniftmp = new Manifestation(id, nomManif, adresse, prix, description, placesRestantes);
+
+            listManifs.add(maniftmp);
+        }
+
+        return listManifs;
+    }
+
+    private List<Hotel> toListHotels(Hotels hotels){
+        List<Hotel> listHotels = new LinkedList<Hotel>();
+
+        for(int i = 0; i < hotels.getID().size(); i++){
+            String id = hotels.getID().get(i);
+            String nomHotel = hotels.getNom().get(i);
+            String adresse = hotels.getAdresse().get(i);
+            Float prix = hotels.getPrix().get(i);
+            int rank = hotels.getRank().get(i);
+            Float prixMoyen = hotels.getPrixMoyen().get(i);
+            int placesRestantes = hotels.getPlacesRestantes().get(i);
+            
+            Hotel hoteltmp = new Hotel(id, nomHotel, adresse, prix, rank, prixMoyen, placesRestantes);
+            
+            listHotels.add(hoteltmp);
+
+        }
+
+        return listHotels;
+    }
+
+    private List<Restaurant> toListRestaurants(Restaurants restaurants){
+        List<Restaurant> listRestaurants = new LinkedList<Restaurant>();
+
+        for(int i = 0; i < restaurants.getID().size(); i++){
+            String id = restaurants.getID().get(i);
+            String nomRestaurant = restaurants.getNom().get(i);
+            String adresse = restaurants.getAdresse().get(i);
+            Float prix = restaurants.getPrix().get(i);
+            int rank = restaurants.getRank().get(i);
+            Float prixMoyen = restaurants.getPrixMoyen().get(i);
+            int placesRestantes = restaurants.getPlacesRestantes().get(i);
+
+            Restaurant restauranttmp = new Restaurant(id, nomRestaurant, adresse, prix, rank, prixMoyen, placesRestantes);
+
+            listRestaurants.add(restauranttmp);
+
+        }
+
+        return listRestaurants;
     }
 
 }
