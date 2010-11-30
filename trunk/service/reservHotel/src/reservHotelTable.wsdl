@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="reservHotelTable" targetNamespace="http://j2ee.netbeans.org/wsdl/reservHotel/reservHotelTable" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://j2ee.netbeans.org/xsd/tableSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservHotel/reservHotelTable" xmlns:plink="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/">
+  <types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/">
+            <xsd:import namespace="http://j2ee.netbeans.org/xsd/tableSchema" schemaLocation="RESERVATION_HOTEL.xsd"/>
+	</xsd:schema>
+  </types>
+  <message name="outputMsg">
+    <part name="part" element="ns:RESERVATION_HOTEL"/>
+  </message>
+  <message name="RetMsg">
+    <part name="part" type="xsd:int"/>
+  </message>
+  <message name="inputMsg">
+    <part name="part" element="ns:RESERVATION_HOTEL"/>
+  </message>
+  <portType name="jdbcPortType">
+    <operation name="insert">
+      <input name="inputInsert" message="tns:inputMsg"/>
+      <output name="outputInsert" message="tns:RetMsg"/>
+    </operation>
+    <operation name="find">
+      <input name="inputFind" message="tns:inputMsg"/>
+      <output name="outputFind" message="tns:outputMsg"/>
+    </operation>
+  </portType>
+  <binding name="binding" type="tns:jdbcPortType">
+    <jdbc:binding xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/"/>
+    <operation name="insert">
+    <jdbc:operation xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/"/>
+      <input name="inputInsert">
+    <jdbc:input xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" MarkColumnName="" MarkColumnValue="" MoveRowToTableName="" PKName="RESERVATION_HOTEL_ID" PollMilliSeconds="5000" PollingPostProcessing="MoveRow" TableName="RESERVATION_HOTEL" Transaction="NOTransaction" numberOfRecords="" operationType="insert" paramOrder="FK_HOTEL_ID,FK_ID_CLIENT,DATE" sql="insert into RESERVATION_HOTEL (FK_HOTEL_ID,FK_ID_CLIENT,DATE) values (?,?,?)"/>
+      </input>
+      <output name="outputInsert">
+    <jdbc:output xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" returnPartName="part"/>
+      </output>
+    </operation>
+    <operation name="find">
+    <jdbc:operation xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/"/>
+      <input name="inputFind">
+    
+        <jdbc:input operationType="find" sql="select RESERVATION_HOTEL_ID from RESERVATION_HOTEL where
+FK_HOTEL_ID in (?) and FK_ID_CLIENT in (?) and DATE in (?) " PKName="RESERVATION_HOTEL_ID" PollingPostProcessing="MoveRow" TableName="RESERVATION_HOTEL" Transaction="NOTransaction" PollMilliSeconds="5000" paramOrder="FK_HOTEL_ID,FK_ID_CLIENT,DATE"/>
+      </input>
+      <output name="outputFind">
+    <jdbc:output xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" returnPartName="part"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="service">
+    <port name="port" binding="tns:binding">
+    <jdbc:address xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" jndiName="jdbc/turnkeyDB"/>
+    </port>
+  </service>
+    <plink:partnerLinkType xmlns:plink="http://docs.oasis-open.org/wsbpel/2.0/plnktype" name="jdbcpartner">
+        <plink:role name="jdbcPortTypeRole" portType="tns:jdbcPortType"/>
+    </plink:partnerLinkType>
+</definitions>
+
+

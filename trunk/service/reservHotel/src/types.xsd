@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://xml.netbeans.org/schema/types"
+    xmlns:tns="http://xml.netbeans.org/schema/types"
+    elementFormDefault="qualified">
+    <xsd:complexType name="InterfaceRequest">
+        <xsd:sequence>
+            <xsd:element name="Pays" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="Ville" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="Date" minOccurs="1" maxOccurs="1" type="xsd:string"/>
+            <xsd:element name="TypeManifestation" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="InterfaceResponse">
+        <xsd:sequence>
+            <xsd:element name="Pays" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Ville" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="TypeManifestation" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Manifestation" type="tns:Manifestation" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Hotel" type="tns:Hotel" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Restaurant" type="tns:Restaurant" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Manifestation">
+        <xsd:sequence>
+            <xsd:element name="ID" type="xsd:string"/>
+            <xsd:element name="Nom" type="xsd:string"/>
+            <xsd:element name="Adresse" type="xsd:string"/>
+            <xsd:element name="Description" type="xsd:string"/>
+            <xsd:element name="Prix" type="xsd:float"/>
+            <xsd:element name="PlacesRestantes" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Hotel">
+        <xsd:sequence>
+            <xsd:element name="ID" type="xsd:string"/>
+            <xsd:element name="Nom" type="xsd:string"/>
+            <xsd:element name="Adresse" type="xsd:string"/>
+            <xsd:element name="Prix" type="xsd:float"/>
+            <xsd:element name="Rank" type="xsd:int"/>
+            <xsd:element name="PrixMoyen" type="xsd:float"/>
+            <xsd:element name="PlacesRestantes" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Restaurant">
+        <xsd:sequence>
+            <xsd:element name="ID" type="xsd:string"/>
+            <xsd:element name="Nom" type="xsd:string"></xsd:element>
+            <xsd:element name="Adresse" type="xsd:string"/>
+            <xsd:element name="Prix" type="xsd:float"/>
+            <xsd:element name="Rank" type="xsd:int"/>
+            <xsd:element name="PrixMoyen" type="xsd:float"/>
+            <xsd:element name="PlacesRestantes" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+	    <xsd:complexType name="ReservationRequest">
+        <xsd:sequence>
+            <xsd:element name="Nom" type="xsd:string"/>
+            <xsd:element name="Prenom" type="xsd:string"/>
+            <xsd:element name="IdManif" type="xsd:string"/>
+            <xsd:element name="IdHotel" type="xsd:string"></xsd:element>
+            <xsd:element name="IdRestau" type="xsd:string"/>
+            <xsd:element name="Date" type="xsd:string"/>
+            <xsd:element name="Voyage" type="tns:Voyage"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ClientManagerRequest">
+        <xsd:sequence>
+            <xsd:element name="Nom" type="xsd:string"/>
+            <xsd:element name="Prenom" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReservManifRequest">
+        <xsd:sequence>
+            <xsd:element name="IdClient" type="xsd:string"/>
+            <xsd:element name="IdManif" type="xsd:string"/>
+            <xsd:element name="check" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReservHotelRequest">
+        <xsd:sequence>
+            <xsd:element name="IdClient" type="xsd:string"/>
+            <xsd:element name="IdHotel" type="xsd:string"/>
+            <xsd:element name="Date" type="xsd:string"/>
+            <xsd:element name="check" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReservRestauRequest">
+        <xsd:sequence>
+            <xsd:element name="IdClient" type="xsd:string"/>
+            <xsd:element name="IdRestau" type="xsd:string"/>
+            <xsd:element name="Date" type="xsd:string"/>
+            <xsd:element name="check" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Voyage">
+        <xsd:sequence>
+            <xsd:element name="VilleDepart" type="xsd:string"/>
+            <xsd:element name="PaysDepart" type="xsd:string"/>
+            <xsd:element name="VilleArriver" type="xsd:string"/>
+            <xsd:element name="PaysArrivee" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="VoyageRequest">
+        <xsd:sequence>
+            <xsd:element name="IdClient" type="xsd:string"/>
+            <xsd:element name="Voyage" type="tns:Voyage"/>
+            <xsd:element name="Date" type="xsd:string"/>
+            <xsd:element name="check" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="reponce">
+        <xsd:sequence>
+            <xsd:element name="reponce" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
+
+
+
+
+
+
+
+
