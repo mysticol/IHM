@@ -89,6 +89,7 @@ public class Page1 extends AbstractPageBean {
         setRankHotel(rankHotel);
         setRankRestaurant(rankRestaurant);
 
+        setUrlGoogleMap(createGoogleMapUrlImage("France", "Nantes", "Place du Commerce", "17, rue Voltaire", "3 allée Duquesne", "Manif", "Resto", "Hotel"));
     }
     private SingleSelectOptionsList paysArriveeDropDownDefaultOptions = new SingleSelectOptionsList();
 
@@ -339,6 +340,27 @@ public class Page1 extends AbstractPageBean {
     public void setRankHotel(String rankHotel) {
         this.rankHotel = rankHotel;
     }
+
+    private static String urlGoogleMap;
+
+    /**
+     * Get the value of urlGoogleMap
+     *
+     * @return the value of urlGoogleMap
+     */
+    public String getUrlGoogleMap() {
+        return urlGoogleMap;
+    }
+
+    /**
+     * Set the value of urlGoogleMap
+     *
+     * @param urlGoogleMap new value of urlGoogleMap
+     */
+    public void setUrlGoogleMap(String urlGoogleMap) {
+        this.urlGoogleMap = urlGoogleMap;
+    }
+
 
     /**
      * <p>Return a reference to the scoped data bean.</p>
@@ -843,6 +865,31 @@ public class Page1 extends AbstractPageBean {
         }
 
         return listRestaurants;
+    }
+
+    private String createGoogleMapUrlImage(String pays, String ville, String adresseManif, String adresseResto, String adresseHotel, String nomManif, String nomResto, String nomHotel){
+
+        /*setUrlGoogleMap("http://maps.google.com/maps/api/staticmap?" +
+                "center=Place+du+Commerce,Nantes,France" +
+                "&zoom=14&size=512x512" +
+                "&maptype=roadmap" +
+                "&markers=color:blue|label:Fnac|Place+du+Commerce,Nantes,France" +
+                "&sensor=false");*/
+
+
+        String urlimage = "http://maps.google.com/maps/api/staticmap?";
+
+        urlimage += "center=" + ville + "," + pays;
+
+        urlimage += "&zoom=14&size=512x512";
+
+        urlimage += "&markers=color:blue|label:A|" + adresseManif.replace(" ", "+") + "," + ville + "," + pays;
+        urlimage += "&markers=color:red|label:B|" + adresseResto.replace(" ", "+") + "," + ville + "," + pays;
+        urlimage += "&markers=color:green|label:C|" + adresseHotel.replace(" ", "+") + "," + ville + "," + pays;
+
+        urlimage += "&sensor=false";
+
+        return urlimage;
     }
 
 }
