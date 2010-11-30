@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="reservManif"
+    targetNamespace="http://enterprise.netbeans.org/bpel/reservManif/reservManif"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/reservManif/reservManif"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/types" xmlns:ns1="http://j2ee.netbeans.org/xsd/tableSchema">
+    <import namespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" location="ReservManifRequest.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/reservManif/manifTable" location="manifTable.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/reservManif/reservManif" location="reservManif.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/reservManif/checkManif" location="checkManif.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="manifTable" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservManif/manifTable" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="checkManif" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservManif/checkManif" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="reservManif" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservManif/reservManif" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="ReservationManager" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" partnerLinkType="tns:ReservManifRequest" myRole="ReservManifRequestPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="FindIDOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservManif/reservManif" messageType="tns:outputMsg"/>
+        <variable name="FindIDIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservManif/reservManif" messageType="tns:inputMsg"/>
+        <variable name="InsertOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservManif/reservManif" messageType="tns:RetMsg"/>
+        <variable name="InsertIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservManif/reservManif" messageType="tns:inputMsg"/>
+        <variable name="FindPlaceOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservManif/checkManif" messageType="tns:outputMsg"/>
+        <variable name="FindPlaceIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservManif/checkManif" messageType="tns:inputMsg"/>
+        <variable name="FindOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservManif/manifTable" messageType="tns:outputMsg"/>
+        <variable name="FindIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservManif/manifTable" messageType="tns:inputMsg"/>
+        <variable name="ReservManifRequestOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" messageType="tns:ReservManifRequestOperationResponse"/>
+        <variable name="ReservManifRequestOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" messageType="tns:ReservManifRequestOperationRequest"/>
+    </variables>
+    <sequence>
+        <receive name="Receive1" createInstance="yes" partnerLink="ReservationManager" operation="ReservManifRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" portType="tns:ReservManifRequestPortType" variable="ReservManifRequestOperationIn"/>
+        <assign name="AssignForFind">
+            <copy>
+                <from>$ReservManifRequestOperationIn.request/ns0:IdManif</from>
+                <to>$FindIn.part/ns1:MANIFESTATION_Record/ns1:MANIFESTATION_ID</to>
+            </copy>
+        </assign>
+        <invoke name="InvokeFindManif" partnerLink="manifTable" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservManif/manifTable" portType="tns:jdbcPortType" inputVariable="FindIn" outputVariable="FindOut"/>
+        <if name="IfBadID">
+            <condition>string($FindOut.part/ns1:MANIFESTATION_Record/ns1:MANIFESTATION_ID) = ''</condition>
+            <assign name="AssignBADId">
+                <copy>
+                    <from>'BAD ID'</from>
+                    <to variable="ReservManifRequestOperationOut" part="responce"/>
+                </copy>
+            </assign>
+            <else>
+                <if name="IfCheck">
+                    <condition>$ReservManifRequestOperationIn.request/ns0:check</condition>
+                    <sequence name="Sequence1">
+                        <assign name="AssignForPlace">
+                            <copy>
+                                <from>$ReservManifRequestOperationIn.request/ns0:IdManif</from>
+                                <to>$FindPlaceIn.part/ns1:RESERVATION_MANIF_Record/ns1:FK_ID_MANIF</to>
+                            </copy>
+                            <copy>
+                                <from>$FindOut.part/ns1:MANIFESTATION_Record/ns1:DATE</from>
+                                <to>$FindPlaceIn.part/ns1:RESERVATION_MANIF_Record/ns1:DATE</to>
+                            </copy>
+                        </assign>
+                        <invoke name="InvokePlaceManif" partnerLink="checkManif" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservManif/checkManif" portType="tns:jdbcPortType" inputVariable="FindPlaceIn" outputVariable="FindPlaceOut"/>
+                        <if name="IfOK">
+                            <condition>count($FindPlaceOut.part/ns1:RESERVATION_MANIF_Record/ns1:RESERVATION_MANIF_ID) &lt; $FindOut.part/ns1:MANIFESTATION_Record/ns1:NB_PLACE</condition>
+                            <assign name="AssignOK">
+                                <copy>
+                                    <from>'OK'</from>
+                                    <to variable="ReservManifRequestOperationOut" part="responce"/>
+                                </copy>
+                            </assign>
+                            <else>
+                                <assign name="AssignNoPlace">
+                                    <copy>
+                                        <from>'NO PLACE'</from>
+                                        <to variable="ReservManifRequestOperationOut" part="responce"/>
+                                    </copy>
+                                </assign>
+                            </else>
+                        </if>
+                    </sequence>
+                    <else>
+                        <sequence name="Sequence2">
+                            <assign name="AssignForInsert">
+                                <copy>
+                                    <from>$FindOut.part/ns1:MANIFESTATION_Record/ns1:DATE</from>
+                                    <to>$InsertIn.part/ns1:RESERVATION_MANIF_Record/ns1:DATE</to>
+                                </copy>
+                                <copy>
+                                    <from>$ReservManifRequestOperationIn.request/ns0:IdClient</from>
+                                    <to>$InsertIn.part/ns1:RESERVATION_MANIF_Record/ns1:FK_ID_CLIENT</to>
+                                </copy>
+                                <copy>
+                                    <from>$ReservManifRequestOperationIn.request/ns0:IdManif</from>
+                                    <to>$InsertIn.part/ns1:RESERVATION_MANIF_Record/ns1:FK_ID_MANIF</to>
+                                </copy>
+                            </assign>
+                            <invoke name="InvokeInsert" partnerLink="reservManif" operation="insert" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservManif/reservManif" portType="tns:jdbcPortType" inputVariable="InsertIn" outputVariable="InsertOut"/>
+                            <assign name="AssignForID">
+                                <copy>
+                                    <from>$FindOut.part/ns1:MANIFESTATION_Record/ns1:DATE</from>
+                                    <to>$FindIDIn.part/ns1:RESERVATION_MANIF_Record/ns1:DATE</to>
+                                </copy>
+                                <copy>
+                                    <from>$ReservManifRequestOperationIn.request/ns0:IdClient</from>
+                                    <to>$FindIDIn.part/ns1:RESERVATION_MANIF_Record/ns1:FK_ID_CLIENT</to>
+                                </copy>
+                                <copy>
+                                    <from>$ReservManifRequestOperationIn.request/ns0:IdManif</from>
+                                    <to>$FindIDIn.part/ns1:RESERVATION_MANIF_Record/ns1:FK_ID_MANIF</to>
+                                </copy>
+                            </assign>
+                            <invoke name="InvokeFindID" partnerLink="reservManif" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservManif/reservManif" portType="tns:jdbcPortType" inputVariable="FindIDIn" outputVariable="FindIDOut"/>
+                            <assign name="AssignID">
+                                <copy>
+                                    <from>$FindIDOut.part/ns1:RESERVATION_MANIF_Record/ns1:RESERVATION_MANIF_ID</from>
+                                    <to variable="ReservManifRequestOperationOut" part="responce"/>
+                                </copy>
+                            </assign>
+                        </sequence>
+                    </else>
+                </if>
+            </else>
+        </if>
+        <reply name="Reply1" partnerLink="ReservationManager" operation="ReservManifRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" portType="tns:ReservManifRequestPortType" variable="ReservManifRequestOperationOut"/>
+    </sequence>
+</process>
+
