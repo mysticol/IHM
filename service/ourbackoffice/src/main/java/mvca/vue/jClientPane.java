@@ -8,18 +8,22 @@
  *
  * Created on 28 nov. 2010, 13:48:58
  */
-
 package mvca.vue;
+
+import javax.swing.JButton;
+import mvca.entity.Client;
 
 /**
  *
  * @author Mister B
  */
-public class jClientPane extends javax.swing.JPanel {
+public class jClientPane extends javax.swing.JPanel implements EntityPane<Client> {
 
     /** Creates new form JpanelClient */
     public jClientPane() {
         initComponents();
+        this.clearField();
+        this.enableEdition(false);
     }
 
     /** This method is called from within the constructor to
@@ -34,11 +38,11 @@ public class jClientPane extends javax.swing.JPanel {
         jLayeredPane1 = new javax.swing.JLayeredPane();
         saveButton = new javax.swing.JButton();
         nomLabel = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        prenomLabel = new javax.swing.JLabel();
         fieldNom = new javax.swing.JTextField();
         fieldPrenom = new javax.swing.JTextField();
         fieldId = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        idLabel = new javax.swing.JLabel();
         newButton = new javax.swing.JButton();
         editButton = new javax.swing.JButton();
 
@@ -50,33 +54,33 @@ public class jClientPane extends javax.swing.JPanel {
                 saveButtonActionPerformed(evt);
             }
         });
-        saveButton.setBounds(420, 110, 59, 23);
+        saveButton.setBounds(470, 110, 70, 23);
         jLayeredPane1.add(saveButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nomLabel.setText("Nom:");
         nomLabel.setBounds(10, 30, 50, 20);
         jLayeredPane1.add(nomLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel2.setText("Prenom:");
-        jLabel2.setBounds(10, 70, 60, 14);
-        jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        fieldNom.setText("jTextField1");
+        prenomLabel.setText("Prenom:");
+        prenomLabel.setBounds(10, 70, 60, 14);
+        jLayeredPane1.add(prenomLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         fieldNom.setBounds(60, 30, 100, 20);
         jLayeredPane1.add(fieldNom, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        fieldPrenom.setText("jTextField2");
         fieldPrenom.setBounds(60, 70, 100, 20);
         jLayeredPane1.add(fieldPrenom, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldId.setEditable(false);
-        fieldId.setText("jTextField3");
-        fieldId.setBounds(60, 10, 59, 20);
+        fieldId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldIdActionPerformed(evt);
+            }
+        });
+        fieldId.setBounds(60, 10, 50, 20);
         jLayeredPane1.add(fieldId, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel1.setText("Id: ");
-        jLabel1.setBounds(10, 10, 17, 14);
-        jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        idLabel.setText("Id: ");
+        idLabel.setBounds(10, 10, 17, 14);
+        jLayeredPane1.add(idLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         newButton.setText("New");
 
@@ -86,20 +90,18 @@ public class jClientPane extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(newButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(editButton)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -115,18 +117,77 @@ public class jClientPane extends javax.swing.JPanel {
         // TODO add your handling code here:
 }//GEN-LAST:event_saveButtonActionPerformed
 
+    private void fieldIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldIdActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton editButton;
     private javax.swing.JTextField fieldId;
     private javax.swing.JTextField fieldNom;
     private javax.swing.JTextField fieldPrenom;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel idLabel;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JButton newButton;
     private javax.swing.JLabel nomLabel;
+    private javax.swing.JLabel prenomLabel;
     private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Client getEntity() {
+        Client cl = new Client();
+        cl.setNomClient(fieldNom.getText());
+        cl.setPrenomClient(fieldPrenom.getText());
+
+        if (!fieldId.getText().equals("")) {
+            cl.setClientId(Integer.parseInt(fieldId.getText()));
+        }
+
+        return cl;
+    }
+
+    @Override
+    public void loadEntity(Client entity) {
+      
+
+        this.fieldId.setText(String.valueOf(entity.getClientId()));
+        this.fieldNom.setText(entity.getNomClient());
+        this.fieldPrenom.setText(entity.getPrenomClient());
+    }
+
+    @Override
+    public void clearField() {
+        fieldId.setText("");
+        fieldNom.setText("");
+        fieldPrenom.setText("");
+    }
+
+    @Override
+    public void editEntity() {
+       this.enableEdition(Boolean.TRUE);
+    }
+
+    @Override
+    public void enableEdition(Boolean b) {
+        fieldNom.setEditable(b);
+        fieldPrenom.setEditable(b);
+        this.saveButton.setEnabled(b);
+    }
+
+    public JButton getEditButton() {
+        return editButton;
+    }
+
+    public JButton getNewButton() {
+        return newButton;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton;
+    }
+
+
+
 
 }
