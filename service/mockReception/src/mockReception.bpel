@@ -9,40 +9,40 @@
     xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
     xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/types">
-    <import namespace="http://j2ee.netbeans.org/wsdl/mockReception/Reception" location="Reception.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/Reception/Reception" location="Reception.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <partnerLinks>
-        <partnerLink name="InterfaceWeb" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockReception/Reception" partnerLinkType="tns:Reception" myRole="ReceptionPortTypeRole"/>
+        <partnerLink name="InterfaceWeb" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Reception" partnerLinkType="tns:Reception" myRole="ReceptionPortTypeRole"/>
     </partnerLinks>
     <variables>
-        <variable name="ReceptionOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockReception/Reception" messageType="tns:ReceptionOperationResponse"/>
-        <variable name="ReceptionOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockReception/Reception" messageType="tns:ReceptionOperationRequest"/>
+        <variable name="ReceptionOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Reception" messageType="tns:ReceptionOperationResponse"/>
+        <variable name="ReceptionOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Reception" messageType="tns:ReceptionOperationRequest"/>
     </variables>
     <sequence>
-        <receive name="Receive1" createInstance="yes" partnerLink="InterfaceWeb" operation="ReceptionOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockReception/Reception" portType="tns:ReceptionPortType" variable="ReceptionOperationIn"/>
+        <receive name="Receive1" createInstance="yes" partnerLink="InterfaceWeb" operation="ReceptionOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Reception" portType="tns:ReceptionPortType" variable="ReceptionOperationIn"/>
         <if name="IfPaysVide">
-            <condition>string($ReceptionOperationIn.request/ns0:Pays) = ''</condition>
+            <condition>string($ReceptionOperationIn.InterfaceRequest/ns0:Pays) = ''</condition>
             <assign name="AssignPays">
                 <copy>
                     <from>'France'</from>
-                    <to>$ReceptionOperationOut.response/ns0:Pays</to>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Pays</to>
                 </copy>
             </assign>
             <else>
                 <if name="IfVilleVide">
-                    <condition>'' = string($ReceptionOperationIn.request/ns0:Ville)</condition>
+                    <condition>string($ReceptionOperationIn.InterfaceRequest/ns0:Ville) = ''</condition>
                     <assign name="AssignVille">
                         <copy>
                             <from>'Nantes'</from>
-                            <to>$ReceptionOperationOut.response/ns0:Ville</to>
+                            <to>$ReceptionOperationOut.InterfaceResponse/ns0:Ville</to>
                         </copy>
                     </assign>
                     <else>
-                        <if name="IfDateNotNull">
-                            <condition>'' != string($ReceptionOperationIn.request/ns0:Date)</condition>
+                        <if name="IfDateNonVide">
+                            <condition>string($ReceptionOperationIn.InterfaceRequest/ns0:Date) != ''</condition>
                             <assign name="AssignTypeManif">
                                 <copy>
-                                    <from>'Beuverie'</from>
-                                    <to>$ReceptionOperationOut.response/ns0:TypeManifestation</to>
+                                    <from>'Concert'</from>
+                                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:TypeManifestation</to>
                                 </copy>
                             </assign>
                         </if>
@@ -50,94 +50,100 @@
                 </if>
             </else>
         </if>
-        <if name="IfTypeManifNonVide">
-            <condition>string($ReceptionOperationIn.request/ns0:TypeManifestation) != ''</condition>
-            <assign name="Assign1">
+        <if name="IfTypeNonVide">
+            <condition>string($ReceptionOperationIn.InterfaceRequest/ns0:TypeManifestation) != ''</condition>
+            <assign name="AssignTout">
                 <copy>
                     <from>'idmanif'</from>
-                    <to>$ReceptionOperationOut.response/ns0:Manifestation/ns0:ID</to>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Manifestations/ns0:ID</to>
                 </copy>
                 <copy>
                     <from>'Concert de fou'</from>
-                    <to>$ReceptionOperationOut.response/ns0:Manifestation/ns0:Nom</to>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Manifestations/ns0:Nom</to>
                 </copy>
                 <copy>
-                    <from>'2, rue des fous'</from>
-                    <to>$ReceptionOperationOut.response/ns0:Manifestation/ns0:Adresse</to>
+                    <from>'5, rue des fous'</from>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Manifestations/ns0:Adresse</to>
                 </copy>
                 <copy>
-                    <from>'concert de fous'</from>
-                    <to>$ReceptionOperationOut.response/ns0:Manifestation/ns0:Description</to>
-                </copy>
-                <copy>
-                    <from>150</from>
-                    <to>$ReceptionOperationOut.response/ns0:Manifestation/ns0:Prix</to>
+                    <from>'Concert de fous, venez tous!!!'</from>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Manifestations/ns0:Description</to>
                 </copy>
                 <copy>
                     <from>50</from>
-                    <to>$ReceptionOperationOut.response/ns0:Manifestation/ns0:PlacesRestantes</to>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Manifestations/ns0:Prix</to>
+                </copy>
+                <copy>
+                    <from>2</from>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Manifestations/ns0:PlacesRestantes</to>
                 </copy>
                 <copy>
                     <from>'idhotel'</from>
-                    <to>$ReceptionOperationOut.response/ns0:Hotel/ns0:ID</to>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotels/ns0:ID</to>
                 </copy>
                 <copy>
                     <from>'Hotel de merde'</from>
-                    <to>$ReceptionOperationOut.response/ns0:Hotel/ns0:Nom</to>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotels/ns0:Nom</to>
                 </copy>
                 <copy>
-                    <from>'4, rue de la merde'</from>
-                    <to>$ReceptionOperationOut.response/ns0:Hotel/ns0:Adresse</to>
-                </copy>
-                <copy>
-                    <from>50</from>
-                    <to>$ReceptionOperationOut.response/ns0:Hotel/ns0:Prix</to>
-                </copy>
-                <copy>
-                    <from>5</from>
-                    <to>$ReceptionOperationOut.response/ns0:Hotel/ns0:Rank</to>
-                </copy>
-                <copy>
-                    <from>35</from>
-                    <to>$ReceptionOperationOut.response/ns0:Hotel/ns0:PrixMoyen</to>
-                </copy>
-                <copy>
-                    <from>10</from>
-                    <to>$ReceptionOperationOut.response/ns0:Hotel/ns0:PlacesRestantes</to>
-                </copy>
-                <copy>
-                    <from>'idresto'</from>
-                    <to>$ReceptionOperationOut.response/ns0:Restaurant/ns0:ID</to>
-                </copy>
-                <copy>
-                    <from>'Resto de merde'</from>
-                    <to>$ReceptionOperationOut.response/ns0:Restaurant/ns0:Nom</to>
-                </copy>
-                <copy>
-                    <from>"5, rue de l'hotel"</from>
-                    <to>$ReceptionOperationOut.response/ns0:Restaurant/ns0:Adresse</to>
+                    <from>'5, rue de la merde'</from>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotels/ns0:Adresse</to>
                 </copy>
                 <copy>
                     <from>50</from>
-                    <to>$ReceptionOperationOut.response/ns0:Restaurant/ns0:Prix</to>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotels/ns0:Prix</to>
                 </copy>
                 <copy>
                     <from>5</from>
-                    <to>$ReceptionOperationOut.response/ns0:Restaurant/ns0:Rank</to>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotels/ns0:Rank</to>
                 </copy>
                 <copy>
-                    <from>12</from>
-                    <to>$ReceptionOperationOut.response/ns0:Restaurant/ns0:PlacesRestantes</to>
+                    <from>25</from>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotels/ns0:PrixMoyen</to>
                 </copy>
                 <copy>
-                    <from>10</from>
-                    <to>$ReceptionOperationOut.response/ns0:Restaurant/ns0:PrixMoyen</to>
+                    <from>50</from>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotels/ns0:PlacesRestantes</to>
+                </copy>
+                <copy>
+                    <from>'idrestau'</from>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurants/ns0:ID</to>
+                </copy>
+                <copy>
+                    <from>'Hotel de luxe'</from>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurants/ns0:Nom</to>
+                </copy>
+                <copy>
+                    <from>'5, rue de la paix'</from>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurants/ns0:Adresse</to>
+                </copy>
+                <copy>
+                    <from>125</from>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurants/ns0:Prix</to>
+                </copy>
+                <copy>
+                    <from>5</from>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurants/ns0:Rank</to>
+                </copy>
+                <copy>
+                    <from>70</from>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurants/ns0:PrixMoyen</to>
+                </copy>
+                <copy>
+                    <from>1</from>
+                    <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurants/ns0:PlacesRestantes</to>
                 </copy>
             </assign>
         </if>
-        <reply name="Reply1" partnerLink="InterfaceWeb" operation="ReceptionOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockReception/Reception" portType="tns:ReceptionPortType" variable="ReceptionOperationOut"/>
+        <reply name="Reply1" partnerLink="InterfaceWeb" operation="ReceptionOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Reception" portType="tns:ReceptionPortType" variable="ReceptionOperationOut"/>
     </sequence>
 </process>
+
+
+
+
+
+
 
 
 
