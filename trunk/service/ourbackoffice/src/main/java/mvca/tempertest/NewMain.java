@@ -3,12 +3,13 @@
  * and open the template in the editor.
  */
 
-package tempertest;
+package mvca.tempertest;
 
 
 import mvca.entity.Client;
+import mvca.session.HibernateUtil;
 
-import mvca.session.NewHibernateUtil;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 
@@ -26,7 +27,7 @@ public class NewMain {
     public static void main(String[] args) {
 
 
-        NewHibernateUtil hb = new NewHibernateUtil();
+      /* HibernateUtil hb = new HibernateUtil();
 
        Session ss= hb.getSessionFactory().openSession();
 
@@ -34,7 +35,7 @@ public class NewMain {
 
 
              System.out.println(criteria.list());
-
+*/
           
 
             
