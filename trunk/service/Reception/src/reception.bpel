@@ -198,27 +198,27 @@
                                 <assign name="HotelOut">
                                     <copy>
                                         <from>$FindOutHotel.part/ns1:HOTEL_Record/ns1:HOTEL_ID</from>
-                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotel/ns0:ID</to>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotels/ns0:ID</to>
                                     </copy>
                                     <copy>
                                         <from>$FindOutHotel.part/ns1:HOTEL_Record/ns1:NOM_HOTEL</from>
-                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotel/ns0:Nom</to>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotels/ns0:Nom</to>
                                     </copy>
                                     <copy>
                                         <from>$FindOutHotel.part/ns1:HOTEL_Record/ns1:ADRESSE</from>
-                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotel/ns0:Adresse</to>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotels/ns0:Adresse</to>
                                     </copy>
                                     <copy>
                                         <from>$FindOutHotel.part/ns1:HOTEL_Record/ns1:NB_CHAMBRE</from>
-                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotel/ns0:PlacesRestantes</to>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotels/ns0:PlacesRestantes</to>
                                     </copy>
                                     <copy>
                                         <from>$FindOutHotel.part/ns1:HOTEL_Record/ns1:RANK_HOTEL</from>
-                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotel/ns0:Rank</to>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotels/ns0:Rank</to>
                                     </copy>
                                     <copy>
                                         <from>$FindOutHotel.part/ns1:HOTEL_Record/ns1:PRIX</from>
-                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotel/ns0:Prix</to>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Hotels/ns0:Prix</to>
                                     </copy>
                                 </assign>
                                 <assign name="RestaurantIn">
@@ -231,27 +231,27 @@
                                 <assign name="RestaurantOut">
                                     <copy>
                                         <from>$FindOutRestaurant.part/ns1:RESTAURANT_Record/ns1:RESTAURANT_ID</from>
-                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurant/ns0:ID</to>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurants/ns0:ID</to>
                                     </copy>
                                     <copy>
                                         <from>$FindOutRestaurant.part/ns1:RESTAURANT_Record/ns1:ADRESSE</from>
-                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurant/ns0:Adresse</to>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurants/ns0:Adresse</to>
                                     </copy>
                                     <copy>
                                         <from>$FindOutRestaurant.part/ns1:RESTAURANT_Record/ns1:NOM_RESTAURANT</from>
-                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurant/ns0:Nom</to>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurants/ns0:Nom</to>
                                     </copy>
                                     <copy>
                                         <from>$FindOutRestaurant.part/ns1:RESTAURANT_Record/ns1:NB_COUVERTS</from>
-                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurant/ns0:PlacesRestantes</to>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurants/ns0:PlacesRestantes</to>
                                     </copy>
                                     <copy>
                                         <from>$FindOutRestaurant.part/ns1:RESTAURANT_Record/ns1:RATE_RESTAURANT</from>
-                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurant/ns0:Rank</to>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurants/ns0:Rank</to>
                                     </copy>
                                     <copy>
                                         <from>$FindOutRestaurant.part/ns1:RESTAURANT_Record/ns1:PRIX</from>
-                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurant/ns0:Prix</to>
+                                        <to>$ReceptionOperationOut.InterfaceResponse/ns0:Restaurants/ns0:Prix</to>
                                     </copy>
                                 </assign>
                             </sequence>
@@ -263,6 +263,7 @@
         <reply name="ReplyInterface" partnerLink="Interface" operation="ReceptionOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Reception" portType="tns:ReceptionPortType" variable="ReceptionOperationOut"/>
     </sequence>
 </process>
+
 
 
 
