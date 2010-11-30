@@ -1,5 +1,7 @@
 package entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,9 +10,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="CLIENT")
-public class Client {
+public class Client implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3900916303191402301L;
 	private int id;
 	private String prenom;
 	private String nom;
