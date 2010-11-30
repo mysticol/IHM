@@ -47,8 +47,9 @@ create table HOTEL
 	NOM_HOTEL VARCHAR(20),
 	ADRESSE VARCHAR(30),
 	NB_CHAMBRE INTEGER,
-	RANK_HOTEL NUMERIC(5),
-	PRIX NUMERIC(5)
+	RANK_HOTEL INTEGER,
+	PRIX_MOYEN FLOAT,
+	PRIX FLOAT
 );
 
 
@@ -69,7 +70,7 @@ create table MANIFESTATION
 	DATE DATE,
 	ADRESSE VARCHAR(50),
 	DESCRIPTION VARCHAR(80),
-	PRIX NUMERIC(5)
+	PRIX FLOAT
 );
 
 
@@ -81,8 +82,9 @@ create table RESTAURANT
 	ADRESSE VARCHAR(30),
 	NOM_RESTAURANT VARCHAR(20),
 	NB_COUVERTS INTEGER,
-	RATE_RESTAURANT NUMERIC(5),
-	PRIX NUMERIC(5)
+	RATE_RESTAURANT INTEGER,
+	PRIX_MOYEN FLOAT,
+	PRIX FLOAT
 );
 
 
@@ -219,19 +221,19 @@ insert into TYPE_MANIFESTATION values (default,'concert');
 insert into TYPE_MANIFESTATION values (default,'opera');
 insert into TYPE_MANIFESTATION values (default,'theatre');
 
-insert into HOTEL values (default,1,'hotel1','rue hotel1',42,5,25);
-insert into HOTEL values (default,1,'hotel2','rue hotel2',43,4,35);
-insert into HOTEL values (default,6,'hotel3','rue hotel3',44,3,15);
-insert into HOTEL values (default,6,'hotel4','rue hotel4',45,2,25);
+insert into HOTEL values (default,1,'hotel1','rue hotel1',42,5,25.0,25.0);
+insert into HOTEL values (default,1,'hotel2','rue hotel2',43,4,35.0,35.0);
+insert into HOTEL values (default,6,'hotel3','rue hotel3',44,3,15.0,15.0);
+insert into HOTEL values (default,6,'hotel4','rue hotel4',45,2,15.0,25.0);
 
-insert into MANIFESTATION values (default,1,1,100,'concert1','2010-11-26','rue du concert1','desc concert1',40);
-insert into MANIFESTATION values (default,1,1,200,'concert2','2010-11-26','rue du concert2','desc concert2',40);
-insert into MANIFESTATION values (default,6,1,300,'concert3','2010-11-26','rue du concert3','desc concert3',40);
-insert into MANIFESTATION values (default,6,1,400,'concert4','2010-11-26','rue du concert4','desc concert4',40);
+insert into MANIFESTATION values (default,1,1,100,'concert1','2010-11-26','rue du concert1','desc concert1',40.0);
+insert into MANIFESTATION values (default,1,1,200,'concert2','2010-11-26','rue du concert2','desc concert2',40.0);
+insert into MANIFESTATION values (default,6,1,300,'concert3','2010-11-26','rue du concert3','desc concert3',40.0);
+insert into MANIFESTATION values (default,6,1,400,'concert4','2010-11-26','rue du concert4','desc concert4',40.0);
 
-insert into RESTAURANT values (default,1,'rue resto1','resto1',42,5,25);
-insert into RESTAURANT values (default,1,'rue resto2','resto2',60,4,35);
-insert into RESTAURANT values (default,6,'rue resto3','resto3',40,3,15);
-insert into RESTAURANT values (default,6,'rue resto4','resto4',18,2,25);
+insert into RESTAURANT values (default,1,'rue resto1','resto1',42,5,25.0,25.0);
+insert into RESTAURANT values (default,1,'rue resto2','resto2',60,4,25.0,35.0);
+insert into RESTAURANT values (default,6,'rue resto3','resto3',40,3,15.0,15.0);
+insert into RESTAURANT values (default,6,'rue resto4','resto4',18,2,25.0,25.0);
 
 
