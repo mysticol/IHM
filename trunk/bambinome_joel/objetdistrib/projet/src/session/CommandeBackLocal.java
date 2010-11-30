@@ -8,5 +8,7 @@ import entity.Commande;
 public interface CommandeBackLocal extends SessionEntityManager<Commande>{
 	
 	
+	
+	
 
 }

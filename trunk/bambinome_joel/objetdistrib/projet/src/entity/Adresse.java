@@ -1,7 +1,13 @@
 package entity;
 
-public class Adresse {
+import java.io.Serializable;
+
+public class Adresse implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String ville;
 	private String codepostal;
 	private String rue;
