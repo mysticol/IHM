@@ -4,9 +4,13 @@
  */
 package mvca.modeltable;
 
+import java.util.LinkedList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import mvca.entity.Client;
+import mvca.session.HibernateUtil;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 
 
 
@@ -20,11 +24,26 @@ public class TableModelClient extends AbstractTableModel {
    // private ClientJpaController entity;
 
     public TableModelClient() {
+
+
         //this.entity = new ClientJpaController();
         this.refresh();
     }
 
     public void refresh() {
+         HibernateUtil<Client> hb = new HibernateUtil<Client>(Client.class);
+
+      Client cl =new Client();
+         cl.setNomClient("joel");
+         cl.setPrenomClient("ponay");
+
+   hb.insert(cl);
+       hb.delete(3);//  ;
+Client temp=hb.findById(4);
+temp.setNomClient("connard ");
+hb.update(temp);
+   System.out.println( );
+             listClient=hb.findAll();
       //  listClient = entity.findClientEntities();
 
     }

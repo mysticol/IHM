@@ -44,7 +44,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jPanel1" max="32767" attributes="1"/>
+                  <Component id="panelAmovible" max="32767" attributes="1"/>
                   <Component id="jScrollPane1" alignment="0" pref="496" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -57,7 +57,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="1">
-                      <Component id="jPanel1" max="32767" attributes="0"/>
+                      <Component id="panelAmovible" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="173" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -202,7 +202,7 @@
         <Property name="text" type="java.lang.String" value="Reserv Manif"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="panelAmovible">
 
       <Layout>
         <DimensionLayout dim="0">

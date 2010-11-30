@@ -11,6 +11,7 @@
 
 package mvca.vue;
 
+import javax.swing.JPanel;
 import mvca.modeltable.TableModelClient;
 
 /**
@@ -47,7 +48,7 @@ public class mainFrame extends javax.swing.JFrame {
         reservHotelRadioButton = new javax.swing.JRadioButton();
         reservRestauRadioButton = new javax.swing.JRadioButton();
         reservManifRadioButton = new javax.swing.JRadioButton();
-        jPanel1 = new javax.swing.JPanel();
+        panelAmovible = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Back office");
@@ -98,14 +99,14 @@ public class mainFrame extends javax.swing.JFrame {
         buttonGroup1.add(reservManifRadioButton);
         reservManifRadioButton.setText("Reserv Manif");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelAmovibleLayout = new javax.swing.GroupLayout(panelAmovible);
+        panelAmovible.setLayout(panelAmovibleLayout);
+        panelAmovibleLayout.setHorizontalGroup(
+            panelAmovibleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 496, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelAmovibleLayout.setVerticalGroup(
+            panelAmovibleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 116, Short.MAX_VALUE)
         );
 
@@ -129,7 +130,7 @@ public class mainFrame extends javax.swing.JFrame {
                     .addComponent(localisationRadioButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelAmovible, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -139,7 +140,7 @@ public class mainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelAmovible, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
@@ -185,7 +186,14 @@ public class mainFrame extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mainFrame().setVisible(true);
+                mainFrame mv=  new mainFrame();
+             
+
+                mv.setVisible(true);
+                
+
+
+               
                 
             }
         });
@@ -195,10 +203,10 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton clientRadioButton;
     private javax.swing.JRadioButton hotelRadioButton;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton localisationRadioButton;
     private javax.swing.JRadioButton manifestationRadioButton;
+    private javax.swing.JPanel panelAmovible;
     private javax.swing.JRadioButton reservHotelRadioButton;
     private javax.swing.JRadioButton reservManifRadioButton;
     private javax.swing.JRadioButton reservRestauRadioButton;
@@ -208,5 +216,8 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton typeManifRadioButton;
     private javax.swing.JRadioButton voyageRadioButton;
     // End of variables declaration//GEN-END:variables
+
+ 
+
 
 }

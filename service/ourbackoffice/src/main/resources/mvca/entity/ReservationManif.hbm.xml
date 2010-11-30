@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 nov. 2010 15:49:20 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="mvca.entity.ReservationManif" schema="ROOT" table="RESERVATION_MANIF">
+    <id name="reservationManifId" type="int">
+      <column name="RESERVATION_MANIF_ID"/>
+      <generator class="identity"/>
+    </id>
+    <property name="date" type="date">
+      <column length="10" name="DATE"/>
+    </property>
+    <property name="fkIdClient" type="java.lang.Integer">
+      <column name="FK_ID_CLIENT"/>
+    </property>
+    <property name="fkIdManif" type="java.lang.Integer">
+      <column name="FK_ID_MANIF"/>
+    </property>
+  </class>
+</hibernate-mapping>
