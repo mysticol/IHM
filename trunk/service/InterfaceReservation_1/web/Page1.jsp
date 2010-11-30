@@ -54,7 +54,7 @@
                         <webuijsf:label id="labelPrixHotel" style="left: 96px; top: 648px; position: absolute" text="Avis moyen : "/>
                         <webuijsf:label id="labelPrixHotel1" style="left: 360px; top: 648px; position: absolute" text="Avis moyen : "/>
                         <webuijsf:button actionExpression="#{Page1.valider_action}" id="valider"
-                            style="height: 24px; left: 263px; top: 792px; position: absolute; width: 143px" text="Valider"/>
+                            style="height: 24px; left: 263px; top: 1296px; position: absolute; width: 143px" text="Valider"/>
                         <webuijsf:pageSeparator id="pageSeparator3" style="position: absolute; left: 96px; top: 696px; width: 480px; height: 24px"/>
                         <webuijsf:button actionExpression="#{Page1.chercher_action}" id="chercher" style="left: 287px; top: 288px; position: absolute" text="Chercher un événement"/>
                         <webuijsf:textField id="paysDepartTextField" label="Pays de départ :"
@@ -63,6 +63,8 @@
                         <webuijsf:textField id="villeDepartTextField" label="Ville de départ :"
                             onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'villeDepartTextField');"
                             style="position: absolute; left: 120px; top: 240px" valueChangeListenerExpression="#{Page1.villeDepartTextField_processValueChange}"/>
+                        <webuijsf:imageHyperlink id="imageGoogleMap" imageURL="#{Page1.urlGoogleMap}" style="left: 72px; top: 744px; position: absolute"/>
+                        <webuijsf:pageSeparator id="pageSeparator4" style="left: 96px; top: 1248px; position: absolute; width: 480px"/>
                     </webuijsf:form>
                 </webuijsf:body>
             </webuijsf:html>
