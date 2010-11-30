@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="mokReservRestau"
+    targetNamespace="http://enterprise.netbeans.org/bpel/mokReservRestau/mokReservRestau"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/mokReservRestau/mokReservRestau"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2">
+    <import namespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" location="ReservRestauRequest.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="ReservationManager" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" partnerLinkType="tns:ReservRestauRequest" myRole="ReservRestauRequestPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="ReservRestauRequestOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" messageType="tns:ReservRestauRequestOperationResponse"/>
+        <variable name="ReservRestauRequestOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" messageType="tns:ReservRestauRequestOperationRequest"/>
+    </variables>
+    <sequence>
+        <receive name="Receive1" createInstance="yes" partnerLink="ReservationManager" operation="ReservRestauRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" portType="tns:ReservRestauRequestPortType" variable="ReservRestauRequestOperationIn"/>
+        <assign name="AssignMok">
+            <copy>
+                <from>'OK'</from>
+                <to variable="ReservRestauRequestOperationOut" part="responce"/>
+            </copy>
+        </assign>
+        <reply name="Reply1" partnerLink="ReservationManager" operation="ReservRestauRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" portType="tns:ReservRestauRequestPortType" variable="ReservRestauRequestOperationOut"/>
+    </sequence>
+</process>
+
