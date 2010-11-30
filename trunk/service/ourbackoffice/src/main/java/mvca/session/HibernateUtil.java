@@ -4,6 +4,7 @@
  */
 package mvca.session;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.LinkedList;
 import mvca.entity.*;
@@ -95,7 +96,9 @@ public class HibernateUtil<E> {
     }
 
     public void insert(E object) {
-        System.out.println("ponau");
+
+
+
         Session session = getSessionFactory().openSession();
 
 
@@ -112,6 +115,41 @@ public class HibernateUtil<E> {
         session.update(object);
         session.flush();
         session.close();
+
+
+    }
+
+    public void insertOrUpdate(E Object) {
+
+        try {
+            Method mm = Object.getClass().getMethod(contructGetId(bibIdTable.get(Object.getClass())));
+
+
+            Integer id = (Integer) mm.invoke(Object, new Object[0]);
+            if (id == null || id == 0) {
+                this.insert(Object);
+            } else {
+                this.update(Object);
+            }
+
+
+
+        } catch (Exception e) {
+            try {
+                this.insert(Object);
+
+            } catch (Exception r) {
+                this.update(Object);
+            }
+
+
+        }
+    }
+
+    private String contructGetId(String name) {
+
+
+        return "get" + name.substring(0, 1).toUpperCase() + name.substring(1);
 
 
     }

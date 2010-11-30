@@ -23,28 +23,21 @@ public class TableModelClient extends AbstractTableModel {
     private List<Client> listClient;
    // private ClientJpaController entity;
 
+    private HibernateUtil<Client> entityManager= new HibernateUtil<Client>(Client.class);
+
     public TableModelClient() {
 
 
-        //this.entity = new ClientJpaController();
+        
         this.refresh();
     }
 
     public void refresh() {
-         HibernateUtil<Client> hb = new HibernateUtil<Client>(Client.class);
 
-      Client cl =new Client();
-         cl.setNomClient("joel");
-         cl.setPrenomClient("ponay");
 
-   hb.insert(cl);
-       hb.delete(3);//  ;
-Client temp=hb.findById(4);
-temp.setNomClient("connard ");
-hb.update(temp);
-   System.out.println( );
-             listClient=hb.findAll();
-      //  listClient = entity.findClientEntities();
+
+             listClient=entityManager.findAll();
+             this.fireTableDataChanged();
 
     }
 
@@ -101,5 +94,8 @@ hb.update(temp);
     }
 
 
+    public Client getRows( int i) {
+       return listClient.get(i);
+    }
 
 }

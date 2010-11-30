@@ -26,16 +26,9 @@ public class NewMain {
      */
     public static void main(String[] args) {
 
-
-      /* HibernateUtil hb = new HibernateUtil();
-
-       Session ss= hb.getSessionFactory().openSession();
-
-          Criteria criteria = ss.createCriteria(Client.class);
-
-
-             System.out.println(criteria.list());
-*/
+        String name= new String("ponayID");
+    System.out.println();
+    
           
 
             
