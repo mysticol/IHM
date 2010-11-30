@@ -195,11 +195,21 @@ public class Page1 extends AbstractPageBean {
                 // TODO initialize WS operation arguments here
                 org.netbeans.xml.schema.types.InterfaceRequest request = new org.netbeans.xml.schema.types.InterfaceRequest();
                 // TODO process result here
+                
                 org.netbeans.xml.schema.types.InterfaceResponse result = port.receptionOperation(request);
 
                 //We catch the country returned by the Reception Web Services
 
-                int taille = result.getPays().size();
+                // We remove countries that appear several times
+                List<String> paysList = new LinkedList<String>();
+                for(String pays : result.getPays()){
+                    if(!paysList.contains(pays)){
+                        paysList.add(pays);
+                    }
+                }
+
+
+                int taille = paysList.size();
 
                 //We always set the first option to the empty string in order to
                 //force the user to search a country
@@ -209,7 +219,7 @@ public class Page1 extends AbstractPageBean {
 
                 System.out.println("Initialisation");
 
-                for(String pays : result.getPays()){
+                for(String pays : paysList){
                     System.out.println("    Pays lu : " + pays);
                     resultPays[i++] = new Option(pays,pays);
                 }
@@ -560,7 +570,7 @@ public class Page1 extends AbstractPageBean {
 
 
             } catch (Exception ex) {
-                // TODO handle custom exceptions here
+                System.out.println(ex);
             }
 
         } else {
