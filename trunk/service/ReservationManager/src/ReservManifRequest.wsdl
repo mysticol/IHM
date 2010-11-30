@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ReservManifRequest" targetNamespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns0="http://xml.netbeans.org/schema/types">
+    <types>
+        <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest">
+            <xsd:import namespace="http://xml.netbeans.org/schema/types" schemaLocation="types.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="ReservManifRequestOperationRequest">
+        <part name="request" type="ns0:ReservManifRequest"/>
+    </message>
+    <message name="ReservManifRequestOperationResponse">
+        <part name="responce" type="xsd:string"/>
+    </message>
+    <portType name="ReservManifRequestPortType">
+        <operation name="ReservManifRequestOperation">
+            <input name="input1" message="tns:ReservManifRequestOperationRequest"/>
+            <output name="output1" message="tns:ReservManifRequestOperationResponse"/>
+        </operation>
+    </portType>
+    <plnk:partnerLinkType name="ReservManifRequest">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes.
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="ReservManifRequestPortTypeRole" portType="tns:ReservManifRequestPortType"/>
+    </plnk:partnerLinkType>
+</definitions>
+
+
+
