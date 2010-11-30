@@ -67,7 +67,7 @@
     <operation name="find">
     <jdbc:operation xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/"/>
       <input name="inputFind">
-    <jdbc:input xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" MarkColumnName="" MarkColumnValue="" MoveRowToTableName="" PKName="LOCALISATION_ID" PollMilliSeconds="5000" PollingPostProcessing="MoveRow" TableName="LOCALISATION" Transaction="NOTransaction" numberOfRecords="" operationType="find" paramOrder="" sql="select LOCALISATION_ID,PAYS,VILLE from LOCALISATION"/>
+    <jdbc:input xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" MarkColumnName="" MarkColumnValue="" MoveRowToTableName="" PKName="LOCALISATION_ID" PollMilliSeconds="5000" PollingPostProcessing="MoveRow" TableName="LOCALISATION" Transaction="NOTransaction" numberOfRecords="" operationType="find" paramOrder="" sql="select DISTINCT LOCALISATION_ID,PAYS,VILLE from LOCALISATION"/>
       </input>
       <output name="outputFind">
     <jdbc:output xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" returnPartName="part"/>
@@ -89,4 +89,5 @@
         <plink:role name="jdbcPortTypeRole" portType="tns:jdbcPortType"/>
     </plink:partnerLinkType>
 </definitions>
+
 

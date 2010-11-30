@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions name="Hotel" targetNamespace="http://j2ee.netbeans.org/wsdl/Reception/Hotel" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://j2ee.netbeans.org/xsd/tableSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Hotel" xmlns:plink="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/">
+<definitions name="Hotels" targetNamespace="http://j2ee.netbeans.org/wsdl/Reception/Hotels" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://j2ee.netbeans.org/xsd/tableSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://j2ee.netbeans.org/wsdl/Reception/Hotels" xmlns:plink="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/">
   <types>
     <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/">
             <xsd:import namespace="http://j2ee.netbeans.org/xsd/tableSchema" schemaLocation="HOTEL.xsd"/>
 	</xsd:schema>
   </types>
-  <message name="inputMsg">
+  <message name="outputMsg">
     <part name="part" element="ns:HOTEL"/>
   </message>
   <message name="RetMsg">
     <part name="part" type="xsd:int"/>
   </message>
-  <message name="outputMsg">
+  <message name="inputMsg">
     <part name="part" element="ns:HOTEL"/>
   </message>
   <portType name="jdbcPortType">
@@ -40,7 +40,7 @@
     <operation name="insert">
     <jdbc:operation xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/"/>
       <input name="inputInsert">
-    <jdbc:input xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" MarkColumnName="" MarkColumnValue="" MoveRowToTableName="" PKName="HOTEL_ID" PollMilliSeconds="5000" PollingPostProcessing="MoveRow" TableName="HOTEL" Transaction="NOTransaction" numberOfRecords="" operationType="insert" paramOrder="HOTEL_ID,FK_LOCALISATION_ID,NOM_HOTEL,ADRESSE,NB_CHAMBRE,RANK_HOTEL,PRIX" sql="insert into HOTEL (HOTEL_ID,FK_LOCALISATION_ID,NOM_HOTEL,ADRESSE,NB_CHAMBRE,RANK_HOTEL,PRIX) values (?,?,?,?,?,?,?)"/>
+    <jdbc:input xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" MarkColumnName="" MarkColumnValue="" MoveRowToTableName="" PKName="HOTEL_ID" PollMilliSeconds="5000" PollingPostProcessing="MoveRow" TableName="HOTEL" Transaction="NOTransaction" numberOfRecords="" operationType="insert" paramOrder="HOTEL_ID,FK_LOCALISATION_ID,NOM_HOTEL,ADRESSE,NB_CHAMBRE,RANK_HOTEL,PRIX_MOYEN,PRIX" sql="insert into HOTEL (HOTEL_ID,FK_LOCALISATION_ID,NOM_HOTEL,ADRESSE,NB_CHAMBRE,RANK_HOTEL,PRIX_MOYEN,PRIX) values (?,?,?,?,?,?,?,?)"/>
       </input>
       <output name="outputInsert">
     <jdbc:output xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" returnPartName="part"/>
@@ -49,7 +49,7 @@
     <operation name="update">
     <jdbc:operation xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/"/>
       <input name="inputUpdate">
-    <jdbc:input xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" MarkColumnName="" MarkColumnValue="" MoveRowToTableName="" PKName="HOTEL_ID" PollMilliSeconds="5000" PollingPostProcessing="MoveRow" TableName="HOTEL" Transaction="NOTransaction" numberOfRecords="" operationType="update" paramOrder="HOTEL_ID,FK_LOCALISATION_ID,NOM_HOTEL,ADRESSE,NB_CHAMBRE,RANK_HOTEL,PRIX" sql="update HOTEL set HOTEL_ID  = ?,FK_LOCALISATION_ID  = ?,NOM_HOTEL  = ?,ADRESSE  = ?,NB_CHAMBRE  = ?,RANK_HOTEL  = ?,PRIX  = ?"/>
+    <jdbc:input xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" MarkColumnName="" MarkColumnValue="" MoveRowToTableName="" PKName="HOTEL_ID" PollMilliSeconds="5000" PollingPostProcessing="MoveRow" TableName="HOTEL" Transaction="NOTransaction" numberOfRecords="" operationType="update" paramOrder="HOTEL_ID,FK_LOCALISATION_ID,NOM_HOTEL,ADRESSE,NB_CHAMBRE,RANK_HOTEL,PRIX_MOYEN,PRIX" sql="update HOTEL set HOTEL_ID  = ?,FK_LOCALISATION_ID  = ?,NOM_HOTEL  = ?,ADRESSE  = ?,NB_CHAMBRE  = ?,RANK_HOTEL  = ?,PRIX_MOYEN  = ?,PRIX  = ?"/>
       </input>
       <output name="outputUpdate">
     <jdbc:output xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" returnPartName="part"/>
@@ -67,7 +67,7 @@
     <operation name="find">
     <jdbc:operation xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/"/>
       <input name="inputFind">
-    <jdbc:input xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" MarkColumnName="" MarkColumnValue="" MoveRowToTableName="" PKName="HOTEL_ID" PollMilliSeconds="5000" PollingPostProcessing="MoveRow" TableName="HOTEL" Transaction="NOTransaction" numberOfRecords="" operationType="find" paramOrder="FK_LOCALISATION_ID" sql="select HOTEL_ID,FK_LOCALISATION_ID,NOM_HOTEL,ADRESSE,NB_CHAMBRE,RANK_HOTEL,PRIX from HOTEL where FK_LOCALISATION_ID in (?)"/>
+    <jdbc:input xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" MarkColumnName="" MarkColumnValue="" MoveRowToTableName="" PKName="HOTEL_ID" PollMilliSeconds="5000" PollingPostProcessing="MoveRow" TableName="HOTEL" Transaction="NOTransaction" numberOfRecords="" operationType="find" paramOrder="FK_LOCALISATION_ID" sql="select HOTEL_ID,FK_LOCALISATION_ID,NOM_HOTEL,ADRESSE,NB_CHAMBRE,RANK_HOTEL,PRIX_MOYEN,PRIX from HOTEL where FK_LOCALISATION_ID in (?)"/>
       </input>
       <output name="outputFind">
     <jdbc:output xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" returnPartName="part"/>
@@ -76,7 +76,7 @@
     <operation name="pollrecords">
     <jdbc:operation xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/"/>
       <input name="inputPoll">
-    <jdbc:input xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" MarkColumnName="" MarkColumnValue="" MoveRowToTableName="" PKName="HOTEL_ID" PollMilliSeconds="5000" PollingPostProcessing="Delete" TableName="HOTEL" Transaction="NOTransaction" numberOfRecords="" operationType="poll" paramOrder="" sql="select HOTEL_ID,FK_LOCALISATION_ID,NOM_HOTEL,ADRESSE,NB_CHAMBRE,RANK_HOTEL,PRIX from HOTEL"/>
+    <jdbc:input xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" MarkColumnName="" MarkColumnValue="" MoveRowToTableName="" PKName="HOTEL_ID" PollMilliSeconds="5000" PollingPostProcessing="Delete" TableName="HOTEL" Transaction="NOTransaction" numberOfRecords="" operationType="poll" paramOrder="" sql="select HOTEL_ID,FK_LOCALISATION_ID,NOM_HOTEL,ADRESSE,NB_CHAMBRE,RANK_HOTEL,PRIX_MOYEN,PRIX from HOTEL"/>
       </input>
     </operation>
   </binding>
@@ -89,4 +89,5 @@
         <plink:role name="jdbcPortTypeRole" portType="tns:jdbcPortType"/>
     </plink:partnerLinkType>
 </definitions>
+
 

@@ -28,13 +28,13 @@
                 <soap:body use="literal"/>
             </input>
             <output name="output1">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/Reception/Reception"/>
             </output>
         </operation>
     </binding>
     <service name="ReceptionService">
         <port name="ReceptionPortTypeBindingPort" binding="tns:ReceptionPortTypeBinding">
-            <soap:address location="http://localhost:${HttpDefaultPort}/service"/>
+            <soap:address location="http://localhost:18001/serviceReception"/>
         </port>
     </service>
     <plnk:partnerLinkType name="Reception">
@@ -44,5 +44,9 @@ A partner link type characterizes the conversational relationship between two se
         <plnk:role name="ReceptionPortTypeRole" portType="tns:ReceptionPortType"/>
     </plnk:partnerLinkType>
 </definitions>
+
+
+
+
 
 
