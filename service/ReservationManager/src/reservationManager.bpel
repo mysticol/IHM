@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="reservationManager"
+    targetNamespace="http://enterprise.netbeans.org/bpel/ReservationManager/reservationManager"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/ReservationManager/reservationManager"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/types">
+    <import namespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservationRequest" location="ReservationRequest.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+
+    <import namespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservVoyageRequest" location="ReservVoyageRequest.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ClientManagerRequest" location="ClientManagerRequest.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservHotelRequest" location="ReservHotelRequest.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" location="ReservManifRequest.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" location="ReservRestauRequest.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="ClientManager" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ClientManagerRequest" partnerLinkType="tns:ClientManagerRequest" partnerRole="ClientManagerRequestPortTypeRole"/>
+        <partnerLink name="JSP" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservationRequest" partnerLinkType="tns:ReservationRequest" myRole="ReservationRequestPortTypeRole"/>
+        <partnerLink name="ReservVoyage" xmlns:tns1="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservVoyageRequest" partnerLinkType="tns1:ReservVoyageRequest" partnerRole="ReservVoyagePortTypeRole"/>
+        <partnerLink name="ReservHotel" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservHotelRequest" partnerLinkType="tns:ReservHotelRequest" partnerRole="ReservHotelRequestPortTypeRole"/>
+        <partnerLink name="ReservManif" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" partnerLinkType="tns:ReservManifRequest" partnerRole="ReservManifRequestPortTypeRole"/>
+        <partnerLink name="ReservRestau" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" partnerLinkType="tns:ReservRestauRequest" partnerRole="ReservRestauRequestPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="ReservRestauRequestOperationOutForComplete" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" messageType="tns:ReservRestauRequestOperationResponse"/>
+        <variable name="ReservRestauRequestOperationInForComplete" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" messageType="tns:ReservRestauRequestOperationRequest"/>
+        <variable name="ReservManifRequestOperationOutForComplete" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" messageType="tns:ReservManifRequestOperationResponse"/>
+        <variable name="ReservManifRequestOperationInForComplete" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" messageType="tns:ReservManifRequestOperationRequest"/>
+        <variable name="ReservHotelRequestOperationOutForComplete" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservHotelRequest" messageType="tns:ReservHotelRequestOperationResponse"/>
+        <variable name="ReservHotelRequestOperationInForComplete" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservHotelRequest" messageType="tns:ReservHotelRequestOperationRequest"/>
+        <variable name="ReservRestauRequestOperationOutForCheck" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" messageType="tns:ReservRestauRequestOperationResponse"/>
+        <variable name="ReservRestauRequestOperationInForCheck" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" messageType="tns:ReservRestauRequestOperationRequest"/>
+        <variable name="ReservManifRequestOperationOutForCheck" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" messageType="tns:ReservManifRequestOperationResponse"/>
+        <variable name="ReservManifRequestOperationInForCheck" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" messageType="tns:ReservManifRequestOperationRequest"/>
+        <variable name="ReservHotelRequestOperationOutForCheck" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservHotelRequest" messageType="tns:ReservHotelRequestOperationResponse"/>
+        <variable name="ReservHotelRequestOperationInForCheck" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservHotelRequest" messageType="tns:ReservHotelRequestOperationRequest"/>
+        <variable name="ClientManagerRequestOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ClientManagerRequest" messageType="tns:ClientManagerRequestOperationResponse"/>
+        <variable name="ClientManagerRequestOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ClientManagerRequest" messageType="tns:ClientManagerRequestOperationRequest"/>
+        <variable name="ReservVoyageOperationOutForComplete" xmlns:tns1="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservVoyageRequest" messageType="tns1:ReservVoyageOperationResponse"/>
+        <variable name="ReservVoyageOperationInForComplete" xmlns:tns1="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservVoyageRequest" messageType="tns1:ReservVoyageOperationRequest"/>
+        <variable name="ReservVoyageOperationOutForCheck" xmlns:tns1="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservVoyageRequest" messageType="tns1:ReservVoyageOperationResponse"/>
+        <variable name="ReservVoyageOperationInForCheck" xmlns:tns1="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservVoyageRequest" messageType="tns1:ReservVoyageOperationRequest"/>
+        <variable name="ReservationRequestOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservationRequest" messageType="tns:ReservationRequestOperationResponse"/>
+        <variable name="ReservationRequestOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservationRequest" messageType="tns:ReservationRequestOperationRequest"/>
+    </variables>
+    <sequence>
+        <receive name="Receive1" createInstance="yes" partnerLink="JSP" operation="ReservationRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservationRequest" portType="tns:ReservationRequestPortType" variable="ReservationRequestOperationIn">
+            <sxt:trace>
+                <sxt:log level="info" location="onComplete">
+                    <from>'-----&gt; debut !!!'</from>
+                </sxt:log>
+            </sxt:trace>
+        </receive>
+        <assign name="AssignForClientManager">
+            <copy>
+                <from>$ReservationRequestOperationIn.request/ns0:Nom</from>
+                <to>$ClientManagerRequestOperationIn.request/ns0:Nom</to>
+            </copy>
+            <copy>
+                <from>$ReservationRequestOperationIn.request/ns0:Prenom</from>
+                <to>$ClientManagerRequestOperationIn.request/ns0:Prenom</to>
+            </copy>
+        </assign>
+        <invoke name="InvokeClientManager" partnerLink="ClientManager" operation="ClientManagerRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ClientManagerRequest" portType="tns:ClientManagerRequestPortType" inputVariable="ClientManagerRequestOperationIn" outputVariable="ClientManagerRequestOperationOut">
+            <sxt:trace>
+                <sxt:log level="info" location="onComplete">
+                    <from>concat('-----&gt; ', $ClientManagerRequestOperationOut.IdClient)</from>
+                </sxt:log>
+            </sxt:trace>
+        </invoke>
+        <assign name="AssignForCheck">
+            <copy>
+                <from variable="ClientManagerRequestOperationOut" part="IdClient"/>
+                <to>$ReservRestauRequestOperationInForCheck.request/ns0:IdClient</to>
+            </copy>
+            <copy>
+                <from>$ReservationRequestOperationIn.request/ns0:IdRestau</from>
+                <to>$ReservRestauRequestOperationInForCheck.request/ns0:IdRestau</to>
+            </copy>
+            <copy>
+                <from>$ReservationRequestOperationIn.request/ns0:Date</from>
+                <to>$ReservRestauRequestOperationInForCheck.request/ns0:Date</to>
+            </copy>
+            <copy>
+                <from>true()</from>
+                <to>$ReservRestauRequestOperationInForCheck.request/ns0:check</to>
+            </copy>
+            <copy>
+                <from variable="ClientManagerRequestOperationOut" part="IdClient"/>
+                <to>$ReservManifRequestOperationInForCheck.request/ns0:IdClient</to>
+            </copy>
+            <copy>
+                <from>$ReservationRequestOperationIn.request/ns0:IdManif</from>
+                <to>$ReservManifRequestOperationInForCheck.request/ns0:IdManif</to>
+            </copy>
+            <copy>
+                <from>true()</from>
+                <to>$ReservManifRequestOperationInForCheck.request/ns0:check</to>
+            </copy>
+            <copy>
+                <from variable="ClientManagerRequestOperationOut" part="IdClient"/>
+                <to>$ReservHotelRequestOperationInForCheck.request/ns0:IdClient</to>
+            </copy>
+            <copy>
+                <from>$ReservationRequestOperationIn.request/ns0:IdHotel</from>
+                <to>$ReservHotelRequestOperationInForCheck.request/ns0:IdHotel</to>
+            </copy>
+            <copy>
+                <from>$ReservationRequestOperationIn.request/ns0:Date</from>
+                <to>$ReservHotelRequestOperationInForCheck.request/ns0:Date</to>
+            </copy>
+            <copy>
+                <from>true()</from>
+                <to>$ReservHotelRequestOperationInForCheck.request/ns0:check</to>
+            </copy>
+            <copy>
+                <from variable="ClientManagerRequestOperationOut" part="IdClient"/>
+                <to>$ReservVoyageOperationInForCheck.request/ns0:IdClient</to>
+            </copy>
+            <copy>
+                <from>$ReservationRequestOperationIn.request/ns0:Voyage/ns0:VilleDepart</from>
+                <to>$ReservVoyageOperationInForCheck.request/ns0:Voyage/ns0:VilleDepart</to>
+            </copy>
+            <copy>
+                <from>$ReservationRequestOperationIn.request/ns0:Voyage/ns0:PaysDepart</from>
+                <to>$ReservVoyageOperationInForCheck.request/ns0:Voyage/ns0:PaysDepart</to>
+            </copy>
+            <copy>
+                <from>$ReservationRequestOperationIn.request/ns0:Voyage/ns0:VilleArriver</from>
+                <to>$ReservVoyageOperationInForCheck.request/ns0:Voyage/ns0:VilleArriver</to>
+            </copy>
+            <copy>
+                <from>$ReservationRequestOperationIn.request/ns0:Voyage/ns0:PaysArrivee</from>
+                <to>$ReservVoyageOperationInForCheck.request/ns0:Voyage/ns0:PaysArrivee</to>
+            </copy>
+            <copy>
+                <from>$ReservationRequestOperationIn.request/ns0:Date</from>
+                <to>$ReservVoyageOperationInForCheck.request/ns0:Date</to>
+            </copy>
+            <copy>
+                <from>true()</from>
+                <to>$ReservVoyageOperationInForCheck.request/ns0:check</to>
+            </copy>
+        </assign>
+        <invoke name="InvokeCheckVoyage" partnerLink="ReservVoyage" operation="ReservVoyageOperation" xmlns:tns1="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservVoyageRequest" portType="tns1:ReservVoyagePortType" inputVariable="ReservVoyageOperationInForCheck" outputVariable="ReservVoyageOperationOutForCheck">
+            <sxt:trace>
+                <sxt:log level="info" location="onComplete">
+                    <from>concat('-----&gt; check voyage : ', $ReservVoyageOperationOutForCheck.responce)</from>
+                </sxt:log>
+            </sxt:trace>
+        </invoke>
+        <invoke name="InvokeCheckHotel" partnerLink="ReservHotel" operation="ReservHotelRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservHotelRequest" portType="tns:ReservHotelRequestPortType" inputVariable="ReservHotelRequestOperationInForCheck" outputVariable="ReservHotelRequestOperationOutForCheck">
+            <sxt:trace>
+                <sxt:log level="info" location="onComplete">
+                    <from>concat('-----&gt; check hotel : ', $ReservHotelRequestOperationOutForCheck.responce)</from>
+                </sxt:log>
+            </sxt:trace>
+        </invoke>
+        <invoke name="InvokeCheckManif" partnerLink="ReservManif" operation="ReservManifRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" portType="tns:ReservManifRequestPortType" inputVariable="ReservManifRequestOperationInForCheck" outputVariable="ReservManifRequestOperationOutForCheck">
+            <sxt:trace>
+                <sxt:log level="info" location="onComplete">
+                    <from>concat('-----&gt; check manif : ', $ReservManifRequestOperationOutForCheck.responce)</from>
+                </sxt:log>
+            </sxt:trace>
+        </invoke>
+        <invoke name="InvokeCheckRestau" partnerLink="ReservRestau" operation="ReservRestauRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" portType="tns:ReservRestauRequestPortType" inputVariable="ReservRestauRequestOperationInForCheck" outputVariable="ReservRestauRequestOperationOutForCheck">
+            <sxt:trace>
+                <sxt:log level="info" location="onComplete">
+                    <from>concat('-----&gt; check restau : ', $ReservRestauRequestOperationOutForCheck.responce)</from>
+                </sxt:log>
+            </sxt:trace>
+        </invoke>
+        <if name="IfCheckOK">
+            <condition>'OK' = $ReservRestauRequestOperationOutForCheck.responce and 'OK' = $ReservManifRequestOperationOutForCheck.responce and 'OK' = $ReservHotelRequestOperationOutForCheck.responce and 'OK' = $ReservVoyageOperationOutForCheck.responce</condition>
+            <sequence name="Sequence1">
+                <assign name="AssignForReserv">
+                    <sxt:trace>
+                        <sxt:log level="info" location="onStart">
+                            <from>'-----&gt; Check OK : Debut reservation'</from>
+                        </sxt:log>
+                    </sxt:trace>
+                    <copy>
+                        <from>$ReservationRequestOperationIn.request/ns0:Voyage/ns0:VilleDepart</from>
+                        <to>$ReservVoyageOperationInForComplete.request/ns0:Voyage/ns0:VilleDepart</to>
+                    </copy>
+                    <copy>
+                        <from>$ReservationRequestOperationIn.request/ns0:Voyage/ns0:PaysDepart</from>
+                        <to>$ReservVoyageOperationInForComplete.request/ns0:Voyage/ns0:PaysDepart</to>
+                    </copy>
+                    <copy>
+                        <from>$ReservationRequestOperationIn.request/ns0:Voyage/ns0:VilleArriver</from>
+                        <to>$ReservVoyageOperationInForComplete.request/ns0:Voyage/ns0:VilleArriver</to>
+                    </copy>
+                    <copy>
+                        <from>$ReservationRequestOperationIn.request/ns0:Voyage/ns0:PaysArrivee</from>
+                        <to>$ReservVoyageOperationInForComplete.request/ns0:Voyage/ns0:PaysArrivee</to>
+                    </copy>
+                    <copy>
+                        <from>$ReservationRequestOperationIn.request/ns0:Date</from>
+                        <to>$ReservVoyageOperationInForComplete.request/ns0:Date</to>
+                    </copy>
+                    <copy>
+                        <from>false()</from>
+                        <to>$ReservVoyageOperationInForComplete.request/ns0:check</to>
+                    </copy>
+                    <copy>
+                        <from variable="ClientManagerRequestOperationOut" part="IdClient"/>
+                        <to>$ReservVoyageOperationInForComplete.request/ns0:IdClient</to>
+                    </copy>
+                    <copy>
+                        <from variable="ClientManagerRequestOperationOut" part="IdClient"/>
+                        <to>$ReservHotelRequestOperationInForComplete.request/ns0:IdClient</to>
+                    </copy>
+                    <copy>
+                        <from>$ReservationRequestOperationIn.request/ns0:IdHotel</from>
+                        <to>$ReservHotelRequestOperationInForComplete.request/ns0:IdHotel</to>
+                    </copy>
+                    <copy>
+                        <from>$ReservationRequestOperationIn.request/ns0:Date</from>
+                        <to>$ReservHotelRequestOperationInForComplete.request/ns0:Date</to>
+                    </copy>
+                    <copy>
+                        <from>false()</from>
+                        <to>$ReservHotelRequestOperationInForComplete.request/ns0:check</to>
+                    </copy>
+                    <copy>
+                        <from variable="ClientManagerRequestOperationOut" part="IdClient"/>
+                        <to>$ReservManifRequestOperationInForComplete.request/ns0:IdClient</to>
+                    </copy>
+                    <copy>
+                        <from>$ReservationRequestOperationIn.request/ns0:IdManif</from>
+                        <to>$ReservManifRequestOperationInForComplete.request/ns0:IdManif</to>
+                    </copy>
+                    <copy>
+                        <from>false()</from>
+                        <to>$ReservManifRequestOperationInForComplete.request/ns0:check</to>
+                    </copy>
+                    <copy>
+                        <from variable="ClientManagerRequestOperationOut" part="IdClient"/>
+                        <to>$ReservRestauRequestOperationInForComplete.request/ns0:IdClient</to>
+                    </copy>
+                    <copy>
+                        <from>$ReservationRequestOperationIn.request/ns0:IdRestau</from>
+                        <to>$ReservRestauRequestOperationInForComplete.request/ns0:IdRestau</to>
+                    </copy>
+                    <copy>
+                        <from>$ReservationRequestOperationIn.request/ns0:Date</from>
+                        <to>$ReservRestauRequestOperationInForComplete.request/ns0:Date</to>
+                    </copy>
+                    <copy>
+                        <from>false()</from>
+                        <to>$ReservRestauRequestOperationInForComplete.request/ns0:check</to>
+                    </copy>
+                </assign>
+                <invoke name="InvokeReverVoyage" partnerLink="ReservVoyage" operation="ReservVoyageOperation" xmlns:tns1="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservVoyageRequest" portType="tns1:ReservVoyagePortType" inputVariable="ReservVoyageOperationInForComplete" outputVariable="ReservVoyageOperationOutForComplete">
+                    <sxt:trace>
+                        <sxt:log level="info" location="onComplete">
+                            <from>concat('-----&gt; reserv voyage : ', $ReservVoyageOperationOutForComplete.responce)</from>
+                        </sxt:log>
+                    </sxt:trace>
+                </invoke>
+                <invoke name="InvokeReservHotel" partnerLink="ReservHotel" operation="ReservHotelRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservHotelRequest" portType="tns:ReservHotelRequestPortType" inputVariable="ReservHotelRequestOperationInForComplete" outputVariable="ReservHotelRequestOperationOutForComplete">
+                    <sxt:trace>
+                        <sxt:log level="info" location="onComplete">
+                            <from>concat('-----&gt; reserv hotel :', $ReservHotelRequestOperationOutForComplete.responce)</from>
+                        </sxt:log>
+                    </sxt:trace>
+                </invoke>
+                <invoke name="InvokeReservManif" partnerLink="ReservManif" operation="ReservManifRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" portType="tns:ReservManifRequestPortType" inputVariable="ReservManifRequestOperationInForComplete" outputVariable="ReservManifRequestOperationOutForComplete">
+                    <sxt:trace>
+                        <sxt:log level="info" location="onComplete">
+                            <from>concat('-----&gt; reserv manif :', $ReservManifRequestOperationOutForComplete.responce)</from>
+                        </sxt:log>
+                    </sxt:trace>
+                </invoke>
+                <invoke name="InvokeReservRestau" partnerLink="ReservRestau" operation="ReservRestauRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" portType="tns:ReservRestauRequestPortType" inputVariable="ReservRestauRequestOperationInForComplete" outputVariable="ReservRestauRequestOperationOutForComplete">
+                    <sxt:trace>
+                        <sxt:log level="info" location="onComplete">
+                            <from>concat('-----&gt; reserv restau :', $ReservRestauRequestOperationOutForComplete.responce)</from>
+                        </sxt:log>
+                    </sxt:trace>
+                </invoke>
+                <assign name="AssignForResponce">
+                    <copy>
+                        <from>concat('Reservations effectuées !!! Voyage : ', $ReservVoyageOperationOutForComplete.responce, ' / Hotel : ', $ReservHotelRequestOperationOutForComplete.responce, ' / Manif : ', $ReservManifRequestOperationOutForComplete.responce, ' / Restau : ', $ReservRestauRequestOperationOutForComplete.responce)</from>
+                        <to variable="ReservationRequestOperationOut" part="responce"/>
+                    </copy>
+                </assign>
+            </sequence>
+            <else>
+                <assign name="AssignBadCheck">
+                    <sxt:trace>
+                        <sxt:log level="info" location="onStart">
+                            <from>'-----&gt; Check Erreur : reservation annulée'</from>
+                        </sxt:log>
+                    </sxt:trace>
+                    <copy>
+                        <from>concat('Reservation annulée !! Hotel : ', $ReservHotelRequestOperationOutForCheck.responce, ' / Manif :', $ReservManifRequestOperationOutForCheck.responce, ' / Restau : ', $ReservRestauRequestOperationOutForCheck.responce, ' / Voyage : ', $ReservVoyageOperationOutForCheck.responce)</from>
+                        <to variable="ReservationRequestOperationOut" part="responce"/>
+                    </copy>
+                </assign>
+            </else>
+        </if>
+        <reply name="Reply1" partnerLink="JSP" operation="ReservationRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservationRequest" portType="tns:ReservationRequestPortType" variable="ReservationRequestOperationOut">
+            <sxt:trace>
+                <sxt:log level="info" location="onStart">
+                    <from>concat('-----&gt; reponce : ', $ReservationRequestOperationOut.responce)</from>
+                </sxt:log>
+            </sxt:trace>
+        </reply>
+    </sequence>
+</process>
+
+
+
+
+
+
+
+
