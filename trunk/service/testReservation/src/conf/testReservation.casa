@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<casa xmlns="http://java.sun.com/xml/ns/casa" xmlns:ns1="http://j2ee.netbeans.org/wsdl/ClientManager/clientTable" xmlns:ns10="http://j2ee.netbeans.org/wsdl/reservVoyage/reservVoyageTable" xmlns:ns11="http://j2ee.netbeans.org/wsdl/reservRestau/restauTable" xmlns:ns12="http://j2ee.netbeans.org/wsdl/reservRestau/reservRestauTable" xmlns:ns13="http://j2ee.netbeans.org/wsdl/reservRestau/checkRestau" xmlns:ns14="http://j2ee.netbeans.org/wsdl/ReservationManager/reservationTable" xmlns:ns15="http://enterprise.netbeans.org/bpel/reservRestau/reservRestau" xmlns:ns16="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" xmlns:ns17="http://enterprise.netbeans.org/bpel/reservVoyage/reservVoyage" xmlns:ns18="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservVoyageRequest" xmlns:ns19="http://enterprise.netbeans.org/bpel/reservManif/reservManif" xmlns:ns2="http://j2ee.netbeans.org/wsdl/mockReservation/Reservation" xmlns:ns20="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" xmlns:ns21="http://enterprise.netbeans.org/bpel/reservHotel/reservHotel" xmlns:ns22="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservHotelRequest" xmlns:ns23="http://enterprise.netbeans.org/bpel/ClientManager/clientManager" xmlns:ns24="http://j2ee.netbeans.org/wsdl/ReservationManager/ClientManagerRequest" xmlns:ns25="http://enterprise.netbeans.org/bpel/ReservationManager/reservationManager" xmlns:ns3="http://j2ee.netbeans.org/wsdl/reservHotel/hotelTable" xmlns:ns4="http://j2ee.netbeans.org/wsdl/reservHotel/reservHotelTable" xmlns:ns5="http://j2ee.netbeans.org/wsdl/reservHotel/checkHotelTable" xmlns:ns6="http://j2ee.netbeans.org/wsdl/reservManif/manifTable" xmlns:ns7="http://j2ee.netbeans.org/wsdl/reservManif/reservManif" xmlns:ns8="http://j2ee.netbeans.org/wsdl/reservManif/checkManif" xmlns:ns9="http://j2ee.netbeans.org/wsdl/reservVoyage/localisationCheck" xmlns:xlink="http://www.w3.org/2000/xlink">
+    <endpoints>
+        <endpoint endpoint-name="port" interface-name="ns1:jdbcPortType" name="endpoint1" service-name="ns1:service"/>
+        <endpoint endpoint-name="ReservationPort" interface-name="ns2:ReservationPortType" name="endpoint2" service-name="ns2:ReservationService"/>
+        <endpoint endpoint-name="port" interface-name="ns3:jdbcPortType" name="endpoint3" service-name="ns3:service"/>
+        <endpoint endpoint-name="port" interface-name="ns4:jdbcPortType" name="endpoint4" service-name="ns4:service"/>
+        <endpoint endpoint-name="port" interface-name="ns5:jdbcPortType" name="endpoint5" service-name="ns5:service"/>
+        <endpoint endpoint-name="port" interface-name="ns6:jdbcPortType" name="endpoint6" service-name="ns6:service"/>
+        <endpoint endpoint-name="port" interface-name="ns7:jdbcPortType" name="endpoint7" service-name="ns7:service"/>
+        <endpoint endpoint-name="port" interface-name="ns8:jdbcPortType" name="endpoint8" service-name="ns8:service"/>
+        <endpoint endpoint-name="port" interface-name="ns9:jdbcPortType" name="endpoint9" service-name="ns9:service"/>
+        <endpoint endpoint-name="port" interface-name="ns10:jdbcPortType" name="endpoint10" service-name="ns10:service"/>
+        <endpoint endpoint-name="port" interface-name="ns11:jdbcPortType" name="endpoint11" service-name="ns11:service"/>
+        <endpoint endpoint-name="port" interface-name="ns12:jdbcPortType" name="endpoint12" service-name="ns12:service"/>
+        <endpoint endpoint-name="port" interface-name="ns13:jdbcPortType" name="endpoint13" service-name="ns13:service"/>
+        <endpoint endpoint-name="port" interface-name="ns14:jdbcPortType" name="endpoint14" service-name="ns14:service"/>
+        <endpoint display-name="ReservationManager" endpoint-name="ReservRestauRequestPortTypeRole_myRole" file-path="reservRestau.bpel" interface-name="ns16:ReservRestauRequestPortType" name="endpoint15" process-name="reservRestau" service-name="ns15:ReservationManager"/>
+        <endpoint display-name="restaurant" endpoint-name="jdbcPortTypeRole_partnerRole" file-path="reservRestau.bpel" interface-name="ns11:jdbcPortType" name="endpoint16" process-name="reservRestau" service-name="ns15:restaurant"/>
+        <endpoint display-name="checkRestau" endpoint-name="jdbcPortTypeRole_partnerRole" file-path="reservRestau.bpel" interface-name="ns13:jdbcPortType" name="endpoint17" process-name="reservRestau" service-name="ns15:checkRestau"/>
+        <endpoint display-name="reservRestauTable" endpoint-name="jdbcPortTypeRole_partnerRole" file-path="reservRestau.bpel" interface-name="ns12:jdbcPortType" name="endpoint18" process-name="reservRestau" service-name="ns15:reservRestauTable"/>
+        <endpoint display-name="ReservationManager" endpoint-name="ReservVoyagePortTypeRole_myRole" file-path="reservVoyage.bpel" interface-name="ns18:ReservVoyagePortType" name="endpoint19" process-name="reservVoyage" service-name="ns17:ReservationManager"/>
+        <endpoint display-name="localisationTable" endpoint-name="jdbcPortTypeRole_partnerRole" file-path="reservVoyage.bpel" interface-name="ns9:jdbcPortType" name="endpoint20" process-name="reservVoyage" service-name="ns17:localisationTable"/>
+        <endpoint display-name="voyageTable" endpoint-name="jdbcPortTypeRole_partnerRole" file-path="reservVoyage.bpel" interface-name="ns10:jdbcPortType" name="endpoint21" process-name="reservVoyage" service-name="ns17:voyageTable"/>
+        <endpoint display-name="ReservationManager" endpoint-name="ReservManifRequestPortTypeRole_myRole" file-path="reservManif.bpel" interface-name="ns20:ReservManifRequestPortType" name="endpoint22" process-name="reservManif" service-name="ns19:ReservationManager"/>
+        <endpoint display-name="manifTable" endpoint-name="jdbcPortTypeRole_partnerRole" file-path="reservManif.bpel" interface-name="ns6:jdbcPortType" name="endpoint23" process-name="reservManif" service-name="ns19:manifTable"/>
+        <endpoint display-name="checkManif" endpoint-name="jdbcPortTypeRole_partnerRole" file-path="reservManif.bpel" interface-name="ns8:jdbcPortType" name="endpoint24" process-name="reservManif" service-name="ns19:checkManif"/>
+        <endpoint display-name="reservManif" endpoint-name="jdbcPortTypeRole_partnerRole" file-path="reservManif.bpel" interface-name="ns7:jdbcPortType" name="endpoint25" process-name="reservManif" service-name="ns19:reservManif"/>
+        <endpoint display-name="ReservationManager" endpoint-name="ReservHotelRequestPortTypeRole_myRole" file-path="reservHotel.bpel" interface-name="ns22:ReservHotelRequestPortType" name="endpoint26" process-name="reservHotel" service-name="ns21:ReservationManager"/>
+        <endpoint display-name="hotelTable" endpoint-name="jdbcPortTypeRole_partnerRole" file-path="reservHotel.bpel" interface-name="ns3:jdbcPortType" name="endpoint27" process-name="reservHotel" service-name="ns21:hotelTable"/>
+        <endpoint display-name="checkHotelTable" endpoint-name="jdbcPortTypeRole_partnerRole" file-path="reservHotel.bpel" interface-name="ns5:jdbcPortType" name="endpoint28" process-name="reservHotel" service-name="ns21:checkHotelTable"/>
+        <endpoint display-name="reservHotelTable" endpoint-name="jdbcPortTypeRole_partnerRole" file-path="reservHotel.bpel" interface-name="ns4:jdbcPortType" name="endpoint29" process-name="reservHotel" service-name="ns21:reservHotelTable"/>
+        <endpoint display-name="ReservationManager" endpoint-name="ClientManagerRequestPortTypeRole_myRole" file-path="clientManager.bpel" interface-name="ns24:ClientManagerRequestPortType" name="endpoint30" process-name="clientManager" service-name="ns23:ReservationManager"/>
+        <endpoint display-name="clientTable" endpoint-name="jdbcPortTypeRole_partnerRole" file-path="clientManager.bpel" interface-name="ns1:jdbcPortType" name="endpoint31" process-name="clientManager" service-name="ns23:clientTable"/>
+        <endpoint display-name="JSP" endpoint-name="ReservationPortTypeRole_myRole" file-path="reservationManager.bpel" interface-name="ns2:ReservationPortType" name="endpoint32" process-name="reservationManager" service-name="ns25:JSP"/>
+        <endpoint display-name="ClientManager" endpoint-name="ClientManagerRequestPortTypeRole_partnerRole" file-path="reservationManager.bpel" interface-name="ns24:ClientManagerRequestPortType" name="endpoint33" process-name="reservationManager" service-name="ns25:ClientManager"/>
+        <endpoint display-name="ReservVoyage" endpoint-name="ReservVoyagePortTypeRole_partnerRole" file-path="reservationManager.bpel" interface-name="ns18:ReservVoyagePortType" name="endpoint34" process-name="reservationManager" service-name="ns25:ReservVoyage"/>
+        <endpoint display-name="ReservHotel" endpoint-name="ReservHotelRequestPortTypeRole_partnerRole" file-path="reservationManager.bpel" interface-name="ns22:ReservHotelRequestPortType" name="endpoint35" process-name="reservationManager" service-name="ns25:ReservHotel"/>
+        <endpoint display-name="ReservManif" endpoint-name="ReservManifRequestPortTypeRole_partnerRole" file-path="reservationManager.bpel" interface-name="ns20:ReservManifRequestPortType" name="endpoint36" process-name="reservationManager" service-name="ns25:ReservManif"/>
+        <endpoint display-name="ReservRestau" endpoint-name="ReservRestauRequestPortTypeRole_partnerRole" file-path="reservationManager.bpel" interface-name="ns16:ReservRestauRequestPortType" name="endpoint37" process-name="reservationManager" service-name="ns25:ReservRestau"/>
+        <endpoint display-name="reservationTable" endpoint-name="jdbcPortTypeRole_partnerRole" file-path="reservationManager.bpel" interface-name="ns14:jdbcPortType" name="endpoint38" process-name="reservationManager" service-name="ns25:reservationTable"/>
+    </endpoints>
+    <service-units>
+        <service-engine-service-unit artifacts-zip="reservRestau.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="testReservation-reservRestau" unit-name="reservRestau" unknown="false" x="79" y="97">
+            <provides endpoint="endpoint15"/>
+            <consumes endpoint="endpoint16"/>
+            <consumes endpoint="endpoint17"/>
+            <consumes endpoint="endpoint18"/>
+        </service-engine-service-unit>
+        <service-engine-service-unit artifacts-zip="reservVoyage.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="testReservation-reservVoyage" unit-name="reservVoyage" unknown="false" x="376" y="97">
+            <provides endpoint="endpoint19"/>
+            <consumes endpoint="endpoint20"/>
+            <consumes endpoint="endpoint21"/>
+        </service-engine-service-unit>
+        <service-engine-service-unit artifacts-zip="reservManif.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="testReservation-reservManif" unit-name="reservManif" unknown="false" x="685" y="299">
+            <provides endpoint="endpoint22"/>
+            <consumes endpoint="endpoint23"/>
+            <consumes endpoint="endpoint24"/>
+            <consumes endpoint="endpoint25"/>
+        </service-engine-service-unit>
+        <service-engine-service-unit artifacts-zip="reservHotel.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="testReservation-reservHotel" unit-name="reservHotel" unknown="false" x="676" y="97">
+            <provides endpoint="endpoint26"/>
+            <consumes endpoint="endpoint27"/>
+            <consumes endpoint="endpoint28"/>
+            <consumes endpoint="endpoint29"/>
+        </service-engine-service-unit>
+        <service-engine-service-unit artifacts-zip="ClientManager.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="testReservation-ClientManager" unit-name="ClientManager" unknown="false" x="399" y="299">
+            <provides endpoint="endpoint30"/>
+            <consumes endpoint="endpoint31"/>
+        </service-engine-service-unit>
+        <service-engine-service-unit artifacts-zip="ReservationManager.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="testReservation-ReservationManager" unit-name="ReservationManager" unknown="false" x="69" y="299">
+            <provides endpoint="endpoint32"/>
+            <consumes endpoint="endpoint33"/>
+            <consumes endpoint="endpoint34"/>
+            <consumes endpoint="endpoint35"/>
+            <consumes endpoint="endpoint36"/>
+            <consumes endpoint="endpoint37"/>
+            <consumes endpoint="endpoint38"/>
+        </service-engine-service-unit>
+        <binding-component-service-unit artifacts-zip="sun-database-binding.jar" component-name="sun-database-binding" description="Represents this Service Unit" name="testReservation-sun-database-binding" unit-name="sun-database-binding">
+            <ports>
+                <port x="67" y="1509">
+                    <link xlink:href="../jbiServiceUnits/ClientManager/clientTable.wsdl#xpointer(/definitions/service[@name='service']/port[@name='port'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint1"/>
+                    <provides endpoint="endpoint1"/>
+                </port>
+                <port x="67" y="37">
+                    <link xlink:href="../jbiServiceUnits/ReservationManager/reservationTable.wsdl#xpointer(/definitions/service[@name='service']/port[@name='port'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint14"/>
+                    <provides endpoint="endpoint14"/>
+                </port>
+                <port x="67" y="1313">
+                    <link xlink:href="../jbiServiceUnits/reservHotel/checkHotelTable.wsdl#xpointer(/definitions/service[@name='service']/port[@name='port'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint5"/>
+                    <provides endpoint="endpoint5"/>
+                </port>
+                <port x="67" y="1197">
+                    <link xlink:href="../jbiServiceUnits/reservHotel/reservHotelTable.wsdl#xpointer(/definitions/service[@name='service']/port[@name='port'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint4"/>
+                    <provides endpoint="endpoint4"/>
+                </port>
+                <port x="67" y="1081">
+                    <link xlink:href="../jbiServiceUnits/reservHotel/hotelTable.wsdl#xpointer(/definitions/service[@name='service']/port[@name='port'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint3"/>
+                    <provides endpoint="endpoint3"/>
+                </port>
+                <port x="67" y="965">
+                    <link xlink:href="../jbiServiceUnits/reservManif/checkManif.wsdl#xpointer(/definitions/service[@name='service']/port[@name='port'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint8"/>
+                    <provides endpoint="endpoint8"/>
+                </port>
+                <port x="67" y="849">
+                    <link xlink:href="../jbiServiceUnits/reservManif/manifTable.wsdl#xpointer(/definitions/service[@name='service']/port[@name='port'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint6"/>
+                    <provides endpoint="endpoint6"/>
+                </port>
+                <port x="67" y="733">
+                    <link xlink:href="../jbiServiceUnits/reservManif/reservManif.wsdl#xpointer(/definitions/service[@name='service']/port[@name='port'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint7"/>
+                    <provides endpoint="endpoint7"/>
+                </port>
+                <port x="67" y="385">
+                    <link xlink:href="../jbiServiceUnits/reservRestau/checkRestau.wsdl#xpointer(/definitions/service[@name='service']/port[@name='port'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint13"/>
+                    <provides endpoint="endpoint13"/>
+                </port>
+                <port x="67" y="269">
+                    <link xlink:href="../jbiServiceUnits/reservRestau/reservRestauTable.wsdl#xpointer(/definitions/service[@name='service']/port[@name='port'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint12"/>
+                    <provides endpoint="endpoint12"/>
+                </port>
+                <port x="67" y="153">
+                    <link xlink:href="../jbiServiceUnits/reservRestau/restauTable.wsdl#xpointer(/definitions/service[@name='service']/port[@name='port'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint11"/>
+                    <provides endpoint="endpoint11"/>
+                </port>
+                <port x="67" y="617">
+                    <link xlink:href="../jbiServiceUnits/reservVoyage/reservVoyageTable.wsdl#xpointer(/definitions/service[@name='service']/port[@name='port'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint10"/>
+                    <provides endpoint="endpoint10"/>
+                </port>
+                <port x="67" y="501">
+                    <link xlink:href="../jbiServiceUnits/reservVoyage/localisationCheck.wsdl#xpointer(/definitions/service[@name='service']/port[@name='port'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint9"/>
+                    <provides endpoint="endpoint9"/>
+                </port>
+            </ports>
+        </binding-component-service-unit>
+        <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="testReservation-sun-http-binding" unit-name="sun-http-binding">
+            <ports>
+                <port x="67" y="1429">
+                    <link xlink:href="../jbiServiceUnits/ReservationManager/Reservation.wsdl#xpointer(/definitions/service[@name='ReservationService']/port[@name='ReservationPort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint2"/>
+                    <provides endpoint="endpoint2"/>
+                </port>
+            </ports>
+        </binding-component-service-unit>
+    </service-units>
+    <connections>
+        <connection consumer="endpoint16" provider="endpoint11" state="unchanged"/>
+        <connection consumer="endpoint36" provider="endpoint22" state="unchanged"/>
+        <connection consumer="endpoint20" provider="endpoint9" state="unchanged"/>
+        <connection consumer="endpoint2" provider="endpoint32" state="unchanged"/>
+        <connection consumer="endpoint21" provider="endpoint10" state="unchanged"/>
+        <connection consumer="endpoint23" provider="endpoint6" state="unchanged"/>
+        <connection consumer="endpoint18" provider="endpoint12" state="unchanged"/>
+        <connection consumer="endpoint25" provider="endpoint7" state="unchanged"/>
+        <connection consumer="endpoint28" provider="endpoint5" state="unchanged"/>
+        <connection consumer="endpoint33" provider="endpoint30" state="unchanged"/>
+        <connection consumer="endpoint38" provider="endpoint14" state="unchanged"/>
+        <connection consumer="endpoint37" provider="endpoint15" state="unchanged"/>
+        <connection consumer="endpoint27" provider="endpoint3" state="unchanged"/>
+        <connection consumer="endpoint24" provider="endpoint8" state="unchanged"/>
+        <connection consumer="endpoint17" provider="endpoint13" state="unchanged"/>
+        <connection consumer="endpoint31" provider="endpoint1" state="unchanged"/>
+        <connection consumer="endpoint34" provider="endpoint19" state="unchanged"/>
+        <connection consumer="endpoint35" provider="endpoint26" state="unchanged"/>
+        <connection consumer="endpoint29" provider="endpoint4" state="unchanged"/>
+    </connections>
+    <porttypes>
+        <link xlink:href="../jbiServiceUnits/ClientManager/ClientManagerRequest.wsdl#xpointer(/definitions/portType[@name='ClientManagerRequestPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/ClientManager/clientTable.wsdl#xpointer(/definitions/portType[@name='jdbcPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/ReservationManager/ReservVoyageRequest.wsdl#xpointer(/definitions/portType[@name='ReservVoyagePortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/ReservationManager/ReservRestauRequest.wsdl#xpointer(/definitions/portType[@name='ReservRestauRequestPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/ReservationManager/ReservManifRequest.wsdl#xpointer(/definitions/portType[@name='ReservManifRequestPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/ReservationManager/ClientManagerRequest.wsdl#xpointer(/definitions/portType[@name='ClientManagerRequestPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/ReservationManager/Reservation.wsdl#xpointer(/definitions/portType[@name='ReservationPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/ReservationManager/reservationTable.wsdl#xpointer(/definitions/portType[@name='jdbcPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/ReservationManager/ReservHotelRequest.wsdl#xpointer(/definitions/portType[@name='ReservHotelRequestPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservHotel/checkHotelTable.wsdl#xpointer(/definitions/portType[@name='jdbcPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservHotel/reservHotelTable.wsdl#xpointer(/definitions/portType[@name='jdbcPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservHotel/hotelTable.wsdl#xpointer(/definitions/portType[@name='jdbcPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservHotel/ReservHotelRequest.wsdl#xpointer(/definitions/portType[@name='ReservHotelRequestPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservManif/checkManif.wsdl#xpointer(/definitions/portType[@name='jdbcPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservManif/ReservManifRequest.wsdl#xpointer(/definitions/portType[@name='ReservManifRequestPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservManif/manifTable.wsdl#xpointer(/definitions/portType[@name='jdbcPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservManif/reservManif.wsdl#xpointer(/definitions/portType[@name='jdbcPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservRestau/ReservRestauRequest.wsdl#xpointer(/definitions/portType[@name='ReservRestauRequestPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservRestau/checkRestau.wsdl#xpointer(/definitions/portType[@name='jdbcPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservRestau/reservRestauTable.wsdl#xpointer(/definitions/portType[@name='jdbcPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservRestau/restauTable.wsdl#xpointer(/definitions/portType[@name='jdbcPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservVoyage/ReservVoyageRequest.wsdl#xpointer(/definitions/portType[@name='ReservVoyagePortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservVoyage/reservVoyageTable.wsdl#xpointer(/definitions/portType[@name='jdbcPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservVoyage/localisationCheck.wsdl#xpointer(/definitions/portType[@name='jdbcPortType'])" xlink:type="simple"/>
+    </porttypes>
+    <bindings>
+        <link xlink:href="../jbiServiceUnits/ClientManager/clientTable.wsdl#xpointer(/definitions/binding[@name='binding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/ReservationManager/Reservation.wsdl#xpointer(/definitions/binding[@name='ReservationBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/ReservationManager/reservationTable.wsdl#xpointer(/definitions/binding[@name='binding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservHotel/checkHotelTable.wsdl#xpointer(/definitions/binding[@name='binding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservHotel/reservHotelTable.wsdl#xpointer(/definitions/binding[@name='binding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservHotel/hotelTable.wsdl#xpointer(/definitions/binding[@name='binding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservManif/checkManif.wsdl#xpointer(/definitions/binding[@name='binding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservManif/manifTable.wsdl#xpointer(/definitions/binding[@name='binding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservManif/reservManif.wsdl#xpointer(/definitions/binding[@name='binding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservRestau/checkRestau.wsdl#xpointer(/definitions/binding[@name='binding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservRestau/reservRestauTable.wsdl#xpointer(/definitions/binding[@name='binding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservRestau/restauTable.wsdl#xpointer(/definitions/binding[@name='binding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservVoyage/reservVoyageTable.wsdl#xpointer(/definitions/binding[@name='binding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservVoyage/localisationCheck.wsdl#xpointer(/definitions/binding[@name='binding'])" xlink:type="simple"/>
+    </bindings>
+    <services>
+        <link xlink:href="../jbiServiceUnits/ClientManager/clientTable.wsdl#xpointer(/definitions/service[@name='service'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/ReservationManager/Reservation.wsdl#xpointer(/definitions/service[@name='ReservationService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/ReservationManager/reservationTable.wsdl#xpointer(/definitions/service[@name='service'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservHotel/checkHotelTable.wsdl#xpointer(/definitions/service[@name='service'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservHotel/reservHotelTable.wsdl#xpointer(/definitions/service[@name='service'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservHotel/hotelTable.wsdl#xpointer(/definitions/service[@name='service'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservManif/checkManif.wsdl#xpointer(/definitions/service[@name='service'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservManif/manifTable.wsdl#xpointer(/definitions/service[@name='service'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservManif/reservManif.wsdl#xpointer(/definitions/service[@name='service'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservRestau/checkRestau.wsdl#xpointer(/definitions/service[@name='service'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservRestau/reservRestauTable.wsdl#xpointer(/definitions/service[@name='service'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservRestau/restauTable.wsdl#xpointer(/definitions/service[@name='service'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservVoyage/reservVoyageTable.wsdl#xpointer(/definitions/service[@name='service'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/reservVoyage/localisationCheck.wsdl#xpointer(/definitions/service[@name='service'])" xlink:type="simple"/>
+    </services>
+    <regions>
+        <region name="WSDL Endpoints" width="150"/>
+        <region name="JBI Modules" width="964"/>
+        <region name="External Modules" width="200"/>
+    </regions>
+</casa>

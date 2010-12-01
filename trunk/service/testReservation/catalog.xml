@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system"><nextCatalog catalog="src/jbiServiceUnits/META-INF/ReservationManager/catalog.xml"/>
+    
+<nextCatalog catalog="src/jbiServiceUnits/META-INF/ClientManager/catalog.xml"/>
+    
+<nextCatalog catalog="src/jbiServiceUnits/META-INF/reservHotel/catalog.xml"/>
+    
+<nextCatalog catalog="src/jbiServiceUnits/META-INF/reservManif/catalog.xml"/><nextCatalog catalog="src/jbiServiceUnits/META-INF/reservVoyage/catalog.xml"/>
+    
+<nextCatalog catalog="src/jbiServiceUnits/META-INF/reservRestau/catalog.xml"/></catalog>
