@@ -104,13 +104,14 @@
     </xsd:complexType>
     <xsd:complexType name="VoyageRequest">
         <xsd:sequence>
-            <xsd:element name="IdClient"/>
+            <xsd:element name="IdClient" type="xsd:string"/>
             <xsd:element name="Voyage" type="tns:Voyage"/>
-            <xsd:element name="Date"/>
-            <xsd:element name="check"/>
+            <xsd:element name="Date" type="xsd:string"/>
+            <xsd:element name="check" type="xsd:boolean"/>
         </xsd:sequence>
     </xsd:complexType>
 </xsd:schema>
+
 
 
 
