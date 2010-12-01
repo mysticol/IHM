@@ -1,0 +1,20 @@
+<soapenv:Envelope xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:res="http://j2ee.netbeans.org/wsdl/mockReservation/Reservation" xmlns:typ="http://xml.netbeans.org/schema/types">
+  <soapenv:Body>
+    <res:ReservationOperation>
+      <ReservationRequest>
+        <typ:Nom>john</typ:Nom>
+        <typ:Prenom>lewis</typ:Prenom>
+        <typ:IdManif>1</typ:IdManif>
+        <typ:IdHotel>4</typ:IdHotel>
+        <typ:IdRestau>1</typ:IdRestau>
+        <typ:Date>2010-06-15</typ:Date>
+        <typ:Voyage>
+          <typ:VilleDepart>Nantes</typ:VilleDepart>
+          <typ:PaysDepart>france</typ:PaysDepart>
+          <typ:VilleArriver>Cardiz</typ:VilleArriver>
+          <typ:PaysArrivee>angleterre</typ:PaysArrivee>
+        </typ:Voyage>
+      </ReservationRequest>
+    </res:ReservationOperation>
+  </soapenv:Body>
+</soapenv:Envelope>
