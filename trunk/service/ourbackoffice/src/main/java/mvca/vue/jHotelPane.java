@@ -187,15 +187,7 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public void editEntity() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
-    @Override
-    public void enableEdition(Boolean b) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -30,16 +30,6 @@ public class controleurClient {
 
 
 
-    public ActionListener getEditActionListener(){
-        return new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            clientControleur.editEntity();
-            }
-        };
-
-    }
 
     public ActionListener getSaveActionListener(){
         return new ActionListener() {
@@ -60,7 +50,7 @@ public class controleurClient {
             @Override
             public void actionPerformed(ActionEvent e) {
             clientControleur.clearField();
-            clientControleur.editEntity();
+           
             }
         };
     }
