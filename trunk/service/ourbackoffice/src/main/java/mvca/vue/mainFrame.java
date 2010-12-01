@@ -11,23 +11,23 @@
 
 package mvca.vue;
 
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
+
+
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+
 import java.util.HashMap;
-import javax.swing.JButton;
+
 import javax.swing.JPanel;
 import javax.swing.UIManager;
-import javax.swing.plaf.metal.MetalLookAndFeel;
-import mvca.controleur.ControleurClient;
+
+import mvca.controleur.ControleurGeneric;
 import mvca.controleur.ControleurRadio;
 import mvca.entity.Client;
 import mvca.model.Mode;
 import mvca.model.ModeParam;
 import mvca.modeltable.TableModelClient;
 import mvca.session.HibernateUtil;
-import org.hibernate.Hibernate;
+
 
 /**
  *
@@ -327,7 +327,7 @@ this.superJtableBD.addMouseListener(mp.getAction());
     HibernateUtil<Client> em= new HibernateUtil<Client>(Client.class);
     TableModelClient gg= new TableModelClient(em);
 
-    ControleurClient control= new ControleurClient();
+    ControleurGeneric<Client> control= new ControleurGeneric();
 
 
 
