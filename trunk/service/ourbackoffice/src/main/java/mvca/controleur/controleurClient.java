@@ -21,7 +21,7 @@ import mvca.vue.jClientPane;
  *
  * @author Mister B
  */
-public class controleurClient {
+public class ControleurClient  {
 
     jClientPane clientControleur;
     HibernateUtil<Client> em;
