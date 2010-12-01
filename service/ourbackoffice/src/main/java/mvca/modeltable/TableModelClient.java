@@ -17,7 +17,7 @@ import mvca.session.HibernateUtil;
  *
  * @author Mister B
  */
-public class TableModelClient extends AbstractTableModel {
+public class TableModelClient extends JTableModelInterface<Client> {
 
     private List<Client> listClient;
    // private ClientJpaController entity;

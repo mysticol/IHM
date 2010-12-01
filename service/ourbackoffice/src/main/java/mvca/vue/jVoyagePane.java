@@ -11,6 +11,7 @@
 
 package mvca.vue;
 
+import javax.swing.JButton;
 import mvca.entity.Voyage;
 
 /**
@@ -36,7 +37,7 @@ public class jVoyagePane extends javax.swing.JPanel implements EntityPane<Voyage
         newButton1 = new javax.swing.JButton();
         jLayeredPane4 = new javax.swing.JLayeredPane();
         saveButton3 = new javax.swing.JButton();
-        fieldFkLocalisation = new javax.swing.JTextField();
+        fieldFkClient = new javax.swing.JTextField();
         fieldId1 = new javax.swing.JTextField();
         idLabel1 = new javax.swing.JLabel();
         prenomLabel5 = new javax.swing.JLabel();
@@ -58,17 +59,17 @@ public class jVoyagePane extends javax.swing.JPanel implements EntityPane<Voyage
                 saveButton3ActionPerformed(evt);
             }
         });
-        saveButton3.setBounds(510, 150, 70, 23);
+        saveButton3.setBounds(510, 150, 70, -1);
         jLayeredPane4.add(saveButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        fieldFkLocalisation.setEditable(false);
-        fieldFkLocalisation.addActionListener(new java.awt.event.ActionListener() {
+        fieldFkClient.setEditable(false);
+        fieldFkClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldFkLocalisationActionPerformed(evt);
+                fieldFkClientActionPerformed(evt);
             }
         });
-        fieldFkLocalisation.setBounds(290, 10, 100, 20);
-        jLayeredPane4.add(fieldFkLocalisation, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        fieldFkClient.setBounds(290, 10, 100, -1);
+        jLayeredPane4.add(fieldFkClient, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldId1.setEditable(false);
         fieldId1.addActionListener(new java.awt.event.ActionListener() {
@@ -76,15 +77,15 @@ public class jVoyagePane extends javax.swing.JPanel implements EntityPane<Voyage
                 fieldId1ActionPerformed(evt);
             }
         });
-        fieldId1.setBounds(60, 10, 50, 20);
+        fieldId1.setBounds(60, 10, 50, -1);
         jLayeredPane4.add(fieldId1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         idLabel1.setText("Id: ");
-        idLabel1.setBounds(10, 10, 17, 14);
+        idLabel1.setBounds(10, 10, -1, -1);
         jLayeredPane4.add(idLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel5.setText("Date:");
-        prenomLabel5.setBounds(10, 40, 60, 14);
+        prenomLabel5.setBounds(10, 40, 60, -1);
         jLayeredPane4.add(prenomLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldDate.addActionListener(new java.awt.event.ActionListener() {
@@ -92,11 +93,11 @@ public class jVoyagePane extends javax.swing.JPanel implements EntityPane<Voyage
                 fieldDateActionPerformed(evt);
             }
         });
-        fieldDate.setBounds(60, 40, 100, 20);
+        fieldDate.setBounds(60, 40, 100, -1);
         jLayeredPane4.add(fieldDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         buttonFwIDClient.setText("Client:");
-        buttonFwIDClient.setBounds(190, 10, 65, 23);
+        buttonFwIDClient.setBounds(190, 10, -1, -1);
         jLayeredPane4.add(buttonFwIDClient, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkIdDepart.setEditable(false);
@@ -105,11 +106,11 @@ public class jVoyagePane extends javax.swing.JPanel implements EntityPane<Voyage
                 fieldFkIdDepartActionPerformed(evt);
             }
         });
-        fieldFkIdDepart.setBounds(290, 40, 100, 20);
+        fieldFkIdDepart.setBounds(290, 40, 100, -1);
         jLayeredPane4.add(fieldFkIdDepart, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         buttonFwIDDepart.setText("Depart:");
-        buttonFwIDDepart.setBounds(190, 40, 80, 23);
+        buttonFwIDDepart.setBounds(190, 40, 80, -1);
         jLayeredPane4.add(buttonFwIDDepart, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkIdArrive.setEditable(false);
@@ -118,11 +119,11 @@ public class jVoyagePane extends javax.swing.JPanel implements EntityPane<Voyage
                 fieldFkIdArriveActionPerformed(evt);
             }
         });
-        fieldFkIdArrive.setBounds(290, 70, 100, 20);
+        fieldFkIdArrive.setBounds(290, 70, 100, -1);
         jLayeredPane4.add(fieldFkIdArrive, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         buttonFwIDArrive.setText("Arrive:");
-        buttonFwIDArrive.setBounds(190, 70, 70, 23);
+        buttonFwIDArrive.setBounds(190, 70, 70, -1);
         jLayeredPane4.add(buttonFwIDArrive, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         editButton1.setText("Edit");
@@ -131,7 +132,6 @@ public class jVoyagePane extends javax.swing.JPanel implements EntityPane<Voyage
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 627, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(newButton1)
@@ -145,7 +145,6 @@ public class jVoyagePane extends javax.swing.JPanel implements EntityPane<Voyage
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 252, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -161,9 +160,9 @@ public class jVoyagePane extends javax.swing.JPanel implements EntityPane<Voyage
         // TODO add your handling code here:
 }//GEN-LAST:event_saveButton3ActionPerformed
 
-    private void fieldFkLocalisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldFkLocalisationActionPerformed
+    private void fieldFkClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldFkClientActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_fieldFkLocalisationActionPerformed
+}//GEN-LAST:event_fieldFkClientActionPerformed
 
     private void fieldId1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldId1ActionPerformed
         // TODO add your handling code here:
@@ -179,6 +178,7 @@ public class jVoyagePane extends javax.swing.JPanel implements EntityPane<Voyage
 
     private void fieldFkIdArriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldFkIdArriveActionPerformed
         // TODO add your handling code here:
+        
 }//GEN-LAST:event_fieldFkIdArriveActionPerformed
 
 
@@ -188,9 +188,9 @@ public class jVoyagePane extends javax.swing.JPanel implements EntityPane<Voyage
     private javax.swing.JButton buttonFwIDDepart;
     private javax.swing.JButton editButton1;
     private javax.swing.JTextField fieldDate;
+    private javax.swing.JTextField fieldFkClient;
     private javax.swing.JTextField fieldFkIdArrive;
     private javax.swing.JTextField fieldFkIdDepart;
-    private javax.swing.JTextField fieldFkLocalisation;
     private javax.swing.JTextField fieldId1;
     private javax.swing.JLabel idLabel1;
     private javax.swing.JLayeredPane jLayeredPane4;
@@ -201,19 +201,62 @@ public class jVoyagePane extends javax.swing.JPanel implements EntityPane<Voyage
 
     @Override
     public Voyage getEntity() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Voyage result= new Voyage();
+
+        
+        this.fieldDate.setText("");
+        //TODO traiement date de merde.
+
+        if (!fieldId1.getText().equals("")) {
+            result.setVoyageId(Integer.parseInt(fieldId1.getText()));
+        }
+
+        if (fieldFkIdArrive.getText()==""|| fieldFkIdDepart.getText()=="" || fieldFkClient.getText()==""){
+            return null;
+        }else{
+            result.setFkClientId(Integer.parseInt(fieldFkClient.getText()));
+            result.setFkLocalisationArrive(Integer.parseInt(fieldFkIdArrive.getText()));
+            result.setFkLocalisationDepart(Integer.parseInt(fieldFkIdDepart.getText()));
+
+            
+        }
+
+           
+
+
+        return result;
     }
 
     @Override
     public void loadEntity(Voyage entity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       this.fieldId1.setText(String.valueOf(entity.getVoyageId()));
+       this.fieldFkClient.setText(String.valueOf(entity.getFkClientId()));
+       this.fieldDate.setText(entity.getDate().getDate()+"/"+entity.getDate().getMonth()+1+"/"+entity.getDate().getYear());
+       this.fieldFkIdArrive.setText(String.valueOf(entity.getFkLocalisationArrive()));
+       this.fieldFkIdDepart.setText(String.valueOf(entity.getFkLocalisationDepart()));
+
     }
 
     @Override
     public void clearField() {
-        throw new UnsupportedOperationException("Not supported yet.");
+       this.fieldDate.setText("");
+       this.fieldFkIdArrive.setText("");
+       this.fieldFkIdDepart.setText("");
+       this.fieldId1.setText("");
+       this.fieldFkClient.setText("");
     }
 
-   
+
+        public JButton getEditButton() {
+        return editButton1;
+    }
+
+    public JButton getNewButton() {
+        return newButton1;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton3;
+    }
 
 }
