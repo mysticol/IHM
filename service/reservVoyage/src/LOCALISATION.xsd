@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <xsd:schema elementFormDefault="qualified" targetNamespace="http://j2ee.netbeans.org/xsd/tableSchema" xmlns="http://j2ee.netbeans.org/xsd/tableSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="LOCALISATION" type="LOCALISATION"></xsd:element>
+    <xsd:complexType name="LOCALISATION">
+      <xsd:sequence>
+        <xsd:element maxOccurs="unbounded" ref="LOCALISATION_Record"></xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="LOCALISATION_Record">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="LOCALISATION_ID">
+            <xsd:complexType>
+              <xsd:simpleContent>
+                <xsd:extension base="xsd:int">
+                  <xsd:attribute name="isNull" type="xsd:boolean"></xsd:attribute>
+                  <xsd:attribute name="isDefaultColumn" type="xsd:boolean"></xsd:attribute>
+                </xsd:extension>
+              </xsd:simpleContent>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="PAYS">
+            <xsd:complexType>
+              <xsd:simpleContent>
+                <xsd:extension base="xsd:string">
+                  <xsd:attribute name="isNull" type="xsd:boolean"></xsd:attribute>
+                  <xsd:attribute name="isDefaultColumn" type="xsd:boolean"></xsd:attribute>
+                </xsd:extension>
+              </xsd:simpleContent>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="VILLE">
+            <xsd:complexType>
+              <xsd:simpleContent>
+                <xsd:extension base="xsd:string">
+                  <xsd:attribute name="isNull" type="xsd:boolean"></xsd:attribute>
+                  <xsd:attribute name="isDefaultColumn" type="xsd:boolean"></xsd:attribute>
+                </xsd:extension>
+              </xsd:simpleContent>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
