@@ -8,7 +8,7 @@
     xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
-    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/types">
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/types" xmlns:ns1="http://j2ee.netbeans.org/xsd/tableSchema">
 
     <import namespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservVoyageRequest" location="ReservVoyageRequest.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ClientManagerRequest" location="ClientManagerRequest.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
@@ -16,6 +16,7 @@
     <import namespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" location="ReservManifRequest.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" location="ReservRestauRequest.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://j2ee.netbeans.org/wsdl/mockReservation/Reservation" location="Reservation.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/ReservationManager/reservationTable" location="reservationTable.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <partnerLinks>
         <partnerLink name="JSP" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockReservation/Reservation" partnerLinkType="tns:Reservation" myRole="ReservationPortTypeRole"/>
         <partnerLink name="ClientManager" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ClientManagerRequest" partnerLinkType="tns:ClientManagerRequest" partnerRole="ClientManagerRequestPortTypeRole"/>
@@ -23,8 +24,13 @@
         <partnerLink name="ReservHotel" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservHotelRequest" partnerLinkType="tns:ReservHotelRequest" partnerRole="ReservHotelRequestPortTypeRole"/>
         <partnerLink name="ReservManif" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservManifRequest" partnerLinkType="tns:ReservManifRequest" partnerRole="ReservManifRequestPortTypeRole"/>
         <partnerLink name="ReservRestau" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" partnerLinkType="tns:ReservRestauRequest" partnerRole="ReservRestauRequestPortTypeRole"/>
+        <partnerLink name="reservationTable" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/reservationTable" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
     </partnerLinks>
     <variables>
+        <variable name="FindOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/reservationTable" messageType="tns:outputMsg"/>
+        <variable name="FindIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/reservationTable" messageType="tns:inputMsg"/>
+        <variable name="InsertOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/reservationTable" messageType="tns:RetMsg"/>
+        <variable name="InsertIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/reservationTable" messageType="tns:inputMsg"/>
         <variable name="ReservationOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockReservation/Reservation" messageType="tns:ReservationOperationResponse"/>
         <variable name="ReservationOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockReservation/Reservation" messageType="tns:ReservationOperationRequest"/>
         <variable name="ReservRestauRequestOperationOutForComplete" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" messageType="tns:ReservRestauRequestOperationResponse"/>
@@ -277,9 +283,61 @@
                         </sxt:log>
                     </sxt:trace>
                 </invoke>
-                <assign name="AssignForResponce">
+                <assign name="AssignForInsert">
                     <copy>
-                        <from>concat('Reservations effectuées !!! Voyage : ', $ReservVoyageOperationOutForComplete.responce, ' / Hotel : ', $ReservHotelRequestOperationOutForComplete.responce, ' / Manif : ', $ReservManifRequestOperationOutForComplete.responce, ' / Restau : ', $ReservRestauRequestOperationOutForComplete.responce)</from>
+                        <from variable="ReservVoyageOperationOutForComplete" part="responce"/>
+                        <to>$InsertIn.part/ns1:RESERVATION_Record/ns1:FK_VOYAGE</to>
+                    </copy>
+                    <copy>
+                        <from variable="ClientManagerRequestOperationOut" part="IdClient"/>
+                        <to>$InsertIn.part/ns1:RESERVATION_Record/ns1:FK_CLIENT_ID</to>
+                    </copy>
+                    <copy>
+                        <from variable="ReservHotelRequestOperationOutForComplete" part="responce"/>
+                        <to>$InsertIn.part/ns1:RESERVATION_Record/ns1:FK_RESERVE_HOTEL</to>
+                    </copy>
+                    <copy>
+                        <from variable="ReservManifRequestOperationOutForComplete" part="responce"/>
+                        <to>$InsertIn.part/ns1:RESERVATION_Record/ns1:FK_RESERVE_MANIF</to>
+                    </copy>
+                    <copy>
+                        <from variable="ReservRestauRequestOperationOutForComplete" part="responce"/>
+                        <to>$InsertIn.part/ns1:RESERVATION_Record/ns1:FK_RESERVE_RESTAU</to>
+                    </copy>
+                    <copy>
+                        <from>$ReservationOperationIn.ReservationRequest/ns0:Date</from>
+                        <to>$InsertIn.part/ns1:RESERVATION_Record/ns1:DATE</to>
+                    </copy>
+                    <copy>
+                        <from>$ReservationOperationIn.ReservationRequest/ns0:Date</from>
+                        <to>$FindIn.part/ns1:RESERVATION_Record/ns1:DATE</to>
+                    </copy>
+                    <copy>
+                        <from variable="ReservRestauRequestOperationOutForComplete" part="responce"/>
+                        <to>$FindIn.part/ns1:RESERVATION_Record/ns1:FK_RESERVE_RESTAU</to>
+                    </copy>
+                    <copy>
+                        <from variable="ReservManifRequestOperationOutForComplete" part="responce"/>
+                        <to>$FindIn.part/ns1:RESERVATION_Record/ns1:FK_RESERVE_MANIF</to>
+                    </copy>
+                    <copy>
+                        <from variable="ReservHotelRequestOperationOutForComplete" part="responce"/>
+                        <to>$FindIn.part/ns1:RESERVATION_Record/ns1:FK_RESERVE_HOTEL</to>
+                    </copy>
+                    <copy>
+                        <from variable="ClientManagerRequestOperationOut" part="IdClient"/>
+                        <to>$FindIn.part/ns1:RESERVATION_Record/ns1:FK_CLIENT_ID</to>
+                    </copy>
+                    <copy>
+                        <from variable="ReservVoyageOperationOutForComplete" part="responce"/>
+                        <to>$FindIn.part/ns1:RESERVATION_Record/ns1:FK_VOYAGE</to>
+                    </copy>
+                </assign>
+                <invoke name="InvokeInsertReservation" partnerLink="reservationTable" operation="insert" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/reservationTable" portType="tns:jdbcPortType" inputVariable="InsertIn" outputVariable="InsertOut"/>
+                <invoke name="InvokeFindId" partnerLink="reservationTable" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/reservationTable" portType="tns:jdbcPortType" inputVariable="FindIn" outputVariable="FindOut"/>
+                <assign name="AssignResponce">
+                    <copy>
+                        <from>concat('Reservations n° ', $FindOut.part/ns1:RESERVATION_Record/ns1:RESERVATION_ID, ' effectuées !!! Voyage : ', $ReservVoyageOperationOutForComplete.responce, ' / Hotel : ', $ReservHotelRequestOperationOutForComplete.responce, ' / Manif : ', $ReservManifRequestOperationOutForComplete.responce, ' / Restau : ', $ReservRestauRequestOperationOutForComplete.responce)</from>
                         <to variable="ReservationOperationOut" part="ReservationResponse"/>
                     </copy>
                 </assign>
@@ -301,6 +359,7 @@
         <reply name="Reply1" partnerLink="JSP" operation="ReservationOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/mockReservation/Reservation" portType="tns:ReservationPortType" variable="ReservationOperationOut"/>
     </sequence>
 </process>
+
 
 
 
