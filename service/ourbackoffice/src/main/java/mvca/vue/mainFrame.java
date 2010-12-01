@@ -12,6 +12,7 @@
 package mvca.vue;
 
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -57,15 +58,23 @@ public class mainFrame extends javax.swing.JFrame {
         reservRestauRadioButton = new javax.swing.JRadioButton();
         reservManifRadioButton = new javax.swing.JRadioButton();
         panelAmovible = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Back office");
 
-        superJtableBD.setModel(new TableModelClient() );
+        superJtableBD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        superJtableBD.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         jScrollPane1.setViewportView(superJtableBD);
 
         buttonGroup1.add(clientRadioButton);
+        clientRadioButton.setSelected(true);
         clientRadioButton.setText("Client");
         clientRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,25 +117,17 @@ public class mainFrame extends javax.swing.JFrame {
         buttonGroup1.add(reservManifRadioButton);
         reservManifRadioButton.setText("Reserv Manif");
 
-        panelAmovible.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jTextField1.setText("jTextField1");
+        panelAmovible.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout panelAmovibleLayout = new javax.swing.GroupLayout(panelAmovible);
         panelAmovible.setLayout(panelAmovibleLayout);
         panelAmovibleLayout.setHorizontalGroup(
             panelAmovibleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAmovibleLayout.createSequentialGroup()
-                .addContainerGap(331, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(185, 185, 185))
+            .addGap(0, 575, Short.MAX_VALUE)
         );
         panelAmovibleLayout.setVerticalGroup(
             panelAmovibleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAmovibleLayout.createSequentialGroup()
-                .addContainerGap(164, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+            .addGap(0, 228, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,10 +149,10 @@ public class mainFrame extends javax.swing.JFrame {
                     .addComponent(restaurantRadioButton)
                     .addComponent(localisationRadioButton))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelAmovible, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE))
-                .addContainerGap(104, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +223,6 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton clientRadioButton;
     private javax.swing.JRadioButton hotelRadioButton;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JRadioButton localisationRadioButton;
     private javax.swing.JRadioButton manifestationRadioButton;
     private javax.swing.JPanel panelAmovible;
@@ -240,9 +240,13 @@ public class mainFrame extends javax.swing.JFrame {
 public void placeMachin(JPanel pane){
     this.panelAmovible.removeAll();
 
-    GridLayout fl= new GridLayout();
+    GridBagLayout fl= new GridBagLayout();
+   
     panelAmovible.setLayout(fl);
        panelAmovible.add(pane);
+       GridBagConstraints constraint= new GridBagConstraints();
+       constraint.fill= GridBagConstraints.BOTH;
+        fl.setConstraints(pane, constraint);
     panelAmovible.repaint();
  
 
@@ -252,11 +256,12 @@ public void placeMachin(JPanel pane){
 public void listenerEttout(){
 
     jClientPane jj=new jClientPane();
-    TableModelClient gg= new TableModelClient();
+    HibernateUtil<Client> em= new HibernateUtil<Client>(Client.class);
+    TableModelClient gg= new TableModelClient(em);
 
     controleurClient control= new controleurClient();
     
-    HibernateUtil<Client> em= new HibernateUtil<Client>(Client.class);
+    
 
     control.setEm(em);
     control.setModel(gg);
@@ -282,7 +287,7 @@ public void listenerEttout(){
      *
      */
 
-    jj.getEditButton().addActionListener(control.getEditActionListener());
+    
     jj.getNewButton().addActionListener(control.getNewActionListener());
     jj.getSaveButton().addActionListener(control.getSaveActionListener());
 

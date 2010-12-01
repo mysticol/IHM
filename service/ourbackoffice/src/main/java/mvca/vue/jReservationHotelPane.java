@@ -175,15 +175,7 @@ public class jReservationHotelPane extends javax.swing.JPanel implements EntityP
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public void editEntity() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
-    @Override
-    public void enableEdition(Boolean b) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -214,14 +214,6 @@ public class jVoyagePane extends javax.swing.JPanel implements EntityPane<Voyage
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public void editEntity() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void enableEdition(Boolean b) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+   
 
 }

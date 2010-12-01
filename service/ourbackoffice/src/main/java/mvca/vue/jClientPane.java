@@ -23,7 +23,7 @@ public class jClientPane extends javax.swing.JPanel implements EntityPane<Client
     public jClientPane() {
         initComponents();
         this.clearField();
-        this.enableEdition(false);
+   
     }
 
     /** This method is called from within the constructor to
@@ -163,17 +163,7 @@ public class jClientPane extends javax.swing.JPanel implements EntityPane<Client
         fieldPrenom.setText("");
     }
 
-    @Override
-    public void editEntity() {
-       this.enableEdition(Boolean.TRUE);
-    }
 
-    @Override
-    public void enableEdition(Boolean b) {
-        fieldNom.setEditable(b);
-        fieldPrenom.setEditable(b);
-        this.saveButton.setEnabled(b);
-    }
 
     public JButton getEditButton() {
         return editButton;
