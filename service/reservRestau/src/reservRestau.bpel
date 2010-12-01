@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="reservRestau"
+    targetNamespace="http://enterprise.netbeans.org/bpel/reservRestau/reservRestau"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/reservRestau/reservRestau"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/types" xmlns:ns1="http://j2ee.netbeans.org/xsd/tableSchema">
+    <import namespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" location="ReservRestauRequest.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/reservRestau/restauTable" location="restauTable.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/reservRestau/checkRestau" location="checkRestau.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/reservRestau/reservRestauTable" location="reservRestauTable.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="restaurant" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservRestau/restauTable" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="checkRestau" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservRestau/checkRestau" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="reservRestauTable" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservRestau/reservRestauTable" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="ReservationManager" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" partnerLinkType="tns:ReservRestauRequest" myRole="ReservRestauRequestPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="FindIdOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservRestau/reservRestauTable" messageType="tns:outputMsg"/>
+        <variable name="FindIdIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservRestau/reservRestauTable" messageType="tns:inputMsg"/>
+        <variable name="InsertOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservRestau/reservRestauTable" messageType="tns:RetMsg"/>
+        <variable name="InsertIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservRestau/reservRestauTable" messageType="tns:inputMsg"/>
+        <variable name="FindPlaceOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservRestau/checkRestau" messageType="tns:outputMsg"/>
+        <variable name="FindPlaceIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservRestau/checkRestau" messageType="tns:inputMsg"/>
+        <variable name="FindIdRestauOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservRestau/restauTable" messageType="tns:outputMsg"/>
+        <variable name="FindIdRestauIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservRestau/restauTable" messageType="tns:inputMsg"/>
+        <variable name="ReservRestauRequestOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" messageType="tns:ReservRestauRequestOperationResponse"/>
+        <variable name="ReservRestauRequestOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" messageType="tns:ReservRestauRequestOperationRequest"/>
+    </variables>
+    <sequence>
+        <receive name="Receive1" createInstance="yes" partnerLink="ReservationManager" operation="ReservRestauRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" portType="tns:ReservRestauRequestPortType" variable="ReservRestauRequestOperationIn"/>
+        <assign name="AssignForFindID">
+            <copy>
+                <from>$ReservRestauRequestOperationIn.request/ns0:IdRestau</from>
+                <to>$FindIdRestauIn.part/ns1:RESTAURANT_Record/ns1:RESTAURANT_ID</to>
+            </copy>
+        </assign>
+        <invoke name="InvokeFindRestau" partnerLink="restaurant" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservRestau/restauTable" portType="tns:jdbcPortType" inputVariable="FindIdRestauIn" outputVariable="FindIdRestauOut"/>
+        <if name="IfBADIdRestau">
+            <condition>string($FindIdRestauOut.part/ns1:RESTAURANT_Record/ns1:RESTAURANT_ID) = ''</condition>
+            <assign name="AssignBadID">
+                <copy>
+                    <from>'BAD ID'</from>
+                    <to variable="ReservRestauRequestOperationOut" part="responce"/>
+                </copy>
+            </assign>
+            <else>
+                <if name="IfCheck">
+                    <condition>$ReservRestauRequestOperationIn.request/ns0:check</condition>
+                    <sequence name="Sequence1">
+                        <assign name="AssignForPlace">
+                            <copy>
+                                <from>$ReservRestauRequestOperationIn.request/ns0:IdRestau</from>
+                                <to>$FindPlaceIn.part/ns1:RESERVATION_RESTAU_Record/ns1:FK_RESTAU_ID</to>
+                            </copy>
+                            <copy>
+                                <from>$ReservRestauRequestOperationIn.request/ns0:Date</from>
+                                <to>$FindPlaceIn.part/ns1:RESERVATION_RESTAU_Record/ns1:DATE</to>
+                            </copy>
+                        </assign>
+                        <invoke name="InvokeFindPLace" partnerLink="checkRestau" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservRestau/checkRestau" portType="tns:jdbcPortType" inputVariable="FindPlaceIn" outputVariable="FindPlaceOut"/>
+                        <if name="IfPlaceOK">
+                            <condition>count($FindPlaceOut.part/ns1:RESERVATION_RESTAU_Record/ns1:RESERVATION_RESTAU_ID) &lt; $FindIdRestauOut.part/ns1:RESTAURANT_Record/ns1:NB_COUVERTS</condition>
+                            <assign name="AssignOK">
+                                <copy>
+                                    <from>'OK'</from>
+                                    <to variable="ReservRestauRequestOperationOut" part="responce"/>
+                                </copy>
+                            </assign>
+                            <else>
+                                <assign name="AssignNoPLace">
+                                    <copy>
+                                        <from>'NO PLACE'</from>
+                                        <to variable="ReservRestauRequestOperationOut" part="responce"/>
+                                    </copy>
+                                </assign>
+                            </else>
+                        </if>
+                    </sequence>
+                    <else>
+                        <sequence name="Sequence2">
+                            <assign name="AssignForInsert">
+                                <copy>
+                                    <from>$ReservRestauRequestOperationIn.request/ns0:IdClient</from>
+                                    <to>$FindIdIn.part/ns1:RESERVATION_RESTAU_Record/ns1:FK_ID_CLIENT</to>
+                                </copy>
+                                <copy>
+                                    <from>$ReservRestauRequestOperationIn.request/ns0:IdClient</from>
+                                    <to>$InsertIn.part/ns1:RESERVATION_RESTAU_Record/ns1:FK_ID_CLIENT</to>
+                                </copy>
+                                <copy>
+                                    <from>$ReservRestauRequestOperationIn.request/ns0:IdRestau</from>
+                                    <to>$FindIdIn.part/ns1:RESERVATION_RESTAU_Record/ns1:FK_RESTAU_ID</to>
+                                </copy>
+                                <copy>
+                                    <from>$ReservRestauRequestOperationIn.request/ns0:IdRestau</from>
+                                    <to>$InsertIn.part/ns1:RESERVATION_RESTAU_Record/ns1:FK_RESTAU_ID</to>
+                                </copy>
+                                <copy>
+                                    <from>$ReservRestauRequestOperationIn.request/ns0:Date</from>
+                                    <to>$FindIdIn.part/ns1:RESERVATION_RESTAU_Record/ns1:DATE</to>
+                                </copy>
+                                <copy>
+                                    <from>$ReservRestauRequestOperationIn.request/ns0:Date</from>
+                                    <to>$InsertIn.part/ns1:RESERVATION_RESTAU_Record/ns1:DATE</to>
+                                </copy>
+                            </assign>
+                            <invoke name="InvokeInsertRestau" partnerLink="reservRestauTable" operation="insert" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservRestau/reservRestauTable" portType="tns:jdbcPortType" inputVariable="InsertIn" outputVariable="InsertOut"/>
+                            <invoke name="InvokeFindID" partnerLink="reservRestauTable" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservRestau/reservRestauTable" portType="tns:jdbcPortType" inputVariable="FindIdIn" outputVariable="FindIdOut"/>
+                            <assign name="AssignID">
+                                <copy>
+                                    <from>$FindIdOut.part/ns1:RESERVATION_RESTAU_Record/ns1:RESERVATION_RESTAU_ID</from>
+                                    <to variable="ReservRestauRequestOperationOut" part="responce"/>
+                                </copy>
+                            </assign>
+                        </sequence>
+                    </else>
+                </if>
+            </else>
+        </if>
+        <reply name="Reply1" partnerLink="ReservationManager" operation="ReservRestauRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservRestauRequest" portType="tns:ReservRestauRequestPortType" variable="ReservRestauRequestOperationOut"/>
+    </sequence>
+</process>
+
+
