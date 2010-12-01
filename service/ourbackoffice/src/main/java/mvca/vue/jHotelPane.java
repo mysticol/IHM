@@ -64,7 +64,7 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
                 saveButton1ActionPerformed(evt);
             }
         });
-        saveButton1.setBounds(470, 110, 70, 23);
+        saveButton1.setBounds(450, 110, 70, 23);
         jLayeredPane2.add(saveButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel1.setText("Adresse:");
@@ -77,7 +77,7 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
                 fieldFkLocalisationActionPerformed(evt);
             }
         });
-        fieldFkLocalisation.setBounds(470, 30, 100, 20);
+        fieldFkLocalisation.setBounds(170, 100, 100, 20);
         jLayeredPane2.add(fieldFkLocalisation, javax.swing.JLayeredPane.DEFAULT_LAYER);
         fieldAdresse.setBounds(70, 50, 100, 20);
         jLayeredPane2.add(fieldAdresse, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -126,7 +126,7 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
         jLayeredPane2.add(fieldNote, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         buttonFwIDLocalisation.setText("Localisation:");
-        buttonFwIDLocalisation.setBounds(370, 30, 93, 23);
+        buttonFwIDLocalisation.setBounds(70, 100, 93, 23);
         jLayeredPane2.add(buttonFwIDLocalisation, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         editButton1.setText("Edit");
@@ -135,20 +135,18 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 692, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(newButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(editButton1))
-                    .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(editButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 207, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

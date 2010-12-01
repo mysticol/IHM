@@ -18,6 +18,8 @@ import java.awt.GridLayout;
 import java.util.HashMap;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 import mvca.controleur.ControleurClient;
 import mvca.controleur.ControleurRadio;
 import mvca.entity.Client;
@@ -124,6 +126,11 @@ public class mainFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(reservManifRadioButton);
         reservManifRadioButton.setText("Reserv Manif");
+        reservManifRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reservManifRadioButtonActionPerformed(evt);
+            }
+        });
 
         panelAmovible.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -131,11 +138,11 @@ public class mainFrame extends javax.swing.JFrame {
         panelAmovible.setLayout(panelAmovibleLayout);
         panelAmovibleLayout.setHorizontalGroup(
             panelAmovibleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+            .addGap(0, 573, Short.MAX_VALUE)
         );
         panelAmovibleLayout.setVerticalGroup(
             panelAmovibleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 228, Short.MAX_VALUE)
+            .addGap(0, 258, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -149,25 +156,25 @@ public class mainFrame extends javax.swing.JFrame {
                     .addComponent(voyageRadioButton)
                     .addComponent(reservationRadioButton)
                     .addComponent(reservHotelRadioButton)
-                    .addComponent(reservRestauRadioButton)
-                    .addComponent(reservManifRadioButton)
                     .addComponent(manifestationRadioButton)
                     .addComponent(clientRadioButton)
                     .addComponent(hotelRadioButton)
                     .addComponent(restaurantRadioButton)
-                    .addComponent(localisationRadioButton))
+                    .addComponent(localisationRadioButton)
+                    .addComponent(reservRestauRadioButton)
+                    .addComponent(reservManifRadioButton))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelAmovible, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+                    .addComponent(panelAmovible, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(161, 161, 161))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(clientRadioButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(hotelRadioButton)
@@ -187,12 +194,14 @@ public class mainFrame extends javax.swing.JFrame {
                         .addComponent(reservHotelRadioButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(reservRestauRadioButton))
-                    .addComponent(panelAmovible, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(panelAmovible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(reservManifRadioButton)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reservManifRadioButton))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
@@ -206,12 +215,32 @@ public class mainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_hotelRadioButtonActionPerformed
 
+    private void reservManifRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservManifRadioButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reservManifRadioButtonActionPerformed
+
     /**
     * @param args the command line arguments
     */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws Exception{
+        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                try{
+                    /*
+                     * {CDE/Motif=com.sun.java.swing.plaf.motif.MotifLookAndFeel,
+                     Metal=javax.swing.plaf.metal.MetalLookAndFeel,
+                     Nimbus=com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel,
+                     Windows=com.sun.java.swing.plaf.windows.WindowsLookAndFeel,
+                     Windows Classic=com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel}
+                     */
+
+
+                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+                 }catch(Exception e){
+
+                 }
                 mainFrame mv=  new mainFrame();
 
             mv.init();
@@ -251,10 +280,10 @@ this.panelAmovible.repaint();
    
     panelAmovible.setLayout(fl);
        panelAmovible.add(pane);
-       GridBagConstraints constraint= new GridBagConstraints();
+   /*    GridBagConstraints constraint= new GridBagConstraints();
        constraint.fill= GridBagConstraints.BOTH;
         fl.setConstraints(pane, constraint);
-       
+     */
    
    panelAmovible.revalidate();
  
@@ -355,7 +384,7 @@ this.superJtableBD.addMouseListener(mp.getAction());
         
 
           
-        this.setMode(Mode.Hotel);
+        this.setMode(Mode.Client);
     }
 
 }
