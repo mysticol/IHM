@@ -17,41 +17,41 @@
             <xsd:element name="Pays" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="Ville" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="TypeManifestation" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
-            <xsd:element name="Manifestation" type="tns:Manifestation" minOccurs="0" maxOccurs="unbounded"/>
-            <xsd:element name="Hotel" type="tns:Hotel" minOccurs="0" maxOccurs="unbounded"/>
-            <xsd:element name="Restaurant" type="tns:Restaurant" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Manifestations" type="tns:Manifestations" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="Hotels" type="tns:Hotels" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="Restaurants" type="tns:Restaurants" minOccurs="1" maxOccurs="1"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:complexType name="Manifestation">
+    <xsd:complexType name="Manifestations">
         <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string"/>
-            <xsd:element name="Nom" type="xsd:string"/>
-            <xsd:element name="Adresse" type="xsd:string"/>
-            <xsd:element name="Description" type="xsd:string"/>
-            <xsd:element name="Prix" type="xsd:float"/>
-            <xsd:element name="PlacesRestantes" type="xsd:int"/>
+            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Nom" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Adresse" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Description" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Prix" type="xsd:float" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="PlacesRestantes" type="xsd:int" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:complexType name="Hotel">
+    <xsd:complexType name="Hotels">
         <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string"/>
-            <xsd:element name="Nom" type="xsd:string"/>
-            <xsd:element name="Adresse" type="xsd:string"/>
-            <xsd:element name="Prix" type="xsd:float"/>
-            <xsd:element name="Rank" type="xsd:int"/>
-            <xsd:element name="PrixMoyen" type="xsd:float"/>
-            <xsd:element name="PlacesRestantes" type="xsd:int"/>
+            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Nom" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Adresse" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Prix" type="xsd:float" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Rank" type="xsd:int" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="PrixMoyen" type="xsd:float" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="PlacesRestantes" type="xsd:int" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:complexType name="Restaurant">
+    <xsd:complexType name="Restaurants">
         <xsd:sequence>
-            <xsd:element name="ID" type="xsd:string"/>
-            <xsd:element name="Nom" type="xsd:string"></xsd:element>
-            <xsd:element name="Adresse" type="xsd:string"/>
-            <xsd:element name="Prix" type="xsd:float"/>
-            <xsd:element name="Rank" type="xsd:int"/>
-            <xsd:element name="PrixMoyen" type="xsd:float"/>
-            <xsd:element name="PlacesRestantes" type="xsd:int"/>
+            <xsd:element name="ID" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Nom" type="xsd:string" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+            <xsd:element name="Adresse" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Prix" type="xsd:float" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Rank" type="xsd:int" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="PrixMoyen" type="xsd:float" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="PlacesRestantes" type="xsd:int" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
     </xsd:complexType>
 	    <xsd:complexType name="ReservationRequest">
@@ -111,6 +111,8 @@
         </xsd:sequence>
     </xsd:complexType>
 </xsd:schema>
+
+
 
 
 
