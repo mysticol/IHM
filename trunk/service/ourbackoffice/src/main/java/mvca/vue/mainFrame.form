@@ -27,27 +27,27 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="typeManifRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="voyageRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="reservationRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="reservHotelRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="reservRestauRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="reservManifRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="manifestationRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="clientRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="hotelRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="restaurantRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="localisationRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="reservRestauRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="reservManifRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="panelAmovible" max="32767" attributes="1"/>
-                  <Component id="jScrollPane1" alignment="0" min="-2" pref="577" max="-2" attributes="1"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jScrollPane1" alignment="0" pref="577" max="32767" attributes="1"/>
+                  <Component id="panelAmovible" alignment="0" min="-2" max="-2" attributes="1"/>
               </Group>
-              <EmptySpace pref="102" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -55,8 +55,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="clientRadioButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="hotelRadioButton" min="-2" max="-2" attributes="0"/>
@@ -77,14 +77,17 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="reservRestauRadioButton" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="panelAmovible" max="32767" attributes="1"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="panelAmovible" min="-2" max="-2" attributes="1"/>
+                      <EmptySpace min="2" pref="2" max="2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="reservManifRadioButton" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="195" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="147" max="-2" attributes="0"/>
+                  <Component id="reservManifRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              <EmptySpace pref="74" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -205,6 +208,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Reserv Manif"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reservManifRadioButtonActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="panelAmovible">
       <Properties>
@@ -218,12 +224,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="575" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="573" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="228" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="258" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

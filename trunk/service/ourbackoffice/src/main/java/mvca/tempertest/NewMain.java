@@ -6,6 +6,9 @@
 package mvca.tempertest;
 
 
+import java.util.Map;
+import java.util.TreeMap;
+import javax.swing.UIManager;
 import mvca.entity.Client;
 import mvca.session.HibernateUtil;
 
@@ -26,9 +29,15 @@ public class NewMain {
      */
     public static void main(String[] args) {
 
-        String name= new String("ponayID");
-    System.out.println();
-    
+         UIManager.LookAndFeelInfo[] info = UIManager.getInstalledLookAndFeels();
+   Map map = new TreeMap();
+   for(int i=0; i<info.length;i++){
+      String nomLF = info[i].getName();
+      String nomClasse = info[i].getClassName();
+      map.put(nomLF,nomClasse);
+   }
+   System.out.println( map);
+
           
 
             

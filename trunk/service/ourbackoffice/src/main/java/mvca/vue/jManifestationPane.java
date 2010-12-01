@@ -69,11 +69,11 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
                 saveButton1ActionPerformed(evt);
             }
         });
-        saveButton1.setBounds(510, 150, 70, -1);
+        saveButton1.setBounds(500, 190, 70, 23);
         jLayeredPane2.add(saveButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel1.setText("Adresse:");
-        prenomLabel1.setBounds(10, 50, 60, -1);
+        prenomLabel1.setBounds(10, 50, 60, 14);
         jLayeredPane2.add(prenomLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkLocalisation.setEditable(false);
@@ -82,9 +82,9 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
                 fieldFkLocalisationActionPerformed(evt);
             }
         });
-        fieldFkLocalisation.setBounds(470, 30, 100, -1);
+        fieldFkLocalisation.setBounds(470, 30, 100, 20);
         jLayeredPane2.add(fieldFkLocalisation, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldAdresse.setBounds(90, 50, 100, -1);
+        fieldAdresse.setBounds(90, 50, 100, 20);
         jLayeredPane2.add(fieldAdresse, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldId1.setEditable(false);
@@ -93,43 +93,43 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
                 fieldId1ActionPerformed(evt);
             }
         });
-        fieldId1.setBounds(60, 10, 50, -1);
+        fieldId1.setBounds(60, 10, 50, 20);
         jLayeredPane2.add(fieldId1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         idLabel1.setText("Id: ");
-        idLabel1.setBounds(10, 10, -1, -1);
+        idLabel1.setBounds(10, 10, 17, 14);
         jLayeredPane2.add(idLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nbcouvertLabel.setText("Nb Place:");
-        nbcouvertLabel.setBounds(10, 70, 70, -1);
+        nbcouvertLabel.setBounds(10, 70, 70, 14);
         jLayeredPane2.add(nbcouvertLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldNbPlace.setBounds(90, 70, 100, -1);
+        fieldNbPlace.setBounds(90, 70, 100, 20);
         jLayeredPane2.add(fieldNbPlace, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel4.setText("Nom:");
-        prenomLabel4.setBounds(10, 30, 60, -1);
+        prenomLabel4.setBounds(10, 30, 60, 14);
         jLayeredPane2.add(prenomLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldHotel.setBounds(90, 30, 100, -1);
+        fieldHotel.setBounds(90, 30, 100, 20);
         jLayeredPane2.add(fieldHotel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel2.setText("Prix:");
-        prenomLabel2.setBounds(200, 50, 60, -1);
+        prenomLabel2.setBounds(200, 50, 60, 14);
         jLayeredPane2.add(prenomLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldPrix.setBounds(260, 50, 100, -1);
+        fieldPrix.setBounds(260, 50, 100, 20);
         jLayeredPane2.add(fieldPrix, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nbcouvertLabel1.setText("Desc:");
-        nbcouvertLabel1.setBounds(10, 90, 60, -1);
+        nbcouvertLabel1.setBounds(10, 90, 60, 14);
         jLayeredPane2.add(nbcouvertLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel5.setText("Date:");
-        prenomLabel5.setBounds(200, 30, 60, -1);
+        prenomLabel5.setBounds(200, 30, 60, 14);
         jLayeredPane2.add(prenomLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldDate.setBounds(260, 30, 100, -1);
+        fieldDate.setBounds(260, 30, 100, 20);
         jLayeredPane2.add(fieldDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         buttonFwIDLocalisation.setText("Localisation:");
-        buttonFwIDLocalisation.setBounds(370, 30, -1, -1);
+        buttonFwIDLocalisation.setBounds(370, 30, 93, 23);
         jLayeredPane2.add(buttonFwIDLocalisation, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkType.setEditable(false);
@@ -138,11 +138,11 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
                 fieldFkTypeActionPerformed(evt);
             }
         });
-        fieldFkType.setBounds(470, 60, 100, -1);
+        fieldFkType.setBounds(470, 60, 100, 20);
         jLayeredPane2.add(fieldFkType, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         buttonFwIDType.setText("Type:");
-        buttonFwIDType.setBounds(370, 60, -1, -1);
+        buttonFwIDType.setBounds(370, 60, 63, 23);
         jLayeredPane2.add(buttonFwIDType, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextArea1.setColumns(20);
@@ -157,9 +157,9 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLayeredPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
+                    .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(newButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -174,8 +174,8 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
                     .addComponent(newButton1)
                     .addComponent(editButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
