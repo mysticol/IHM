@@ -346,13 +346,7 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
         this.jTextArea1.setText("");
     }
 
-    public JButton getButtonFwIDLocalisation() {
-        return buttonFwIDLocalisation;
-    }
 
-    public JButton getButtonFwIDType() {
-        return buttonFwIDType;
-    }
 
     public JButton getEditButton() {
         return editButton1;
@@ -373,7 +367,13 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
     public JTextField getFieldFkType() {
         return fieldFkType;
     }
+    public JButton getButtonFwIDLocalisation() {
+        return buttonFwIDLocalisation;
+    }
 
+    public JButton getButtonFwIDType() {
+        return buttonFwIDType;
+    }
   
 
 }

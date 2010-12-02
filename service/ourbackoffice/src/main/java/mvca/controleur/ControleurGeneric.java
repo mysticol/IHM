@@ -34,8 +34,11 @@ public class ControleurGeneric<E>  {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-            em.insertOrUpdate(clientControleur.getEntity());
+                E obj= clientControleur.getEntity();
+                if (obj!=null){
+            em.insertOrUpdate(obj);
             model.refresh();
+            }
             }
         };
 

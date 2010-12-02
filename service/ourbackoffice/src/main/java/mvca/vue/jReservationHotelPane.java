@@ -221,13 +221,7 @@ public class jReservationHotelPane extends javax.swing.JPanel implements EntityP
     private javax.swing.JButton saveButton3;
     // End of variables declaration//GEN-END:variables
 
-    public JButton getButtonFwIDClient() {
-        return buttonFwIDClient;
-    }
-
-    public JButton getButtonFwIDHotel() {
-        return buttonFwIDHotel;
-    }
+ 
 
     public JButton getEditButton() {
         return editButton1;
@@ -249,5 +243,11 @@ public class jReservationHotelPane extends javax.swing.JPanel implements EntityP
         return fieldFkIdHotel;
     }
 
+   public JButton getButtonFwIDClient() {
+        return buttonFwIDClient;
+    }
 
+    public JButton getButtonFwIDHotel() {
+        return buttonFwIDHotel;
+    }
 }

@@ -23,6 +23,7 @@ import javax.swing.UIManager;
 
 import mvca.controleur.ControleurGeneric;
 import mvca.controleur.ControleurRadio;
+import mvca.controleur.ListenerFk;
 import mvca.entity.Client;
 import mvca.entity.Hotel;
 import mvca.entity.Localisation;
@@ -58,9 +59,7 @@ public class mainFrame extends javax.swing.JFrame {
 
     private ControleurRadio radioControleur;
     private LinkedList<ControleurGeneric> listContr;
-
     private Mode actualmode;
-
     private HashMap<Mode, ModeParam> modeur;
 
     /** Creates new form mainFrame */
@@ -162,18 +161,18 @@ public class mainFrame extends javax.swing.JFrame {
         panelAmovible.setLayout(panelAmovibleLayout);
         panelAmovibleLayout.setHorizontalGroup(
             panelAmovibleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 724, Short.MAX_VALUE)
+            .addGap(0, 740, Short.MAX_VALUE)
         );
         panelAmovibleLayout.setVerticalGroup(
             panelAmovibleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 366, Short.MAX_VALUE)
+            .addGap(0, 193, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(typeManifRadioButton)
@@ -187,16 +186,15 @@ public class mainFrame extends javax.swing.JFrame {
                     .addComponent(localisationRadioButton)
                     .addComponent(reservRestauRadioButton)
                     .addComponent(reservManifRadioButton))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(panelAmovible, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(clientRadioButton)
@@ -220,10 +218,11 @@ public class mainFrame extends javax.swing.JFrame {
                         .addComponent(reservRestauRadioButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(reservManifRadioButton))
-                    .addComponent(panelAmovible, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panelAmovible, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         pack();
@@ -316,14 +315,14 @@ public class mainFrame extends javax.swing.JFrame {
         this.placeMachin(mp.getPanel());
         this.superJtableBD.setModel(mp.getModel());
         superJtableBD.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-       
-this.actualmode=m;
+
+        this.actualmode = m;
 
 
     }
 
     private void init() {
-        listContr= new LinkedList<ControleurGeneric>();
+        listContr = new LinkedList<ControleurGeneric>();
         HibernateUtil<Client> emClient = new HibernateUtil<Client>(Client.class);
         HibernateUtil<Hotel> emHotel = new HibernateUtil<Hotel>(Hotel.class);
         HibernateUtil<Manifestation> emManif = new HibernateUtil<Manifestation>(Manifestation.class);
@@ -380,7 +379,7 @@ this.actualmode=m;
         ControleurGeneric<Manifestation> controlManifestation = new ControleurGeneric<Manifestation>();
 
 
-          listContr.add(controlClient);
+        listContr.add(controlClient);
         listContr.add(controlHotel);
         listContr.add(controlRestaurant);
         listContr.add(controlLocalisation);
@@ -390,54 +389,53 @@ this.actualmode=m;
         listContr.add(controlReservationHotel);
         listContr.add(controlReservationManif);
         listContr.add(controlReservationRestau);
-          listContr.add(controlManifestation);
+        listContr.add(controlManifestation);
 
-      
+
 
         controlClient.setEm(emClient);
         controlClient.setModel(modelClient);
-                controlClient.setClientControleur(clientPane);
+        controlClient.setClientControleur(clientPane);
 
-         controlHotel.setEm(emHotel);
+        controlHotel.setEm(emHotel);
         controlHotel.setModel(modelHotel);
-                controlHotel.setClientControleur(hotelPane);
+        controlHotel.setClientControleur(hotelPane);
 
-         controlRestaurant.setEm(emRestaut);
+        controlRestaurant.setEm(emRestaut);
         controlRestaurant.setModel(modelRestaurant);
-        
         controlRestaurant.setClientControleur(restaurantPane);
 
-         controlLocalisation.setEm(emLoca);
+        controlLocalisation.setEm(emLoca);
         controlLocalisation.setModel(modelLocalisation);
-                controlLocalisation.setClientControleur(localisationPane);
+        controlLocalisation.setClientControleur(localisationPane);
 
-         controlVoyage.setEm( emVoyage);
+        controlVoyage.setEm(emVoyage);
         controlVoyage.setModel(modelVoyage);
-                controlVoyage.setClientControleur(voyagePane);
+        controlVoyage.setClientControleur(voyagePane);
 
-         controlTypeManifestation.setEm(emtypManif);
+        controlTypeManifestation.setEm(emtypManif);
         controlTypeManifestation.setModel(modelTypeManif);
-                controlTypeManifestation.setClientControleur(typeManifPane);
+        controlTypeManifestation.setClientControleur(typeManifPane);
 
-         controlReservation.setEm(emReserv);
+        controlReservation.setEm(emReserv);
         controlReservation.setModel(modelReservation);
-                controlReservation.setClientControleur(reservationnPane);
+        controlReservation.setClientControleur(reservationnPane);
 
-         controlReservationHotel.setEm(emReservHotel);
+        controlReservationHotel.setEm(emReservHotel);
         controlReservationHotel.setModel(modelReservationHotel);
-                controlReservationHotel.setClientControleur(reservHotelPane);
+        controlReservationHotel.setClientControleur(reservHotelPane);
 
-         controlReservationManif.setEm(emReservManif);
+        controlReservationManif.setEm(emReservManif);
         controlReservationManif.setModel(modelReservationManif);
-                controlReservationManif.setClientControleur(reservationManifPane);
+        controlReservationManif.setClientControleur(reservationManifPane);
 
-         controlReservationRestau.setEm(emReservRestau);
+        controlReservationRestau.setEm(emReservRestau);
         controlReservationRestau.setModel(modelReservationRestau);
-                controlReservationRestau.setClientControleur(reservRestauPane);
-        
-         controlManifestation.setEm(emManif);
+        controlReservationRestau.setClientControleur(reservRestauPane);
+
+        controlManifestation.setEm(emManif);
         controlManifestation.setModel(modelManifestation);
-                controlManifestation.setClientControleur(manifPane);
+        controlManifestation.setClientControleur(manifPane);
 
 
 
@@ -450,33 +448,61 @@ this.actualmode=m;
 
         hotelPane.getNewButton().addActionListener(controlHotel.getNewActionListener());
         hotelPane.getSaveButton().addActionListener(controlHotel.getSaveActionListener());
+        hotelPane.getButtonFwIDLocalisation().addActionListener(new ListenerFk(this, modelLocalisation, hotelPane.getFieldFkLocalisation()));
+
+
 
         restaurantPane.getNewButton().addActionListener(controlRestaurant.getNewActionListener());
         restaurantPane.getSaveButton().addActionListener(controlRestaurant.getSaveActionListener());
+        restaurantPane.getButtonFwIDLocalisation().addActionListener(new ListenerFk(this, modelLocalisation, restaurantPane.getFieldFkLocalisation()));
 
         localisationPane.getNewButton().addActionListener(controlLocalisation.getNewActionListener());
         localisationPane.getSaveButton().addActionListener(controlLocalisation.getSaveActionListener());
 
         voyagePane.getNewButton().addActionListener(controlVoyage.getNewActionListener());
         voyagePane.getSaveButton().addActionListener(controlVoyage.getSaveActionListener());
+        voyagePane.getButtonFwIDArrive().addActionListener(new ListenerFk(this, modelLocalisation, voyagePane.getFieldFkIdArrive()));
+        voyagePane.getButtonFwIDClient().addActionListener(new ListenerFk(this, modelClient, voyagePane.getFieldFkClient()));
+        voyagePane.getButtonFwIDDepart().addActionListener(new ListenerFk(this, modelLocalisation, voyagePane.getFieldFkIdDepart()));
+
 
         typeManifPane.getNewButton().addActionListener(controlTypeManifestation.getNewActionListener());
         typeManifPane.getSaveButton().addActionListener(controlTypeManifestation.getSaveActionListener());
+        
+
 
         reservationnPane.getNewButton().addActionListener(controlReservation.getNewActionListener());
         reservationnPane.getSaveButton().addActionListener(controlReservation.getSaveActionListener());
+        reservationnPane.getButtonFwIDClient().addActionListener(new ListenerFk(this,modelClient, reservationnPane.getFieldFkClient()));
+        reservationnPane.getButtonFwIDhotel().addActionListener(new ListenerFk(this,modelHotel, reservationnPane.getFieldFkIdHotem()));
+        reservationnPane.getButtonFwIDmanif().addActionListener(new ListenerFk(this,modelManifestation, reservationnPane.getFieldFkIdManif()));
+        reservationnPane.getButtonFwIDrestau().addActionListener(new ListenerFk(this,modelRestaurant, reservationnPane.getFieldFkIdRestau()));
+        reservationnPane.getButtonFwIDvoyage().addActionListener(new ListenerFk(this,modelVoyage, reservationnPane.getFieldFkIdVoyage()));
+
+      
+
+
+
 
         reservHotelPane.getNewButton().addActionListener(controlReservationHotel.getNewActionListener());
         reservHotelPane.getSaveButton().addActionListener(controlReservationHotel.getSaveActionListener());
+        reservHotelPane.getButtonFwIDClient().addActionListener(new ListenerFk(this, modelClient, reservHotelPane.getFieldFkClient()));
+        reservHotelPane.getButtonFwIDHotel().addActionListener(new ListenerFk(this, modelHotel, reservHotelPane.getFieldFkIdHotel()));
 
         reservationManifPane.getNewButton().addActionListener(controlReservationManif.getNewActionListener());
         reservationManifPane.getSaveButton().addActionListener(controlReservationManif.getSaveActionListener());
+        reservationManifPane.getButtonFwIDClient().addActionListener(new ListenerFk(this, modelClient, reservationManifPane.getFieldFkClient()));
+        reservationManifPane.getButtonFwIDManif().addActionListener(new ListenerFk(this, modelManifestation, reservationManifPane.getFieldFkIdManif1()));
 
         reservRestauPane.getNewButton().addActionListener(controlReservationRestau.getNewActionListener());
         reservRestauPane.getSaveButton().addActionListener(controlReservationRestau.getSaveActionListener());
-
+        reservRestauPane.getButtonFwIDClient().addActionListener(new ListenerFk(this, modelClient, reservRestauPane.getFieldFkclient()));
+        reservRestauPane.getButtonFwIDRestaurant().addActionListener(new ListenerFk(this, modelRestaurant, reservRestauPane.getFieldFkIdRestaurant()));
         manifPane.getNewButton().addActionListener(controlManifestation.getNewActionListener());
         manifPane.getSaveButton().addActionListener(controlManifestation.getSaveActionListener());
+        manifPane.getButtonFwIDLocalisation().addActionListener(new ListenerFk(this, modelLocalisation, manifPane.getFieldFkLocalisation()));
+        manifPane.getButtonFwIDType().addActionListener(new ListenerFk(this, modelTypeManif, manifPane.getFieldFkType()));
+
 
 
 
@@ -492,17 +518,17 @@ this.actualmode=m;
 
 
 
-        modeur.put(Mode.Client, new ModeParam( modelClient, clientPane));
-        modeur.put(Mode.Hotel, new ModeParam( modelHotel, hotelPane));
+        modeur.put(Mode.Client, new ModeParam(modelClient, clientPane));
+        modeur.put(Mode.Hotel, new ModeParam(modelHotel, hotelPane));
         modeur.put(Mode.Restaurant, new ModeParam(modelRestaurant, restaurantPane));
-        modeur.put(Mode.Localisation, new ModeParam( modelLocalisation, localisationPane));
-        modeur.put(Mode.TypeManif, new ModeParam( modelTypeManif, typeManifPane));
-        modeur.put(Mode.Voyage, new ModeParam( modelVoyage, voyagePane));
-        modeur.put(Mode.Manifestation, new ModeParam( modelManifestation, manifPane));
-        modeur.put(Mode.Reservation, new ModeParam( modelReservation, reservationnPane));
-        modeur.put(Mode.ReservationHotel, new ModeParam( modelReservationHotel, reservHotelPane));
-        modeur.put(Mode.ReservationRestaurant, new ModeParam( modelReservationRestau, reservRestauPane));
-        modeur.put(Mode.ReservationManif, new ModeParam( modelReservationManif, reservationManifPane));
+        modeur.put(Mode.Localisation, new ModeParam(modelLocalisation, localisationPane));
+        modeur.put(Mode.TypeManif, new ModeParam(modelTypeManif, typeManifPane));
+        modeur.put(Mode.Voyage, new ModeParam(modelVoyage, voyagePane));
+        modeur.put(Mode.Manifestation, new ModeParam(modelManifestation, manifPane));
+        modeur.put(Mode.Reservation, new ModeParam(modelReservation, reservationnPane));
+        modeur.put(Mode.ReservationHotel, new ModeParam(modelReservationHotel, reservHotelPane));
+        modeur.put(Mode.ReservationRestaurant, new ModeParam(modelReservationRestau, reservRestauPane));
+        modeur.put(Mode.ReservationManif, new ModeParam(modelReservationManif, reservationManifPane));
 
 
         this.clientRadioButton.addActionListener(radioControleur.getClientListener());
@@ -518,7 +544,7 @@ this.actualmode=m;
         this.manifestationRadioButton.addActionListener(radioControleur.getManifestationListener());
 
 
-this.superJtableBD.addMouseListener(this.mouseListener());
+        this.superJtableBD.addMouseListener(this.mouseListener());
 
 
         this.setMode(Mode.Client);
@@ -528,8 +554,7 @@ this.superJtableBD.addMouseListener(this.mouseListener());
         return modeur;
     }
 
-
-    private MouseListener mouseListener(){
+    private MouseListener mouseListener() {
 
 
         return new MouseListener() {
@@ -538,34 +563,29 @@ this.superJtableBD.addMouseListener(this.mouseListener());
             public void mouseClicked(MouseEvent e) {
 
 
-                        ModeParam ff=modeur.get(actualmode);
-                        EntityPane pane=(EntityPane)ff.getPanel();
-                        JTableModelInterface model= ff.getModel();
+                ModeParam ff = modeur.get(actualmode);
+                EntityPane pane = (EntityPane) ff.getPanel();
+                JTableModelInterface model = ff.getModel();
 
-                        pane.loadEntity( model.getRows(superJtableBD.getSelectedRow()));
+                pane.loadEntity(model.getRows(superJtableBD.getSelectedRow()));
 
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
-
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-
             }
         };
     }
-
 }
