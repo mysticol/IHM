@@ -123,4 +123,9 @@ public class TableModelHotel extends JTableModelInterface<Hotel> {
        return list.get(i);
     }
 
+      @Override
+    public int getIDForSelected(int i) {
+        return list.get(i).getHotelId();
+    }
+
 }

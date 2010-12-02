@@ -98,5 +98,8 @@ public TableModelReservationManif(HibernateUtil<ReservationManif> em) {
     public ReservationManif getRows( int i) {
        return listClient.get(i);
     }
-
+   @Override
+    public int getIDForSelected(int i) {
+        return listClient.get(i).getReservationManifId();
+    }
 }

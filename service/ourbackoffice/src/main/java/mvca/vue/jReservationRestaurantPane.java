@@ -36,9 +36,6 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        newButton1 = new javax.swing.JButton();
-        editButton1 = new javax.swing.JButton();
-        jLayeredPane4 = new javax.swing.JLayeredPane();
         saveButton3 = new javax.swing.JButton();
         fieldFkclient = new javax.swing.JTextField();
         fieldId1 = new javax.swing.JTextField();
@@ -48,12 +45,8 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
         fieldFkIdRestaurant = new javax.swing.JTextField();
         buttonFwIDResturant = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-
-        newButton1.setText("New");
-
-        editButton1.setText("Edit");
-
-        jLayeredPane4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        newButton1 = new javax.swing.JButton();
+        editButton1 = new javax.swing.JButton();
 
         saveButton3.setText("Save");
         saveButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -61,8 +54,6 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
                 saveButton3ActionPerformed(evt);
             }
         });
-        saveButton3.setBounds(510, 90, 70, -1);
-        jLayeredPane4.add(saveButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkclient.setEditable(false);
         fieldFkclient.addActionListener(new java.awt.event.ActionListener() {
@@ -70,8 +61,6 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
                 fieldFkclientActionPerformed(evt);
             }
         });
-        fieldFkclient.setBounds(290, 10, 100, -1);
-        jLayeredPane4.add(fieldFkclient, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldId1.setEditable(false);
         fieldId1.addActionListener(new java.awt.event.ActionListener() {
@@ -79,20 +68,12 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
                 fieldId1ActionPerformed(evt);
             }
         });
-        fieldId1.setBounds(60, 10, 50, -1);
-        jLayeredPane4.add(fieldId1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         idLabel1.setText("Id: ");
-        idLabel1.setBounds(10, 10, -1, -1);
-        jLayeredPane4.add(idLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel5.setText("Date:");
-        prenomLabel5.setBounds(10, 40, 60, -1);
-        jLayeredPane4.add(prenomLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         buttonFwIDClient.setText("Client:");
-        buttonFwIDClient.setBounds(190, 10, -1, -1);
-        jLayeredPane4.add(buttonFwIDClient, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkIdRestaurant.setEditable(false);
         fieldFkIdRestaurant.addActionListener(new java.awt.event.ActionListener() {
@@ -100,39 +81,67 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
                 fieldFkIdRestaurantActionPerformed(evt);
             }
         });
-        fieldFkIdRestaurant.setBounds(310, 40, 100, -1);
-        jLayeredPane4.add(fieldFkIdRestaurant, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         buttonFwIDResturant.setText("Restaurant:");
-        buttonFwIDResturant.setBounds(190, 40, 100, -1);
-        jLayeredPane4.add(buttonFwIDResturant, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDateChooser1.setBounds(60, 40, -1, -1);
-        jLayeredPane4.add(jDateChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        newButton1.setText("New");
+
+        editButton1.setText("Edit");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(newButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(editButton1)
-                .addContainerGap(521, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
-                .addGap(21, 21, 21))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(idLabel1)
+                        .addGap(33, 33, 33)
+                        .addComponent(fieldId1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
+                        .addComponent(buttonFwIDClient)
+                        .addGap(35, 35, 35)
+                        .addComponent(fieldFkclient, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(prenomLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
+                        .addComponent(buttonFwIDResturant, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(fieldFkIdRestaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(380, 380, 380)
+                        .addComponent(newButton1)
+                        .addGap(5, 5, 5)
+                        .addComponent(editButton1)
+                        .addGap(7, 7, 7)
+                        .addComponent(saveButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idLabel1)
+                    .addComponent(fieldId1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonFwIDClient)
+                    .addComponent(fieldFkclient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(prenomLabel5)
+                    .addComponent(buttonFwIDResturant)
+                    .addComponent(fieldFkIdRestaurant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(newButton1)
-                    .addComponent(editButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editButton1)
+                    .addComponent(saveButton3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -163,7 +172,6 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
     private javax.swing.JTextField fieldId1;
     private javax.swing.JLabel idLabel1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLayeredPane jLayeredPane4;
     private javax.swing.JButton newButton1;
     private javax.swing.JLabel prenomLabel5;
     private javax.swing.JButton saveButton3;

@@ -122,5 +122,8 @@ public class TableModelManifestation extends JTableModelInterface<Manifestation>
     public Manifestation getRows( int i) {
        return list.get(i);
     }
-
+   @Override
+    public int getIDForSelected(int i) {
+        return list.get(i).getManifestationId();
+    }
 }

@@ -120,5 +120,8 @@ public class TableModelReservation  extends JTableModelInterface<Reservation> {
     public Reservation getRows( int i) {
        return list.get(i);
     }
-
+   @Override
+    public int getIDForSelected(int i) {
+        return list.get(i).getReservationId();
+    }
 }
