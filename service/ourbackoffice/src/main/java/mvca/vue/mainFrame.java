@@ -11,6 +11,8 @@
 package mvca.vue;
 
 import java.awt.GridBagLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -33,6 +35,7 @@ import mvca.entity.TypeManifestation;
 import mvca.entity.Voyage;
 import mvca.model.Mode;
 import mvca.model.ModeParam;
+import mvca.modeltable.JTableModelInterface;
 import mvca.modeltable.TableModelClient;
 import mvca.modeltable.TableModelHotel;
 import mvca.modeltable.TableModelLocalisation;
@@ -54,6 +57,8 @@ public class mainFrame extends javax.swing.JFrame {
 
     private ControleurRadio radioControleur;
     private LinkedList<ControleurGeneric> listContr;
+
+    private Mode actualmode;
 
     private HashMap<Mode, ModeParam> modeur;
 
@@ -310,16 +315,15 @@ public class mainFrame extends javax.swing.JFrame {
 
         ModeParam mp = this.modeur.get(m);
         this.placeMachin(mp.getPanel());
-         System.out.println(superJtableBD.getMouseListeners());
-          this.superJtableBD.removeAll();
-System.out.println(superJtableBD.getMouseListeners());
+       
+            System.out.println(superJtableBD.getMouseListeners());
       
          
      
         this.superJtableBD.setModel(mp.getModel());
       
-        this.superJtableBD.addMouseListener(mp.getAction());
-
+       
+this.actualmode=m;
 
 
     }
@@ -398,58 +402,48 @@ System.out.println(superJtableBD.getMouseListeners());
 
         controlClient.setEm(emClient);
         controlClient.setModel(modelClient);
-        controlClient.setTable(this.superJtableBD);
-        controlClient.setClientControleur(clientPane);
+                controlClient.setClientControleur(clientPane);
 
          controlHotel.setEm(emHotel);
         controlHotel.setModel(modelHotel);
-        controlHotel.setTable(this.superJtableBD);
-        controlHotel.setClientControleur(hotelPane);
+                controlHotel.setClientControleur(hotelPane);
 
          controlRestaurant.setEm(emRestaut);
         controlRestaurant.setModel(modelRestaurant);
-        controlRestaurant.setTable(this.superJtableBD);
+        
         controlRestaurant.setClientControleur(restaurantPane);
 
          controlLocalisation.setEm(emLoca);
         controlLocalisation.setModel(modelLocalisation);
-        controlLocalisation.setTable(this.superJtableBD);
-        controlLocalisation.setClientControleur(localisationPane);
+                controlLocalisation.setClientControleur(localisationPane);
 
          controlVoyage.setEm( emVoyage);
         controlVoyage.setModel(modelVoyage);
-        controlVoyage.setTable(this.superJtableBD);
-        controlVoyage.setClientControleur(voyagePane);
+                controlVoyage.setClientControleur(voyagePane);
 
          controlTypeManifestation.setEm(emtypManif);
         controlTypeManifestation.setModel(modelTypeManif);
-        controlTypeManifestation.setTable(this.superJtableBD);
-        controlTypeManifestation.setClientControleur(typeManifPane);
+                controlTypeManifestation.setClientControleur(typeManifPane);
 
          controlReservation.setEm(emReserv);
         controlReservation.setModel(modelReservation);
-        controlReservation.setTable(this.superJtableBD);
-        controlReservation.setClientControleur(reservationnPane);
+                controlReservation.setClientControleur(reservationnPane);
 
          controlReservationHotel.setEm(emReservHotel);
         controlReservationHotel.setModel(modelReservationHotel);
-        controlReservationHotel.setTable(this.superJtableBD);
-        controlReservationHotel.setClientControleur(reservHotelPane);
+                controlReservationHotel.setClientControleur(reservHotelPane);
 
          controlReservationManif.setEm(emReservManif);
         controlReservationManif.setModel(modelReservationManif);
-        controlReservationManif.setTable(this.superJtableBD);
-        controlReservationManif.setClientControleur(reservationManifPane);
+                controlReservationManif.setClientControleur(reservationManifPane);
 
          controlReservationRestau.setEm(emReservRestau);
         controlReservationRestau.setModel(modelReservationRestau);
-        controlReservationRestau.setTable(this.superJtableBD);
-        controlReservationRestau.setClientControleur(reservRestauPane);
+                controlReservationRestau.setClientControleur(reservRestauPane);
         
          controlManifestation.setEm(emManif);
         controlManifestation.setModel(modelManifestation);
-        controlManifestation.setTable(this.superJtableBD);
-        controlManifestation.setClientControleur(manifPane);
+                controlManifestation.setClientControleur(manifPane);
 
 
 
@@ -504,17 +498,17 @@ System.out.println(superJtableBD.getMouseListeners());
 
 
 
-        modeur.put(Mode.Client, new ModeParam(controlClient.getTableModelListener(), modelClient, clientPane));
-        modeur.put(Mode.Hotel, new ModeParam(controlHotel.getTableModelListener(), modelHotel, hotelPane));
-        modeur.put(Mode.Restaurant, new ModeParam(controlRestaurant.getTableModelListener(), modelRestaurant, restaurantPane));
-        modeur.put(Mode.Localisation, new ModeParam(controlLocalisation.getTableModelListener(), modelLocalisation, localisationPane));
-        modeur.put(Mode.TypeManif, new ModeParam(controlTypeManifestation.getTableModelListener(), modelTypeManif, typeManifPane));
-        modeur.put(Mode.Voyage, new ModeParam(controlVoyage.getTableModelListener(), modelVoyage, voyagePane));
-        modeur.put(Mode.Manifestation, new ModeParam(controlManifestation.getTableModelListener(), modelManifestation, manifPane));
-        modeur.put(Mode.Reservation, new ModeParam(controlReservation.getTableModelListener(), modelReservation, reservationnPane));
-        modeur.put(Mode.ReservationHotel, new ModeParam(controlReservationHotel.getTableModelListener(), modelReservationHotel, reservHotelPane));
-        modeur.put(Mode.ReservationRestaurant, new ModeParam(controlReservationRestau.getTableModelListener(), modelReservationRestau, reservRestauPane));
-        modeur.put(Mode.ReservationManif, new ModeParam(controlReservationManif.getTableModelListener(), modelReservationManif, reservationManifPane));
+        modeur.put(Mode.Client, new ModeParam( modelClient, clientPane));
+        modeur.put(Mode.Hotel, new ModeParam( modelHotel, hotelPane));
+        modeur.put(Mode.Restaurant, new ModeParam(modelRestaurant, restaurantPane));
+        modeur.put(Mode.Localisation, new ModeParam( modelLocalisation, localisationPane));
+        modeur.put(Mode.TypeManif, new ModeParam( modelTypeManif, typeManifPane));
+        modeur.put(Mode.Voyage, new ModeParam( modelVoyage, voyagePane));
+        modeur.put(Mode.Manifestation, new ModeParam( modelManifestation, manifPane));
+        modeur.put(Mode.Reservation, new ModeParam( modelReservation, reservationnPane));
+        modeur.put(Mode.ReservationHotel, new ModeParam( modelReservationHotel, reservHotelPane));
+        modeur.put(Mode.ReservationRestaurant, new ModeParam( modelReservationRestau, reservRestauPane));
+        modeur.put(Mode.ReservationManif, new ModeParam( modelReservationManif, reservationManifPane));
 
 
         this.clientRadioButton.addActionListener(radioControleur.getClientListener());
@@ -530,9 +524,54 @@ System.out.println(superJtableBD.getMouseListeners());
         this.manifestationRadioButton.addActionListener(radioControleur.getManifestationListener());
 
 
-
+this.superJtableBD.addMouseListener(this.mouseListener());
 
 
         this.setMode(Mode.Client);
     }
+
+    public HashMap<Mode, ModeParam> getModeur() {
+        return modeur;
+    }
+
+
+    private MouseListener mouseListener(){
+
+
+        return new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+
+                        ModeParam ff=modeur.get(actualmode);
+                        EntityPane pane=(EntityPane)ff.getPanel();
+                        JTableModelInterface model= ff.getModel();
+
+                        pane.loadEntity( model.getRows(superJtableBD.getSelectedRow()));
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        };
+    }
+
 }

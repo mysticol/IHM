@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 import javax.swing.table.AbstractTableModel;
+import mvca.modeltable.JTableModelInterface;
 
 
 /**
@@ -17,23 +18,17 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModeParam {
 
-    private MouseListener action;
-    private AbstractTableModel model;
+
+    private JTableModelInterface model;
     private JPanel panel;
 
-    public MouseListener getAction() {
-        return action;
-    }
 
-    public void setAction(MouseListener action) {
-        this.action = action;
-    }
 
-    public AbstractTableModel getModel() {
+    public JTableModelInterface getModel() {
         return model;
     }
 
-    public void setModel(AbstractTableModel model) {
+    public void setModel(JTableModelInterface model) {
         this.model = model;
     }
 
@@ -45,8 +40,8 @@ public class ModeParam {
         this.panel = panel;
     }
 
-    public ModeParam(MouseListener action, AbstractTableModel model, JPanel panel) {
-        this.action = action;
+    public ModeParam( JTableModelInterface model, JPanel panel) {
+ 
         this.model = model;
         this.panel = panel;
     }

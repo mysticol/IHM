@@ -8,9 +8,7 @@ package mvca.controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import javax.swing.JTable;
+
 import mvca.modeltable.JTableModelInterface;
 
 import mvca.session.HibernateUtil;
@@ -26,8 +24,8 @@ public class ControleurGeneric<E>  {
     EntityPane<E> clientControleur;
     HibernateUtil<E> em;
     JTableModelInterface<E> model;
-    JTable table;
 
+ 
 
 
 
@@ -56,41 +54,7 @@ public class ControleurGeneric<E>  {
     }
 
 
-    public MouseListener getTableModelListener(){
-        return new MouseListener() {
-
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.err.println(clientControleur.getClass() + " " + em.getRef());
-
-                clientControleur.loadEntity( model.getRows(table.getSelectedRow()));
-                 //clientControleur.loadEntity(model.getRows(table.getSelectedRow()));
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-               
-            }
-        };
-
-
-    }
+  
 
     public EntityPane<E> getClientControleur() {
         return clientControleur;
@@ -120,13 +84,7 @@ public class ControleurGeneric<E>  {
 
  
 
-    public JTable getTable() {
-        return table;
-    }
-
-    public void setTable(JTable table) {
-        this.table = table;
-    }
+    
 
 
 
