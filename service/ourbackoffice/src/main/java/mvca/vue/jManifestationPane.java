@@ -11,6 +11,8 @@
 
 package mvca.vue;
 
+import java.util.Date;
+import javax.swing.JOptionPane;
 import mvca.entity.Manifestation;
 
 /**
@@ -45,17 +47,17 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
         nbcouvertLabel = new javax.swing.JLabel();
         fieldNbPlace = new javax.swing.JTextField();
         prenomLabel4 = new javax.swing.JLabel();
-        fieldHotel = new javax.swing.JTextField();
+        fieldManif = new javax.swing.JTextField();
         prenomLabel2 = new javax.swing.JLabel();
         fieldPrix = new javax.swing.JTextField();
         nbcouvertLabel1 = new javax.swing.JLabel();
         prenomLabel5 = new javax.swing.JLabel();
-        fieldDate = new javax.swing.JTextField();
         buttonFwIDLocalisation = new javax.swing.JButton();
         fieldFkType = new javax.swing.JTextField();
         buttonFwIDType = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         editButton1.setText("Edit");
 
@@ -69,11 +71,11 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
                 saveButton1ActionPerformed(evt);
             }
         });
-        saveButton1.setBounds(500, 190, 70, 23);
+        saveButton1.setBounds(500, 190, 70, -1);
         jLayeredPane2.add(saveButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel1.setText("Adresse:");
-        prenomLabel1.setBounds(10, 50, 60, 14);
+        prenomLabel1.setBounds(10, 50, 60, -1);
         jLayeredPane2.add(prenomLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkLocalisation.setEditable(false);
@@ -82,9 +84,9 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
                 fieldFkLocalisationActionPerformed(evt);
             }
         });
-        fieldFkLocalisation.setBounds(470, 30, 100, 20);
+        fieldFkLocalisation.setBounds(470, 30, 100, -1);
         jLayeredPane2.add(fieldFkLocalisation, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldAdresse.setBounds(90, 50, 100, 20);
+        fieldAdresse.setBounds(90, 50, 100, -1);
         jLayeredPane2.add(fieldAdresse, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldId1.setEditable(false);
@@ -93,43 +95,41 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
                 fieldId1ActionPerformed(evt);
             }
         });
-        fieldId1.setBounds(60, 10, 50, 20);
+        fieldId1.setBounds(60, 10, 50, -1);
         jLayeredPane2.add(fieldId1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         idLabel1.setText("Id: ");
-        idLabel1.setBounds(10, 10, 17, 14);
+        idLabel1.setBounds(10, 10, -1, -1);
         jLayeredPane2.add(idLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nbcouvertLabel.setText("Nb Place:");
-        nbcouvertLabel.setBounds(10, 70, 70, 14);
+        nbcouvertLabel.setBounds(10, 70, 70, -1);
         jLayeredPane2.add(nbcouvertLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldNbPlace.setBounds(90, 70, 100, 20);
+        fieldNbPlace.setBounds(90, 70, 100, -1);
         jLayeredPane2.add(fieldNbPlace, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel4.setText("Nom:");
-        prenomLabel4.setBounds(10, 30, 60, 14);
+        prenomLabel4.setBounds(10, 30, 60, -1);
         jLayeredPane2.add(prenomLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldHotel.setBounds(90, 30, 100, 20);
-        jLayeredPane2.add(fieldHotel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        fieldManif.setBounds(90, 30, 100, -1);
+        jLayeredPane2.add(fieldManif, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel2.setText("Prix:");
-        prenomLabel2.setBounds(200, 50, 60, 14);
+        prenomLabel2.setBounds(200, 50, 60, -1);
         jLayeredPane2.add(prenomLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldPrix.setBounds(260, 50, 100, 20);
+        fieldPrix.setBounds(260, 50, 100, -1);
         jLayeredPane2.add(fieldPrix, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nbcouvertLabel1.setText("Desc:");
-        nbcouvertLabel1.setBounds(10, 90, 60, 14);
+        nbcouvertLabel1.setBounds(10, 90, 60, -1);
         jLayeredPane2.add(nbcouvertLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel5.setText("Date:");
-        prenomLabel5.setBounds(200, 30, 60, 14);
+        prenomLabel5.setBounds(200, 30, 60, -1);
         jLayeredPane2.add(prenomLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldDate.setBounds(260, 30, 100, 20);
-        jLayeredPane2.add(fieldDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         buttonFwIDLocalisation.setText("Localisation:");
-        buttonFwIDLocalisation.setBounds(370, 30, 93, 23);
+        buttonFwIDLocalisation.setBounds(370, 30, -1, -1);
         jLayeredPane2.add(buttonFwIDLocalisation, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkType.setEditable(false);
@@ -138,11 +138,11 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
                 fieldFkTypeActionPerformed(evt);
             }
         });
-        fieldFkType.setBounds(470, 60, 100, 20);
+        fieldFkType.setBounds(470, 60, 100, -1);
         jLayeredPane2.add(fieldFkType, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         buttonFwIDType.setText("Type:");
-        buttonFwIDType.setBounds(370, 60, 63, 23);
+        buttonFwIDType.setBounds(370, 60, -1, -1);
         jLayeredPane2.add(buttonFwIDType, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextArea1.setColumns(20);
@@ -151,6 +151,8 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
 
         jScrollPane1.setBounds(20, 110, 390, 60);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDateChooser1.setBounds(260, 20, 89, 20);
+        jLayeredPane2.add(jDateChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -201,14 +203,14 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
     private javax.swing.JButton buttonFwIDType;
     private javax.swing.JButton editButton1;
     private javax.swing.JTextField fieldAdresse;
-    private javax.swing.JTextField fieldDate;
     private javax.swing.JTextField fieldFkLocalisation;
     private javax.swing.JTextField fieldFkType;
-    private javax.swing.JTextField fieldHotel;
     private javax.swing.JTextField fieldId1;
+    private javax.swing.JTextField fieldManif;
     private javax.swing.JTextField fieldNbPlace;
     private javax.swing.JTextField fieldPrix;
     private javax.swing.JLabel idLabel1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
@@ -222,20 +224,93 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
     private javax.swing.JButton saveButton1;
     // End of variables declaration//GEN-END:variables
 
-    @Override
+
+        @Override
     public Manifestation getEntity() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Manifestation result = new Manifestation();
+
+
+
+        if (fieldFkLocalisation.getText() == "" || fieldFkType.getText() == "" ) {
+            return null;
+        } else {
+            result.setFkIdType(Integer.parseInt(fieldFkType.getText()));
+            result.setFkLocalisationId(Integer.parseInt(fieldFkLocalisation.getText()));
+            
+        }
+
+
+        if (this.fieldId1.getText() != "") {
+            result.setFkIdType(Integer.parseInt(fieldId1.getText()));
+        }
+
+
+           if( this.fieldNbPlace.getText()!=""){
+            try{
+            result.setNbPlace(Integer.parseInt(fieldNbPlace.getText()));
+            }catch(Exception e){
+                 JOptionPane.showMessageDialog(getParent(), "Entier requis pour nb place", "Dialog",
+        JOptionPane.ERROR_MESSAGE);
+                 return null;
+            }
+        }else{
+        result.setNbPlace(0);
+        }
+
+              if( this.fieldPrix.getText()!=""){
+            try{
+            result.setPrix(Double.parseDouble(fieldPrix.getText()));
+            }catch(Exception e){
+                 JOptionPane.showMessageDialog(getParent(), "Double requis pour prix", "Dialog",
+        JOptionPane.ERROR_MESSAGE);
+                 return null;
+            }
+        }else{
+        result.setPrix(0d);
+        }
+
+
+
+
+        result.setDescription(jTextArea1.getText());
+        result.setNomManifestation(fieldManif.getText());
+        result.setDate(jDateChooser1.getDate());
+        result.setAdresse(fieldAdresse.getText());
+
+        return result;
     }
 
     @Override
     public void loadEntity(Manifestation entity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.fieldId1.setText(String.valueOf(entity.getManifestationId()));
+        this.fieldAdresse.setText(entity.getAdresse());
+
+        this.fieldFkLocalisation.setText(String.valueOf(entity.getFkLocalisationId()));
+        this.fieldFkType.setText(String.valueOf(entity.getFkIdType()));
+
+        this.fieldManif.setText(entity.getNomManifestation());
+
+        this.fieldNbPlace.setText(String.valueOf(entity.getNbPlace()));
+        this.fieldPrix.setText(String.valueOf(entity.getPrix()));
+
+        this.jDateChooser1.setDate(new Date());
+        this.jTextArea1.setText(entity.getDescription());
+        this.jDateChooser1.setDate(entity.getDate());
     }
 
     @Override
     public void clearField() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.fieldId1.setText("");
+        this.fieldAdresse.setText("");
+        this.fieldFkLocalisation.setText("");
+        this.fieldFkType.setText("");
+        this.fieldManif.setText("");
+        this.fieldNbPlace.setText("");
+        this.fieldPrix.setText("");
+        this.jDateChooser1.setDate(new Date());
+        this.jTextArea1.setText("");
     }
 
+  
 
 }

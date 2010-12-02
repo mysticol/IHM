@@ -11,6 +11,7 @@
 
 package mvca.vue;
 
+import javax.swing.JOptionPane;
 import mvca.entity.Hotel;
 
 /**
@@ -44,7 +45,7 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
         nbcouvertLabel = new javax.swing.JLabel();
         fieldNbCouvert = new javax.swing.JTextField();
         prenomLabel4 = new javax.swing.JLabel();
-        fieldRestaurant = new javax.swing.JTextField();
+        fieldHotel = new javax.swing.JTextField();
         prenomLabel2 = new javax.swing.JLabel();
         fieldPrix = new javax.swing.JTextField();
         nbcouvertLabel1 = new javax.swing.JLabel();
@@ -64,11 +65,11 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
                 saveButton1ActionPerformed(evt);
             }
         });
-        saveButton1.setBounds(450, 110, 70, 23);
+        saveButton1.setBounds(450, 110, 70, -1);
         jLayeredPane2.add(saveButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel1.setText("Adresse:");
-        prenomLabel1.setBounds(10, 50, 60, 14);
+        prenomLabel1.setBounds(10, 50, 60, -1);
         jLayeredPane2.add(prenomLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkLocalisation.setEditable(false);
@@ -77,9 +78,9 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
                 fieldFkLocalisationActionPerformed(evt);
             }
         });
-        fieldFkLocalisation.setBounds(170, 100, 100, 20);
+        fieldFkLocalisation.setBounds(170, 100, 100, -1);
         jLayeredPane2.add(fieldFkLocalisation, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldAdresse.setBounds(70, 50, 100, 20);
+        fieldAdresse.setBounds(70, 50, 100, -1);
         jLayeredPane2.add(fieldAdresse, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldId1.setEditable(false);
@@ -88,45 +89,45 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
                 fieldId1ActionPerformed(evt);
             }
         });
-        fieldId1.setBounds(60, 10, 50, 20);
+        fieldId1.setBounds(60, 10, 50, -1);
         jLayeredPane2.add(fieldId1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         idLabel1.setText("Id: ");
-        idLabel1.setBounds(10, 10, 17, 14);
+        idLabel1.setBounds(10, 10, -1, -1);
         jLayeredPane2.add(idLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nbcouvertLabel.setText("Nb couvert:");
-        nbcouvertLabel.setBounds(10, 70, 60, 14);
+        nbcouvertLabel.setBounds(10, 70, 60, -1);
         jLayeredPane2.add(nbcouvertLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldNbCouvert.setBounds(70, 70, 100, 20);
+        fieldNbCouvert.setBounds(70, 70, 100, -1);
         jLayeredPane2.add(fieldNbCouvert, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel4.setText("Nom:");
-        prenomLabel4.setBounds(10, 30, 60, 14);
+        prenomLabel4.setBounds(10, 30, 60, -1);
         jLayeredPane2.add(prenomLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldRestaurant.setBounds(70, 30, 100, 20);
-        jLayeredPane2.add(fieldRestaurant, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        fieldHotel.setBounds(70, 30, 100, -1);
+        jLayeredPane2.add(fieldHotel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel2.setText("Prix:");
-        prenomLabel2.setBounds(180, 50, 60, 14);
+        prenomLabel2.setBounds(180, 50, 60, -1);
         jLayeredPane2.add(prenomLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldPrix.setBounds(240, 50, 100, 20);
+        fieldPrix.setBounds(240, 50, 100, -1);
         jLayeredPane2.add(fieldPrix, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nbcouvertLabel1.setText("Prix moyen:");
-        nbcouvertLabel1.setBounds(180, 70, 60, 14);
+        nbcouvertLabel1.setBounds(180, 70, 60, -1);
         jLayeredPane2.add(nbcouvertLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldPrixMoyen.setBounds(240, 70, 100, 20);
+        fieldPrixMoyen.setBounds(240, 70, 100, -1);
         jLayeredPane2.add(fieldPrixMoyen, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel5.setText("Note:");
-        prenomLabel5.setBounds(180, 30, 60, 14);
+        prenomLabel5.setBounds(180, 30, 60, -1);
         jLayeredPane2.add(prenomLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldNote.setBounds(240, 30, 100, 20);
+        fieldNote.setBounds(240, 30, 100, -1);
         jLayeredPane2.add(fieldNote, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         buttonFwIDLocalisation.setText("Localisation:");
-        buttonFwIDLocalisation.setBounds(70, 100, 93, 23);
+        buttonFwIDLocalisation.setBounds(70, 100, -1, -1);
         jLayeredPane2.add(buttonFwIDLocalisation, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         editButton1.setText("Edit");
@@ -170,20 +171,6 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
         // TODO add your handling code here:
 }//GEN-LAST:event_fieldId1ActionPerformed
 
-    @Override
-    public Hotel getEntity() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void loadEntity(Hotel entity) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void clearField() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
 
 
@@ -193,12 +180,12 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
     private javax.swing.JButton editButton1;
     private javax.swing.JTextField fieldAdresse;
     private javax.swing.JTextField fieldFkLocalisation;
+    private javax.swing.JTextField fieldHotel;
     private javax.swing.JTextField fieldId1;
     private javax.swing.JTextField fieldNbCouvert;
     private javax.swing.JTextField fieldNote;
     private javax.swing.JTextField fieldPrix;
     private javax.swing.JTextField fieldPrixMoyen;
-    private javax.swing.JTextField fieldRestaurant;
     private javax.swing.JLabel idLabel1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLabel nbcouvertLabel;
@@ -210,5 +197,109 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
     private javax.swing.JLabel prenomLabel5;
     private javax.swing.JButton saveButton1;
     // End of variables declaration//GEN-END:variables
+
+
+      @Override
+    public Hotel getEntity() {
+        Hotel result= new Hotel();
+
+        if (fieldFkLocalisation.getText()==""){
+            return null;
+        }else {
+            result.setFkLocalisationId(Integer.parseInt(fieldFkLocalisation.getText()));
+        }
+
+        if( this.fieldId1.getText()==""){
+            result.setHotelId(Integer.parseInt(fieldId1.getText()));
+        }
+
+        result.setAdresse(fieldAdresse.getText());
+        result.setNomHotel(fieldHotel.getText());
+
+
+
+        if( this.fieldNbCouvert.getText()!=""){
+            try{
+            result.setNbChambre(Integer.parseInt(fieldNbCouvert.getText()));
+            }catch(Exception e){
+                 JOptionPane.showMessageDialog(getParent(), "Entier requis pour nbcouvert", "Dialog",
+        JOptionPane.ERROR_MESSAGE);
+                 return null;
+            }
+        }else{
+        result.setNbChambre(0);
+        }
+
+         if( this.fieldNote.getText()!=""){
+            try{
+            result.setRankHotel(Integer.parseInt(fieldNote.getText()));
+            }catch(Exception e){
+                 JOptionPane.showMessageDialog(getParent(), "Entier requis pour rank", "Dialog",
+        JOptionPane.ERROR_MESSAGE);
+                 return null;
+            }
+        }else{
+        result.setRankHotel(0);
+        }
+
+         if( this.fieldPrix.getText()!=""){
+            try{
+            result.setPrix(Double.parseDouble(fieldPrix.getText()));
+            }catch(Exception e){
+                 JOptionPane.showMessageDialog(getParent(), "Entier requis pour prix", "Dialog",
+        JOptionPane.ERROR_MESSAGE);
+                 return null;
+            }
+        }else{
+        result.setPrix(0d);
+        }
+
+
+       if( this.fieldPrixMoyen.getText()!=""){
+            try{
+            result.setPrixMoyen(Double.parseDouble(fieldPrixMoyen.getText()));
+            }catch(Exception e){
+                 JOptionPane.showMessageDialog(getParent(), "Entier requis pour prix", "Dialog",
+        JOptionPane.ERROR_MESSAGE);
+                 return null;
+            }
+        }else{
+        result.setPrixMoyen(0d);
+        }
+
+
+
+
+
+
+
+
+        return result;
+    }
+
+    @Override
+    public void loadEntity(Hotel entity) {
+        this.fieldAdresse.setText(entity.getAdresse());
+        this.fieldFkLocalisation.setText(String.valueOf(entity.getFkLocalisationId()));
+        this.fieldHotel.setText(entity.getNomHotel());
+        this.fieldNote.setText(String.valueOf(entity.getRankHotel()));
+        this.fieldId1.setText(String.valueOf(entity.getHotelId()));
+        this.fieldNbCouvert.setText(String.valueOf(entity.getNbChambre()));
+        this.fieldPrix.setText(String.valueOf(entity.getPrix()));
+        this.fieldPrixMoyen.setText(String.valueOf(entity.getPrixMoyen()));
+    }
+
+    @Override
+    public void clearField() {
+        this.fieldAdresse.setText("");
+        this.fieldFkLocalisation.setText("");
+        this.fieldHotel.setText("");
+        this.fieldNote.setText("");
+        this.fieldId1.setText("");
+        this.fieldNbCouvert.setText("");
+        this.fieldPrix.setText("");
+        this.fieldPrixMoyen.setText("");
+
+    }
 
 }
