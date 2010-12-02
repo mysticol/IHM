@@ -10,9 +10,9 @@
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
     xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/types" xmlns:ns1="http://j2ee.netbeans.org/xsd/tableSchema">
     <import namespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservHotelRequest" location="ReservHotelRequest.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
-    <import namespace="http://j2ee.netbeans.org/wsdl/reservHotel/hotelTable" location="hotelTable.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://j2ee.netbeans.org/wsdl/reservHotel/reservHotelTable" location="reservHotelTable.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://j2ee.netbeans.org/wsdl/reservHotel/checkHotelTable" location="checkHotelTable.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/reservHotel/hotelTable" location="hotelTable.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <partnerLinks>
         <partnerLink name="hotelTable" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservHotel/hotelTable" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
         <partnerLink name="checkHotelTable" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservHotel/checkHotelTable" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
@@ -20,14 +20,14 @@
         <partnerLink name="ReservationManager" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservHotelRequest" partnerLinkType="tns:ReservHotelRequest" myRole="ReservHotelRequestPortTypeRole"/>
     </partnerLinks>
     <variables>
+        <variable name="FindHotelOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservHotel/hotelTable" messageType="tns:outputMsg"/>
+        <variable name="FindHotelIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservHotel/hotelTable" messageType="tns:inputMsg"/>
         <variable name="FindPlaceOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservHotel/checkHotelTable" messageType="tns:outputMsg"/>
         <variable name="FindPlaceIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservHotel/checkHotelTable" messageType="tns:inputMsg"/>
         <variable name="FindIdOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservHotel/reservHotelTable" messageType="tns:outputMsg"/>
         <variable name="FindIdIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservHotel/reservHotelTable" messageType="tns:inputMsg"/>
         <variable name="InsertOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservHotel/reservHotelTable" messageType="tns:RetMsg"/>
         <variable name="InsertIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservHotel/reservHotelTable" messageType="tns:inputMsg"/>
-        <variable name="FindOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservHotel/hotelTable" messageType="tns:outputMsg"/>
-        <variable name="FindIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservHotel/hotelTable" messageType="tns:inputMsg"/>
         <variable name="ReservHotelRequestOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservHotelRequest" messageType="tns:ReservHotelRequestOperationResponse"/>
         <variable name="ReservHotelRequestOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservHotelRequest" messageType="tns:ReservHotelRequestOperationRequest"/>
     </variables>
@@ -36,17 +36,12 @@
         <assign name="AssignForFind">
             <copy>
                 <from>$ReservHotelRequestOperationIn.request/ns0:IdHotel</from>
-                <to>$FindIn.part/ns1:HOTEL_Record/ns1:HOTEL_ID</to>
+                <to>$FindHotelIn.part/ns1:HOTEL_Record/ns1:HOTEL_ID</to>
             </copy>
         </assign>
-        <invoke name="InvokeFindHotel" partnerLink="hotelTable" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservHotel/hotelTable" portType="tns:jdbcPortType" inputVariable="FindIn" outputVariable="FindOut"/>
+        <invoke name="InvokeFindHotel" partnerLink="hotelTable" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservHotel/hotelTable" portType="tns:jdbcPortType" inputVariable="FindHotelIn" outputVariable="FindHotelOut"/>
         <if name="IfBadIdHotel">
-            <sxt:trace>
-                <sxt:log level="info" location="onStart">
-                    <from>concat('--------------------&gt; id :', string($FindOut.part/ns1:HOTEL_Record/ns1:HOTEL_ID), ' / id loc : ', $FindOut.part/ns1:HOTEL_Record/ns1:FK_LOCALISATION_ID, ' / nom : ', $FindOut.part/ns1:HOTEL_Record/ns1:NOM_HOTEL, ' / adresse : ', $FindOut.part/ns1:HOTEL_Record/ns1:ADRESSE, ' / nb chambre : ', $FindOut.part/ns1:HOTEL_Record/ns1:NB_CHAMBRE, ' / rank : ', $FindOut.part/ns1:HOTEL_Record/ns1:RANK_HOTEL, '/ prix : ', $FindOut.part/ns1:HOTEL_Record/ns1:PRIX)</from>
-                </sxt:log>
-            </sxt:trace>
-            <condition>'' = string($FindOut.part/ns1:HOTEL_Record/ns1:HOTEL_ID)</condition>
+            <condition>'' = string($FindHotelOut.part/ns1:HOTEL_Record/ns1:HOTEL_ID)</condition>
             <sequence name="Sequence1">
                 <assign name="AssignBadReserv">
                     <copy>
@@ -71,12 +66,7 @@
                         </assign>
                         <invoke name="InvokeForCheck" partnerLink="checkHotelTable" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservHotel/checkHotelTable" portType="tns:jdbcPortType" inputVariable="FindPlaceIn" outputVariable="FindPlaceOut"/>
                         <if name="IfPlaceOK">
-                            <sxt:trace>
-                                <sxt:log level="info" location="onComplete">
-                                    <from>concat('------&gt; place prise : ', string(count($FindPlaceOut.part/ns1:RESERVATION_HOTEL_Record/ns1:RESERVATION_HOTEL_ID)), ' / ', $FindOut.part/ns1:HOTEL_Record/ns1:NB_CHAMBRE)</from>
-                                </sxt:log>
-                            </sxt:trace>
-                            <condition>count($FindPlaceOut.part/ns1:RESERVATION_HOTEL_Record/ns1:RESERVATION_HOTEL_ID) &lt; $FindOut.part/ns1:HOTEL_Record/ns1:NB_CHAMBRE</condition>
+                            <condition>count($FindPlaceOut.part/ns1:RESERVATION_HOTEL_Record/ns1:RESERVATION_HOTEL_ID) &lt; $FindHotelOut.part/ns1:HOTEL_Record/ns1:NB_CHAMBRE</condition>
                             <assign name="AssignOK">
                                 <copy>
                                     <from>'OK'</from>
@@ -144,6 +134,7 @@
         <reply name="Reply1" partnerLink="ReservationManager" operation="ReservHotelRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservHotelRequest" portType="tns:ReservHotelRequestPortType" variable="ReservHotelRequestOperationOut"/>
     </sequence>
 </process>
+
 
 
 
