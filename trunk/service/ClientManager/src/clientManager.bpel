@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="clientManager"
+    targetNamespace="http://enterprise.netbeans.org/bpel/ClientManager/clientManager"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/ClientManager/clientManager"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/types" xmlns:ns1="http://j2ee.netbeans.org/xsd/tableSchema">
+    <import namespace="http://j2ee.netbeans.org/wsdl/ReservationManager/ClientManagerRequest" location="ClientManagerRequest.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/ClientManager/clientTable" location="clientTable.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="clientTable" xmlns:tns="http://j2ee.netbeans.org/wsdl/ClientManager/clientTable" partnerLinkType="tns:jdbcpartner" partnerRole="jdbcPortTypeRole"/>
+        <partnerLink name="ReservationManager" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ClientManagerRequest" partnerLinkType="tns:ClientManagerRequest" myRole="ClientManagerRequestPortTypeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="FindNewIdOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/ClientManager/clientTable" messageType="tns:outputMsg"/>
+        <variable name="FindNewIdIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/ClientManager/clientTable" messageType="tns:inputMsg"/>
+        <variable name="InsertOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/ClientManager/clientTable" messageType="tns:RetMsg"/>
+        <variable name="InsertIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/ClientManager/clientTable" messageType="tns:inputMsg"/>
+        <variable name="FindIDOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/ClientManager/clientTable" messageType="tns:outputMsg"/>
+        <variable name="FindIdIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/ClientManager/clientTable" messageType="tns:inputMsg"/>
+        <variable name="ClientManagerRequestOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ClientManagerRequest" messageType="tns:ClientManagerRequestOperationResponse"/>
+        <variable name="ClientManagerRequestOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ClientManagerRequest" messageType="tns:ClientManagerRequestOperationRequest"/>
+    </variables>
+    <sequence>
+        <receive name="Receive1" createInstance="yes" partnerLink="ReservationManager" operation="ClientManagerRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ClientManagerRequest" portType="tns:ClientManagerRequestPortType" variable="ClientManagerRequestOperationIn"/>
+        <assign name="AssignCheckId">
+            <copy>
+                <from>$ClientManagerRequestOperationIn.request/ns0:Nom</from>
+                <to>$FindIdIn.part/ns1:CLIENT_Record/ns1:NOM_CLIENT</to>
+            </copy>
+            <copy>
+                <from>$ClientManagerRequestOperationIn.request/ns0:Prenom</from>
+                <to>$FindIdIn.part/ns1:CLIENT_Record/ns1:PRENOM_CLIENT</to>
+            </copy>
+        </assign>
+        <invoke name="InvokeRecupIdClient" partnerLink="clientTable" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/ClientManager/clientTable" portType="tns:jdbcPortType" inputVariable="FindIdIn" outputVariable="FindIDOut"/>
+        <if name="IfClientAlreayExist">
+            <condition>'' != string($FindIDOut.part/ns1:CLIENT_Record/ns1:CLIENT_ID)</condition>
+            <assign name="AssignExistingID">
+                <copy>
+                    <from>$FindIDOut.part/ns1:CLIENT_Record/ns1:CLIENT_ID</from>
+                    <to variable="ClientManagerRequestOperationOut" part="IdClient"/>
+                </copy>
+            </assign>
+            <else>
+                <sequence name="Sequence1">
+                    <assign name="AssignForInsertAndFind">
+                        <copy>
+                            <from>$ClientManagerRequestOperationIn.request/ns0:Nom</from>
+                            <to>$InsertIn.part/ns1:CLIENT_Record/ns1:NOM_CLIENT</to>
+                        </copy>
+                        <copy>
+                            <from>$ClientManagerRequestOperationIn.request/ns0:Prenom</from>
+                            <to>$InsertIn.part/ns1:CLIENT_Record/ns1:PRENOM_CLIENT</to>
+                        </copy>
+                        <copy>
+                            <from>$ClientManagerRequestOperationIn.request/ns0:Nom</from>
+                            <to>$FindNewIdIn.part/ns1:CLIENT_Record/ns1:NOM_CLIENT</to>
+                        </copy>
+                        <copy>
+                            <from>$ClientManagerRequestOperationIn.request/ns0:Prenom</from>
+                            <to>$FindNewIdIn.part/ns1:CLIENT_Record/ns1:PRENOM_CLIENT</to>
+                        </copy>
+                    </assign>
+                    <invoke name="InvokeInsertNewClient" partnerLink="clientTable" operation="insert" xmlns:tns="http://j2ee.netbeans.org/wsdl/ClientManager/clientTable" portType="tns:jdbcPortType" inputVariable="InsertIn" outputVariable="InsertOut"/>
+                    <invoke name="InvokeRecupNewId" partnerLink="clientTable" operation="find" xmlns:tns="http://j2ee.netbeans.org/wsdl/ClientManager/clientTable" portType="tns:jdbcPortType" inputVariable="FindNewIdIn" outputVariable="FindNewIdOut"/>
+                    <assign name="AssignForResponce">
+                        <copy>
+                            <from>$FindNewIdOut.part/ns1:CLIENT_Record/ns1:CLIENT_ID</from>
+                            <to variable="ClientManagerRequestOperationOut" part="IdClient"/>
+                        </copy>
+                    </assign>
+                </sequence>
+            </else>
+        </if>
+        <reply name="Reply1" partnerLink="ReservationManager" operation="ClientManagerRequestOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/ReservationManager/ClientManagerRequest" portType="tns:ClientManagerRequestPortType" variable="ClientManagerRequestOperationOut"/>
+    </sequence>
+</process>
+
+
