@@ -156,20 +156,35 @@ public class jLocalisationPane extends javax.swing.JPanel implements EntityPane<
     private javax.swing.JLabel villeLabel;
     // End of variables declaration//GEN-END:variables
 
-    @Override
+     @Override
     public Localisation getEntity() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Localisation cl = new Localisation();
+        cl.setPays(fieldPays.getText());
+        cl.setVille(fieldVille.getText());
+
+        if (!fieldId.getText().equals("")) {
+            cl.setLocalisationId(Integer.parseInt(fieldId.getText()));
+        }
+
+        return cl;
     }
 
     @Override
     public void loadEntity(Localisation entity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+
+        this.fieldId.setText(String.valueOf(entity.getLocalisationId()));
+        this.fieldPays.setText(entity.getPays());
+        this.fieldVille.setText(entity.getVille());
     }
 
     @Override
     public void clearField() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        fieldId.setText("");
+        fieldVille.setText("");
+        fieldPays.setText("");
     }
+
 
 
 
