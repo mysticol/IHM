@@ -89,7 +89,7 @@ public class Page1 extends AbstractPageBean {
         setRankHotel(rankHotel);
         setRankRestaurant(rankRestaurant);
 
-        setUrlGoogleMap(createGoogleMapUrlImage("France", "Nantes", "Place du Commerce", "17, rue Voltaire", "3 allée Duquesne", "Manif", "Resto", "Hotel"));
+        //setUrlGoogleMap(createGoogleMapUrlImage("France", "Nantes", "Place du Commerce", "17, rue Voltaire", "3 allée Duquesne", "Manif", "Resto", "Hotel"));
     }
     private SingleSelectOptionsList paysArriveeDropDownDefaultOptions = new SingleSelectOptionsList();
 
@@ -902,6 +902,15 @@ public class Page1 extends AbstractPageBean {
         urlimage += "&sensor=false";
 
         return urlimage;
+    }
+
+    public String googleMap_action() {
+        // TODO: Process the action. Return value is a navigation
+        // case name where null will return to the same page.
+
+        setUrlGoogleMap(createGoogleMapUrlImage(paysArrivee, villeArrivee, manif.getAdresse(), restaurant.getAdresse(), hotel.getAdresse(), manif.getNom(), restaurant.getNom(), hotel.getNom()));
+
+        return null;
     }
 
 }
