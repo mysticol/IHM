@@ -21,6 +21,9 @@ import org.netbeans.xml.schema.types.Hotels;
 import org.netbeans.xml.schema.types.Manifestations;
 import org.netbeans.xml.schema.types.Restaurants;
 import org.netbeans.xml.schema.types.Voyage;
+import org.jdom.*;
+import org.jdom.output.*;
+import java.io.*;
 
 /**
  * <p>Page bean that corresponds to a similarly named JSP page.  This
@@ -62,6 +65,14 @@ public class Page1 extends AbstractPageBean {
     private static Option[] nomHotelOption = { new Option("","") };
     private static Option[] nomRestaurantOption = { new Option("","") };
     private static Option[] nomManifOption = { new Option("","") };
+
+    /*
+     * Elements pour fichier XML
+     */
+    static Element root = new Element("reservation");
+    static Document doc = new Document(root);
+
+
 
 
     // <editor-fold defaultstate="collapsed" desc="Managed Component Definition">
@@ -710,7 +721,69 @@ public class Page1 extends AbstractPageBean {
             System.out.println(hotel.getId());
             System.out.println(restaurant.getId());
 
+/*
+            try{
+                //l'element root du document xml
 
+
+                Element infosPerso = new Element("infosPerso");
+                Element lieux = new Element("lieux");
+                Element manifestation = new Element("manifestation");
+                Element infosHotel = new Element("infosHotel");
+                Element infosRestaurant = new Element("infosRestaurant");
+
+                root.addContent(infosPerso);
+                root.addContent(lieux);
+                root.addContent(manifestation);
+                root.addContent(infosHotel);
+                root.addContent(infosRestaurant);
+
+                Element nomR = new Element("nom");
+                nomR.setText(nom);
+                Element prenomR = new Element("prenom");
+                prenomR.setText(prenom);
+                infosPerso.addContent(nomR);
+                infosPerso.addContent(prenomR);
+
+                Element paysDepartE = new Element("paysDepart");
+                paysDepartE.setText(paysDepart);
+                Element villeDepartE = new Element("villeDepart");
+                villeDepartE.setText(villeDepart);
+                Element paysArriveeE = new Element("paysArrivee");
+                paysArriveeE.setText(paysArrivee);
+                Element villeArriveeE = new Element("villeArrivee");
+                villeArriveeE.setText(villeArrivee);
+                lieux.addContent(paysDepartE);
+                lieux.addContent(villeDepartE);
+                lieux.addContent(paysArriveeE);
+                lieux.addContent(villeArriveeE);
+
+                Element date = new Element("date");
+                date.setText(dateReservation);
+                Element manifE = new Element("manif");
+                manifE.setText(manif.getNom());
+                Element description = new Element("description");
+                description.setText(manif.getDescription());
+                manifestation.addContent(date);
+                manifestation.addContent(manifE);
+                manifestation.addContent(description);
+
+                Element nomHotel = new Element("nomHotel");
+                nomHotel.setText(hotel.getNom());
+                infosHotel.addContent(nomHotel);
+
+                Element nomRestaurant = new Element("nomRestaurant");
+                nomRestaurant.setText(restaurant.getNom());
+                infosRestaurant.addContent(nomRestaurant);
+
+                affiche();
+                enregistre("Exercice1.xml");
+                
+            }catch (Throwable e) {
+                e.printStackTrace();
+            }
+
+*/
             // TODO process result here
             java.lang.String result = port.reservationOperation(reservationRequest);
             System.out.println("Result = "+result);
@@ -721,7 +794,29 @@ public class Page1 extends AbstractPageBean {
         return null;
     }
 
+    static void affiche()
+    {
+       try
+       {
+          //On utilise ici un affichage classique avec getPrettyFormat()
+          XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
+          sortie.output(doc, System.out);
+       }
+       catch (java.io.IOException e){}
+    }
 
+    static void enregistre(String fichier)
+    {
+       try
+       {
+          //On utilise ici un affichage classique avec getPrettyFormat()
+          XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
+          //Remarquez qu'il suffit simplement de créer une instance de FileOutputStream
+          //avec en argument le nom du fichier pour effectuer la sérialisation.
+          sortie.output(doc, new FileOutputStream(fichier));
+       }
+       catch (java.io.IOException e){}
+    }
 
     //Librairies
 
