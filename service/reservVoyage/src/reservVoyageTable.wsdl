@@ -38,7 +38,7 @@
     <operation name="find">
     <jdbc:operation xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/"/>
       <input name="inputFind">
-    <jdbc:input xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" MarkColumnName="" MarkColumnValue="" MoveRowToTableName="" PKName="VOYAGE_ID" PollMilliSeconds="5000" PollingPostProcessing="MoveRow" TableName="VOYAGE" Transaction="NOTransaction" numberOfRecords="" operationType="find" paramOrder="" sql="select VOYAGE_ID,FK_LOCALISATION_DEPART,FK_LOCALISATION_ARRIVE,FK_CLIENT_ID,DATE from VOYAGE"/>
+    <jdbc:input xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" MarkColumnName="" MarkColumnValue="" MoveRowToTableName="" PKName="VOYAGE_ID" PollMilliSeconds="5000" PollingPostProcessing="MoveRow" TableName="VOYAGE" Transaction="NOTransaction" numberOfRecords="" operationType="find" sql="select VOYAGE_ID from VOYAGE where FK_LOCALISATION_DEPART in (?) and FK_LOCALISATION_ARRIVE in (?) and FK_CLIENT_ID in (?) and DATE in (?)" paramOrder="FK_LOCALISATION_DEPART,FK_LOCALISATION_ARRIVE,FK_CLIENT_ID,DATE"/>
       </input>
       <output name="outputFind">
     <jdbc:output xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" returnPartName="part"/>
@@ -54,4 +54,5 @@
         <plink:role name="jdbcPortTypeRole" portType="tns:jdbcPortType"/>
     </plink:partnerLinkType>
 </definitions>
+
 
