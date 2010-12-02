@@ -25,7 +25,7 @@
     <operation name="find">
     <jdbc:operation xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/"/>
       <input name="inputFind">
-    <jdbc:input xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" MarkColumnName="" MarkColumnValue="" MoveRowToTableName="" PKName="RESTAURANT_ID" PollMilliSeconds="5000" PollingPostProcessing="MoveRow" TableName="RESTAURANT" Transaction="NOTransaction" numberOfRecords="" operationType="find" paramOrder="RESTAURANT_ID" sql="select RESTAURANT_ID,FK_LOCALISATION_ID,ADRESSE,NOM_RESTAURANT,NB_COUVERTS,RATE_RESTAURANT,PRIX from RESTAURANT where RESTAURANT_ID in (?)"/>
+    <jdbc:input xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" MarkColumnName="" MarkColumnValue="" MoveRowToTableName="" PKName="RESTAURANT_ID" PollMilliSeconds="5000" PollingPostProcessing="MoveRow" TableName="RESTAURANT" Transaction="NOTransaction" numberOfRecords="" operationType="find" paramOrder="RESTAURANT_ID" sql="select RESTAURANT_ID,FK_LOCALISATION_ID,ADRESSE,NOM_RESTAURANT,NB_COUVERTS,RATE_RESTAURANT,PRIX_MOYEN,PRIX from RESTAURANT where RESTAURANT_ID in (?)"/>
       </input>
       <output name="outputFind">
     <jdbc:output xmlns:jdbc="http://schemas.sun.com/jbi/wsdl-extensions/jdbc/" returnPartName="part"/>
