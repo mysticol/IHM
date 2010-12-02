@@ -11,6 +11,7 @@
 
 package mvca.vue;
 
+import javax.swing.JButton;
 import mvca.entity.TypeManifestation;
 
 /**
@@ -54,7 +55,7 @@ public class jTypeManifPane extends javax.swing.JPanel implements EntityPane<Typ
                 saveButtonActionPerformed(evt);
             }
         });
-        saveButton.setBounds(470, 110, 70, 23);
+        saveButton.setBounds(470, 60, 70, 23);
         jLayeredPane1.add(saveButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nomLabel.setText("Nom:");
@@ -80,7 +81,6 @@ public class jTypeManifPane extends javax.swing.JPanel implements EntityPane<Typ
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 583, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,15 +93,14 @@ public class jTypeManifPane extends javax.swing.JPanel implements EntityPane<Typ
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 196, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newButton)
                     .addComponent(editButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -127,19 +126,43 @@ public class jTypeManifPane extends javax.swing.JPanel implements EntityPane<Typ
 
     @Override
     public TypeManifestation getEntity() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        TypeManifestation result= new TypeManifestation();
+
+          if (!fieldId.getText().equals("")) {
+            result.setTypeId(Integer.parseInt(fieldId.getText()));
+        }
+        result.setNomType(fieldNom.getText());
+
+        return result;
     }
 
     @Override
     public void loadEntity(TypeManifestation entity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       this.fieldId.setText(String.valueOf(entity.getTypeId()));
+       this.fieldNom.setText(entity.getNomType());
     }
 
     @Override
     public void clearField() {
-        throw new UnsupportedOperationException("Not supported yet.");
+         this.fieldId.setText("");
+       this.fieldNom.setText("");
     }
 
- 
+    public JButton getEditButton() {
+        return editButton;
+    }
+
+    public JButton getNewButton() {
+        return newButton;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton;
+    }
+
+
+
+    
+
 
 }

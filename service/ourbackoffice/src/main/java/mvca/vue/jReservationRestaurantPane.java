@@ -11,6 +11,7 @@
 
 package mvca.vue;
 
+import java.util.Date;
 import mvca.entity.ReservationRestau;
 
 /**
@@ -37,14 +38,14 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
         editButton1 = new javax.swing.JButton();
         jLayeredPane4 = new javax.swing.JLayeredPane();
         saveButton3 = new javax.swing.JButton();
-        fieldFkLocalisation = new javax.swing.JTextField();
+        fieldFkclient = new javax.swing.JTextField();
         fieldId1 = new javax.swing.JTextField();
         idLabel1 = new javax.swing.JLabel();
         prenomLabel5 = new javax.swing.JLabel();
-        fieldDate = new javax.swing.JTextField();
         buttonFwIDClient = new javax.swing.JButton();
         fieldFkIdRestaurant = new javax.swing.JTextField();
         buttonFwIDType = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         newButton1.setText("New");
 
@@ -61,14 +62,14 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
         saveButton3.setBounds(510, 90, 70, 23);
         jLayeredPane4.add(saveButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        fieldFkLocalisation.setEditable(false);
-        fieldFkLocalisation.addActionListener(new java.awt.event.ActionListener() {
+        fieldFkclient.setEditable(false);
+        fieldFkclient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldFkLocalisationActionPerformed(evt);
+                fieldFkclientActionPerformed(evt);
             }
         });
-        fieldFkLocalisation.setBounds(290, 10, 100, 20);
-        jLayeredPane4.add(fieldFkLocalisation, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        fieldFkclient.setBounds(290, 10, 100, 20);
+        jLayeredPane4.add(fieldFkclient, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldId1.setEditable(false);
         fieldId1.addActionListener(new java.awt.event.ActionListener() {
@@ -87,14 +88,6 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
         prenomLabel5.setBounds(10, 40, 60, 14);
         jLayeredPane4.add(prenomLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        fieldDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldDateActionPerformed(evt);
-            }
-        });
-        fieldDate.setBounds(60, 40, 100, 20);
-        jLayeredPane4.add(fieldDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         buttonFwIDClient.setText("Client:");
         buttonFwIDClient.setBounds(190, 10, 65, 23);
         jLayeredPane4.add(buttonFwIDClient, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -111,6 +104,8 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
         buttonFwIDType.setText("Restaurant:");
         buttonFwIDType.setBounds(190, 40, 100, 23);
         jLayeredPane4.add(buttonFwIDType, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDateChooser1.setBounds(60, 40, 89, 20);
+        jLayeredPane4.add(jDateChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -144,17 +139,13 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
         // TODO add your handling code here:
 }//GEN-LAST:event_saveButton3ActionPerformed
 
-    private void fieldFkLocalisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldFkLocalisationActionPerformed
+    private void fieldFkclientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldFkclientActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_fieldFkLocalisationActionPerformed
+}//GEN-LAST:event_fieldFkclientActionPerformed
 
     private void fieldId1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldId1ActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_fieldId1ActionPerformed
-
-    private void fieldDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldDateActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_fieldDateActionPerformed
 
     private void fieldFkIdRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldFkIdRestaurantActionPerformed
         // TODO add your handling code here:
@@ -165,30 +156,55 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
     private javax.swing.JButton buttonFwIDClient;
     private javax.swing.JButton buttonFwIDType;
     private javax.swing.JButton editButton1;
-    private javax.swing.JTextField fieldDate;
     private javax.swing.JTextField fieldFkIdRestaurant;
-    private javax.swing.JTextField fieldFkLocalisation;
+    private javax.swing.JTextField fieldFkclient;
     private javax.swing.JTextField fieldId1;
     private javax.swing.JLabel idLabel1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLayeredPane jLayeredPane4;
     private javax.swing.JButton newButton1;
     private javax.swing.JLabel prenomLabel5;
     private javax.swing.JButton saveButton3;
     // End of variables declaration//GEN-END:variables
 
-    @Override
+   @Override
     public ReservationRestau getEntity() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        ReservationRestau result = new ReservationRestau();
+
+
+
+        if (fieldFkclient.getText() == "" || fieldFkIdRestaurant.getText() == "" ) {
+            return null;
+        } else {
+            result.setFkIdClient(Integer.parseInt(fieldFkclient.getText()));
+            result.setReservationRestauId(Integer.parseInt(fieldFkIdRestaurant.getText()));
+           
+        }
+
+
+        if (this.fieldId1.getText() != "") {
+            result.setReservationRestauId(Integer.parseInt(fieldId1.getText()));
+        }
+
+        result.setDate(jDateChooser1.getDate());
+
+        return result;
     }
 
     @Override
     public void loadEntity(ReservationRestau entity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.fieldId1.setText(String.valueOf(entity.getReservationRestauId()));
+        this.fieldFkclient.setText(String.valueOf(entity.getFkIdClient()));
+        this.fieldFkIdRestaurant.setText(String.valueOf(entity.getReservationRestauId()));
+        this.jDateChooser1.setDate(entity.getDate());
     }
 
     @Override
     public void clearField() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.fieldId1.setText("");
+        this.fieldFkclient.setText("");
+        this.fieldFkIdRestaurant.setText("");
+        this.jDateChooser1.setDate(new Date());
     }
 
   
