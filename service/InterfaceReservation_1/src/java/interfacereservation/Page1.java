@@ -699,6 +699,18 @@ public class Page1 extends AbstractPageBean {
             reservationRequest.setIdHotel(hotel.getId());
             reservationRequest.setIdRestau(restaurant.getId());
 
+            System.out.println(nom);
+            System.out.println(prenom);
+            System.out.println(dateReservation);
+            System.out.println(paysDepart);
+            System.out.println(villeDepart);
+            System.out.println(paysArrivee);
+            System.out.println(villeArrivee);
+            System.out.println(manif.getId());
+            System.out.println(hotel.getId());
+            System.out.println(restaurant.getId());
+
+
             // TODO process result here
             java.lang.String result = port.reservationOperation(reservationRequest);
             System.out.println("Result = "+result);
