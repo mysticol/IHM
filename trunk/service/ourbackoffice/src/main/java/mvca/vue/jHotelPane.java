@@ -96,7 +96,7 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
         idLabel1.setBounds(10, 10, -1, -1);
         jLayeredPane2.add(idLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        nbcouvertLabel.setText("Nb couvert:");
+        nbcouvertLabel.setText("Nb Chambre");
         nbcouvertLabel.setBounds(10, 70, 60, -1);
         jLayeredPane2.add(nbcouvertLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         fieldNbCouvert.setBounds(70, 70, 100, -1);
@@ -149,7 +149,7 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newButton1)
                     .addComponent(editButton1))

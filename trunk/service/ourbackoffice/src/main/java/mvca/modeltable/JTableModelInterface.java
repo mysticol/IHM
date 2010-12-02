@@ -16,4 +16,5 @@ public abstract class  JTableModelInterface<E> extends AbstractTableModel {
   public abstract  void  refresh();
   public abstract E getRows( int i);
 
+    public abstract String getColumnName(int column);
 }
