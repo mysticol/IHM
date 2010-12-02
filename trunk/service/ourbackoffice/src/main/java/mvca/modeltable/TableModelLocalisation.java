@@ -92,5 +92,8 @@ public class TableModelLocalisation extends  JTableModelInterface<Localisation> 
     public Localisation getRows( int i) {
        return list.get(i);
     }
-
+   @Override
+    public int getIDForSelected(int i) {
+        return list.get(i).getLocalisationId();
+    }
 }

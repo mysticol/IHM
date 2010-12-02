@@ -34,20 +34,13 @@ public class jTypeManifPane extends javax.swing.JPanel implements EntityPane<Typ
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        newButton = new javax.swing.JButton();
-        editButton = new javax.swing.JButton();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
         saveButton = new javax.swing.JButton();
         nomLabel = new javax.swing.JLabel();
         fieldNom = new javax.swing.JTextField();
         fieldId = new javax.swing.JTextField();
         idLabel = new javax.swing.JLabel();
-
-        newButton.setText("New");
-
-        editButton.setText("Edit");
-
-        jLayeredPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        newButton = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
 
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -55,14 +48,8 @@ public class jTypeManifPane extends javax.swing.JPanel implements EntityPane<Typ
                 saveButtonActionPerformed(evt);
             }
         });
-        saveButton.setBounds(470, 60, 70, 23);
-        jLayeredPane1.add(saveButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nomLabel.setText("Nom:");
-        nomLabel.setBounds(10, 30, 50, 20);
-        jLayeredPane1.add(nomLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldNom.setBounds(60, 30, 100, 20);
-        jLayeredPane1.add(fieldNom, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldId.setEditable(false);
         fieldId.addActionListener(new java.awt.event.ActionListener() {
@@ -70,37 +57,52 @@ public class jTypeManifPane extends javax.swing.JPanel implements EntityPane<Typ
                 fieldIdActionPerformed(evt);
             }
         });
-        fieldId.setBounds(60, 10, 50, 20);
-        jLayeredPane1.add(fieldId, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         idLabel.setText("Id: ");
-        idLabel.setBounds(10, 10, 17, 14);
-        jLayeredPane1.add(idLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        newButton.setText("New");
+
+        editButton.setText("Edit");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(idLabel)
+                        .addGap(33, 33, 33)
+                        .addComponent(fieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nomLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(340, 340, 340)
                         .addComponent(newButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(editButton)))
+                        .addGap(5, 5, 5)
+                        .addComponent(editButton)
+                        .addGap(7, 7, 7)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idLabel)
+                    .addComponent(fieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nomLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(newButton)
-                    .addComponent(editButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                    .addComponent(editButton)
+                    .addComponent(saveButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -118,7 +120,6 @@ public class jTypeManifPane extends javax.swing.JPanel implements EntityPane<Typ
     private javax.swing.JTextField fieldId;
     private javax.swing.JTextField fieldNom;
     private javax.swing.JLabel idLabel;
-    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JButton newButton;
     private javax.swing.JLabel nomLabel;
     private javax.swing.JButton saveButton;

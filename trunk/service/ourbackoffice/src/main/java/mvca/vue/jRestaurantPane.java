@@ -27,6 +27,7 @@ public class jRestaurantPane extends javax.swing.JPanel implements EntityPane<Re
     /** Creates new form jRestaurantPane */
     public jRestaurantPane() {
         initComponents();
+        
     }
 
     /** This method is called from within the constructor to
@@ -40,7 +41,6 @@ public class jRestaurantPane extends javax.swing.JPanel implements EntityPane<Re
 
         editButton1 = new javax.swing.JButton();
         newButton1 = new javax.swing.JButton();
-        jLayeredPane2 = new javax.swing.JLayeredPane();
         saveButton1 = new javax.swing.JButton();
         prenomLabel1 = new javax.swing.JLabel();
         fieldFkLocalisation = new javax.swing.JTextField();
@@ -63,20 +63,14 @@ public class jRestaurantPane extends javax.swing.JPanel implements EntityPane<Re
 
         newButton1.setText("New");
 
-        jLayeredPane2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
         saveButton1.setText("Save");
         saveButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveButton1ActionPerformed(evt);
             }
         });
-        saveButton1.setBounds(470, 110, 70, -1);
-        jLayeredPane2.add(saveButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel1.setText("Adresse:");
-        prenomLabel1.setBounds(10, 50, 60, -1);
-        jLayeredPane2.add(prenomLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkLocalisation.setEditable(false);
         fieldFkLocalisation.addActionListener(new java.awt.event.ActionListener() {
@@ -84,10 +78,6 @@ public class jRestaurantPane extends javax.swing.JPanel implements EntityPane<Re
                 fieldFkLocalisationActionPerformed(evt);
             }
         });
-        fieldFkLocalisation.setBounds(470, 30, 100, -1);
-        jLayeredPane2.add(fieldFkLocalisation, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldAdresse.setBounds(90, 50, 100, -1);
-        jLayeredPane2.add(fieldAdresse, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldId1.setEditable(false);
         fieldId1.addActionListener(new java.awt.event.ActionListener() {
@@ -95,85 +85,116 @@ public class jRestaurantPane extends javax.swing.JPanel implements EntityPane<Re
                 fieldId1ActionPerformed(evt);
             }
         });
-        fieldId1.setBounds(60, 10, 50, -1);
-        jLayeredPane2.add(fieldId1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         idLabel1.setText("Id: ");
-        idLabel1.setBounds(10, 10, -1, -1);
-        jLayeredPane2.add(idLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nbcouvertLabel.setText("Nb Couvert:");
-        nbcouvertLabel.setBounds(10, 70, 70, -1);
-        jLayeredPane2.add(nbcouvertLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldNbCouvert.setBounds(90, 70, 100, -1);
-        jLayeredPane2.add(fieldNbCouvert, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel4.setText("Nom:");
-        prenomLabel4.setBounds(10, 30, 60, -1);
-        jLayeredPane2.add(prenomLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldRestaurant.setBounds(90, 30, 100, -1);
-        jLayeredPane2.add(fieldRestaurant, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel2.setText("Prix:");
-        prenomLabel2.setBounds(200, 50, 60, -1);
-        jLayeredPane2.add(prenomLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldPrix.setBounds(260, 50, 100, -1);
-        jLayeredPane2.add(fieldPrix, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nbcouvertLabel1.setText("Prix moyen:");
-        nbcouvertLabel1.setBounds(200, 70, 60, -1);
-        jLayeredPane2.add(nbcouvertLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldPrixMoyen.setBounds(260, 70, 100, -1);
-        jLayeredPane2.add(fieldPrixMoyen, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel5.setText("Note:");
-        prenomLabel5.setBounds(200, 30, 60, -1);
-        jLayeredPane2.add(prenomLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldNote.setBounds(260, 30, 100, -1);
-        jLayeredPane2.add(fieldNote, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         buttonFwIDLocalisation.setText("Localisation:");
-        buttonFwIDLocalisation.setBounds(370, 30, -1, -1);
-        jLayeredPane2.add(buttonFwIDLocalisation, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(idLabel1)
+                        .addGap(33, 33, 33)
+                        .addComponent(fieldId1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(prenomLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(prenomLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fieldRestaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(prenomLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(prenomLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fieldNote, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(buttonFwIDLocalisation)
+                        .addGap(7, 7, 7)
+                        .addComponent(fieldFkLocalisation, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nbcouvertLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(fieldNbCouvert, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(nbcouvertLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldPrixMoyen, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(336, 336, 336)
                         .addComponent(newButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(editButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(editButton1)))
-                .addContainerGap())
+                        .addComponent(saveButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idLabel1)
+                    .addComponent(fieldId1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(prenomLabel4)
+                        .addGap(6, 6, 6)
+                        .addComponent(prenomLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(fieldRestaurant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(prenomLabel5)
+                        .addGap(6, 6, 6)
+                        .addComponent(prenomLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(fieldNote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldPrix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonFwIDLocalisation)
+                    .addComponent(fieldFkLocalisation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nbcouvertLabel)
+                    .addComponent(fieldNbCouvert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nbcouvertLabel1)
+                    .addComponent(fieldPrixMoyen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newButton1)
-                    .addComponent(editButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(saveButton1)
+                    .addComponent(editButton1)
+                    .addComponent(newButton1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void saveButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_saveButton1ActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_saveButton1ActionPerformed
-
-    private void fieldId1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_fieldId1ActionPerformed
+    private void fieldId1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldId1ActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_fieldId1ActionPerformed
 
-    private void fieldFkLocalisationActionPerformed(ActionEvent evt) {//GEN-FIRST:event_fieldFkLocalisationActionPerformed
+    private void fieldFkLocalisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldFkLocalisationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fieldFkLocalisationActionPerformed
+}//GEN-LAST:event_fieldFkLocalisationActionPerformed
+
+    private void saveButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButton1ActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_saveButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -188,7 +209,6 @@ public class jRestaurantPane extends javax.swing.JPanel implements EntityPane<Re
     javax.swing.JTextField fieldPrixMoyen;
     javax.swing.JTextField fieldRestaurant;
     javax.swing.JLabel idLabel1;
-    javax.swing.JLayeredPane jLayeredPane2;
     javax.swing.JLabel nbcouvertLabel;
     javax.swing.JLabel nbcouvertLabel1;
     javax.swing.JButton newButton1;

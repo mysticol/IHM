@@ -122,5 +122,8 @@ public class TableModelRestaurant extends JTableModelInterface<Restaurant> {
     public Restaurant getRows( int i) {
        return list.get(i);
     }
-
+   @Override
+    public int getIDForSelected(int i) {
+        return list.get(i).getRestaurantId();
+    }
 }

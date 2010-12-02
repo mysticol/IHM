@@ -87,5 +87,8 @@ public class TableModelTypeManif extends JTableModelInterface<TypeManifestation>
     public TypeManifestation getRows( int i) {
        return list.get(i);
     }
-
+   @Override
+    public int getIDForSelected(int i) {
+        return list.get(i).getTypeId();
+    }
 }

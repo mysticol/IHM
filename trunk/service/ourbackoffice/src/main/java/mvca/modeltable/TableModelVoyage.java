@@ -104,5 +104,8 @@ public class TableModelVoyage extends JTableModelInterface<Voyage> {
     public Voyage getRows( int i) {
        return list.get(i);
     }
-
+   @Override
+    public int getIDForSelected(int i) {
+        return list.get(i).getVoyageId();
+    }
 }

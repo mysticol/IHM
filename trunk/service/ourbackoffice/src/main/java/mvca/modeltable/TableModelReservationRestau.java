@@ -98,4 +98,8 @@ public TableModelReservationRestau(HibernateUtil<ReservationRestau> em) {
     public ReservationRestau getRows( int i) {
        return listClient.get(i);
     }
+       @Override
+    public int getIDForSelected(int i) {
+        return listClient.get(i).getReservationRestauId();
+    }
 }

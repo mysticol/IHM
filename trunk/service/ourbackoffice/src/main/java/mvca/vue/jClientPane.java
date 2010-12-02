@@ -35,7 +35,8 @@ public class jClientPane extends javax.swing.JPanel implements EntityPane<Client
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLayeredPane1 = new javax.swing.JLayeredPane();
+        newButton = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
         nomLabel = new javax.swing.JLabel();
         prenomLabel = new javax.swing.JLabel();
@@ -43,10 +44,10 @@ public class jClientPane extends javax.swing.JPanel implements EntityPane<Client
         fieldPrenom = new javax.swing.JTextField();
         fieldId = new javax.swing.JTextField();
         idLabel = new javax.swing.JLabel();
-        newButton = new javax.swing.JButton();
-        editButton = new javax.swing.JButton();
 
-        jLayeredPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        newButton.setText("New");
+
+        editButton.setText("Edit");
 
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -54,20 +55,10 @@ public class jClientPane extends javax.swing.JPanel implements EntityPane<Client
                 saveButtonActionPerformed(evt);
             }
         });
-        saveButton.setBounds(470, 110, 70, 23);
-        jLayeredPane1.add(saveButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         nomLabel.setText("Nom:");
-        nomLabel.setBounds(10, 30, 50, 20);
-        jLayeredPane1.add(nomLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel.setText("Prenom:");
-        prenomLabel.setBounds(10, 70, 60, 14);
-        jLayeredPane1.add(prenomLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldNom.setBounds(60, 30, 100, 20);
-        jLayeredPane1.add(fieldNom, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        fieldPrenom.setBounds(60, 70, 100, 20);
-        jLayeredPane1.add(fieldPrenom, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldId.setEditable(false);
         fieldId.addActionListener(new java.awt.event.ActionListener() {
@@ -75,51 +66,69 @@ public class jClientPane extends javax.swing.JPanel implements EntityPane<Client
                 fieldIdActionPerformed(evt);
             }
         });
-        fieldId.setBounds(60, 10, 50, 20);
-        jLayeredPane1.add(fieldId, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         idLabel.setText("Id: ");
-        idLabel.setBounds(10, 10, 17, 14);
-        jLayeredPane1.add(idLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        newButton.setText("New");
-
-        editButton.setText("Edit");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(newButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(editButton)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(idLabel)
+                        .addGap(33, 33, 33)
+                        .addComponent(fieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(fieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(prenomLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(nomLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(369, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(329, Short.MAX_VALUE)
+                .addComponent(newButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idLabel)
+                    .addComponent(fieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nomLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fieldPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(prenomLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveButton)
                     .addComponent(newButton)
                     .addComponent(editButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void fieldIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldIdActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_fieldIdActionPerformed
+
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
 }//GEN-LAST:event_saveButtonActionPerformed
-
-    private void fieldIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fieldIdActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton editButton;
@@ -127,7 +136,6 @@ public class jClientPane extends javax.swing.JPanel implements EntityPane<Client
     private javax.swing.JTextField fieldNom;
     private javax.swing.JTextField fieldPrenom;
     private javax.swing.JLabel idLabel;
-    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JButton newButton;
     private javax.swing.JLabel nomLabel;
     private javax.swing.JLabel prenomLabel;

@@ -17,4 +17,5 @@ public abstract class  JTableModelInterface<E> extends AbstractTableModel {
   public abstract E getRows( int i);
 
     public abstract String getColumnName(int column);
+    public abstract int getIDForSelected(int i);
 }

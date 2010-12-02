@@ -97,4 +97,9 @@ public class TableModelClient extends JTableModelInterface<Client> {
        return listClient.get(i);
     }
 
+    @Override
+    public int getIDForSelected(int i) {
+        return listClient.get(i).getClientId();
+    }
+
 }
