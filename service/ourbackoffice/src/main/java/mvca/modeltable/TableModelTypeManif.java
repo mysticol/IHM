@@ -43,7 +43,7 @@ public class TableModelTypeManif extends JTableModelInterface<TypeManifestation>
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 2;
     }
 
     @Override

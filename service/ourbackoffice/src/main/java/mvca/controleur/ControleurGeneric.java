@@ -62,6 +62,8 @@ public class ControleurGeneric<E>  {
 
             @Override
             public void mouseClicked(MouseEvent e) {
+                System.err.println(clientControleur.getClass() + " " + em.getRef());
+
                 clientControleur.loadEntity( model.getRows(table.getSelectedRow()));
                  //clientControleur.loadEntity(model.getRows(table.getSelectedRow()));
             }

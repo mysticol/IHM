@@ -11,6 +11,7 @@
 
 package mvca.vue;
 
+import javax.swing.JButton;
 import mvca.entity.Localisation;
 
 /**
@@ -183,6 +184,18 @@ public class jLocalisationPane extends javax.swing.JPanel implements EntityPane<
         fieldId.setText("");
         fieldVille.setText("");
         fieldPays.setText("");
+    }
+
+    public JButton getEditButton() {
+        return editButton;
+    }
+
+    public JButton getNewButton() {
+        return newButton;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton;
     }
 
 

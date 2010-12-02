@@ -11,7 +11,9 @@
 
 package mvca.vue;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import mvca.entity.Hotel;
 
 /**
@@ -301,5 +303,30 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
         this.fieldPrixMoyen.setText("");
 
     }
+
+    public JButton getButtonFwIDLocalisation() {
+        return buttonFwIDLocalisation;
+    }
+
+    public JButton getEditButton() {
+        return editButton1;
+    }
+
+    public JButton getNewButton() {
+        return newButton1;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton1;
+    }
+
+    public JTextField getFieldFkLocalisation() {
+        return fieldFkLocalisation;
+    }
+
+
+
+
+
 
 }

@@ -139,7 +139,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="buttonFwIDType1">
+        <Component class="javax.swing.JButton" name="buttonFwIDManif">
           <Properties>
             <Property name="text" type="java.lang.String" value="Manif:"/>
           </Properties>

@@ -43,7 +43,7 @@ public TableModelReservationHotel(HibernateUtil<ReservationHotel> em) {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 4;
     }
 
     @Override

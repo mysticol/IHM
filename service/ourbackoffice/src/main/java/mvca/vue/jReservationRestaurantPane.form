@@ -149,7 +149,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="buttonFwIDType">
+        <Component class="javax.swing.JButton" name="buttonFwIDResturant">
           <Properties>
             <Property name="text" type="java.lang.String" value="Restaurant:"/>
           </Properties>

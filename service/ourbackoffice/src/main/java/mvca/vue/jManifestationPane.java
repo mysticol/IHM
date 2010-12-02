@@ -12,7 +12,9 @@
 package mvca.vue;
 
 import java.util.Date;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import mvca.entity.Manifestation;
 
 /**
@@ -309,6 +311,34 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
         this.fieldPrix.setText("");
         this.jDateChooser1.setDate(new Date());
         this.jTextArea1.setText("");
+    }
+
+    public JButton getButtonFwIDLocalisation() {
+        return buttonFwIDLocalisation;
+    }
+
+    public JButton getButtonFwIDType() {
+        return buttonFwIDType;
+    }
+
+    public JButton getEditButton() {
+        return editButton1;
+    }
+
+    public JButton getNewButton() {
+        return newButton1;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton1;
+    }
+
+    public JTextField getFieldFkLocalisation() {
+        return fieldFkLocalisation;
+    }
+
+    public JTextField getFieldFkType() {
+        return fieldFkType;
     }
 
   

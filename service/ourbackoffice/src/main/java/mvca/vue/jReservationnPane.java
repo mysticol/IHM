@@ -11,6 +11,8 @@
 package mvca.vue;
 
 import java.util.Date;
+import javax.swing.JButton;
+import javax.swing.JTextField;
 import mvca.entity.Reservation;
 
 /**
@@ -43,13 +45,13 @@ public class jReservationnPane extends javax.swing.JPanel implements EntityPane<
         prenomLabel5 = new javax.swing.JLabel();
         buttonFwIDClient = new javax.swing.JButton();
         fieldFkIdManif = new javax.swing.JTextField();
-        buttonFwIDDepart = new javax.swing.JButton();
+        buttonFwIDmanif = new javax.swing.JButton();
         fieldFkIdRestau = new javax.swing.JTextField();
-        buttonFwIDArrive = new javax.swing.JButton();
+        buttonFwIDrestau = new javax.swing.JButton();
         fieldFkIdHotem = new javax.swing.JTextField();
-        buttonFwIDDepart1 = new javax.swing.JButton();
+        buttonFwIDhotel = new javax.swing.JButton();
         fieldFkIdVoyage = new javax.swing.JTextField();
-        buttonFwIDArrive1 = new javax.swing.JButton();
+        buttonFwIDvoyage = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         editButton1.setText("Edit");
@@ -106,9 +108,9 @@ public class jReservationnPane extends javax.swing.JPanel implements EntityPane<
         fieldFkIdManif.setBounds(290, 40, 100, -1);
         jLayeredPane4.add(fieldFkIdManif, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        buttonFwIDDepart.setText("Manif:");
-        buttonFwIDDepart.setBounds(190, 40, 80, -1);
-        jLayeredPane4.add(buttonFwIDDepart, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        buttonFwIDmanif.setText("Manif:");
+        buttonFwIDmanif.setBounds(190, 40, 80, -1);
+        jLayeredPane4.add(buttonFwIDmanif, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkIdRestau.setEditable(false);
         fieldFkIdRestau.addActionListener(new java.awt.event.ActionListener() {
@@ -119,9 +121,9 @@ public class jReservationnPane extends javax.swing.JPanel implements EntityPane<
         fieldFkIdRestau.setBounds(290, 70, 100, -1);
         jLayeredPane4.add(fieldFkIdRestau, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        buttonFwIDArrive.setText("Restau:");
-        buttonFwIDArrive.setBounds(190, 70, 80, -1);
-        jLayeredPane4.add(buttonFwIDArrive, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        buttonFwIDrestau.setText("Restau:");
+        buttonFwIDrestau.setBounds(190, 70, 80, -1);
+        jLayeredPane4.add(buttonFwIDrestau, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkIdHotem.setEditable(false);
         fieldFkIdHotem.addActionListener(new java.awt.event.ActionListener() {
@@ -132,9 +134,9 @@ public class jReservationnPane extends javax.swing.JPanel implements EntityPane<
         fieldFkIdHotem.setBounds(290, 100, 100, -1);
         jLayeredPane4.add(fieldFkIdHotem, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        buttonFwIDDepart1.setText("Hotel:");
-        buttonFwIDDepart1.setBounds(190, 100, 80, -1);
-        jLayeredPane4.add(buttonFwIDDepart1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        buttonFwIDhotel.setText("Hotel:");
+        buttonFwIDhotel.setBounds(190, 100, 80, -1);
+        jLayeredPane4.add(buttonFwIDhotel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkIdVoyage.setEditable(false);
         fieldFkIdVoyage.addActionListener(new java.awt.event.ActionListener() {
@@ -145,10 +147,10 @@ public class jReservationnPane extends javax.swing.JPanel implements EntityPane<
         fieldFkIdVoyage.setBounds(290, 130, 100, -1);
         jLayeredPane4.add(fieldFkIdVoyage, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        buttonFwIDArrive1.setText("Voyage");
-        buttonFwIDArrive1.setBounds(190, 130, 80, -1);
-        jLayeredPane4.add(buttonFwIDArrive1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDateChooser1.setBounds(60, 40, 89, 20);
+        buttonFwIDvoyage.setText("Voyage");
+        buttonFwIDvoyage.setBounds(190, 130, 80, -1);
+        jLayeredPane4.add(buttonFwIDvoyage, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDateChooser1.setBounds(60, 40, -1, -1);
         jLayeredPane4.add(jDateChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -255,11 +257,11 @@ public class jReservationnPane extends javax.swing.JPanel implements EntityPane<
         this.jDateChooser1.setDate(new Date());
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonFwIDArrive;
-    private javax.swing.JButton buttonFwIDArrive1;
     private javax.swing.JButton buttonFwIDClient;
-    private javax.swing.JButton buttonFwIDDepart;
-    private javax.swing.JButton buttonFwIDDepart1;
+    private javax.swing.JButton buttonFwIDhotel;
+    private javax.swing.JButton buttonFwIDmanif;
+    private javax.swing.JButton buttonFwIDrestau;
+    private javax.swing.JButton buttonFwIDvoyage;
     private javax.swing.JButton editButton1;
     private javax.swing.JTextField fieldFkClient;
     private javax.swing.JTextField fieldFkIdHotem;
@@ -274,4 +276,60 @@ public class jReservationnPane extends javax.swing.JPanel implements EntityPane<
     private javax.swing.JLabel prenomLabel5;
     private javax.swing.JButton saveButton3;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getButtonFwIDClient() {
+        return buttonFwIDClient;
+    }
+
+    public JButton getButtonFwIDhotel() {
+        return buttonFwIDhotel;
+    }
+
+    public JButton getButtonFwIDmanif() {
+        return buttonFwIDmanif;
+    }
+
+    public JButton getButtonFwIDrestau() {
+        return buttonFwIDrestau;
+    }
+
+    public JButton getButtonFwIDvoyage() {
+        return buttonFwIDvoyage;
+    }
+
+    public JButton getEditButton() {
+        return editButton1;
+    }
+
+    public JTextField getFieldFkClient() {
+        return fieldFkClient;
+    }
+
+    public JTextField getFieldFkIdHotem() {
+        return fieldFkIdHotem;
+    }
+
+    public JTextField getFieldFkIdManif() {
+        return fieldFkIdManif;
+    }
+
+    public JTextField getFieldFkIdRestau() {
+        return fieldFkIdRestau;
+    }
+
+    public JTextField getFieldFkIdVoyage() {
+        return fieldFkIdVoyage;
+    }
+
+    public JButton getNewButton() {
+        return newButton1;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton3;
+    }
+
+
+
+
 }

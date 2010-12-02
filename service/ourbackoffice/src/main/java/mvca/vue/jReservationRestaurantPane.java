@@ -12,6 +12,8 @@
 package mvca.vue;
 
 import java.util.Date;
+import javax.swing.JButton;
+import javax.swing.JTextField;
 import mvca.entity.ReservationRestau;
 
 /**
@@ -44,7 +46,7 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
         prenomLabel5 = new javax.swing.JLabel();
         buttonFwIDClient = new javax.swing.JButton();
         fieldFkIdRestaurant = new javax.swing.JTextField();
-        buttonFwIDType = new javax.swing.JButton();
+        buttonFwIDResturant = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         newButton1.setText("New");
@@ -59,7 +61,7 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
                 saveButton3ActionPerformed(evt);
             }
         });
-        saveButton3.setBounds(510, 90, 70, 23);
+        saveButton3.setBounds(510, 90, 70, -1);
         jLayeredPane4.add(saveButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkclient.setEditable(false);
@@ -68,7 +70,7 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
                 fieldFkclientActionPerformed(evt);
             }
         });
-        fieldFkclient.setBounds(290, 10, 100, 20);
+        fieldFkclient.setBounds(290, 10, 100, -1);
         jLayeredPane4.add(fieldFkclient, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldId1.setEditable(false);
@@ -77,19 +79,19 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
                 fieldId1ActionPerformed(evt);
             }
         });
-        fieldId1.setBounds(60, 10, 50, 20);
+        fieldId1.setBounds(60, 10, 50, -1);
         jLayeredPane4.add(fieldId1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         idLabel1.setText("Id: ");
-        idLabel1.setBounds(10, 10, 17, 14);
+        idLabel1.setBounds(10, 10, -1, -1);
         jLayeredPane4.add(idLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel5.setText("Date:");
-        prenomLabel5.setBounds(10, 40, 60, 14);
+        prenomLabel5.setBounds(10, 40, 60, -1);
         jLayeredPane4.add(prenomLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         buttonFwIDClient.setText("Client:");
-        buttonFwIDClient.setBounds(190, 10, 65, 23);
+        buttonFwIDClient.setBounds(190, 10, -1, -1);
         jLayeredPane4.add(buttonFwIDClient, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkIdRestaurant.setEditable(false);
@@ -98,13 +100,13 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
                 fieldFkIdRestaurantActionPerformed(evt);
             }
         });
-        fieldFkIdRestaurant.setBounds(310, 40, 100, 20);
+        fieldFkIdRestaurant.setBounds(310, 40, 100, -1);
         jLayeredPane4.add(fieldFkIdRestaurant, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        buttonFwIDType.setText("Restaurant:");
-        buttonFwIDType.setBounds(190, 40, 100, 23);
-        jLayeredPane4.add(buttonFwIDType, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDateChooser1.setBounds(60, 40, 89, 20);
+        buttonFwIDResturant.setText("Restaurant:");
+        buttonFwIDResturant.setBounds(190, 40, 100, -1);
+        jLayeredPane4.add(buttonFwIDResturant, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDateChooser1.setBounds(60, 40, -1, -1);
         jLayeredPane4.add(jDateChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -154,7 +156,7 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonFwIDClient;
-    private javax.swing.JButton buttonFwIDType;
+    private javax.swing.JButton buttonFwIDResturant;
     private javax.swing.JButton editButton1;
     private javax.swing.JTextField fieldFkIdRestaurant;
     private javax.swing.JTextField fieldFkclient;
@@ -205,6 +207,34 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
         this.fieldFkclient.setText("");
         this.fieldFkIdRestaurant.setText("");
         this.jDateChooser1.setDate(new Date());
+    }
+
+    public JButton getButtonFwIDClient() {
+        return buttonFwIDClient;
+    }
+
+    public JButton getButtonFwIDRestaurant() {
+        return buttonFwIDResturant;
+    }
+
+    public JButton getEditButton1() {
+        return editButton1;
+    }
+
+    public JButton getNewButton() {
+        return newButton1;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton3;
+    }
+
+    public JTextField getFieldFkIdRestaurant() {
+        return fieldFkIdRestaurant;
+    }
+
+    public JTextField getFieldFkclient() {
+        return fieldFkclient;
     }
 
   
