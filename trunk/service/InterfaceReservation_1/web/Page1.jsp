@@ -66,6 +66,7 @@
                             style="position: absolute; left: 120px; top: 240px" valueChangeListenerExpression="#{Page1.villeDepartTextField_processValueChange}"/>
                         <webuijsf:imageHyperlink id="imageGoogleMap" imageURL="#{Page1.urlGoogleMap}" style="left: 72px; top: 744px; position: absolute"/>
                         <webuijsf:pageSeparator id="pageSeparator4" style="left: 96px; top: 1248px; position: absolute; width: 480px"/>
+                        <webuijsf:button actionExpression="#{Page1.googleMap_action}" id="googleMap" style="left: 623px; top: 744px; position: absolute" text="Afficher la Goooooogle Map"/>
                     </webuijsf:form>
                 </webuijsf:body>
             </webuijsf:html>
