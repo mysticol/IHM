@@ -237,7 +237,7 @@ public class mainFrame extends javax.swing.JFrame {
                      */
 
 
-                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
                  }catch(Exception e){
 
                  }
