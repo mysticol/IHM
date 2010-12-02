@@ -25,7 +25,7 @@
         <operation name="ReceptionOperation">
             <soap:operation/>
             <input name="input1">
-                <soap:body use="literal"/>
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/Reception/Reception"/>
             </input>
             <output name="output1">
                 <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/Reception/Reception"/>
@@ -44,6 +44,7 @@ A partner link type characterizes the conversational relationship between two se
         <plnk:role name="ReceptionPortTypeRole" portType="tns:ReceptionPortType"/>
     </plnk:partnerLinkType>
 </definitions>
+
 
 
 
