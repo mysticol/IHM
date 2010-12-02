@@ -895,9 +895,9 @@ public class Page1 extends AbstractPageBean {
 
         urlimage += "&zoom=14&size=512x512";
 
-        urlimage += "&markers=color:blue|label:A|" + adresseManif.replace(" ", "+") + "," + ville + "," + pays;
-        urlimage += "&markers=color:red|label:B|" + adresseResto.replace(" ", "+") + "," + ville + "," + pays;
-        urlimage += "&markers=color:green|label:C|" + adresseHotel.replace(" ", "+") + "," + ville + "," + pays;
+        urlimage += "&markers=icon:http://chart.apis.google.com/chart%3Fchst%3Dd_map_pin_icon%26chld%3Dwheelchair%257CFFFFFF|" + adresseManif.replace(" ", "+") + "," + ville + "," + pays;
+        urlimage += "&markers=icon:http://chart.apis.google.com/chart%3Fchst%3Dd_map_pin_icon%26chld%3Drestaurant%257CFFFFFF|" + adresseResto.replace(" ", "+") + "," + ville + "," + pays;
+        urlimage += "&markers=icon:http://chart.apis.google.com/chart%3Fchst%3Dd_map_pin_icon%26chld%3Dhome%257CFFFFFF|" + adresseHotel.replace(" ", "+") + "," + ville + "," + pays;
 
         urlimage += "&sensor=false";
 
