@@ -10,6 +10,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 import javax.swing.table.AbstractTableModel;
 
+
 /**
  *
  * @author Manou
@@ -50,9 +51,9 @@ public class ModeParam {
         this.panel = panel;
     }
 
-   
 
-    
+
+   
 
 
 

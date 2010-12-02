@@ -43,7 +43,7 @@ public class TableModelReservation  extends JTableModelInterface<Reservation> {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 7;
     }
 
     @Override

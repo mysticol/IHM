@@ -8,14 +8,12 @@
  *
  * Created on 28 nov. 2010, 13:23:13
  */
-
 package mvca.vue;
-
-
 
 import java.awt.GridBagLayout;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -23,11 +21,30 @@ import javax.swing.UIManager;
 import mvca.controleur.ControleurGeneric;
 import mvca.controleur.ControleurRadio;
 import mvca.entity.Client;
+import mvca.entity.Hotel;
+import mvca.entity.Localisation;
+import mvca.entity.Manifestation;
+import mvca.entity.Reservation;
+import mvca.entity.ReservationHotel;
+import mvca.entity.ReservationManif;
+import mvca.entity.ReservationRestau;
+import mvca.entity.Restaurant;
+import mvca.entity.TypeManifestation;
+import mvca.entity.Voyage;
 import mvca.model.Mode;
 import mvca.model.ModeParam;
 import mvca.modeltable.TableModelClient;
+import mvca.modeltable.TableModelHotel;
+import mvca.modeltable.TableModelLocalisation;
+import mvca.modeltable.TableModelManifestation;
+import mvca.modeltable.TableModelReservation;
+import mvca.modeltable.TableModelReservationHotel;
+import mvca.modeltable.TableModelReservationManif;
+import mvca.modeltable.TableModelReservationRestau;
+import mvca.modeltable.TableModelRestaurant;
+import mvca.modeltable.TableModelTypeManif;
+import mvca.modeltable.TableModelVoyage;
 import mvca.session.HibernateUtil;
-
 
 /**
  *
@@ -35,8 +52,9 @@ import mvca.session.HibernateUtil;
  */
 public class mainFrame extends javax.swing.JFrame {
 
-
     private ControleurRadio radioControleur;
+    private LinkedList<ControleurGeneric> listContr;
+
     private HashMap<Mode, ModeParam> modeur;
 
     /** Creates new form mainFrame */
@@ -220,40 +238,39 @@ public class mainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_reservManifRadioButtonActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) throws Exception{
-        
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) throws Exception {
+
 
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                try{
+                try {
                     /*
                      * {CDE/Motif=com.sun.java.swing.plaf.motif.MotifLookAndFeel,
-                     Metal=javax.swing.plaf.metal.MetalLookAndFeel,
-                     Nimbus=com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel,
-                     Windows=com.sun.java.swing.plaf.windows.WindowsLookAndFeel,
-                     Windows Classic=com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel}
+                    Metal=javax.swing.plaf.metal.MetalLookAndFeel,
+                    Nimbus=com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel,
+                    Windows=com.sun.java.swing.plaf.windows.WindowsLookAndFeel,
+                    Windows Classic=com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel}
                      */
 
 
-                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
-                 }catch(Exception e){
+                    UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
+                } catch (Exception e) {
+                }
+                mainFrame mv = new mainFrame();
 
-                 }
-                mainFrame mv=  new mainFrame();
-
-            mv.init();
+                mv.init();
                 mv.setVisible(true);
-                
 
 
-               
-                
+
+
+
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton clientRadioButton;
@@ -272,100 +289,232 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton voyageRadioButton;
     // End of variables declaration//GEN-END:variables
 
- 
-public void placeMachin(JPanel pane){
-    this.panelAmovible.removeAll();
-this.panelAmovible.repaint();
-    GridBagLayout fl= new GridBagLayout();
-   
-    panelAmovible.setLayout(fl);
-       panelAmovible.add(pane);
-   /*    GridBagConstraints constraint= new GridBagConstraints();
-       constraint.fill= GridBagConstraints.BOTH;
+    public void placeMachin(JPanel pane) {
+        this.panelAmovible.removeAll();
+        this.panelAmovible.repaint();
+        GridBagLayout fl = new GridBagLayout();
+
+        panelAmovible.setLayout(fl);
+        panelAmovible.add(pane);
+        /*    GridBagConstraints constraint= new GridBagConstraints();
+        constraint.fill= GridBagConstraints.BOTH;
         fl.setConstraints(pane, constraint);
-     */
-   
-   panelAmovible.revalidate();
- 
+         */
 
-}
+        panelAmovible.revalidate();
 
 
+    }
+
+    public void setMode(Mode m) {
+
+        ModeParam mp = this.modeur.get(m);
+        this.placeMachin(mp.getPanel());
+         System.out.println(superJtableBD.getMouseListeners());
+          this.superJtableBD.removeAll();
+System.out.println(superJtableBD.getMouseListeners());
+      
+         
+     
+        this.superJtableBD.setModel(mp.getModel());
+      
+        this.superJtableBD.addMouseListener(mp.getAction());
 
 
 
-
-
-public void setMode(Mode m){
-
-ModeParam mp=this.modeur.get(m);
-this.placeMachin(mp.getPanel());
-this.superJtableBD.setModel(mp.getModel());
-this.superJtableBD.removeAll();
-this.superJtableBD.addMouseListener(mp.getAction());
-
-
-
-}
+    }
 
     private void init() {
+        listContr= new LinkedList<ControleurGeneric>();
+        HibernateUtil<Client> emClient = new HibernateUtil<Client>(Client.class);
+        HibernateUtil<Hotel> emHotel = new HibernateUtil<Hotel>(Hotel.class);
+        HibernateUtil<Manifestation> emManif = new HibernateUtil<Manifestation>(Manifestation.class);
+        HibernateUtil<Localisation> emLoca = new HibernateUtil<Localisation>(Localisation.class);
+        HibernateUtil<Reservation> emReserv = new HibernateUtil<Reservation>(Reservation.class);
+        HibernateUtil<ReservationHotel> emReservHotel = new HibernateUtil<ReservationHotel>(ReservationHotel.class);
+        HibernateUtil<ReservationManif> emReservManif = new HibernateUtil<ReservationManif>(ReservationManif.class);
+        HibernateUtil<ReservationRestau> emReservRestau = new HibernateUtil<ReservationRestau>(ReservationRestau.class);
+        HibernateUtil<Restaurant> emRestaut = new HibernateUtil<Restaurant>(Restaurant.class);
+        HibernateUtil<TypeManifestation> emtypManif = new HibernateUtil<TypeManifestation>(TypeManifestation.class);
+        HibernateUtil<Voyage> emVoyage = new HibernateUtil<Voyage>(Voyage.class);
 
-         jClientPane clientPane=new jClientPane();
-         jHotelPane hotelPane= new jHotelPane();
-         jRestaurantPane restaurantPane= new jRestaurantPane();
-         jVoyagePane voyagePane=new jVoyagePane();
-         jManifestationPane manifPane= new jManifestationPane();
-         jTypeManifPane typeManifPane= new jTypeManifPane();
-         jLocalisationPane localisationPane= new jLocalisationPane();
-         jReservationHotelPane reservHotelPane= new jReservationHotelPane();
-         jReservationRestaurantPane reservRestauPane= new jReservationRestaurantPane();
-         jReservationManifPane reservationManifPane= new jReservationManifPane();
-         jReservationnPane reservationnPane= new jReservationnPane();
-
-
-
-    HibernateUtil<Client> em= new HibernateUtil<Client>(Client.class);
-    TableModelClient gg= new TableModelClient(em);
-
-    ControleurGeneric<Client> control= new ControleurGeneric();
-
-
-
-    control.setEm(em);
-    control.setModel(gg);
-    control.setTable(this.superJtableBD);
-    control.setClientControleur(clientPane);
+        jClientPane clientPane = new jClientPane();
+        jHotelPane hotelPane = new jHotelPane();
+        jRestaurantPane restaurantPane = new jRestaurantPane();
+        jVoyagePane voyagePane = new jVoyagePane();
+        jManifestationPane manifPane = new jManifestationPane();
+        jTypeManifPane typeManifPane = new jTypeManifPane();
+        jLocalisationPane localisationPane = new jLocalisationPane();
+        jReservationHotelPane reservHotelPane = new jReservationHotelPane();
+        jReservationRestaurantPane reservRestauPane = new jReservationRestaurantPane();
+        jReservationManifPane reservationManifPane = new jReservationManifPane();
+        jReservationnPane reservationnPane = new jReservationnPane();
 
 
-
-
-    clientPane.getNewButton().addActionListener(control.getNewActionListener());
-    clientPane.getSaveButton().addActionListener(control.getSaveActionListener());
-
-
-
-
-
-
-
-
-        this.radioControleur= new ControleurRadio(this);
-        this.modeur=new HashMap<Mode, ModeParam>();
+        TableModelClient modelClient = new TableModelClient(emClient);
+        TableModelHotel modelHotel = new TableModelHotel(emHotel);
+        TableModelLocalisation modelLocalisation = new TableModelLocalisation(emLoca);
+        TableModelManifestation modelManifestation = new TableModelManifestation(emManif);
+        TableModelReservation modelReservation = new TableModelReservation(emReserv);
+        TableModelReservationHotel modelReservationHotel = new TableModelReservationHotel(emReservHotel);
+        TableModelReservationManif modelReservationManif = new TableModelReservationManif(emReservManif);
+        TableModelReservationRestau modelReservationRestau = new TableModelReservationRestau(emReservRestau);
+        TableModelRestaurant modelRestaurant = new TableModelRestaurant(emRestaut);
+        TableModelTypeManif modelTypeManif = new TableModelTypeManif(emtypManif);
+        TableModelVoyage modelVoyage = new TableModelVoyage(emVoyage);
 
 
 
 
-        modeur.put(Mode.Client, new ModeParam(control.getTableModelListener(),gg,clientPane));
-        modeur.put(Mode.Hotel, new ModeParam(null, gg, hotelPane));
-        modeur.put(Mode.Restaurant, new ModeParam(null, gg, restaurantPane));
-        modeur.put(Mode.Localisation, new ModeParam(null, gg, localisationPane));
-        modeur.put(Mode.TypeManif, new ModeParam(null, gg, typeManifPane));
-        modeur.put(Mode.Voyage, new ModeParam(null, gg, voyagePane));
-        modeur.put(Mode.Manifestation, new ModeParam(null, gg, manifPane));
-        modeur.put(Mode.Reservation, new ModeParam(null, gg, reservationnPane));
-        modeur.put(Mode.ReservationHotel, new ModeParam(null, gg, reservHotelPane));
-        modeur.put(Mode.ReservationRestaurant, new ModeParam(null, gg, reservRestauPane));
-        modeur.put(Mode.ReservationManif, new ModeParam(null, gg, reservationManifPane));
+
+
+
+        ControleurGeneric<Client> controlClient = new ControleurGeneric<Client>();
+        ControleurGeneric<Hotel> controlHotel = new ControleurGeneric<Hotel>();
+        ControleurGeneric<Restaurant> controlRestaurant = new ControleurGeneric<Restaurant>();
+        ControleurGeneric<Localisation> controlLocalisation = new ControleurGeneric<Localisation>();
+        ControleurGeneric<Voyage> controlVoyage = new ControleurGeneric<Voyage>();
+        ControleurGeneric<TypeManifestation> controlTypeManifestation = new ControleurGeneric<TypeManifestation>();
+        ControleurGeneric<Reservation> controlReservation = new ControleurGeneric<Reservation>();
+        ControleurGeneric<ReservationHotel> controlReservationHotel = new ControleurGeneric<ReservationHotel>();
+        ControleurGeneric<ReservationManif> controlReservationManif = new ControleurGeneric<ReservationManif>();
+        ControleurGeneric<ReservationRestau> controlReservationRestau = new ControleurGeneric<ReservationRestau>();
+        ControleurGeneric<Manifestation> controlManifestation = new ControleurGeneric<Manifestation>();
+
+
+          listContr.add(controlClient);
+        listContr.add(controlHotel);
+        listContr.add(controlRestaurant);
+        listContr.add(controlLocalisation);
+        listContr.add(controlVoyage);
+        listContr.add(controlTypeManifestation);
+        listContr.add(controlReservation);
+        listContr.add(controlReservationHotel);
+        listContr.add(controlReservationManif);
+        listContr.add(controlReservationRestau);
+          listContr.add(controlManifestation);
+
+      
+
+        controlClient.setEm(emClient);
+        controlClient.setModel(modelClient);
+        controlClient.setTable(this.superJtableBD);
+        controlClient.setClientControleur(clientPane);
+
+         controlHotel.setEm(emHotel);
+        controlHotel.setModel(modelHotel);
+        controlHotel.setTable(this.superJtableBD);
+        controlHotel.setClientControleur(hotelPane);
+
+         controlRestaurant.setEm(emRestaut);
+        controlRestaurant.setModel(modelRestaurant);
+        controlRestaurant.setTable(this.superJtableBD);
+        controlRestaurant.setClientControleur(restaurantPane);
+
+         controlLocalisation.setEm(emLoca);
+        controlLocalisation.setModel(modelLocalisation);
+        controlLocalisation.setTable(this.superJtableBD);
+        controlLocalisation.setClientControleur(localisationPane);
+
+         controlVoyage.setEm( emVoyage);
+        controlVoyage.setModel(modelVoyage);
+        controlVoyage.setTable(this.superJtableBD);
+        controlVoyage.setClientControleur(voyagePane);
+
+         controlTypeManifestation.setEm(emtypManif);
+        controlTypeManifestation.setModel(modelTypeManif);
+        controlTypeManifestation.setTable(this.superJtableBD);
+        controlTypeManifestation.setClientControleur(typeManifPane);
+
+         controlReservation.setEm(emReserv);
+        controlReservation.setModel(modelReservation);
+        controlReservation.setTable(this.superJtableBD);
+        controlReservation.setClientControleur(reservationnPane);
+
+         controlReservationHotel.setEm(emReservHotel);
+        controlReservationHotel.setModel(modelReservationHotel);
+        controlReservationHotel.setTable(this.superJtableBD);
+        controlReservationHotel.setClientControleur(reservHotelPane);
+
+         controlReservationManif.setEm(emReservManif);
+        controlReservationManif.setModel(modelReservationManif);
+        controlReservationManif.setTable(this.superJtableBD);
+        controlReservationManif.setClientControleur(reservationManifPane);
+
+         controlReservationRestau.setEm(emReservRestau);
+        controlReservationRestau.setModel(modelReservationRestau);
+        controlReservationRestau.setTable(this.superJtableBD);
+        controlReservationRestau.setClientControleur(reservRestauPane);
+        
+         controlManifestation.setEm(emManif);
+        controlManifestation.setModel(modelManifestation);
+        controlManifestation.setTable(this.superJtableBD);
+        controlManifestation.setClientControleur(manifPane);
+
+
+
+
+
+
+
+        clientPane.getNewButton().addActionListener(controlClient.getNewActionListener());
+        clientPane.getSaveButton().addActionListener(controlClient.getSaveActionListener());
+
+        hotelPane.getNewButton().addActionListener(controlHotel.getNewActionListener());
+        hotelPane.getSaveButton().addActionListener(controlHotel.getSaveActionListener());
+
+        restaurantPane.getNewButton().addActionListener(controlRestaurant.getNewActionListener());
+        restaurantPane.getSaveButton().addActionListener(controlRestaurant.getSaveActionListener());
+
+        localisationPane.getNewButton().addActionListener(controlLocalisation.getNewActionListener());
+        localisationPane.getSaveButton().addActionListener(controlLocalisation.getSaveActionListener());
+
+        voyagePane.getNewButton().addActionListener(controlVoyage.getNewActionListener());
+        voyagePane.getSaveButton().addActionListener(controlVoyage.getSaveActionListener());
+
+        typeManifPane.getNewButton().addActionListener(controlTypeManifestation.getNewActionListener());
+        typeManifPane.getSaveButton().addActionListener(controlTypeManifestation.getSaveActionListener());
+
+        reservationnPane.getNewButton().addActionListener(controlReservation.getNewActionListener());
+        reservationnPane.getSaveButton().addActionListener(controlReservation.getSaveActionListener());
+
+        reservHotelPane.getNewButton().addActionListener(controlReservationHotel.getNewActionListener());
+        reservHotelPane.getSaveButton().addActionListener(controlReservationHotel.getSaveActionListener());
+
+        reservationManifPane.getNewButton().addActionListener(controlReservationManif.getNewActionListener());
+        reservationManifPane.getSaveButton().addActionListener(controlReservationManif.getSaveActionListener());
+
+        reservRestauPane.getNewButton().addActionListener(controlReservationRestau.getNewActionListener());
+        reservRestauPane.getSaveButton().addActionListener(controlReservationRestau.getSaveActionListener());
+
+        manifPane.getNewButton().addActionListener(controlManifestation.getNewActionListener());
+        manifPane.getSaveButton().addActionListener(controlManifestation.getSaveActionListener());
+
+
+
+
+
+
+
+
+
+        this.radioControleur = new ControleurRadio(this);
+        this.modeur = new HashMap<Mode, ModeParam>();
+
+
+
+
+        modeur.put(Mode.Client, new ModeParam(controlClient.getTableModelListener(), modelClient, clientPane));
+        modeur.put(Mode.Hotel, new ModeParam(controlHotel.getTableModelListener(), modelHotel, hotelPane));
+        modeur.put(Mode.Restaurant, new ModeParam(controlRestaurant.getTableModelListener(), modelRestaurant, restaurantPane));
+        modeur.put(Mode.Localisation, new ModeParam(controlLocalisation.getTableModelListener(), modelLocalisation, localisationPane));
+        modeur.put(Mode.TypeManif, new ModeParam(controlTypeManifestation.getTableModelListener(), modelTypeManif, typeManifPane));
+        modeur.put(Mode.Voyage, new ModeParam(controlVoyage.getTableModelListener(), modelVoyage, voyagePane));
+        modeur.put(Mode.Manifestation, new ModeParam(controlManifestation.getTableModelListener(), modelManifestation, manifPane));
+        modeur.put(Mode.Reservation, new ModeParam(controlReservation.getTableModelListener(), modelReservation, reservationnPane));
+        modeur.put(Mode.ReservationHotel, new ModeParam(controlReservationHotel.getTableModelListener(), modelReservationHotel, reservHotelPane));
+        modeur.put(Mode.ReservationRestaurant, new ModeParam(controlReservationRestau.getTableModelListener(), modelReservationRestau, reservRestauPane));
+        modeur.put(Mode.ReservationManif, new ModeParam(controlReservationManif.getTableModelListener(), modelReservationManif, reservationManifPane));
 
 
         this.clientRadioButton.addActionListener(radioControleur.getClientListener());
@@ -376,15 +525,14 @@ this.superJtableBD.addMouseListener(mp.getAction());
         this.reservationRadioButton.addActionListener(radioControleur.getReservationListener());
         this.reservRestauRadioButton.addActionListener(radioControleur.getReservationRestaurantListener());
         this.localisationRadioButton.addActionListener(radioControleur.getLocalisationListener());
-        this.voyageRadioButton.addActionListener(radioControleur.getLocalisationListener());
+        this.voyageRadioButton.addActionListener(radioControleur.getVoyageListener());
         this.typeManifRadioButton.addActionListener(radioControleur.getTypeManifestationListener());
         this.manifestationRadioButton.addActionListener(radioControleur.getManifestationListener());
 
 
-        
 
-          
+
+
         this.setMode(Mode.Client);
     }
-
 }

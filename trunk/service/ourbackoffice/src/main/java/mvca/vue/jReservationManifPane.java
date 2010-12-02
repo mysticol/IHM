@@ -13,6 +13,8 @@ package mvca.vue;
 
 
 import java.util.Date;
+import javax.swing.JButton;
+import javax.swing.JTextField;
 import mvca.entity.ReservationManif;
 
 /**
@@ -43,7 +45,7 @@ public class jReservationManifPane extends javax.swing.JPanel implements EntityP
         prenomLabel5 = new javax.swing.JLabel();
         buttonFwIDClient = new javax.swing.JButton();
         fieldFkIdManif1 = new javax.swing.JTextField();
-        buttonFwIDType1 = new javax.swing.JButton();
+        buttonFwIDManif = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         editButton1 = new javax.swing.JButton();
         newButton1 = new javax.swing.JButton();
@@ -56,7 +58,7 @@ public class jReservationManifPane extends javax.swing.JPanel implements EntityP
                 saveButton3ActionPerformed(evt);
             }
         });
-        saveButton3.setBounds(510, 150, 70, 23);
+        saveButton3.setBounds(510, 150, 70, -1);
         jLayeredPane4.add(saveButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkClient.setEditable(false);
@@ -65,7 +67,7 @@ public class jReservationManifPane extends javax.swing.JPanel implements EntityP
                 fieldFkClientActionPerformed(evt);
             }
         });
-        fieldFkClient.setBounds(290, 10, 100, 20);
+        fieldFkClient.setBounds(290, 10, 100, -1);
         jLayeredPane4.add(fieldFkClient, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldId1.setEditable(false);
@@ -74,19 +76,19 @@ public class jReservationManifPane extends javax.swing.JPanel implements EntityP
                 fieldId1ActionPerformed(evt);
             }
         });
-        fieldId1.setBounds(60, 10, 50, 20);
+        fieldId1.setBounds(60, 10, 50, -1);
         jLayeredPane4.add(fieldId1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         idLabel1.setText("Id: ");
-        idLabel1.setBounds(10, 10, 17, 14);
+        idLabel1.setBounds(10, 10, -1, -1);
         jLayeredPane4.add(idLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel5.setText("Date:");
-        prenomLabel5.setBounds(10, 40, 60, 14);
+        prenomLabel5.setBounds(10, 40, 60, -1);
         jLayeredPane4.add(prenomLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         buttonFwIDClient.setText("Client:");
-        buttonFwIDClient.setBounds(190, 10, 65, 23);
+        buttonFwIDClient.setBounds(190, 10, -1, -1);
         jLayeredPane4.add(buttonFwIDClient, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkIdManif1.setEditable(false);
@@ -95,13 +97,13 @@ public class jReservationManifPane extends javax.swing.JPanel implements EntityP
                 fieldFkIdManif1ActionPerformed(evt);
             }
         });
-        fieldFkIdManif1.setBounds(290, 40, 100, 20);
+        fieldFkIdManif1.setBounds(290, 40, 100, -1);
         jLayeredPane4.add(fieldFkIdManif1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        buttonFwIDType1.setText("Manif:");
-        buttonFwIDType1.setBounds(190, 40, 70, 23);
-        jLayeredPane4.add(buttonFwIDType1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDateChooser1.setBounds(50, 40, 89, 20);
+        buttonFwIDManif.setText("Manif:");
+        buttonFwIDManif.setBounds(190, 40, 70, -1);
+        jLayeredPane4.add(buttonFwIDManif, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDateChooser1.setBounds(50, 40, -1, -1);
         jLayeredPane4.add(jDateChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         editButton1.setText("Edit");
@@ -158,7 +160,7 @@ public class jReservationManifPane extends javax.swing.JPanel implements EntityP
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonFwIDClient;
-    private javax.swing.JButton buttonFwIDType1;
+    private javax.swing.JButton buttonFwIDManif;
     private javax.swing.JButton editButton1;
     private javax.swing.JTextField fieldFkClient;
     private javax.swing.JTextField fieldFkIdManif1;
@@ -210,6 +212,34 @@ public class jReservationManifPane extends javax.swing.JPanel implements EntityP
         this.fieldFkClient.setText("");
         this.fieldFkIdManif1.setText("");
         this.jDateChooser1.setDate(new Date());
+    }
+
+    public JButton getButtonFwIDClient() {
+        return buttonFwIDClient;
+    }
+
+    public JButton getButtonFwIDManif() {
+        return buttonFwIDManif;
+    }
+
+    public JButton getEditButton() {
+        return editButton1;
+    }
+
+    public JButton getNewButton() {
+        return newButton1;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton3;
+    }
+
+    public JTextField getFieldFkClient() {
+        return fieldFkClient;
+    }
+
+    public JTextField getFieldFkIdManif1() {
+        return fieldFkIdManif1;
     }
 
 

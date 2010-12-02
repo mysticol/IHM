@@ -149,7 +149,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="buttonFwIDDepart">
+        <Component class="javax.swing.JButton" name="buttonFwIDmanif">
           <Properties>
             <Property name="text" type="java.lang.String" value="Manif:"/>
           </Properties>
@@ -172,7 +172,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="buttonFwIDArrive">
+        <Component class="javax.swing.JButton" name="buttonFwIDrestau">
           <Properties>
             <Property name="text" type="java.lang.String" value="Restau:"/>
           </Properties>
@@ -195,7 +195,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="buttonFwIDDepart1">
+        <Component class="javax.swing.JButton" name="buttonFwIDhotel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Hotel:"/>
           </Properties>
@@ -218,7 +218,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="buttonFwIDArrive1">
+        <Component class="javax.swing.JButton" name="buttonFwIDvoyage">
           <Properties>
             <Property name="text" type="java.lang.String" value="Voyage"/>
           </Properties>

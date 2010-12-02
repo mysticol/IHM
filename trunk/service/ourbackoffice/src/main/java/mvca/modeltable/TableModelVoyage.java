@@ -43,7 +43,7 @@ public class TableModelVoyage extends JTableModelInterface<Voyage> {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 5;
     }
 
     @Override

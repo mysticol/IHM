@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import mvca.entity.Restaurant;
 
 /**
@@ -305,12 +306,20 @@ public class jRestaurantPane extends javax.swing.JPanel implements EntityPane<Re
         return buttonFwIDLocalisation;
     }
 
-    public JButton getEditButton1() {
+    public JButton getEditButton() {
         return editButton1;
     }
 
-    public JButton getNewButton1() {
+    public JButton getNewButton() {
         return newButton1;
+    }
+
+    public JTextField getFieldFkLocalisation() {
+        return fieldFkLocalisation;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton1;
     }
 
    

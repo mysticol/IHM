@@ -43,7 +43,7 @@ public class TableModelHotel extends JTableModelInterface<Hotel> {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 8;
     }
 
     @Override

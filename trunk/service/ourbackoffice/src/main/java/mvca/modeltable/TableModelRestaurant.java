@@ -43,7 +43,7 @@ public class TableModelRestaurant extends JTableModelInterface<Restaurant> {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 8;
     }
 
     @Override

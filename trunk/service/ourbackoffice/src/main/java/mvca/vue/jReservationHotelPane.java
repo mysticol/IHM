@@ -12,6 +12,8 @@
 package mvca.vue;
 
 import java.util.Date;
+import javax.swing.JButton;
+import javax.swing.JTextField;
 import mvca.entity.ReservationHotel;
 
 /**
@@ -42,7 +44,7 @@ public class jReservationHotelPane extends javax.swing.JPanel implements EntityP
         prenomLabel5 = new javax.swing.JLabel();
         buttonFwIDClient = new javax.swing.JButton();
         fieldFkIdHotel = new javax.swing.JTextField();
-        buttonFwIDType = new javax.swing.JButton();
+        buttonFwIDHotel = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         editButton1 = new javax.swing.JButton();
         newButton1 = new javax.swing.JButton();
@@ -55,7 +57,7 @@ public class jReservationHotelPane extends javax.swing.JPanel implements EntityP
                 saveButton3ActionPerformed(evt);
             }
         });
-        saveButton3.setBounds(510, 150, 70, 23);
+        saveButton3.setBounds(510, 150, 70, -1);
         jLayeredPane4.add(saveButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkClient.setEditable(false);
@@ -64,7 +66,7 @@ public class jReservationHotelPane extends javax.swing.JPanel implements EntityP
                 fieldFkClientActionPerformed(evt);
             }
         });
-        fieldFkClient.setBounds(290, 10, 100, 20);
+        fieldFkClient.setBounds(290, 10, 100, -1);
         jLayeredPane4.add(fieldFkClient, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldId1.setEditable(false);
@@ -73,19 +75,19 @@ public class jReservationHotelPane extends javax.swing.JPanel implements EntityP
                 fieldId1ActionPerformed(evt);
             }
         });
-        fieldId1.setBounds(60, 10, 50, 20);
+        fieldId1.setBounds(60, 10, 50, -1);
         jLayeredPane4.add(fieldId1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         idLabel1.setText("Id: ");
-        idLabel1.setBounds(10, 10, 17, 14);
+        idLabel1.setBounds(10, 10, -1, -1);
         jLayeredPane4.add(idLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         prenomLabel5.setText("Date:");
-        prenomLabel5.setBounds(10, 40, 60, 14);
+        prenomLabel5.setBounds(10, 40, 60, -1);
         jLayeredPane4.add(prenomLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         buttonFwIDClient.setText("Client:");
-        buttonFwIDClient.setBounds(190, 10, 65, 23);
+        buttonFwIDClient.setBounds(190, 10, -1, -1);
         jLayeredPane4.add(buttonFwIDClient, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         fieldFkIdHotel.setEditable(false);
@@ -94,13 +96,13 @@ public class jReservationHotelPane extends javax.swing.JPanel implements EntityP
                 fieldFkIdHotelActionPerformed(evt);
             }
         });
-        fieldFkIdHotel.setBounds(290, 40, 100, 20);
+        fieldFkIdHotel.setBounds(290, 40, 100, -1);
         jLayeredPane4.add(fieldFkIdHotel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        buttonFwIDType.setText("Hotel:");
-        buttonFwIDType.setBounds(190, 40, 63, 23);
-        jLayeredPane4.add(buttonFwIDType, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDateChooser1.setBounds(60, 40, 89, 20);
+        buttonFwIDHotel.setText("Hotel:");
+        buttonFwIDHotel.setBounds(190, 40, -1, -1);
+        jLayeredPane4.add(buttonFwIDHotel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDateChooser1.setBounds(60, 40, -1, -1);
         jLayeredPane4.add(jDateChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         editButton1.setText("Edit");
@@ -197,7 +199,7 @@ public class jReservationHotelPane extends javax.swing.JPanel implements EntityP
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonFwIDClient;
-    private javax.swing.JButton buttonFwIDType;
+    private javax.swing.JButton buttonFwIDHotel;
     private javax.swing.JButton editButton1;
     private javax.swing.JTextField fieldFkClient;
     private javax.swing.JTextField fieldFkIdHotel;
@@ -209,5 +211,34 @@ public class jReservationHotelPane extends javax.swing.JPanel implements EntityP
     private javax.swing.JLabel prenomLabel5;
     private javax.swing.JButton saveButton3;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getButtonFwIDClient() {
+        return buttonFwIDClient;
+    }
+
+    public JButton getButtonFwIDHotel() {
+        return buttonFwIDHotel;
+    }
+
+    public JButton getEditButton() {
+        return editButton1;
+    }
+
+    public JButton getNewButton() {
+        return newButton1;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton3;
+    }
+
+    public JTextField getFieldFkClient() {
+        return fieldFkClient;
+    }
+
+    public JTextField getFieldFkIdHotel() {
+        return fieldFkIdHotel;
+    }
+
 
 }

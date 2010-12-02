@@ -153,4 +153,11 @@ public class HibernateUtil<E> {
 
 
     }
+
+    public Class<E> getRef() {
+        return ref;
+    }
+
+    
+
 }
