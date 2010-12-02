@@ -100,12 +100,12 @@
                             <to>$FindIn.part/ns1:VOYAGE_Record/ns1:FK_LOCALISATION_DEPART</to>
                         </copy>
                         <copy>
-                            <from>$ReservVoyageOperationIn.request/ns0:IdClient</from>
-                            <to>$FindIn.part/ns1:VOYAGE_Record/ns1:FK_CLIENT_ID</to>
-                        </copy>
-                        <copy>
                             <from>$ReservVoyageOperationIn.request/ns0:Date</from>
                             <to>$FindIn.part/ns1:VOYAGE_Record/ns1:DATE</to>
+                        </copy>
+                        <copy>
+                            <from>$ReservVoyageOperationIn.request/ns0:IdClient</from>
+                            <to>$FindIn.part/ns1:VOYAGE_Record/ns1:FK_CLIENT_ID</to>
                         </copy>
                     </assign>
                     <invoke name="InvokeINsert" partnerLink="voyageTable" operation="insert" xmlns:tns="http://j2ee.netbeans.org/wsdl/reservVoyage/reservVoyageTable" portType="tns:jdbcPortType" inputVariable="InsertIn" outputVariable="InsertOut"/>
@@ -122,6 +122,7 @@
         <reply name="Reply1" partnerLink="ReservationManager" operation="ReservVoyageOperation" xmlns:tns1="http://j2ee.netbeans.org/wsdl/ReservationManager/ReservVoyageRequest" portType="tns1:ReservVoyagePortType" variable="ReservVoyageOperationOut"/>
     </sequence>
 </process>
+
 
 
 
