@@ -72,7 +72,8 @@ public class Page1 extends AbstractPageBean {
     static Element root = new Element("reservation");
     static Document doc = new Document(root);
 
-
+    private static String pathPdf="/comptes/E032171T/fop-1.0/service/";
+    private static String pathFop="/comptes/E032171T/fop-1.0/";
 
 
     // <editor-fold defaultstate="collapsed" desc="Managed Component Definition">
@@ -721,16 +722,17 @@ public class Page1 extends AbstractPageBean {
             System.out.println(hotel.getId());
             System.out.println(restaurant.getId());
 
-/*
+
             try{
-                //l'element root du document xml
-
-
+                
                 Element infosPerso = new Element("infosPerso");
                 Element lieux = new Element("lieux");
                 Element manifestation = new Element("manifestation");
                 Element infosHotel = new Element("infosHotel");
                 Element infosRestaurant = new Element("infosRestaurant");
+
+                root = new Element("reservation");
+                doc = new Document(root);
 
                 root.addContent(infosPerso);
                 root.addContent(lieux);
@@ -777,13 +779,22 @@ public class Page1 extends AbstractPageBean {
                 infosRestaurant.addContent(nomRestaurant);
 
                 affiche();
-                enregistre("Exercice1.xml");
+                enregistre(pathPdf+"reservation"+nom+".xml");
+
+                String cmd = pathFop+"fop -xml "+pathPdf+"reservation"+nom+".xml -xsl "+pathPdf+"xmlToPdf.xsl -pdf "+pathPdf+"reservation"+nom+".pdf";
+                Runtime runtime = Runtime.getRuntime();
+                Process process = null;
+                try{
+                    process = runtime.exec(cmd);
+                }catch(Exception e) {
+                    e.printStackTrace();
+                }
                 
             }catch (Throwable e) {
                 e.printStackTrace();
             }
 
-*/
+
             // TODO process result here
             java.lang.String result = port.reservationOperation(reservationRequest);
             System.out.println("Result = "+result);
@@ -798,7 +809,7 @@ public class Page1 extends AbstractPageBean {
     {
        try
        {
-          //On utilise ici un affichage classique avec getPrettyFormat()
+          //affichage dans le terminal
           XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
           sortie.output(doc, System.out);
        }
@@ -809,10 +820,8 @@ public class Page1 extends AbstractPageBean {
     {
        try
        {
-          //On utilise ici un affichage classique avec getPrettyFormat()
           XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
-          //Remarquez qu'il suffit simplement de créer une instance de FileOutputStream
-          //avec en argument le nom du fichier pour effectuer la sérialisation.
+          //enregistrement dans un fichier
           sortie.output(doc, new FileOutputStream(fichier));
        }
        catch (java.io.IOException e){}
