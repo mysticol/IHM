@@ -47,7 +47,7 @@ public class jClientPane extends javax.swing.JPanel implements EntityPane<Client
 
         newButton.setText("New");
 
-        editButton.setText("Edit");
+        editButton.setText("Delete");
 
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +91,7 @@ public class jClientPane extends javax.swing.JPanel implements EntityPane<Client
                             .addComponent(fieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(369, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(329, Short.MAX_VALUE)
+                .addContainerGap(327, Short.MAX_VALUE)
                 .addComponent(newButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(editButton)

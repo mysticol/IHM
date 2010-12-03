@@ -23,35 +23,29 @@
                       <Component id="idLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="33" pref="33" max="33" attributes="0"/>
                       <Component id="fieldId1" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace min="80" pref="80" max="80" attributes="0"/>
-                      <Component id="buttonFwIDClient" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="35" pref="35" max="35" attributes="0"/>
-                      <Component id="fieldFkClient" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="prenomLabel5" min="-2" pref="60" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="prenomLabel5" min="-2" pref="60" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="50" pref="50" max="50" attributes="0"/>
-                              <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="41" pref="41" max="41" attributes="0"/>
-                      <Component id="buttonFwIDDepart" min="-2" pref="80" max="-2" attributes="0"/>
-                      <EmptySpace min="20" pref="20" max="20" attributes="0"/>
-                      <Component id="fieldFkIdDepart" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace min="50" pref="50" max="50" attributes="0"/>
+                      <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="180" pref="180" max="180" attributes="0"/>
-                      <Component id="buttonFwIDArrive" min="-2" pref="70" max="-2" attributes="0"/>
-                      <EmptySpace min="30" pref="30" max="30" attributes="0"/>
-                      <Component id="fieldFkIdArrive" min="-2" pref="100" max="-2" attributes="0"/>
-                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="buttonFwIDDepart" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                  <Component id="buttonFwIDClient" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonFwIDArrive" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="fieldFkClient" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="fieldFkIdDepart" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="fieldFkIdArrive" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="207" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="397" max="32767" attributes="0"/>
+              <EmptySpace pref="385" max="32767" attributes="0"/>
               <Component id="newButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="5" pref="5" max="5" attributes="0"/>
               <Component id="editButton1" min="-2" max="-2" attributes="0"/>
@@ -175,7 +169,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="editButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Edit"/>
+        <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
     </Component>
   </SubComponents>

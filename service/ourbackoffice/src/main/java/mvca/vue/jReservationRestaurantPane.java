@@ -86,7 +86,7 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
 
         newButton1.setText("New");
 
-        editButton1.setText("Edit");
+        editButton1.setText("Delete");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -192,7 +192,7 @@ public class jReservationRestaurantPane extends javax.swing.JPanel implements En
         }
 
 
-        if (this.fieldId1.getText() != "") {
+        if (!this.fieldId1.getText().equals("")) {
             result.setReservationRestauId(Integer.parseInt(fieldId1.getText()));
         }
 

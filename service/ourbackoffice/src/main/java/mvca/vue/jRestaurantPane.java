@@ -59,7 +59,7 @@ public class jRestaurantPane extends javax.swing.JPanel implements EntityPane<Re
         fieldNote = new javax.swing.JTextField();
         buttonFwIDLocalisation = new javax.swing.JButton();
 
-        editButton1.setText("Edit");
+        editButton1.setText("Delete");
 
         newButton1.setText("New");
 
@@ -229,7 +229,7 @@ public class jRestaurantPane extends javax.swing.JPanel implements EntityPane<Re
             result.setFkLocalisationId(Integer.parseInt(fieldFkLocalisation.getText()));
         }
 
-        if( this.fieldId1.getText()==""){
+        if( !this.fieldId1.getText().equals("")){
             result.setRestaurantId(Integer.parseInt(fieldId1.getText()));
         }
 

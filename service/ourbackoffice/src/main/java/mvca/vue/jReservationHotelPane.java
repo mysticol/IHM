@@ -25,6 +25,7 @@ public class jReservationHotelPane extends javax.swing.JPanel implements EntityP
     /** Creates new form jReservationHotelPane */
     public jReservationHotelPane() {
         initComponents();
+        this.clearField();
     }
 
     /** This method is called from within the constructor to
@@ -86,7 +87,7 @@ public class jReservationHotelPane extends javax.swing.JPanel implements EntityP
 
         newButton1.setText("New");
 
-        editButton1.setText("Edit");
+        editButton1.setText("Delete");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -115,7 +116,7 @@ public class jReservationHotelPane extends javax.swing.JPanel implements EntityP
                         .addComponent(fieldFkIdHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(200, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(390, Short.MAX_VALUE)
+                .addContainerGap(378, Short.MAX_VALUE)
                 .addComponent(newButton1)
                 .addGap(5, 5, 5)
                 .addComponent(editButton1)
@@ -178,7 +179,7 @@ public class jReservationHotelPane extends javax.swing.JPanel implements EntityP
         }
 
 
-        if (this.fieldId1.getText() != "") {
+        if (!this.fieldId1.getText().equals("")) {
             result.setReservationHotelId(Integer.parseInt(fieldId1.getText()));
         }
 

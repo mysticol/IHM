@@ -126,4 +126,9 @@ public class TableModelManifestation extends JTableModelInterface<Manifestation>
     public int getIDForSelected(int i) {
         return list.get(i).getManifestationId();
     }
+
+      @Override
+    public HibernateUtil<Manifestation> getEm() {
+       return this.entityManager;
+    }
 }

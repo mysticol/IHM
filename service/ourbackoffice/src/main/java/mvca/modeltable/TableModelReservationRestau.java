@@ -102,4 +102,9 @@ public TableModelReservationRestau(HibernateUtil<ReservationRestau> em) {
     public int getIDForSelected(int i) {
         return listClient.get(i).getReservationRestauId();
     }
+
+          @Override
+    public HibernateUtil<ReservationRestau> getEm() {
+       return this.entityManager;
+    }
 }

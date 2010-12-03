@@ -93,6 +93,7 @@ public class HibernateUtil<E> {
         session.flush();
         session.close();
 
+
     }
 
     public void insert(E object) {

@@ -126,4 +126,9 @@ public class TableModelRestaurant extends JTableModelInterface<Restaurant> {
     public int getIDForSelected(int i) {
         return list.get(i).getRestaurantId();
     }
+
+      @Override
+    public HibernateUtil<Restaurant> getEm() {
+       return this.entityManager;
+    }
 }

@@ -6,6 +6,7 @@
 package mvca.modeltable;
 
 import javax.swing.table.AbstractTableModel;
+import mvca.session.HibernateUtil;
 
 /**
  *
@@ -18,4 +19,5 @@ public abstract class  JTableModelInterface<E> extends AbstractTableModel {
 
     public abstract String getColumnName(int column);
     public abstract int getIDForSelected(int i);
+    public abstract HibernateUtil<E> getEm();
 }

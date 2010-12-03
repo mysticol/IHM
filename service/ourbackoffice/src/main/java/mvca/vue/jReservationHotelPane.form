@@ -45,7 +45,7 @@
               <EmptySpace pref="200" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="390" max="32767" attributes="0"/>
+              <EmptySpace pref="378" max="32767" attributes="0"/>
               <Component id="newButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="5" pref="5" max="5" attributes="0"/>
               <Component id="editButton1" min="-2" max="-2" attributes="0"/>
@@ -145,7 +145,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="editButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Edit"/>
+        <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
     </Component>
   </SubComponents>
