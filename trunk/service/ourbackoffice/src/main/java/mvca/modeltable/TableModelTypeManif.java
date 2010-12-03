@@ -91,4 +91,9 @@ public class TableModelTypeManif extends JTableModelInterface<TypeManifestation>
     public int getIDForSelected(int i) {
         return list.get(i).getTypeId();
     }
+
+      @Override
+    public HibernateUtil<TypeManifestation> getEm() {
+       return this.entityManager;
+    }
 }

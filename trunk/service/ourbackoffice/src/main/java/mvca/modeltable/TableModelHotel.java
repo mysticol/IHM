@@ -128,4 +128,8 @@ public class TableModelHotel extends JTableModelInterface<Hotel> {
         return list.get(i).getHotelId();
     }
 
+         @Override
+    public HibernateUtil<Hotel> getEm() {
+       return this.entityManager;
+    }
 }

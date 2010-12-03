@@ -118,7 +118,7 @@ public class jReservationnPane extends javax.swing.JPanel implements EntityPane<
 
         newButton1.setText("New");
 
-        editButton1.setText("Edit");
+        editButton1.setText("Delete");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -160,7 +160,7 @@ public class jReservationnPane extends javax.swing.JPanel implements EntityPane<
                         .addComponent(buttonFwIDvoyage, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(fieldFkIdVoyage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addContainerGap(231, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(399, Short.MAX_VALUE)
                 .addComponent(newButton1)
@@ -254,7 +254,7 @@ public class jReservationnPane extends javax.swing.JPanel implements EntityPane<
         }
 
 
-        if (this.fieldId1.getText() != "") {
+        if (!this.fieldId1.getText().equals("")) {
             result.setReservationId(Integer.parseInt(fieldId1.getText()));
         }
 

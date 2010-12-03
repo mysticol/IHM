@@ -26,6 +26,7 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
     /** Creates new form jManifestationPane */
     public jManifestationPane() {
         initComponents();
+        this.clearField();
     }
 
     /** This method is called from within the constructor to
@@ -110,7 +111,7 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        editButton1.setText("Edit");
+        editButton1.setText("Delete");
 
         newButton1.setText("New");
 
@@ -275,7 +276,7 @@ public class jManifestationPane extends javax.swing.JPanel implements EntityPane
         }
 
 
-        if (this.fieldId1.getText() != "") {
+        if (!this.fieldId1.getText().equals("")) {
             result.setFkIdType(Integer.parseInt(fieldId1.getText()));
         }
 

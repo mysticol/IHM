@@ -102,4 +102,9 @@ public class TableModelClient extends JTableModelInterface<Client> {
         return listClient.get(i).getClientId();
     }
 
+    @Override
+    public HibernateUtil<Client> getEm() {
+       return this.entityManager;
+    }
+
 }

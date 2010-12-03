@@ -124,4 +124,9 @@ public class TableModelReservation  extends JTableModelInterface<Reservation> {
     public int getIDForSelected(int i) {
         return list.get(i).getReservationId();
     }
+
+      @Override
+    public HibernateUtil<Reservation> getEm() {
+       return this.entityManager;
+    }
 }

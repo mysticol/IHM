@@ -189,7 +189,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="editButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Edit"/>
+        <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="newButton1">

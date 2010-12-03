@@ -66,7 +66,7 @@ public class jLocalisationPane extends javax.swing.JPanel implements EntityPane<
 
         newButton.setText("New");
 
-        editButton.setText("Edit");
+        editButton.setText("Delete");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

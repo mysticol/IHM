@@ -96,4 +96,9 @@ public class TableModelLocalisation extends  JTableModelInterface<Localisation> 
     public int getIDForSelected(int i) {
         return list.get(i).getLocalisationId();
     }
+
+      @Override
+    public HibernateUtil<Localisation> getEm() {
+       return this.entityManager;
+    }
 }

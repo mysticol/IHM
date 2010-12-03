@@ -93,7 +93,7 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
 
         buttonFwIDLocalisation.setText("Localisation:");
 
-        editButton1.setText("Edit");
+        editButton1.setText("Delete");
 
         newButton1.setText("New");
 
@@ -227,7 +227,7 @@ public class jHotelPane extends javax.swing.JPanel implements EntityPane<Hotel>{
             result.setFkLocalisationId(Integer.parseInt(fieldFkLocalisation.getText()));
         }
 
-        if( this.fieldId1.getText()==""){
+        if( !this.fieldId1.getText().equals("")){
             result.setHotelId(Integer.parseInt(fieldId1.getText()));
         }
 

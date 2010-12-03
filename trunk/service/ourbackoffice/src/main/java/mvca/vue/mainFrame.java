@@ -11,6 +11,8 @@
 package mvca.vue;
 
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -445,30 +447,33 @@ public class mainFrame extends javax.swing.JFrame {
 
         clientPane.getNewButton().addActionListener(controlClient.getNewActionListener());
         clientPane.getSaveButton().addActionListener(controlClient.getSaveActionListener());
+        clientPane.getEditButton().addActionListener(this.dilateListeuneur());
 
         hotelPane.getNewButton().addActionListener(controlHotel.getNewActionListener());
         hotelPane.getSaveButton().addActionListener(controlHotel.getSaveActionListener());
         hotelPane.getButtonFwIDLocalisation().addActionListener(new ListenerFk(this, modelLocalisation, hotelPane.getFieldFkLocalisation()));
-
+hotelPane.getEditButton().addActionListener(this.dilateListeuneur());
 
 
         restaurantPane.getNewButton().addActionListener(controlRestaurant.getNewActionListener());
         restaurantPane.getSaveButton().addActionListener(controlRestaurant.getSaveActionListener());
         restaurantPane.getButtonFwIDLocalisation().addActionListener(new ListenerFk(this, modelLocalisation, restaurantPane.getFieldFkLocalisation()));
+restaurantPane.getEditButton().addActionListener(this.dilateListeuneur());
 
-        localisationPane.getNewButton().addActionListener(controlLocalisation.getNewActionListener());
+localisationPane.getNewButton().addActionListener(controlLocalisation.getNewActionListener());
         localisationPane.getSaveButton().addActionListener(controlLocalisation.getSaveActionListener());
+localisationPane.getEditButton().addActionListener(this.dilateListeuneur());
 
         voyagePane.getNewButton().addActionListener(controlVoyage.getNewActionListener());
         voyagePane.getSaveButton().addActionListener(controlVoyage.getSaveActionListener());
         voyagePane.getButtonFwIDArrive().addActionListener(new ListenerFk(this, modelLocalisation, voyagePane.getFieldFkIdArrive()));
         voyagePane.getButtonFwIDClient().addActionListener(new ListenerFk(this, modelClient, voyagePane.getFieldFkClient()));
         voyagePane.getButtonFwIDDepart().addActionListener(new ListenerFk(this, modelLocalisation, voyagePane.getFieldFkIdDepart()));
-
+voyagePane.getEditButton().addActionListener(this.dilateListeuneur());
 
         typeManifPane.getNewButton().addActionListener(controlTypeManifestation.getNewActionListener());
         typeManifPane.getSaveButton().addActionListener(controlTypeManifestation.getSaveActionListener());
-        
+        typeManifPane.getEditButton().addActionListener(this.dilateListeuneur());
 
 
         reservationnPane.getNewButton().addActionListener(controlReservation.getNewActionListener());
@@ -478,7 +483,7 @@ public class mainFrame extends javax.swing.JFrame {
         reservationnPane.getButtonFwIDmanif().addActionListener(new ListenerFk(this,modelManifestation, reservationnPane.getFieldFkIdManif()));
         reservationnPane.getButtonFwIDrestau().addActionListener(new ListenerFk(this,modelRestaurant, reservationnPane.getFieldFkIdRestau()));
         reservationnPane.getButtonFwIDvoyage().addActionListener(new ListenerFk(this,modelVoyage, reservationnPane.getFieldFkIdVoyage()));
-
+reservationnPane.getEditButton().addActionListener(this.dilateListeuneur());
       
 
 
@@ -488,21 +493,26 @@ public class mainFrame extends javax.swing.JFrame {
         reservHotelPane.getSaveButton().addActionListener(controlReservationHotel.getSaveActionListener());
         reservHotelPane.getButtonFwIDClient().addActionListener(new ListenerFk(this, modelClient, reservHotelPane.getFieldFkClient()));
         reservHotelPane.getButtonFwIDHotel().addActionListener(new ListenerFk(this, modelHotel, reservHotelPane.getFieldFkIdHotel()));
+reservHotelPane.getEditButton().addActionListener(this.dilateListeuneur());
 
         reservationManifPane.getNewButton().addActionListener(controlReservationManif.getNewActionListener());
         reservationManifPane.getSaveButton().addActionListener(controlReservationManif.getSaveActionListener());
         reservationManifPane.getButtonFwIDClient().addActionListener(new ListenerFk(this, modelClient, reservationManifPane.getFieldFkClient()));
         reservationManifPane.getButtonFwIDManif().addActionListener(new ListenerFk(this, modelManifestation, reservationManifPane.getFieldFkIdManif1()));
+reservationManifPane.getEditButton().addActionListener(this.dilateListeuneur());
+
 
         reservRestauPane.getNewButton().addActionListener(controlReservationRestau.getNewActionListener());
         reservRestauPane.getSaveButton().addActionListener(controlReservationRestau.getSaveActionListener());
         reservRestauPane.getButtonFwIDClient().addActionListener(new ListenerFk(this, modelClient, reservRestauPane.getFieldFkclient()));
         reservRestauPane.getButtonFwIDRestaurant().addActionListener(new ListenerFk(this, modelRestaurant, reservRestauPane.getFieldFkIdRestaurant()));
+        reservRestauPane.getEditButton1().addActionListener(this.dilateListeuneur());
+
         manifPane.getNewButton().addActionListener(controlManifestation.getNewActionListener());
         manifPane.getSaveButton().addActionListener(controlManifestation.getSaveActionListener());
         manifPane.getButtonFwIDLocalisation().addActionListener(new ListenerFk(this, modelLocalisation, manifPane.getFieldFkLocalisation()));
         manifPane.getButtonFwIDType().addActionListener(new ListenerFk(this, modelTypeManif, manifPane.getFieldFkType()));
-
+manifPane.getEditButton().addActionListener(this.dilateListeuneur());
 
 
 
@@ -588,4 +598,29 @@ public class mainFrame extends javax.swing.JFrame {
             }
         };
     }
+
+
+
+    private ActionListener dilateListeuneur(){
+        return new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                 ModeParam ff = modeur.get(actualmode);
+                EntityPane pane = (EntityPane) ff.getPanel();
+                JTableModelInterface model = ff.getModel();
+                
+                Integer dd= model.getIDForSelected(superJtableBD.getSelectedRow());
+                if (dd!=null){
+                model.getEm().delete(dd);
+                model.refresh();
+                pane.clearField();
+                }
+               
+
+            }
+        };
+    }
+
 }

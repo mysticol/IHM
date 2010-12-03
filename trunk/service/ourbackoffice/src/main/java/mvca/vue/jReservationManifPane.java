@@ -87,7 +87,7 @@ public class jReservationManifPane extends javax.swing.JPanel implements EntityP
 
         newButton1.setText("New");
 
-        editButton1.setText("Edit");
+        editButton1.setText("Delete");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -113,15 +113,16 @@ public class jReservationManifPane extends javax.swing.JPanel implements EntityP
                         .addGap(51, 51, 51)
                         .addComponent(buttonFwIDManif, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(fieldFkIdManif1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(380, 380, 380)
-                        .addComponent(newButton1)
-                        .addGap(5, 5, 5)
-                        .addComponent(editButton1)
-                        .addGap(7, 7, 7)
-                        .addComponent(saveButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(fieldFkIdManif1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(209, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(387, Short.MAX_VALUE)
+                .addComponent(newButton1)
+                .addGap(5, 5, 5)
+                .addComponent(editButton1)
+                .addGap(7, 7, 7)
+                .addComponent(saveButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,7 +139,7 @@ public class jReservationManifPane extends javax.swing.JPanel implements EntityP
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonFwIDManif)
                     .addComponent(fieldFkIdManif1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(87, 87, 87)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(newButton1)
                     .addComponent(editButton1)
@@ -197,7 +198,7 @@ public class jReservationManifPane extends javax.swing.JPanel implements EntityP
         }
 
 
-        if (this.fieldId1.getText() != "") {
+        if (!this.fieldId1.getText().equals("")) {
             result.setReservationManifId(Integer.parseInt(fieldId1.getText()));
         }
 

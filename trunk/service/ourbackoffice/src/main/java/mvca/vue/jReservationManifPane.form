@@ -41,16 +41,17 @@
                       <EmptySpace min="30" pref="30" max="30" attributes="0"/>
                       <Component id="fieldFkIdManif1" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="380" pref="380" max="380" attributes="0"/>
-                      <Component id="newButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="5" pref="5" max="5" attributes="0"/>
-                      <Component id="editButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="7" pref="7" max="7" attributes="0"/>
-                      <Component id="saveButton3" min="-2" pref="70" max="-2" attributes="0"/>
-                  </Group>
               </Group>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace pref="209" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="387" max="32767" attributes="0"/>
+              <Component id="newButton1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="5" pref="5" max="5" attributes="0"/>
+              <Component id="editButton1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="7" pref="7" max="7" attributes="0"/>
+              <Component id="saveButton3" min="-2" pref="70" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,7 +72,7 @@
                   <Component id="buttonFwIDManif" min="-2" max="-2" attributes="0"/>
                   <Component id="fieldFkIdManif1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="87" pref="87" max="87" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="newButton1" min="-2" max="-2" attributes="0"/>
                   <Component id="editButton1" min="-2" max="-2" attributes="0"/>
@@ -144,7 +145,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="editButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Edit"/>
+        <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -108,4 +108,9 @@ public class TableModelVoyage extends JTableModelInterface<Voyage> {
     public int getIDForSelected(int i) {
         return list.get(i).getVoyageId();
     }
+
+      @Override
+    public HibernateUtil<Voyage> getEm() {
+       return this.entityManager;
+    }
 }
