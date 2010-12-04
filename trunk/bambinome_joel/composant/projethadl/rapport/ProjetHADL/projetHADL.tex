@@ -55,7 +55,7 @@ détaillerons le meta-meta-modèle que nous avons pu définir pour notre HADL.
 L'architecture logicielle à base de composants est consitutés de trois
 principaux éléments : des composants, des configurations et des connecteurs.\\
 
-\subsubsection{Eléments principaux}
+\subsection{Eléments principaux}
 
 % - Def Composant
  Un composant est une unité de composition qui spécifie une ou plusieurs
@@ -77,7 +77,7 @@ grâce à des Rôles (Rôles From et Rôles To) et une ''Glue'' qui représente 
 fonction modifiant les informations transférées. Il peut être comparé à un
 adaptateur entre deux composants.\\
 
-\subsubsection{Eléments secondaires}
+\subsection{Eléments secondaires}
 
 %-Def Interface 
 L'interface d'un composant, connecteur ou configuration est l'ensemble des
@@ -124,20 +124,64 @@ connecteur,
  
 \subsection{Analyse}
 
-Lien= attachement= binding= connecteur
+Pour l'implémentation de notre HADL, nous avons du modéliser le meta modèle (niveau M2) à l'aide de l'uml puisque l'objectif était d'avoir une implémentation objet du HADL. Pour ce faire nous avons commencer à mettre en rapport les concepts liés.
 
-port service
+Comme le fait que composant, connecteur ou configuration seraient des classes puisque représentant des éléments majeur de l'architecture à composant. Et donc pour l'implémentation d'une véritable architecture les composants hériterais de ce meta modèle.
 
-Parler des fonctions utile
+Les configurations sont un assemblage de composant et de connecteur, une composition de ces éléments dans la configuration. De la même manière que ces éléments sont des classes, nous avons considéré que les liens étaient aussi important pour eux aussi être des classes. Par conséquent la classe configuration est aussi composé de lien.
 
+La classe configuration est au centre de toute architecture puisque c'est elle qui contient la façon dont les composants interragissent entre eux. La classe configuration doit intercepter tout ce qui entre et sort des composants pour organiser le routage entre composant des différents messages, c'est une sorte de chef d'orchestre. 
 
+Configuration et composant sont des éléments très similaires ils disposent d'éléments commun comme des ports, propriétés et contraintes. Les configurations sont composé de composant et partagent des éléments communs, nous avons reconnu le pattern composite, comme nous le détaillerons au travers des diagrammes.
 
+Le sujet suggèrait que l'on puisse remplacer des composants d'une configuration à tout moment, pour celà il faut que chaque appel d'un port ou service soit capturé par la configuration et que si l'action ne peut être éxécuté l'action soit entreposé et rééxécuté lorsque le composant ou connecteur manquant est de nouveau disponible.
+
+Une partie du travail était aussi de gérer un véritable langage, un peu à la façon d'acme, le plus simple à été de créer une dtd et un parseur xml qui permet d'écrire des configurations en xml. 
+
+Dans notre application les ports sont identifiés par des identificateurs numériques, et servent pour l'appel des services des composants. Les services sont en fait des méthodes d'instance, qui sont reliés aux ports.
 
 \subsection{Diagrammes}
 
-diagramme de l'implémentation
+Le diagramme \ref{M2.1} est notre première version du meta modèle du HADL. On peut voir les différents concept et la façon dont ils s'articulent autour des configurations et composants. Dans ce diagramme les concepts sont représenté, mais sans le parrallèle avec le model objet, comme le fait que les ports sont des attributs des objets.
 
-Quelques explications
+\begin{figure}[h]
+  		\centering
+  		\includegraphics[height=14cm,width=15cm]{M2.jpg}
+  		\caption{M2.1}
+  		\label{Premier meta modèle}
+\end{figure}
+
+
+Le diagramme \ref{M2.2} représente le meta modèle en objet. On peut y voir le pattern composite appliqué pour les configurations et composants, avec un niveau d'abstraction supérieur pour ces éléments reprenant l'ensemble des méthodes et attributs commune.
+
+\begin{figure}[h]
+  		\centering
+  		\includegraphics[height=14cm,width=15cm]{m2impl.jpg}
+  		\caption{M2.2}
+  		\label{Meta modèle objet}
+\end{figure}
+
+Ce diagramme \ref{M2.2} montre aussi la représentation des ports qui sont en fait des valeurs enregistré dans une map pour les ports de sortie et pour les ports d'entrée un mapping permettant d'appeler les services des composants ou transferer les appels des ports configuration vers composants. La méthode appelPortIn sert pour l'invocation d'un service correspondant(mappé) sur un port numéroté avec des paramètres. On peut aussi voir que tous les éléments de l'architecture hérite d'une abastraction objet hadl, qui contient l'attribut commun à tous les autres, un nom, qui permet de les identifier et de faire fonctionner l'architecture. 
+
+\begin{figure}[h]
+  		\centering
+  		\includegraphics[height=14cm,width=15cm]{comimpl.jpg}
+  		\caption{M2.3}
+  		\label{Représentation des liens}
+\end{figure}
+
+Sur le diagramme \ref{M2.3} on peut voir la représentation des éléments de type lien, on peut y voir l'importance des noms qui permettent de définir les échanges entre composant avec connecteur. Ces noms servent à la configuration pour l'orchestration de son fonctionnement, et sa reconfiguration éventuel en changeant un composant ou connecteur.
+
+
+Enfin le diagramme \ref{M2.4} on peut y voir les classes permettants de configurer les composants, le mapping entre port et service d'un composant, et le mapping entrée sortie pour les ports, l'appel d'un service via un port écrira le résultat sur la sortie correspondante.
+
+
+\begin{figure}[h]
+  		\centering
+  		\includegraphics[height=14cm,width=15cm]{param.jpg}
+  		\caption{M2.3}
+  		\label{Représentation des liens}
+\end{figure}
 
 
 
