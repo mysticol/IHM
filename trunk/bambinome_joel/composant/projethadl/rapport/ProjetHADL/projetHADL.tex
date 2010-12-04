@@ -109,13 +109,72 @@ Quelques explications
 
 
 
+\clearpage
 \section{Description du système Client/Serveur}
 \subsection{Définitions}
-%- Def Serveur
-%- Def Client
+Le système Client/Serveur est une bonne représentation au niveau M1 d'une
+architecture logicielle à composants. En effet, chacune des partie constituant
+ce système peut être vu comme un composant faisant partie d'une configuration
+représentant celui-ci. Ces trois composants principaux sont le client, le
+serveur et le connecteur RPC qui permet la communication entre les deux
+premières entités.\\
+
+Le client est donc un simple composant de la configuration ''Client/Serveur''
+permettant l'envoi et la réception de messages. Le serveur, quant à lui, est
+une configuration comprenant plusieurs autres composants permettant le
+traitement du message reçu.
+
+
 \subsection{Analyse}
+Au niveau M1, chacun des composants offre des services. Tout d'abord, le
+client permet donc d'envoyer et de recevoir des messages. Ces deux services
+sont liés à deux ports différents.\\
+
+
+Les trois composants de la configuration ''Serveur'' sont ConnectionManager,
+SecurityDB et Database.
+ 
+ConnectionManager est le composant qui va recevoir en premier le message envoyé
+par le client. En effet, via un lien Binding, c'est ce composant qui communique
+avec la configuration ''Serveur''. Dans notre implémentation, il propose deux
+services indiquant l'entrée et la sortie du message dans le composant.
+
+Le composant SecurityDB est celui qui effectue des vérifications liées à
+la sécurité et aux autorisations concernant le message provenant du client.
+Nous avons choisi de ne pas implémenter de sécurité pour les messages que nous
+voulions faire circuler. Le composant affiche uniquement un message dans le
+terminal signalant le passage du message dans celui-ci. 
+
+Enfin, le composant Database représente la base de données interrogée. Pour
+cela, nous avons mis en place une HashMap avec quelques entrées. Un service de
+ce composant est de renvoyer la valeur contenu dans la Map correspondant à la
+clé reçue.\\
+
+Tous ces composants, qui forment le Serveur, sont reliés entre eux à l'aide de
+connecteurs. Ces connecteurs sont donc au nombre de trois : ClearenceRequest,
+SecurityQuery et SQLQuery. La Glue de chacun de ses connecteurs ne fait que
+transmettre le message, aucune autre action n'est effectuée sur le message.
+
+ClearenceRequest fait le lien entre les composants ConnectionManager et
+SecurityDB. Quant à lui, le connecteur SecurityQuery relie SecurityDB et
+Database. Enfin, SQLQuery permet aux composants ConnectionManager et Database
+de communiquer.\\
+
+RPC est lui aussi, comme les autres connecteurs décrits précédemment, un
+connecteur dont la Glue n'effectue uniquement la transmission du message entre
+le composant Client et la configuration Serveur.
+
+\clearpage
 \subsection{Diagrammes}
 
+\begin{figure}[h]
+  		\centering
+  		\includegraphics[height=14cm,width=15cm,angle=90]{M1.jpg}
+  		\caption{Diagramme du système Client/Serveur}
+  		\label{Diagramme du système Client/Serveur}
+\end{figure}
+
+\clearpage
 \section{Description du méta-méta-modèle HADL}
 \subsection{Définitions}
 %- Def Meta-Entité
