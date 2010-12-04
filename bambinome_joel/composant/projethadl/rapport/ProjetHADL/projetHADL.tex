@@ -35,20 +35,32 @@
 \clearpage
 \section{Introduction}
 
-Dans le cadre de notre module composant dans lequel nous avons pu étudier les modèles à composant et leur fonctionnement, nous avons du modéliser et écrire notre propre langage d'architecture à composant. Ce projet ne consistait pas seulement en la définition d'un langage d'architecture à composant, mais aussi l'implémentation en langage objet d'un moteur d'architecture à composant. Ce rapport présente donc le travail que nous avons pu effectuer sur cet HADL(home architecture definition langage), dans un premier temps au travail de modélisation des concepts composants (meta modélisation), l'implémentation du modèle. Puis ensuite l'application du modèle à composant (modélisation) à travers l'exemple donné en cours. Puis nous détaillerons le meta meta modèle que nous avons pu définir pour notre HADL.
+Dans le cadre de notre module Composants dans lequel nous avons pu étudier les
+modèles à composants et leurs fonctionnements, nous avons du modéliser et écrire
+notre propre langage d'architecture logicielle à composants. Ce projet ne
+consistait pas seulement en la définition d'un langage d'architecture à
+composants, mais aussi en l'implémentation en langage objet d'un moteur
+d'architecture à composants. Ce rapport présente donc le travail que nous avons
+pu effectuer sur cet HADL(home architecture definition langage). Dans un
+premier temps, le travail de modélisation des concepts composants
+(meta-modélisation) ainsi que l'implémentation du modèle vous sera présenté.
+Ensuite, l'application du modèle à composants (modélisation) vous sera
+expliquée à travers l'exemple du système Client/Serveur. Enfin, nous
+détaillerons le meta-meta-modèle que nous avons pu définir pour notre HADL.
 
 
  
 \section{Description du méta-modèle HADL}
 \subsection{Définitions}
 L'architecture logicielle à base de composants est consitutés de trois
-principaux éléments : des comosants, des configurations et des connecteurs.\\
+principaux éléments : des composants, des configurations et des connecteurs.\\
 
-\subsection{ Eléments principaux}
+\subsubsection{Eléments principaux}
 
 % - Def Composant
- Un composant est une unité de composition qui spécifie
-une ou plusieurs fonctionnalités. Celui-ci peut être déployé indépendemment, il s'agit de la brique élémentaire.\\
+ Un composant est une unité de composition qui spécifie une ou plusieurs
+ fonctionnalités. Celui-ci peut être déployé indépendemment, il s'agit de la
+ brique élémentaire.\\
 
 %- Def Configuration
 Une configuration est un ensemble de composants et de connecteurs, il définit la
@@ -61,35 +73,55 @@ tous les connecteurs qui la composent.\\
 %- Def Connecteur
 Un connecteur explicite est une unité effectuant une liaison entre des
 composants ou des configurations. Les connections proprement dites s'effectuent
-grâce à des Rôles (Rôles From et Rôles To) et une ''Glue'' représente la
-fonction modifiant les informations transférées. Un adaptateur entre deux composants\\
+grâce à des Rôles (Rôles From et Rôles To) et une ''Glue'' qui représente la
+fonction modifiant les informations transférées. Il peut être comparé à un
+adaptateur entre deux composants.\\
 
-\subsection{Eléments secondaire}
+\subsubsection{Eléments secondaires}
 
 %-Def Interface 
-L'interface d'un composant, connecteur ou configuration est l'ensemble des éléments fourni pour l'intéraction avec le composant, connecteur ou configuration. Il s'agit plus d'un concept que d'un élément concret. Une interface est généralement constituée de port et service.
+L'interface d'un composant, connecteur ou configuration est l'ensemble des
+éléments fournis pour l'intéraction avec le composant, connecteur ou
+configuration. Il s'agit plus d'un concept que d'un élément concret. Une
+interface est généralement constituée de ports et de services.\\
 
 %- Def Port
-Un port est un point d'entré ou de sortie d'un composant ou configuration, il pourrait s'apparenter à un attribut d'une classe si on fait le rapprochement entre modèle composant et modèle objet.
+Un port est un point d'entrée ou de sortie d'un composant ou configuration, il
+pourrait s'apparenter à un attribut d'une classe si on fait le rapprochement
+entre le modèle composant et le modèle objet.\\
 
 %- Def  Service
-Un service est une opération disponible auprès d'un composant, il y a des services fournit par un composant et des services requis pour son fonctionnement. Un service peut être assimilé à une méthode toujours dans le parallèle composant/objet. Un service peut être relié à des ports ce qui signifie que certain port seraient les entrés du service et d'autres ports seraient la ou les sorties du service.
+Un service est une opération disponible auprès d'un composant, il y a des
+services fournis par un composant et des services requis pour son fonctionnement.
+Un service peut être assimilé à une méthode toujours dans le parallèle
+composant/objet. Un service peut être relié à des ports ce qui signifie que
+certains ports seraient les entrées du service et d'autres ports seraient la ou
+les sorties du service.\\
 
 %-Def Propriétés
-Les propriétés sont des éléments appartenant aux configurations ou composants, les propriétés peuvent définir une particulatité du comportement, ou un élément que dont on peut se servir, comme un attribut de classe.
+Les propriétés sont des éléments appartenant aux configurations ou composants,
+les propriétés peuvent définir une particulatité du comportement ou un élément
+dont on peut se servir, comme un attribut de classe.\\
 
 %-Def Contraintes
-Les contraintes sont des éléments importants, puisque elles définissent ce dont ont besoin les composants ou configuration pour fonctionner,  par exemple la présence d'une librairie particulière.
+Les contraintes sont des éléments importants, puisque elles définissent ce dont
+ont besoin les composants ou configurations pour fonctionner,  par exemple la
+présence d'une librairie particulière.\\
 
 %-Def Roles
-Ce concept est propre aux connecteurs, il y a les roles from et role to qui constituent l'interface des connecteurs. Leurs entrés et leurs sorties.
+Ce concept est propre aux connecteurs, il y a les roles from et role to qui
+constituent l'interface des connecteurs, leurs entrées et leurs sorties.\\
 
 %-Def Lien
-Les liens sont des éléments qui permettent de relier des composant entre eux, ou une configuration à un composant, on distinguera deux types de liens:
--Les attachements qui sont des liens entre composants, lien qui inclut un connecteur
--Les binding qui relie les ports de configuration aux port de composant, lien qui n'inclut pas de connecteur
-
-
+Les liens sont des éléments qui permettent de relier des composant entre eux, ou
+une configuration à un composant. On distinguera deux types de liens:
+\begin{itemize}
+  \item Les attachements qui sont des liens entre composants, lien qui inclut un
+connecteur,
+  \item Les bindings qui relient les ports de configuration aux port de
+  composant, lien qui n'inclut pas de connecteur.
+\end{itemize}
+ 
 \subsection{Analyse}
 
 Lien= attachement= binding= connecteur
@@ -181,9 +213,19 @@ le composant Client et la configuration Serveur.
 %- Def Meta-Relation
 \subsection{Analyse}
 
-mettre que tout les éléments ne sont pas mis pour pas surcharger le diagramme et que globalement sinon tout les élement du m2 sont des entité et compose d'aytre trop
+mettre que tout les éléments ne sont pas mis pour pas surcharger le diagramme et
+que globalement sinon tout les élement du m2 sont des entité et compose d'aytre
+trop
 
 \subsection{Diagrammes}
+
+\begin{figure}[h]
+  		\centering
+  		\includegraphics[height=14cm,width=15cm]{meta-meta-modele.jpg}
+  		\caption{Diagramme du méta-méta-modèle HADL}
+  		\label{Diagramme du méta-méta-modèle HADL}
+\end{figure}
+
 
 \section{Conclusion}
 
