@@ -1,0 +1,13 @@
+#TeXlipse project settings
+#Sat Dec 04 15:19:34 CET 2010
+builderNum=2
+outputDir=pdf
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=RapportHadl.tex
+outputFile=RapportHadl.pdf
+langSpell=en
+markDer=true
+srcDir=tex
