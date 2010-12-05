@@ -118,30 +118,64 @@ une configuration à un composant. On distinguera deux types de liens:
   \item Les attachements qui sont des liens entre composants, lien qui inclut un
 connecteur,
   \item Les bindings qui relient les ports de configuration aux port de
-  composant, lien qui n'inclut pas de connecteur.
+  composant, lien qui n'inclut pas de connecteurs.
 \end{itemize}
  
+\clearpage
 \subsection{Analyse}
 
-Pour l'implémentation de notre HADL, nous avons du modéliser le meta modèle (niveau M2) à l'aide de l'uml puisque l'objectif était d'avoir une implémentation objet du HADL. Pour ce faire nous avons commencer à mettre en rapport les concepts liés.
+Pour l'implémentation de notre HADL, nous avons du modéliser le meta-modèle
+(niveau M2) à l'aide d'UML puisque l'objectif était d'avoir une implémentation
+objet du HADL. Pour ce faire, nous avons commencé à mettre en rapport les
+concepts liés.
 
-Comme le fait que composant, connecteur ou configuration seraient des classes puisque représentant des éléments majeur de l'architecture à composant. Et donc pour l'implémentation d'une véritable architecture les composants hériterais de ce meta modèle.
+Tout d'abord, les notions de composant, connecteur et configuration seraient des
+classes puisqu'ils représentent des éléments majeurs de l'architecture à
+composants. Donc pour l'implémentation d'une véritable architecture logicielle,
+les composants hériteraient de ce meta-modèle.
 
-Les configurations sont un assemblage de composant et de connecteur, une composition de ces éléments dans la configuration. De la même manière que ces éléments sont des classes, nous avons considéré que les liens étaient aussi important pour eux aussi être des classes. Par conséquent la classe configuration est aussi composé de lien.
+Les configurations sont un assemblage de composants et de connecteurs, une
+composition de ces éléments dans la configuration. De la même manière que ces
+éléments sont des classes, nous avons considéré que les liens étaient aussi
+importants et devraient être aussi représentés par des classes. Par conséquent,
+la classe configuration est aussi composé de liens.
 
-La classe configuration est au centre de toute architecture puisque c'est elle qui contient la façon dont les composants interragissent entre eux. La classe configuration doit intercepter tout ce qui entre et sort des composants pour organiser le routage entre composant des différents messages, c'est une sorte de chef d'orchestre. Pour que ce soit le cas tout les éléments (connecteur, configuration et composant) seront des entités observable, et les configurations seront observateur de manière à observer tous les éléments qu'une configuration contient.
+La classe configuration est au centre de toute architecture puisque c'est elle
+qui contient la façon dont les composants interragissent entre eux. La classe
+configuration doit intercepter tout ce qui entre et sort des composants afin
+d'organiser le routage entre composants des différents messages. La
+configuration peut donc être vu comme une sorte de chef d'orchestre. Pour
+que ce soit effectif au niveau de l'implémentation, tous les éléments
+(connecteurs, configurations et composants) seront des entités observables et
+les configurations seront observateurs de manière à gérer tous les éléments
+qu'elles contiennent.
 
-Configuration et composant sont des éléments très similaires ils disposent d'éléments commun comme des ports, propriétés et contraintes. Les configurations sont composé de composant et partagent des éléments communs, nous avons reconnu le pattern composite, comme nous le détaillerons au travers des diagrammes.
+Configuration et composant sont des éléments très similaires, ils disposent
+d'éléments communs comme des ports, des propriétés et des contraintes. Les
+configurations sont composés de composants et partagent des éléments communs,
+nous avons donc reconnu dans ce cas le pattern composite comme nous le
+détaillerons au travers des diagrammes.
 
-Le sujet suggèrait que l'on puisse remplacer des composants d'une configuration à tout moment, pour celà il faut que chaque appel d'un port ou service soit capturé par la configuration et que si l'action ne peut être éxécuté l'action soit entreposé et rééxécuté lorsque le composant ou connecteur manquant est de nouveau disponible.
+Le sujet suggèrait que l'on puisse remplacer des composants d'une configuration à
+tout moment. Pour cela, il faut d'abord que chaque appel d'un port ou d'un
+service soit capturé par la configuration. Ensuite, si l'action ne peut être
+éxécutée, elle devra être entreposée et rééxécutée lorsque le composant ou
+connecteur manquant sera de nouveau disponible.
 
-Une partie du travail était aussi de gérer un véritable langage, un peu à la façon d'acme, le plus simple à été de créer une dtd et un parseur xml qui permet d'écrire des configurations en xml. 
+Une partie du travail était aussi de gérer un véritable langage, un peu à la
+façon d'ACME. Nous avons choisi de créer une dtd et un parseur xml qui permet
+d'écrire des configurations en XML.
 
-Dans notre application les ports sont identifiés par des identificateurs numériques, et servent pour l'appel des services des composants. Les services sont en fait des méthodes d'instance, qui sont reliés aux ports.
+Dans notre application les ports sont identifiés par des identificateurs
+numériques et servent pour l'appel des services des composants. Les services
+sont en fait des méthodes d'instance qui sont reliés aux ports.
 
 \subsection{Diagrammes}
 
-Le diagramme \ref{Premier meta-modèle} est notre première version du meta modèle du HADL. On peut voir les différents concept et la façon dont ils s'articulent autour des configurations et composants. Dans ce diagramme les concepts sont représenté, mais sans le parrallèle avec le model objet, comme le fait que les ports sont des attributs des objets.
+Le diagramme \ref{Premier meta-modèle} est notre première version du meta-modèle
+du HADL. On peut voir les différents concepts et la façon dont ils s'articulent
+autour des configurations et des composants. Dans ce diagramme, ces concepts
+sont représentés mais sans le parrallèle avec le modèle objet. Par exemple, lefait que les ports sont des attributs des objets n'apparait pas dans cediagramme.
 
 \begin{figure}[h]
   		\centering
@@ -150,8 +184,11 @@ Le diagramme \ref{Premier meta-modèle} est notre première version du meta mod�
   		\label{Premier meta-modèle}
 \end{figure}
 
-
-Le diagramme \ref{Meta modèle-objet} représente le meta modèle en objet. On peut y voir le pattern composite appliqué pour les configurations et composants, avec un niveau d'abstraction supérieur pour ces éléments reprenant l'ensemble des méthodes et attributs commune.
+\clearpage
+Le diagramme \ref{Meta modèle-objet} représente le meta-modèle en objet. On peut
+y voir le pattern composite appliqué pour les configurations et composants avec
+un niveau d'abstraction supérieur pour ces éléments reprenant l'ensemble des
+méthodes et attributs communs.
 
 \begin{figure}[h]
   		\centering
@@ -161,9 +198,19 @@ Le diagramme \ref{Meta modèle-objet} représente le meta modèle en objet. On p
 \end{figure}
 
 
-Ce diagramme \ref{Meta modèle-objet} montre aussi la représentation des ports qui sont en fait des valeurs enregistré dans une map pour les ports de sortie et pour les ports d'entrée un mapping permettant d'appeler les services des composants ou transferer les appels des ports configuration vers composants. La méthode appelPortIn sert pour l'invocation d'un service correspondant(mappé) sur un port numéroté avec des paramètres. Cette même méthode préviens l'observateur de son éxécution, en donnant le nom de l'élément et le nom de la méthode éxécuté, l'observateur ensuite regarde si cette notification corresponds à un binding ou un attachement. 
+Ce diagramme \ref{Meta modèle-objet} montre aussi la représentation des ports qui
+sont en fait des valeurs enregistrées dans une Map pour les ports de sorties et
+pour les ports d'entrées. De plus, un mapping permettant d'appeler les services
+des composants ou de transferer les appels des ports configuration vers
+ceux de composants a été mis en place. La méthode appelPortIn sert pour
+l'invocation d'un service correspondant(mappé) sur un port numéroté avec des
+paramètres. Cette même méthode prévient l'observateur de son éxécution en
+donnant le nom de l'élément et le nom de la méthode éxécuté.
+Ensuite, l'observateur regarde si cette notification correspond à unbinding ou un attachement.
 
-On peut aussi voir que tous les éléments de l'architecture hérite d'une abastraction objet hadl, qui contient l'attribut commun à tous les autres, un nom, qui permet de les identifier et de faire fonctionner l'architecture. 
+On peut aussi voir que tous les éléments de l'architecture héritent d'une
+abastraction objet HADL. Celle-ci contient un attribut commun à tous les
+autres, un nom, qui permet de les identifier et de faire fonctionnerl'architecture.
 
 \begin{figure}[h]
   		\centering
@@ -172,16 +219,22 @@ On peut aussi voir que tous les éléments de l'architecture hérite d'une abast
   		\label{Représentation des liens}
 \end{figure}
 
-Sur le diagramme \ref{Représentation des liens} on peut voir la représentation des éléments de type lien, on peut y voir l'importance des noms qui permettent de définir les échanges entre composant avec connecteur. Ces noms servent à la configuration pour l'orchestration de son fonctionnement, et sa reconfiguration éventuel en changeant un composant ou connecteur.
+Sur le diagramme \ref{Représentation des liens}, on peut voir la représentation
+des éléments de type lien. On peut y voir l'importance des noms qui permettent
+de définir les échanges entre composants avec connecteur. Ces noms servent à la
+configuration pour l'orchestration de son fonctionnement et à sa reconfiguration
+éventuelle en changeant un composant ou connecteur.
 
-Enfin le diagramme \ref{Représentation des Ports et Services} on peut y voir les classes permettants de configurer les composants, le mapping entre port et service d'un composant, et le mapping entrée sortie pour les ports, l'appel d'un service via un port écrira le résultat sur la sortie correspondante.
+Enfin dans le diagramme \ref{Configuration des Ports et Services}, on peut
+voir les classes permettants de configurer les composants, le mapping entre
+ports et services d'un composant, le mapping entrée/sortie pour les ports etl'appel d'un service via un port écrira le résultat sur la sortiecorrespondante.
 
 
 \begin{figure}[h]
   		\centering
   		\includegraphics[height=14cm,width=15cm]{param.jpg}
-  		\caption{Représentation des Ports et Services}
-  		\label{Représentation des Ports et Services}
+  		\caption{Configuration des Ports et Services}
+  		\label{Configuration des Ports et Services}
 \end{figure}
 
 
@@ -190,12 +243,12 @@ Enfin le diagramme \ref{Représentation des Ports et Services} on peut y voir le
 \subsection{Définitions}
 Le système Client/Serveur est une bonne représentation au niveau M1 d'une
 architecture logicielle à composants. En effet, chacune des partie constituant
-ce système peut être vu comme un composant faisant partie d'une configuration
+ce système peut être vue comme un composant faisant partie d'une configuration
 représentant celui-ci. Ces trois composants principaux sont le client, le
 serveur et le connecteur RPC qui permet la communication entre les deux
 premières entités.\\
 
-Le client est donc un simple composant de la configuration ''Client/Serveur''
+Le client est donc un simple composant de la configuration Client/Serveur
 permettant l'envoi et la réception de messages. Le serveur, quant à lui, est
 une configuration comprenant plusieurs autres composants permettant le
 traitement du message reçu.
@@ -207,12 +260,12 @@ client permet donc d'envoyer et de recevoir des messages. Ces deux services
 sont liés à deux ports différents.\\
 
 
-Les trois composants de la configuration ''Serveur'' sont ConnectionManager,
+Les trois composants de la configuration Serveur sont ConnectionManager,
 SecurityDB et Database.
  
 ConnectionManager est le composant qui va recevoir en premier le message envoyé
 par le client. En effet, via un lien Binding, c'est ce composant qui communique
-avec la configuration ''Serveur''. Dans notre implémentation, il propose deux
+avec la configuration Serveur. Dans notre implémentation, il propose deux
 services indiquant l'entrée et la sortie du message dans le composant.
 
 Le composant SecurityDB est celui qui effectue des vérifications liées à
@@ -264,30 +317,30 @@ Une méta-relation correspond, de manière similaire à la méta-entité, à une
 relation comme un lien d'attachement, un binding ou encore un lien de
 composition à un niveau d'abstraction plus grand qu'au niveau méta-modèle.\\
 
-%-Def 
-
-
 \subsection{Analyse}
 Pour réaliser ce méta-méta-modèle, nous nous sommes aidé de l'exemple du
-méta-méta-modèle des Langages Orientés Objets étudié en cours.
+méta-méta-modèle des Langages Orientés Objets étudié en cours.\\
 
 Deux méta-entités ont été définis dans notre diagramme : Composant et
-Configuration et deux méta-relation : composant-de et meta-lien.
+Configuration et deux méta-relations : composant-de et meta-lien.
 
-Le meta meta modèle permet de se définir lui même de la même façon que pour le meta meta modèle objet, celà est rendu possible grace aux deux méta relations l'héritage et la composition qui sont les deux concepts essentiel des architectures à composant.
-
+Le méta-méta-modèle permet de se définir lui-même de façon similaire au
+méta-méta-modèle objet. Cela est rendu possible grâce aux deux méta-relations, 
+l'héritage et la composition qui sont les deux concepts essentiels des
+architectures à composants.
 La méta-relation composant-de représente la composition effective entre la
 notion de Composant et celle de Configuration. La relation méta-lien peut-être
 vu comme le lien qu'effectue un connecteur entre deux composants, deux
-configurations ou encore entre un composant et une configuration.
+configurations ou encore entre un composant et une configuration.\\
 
 Nous avons choisi pour ce méta-méta-modèle de ne pas inclure tous ce qui concerne
 les ports, services et d'autres notions afin de ne pas surcharger le diagramme.
 Ces notions omises au niveau M2 telles que les ports et services sont des
 méta-entités et les liens tels que les attachements et les bindings sont des
-méta-relations. Ces méta entités utilisent la relation composant-de pour se greffer aux autres éléments.
+méta-relations. Ces méta-entités utilisent la relation composant-de pour se
+greffer aux autres éléments.
 
-
+\clearpage
 \subsection{Diagrammes}
 
 \begin{figure}[h]
