@@ -130,6 +130,15 @@ le moins possible de vue
 faire simple.
 
 \section{Génération du bon de réservation}
+Une fois toute l'architecture mise en place et les réservations effectuées, il
+ne restait plus qu'à produire un bon de réservation dans un fichier au format
+pdf.
+Pour cela, nous avons d'abord produit un fichier XML à partir de toutes les
+données récupérées à partir du formulaire à l'aide de la librairie JDOM en
+Java. Ensuite, pour aboutir à un fichier pdf, nous avons utilisé le formateur
+Apache FOP(Formatting Objects Processor) qui permet d'en obtenir un à l'aide
+d'un fichier XML et d'un fichier XSL-FO.
+
 
 \section{Conclusion}
 
