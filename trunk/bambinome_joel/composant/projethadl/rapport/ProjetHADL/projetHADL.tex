@@ -265,7 +265,7 @@ relation comme un lien d'attachement, un binding ou encore un lien de
 composition à un niveau d'abstraction plus grand qu'au niveau méta-modèle.\\
 
 %-Def 
-Le meta meta modèle permet de se définir lui même de la même façon que pour le meta meta modèle objet, celà est rendu possible grace aux deux méta relations l'héritage et la composition qui sont les deux concepts essentiel des architectures à composant.
+
 
 \subsection{Analyse}
 Pour réaliser ce méta-méta-modèle, nous nous sommes aidé de l'exemple du
@@ -273,6 +273,8 @@ méta-méta-modèle des Langages Orientés Objets étudié en cours.
 
 Deux méta-entités ont été définis dans notre diagramme : Composant et
 Configuration et deux méta-relation : composant-de et meta-lien.
+
+Le meta meta modèle permet de se définir lui même de la même façon que pour le meta meta modèle objet, celà est rendu possible grace aux deux méta relations l'héritage et la composition qui sont les deux concepts essentiel des architectures à composant.
 
 La méta-relation composant-de représente la composition effective entre la
 notion de Composant et celle de Configuration. La relation méta-lien peut-être
@@ -283,7 +285,9 @@ Nous avons choisi pour ce méta-méta-modèle de ne pas inclure tous ce qui conc
 les ports, services et d'autres notions afin de ne pas surcharger le diagramme.
 Ces notions omises au niveau M2 telles que les ports et services sont des
 méta-entités et les liens tels que les attachements et les bindings sont des
-méta-relations.
+méta-relations. Ces méta entités utilisent la relation composant-de pour se greffer aux autres éléments.
+
+
 \subsection{Diagrammes}
 
 \begin{figure}[h]
