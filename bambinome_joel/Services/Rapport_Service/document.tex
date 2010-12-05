@@ -35,17 +35,75 @@
 \clearpage
 \section{Introduction}
 
+Dans le cadre du module Service dans lequel nous avons étudié tous les
+mécanismes et tous les éléments d'une architecture basée sur les services, nous
+avons dû mettre en place une SOA complet. Ce SOA doit permettre à un utilisateur
+de réserver plusieurs éléments pour un week-end pour deux personnes. Ces
+éléments à réserver sont le voyage jusqu'à la destination, deux tickets pour
+une manifestation, une chambre pour une nuit dans un hôtel et un diner dans un
+restaurant. Afin d'obtenir une SOA fonctionnelle, nous avons d'abord mis en
+place notre base de données et déterminé les tables nécessaires. Ensuite, nous
+avons fixé les services nécessaires pour le bon déroulement de l'application, du
+choix de l'utilisateur jusqu'aux différentes réservations. Une partie
+importante de cette architecture sont les interfaces. L'une
+d'entre-elle qui sera la façade de notre application pour l'utilisateur et
+l'autre qui sera le back office permettant la gestion des entrées dans les
+tables vous seront présentées. Enfin la génération du bon de réservation à
+partir des données choisies par l'utilisateur à l'aide d'une transformation
+XSLT permettra à celui-ci d'obtenir ce document en dans un fichier pdf.
+
+
 \section{Définition de la base de données}
+Pour cette architecture, nous avons utilisé une base de données comprenant les
+différentes tables nécessaires au bon fonctionnement de l'application. Notre
+base de données contient donc onze tables. 
+
+Tout d'abord, il y cinq tables qui contiennent toutes les entrées représentant
+les choix proposés à l'utilisateur. Ces tables sont les suivantes :\\
+
+\begin{itemize}
+  \item La table LOCALISATION qui permet de choisir un pays et une ville,
+  \item La table TYPE MANIFESTATION qui permet de choisir le type de
+  manifestation,
+  \item La table MANIFESTATION qui permet de choisir une manifestation d'un
+  certain type et qui a lieu dans le pays et la ville choisis,
+  \item La table HOTEL qui permet de choisir un hôtel présent dans la ville
+  choisie,
+  \item La table RESTAURANT qui permet de choisir un restaurant présent dans la
+  ville choisie.\\
+\end{itemize}
+ 
+Ensuite, cinq autres tables permettent l'enregistrement des différentes
+réservations effectuées par l'utilisateur. Ces tables sont les suivantes :\\
+
+\begin{itemize}
+  \item La table VOYAGE qui enregistre la réservation du voyage entre la ville
+  de départ et la ville d'arrivée,
+  \item La table RESERVATION MANIF qui enregistre la réservation des deux tickets
+  pour la manifestation choisie,
+  \item La table RESERVATION HOTEL qui enregistre la réservation d'une chambre pour
+  une nuit dans l'hôtel choisi,
+  \item La table RESERVATION RESTAURANT qui enregistre la réservation d'un
+  diner au restaurant,
+  \item La table RESERVATION qui enregistre toutes les données concernant les
+  réservations du week-end.\\
+\end{itemize}
+
+Enfin, la dernière table est la table CLIENT qui permet l'enregistrement du nom
+et du prénom de l'utilisateur voulant effectuer ce week-end.
+
 
 \section{Les différents services}
-\subsection{Lien avec l'interface}
-\subsection{Réservations}
+\subsection{La recherche des disponibilités}
+\subsection{Les réservations}
 
 \section{Les interfaces}
 \subsection{Définition de l'interface}
 \subsubsection{L'interface JSP}
 \subsubsection{GoogleMaps}
 \subsection{Le back office}
+
+\section{Génération du bon de réservation}
 
 \section{Conclusion}
 
