@@ -49,13 +49,12 @@ expliquée à travers l'exemple du système Client/Serveur. Enfin, nous
 détaillerons le meta-meta-modèle que nous avons pu définir pour notre HADL.
 
 
- 
 \section{Description du méta-modèle HADL}
 \subsection{Définitions}
 L'architecture logicielle à base de composants est consitutés de trois
 principaux éléments : des composants, des configurations et des connecteurs.\\
 
-\subsection{Eléments principaux}
+\subsubsection{Eléments principaux}
 
 % - Def Composant
  Un composant est une unité de composition qui spécifie une ou plusieurs
@@ -77,7 +76,7 @@ grâce à des Rôles (Rôles From et Rôles To) et une ''Glue'' qui représente 
 fonction modifiant les informations transférées. Il peut être comparé à un
 adaptateur entre deux composants.\\
 
-\subsection{Eléments secondaires}
+\subsubsection{Eléments secondaires}
 
 %-Def Interface 
 L'interface d'un composant, connecteur ou configuration est l'ensemble des
@@ -142,48 +141,48 @@ Dans notre application les ports sont identifiés par des identificateurs numér
 
 \subsection{Diagrammes}
 
-Le diagramme \ref{M2.1} est notre première version du meta modèle du HADL. On peut voir les différents concept et la façon dont ils s'articulent autour des configurations et composants. Dans ce diagramme les concepts sont représenté, mais sans le parrallèle avec le model objet, comme le fait que les ports sont des attributs des objets.
+Le diagramme \ref{Premier meta-modèle} est notre première version du meta modèle du HADL. On peut voir les différents concept et la façon dont ils s'articulent autour des configurations et composants. Dans ce diagramme les concepts sont représenté, mais sans le parrallèle avec le model objet, comme le fait que les ports sont des attributs des objets.
 
 \begin{figure}[h]
   		\centering
   		\includegraphics[height=14cm,width=15cm]{M2.jpg}
-  		\caption{M2.1}
-  		\label{Premier meta modèle}
+  		\caption{Premier meta-modèle}
+  		\label{Premier meta-modèle}
 \end{figure}
 
 
-Le diagramme \ref{M2.2} représente le meta modèle en objet. On peut y voir le pattern composite appliqué pour les configurations et composants, avec un niveau d'abstraction supérieur pour ces éléments reprenant l'ensemble des méthodes et attributs commune.
+Le diagramme \ref{Meta modèle-objet} représente le meta modèle en objet. On peut y voir le pattern composite appliqué pour les configurations et composants, avec un niveau d'abstraction supérieur pour ces éléments reprenant l'ensemble des méthodes et attributs commune.
 
 \begin{figure}[h]
   		\centering
   		\includegraphics[height=14cm,width=15cm]{m2impl.jpg}
-  		\caption{M2.2}
-  		\label{Meta modèle objet}
+  		\caption{Meta modèle-objet}
+  		\label{Meta modèle-objet}
 \end{figure}
 
-Ce diagramme \ref{M2.2} montre aussi la représentation des ports qui sont en fait des valeurs enregistré dans une map pour les ports de sortie et pour les ports d'entrée un mapping permettant d'appeler les services des composants ou transferer les appels des ports configuration vers composants. La méthode appelPortIn sert pour l'invocation d'un service correspondant(mappé) sur un port numéroté avec des paramètres. Cette même méthode préviens l'observateur de son éxécution, en donnant le nom de l'élément et le nom de la méthode éxécuté, l'observateur ensuite regarde si cette notification corresponds à un binding ou un attachement. 
+
+Ce diagramme \ref{Meta modèle-objet} montre aussi la représentation des ports qui sont en fait des valeurs enregistré dans une map pour les ports de sortie et pour les ports d'entrée un mapping permettant d'appeler les services des composants ou transferer les appels des ports configuration vers composants. La méthode appelPortIn sert pour l'invocation d'un service correspondant(mappé) sur un port numéroté avec des paramètres. Cette même méthode préviens l'observateur de son éxécution, en donnant le nom de l'élément et le nom de la méthode éxécuté, l'observateur ensuite regarde si cette notification corresponds à un binding ou un attachement. 
 
 On peut aussi voir que tous les éléments de l'architecture hérite d'une abastraction objet hadl, qui contient l'attribut commun à tous les autres, un nom, qui permet de les identifier et de faire fonctionner l'architecture. 
 
 \begin{figure}[h]
   		\centering
   		\includegraphics[height=14cm,width=15cm]{comimpl.jpg}
-  		\caption{M2.3}
+  		\caption{Représentation des liens}
   		\label{Représentation des liens}
 \end{figure}
 
-Sur le diagramme \ref{M2.3} on peut voir la représentation des éléments de type lien, on peut y voir l'importance des noms qui permettent de définir les échanges entre composant avec connecteur. Ces noms servent à la configuration pour l'orchestration de son fonctionnement, et sa reconfiguration éventuel en changeant un composant ou connecteur.
+Sur le diagramme \ref{Représentation des liens} on peut voir la représentation des éléments de type lien, on peut y voir l'importance des noms qui permettent de définir les échanges entre composant avec connecteur. Ces noms servent à la configuration pour l'orchestration de son fonctionnement, et sa reconfiguration éventuel en changeant un composant ou connecteur.
 
-Enfin le diagramme \ref{M2.4} on peut y voir les classes permettants de configurer les composants, le mapping entre port et service d'un composant, et le mapping entrée sortie pour les ports, l'appel d'un service via un port écrira le résultat sur la sortie correspondante.
+Enfin le diagramme \ref{Représentation des Ports et Services} on peut y voir les classes permettants de configurer les composants, le mapping entre port et service d'un composant, et le mapping entrée sortie pour les ports, l'appel d'un service via un port écrira le résultat sur la sortie correspondante.
 
 
 \begin{figure}[h]
   		\centering
   		\includegraphics[height=14cm,width=15cm]{param.jpg}
-  		\caption{M2.3}
-  		\label{Représentation des liens}
+  		\caption{Représentation des Ports et Services}
+  		\label{Représentation des Ports et Services}
 \end{figure}
-
 
 
 \clearpage
