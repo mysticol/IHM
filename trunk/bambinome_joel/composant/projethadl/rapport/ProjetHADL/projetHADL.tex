@@ -130,7 +130,7 @@ Comme le fait que composant, connecteur ou configuration seraient des classes pu
 
 Les configurations sont un assemblage de composant et de connecteur, une composition de ces éléments dans la configuration. De la même manière que ces éléments sont des classes, nous avons considéré que les liens étaient aussi important pour eux aussi être des classes. Par conséquent la classe configuration est aussi composé de lien.
 
-La classe configuration est au centre de toute architecture puisque c'est elle qui contient la façon dont les composants interragissent entre eux. La classe configuration doit intercepter tout ce qui entre et sort des composants pour organiser le routage entre composant des différents messages, c'est une sorte de chef d'orchestre. 
+La classe configuration est au centre de toute architecture puisque c'est elle qui contient la façon dont les composants interragissent entre eux. La classe configuration doit intercepter tout ce qui entre et sort des composants pour organiser le routage entre composant des différents messages, c'est une sorte de chef d'orchestre. Pour que ce soit le cas tout les éléments (connecteur, configuration et composant) seront des entités observable, et les configurations seront observateur de manière à observer tous les éléments qu'une configuration contient.
 
 Configuration et composant sont des éléments très similaires ils disposent d'éléments commun comme des ports, propriétés et contraintes. Les configurations sont composé de composant et partagent des éléments communs, nous avons reconnu le pattern composite, comme nous le détaillerons au travers des diagrammes.
 
@@ -161,7 +161,9 @@ Le diagramme \ref{M2.2} représente le meta modèle en objet. On peut y voir le 
   		\label{Meta modèle objet}
 \end{figure}
 
-Ce diagramme \ref{M2.2} montre aussi la représentation des ports qui sont en fait des valeurs enregistré dans une map pour les ports de sortie et pour les ports d'entrée un mapping permettant d'appeler les services des composants ou transferer les appels des ports configuration vers composants. La méthode appelPortIn sert pour l'invocation d'un service correspondant(mappé) sur un port numéroté avec des paramètres. On peut aussi voir que tous les éléments de l'architecture hérite d'une abastraction objet hadl, qui contient l'attribut commun à tous les autres, un nom, qui permet de les identifier et de faire fonctionner l'architecture. 
+Ce diagramme \ref{M2.2} montre aussi la représentation des ports qui sont en fait des valeurs enregistré dans une map pour les ports de sortie et pour les ports d'entrée un mapping permettant d'appeler les services des composants ou transferer les appels des ports configuration vers composants. La méthode appelPortIn sert pour l'invocation d'un service correspondant(mappé) sur un port numéroté avec des paramètres. Cette même méthode préviens l'observateur de son éxécution, en donnant le nom de l'élément et le nom de la méthode éxécuté, l'observateur ensuite regarde si cette notification corresponds à un binding ou un attachement. 
+
+On peut aussi voir que tous les éléments de l'architecture hérite d'une abastraction objet hadl, qui contient l'attribut commun à tous les autres, un nom, qui permet de les identifier et de faire fonctionner l'architecture. 
 
 \begin{figure}[h]
   		\centering
@@ -171,7 +173,6 @@ Ce diagramme \ref{M2.2} montre aussi la représentation des ports qui sont en fa
 \end{figure}
 
 Sur le diagramme \ref{M2.3} on peut voir la représentation des éléments de type lien, on peut y voir l'importance des noms qui permettent de définir les échanges entre composant avec connecteur. Ces noms servent à la configuration pour l'orchestration de son fonctionnement, et sa reconfiguration éventuel en changeant un composant ou connecteur.
-
 
 Enfin le diagramme \ref{M2.4} on peut y voir les classes permettants de configurer les composants, le mapping entre port et service d'un composant, et le mapping entrée sortie pour les ports, l'appel d'un service via un port écrira le résultat sur la sortie correspondante.
 
