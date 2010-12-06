@@ -103,26 +103,45 @@ et du prénom de l'utilisateur voulant effectuer ce week-end.
 \subsubsection{GoogleMaps}
 \subsection{Le back office}
 
-Principe de fonctionnement role du backoffice
-gestion fine de la bd
-pas d'aspect service dans le bacj office
+Pour ce projet nous devions aussi dévelloper une application dites de backoffice. Le role d'une application de ce type est de pouvoir administrer finement toutes les tables de la base de données, permettant de voir les enregistrement existant et d'en insérer de nouveau. 
 
-approche: utilisation de symphony
+Nous avions plusieurs piste pour le devellopement, nous avions étudié la possibilité de tout générer grâce à Symphony qui permet de générer des applis backoffice en php, seulement nous n'avons pas pu le mettre en place, et comme nous ne savions pas si nous aurions pu le déployer à la fac. Nous avons donc choisi de dévelloper notre application en java classique en swing comme le suggérait le sujet.
 
-utilisation de swing et hibernate parce que facile
+Develloper une tel application n'est pas spécialement compliqué, mais ne contient aucun aspects liés au module de service, aucune technologie vu durant le module n'a servit pour cette partie du projet.
 
-\subsubsection{architecture}
+Nous avons donc finalement develloper notre application en swing avec l'aide du framework Hibernate. 
 
-swing hibernate
-bean 
-fonctionnement
+
+\subsubsection{Architecture}
+
+Avant de nous lancer dans le developpement de ce module du projet nous avons défini son architecture en fonction des outils utilisés, le schéma \ref{backoffice} 
+
+\begin{figure}[h]
+  		\centering
+  		\includegraphics[height=14cm,width=15cm]{backoffice.jpg}
+  		\caption{backoffice}
+  		\label{Architecture du backoffice}
+\end{figure}
+
+Le diagramme \ref{backoffice} montre les interractions basiques entre tout les éléments, on voit l'utilisateur qui interragit avec l'interface en swing. L'interface qui interroge la couche hibernate, couche qui gére la liaison avec la base de donnée, couche qui renvoi des classes dites beans représentant les enregistrements dans la base. Cette architecture et l'utilsation de hibernate nous à permis de gérer la base de donnée directement en java sans avoir à écrire de SQL. 
+
+Pour mieux comprendre cette architecture il faut quelques explications sur hibernate et la façon dont nous l'avons mis en oeuvre.
 
 \subsubsection{hibernate}
-Utilisation d'hibernate avec génération automatique de certain élément 
-principe d'hibernate
+
+Hibernate est un framework qui permet un mapping entre objet et base de données, de manière à ce que les tables et classes soient en relation et que les enregistrements des tables existent sous la forme d'instances de classe. De fait une modification sur une instance est répercuté sur la base de donnée de façon très simple, celà permet de facilement faire abstraction de la base et du langage associé.
+
+Pour mettre en place ce framework dans notre module, nous nous sommes servit de netbean et des fonctions intégrée. Grâce au plugin intégré dans netbean nous avons pu générer de façon automatique les classes représentant les tables, ce qui nous fit gagner du temps, ces classes représentants les tables sont appellés Entity ou beans. La génération à simplement eut besoin de connaitre les identifiants de la BD et sa localisation, le reste à été automatique. Après nous avons du écrire les quelques méthodes qui permettent de récupérer les objets de la base de donnée et faire les actions dessus, comme la création, la modification et suppresion, ces fonctions sont contenu dans un objet nommé Session. Nous avons develloper ces fonctions sans écrire une seule ligne de SQL, le seul sql qui fut écrit le fut pour la création initiale de la base de données.
+
+Une fois l'objet session défini ainsi que les beans, nous avons utilisé la bibliothèque swing pour les affichers et les modifier.
 
 \subsubsection{Swing}
+
+
+
 Utilisation de swing tout ça
+
+
 
 tjable organiser les donnée
 Interfacequi évolue
