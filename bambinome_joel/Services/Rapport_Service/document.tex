@@ -118,9 +118,9 @@ Avant de nous lancer dans le developpement de ce module du projet nous avons dé
 
 \begin{figure}[h]
   		\centering
-  		\includegraphics[height=14cm,width=15cm]{backoffice.jpg}
-  		\caption{backoffice}
-  		\label{Architecture du backoffice}
+  		\includegraphics{backoffice.jpg}
+  		\caption{Architecture du backoffice}
+  		\label{backoffice}
 \end{figure}
 
 Le diagramme \ref{backoffice} montre les interractions basiques entre tout les éléments, on voit l'utilisateur qui interragit avec l'interface en swing. L'interface qui interroge la couche hibernate, couche qui gére la liaison avec la base de donnée, couche qui renvoi des classes dites beans représentant les enregistrements dans la base. Cette architecture et l'utilsation de hibernate nous à permis de gérer la base de donnée directement en java sans avoir à écrire de SQL. 
@@ -137,16 +137,12 @@ Une fois l'objet session défini ainsi que les beans, nous avons utilisé la bib
 
 \subsubsection{Swing}
 
+L'utilisation de swing dans notre application est assez basique, un simple affichage d'un panel type formulaire pour remplir les entités pour les tables, ou les modifier. Ensuite simplement un objet JTable pour l'affichage de l'ensemble des enregistrements de la table. Le panel formulaire évolue au fur et à mesure en changeant la table que l'on souhaite afficher. 
 
+Une partie des formulaires de l'application ont été développé grâce au plug in inclus dans netbean. Ce projet à été aussi l'occasion d'utiliser netbean en tant que IDE du début à la fin et pour tous les aspects.
 
-Utilisation de swing tout ça
+Le but était de faire quelque chose de simple et pratique, assez peu de fioritures inutile, tout dans la fonctionnalité. C'est pour celà qu'il y a le moins de fenêtre possible, pas de menu inutile, le tout très simple.
 
-
-
-tjable organiser les donnée
-Interfacequi évolue
-le moins possible de vue
-faire simple.
 
 \section{Génération du bon de réservation}
 Une fois toute l'architecture mise en place et les réservations effectuées, il
@@ -161,12 +157,9 @@ d'un fichier XML et d'un fichier XSL-FO.
 
 \section{Conclusion}
 
-Utilisation de netbean pas particulièrement très agréable. 
-Projet très ambitieux pour un projet de module avec trop d'aspect étranger au module 
-Pas assez de temps
-Une partie du projet sur lequel on ne peut avoir aucun support
-prof de merde
-gros connard
+
+Le projet était trop ambitieux pour le temps qu'ils nous à été imparti, nous avons été jusqu'au bout mais pas sans nuit blanche et difficultés. Ce projet a été aussi l'occasion pour nous d'utiliser netbean en tant qu'IDE pour le développement de tous les aspects de l'application, et ça convaint de retourner à l'IDE eclipse. Certain aspect totalement étranger au module ont prit du temps inutilement, comme le back office ne contenant aucun aspect "service".
+
 
 
 \end{document}
