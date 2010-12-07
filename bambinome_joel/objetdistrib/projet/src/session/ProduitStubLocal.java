@@ -18,7 +18,7 @@ public class ProduitStubLocal implements ProduitStubBackLocal {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ProduitStub> getList() {
-		Query query = em.createQuery("from produitstub ");
+		Query query = em.createQuery("from ProduitStub ");
 
 		return query.getResultList();
 
