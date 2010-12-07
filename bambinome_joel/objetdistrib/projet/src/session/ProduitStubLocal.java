@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import entity.ProduitKey;
 import entity.ProduitStub;
 
 @Stateless
@@ -25,21 +26,26 @@ public class ProduitStubLocal implements ProduitStubBackLocal {
 	}
 
 	@Override
-	public ProduitStub getById(int id) {
+	public ProduitStub getById(ProduitKey id) {
 
 		return em.find(ProduitStub.class, id);
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(ProduitKey id) {
 		em.remove(em.find(ProduitStub.class, id));
 
 	}
 
 	@Override
 	public int createEntity(ProduitStub enti) {
+		try{
 			em.persist(enti);
-		return enti.getId();
+		}catch (Exception e) {
+			return 0;
+		}
+			
+		return 1;
 	}
 
 	@Override
@@ -50,9 +56,16 @@ public class ProduitStubLocal implements ProduitStubBackLocal {
 		prd.setModele(modele);
 		prd.setMarque(marque);
 		prd.setFournisseur(fournisseur);
+		try{
 		em.persist(prd);
+		}catch (Exception e) {
+			return 0;
+		}
 		
-		return prd.getId();
+		
+		return 1;
 	}
+
+
 
 }
