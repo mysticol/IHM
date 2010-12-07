@@ -7,6 +7,8 @@
 \usepackage[unicode=true,pdftex,colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black]{hyperref}
 \usepackage{natbib}
 \usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
 
 \parindent 0.8cm
 %\setlength{\parskip}{0.5em plus 0.2em minus 0.2em}
@@ -23,7 +25,6 @@
 /CreationDate (D:20100329212218)
 }
 \fi
-
 
 \begin{document}
 
@@ -92,18 +93,51 @@ réservations effectuées par l'utilisateur. Ces tables sont les suivantes :\\
 Enfin, la dernière table est la table CLIENT qui permet l'enregistrement du nom
 et du prénom de l'utilisateur voulant effectuer ce week-end.
 
-
-\section{Les différents services}
-\subsection{La recherche des disponibilités}
-\subsection{Les réservations}
-
 \section{Les interfaces}
+Pour ce projet, nous avons dû définir deux interfaces. L'une d'entre elle est
+une interface Web permettant à un utilisateur de faire des recherches et des
+réservations. L'autre, permettra de gérer toutes la base de données définie
+précédemment.
+
 \subsection{Définition de l'interface}
-\subsubsection{L'interface JSP}
+\subsubsection{L'interface Web}
+Dans cette interface, nous avons gérer les intéractions avec l'utilisateur de
+façon dynamique en développement une application Web sous GlassFish ESB. En
+effet, au fur et à mesure des choix effectués ou des champs remplis parcelui-ci, l'interface se met à jour.\\
+
+Tout d'abord, cinq champs sont à remplir obligatoirement par l'utilisateur.
+Ceux-ci sont son nom, son prénom, la date de la manifestation, le pays et la
+ville de départ. 
+
+Une fois ces champs remplis, l'utilisateur doit définir le lieu de la
+manifestation. Pour cela, il doit dans un premier temps choisir un pays dans une
+liste de pays d'arrivée puis faire un choix dans la liste des villes d'arrivée
+correspondantes.
+
+Ensuite, le client devra cliquer sur un bouton permettant d'obtenir lesdifférents types de manifestations disponibles à cette date et en ce lieu.Lorsque ce type de manifestation est séléctionné, il peut alors choisir dans deslistes la manifestation à laquelle il veut participer, le restaurant où il veutdîner et l'hôtel où il veut dormir.\\
+
+Lorsque l'utilisateur a séléctionné les différents éléments nécessaires, il
+peut alors en cliquant sur un bouton avoir une géolocalisation de la
+manifestation, du restaurant et de l'hôtel grâce à GoogleMaps. La technologie
+permettant cet affichage sera décrit dans la partie suivante.
+
 \subsubsection{GoogleMaps}
+Pour l'affichage de cette géolocalisation, nous utilisons Google Static Maps
+API. Cette API permet d'afficher une image GoogleMaps à l'aide d'une URL fixe
+comme par exemple :\\
+\begin{verbatim}
+http://maps.google.com/maps/api/staticmap?center=Williamsburg,
+Brooklyn,NY&zoom=13&size=400x400&markers=color:blue|label
+:S|11211|11206|11222&sensor=true_or_false\end{verbatim}
+
+Nous avons donc dû concaténer plusieurs chaînes de caractères comprenant les
+données nécessaire à la formation de cette URL. De plus, nous avons défini danscelle-ci des marqueurs spécifiques afin de bien différencier les adresses de lamanifestation, du restaurant et de l'hôtel.
 \subsection{Le back office}
 
-Pour ce projet nous devions aussi dévelloper une application dites de backoffice. Le role d'une application de ce type est de pouvoir administrer finement toutes les tables de la base de données, permettant de voir les enregistrement existant et d'en insérer de nouveau. 
+Pour ce projet nous devions aussi dévelloper une application dites de
+backoffice. Le role d'une application de ce type est de pouvoir administrer
+finement toutes les tables de la base de données, permettant de voir les
+enregistrement existant et d'en insérer de nouveau.
 
 Nous avions plusieurs piste pour le devellopement, nous avions étudié la possibilité de tout générer grâce à Symphony qui permet de générer des applis backoffice en php, seulement nous n'avons pas pu le mettre en place, et comme nous ne savions pas si nous aurions pu le déployer à la fac. Nous avons donc choisi de dévelloper notre application en java classique en swing comme le suggérait le sujet.
 
@@ -144,21 +178,62 @@ Une partie des formulaires de l'application ont été développé grâce au plug
 Le but était de faire quelque chose de simple et pratique, assez peu de fioritures inutile, tout dans la fonctionnalité. C'est pour celà qu'il y a le moins de fenêtre possible, pas de menu inutile, le tout très simple.
 
 
+
+\section{Les différents services}
+Pour notre application, nous avons donc besoin de deux types de services. L'un
+qui permet l'intéraction dynamique avec l'utilisateur en fonction de ses
+choix. La seconde qui permet le stockage des différentes réservations.
+\subsection{Le lien avec l'interface}
+Pour ce premier service, nous avons mis en place un module BPEL qui en fonction
+des données rentrées par l'utilisateur va aller chercher les informations
+nécessaires dans les tables de notre bases de données. 
+
+Par exemple, lorsque l'utilisateur séléctionne un pays, une requête va être
+effectuée sur notre table LOCALISATION pour obtenir la liste des villes
+correspondantes à ce pays.\\
+Dans ce module BPEL, tout consiste donc à tester si les données nécessaires
+pour en obtenir une autre sont remplis puis à éxécuter une requête de type FIND
+sur les tables.
+
+\subsection{Les réservations}
+En ce qui concerne les réservations, nous avons défini d'autre modules BPEL
+permettant d'enregistrer dans nos tables les données liées à celles-ci.
+
+Ce service est appelé lorsque l'utilisateur clique sur le bouton ''Valider''
+du formulaire.\\ 
+
+Dans les BPEL, on vérifie dans un premier temps si les ID fournis sont valides
+puis si il reste encore des places pour la manifestation, le restaurant et
+l'hôtel. Si toutes les vérifications sont validées, des requêtes d'insertion
+dans les tables sont alors éxécutées.
+
 \section{Génération du bon de réservation}
 Une fois toute l'architecture mise en place et les réservations effectuées, il
 ne restait plus qu'à produire un bon de réservation dans un fichier au format
-pdf.
+PDF.\\
+
 Pour cela, nous avons d'abord produit un fichier XML à partir de toutes les
-données récupérées à partir du formulaire à l'aide de la librairie JDOM en
-Java. Ensuite, pour aboutir à un fichier pdf, nous avons utilisé le formateur
-Apache FOP(Formatting Objects Processor) qui permet d'en obtenir un à l'aide
-d'un fichier XML et d'un fichier XSL-FO.
+données récupérées dans le formulaire à l'aide de la librairie JDOM en
+Java. 
+
+Ensuite, nous avons utilisé le formateur Apache FOP(Formatting Objects
+Processor) qui permet d'obtenir un fichier PDF à l'aide d'un fichier XML et d'un
+fichier XSL-FO. Un fichier XSL-FO reste un fichier de transformation XSLT mais
+avec des balises "fo" qui permettent d'obtenir la structure d'un fichier PDF.
+Une fois le fichier XML créé dans notre code Java, nous l'enregistrons dans un
+dossier spécifique où se trouve notre fichier XSL.
+
+Enfin, nous éxécutons la commande nécessaire pour utiliser FOP dans le code Java
+pour créer le bon de commande en sortie.
 
 
 \section{Conclusion}
 
-
-Le projet était trop ambitieux pour le temps qu'ils nous à été imparti, nous avons été jusqu'au bout mais pas sans nuit blanche et difficultés. Ce projet a été aussi l'occasion pour nous d'utiliser netbean en tant qu'IDE pour le développement de tous les aspects de l'application, et ça convaint de retourner à l'IDE eclipse. Certain aspect totalement étranger au module ont prit du temps inutilement, comme le back office ne contenant aucun aspect "service".
+Ce projet était intéressant du point de vue où il nous permettait de revoir les
+différentes technologies vues tout au long du semestre. Cependant, celui-ci
+était trop ambitieux par rapport au temps qui nous a été imparti. Nous avons
+réussi à produire une application fonctionnelle mais pas sans nuits blanches et
+difficultés. Ce projet a été aussi l'occasion pour nous d'utiliser Netbeans entant qu'IDE pour le développement de tous les aspects de l'application et celaconvaint de retourner à l'IDE Eclipse. De plus, nous avons rencontré denombreux problèmes dû à OpenESB qui nous ont demandé énormément de temps.Enfin, certains aspects totalement étrangers au module ont pris du temps, commele back office ne contenant aucun aspect "service" et le lien avec le serviceGoogleMaps.
 
 
 
