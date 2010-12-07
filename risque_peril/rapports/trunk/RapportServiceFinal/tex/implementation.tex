@@ -10,6 +10,35 @@ Pour l'image Google Map, elle a été créé à partir du service
 
 \section{Web Services}
 
+	\subsection{InterfaceManager}
+	
+		Ce service est un BPEL simple, qui effectue des requetes FIND dans les tables
+		de type Information (figure\ref{bdd}) en fonction des champ remplie dans la
+		requete.
+	
+	\subsection{ReservationManager}
+
+		Ce service est une application composite de BPEL, qui comprend :
+		\begin{itemize}
+		  \item ReservationManager : BPEL centrale, il permet de coordonnée tout les
+		  autres BPEL et qui enregistre la reservation des reservations.
+		  \item ClientManager : BPEL qui vérifie l'existance d'un client et qui
+		  permet de récupéré son Id en partant de ses nom et prenom.
+		  \item ReservManif : BPEL qui vérifie qu'une manifestation existe et à encors
+		  de la place. Et qui enregistre une reservation pour cette manifestation.
+		  \item ReservHotel : BPEL qui vérifie qu'un hotel existe et a encors de la
+		  place a une date donnée. Et qui enregistre une reservation pour cet hotel.
+		  \item ReservRestau : BPEL qui vérifie qu'un restaurant existe et a encors de
+		  la place a une date donnée. Et qui enregistre une reservation pour ce
+		  restaurant.
+		\end{itemize}
+		
+		les vérification sont effectué dans toutes les tables, et les reservation sont
+		enregistrées dans les tables de type Réservation (figure\ref{bdd}).
+		
+		Si une reservation est un succès ReservationManager renvoie 'OK' a l'Interface
+		sinon un message d'erreur précisais la ou il y a eu un problème.
+
 \section{BDD Manager}
 
 \clearpage
