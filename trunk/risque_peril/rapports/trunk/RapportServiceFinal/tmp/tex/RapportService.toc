@@ -8,7 +8,9 @@
 \contentsline {subsection}{\numberline {1.4.1}Fonctionnement}{4}{subsection.1.4.1}
 \contentsline {subsection}{\numberline {1.4.2}Format des donn\IeC {\'e}es}{4}{subsection.1.4.2}
 \contentsline {subsection}{\numberline {1.4.3}D\IeC {\'e}pendances}{5}{subsection.1.4.3}
-\contentsline {section}{\numberline {1.5}ReservationManager}{5}{section.1.5}
-\contentsline {subsection}{\numberline {1.5.1}Fonctionnement}{5}{subsection.1.5.1}
-\contentsline {subsection}{\numberline {1.5.2}Format des donn\IeC {\'e}es}{5}{subsection.1.5.2}
-\contentsline {section}{\numberline {1.6}BDDManager}{5}{section.1.6}
+\contentsline {section}{\numberline {1.5}GoogleMapAdapter}{5}{section.1.5}
+\contentsline {section}{\numberline {1.6}ReservationManager}{5}{section.1.6}
+\contentsline {subsection}{\numberline {1.6.1}Fonctionnement}{5}{subsection.1.6.1}
+\contentsline {subsection}{\numberline {1.6.2}Format des donn\IeC {\'e}es}{5}{subsection.1.6.2}
+\contentsline {section}{\numberline {1.7}TransformateurXSLT}{6}{section.1.7}
+\contentsline {section}{\numberline {1.8}BDDManager}{6}{section.1.8}
