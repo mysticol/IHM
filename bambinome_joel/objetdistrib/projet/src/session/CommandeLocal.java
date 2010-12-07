@@ -1,37 +1,56 @@
 package session;
 
-import java.io.Serializable;
+
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
+import entity.Client;
 import entity.Commande;
-
+import entity.ProduitStub;
 
 @Stateless
-public class CommandeLocal implements CommandeBackLocal{
+public class CommandeLocal implements CommandeBackLocal {
 
 	@PersistenceContext
 	private EntityManager em;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Commande> getList() {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = em.createQuery("from Commande ");
+
+		return query.getResultList();
+
 	}
 
 	@Override
 	public Commande getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Commande.class, id);
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		em.remove(em.find(Commande.class, id));
+
+	}
+
+	@Override
+	public int createEntity(Commande enti) {
+		em.persist(enti);
+		return enti.getId();
 	}
 	
+	public int createCommande(Client cl, HashMap<ProduitStub, Long> contenu){
+		Commande cmd= new Commande();
+		cmd.setCl(cl);
+		cmd.setContenu(contenu);		
+		em.persist(cmd);
+		return cmd.getId();
+	}
+
 }

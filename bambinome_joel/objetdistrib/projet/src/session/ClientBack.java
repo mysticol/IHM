@@ -51,4 +51,10 @@ public class ClientBack implements ClientBackLocal {
 		return cl.getId();
 	}
 
+	@Override
+	public int createEntity(Client enti) {
+		em.persist(enti);
+		return enti.getId();
+	}
+
 }
