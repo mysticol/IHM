@@ -36,15 +36,15 @@
 		
 		Une fois toute les informations remplies, il est possible de visualiser les
 		différentes adresses sur une carte, via un service GoogleMap (figure
-		\ref{overview}, flèches 5 et 6)
+		\ref{overview}, flèches 5 et 7)
 		
 		A la fin, le Client pourra valider sa réservation. Cela activera le service
-		ReservationManager (figure \ref{overview}, flèches 7 et 9). Il enregistrera
+		ReservationManager (figure \ref{overview}, flèches 8 et 10). Il enregistrera
 		pour finir la réservation dans la Base de donnée, si possible, et retournera
 		le résultat.
 		
 		Pour finir si la réservation est un succès, un résumé de celle-ci sera
-		sauvegardé au format pdf (figure \ref{overview}, flèche 10).
+		sauvegardé au format pdf (figure \ref{overview}, flèche 11).
 	
 	\section{InterfaceManager}
 	
@@ -93,20 +93,27 @@
 			Manifestation qui auront lieu dans cette Ville a cette Date et des Hotels et
 			Restaurants de cette ville.
 		
+	\section{GoogleMapAdapter}	
+		
+		Grâce aux adresses des différents éléments de la réservation et en les
+		envoyant(figure\ref{overview}, flèche 6) au service GoogleMap on
+		recupère(figure\ref{overview}, flèche 7) une image que l'on ajoute au
+		formulaire.
+	
 	\section{ReservationManager}	
 	
 		\subsection{Fonctionnement}
 	
 			Ce service sert à enregistrer, dans la base de données, les réservations
 			choisis par le client. On lui envoie les Id de chaque élément à
-			reserver(figure\ref{overview}, flèche 7), il vérifie que les reservations
+			reserver(figure\ref{overview}, flèche 8), il vérifie que les reservations
 			sont possible et si tout est OK il les éffectue(figure\ref{overview}, flèche
-			8). Enfin il retourne un message confimant ou non la
-			reservation(figure\ref{overview}, flèche 9).
+			9). Enfin il retourne un message confimant ou non la
+			reservation(figure\ref{overview}, flèche 10).
 	
 		\subsection{Format des données}
 		
-			En entrée (figure\ref{overview}, flèche 7):
+			En entrée (figure\ref{overview}, flèche 8):
 			\begin{itemize}
 			  \item Nom
 			  \item Prenom
@@ -117,7 +124,12 @@
 			  d'Arrivée)\\
 			\end{itemize}
 	
-			En sortie une simple chaine de caractère.
+			En sortie (figure\ref{overview}, flèche 10) une simple chaine de caractère.
+	
+	\section{TransformateurXSLT}
+	
+		L'interface envoie un fichier XML qui va etre transformer en fichier pdf grâce
+		à un fichier xsl decrivant la transformation. 
 	
 	\section{BDDManager}
 		
