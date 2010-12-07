@@ -96,5 +96,6 @@
 	<classpathentry kind="var" path="JBOSS_HOME/client/wsdl4j.jar"/>
 	<classpathentry kind="var" path="JBOSS_HOME/client/wstx.jar"/>
 	<classpathentry kind="var" path="JBOSS_HOME/client/xmlsec.jar"/>
+	<classpathentry kind="lib" path="/mnt/cle/workspace/objetdistrib_projet/objdistr-interfaces-1.0-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

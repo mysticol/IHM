@@ -16,47 +16,47 @@ public class ProduitStub implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;
-	private String modele;
-	private String marque; 
 	
-	private String fournisseur;
+
+	
+	
+	private ProduitKey key;
+
+	
+	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	public int getId() {
-		return id;
+	public ProduitKey getKey() {
+		return key;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setKey(ProduitKey key) {
+		this.key = key;
 	}
-
 	public ProduitStub() {
 
 	}
 	public String getModele() {
-		return modele;
+		return key.getModele();
 	}
 	public void setModele(String modele) {
-		this.modele = modele;
+		this.key.setModele(modele);
 	}
 	public String getMarque() {
-		return marque;
+		return key.getMarque();
 	}
 	public void setMarque(String marque) {
-		this.marque = marque;
+		this.key.setMarque(marque);
 	}
 	public String getFournisseur() {
-		return fournisseur;
+		return key.getFournisseur();
 	}
 	public void setFournisseur(String fournisseur) {
-		this.fournisseur = fournisseur;
+		this.key.setFournisseur(fournisseur);
 	}
-	public ProduitStub(int id, String modele, String marque, String fournisseur) {
-		this.id = id;
-		this.modele = modele;
-		this.marque = marque;
-		this.fournisseur = fournisseur;
+	public ProduitStub( String modele, String marque, String fournisseur) {
+	
+		key = new ProduitKey(modele, marque, fournisseur);
+	
 	}
 	
 	
