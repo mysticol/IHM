@@ -57,7 +57,7 @@ XSLT permettra à celui-ci d'obtenir ce document en dans un fichier pdf.
 \section{Définition de la base de données}
 Pour cette architecture, nous avons utilisé une base de données comprenant les
 différentes tables nécessaires au bon fonctionnement de l'application. Notre
-base de données contient donc onze tables. 
+base de données contient donc onze tables.
 
 Tout d'abord, il y cinq tables qui contiennent toutes les entrées représentant
 les choix proposés à l'utilisateur. Ces tables sont les suivantes :\\
@@ -130,52 +130,97 @@ http://maps.google.com/maps/api/staticmap?center=Williamsburg,
 Brooklyn,NY&zoom=13&size=400x400&markers=color:blue|label
 :S|11211|11206|11222&sensor=true_or_false\end{verbatim}
 
+Ce qui donne à l'affichage :
+
+\begin{figure}[h]
+  		\centering
+  		\includegraphics[height=10cm,width=10cm]{staticmap.png}
+  		\caption{Exemple de rendu  Google Static Maps API}
+  		\label{googlemaps}
+\end{figure}
+
 Nous avons donc dû concaténer plusieurs chaînes de caractères comprenant les
-données nécessaire à la formation de cette URL. De plus, nous avons défini danscelle-ci des marqueurs spécifiques afin de bien différencier les adresses de lamanifestation, du restaurant et de l'hôtel.
+données nécessaire à la formation de cette URL. De plus, nous avons défini danscelle-ci des marqueurs spécifiques afin de bien différencier les adresses de lamanifestation, du restaurant et de l'hôtel.\clearpage
 \subsection{Le back office}
 
-Pour ce projet nous devions aussi dévelloper une application dites de
-backoffice. Le role d'une application de ce type est de pouvoir administrer
-finement toutes les tables de la base de données, permettant de voir les
-enregistrement existant et d'en insérer de nouveau.
+Pour ce projet nous devions aussi développer une application dites de
+backoffice. Le rôle d'une application de ce type est de pouvoir administrer
+finement toutes les tables de la base de données permettant de voir les
+enregistrements existants et d'en insérer de nouveaux.
 
-Nous avions plusieurs piste pour le devellopement, nous avions étudié la possibilité de tout générer grâce à Symphony qui permet de générer des applis backoffice en php, seulement nous n'avons pas pu le mettre en place, et comme nous ne savions pas si nous aurions pu le déployer à la fac. Nous avons donc choisi de dévelloper notre application en java classique en swing comme le suggérait le sujet.
+Nous avions plusieurs pistes pour le développement. Tout d'abord, nous avions
+étudié la possibilité de tout générer grâce à Symphony qui permet de générer des
+applications backoffice en php. Cependant, nous n'avons pas pu le mettre en
+place. Une des raisons supplémentaires est que nous ne savions pas si nous
+aurions pu le déployer à la fac. Nous avons donc choisi de développer notre
+application en Java classique en Swing comme le suggérait le sujet.
 
-Develloper une tel application n'est pas spécialement compliqué, mais ne contient aucun aspects liés au module de service, aucune technologie vu durant le module n'a servit pour cette partie du projet.
+Développer une telle application n'est pas spécialement compliqué lorsqu'on
+connait le fonctionnement des technologies nécessaires. Cependant, ce
+backoffice ne contient aucun aspects liés au module de service, aucunetechnologies vu durant le module n'a été utilisées pour cette partie du projet.
 
-Nous avons donc finalement develloper notre application en swing avec l'aide du framework Hibernate. 
+Nous avons donc finalement développer notre application en Swing avec l'aide du
+framework Hibernate.
 
 
 \subsubsection{Architecture}
 
-Avant de nous lancer dans le developpement de ce module du projet nous avons défini son architecture en fonction des outils utilisés, le schéma \ref{backoffice} 
+Avant de nous lancer dans le développement de ce module du projet, nous avons
+défini son architecture en fonction des outils utilisés. Le schéma
+\ref{backoffice} montre les choix effectués.
 
 \begin{figure}[h]
   		\centering
-  		\includegraphics{backoffice.jpg}
+  		\includegraphics[height=10cm,width=13cm]{backoffice.jpg}
   		\caption{Architecture du backoffice}
   		\label{backoffice}
 \end{figure}
 
-Le diagramme \ref{backoffice} montre les interractions basiques entre tout les éléments, on voit l'utilisateur qui interragit avec l'interface en swing. L'interface qui interroge la couche hibernate, couche qui gére la liaison avec la base de donnée, couche qui renvoi des classes dites beans représentant les enregistrements dans la base. Cette architecture et l'utilsation de hibernate nous à permis de gérer la base de donnée directement en java sans avoir à écrire de SQL. 
+Le diagramme \ref{backoffice} montre les interractions basiques entre tous les
+éléments où on voit l'utilisateur qui interragit avec l'interface en Swing.
+Cette interface interroge la couche hibernate qui gére la liaison
+avec la base de donnée et renvoie des classes dites beans représentant les
+enregistrements dans la base. Cette architecture et l'utilsation d'Hibernate
+nous à permis de gérer la base de données directement en Java sans avoir à
+écrire de SQL.
 
-Pour mieux comprendre cette architecture il faut quelques explications sur hibernate et la façon dont nous l'avons mis en oeuvre.
+Pour mieux comprendre cette architecture, nous avons jugé nécessaire de fairede
+plus amples explications sur Hibernate et la façon dont nous l'avons mis enoeuvre.
 
 \subsubsection{hibernate}
 
-Hibernate est un framework qui permet un mapping entre objet et base de données, de manière à ce que les tables et classes soient en relation et que les enregistrements des tables existent sous la forme d'instances de classe. De fait une modification sur une instance est répercuté sur la base de donnée de façon très simple, celà permet de facilement faire abstraction de la base et du langage associé.
+Hibernate est un framework qui permet un mapping entre objets et base de
+données, de manière à ce que les tables et classes soient en relation et que les
+enregistrements des tables existent sous la forme d'instances de classes. De
+fait, une modification sur une instance est répercutée sur la base de donnée de
+façon très simple. Cela permet de facilement faire abstraction de la base et du
+langage associé.
 
-Pour mettre en place ce framework dans notre module, nous nous sommes servit de netbean et des fonctions intégrée. Grâce au plugin intégré dans netbean nous avons pu générer de façon automatique les classes représentant les tables, ce qui nous fit gagner du temps, ces classes représentants les tables sont appellés Entity ou beans. La génération à simplement eut besoin de connaitre les identifiants de la BD et sa localisation, le reste à été automatique. Après nous avons du écrire les quelques méthodes qui permettent de récupérer les objets de la base de donnée et faire les actions dessus, comme la création, la modification et suppresion, ces fonctions sont contenu dans un objet nommé Session. Nous avons develloper ces fonctions sans écrire une seule ligne de SQL, le seul sql qui fut écrit le fut pour la création initiale de la base de données.
+Pour mettre en place ce framework dans notre module, nous nous sommes servi de
+Netbeans et des fonctions intégrées. Grâce au plugin intégré dans Netbeans nous
+avons pu générer de façon automatique les classes représentant les tables, ce qui
+nous a fait gagner du temps. Ces classes sont appellés Entity ou beans. La
+génération à simplement eut besoin de connaître les identifiants de la BD et sa
+localisation, le reste a été automatique. Ensuite, nous avons dû écrire les
+quelques méthodes qui permettent de récupérer les objets de la base de données
+et faire des actions dessus comme la création, la modification et la
+suppresion. Ces fonctions sont contenues dans un objet nommé Session. Nous avonsdeveloppé ces fonctions sans écrire une seule ligne de SQL, le seul code SQL quifut écrit le fut pour la création initiale de la base de données.
 
-Une fois l'objet session défini ainsi que les beans, nous avons utilisé la bibliothèque swing pour les affichers et les modifier.
-
+Une fois l'objet Session défini ainsi que les beans, nous avons utilisé la
+bibliothèque Swing pour les afficher et les modifier.
+\clearpage
 \subsubsection{Swing}
 
-L'utilisation de swing dans notre application est assez basique, un simple affichage d'un panel type formulaire pour remplir les entités pour les tables, ou les modifier. Ensuite simplement un objet JTable pour l'affichage de l'ensemble des enregistrements de la table. Le panel formulaire évolue au fur et à mesure en changeant la table que l'on souhaite afficher. 
-
-Une partie des formulaires de l'application ont été développé grâce au plug in inclus dans netbean. Ce projet à été aussi l'occasion d'utiliser netbean en tant que IDE du début à la fin et pour tous les aspects.
-
-Le but était de faire quelque chose de simple et pratique, assez peu de fioritures inutile, tout dans la fonctionnalité. C'est pour celà qu'il y a le moins de fenêtre possible, pas de menu inutile, le tout très simple.
+L'utilisation de Swing dans notre application est assez basique, un simple
+affichage d'un panel type formulaire pour remplir ou modifier les entités pour
+les tables. Ensuite, un objet JTable pour l'affichage de l'ensemble des
+enregistrements de la table a été utilisé. Le panel formulaire évolue au fur et à
+mesure en changeant la table que l'on souhaite afficher.
+Une partie des formulaires de l'application ont été développé grâce au plugin
+inclus dans Netbeans. Ce projet a été aussi l'occasion d'utiliser Netbeans en
+tant que IDE du début à la fin et pour tous les aspects.
+Le but était de faire quelque chose de simple et pratique, sans fioritures
+inutile, tout dans la fonctionnalité. C'est pour cela qu'il y a le moins defenêtres possibles, pas de menu inutile, le tout très simple.
 
 
 
