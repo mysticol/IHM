@@ -125,19 +125,41 @@ public class CatalogueService implements CatalogueRemote, CatalogueServiceLocal 
 	}
 
 	public void deleteProduct(Long id) {
-
+		
+		//TODO
 		
 	}
 
 	public List<IProduit> findByCategorieAndMarque(String categorie,
 			String marque) {
 
-		return null;
+		
+		TypedQuery<IProduit> query = em.createQuery("From Category" +
+				  " Where name=:name" +
+				  " and produits.marque=:marque" +
+				  " and produits.price>=:prixMin" +
+				  " and produits.price<=:prixMax",IProduit.class);
+		
+		query.setParameter("name", categorie);
+		query.setParameter("marque", marque);
+
+		return query.getResultList();
 	}
 
 	public List<IProduit> findByCategorieAndMarqueAndPriceRange(
 			String categorie, String marque, Double lowPrice, Double highPrice) {
-
+		
+		TypedQuery<IProduit> query = em.createQuery("From Category" +
+				  " Where name=:name" +
+				  " and produits.marque=:marque" +
+				  " and produits.price>=:prixMin" +
+				  " and produits.price<=:prixMax",IProduit.class);
+		  
+		query.setParameter("name", categorie);
+		query.setParameter("marque", marque);
+		query.setParameter("prixMin", lowPrice);
+		query.setParameter("PrixMax", highPrice);
+		
 		return null;
 	}
 
