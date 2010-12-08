@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
+    <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
+    <property name="hibernate.connection.url">jdbc:derby://localhost:1527/serviceBD</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">root</property>
+    <mapping resource="pojos/ReservationManif.hbm.xml"/>
+    <mapping resource="pojos/ReservationHotel.hbm.xml"/>
+    <mapping resource="pojos/Reservation.hbm.xml"/>
+    <mapping resource="pojos/Hotel.hbm.xml"/>
+    <mapping resource="pojos/Voyage.hbm.xml"/>
+    <mapping resource="pojos/Restaurant.hbm.xml"/>
+    <mapping resource="pojos/Manifestation.hbm.xml"/>
+    <mapping resource="pojos/ReservationRestau.hbm.xml"/>
+    <mapping resource="pojos/Client.hbm.xml"/>
+    <mapping resource="pojos/Localisation.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

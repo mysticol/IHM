@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 nov. 2010 15:49:20 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="pojos.Reservation" schema="ROOT" table="RESERVATION">
+    <id name="reservationId" type="int">
+      <column name="RESERVATION_ID"/>
+      <generator class="identity"/>
+    </id>
+    <property name="fkReserveHotel" type="java.lang.Integer">
+      <column name="FK_RESERVE_HOTEL"/>
+    </property>
+    <property name="fkReserveRestau" type="java.lang.Integer">
+      <column name="FK_RESERVE_RESTAU"/>
+    </property>
+    <property name="fkReserveManif" type="java.lang.Integer">
+      <column name="FK_RESERVE_MANIF"/>
+    </property>
+    <property name="fkVoyage" type="java.lang.Integer">
+      <column name="FK_VOYAGE"/>
+    </property>
+    <property name="fkClientId" type="java.lang.Integer">
+      <column name="FK_CLIENT_ID"/>
+    </property>
+    <property name="date" type="date">
+      <column length="10" name="DATE"/>
+    </property>
+  </class>
+</hibernate-mapping>
