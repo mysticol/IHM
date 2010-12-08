@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Users/JulienSambre/Documents/NetBeansProjects/mockReception/src/Reception.wsdl" uri="wsdl/Reception.wsdl"/>
+    <system systemId="file:/C:/Users/JulienSambre/Documents/NetBeansProjects/mockReception/src/types.xsd" uri="wsdl/types.xsd"/>
+    <system systemId="file:/C:/Users/JulienSambre/Documents/NetBeansProjects/InterfaceReservation/web/WEB-INF/wsdl/Reception.wsdl" uri="wsdl/Reception.wsdl"/>
+    <system systemId="file:/C:/Users/JulienSambre/Documents/NetBeansProjects/InterfaceReservation/web/WEB-INF/wsdl/types.xsd" uri="wsdl/types.xsd"/>
+    <system systemId="file:/C:/Users/JulienSambre/Documents/NetBeansProjects/mockProcess/src/jbiasa/mockReception/Reception.wsdl" uri="wsdl/Reception.wsdl"/>
+    <system systemId="file:/C:/Users/JulienSambre/Documents/NetBeansProjects/mockProcess/src/jbiasa/mockReception/types.xsd" uri="wsdl/types.xsd"/>
+    <system systemId="file:/C:/Users/JulienSambre/Documents/NetBeansProjects/InterfaceReservation_1/web/WEB-INF/wsdl/Reception.wsdl" uri="wsdl/Reception.wsdl"/>
+    <system systemId="file:/C:/Users/JulienSambre/Documents/NetBeansProjects/InterfaceReservation_1/web/WEB-INF/wsdl/types.xsd" uri="wsdl/types.xsd"/>
+    <system systemId="file:/C:/Users/JulienSambre/Documents/NetBeansProjects/mockReservation/src/Reservation.wsdl" uri="wsdl/Reservation.wsdl"/>
+    <system systemId="file:/C:/Users/JulienSambre/Documents/NetBeansProjects/mockReservation/src/types.xsd" uri="wsdl/types.xsd"/>
+</catalog>
+
+
+
+
+
+
+
+
+
+
+
