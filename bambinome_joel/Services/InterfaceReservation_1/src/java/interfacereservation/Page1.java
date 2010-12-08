@@ -771,12 +771,18 @@ public class Page1 extends AbstractPageBean {
                 manifestation.addContent(description);
 
                 Element nomHotel = new Element("nomHotel");
+                Element adresseHotel = new Element("adresseHotel");
                 nomHotel.setText(hotel.getNom());
+                adresseHotel.setText(hotel.getAdresse());
                 infosHotel.addContent(nomHotel);
+                infosHotel.addContent(adresseHotel);
 
                 Element nomRestaurant = new Element("nomRestaurant");
+                Element adresseRestaurant = new Element("adresseRestaurant");
                 nomRestaurant.setText(restaurant.getNom());
+                adresseRestaurant.setText(restaurant.getAdresse());
                 infosRestaurant.addContent(nomRestaurant);
+                infosRestaurant.addContent(adresseRestaurant);
 
                 affiche();
                 enregistre(pathPdf+"reservation"+nom+".xml");
