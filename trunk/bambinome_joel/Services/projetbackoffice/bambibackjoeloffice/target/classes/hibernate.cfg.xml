@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
+    <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
+    <property name="hibernate.connection.url">jdbc:derby://localhost:1527/serviceBD</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">root</property>
+    <mapping resource="mvca/entity/ReservationManif.hbm.xml"/>
+    <mapping resource="mvca/entity/ReservationHotel.hbm.xml"/>
+    <mapping resource="mvca/entity/Reservation.hbm.xml"/>
+    <mapping resource="mvca/entity/Hotel.hbm.xml"/>
+    <mapping resource="mvca/entity/Voyage.hbm.xml"/>
+    <mapping resource="mvca/entity/Restaurant.hbm.xml"/>
+    <mapping resource="mvca/entity/Manifestation.hbm.xml"/>
+    <mapping resource="mvca/entity/ReservationRestau.hbm.xml"/>
+    <mapping resource="mvca/entity/TypeManifestation.hbm.xml"/>
+    <mapping resource="mvca/entity/Client.hbm.xml"/>
+    <mapping resource="mvca/entity/Localisation.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
