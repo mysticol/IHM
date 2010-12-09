@@ -1,7 +1,16 @@
 package entity;
 
-public class ProduitKey {
+import java.io.Serializable;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
+public class ProduitKey implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5271661977452015500L;
 	private String modele;
 	private String marque; 
 	

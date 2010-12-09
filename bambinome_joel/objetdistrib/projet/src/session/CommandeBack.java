@@ -4,6 +4,7 @@ package session;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,11 +15,12 @@ import entity.Commande;
 import entity.ProduitStub;
 
 @Stateless
-public class CommandeLocal implements CommandeBackLocal {
+public class CommandeBack implements CommandeBackRemote, CommandeBackLocal {
 
 	@PersistenceContext
 	private EntityManager em;
 
+	@EJB
 	private ProduitStubLocal prd;
 	
 	@SuppressWarnings("unchecked")
