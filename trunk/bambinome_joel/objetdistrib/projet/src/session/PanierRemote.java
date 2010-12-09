@@ -11,8 +11,8 @@ import fr.alma.interfaces.ICategorie;
 import fr.alma.interfaces.IFrontCategorie;
 import fr.alma.interfaces.IItem;
 
-@Local
-public interface PanierLocal {
+@Remote
+public interface PanierRemote {
 
 	public abstract boolean identificationClient(int idClient);
 

@@ -9,8 +9,8 @@ import entity.Client;
 import entity.Commande;
 import entity.ProduitStub;
 
-@Local
-public interface CommandeBackLocal extends SessionEntityManager<Commande>{
+@Remote
+public interface CommandeBackRemote extends SessionEntityManager<Commande>{
 	
 	public int createCommande(Client cl, HashMap<ProduitStub, Long> contenu);
 	

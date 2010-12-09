@@ -7,8 +7,8 @@ import entity.Adresse;
 import entity.Client;
 
 
-@Local
-public interface ClientBackLocal extends SessionEntityManager<Client>{
+@Remote
+public interface ClientBackRemote extends SessionEntityManager<Client>{
 	
 	public int createClient( 	 String prenom,	 String nom,	 Adresse add);
 	

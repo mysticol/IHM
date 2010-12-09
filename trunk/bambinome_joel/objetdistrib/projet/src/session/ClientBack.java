@@ -13,7 +13,7 @@ import entity.Client;
  * Session Bean implementation class ClientBack
  */
 @Stateless
-public class ClientBack implements ClientBackLocal {
+public class ClientBack implements ClientBackRemote, ClientBackLocal {
 
 	@PersistenceContext
 	private EntityManager em;
