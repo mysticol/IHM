@@ -1,4 +1,4 @@
-package attaqueurs;
+package client;
 
 
 
@@ -12,9 +12,11 @@ import entity.Client;
 import entity.Commande;
 import entity.ProduitStub;
 
-import session.ClientBackLocal;
-import session.CommandeBackLocal;
-import session.ProduitStubBackLocal;
+import session.ClientBackRemote;
+import session.CommandeBackRemote;
+import session.PanierLocal;
+import session.PanierRemote;
+import session.ProduitStubLocal;
 
 public class TestBackOffice {
 
@@ -23,10 +25,15 @@ public class TestBackOffice {
 		
 		Context context = new InitialContext();
 		// Nom de la classe d'implémentation + /local ou /remote
-		ClientBackLocal backofficeclient =
-		    (ClientBackLocal) context.lookup("ClientBack/remote");
+		ClientBackRemote backofficeclient =
+		    (ClientBackRemote) context.lookup("ClientBack/remote");
 	
 		
+		PanierRemote backPanier= (PanierRemote) context.lookup("Panier/remote");
+		
+		System.out.println(backPanier.getCategories());
+		
+		/*
 		
 		Client tt= new Client();
 		tt.setAdd(new Adresse("dede", "444", "dd", "ddefz"));
@@ -84,7 +91,7 @@ public class TestBackOffice {
 		
 		System.out.println(backofficecommande.getList());
 		
-		
+		*/
 		
 
 		
