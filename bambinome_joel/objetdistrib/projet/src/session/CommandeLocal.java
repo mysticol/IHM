@@ -19,6 +19,8 @@ public class CommandeLocal implements CommandeBackLocal {
 	@PersistenceContext
 	private EntityManager em;
 
+	private ProduitStubLocal prd;
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Commande> getList() {
@@ -41,6 +43,15 @@ public class CommandeLocal implements CommandeBackLocal {
 
 	@Override
 	public int createEntity(Commande enti) {
+		
+		HashMap<ProduitStub, Long> map=enti.getContenu();
+		
+		for (ProduitStub prddd: map.keySet()){
+			if( prd.getById(prddd.getKey())==null){
+				prd.createEntity(prddd);
+			}
+		}
+	
 		em.persist(enti);
 		return enti.getId();
 	}
