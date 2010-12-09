@@ -917,14 +917,23 @@ public class Page1 extends AbstractPageBean {
 
                 //We always set the first option to the empty string in order to
                 //force the user to choose a type of manifestation
-                int taille = result.getTypeManifestation().size();
+                List<String> typeManif = new LinkedList<String>();
+
+                for(String type : result.getTypeManifestation()){
+                    if(!typeManif.contains(type)){
+                        typeManif.add(type);
+                    }
+                }
+
+
+                int taille = typeManif.size();
                 Option[] resultTypes = new Option[taille+1];
                 resultTypes[0] = new Option("","");
                 int i = 1;
 
                 System.out.println("Debut de la recuperation des types de manifestation");
 
-                for(String typetmp : result.getTypeManifestation()){
+                for(String typetmp : typeManif){
                     System.out.println("    Type lu : " + typetmp);
                     resultTypes[i++] = new Option(typetmp,typetmp);
                 }
