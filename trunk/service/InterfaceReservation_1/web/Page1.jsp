@@ -50,12 +50,12 @@
                         <webuijsf:dropDown id="nomRestaurantDropDown" items="#{Page1.nomRestaurantDropDownDefaultOptions.options}" label="Nom :"
                             onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'nomRestaurantDropDown');"
                             style="left: 408px; top: 600px; position: absolute" valueChangeListenerExpression="#{Page1.nomRestaurantDropDown_processValueChange}"/>
-                        <webuijsf:staticText id="avisHotel" style="left: 192px; top: 648px; position: absolute" text="#{Page1.rankHotel}"/>
-                        <webuijsf:staticText id="avisRestaurant" style="position: absolute; left: 456px; top: 648px" text="#{Page1.rankRestaurant}"/>
-                        <webuijsf:label id="labelPrixHotel" style="left: 96px; top: 648px; position: absolute" text="Avis moyen : "/>
-                        <webuijsf:label id="labelPrixHotel1" style="left: 360px; top: 648px; position: absolute" text="Avis moyen : "/>
+                        <webuijsf:staticText id="avisHotel" style="left: 216px; top: 648px; position: absolute" text="#{Page1.rankHotel}"/>
+                        <webuijsf:staticText id="avisRestaurant" style="left: 480px; top: 648px; position: absolute" text="#{Page1.rankRestaurant}"/>
+                        <webuijsf:label id="labelPrixHotel" style="left: 120px; top: 648px; position: absolute" text="Avis moyen : "/>
+                        <webuijsf:label id="labelPrixHotel1" style="left: 384px; top: 648px; position: absolute" text="Avis moyen : "/>
                         <webuijsf:button actionExpression="#{Page1.valider_action}" id="valider"
-                            style="height: 24px; left: 263px; top: 1296px; position: absolute; width: 143px" text="Valider"/>
+                            style="height: 24px; left: 383px; top: 744px; position: absolute; width: 143px" text="Valider"/>
                         <webuijsf:pageSeparator id="pageSeparator3" style="position: absolute; left: 96px; top: 696px; width: 480px; height: 24px"/>
                         <webuijsf:button actionExpression="#{Page1.chercher_action}" id="chercher" style="left: 287px; top: 288px; position: absolute" text="Chercher un événement"/>
                         <webuijsf:textField id="paysDepartTextField" label="Pays de départ :"
@@ -64,9 +64,9 @@
                         <webuijsf:textField id="villeDepartTextField" label="Ville de départ :"
                             onChange="webui.suntheme4_2.common.timeoutSubmitForm(this.form, 'villeDepartTextField');" required="true"
                             style="position: absolute; left: 120px; top: 240px" valueChangeListenerExpression="#{Page1.villeDepartTextField_processValueChange}"/>
-                        <webuijsf:imageHyperlink id="imageGoogleMap" imageURL="#{Page1.urlGoogleMap}" style="left: 72px; top: 744px; position: absolute"/>
-                        <webuijsf:pageSeparator id="pageSeparator4" style="left: 96px; top: 1248px; position: absolute; width: 480px"/>
-                        <webuijsf:button actionExpression="#{Page1.googleMap_action}" id="googleMap" style="left: 623px; top: 744px; position: absolute" text="Afficher la Goooooogle Map"/>
+                        <webuijsf:imageHyperlink id="imageGoogleMap" imageURL="#{Page1.urlGoogleMap}" style="left: 96px; top: 792px; position: absolute"/>
+                        <webuijsf:button actionExpression="#{Page1.googleMap_action}" id="googleMap"
+                            style="height: 24px; left: 143px; top: 744px; position: absolute" text="Afficher la Goooooogle Map"/>
                     </webuijsf:form>
                 </webuijsf:body>
             </webuijsf:html>

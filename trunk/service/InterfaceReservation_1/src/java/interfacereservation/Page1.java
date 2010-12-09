@@ -766,17 +766,36 @@ public class Page1 extends AbstractPageBean {
                 manifE.setText(manif.getNom());
                 Element description = new Element("description");
                 description.setText(manif.getDescription());
+                Element adresseManif = new Element("adresseManif");
+                adresseManif.setText(manif.getAdresse());
+                Element prixManif = new Element("prixManif");
+                prixManif.setText(manif.getPrix().toString());
                 manifestation.addContent(date);
                 manifestation.addContent(manifE);
                 manifestation.addContent(description);
+                manifestation.addContent(adresseManif);
+                manifestation.addContent(prixManif);
+
 
                 Element nomHotel = new Element("nomHotel");
                 nomHotel.setText(hotel.getNom());
                 infosHotel.addContent(nomHotel);
+                Element adresseHotel = new Element("adresseHotel");
+                adresseHotel.setText(hotel.getAdresse());
+                infosHotel.addContent(adresseHotel);
+                Element prixHotel = new Element("prixHotel");
+                prixHotel.setText(hotel.getPrix().toString());
+                infosHotel.addContent(prixHotel);
 
                 Element nomRestaurant = new Element("nomRestaurant");
                 nomRestaurant.setText(restaurant.getNom());
                 infosRestaurant.addContent(nomRestaurant);
+                Element adresseRestaurant = new Element("adresseRestaurant");
+                adresseRestaurant.setText(restaurant.getAdresse());
+                infosRestaurant.addContent(adresseRestaurant);
+                Element prixRestaurant = new Element("prixRestaurant");
+                prixRestaurant.setText(restaurant.getPrix().toString());
+                infosRestaurant.addContent(prixRestaurant);
 
                 affiche();
                 enregistre(pathPdf+"reservation"+nom+".xml");
@@ -797,8 +816,15 @@ public class Page1 extends AbstractPageBean {
 
             // TODO process result here
             java.lang.String result = port.reservationOperation(reservationRequest);
-            System.out.println("Result = "+result);
-        } catch (Exception ex) {
+
+            if(!result.equalsIgnoreCase("ok")){
+                //If there is a problem, we print it in the console
+
+                System.out.println("Erreur : " + result);
+                
+            }
+
+          } catch (Exception ex) {
             // TODO handle custom exceptions here
         }
 
