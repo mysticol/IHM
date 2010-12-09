@@ -48,48 +48,52 @@ public class ClientTest {
 				System.out.println(" 3 - Récupérer les produits d'une marque");
 				System.out.println(" 4 - Récupérer les produits d'une Catégorie");
 				System.out.println(" 5 - Récupérer les produits d'une Catégorie dans une fourchette de prix");
-				System.out.println(" 6 - Récupérer les marques d'une Catégorie");
+				System.out.println(" 6 - Récupérer les produits d'une marques et d'une Catégorie");
 				System.out.println(" 7 - Récupérer les produits d'une Catégorie dans une fourchette de prix selon une marque");
 				System.out.println(" 8 - Acheter un produit");
-				System.out.println(" ---------------------------------- ");
-				System.out.println(" 9 - Créer un produit");
-				System.out.println(" 10- Effacer un produit");
-				System.out.println(" 11- Créer une Catégorie");
-				System.out.println(" 12- Effacer une Catégorie");
 				System.out.println(" ---------------------------------- ");
 				System.out.println(" 0 - Quitter");
 				System.out.println(" ---------------------------------- ");
 				System.out.print(  "------> Choix : "); choix = myInput.readLine();
 				
 				switch(Integer.valueOf(choix)){
-				case 1 : for( ICategorie cat : catalogueService.findAllCategories()){
+				case 1 : // Récupérer toutes les Catégories de produit
+						 for( ICategorie cat : catalogueService.findAllCategories()){
 							printCategorie(cat);
 						 }
 					break;
-				case 2 : System.out.print("--------> marque : "); marque = myInput.readLine();
+				case 2 : // Récupérer les produits d'une marque et d'un modèle
+					     System.out.print("--------> marque : "); marque = myInput.readLine();
 						 System.out.print("--------> modele : "); modele = myInput.readLine();
 						 printProduit(catalogueService.findByMarqueAndModele(marque, modele));
 					break;
-				case 3 : System.out.print("--------> marque : "); marque = myInput.readLine();
+				case 3 : // Récupérer les produits d'une marque
+					 	 System.out.print("--------> marque : "); marque = myInput.readLine();
 						 marque = myInput.readLine();
 						 for( IProduit p : catalogueService.findByMarque(marque)){
 							 printProduit(p);
 						 }
 					break;
-				case 4 : System.out.print("--------> Categorie : "); categorie = myInput.readLine();
+				case 4 : // Récupérer les produits d'une Catégorie
+					     System.out.print("--------> Categorie : "); categorie = myInput.readLine();
 						 for( IProduit p : catalogueService.findByCategorie(categorie)){
 							 printProduit(p);
 						 }
 					break;
-				case 5 : System.out.print("--------> Categorie : "); categorie = myInput.readLine();
+				case 5 : // Récupérer les produits d'une Catégorie dans une fourchette de prix
+						 System.out.print("--------> Categorie : "); categorie = myInput.readLine();
 						 System.out.print("--------> prix minimum : "); prixMin = Double.valueOf(myInput.readLine());
 						 System.out.print("--------> prix maximum : "); prixMax = Double.valueOf(myInput.readLine());
 						 for( IProduit p : catalogueService.findByCategorieAndPriceRange(categorie, prixMin, prixMax)){
 							 printProduit(p);
 						 }
 					break;
-				case 6 : System.out.print("--------> marque : ");  marque = myInput.readLine();
-						 System.out.println(">>>>>>>>>>>> fonction non implémenté <<<<<<<<<<<<"); // appel
+				case 6 : // Récupérer les marques d'une Catégorie
+						 System.out.print("--------> marque : ");  marque = myInput.readLine();
+						 System.out.print("--------> Categorie : "); categorie = myInput.readLine();
+						 for( IProduit p : catalogueService.findByCategorieAndMarque(categorie, marque)){
+							 printProduit(p);
+						 }
 					break;
 				case 7 : System.out.print("--------> Categorie : "); categorie = myInput.readLine();
 						 System.out.print("--------> prix minimum : "); prixMin = Double.valueOf(myInput.readLine());
@@ -105,27 +109,11 @@ public class ClientTest {
 				 		 System.out.print("--------> nom du client : "); client = myInput.readLine();
 				 		 System.out.print("--------> adresse du client : "); adresse = myInput.readLine();
 				 		 System.out.println(">>>>>>>>>>>> fonction non implémenté <<<<<<<<<<<<"); // appel
-					break;
-				case 9 : System.out.print("--------> description : "); description = myInput.readLine();
-						 System.out.print("--------> Categorie : "); categorie = myInput.readLine();
-						 System.out.print("--------> marque : "); marque = myInput.readLine();
-		 		 		 System.out.print("--------> modele : "); modele = myInput.readLine();
-		 		 		 System.out.print("--------> quantité : "); quantite = Integer.valueOf(myInput.readLine());
-		 		 		 System.out.print("--------> prix : "); prixMin = Double.valueOf(myInput.readLine());
-		 		 		 System.out.println(">>>>>>>>>>>> fonction non implémenté <<<<<<<<<<<<"); // appel
-					break;
-				case 10: System.out.print("--------> id produit : "); id = Long.valueOf(myInput.readLine()); 
-						 System.out.println(">>>>>>>>>>>> fonction non implémenté <<<<<<<<<<<<"); // appel
-					break;
-				case 11: System.out.print("--------> Categorie : "); categorie = myInput.readLine();
-				 		 System.out.println(">>>>>>>>>>>> fonction non implémenté <<<<<<<<<<<<"); // appel
-					break;
-				case 12: System.out.print("--------> id Categorie : "); id = Long.valueOf(myInput.readLine());
-						 System.out.println(">>>>>>>>>>>> fonction non implémenté <<<<<<<<<<<<"); // appel
-					break;
+					break;					
 				case 0 : System.out.println(" Au revoir !");
 						 fin = true;			
 					break;
+					
 				default: System.out.println(" !!! Mauvaise saisie !!!"); 
 					break;
 				}
