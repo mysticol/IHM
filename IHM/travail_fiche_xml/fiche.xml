@@ -15,7 +15,14 @@
   </personnage>
   <caracteristiquesPrincipales>
     <caracteristique>
-      <nom>nom</nom>
+      <nom>force</nom>
+      <valeur>valeur</valeur>
+      <jauge/>
+      <consommable>true</consommable>
+    </caracteristique>
+    
+     <caracteristique>
+      <nom>dext</nom>
       <valeur>valeur</valeur>
       <jauge/>
       <consommable>true</consommable>
