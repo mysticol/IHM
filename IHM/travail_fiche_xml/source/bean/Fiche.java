@@ -16,7 +16,9 @@ public class Fiche {
 	private HashMap<String, String> infos;
 	private HashMap<String, Caracteristique> caracteristiquesPrincipales;
 	private HashMap<String, Caracteristique> caracteristiquesSecondaire;
+	private HashMap<Categorie, LinkedList<Competence>> competences;
 	private LinkedList<Pouvoir> pouvoirs;
+	
 	private LinkedList<Equipement> equipements;
 	private String barreDeVie;
 	private String divers;
@@ -225,6 +227,19 @@ public class Fiche {
 
 	public Fiche() {
 		
+	}
+
+
+
+	public HashMap<Categorie, LinkedList<Competence>> getCompetences() {
+		return competences;
+	}
+
+
+
+	public void setCompetences(
+			HashMap<Categorie, LinkedList<Competence>> competences) {
+		this.competences = competences;
 	}
 	
 	

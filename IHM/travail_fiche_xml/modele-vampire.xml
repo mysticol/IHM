@@ -9,18 +9,23 @@
 	</personnage>
 
 	<caracteristiquesPrincipales>
-		<caracteristique>force</caracteristique>
-		<caracteristique>dext</caracteristique>
-		<caracteristique>vigueur</caracteristique>
-		<caracteristique>astuce</caracteristique>
-		<caracteristique>tt</caracteristique>
-		<caracteristique>fff</caracteristique>
-		<caracteristique>fff</caracteristique>
+		<caracteristique>
+		<nom>force</nom>
+		</caracteristique>
+		<caracteristique>
+		<nom>dext</nom>
+		</caracteristique>
+		<caracteristique>
+		<nom>vigueur</nom></caracteristique>
+		<caracteristique><nom>astuce</nom></caracteristique>
+		<caracteristique><nom>tt</nom></caracteristique>
+		<caracteristique><nom>fff</nom></caracteristique>
+		<caracteristique><nom>ff</nom></caracteristique>
 	</caracteristiquesPrincipales>
 
 <caracteristiquesSecondaire>
 
-<caracteristique>volonte</caracteristique>
+<caracteristique><nom>volonte</nom></caracteristique>
 
 
 

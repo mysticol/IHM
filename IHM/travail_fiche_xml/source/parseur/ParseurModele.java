@@ -1,5 +1,126 @@
 package parseur;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+
+import bean.Caracteristique;
+import bean.Categorie;
+import bean.Competence;
+import bean.Equipement;
+import bean.Fiche;
+import bean.Info;
+import bean.Pouvoir;
+
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.input.SAXBuilder;
+
 public class ParseurModele {
 
+	public Fiche parse(File f) {
+
+		Document document;
+		Element racine;
+		Fiche fiche = new Fiche();
+		
+		SAXBuilder sxb = new SAXBuilder();
+		try {
+			document = sxb.build(f);
+			racine = document.getRootElement();
+
+			HashMap<String , String> infos= new HashMap<String, String>();
+			Element personnage=racine.getChild("Personnage");
+			for ( Element info:(List<Element> )personnage.getChildren("info")){
+				Info infoTemp= parseInfo(info);
+				infos.put(infoTemp.getNom(), infoTemp.getValue());
+			}
+			fiche.setInfos(infos);
+			
+			HashMap<String, Caracteristique> mapCaractPrincipale= new HashMap<String, Caracteristique>();
+			Element caractPrincipale= racine.getChild("caracteristiquesPrincipales");
+			for (Element caractPs :(List<Element> )caractPrincipale.getChildren("caracteristique") ){
+				Caracteristique caractTemp= parseCaracteristique(caractPs);
+				mapCaractPrincipale.put(caractTemp.getNom(), caractTemp);
+			}
+			fiche.setCaracteristiquesPrincipales(mapCaractPrincipale);
+			
+			
+			
+			HashMap<String, Caracteristique> mapCaractSecondaire= new HashMap<String, Caracteristique>();
+			Element caractSecondaire= racine.getChild("caracteristiquesSecondaire");
+			for (Element caractPs :(List<Element> )caractSecondaire.getChildren("caracteristique") ){
+				Caracteristique caractTemp= parseCaracteristique(caractPs);
+				mapCaractSecondaire.put(caractTemp.getNom(), caractTemp);
+			}
+			fiche.setCaracteristiquesSecondaire(mapCaractSecondaire);
+			
+			
+			
+			HashMap<Categorie, LinkedList<Competence>> catComp= new HashMap<Categorie, LinkedList<Competence>>();
+			Element competences= racine.getChild("competences");
+			for (Element cat :(List<Element> )caractSecondaire.getChildren("categorie") ){
+				LinkedList<Competence> comps= new LinkedList<Competence>();
+				
+				Categorie myCat= new Categorie();
+				myCat.setNom(cat.getChildText("nom"));
+				
+				for (Element compte : (List<Element> )cat.getChildren("competence")){
+					comps.add(parseCompetence(compte));
+					
+				}
+				
+				catComp.put(myCat, comps);
+			}
+			
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	
+
+		return fiche;
+	}
+
+	public Info parseInfo(Element e) {
+		Info result = new Info();
+		result.setNom(e.getText());
+		result.setValue(null);
+
+		return result;
+	}
+
+	
+	public Caracteristique parseCaracteristique (Element e){
+		Caracteristique caract= new Caracteristique();
+		
+		caract.setNom(e.getChildText("nom"));
+		caract.setValeur(null);
+		
+		String jauge =e.getChildText("jauge");
+		if (jauge!=null){
+			caract.setJauge(Boolean.parseBoolean(jauge));
+		}
+		
+		String consommable =e.getChildText("consommable");
+		if (consommable!=null){
+			caract.setConsommable(Boolean.parseBoolean(consommable));
+		}
+		
+		return caract;
+	}
+	
+	
+	public Competence parseCompetence(Element e){
+		Competence compt = new Competence();
+		compt.setNom(e.getText());
+		compt.setValue(null);
+		
+		
+		return compt;
+	}
 }
