@@ -5,8 +5,27 @@
     android:gravity="center"
     >
     <TextView
-        android:id="@+id/nom"
+        android:id="@+id/univers"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Choix MJ"/>
+        android:text="Univers :"/>
+	<Spinner 
+        android:id="@+id/UniversSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/univers"
+    />
+    
+    <TextView
+        android:id="@+id/campagne"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Campagne :"/>
+	<Spinner 
+        android:id="@+id/CampagneSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/campagne"
+    />
+        
 </RelativeLayout>
