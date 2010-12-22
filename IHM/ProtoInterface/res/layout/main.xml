@@ -8,7 +8,7 @@
         android:id="@+id/MJ"
         android:layout_width="100px"
         android:layout_height="50px"
-        android:onClick="choixMJ"
+        android:onClick="choixmj"
         android:text="MJ" />
 	<Button
         android:id="@+id/Joueur"

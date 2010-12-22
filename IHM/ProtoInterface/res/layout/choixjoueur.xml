@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    >
+    <TextView
+        android:id="@+id/univers"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Univers :"/>
+	<Spinner 
+        android:id="@+id/UniversSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/univers"
+    />
+    
+    <TextView
+        android:id="@+id/campagne"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Campagne :"/>
+	<Spinner 
+        android:id="@+id/CampagneSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/campagne"
+    />
+        
+</RelativeLayout>
