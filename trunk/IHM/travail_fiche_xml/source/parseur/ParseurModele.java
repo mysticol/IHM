@@ -31,7 +31,7 @@ public class ParseurModele {
 			racine = document.getRootElement();
 
 			HashMap<String , String> infos= new HashMap<String, String>();
-			Element personnage=racine.getChild("Personnage");
+			Element personnage=racine.getChild("personnage");
 			for ( Element info:(List<Element> )personnage.getChildren("info")){
 				Info infoTemp= parseInfo(info);
 				infos.put(infoTemp.getNom(), infoTemp.getValue());
