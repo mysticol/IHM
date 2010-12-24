@@ -61,10 +61,6 @@ public class Fiche {
 
 
 
-	public File toXml(){
-		return null;
-	}
-
 
 
 	public String getNom() {
