@@ -2,15 +2,11 @@ package parseur;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.io.Writer;
-
 import org.jdom.DocType;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
-
 import bean.Caracteristique;
 import bean.Categorie;
 import bean.Competence;

@@ -8,10 +8,10 @@ import java.util.List;
 import bean.Caracteristique;
 import bean.Categorie;
 import bean.Competence;
-import bean.Equipement;
 import bean.Fiche;
 import bean.Info;
-import bean.Pouvoir;
+import bean.Modele;
+
 
 import org.jdom.Document;
 import org.jdom.Element;
@@ -19,7 +19,7 @@ import org.jdom.input.SAXBuilder;
 
 public class ParseurModele {
 
-	public Fiche parse(File f) {
+	public Fiche parseToEmptyFiche(File f) {
 
 		Document document;
 		Element racine;
@@ -86,6 +86,77 @@ public class ParseurModele {
 		return fiche;
 	}
 
+	
+	public Modele parse(File f){
+		Modele model= new Modele();
+		Document document;
+		Element racine;
+		SAXBuilder sxb = new SAXBuilder();
+		
+		try {
+			document = sxb.build(f);
+			racine = document.getRootElement();
+
+			LinkedList<Info> infos= new LinkedList<Info>();
+			Element personnage=racine.getChild("personnage");
+			for ( Element info:(List<Element> )personnage.getChildren("info")){
+				Info infoTemp= parseInfo(info);
+				infos.add(infoTemp);
+			}
+			model.setInfos(infos);
+			
+			LinkedList<Caracteristique> mapCaractPrincipale= new LinkedList<Caracteristique>();
+			Element caractPrincipale= racine.getChild("caracteristiquesPrincipales");
+			for (Element caractPs :(List<Element> )caractPrincipale.getChildren("caracteristique") ){
+				Caracteristique caractTemp= parseCaracteristique(caractPs);
+				mapCaractPrincipale.add( caractTemp);
+			}
+			model.setCaractPrincipales(mapCaractPrincipale);
+			
+			
+			
+			LinkedList<Caracteristique> mapCaractSecondaire= new LinkedList<Caracteristique>();
+			Element caractSecondaire= racine.getChild("caracteristiquesSecondaire");
+			for (Element caractPs :(List<Element> )caractSecondaire.getChildren("caracteristique") ){
+				Caracteristique caractTemp= parseCaracteristique(caractPs);
+				mapCaractSecondaire.add( caractTemp);
+			}
+			model.setCaractSecondaires(mapCaractSecondaire);
+			
+			
+			
+			HashMap<Categorie, LinkedList<Competence>> catComp= new HashMap<Categorie, LinkedList<Competence>>();
+			Element competences= racine.getChild("competences");
+			for (Element cat :(List<Element> )caractSecondaire.getChildren("categorie") ){
+				LinkedList<Competence> comps= new LinkedList<Competence>();
+				
+				Categorie myCat= new Categorie();
+				myCat.setNom(cat.getChildText("nom"));
+				
+				for (Element compte : (List<Element> )cat.getChildren("competence")){
+					comps.add(parseCompetence(compte));
+					
+				}
+				
+				catComp.put(myCat, comps);
+			}
+			
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		
+		
+		
+		
+		
+		return model;
+	}
+	
+	
 	public Info parseInfo(Element e) {
 		Info result = new Info();
 		result.setNom(e.getText());
