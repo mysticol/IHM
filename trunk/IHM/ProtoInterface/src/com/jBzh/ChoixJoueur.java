@@ -23,7 +23,7 @@ public class ChoixJoueur extends Activity{
         
         Spinner campagneSpinner = (Spinner) findViewById(R.id.CampagneSpinner);
         ArrayAdapter<CharSequence> adapterC = ArrayAdapter.createFromResource(
-                this, R.array.univers_array, android.R.layout.simple_spinner_item);
+                this, R.array.campagne_array, android.R.layout.simple_spinner_item);
         adapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         campagneSpinner.setAdapter(adapterC);
 	}
