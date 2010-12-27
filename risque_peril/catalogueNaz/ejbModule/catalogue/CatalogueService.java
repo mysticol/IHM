@@ -1,5 +1,9 @@
 package catalogue;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,6 +15,7 @@ import javax.persistence.TypedQuery;
 import dto.Categorie;
 import dto.Produit;
 import entity.ECategorie;
+import entity.ECommande;
 import entity.EProduit;
 
 
@@ -84,6 +89,12 @@ public class CatalogueService implements CatalogueServiceRemote {
 		
 		return query.getResultList();
 	}
+	
+	public List<ECommande> getAllCommandes() {
+		TypedQuery<ECommande> query = em.createQuery("From ECommande", ECommande.class);		
+		
+		return query.getResultList();
+	}
 
 	
 	// Methodes distantes
@@ -154,9 +165,59 @@ public class CatalogueService implements CatalogueServiceRemote {
 	public Boolean order(String marque, String model, Integer quantity,
 			String clientName, String clientAddress) {
 
-		//TODO prevoir une mecanique interne de commande
+		Boolean transactionValide = true;
+		// On verifie si le produit existe
 		
-		return true;
+		TypedQuery<EProduit> query = em.createQuery("From EProduit " +
+													"Where modele=:model " +
+													"and marque=:marque", EProduit.class);
+		query.setParameter("model", model);
+		query.setParameter("marque", marque);
+		
+		EProduit p = query.getSingleResult();
+		
+		if(p!=null){
+			
+			// On verifie qu'il y en a assez en stock
+			
+			if(p.getQuantity()>=quantity){
+				
+				// On soustrait la quantite voulue
+				
+				p.setQuantity(p.getQuantity()-quantity);
+				
+				// On enregistre la commande
+				
+				DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				//get current date time with Date()
+				Date date = new Date();
+				System.out.println(dateFormat.format(date));
+
+				//get current date time with Calendar()
+				Calendar cal = Calendar.getInstance();
+				
+				ECommande ec = new ECommande(clientName, clientAddress, p, quantity, dateFormat.format(cal.getTime()));
+				
+				em.persist(ec);
+				
+			} else {
+				
+				transactionValide = false;
+				
+				System.out.println("Il n'y a pas assez du produit demande en stock");				
+				
+			}
+			
+			
+		} else {
+			
+			transactionValide = false;
+			
+			System.out.println("Le produit n'existe pas");
+			
+		}
+			
+		return transactionValide;
 	}
 
 
