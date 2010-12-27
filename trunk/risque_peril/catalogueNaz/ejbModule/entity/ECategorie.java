@@ -1,5 +1,6 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,8 +14,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="CATEGORY")
-public class ECategorie {
+public class ECategorie implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Long id;
 	private String name;
 	private List<EProduit> produits;

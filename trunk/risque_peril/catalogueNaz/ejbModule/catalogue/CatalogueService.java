@@ -13,8 +13,6 @@ import dto.Produit;
 import entity.ECategorie;
 import entity.EProduit;
 
-import lib.CatalogueRemote;
-
 
 /**
  * Session Bean implementation class Catalogue
