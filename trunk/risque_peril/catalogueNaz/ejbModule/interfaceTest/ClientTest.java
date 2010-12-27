@@ -62,7 +62,7 @@ public class ClientTest {
 						 }
 					break;
 				case 2 : // Récupérer les produits d'une marque
-					 	 System.out.print("--------> marque : ");
+					 	 System.out.print("--------> marque : "); marque = myInput.readLine();
 						 for( Produit p : catalogueService.findByMarque(marque)){
 							 printProduit(p);
 						 }
