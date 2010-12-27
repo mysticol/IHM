@@ -8,6 +8,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import lib.CatalogueRegisteringRemote;
+
 import entity.ECategorie;
 import entity.EProduit;
 
@@ -27,7 +29,16 @@ public class CatalogueManager {
 		Context context = new InitialContext();
         // Nom de la classe d'implémentation + /local ou /remote
         CatalogueServiceRemote catalogueLocal = (CatalogueServiceRemote) context.lookup("CatalogueService/remote");
+        
+        // On s'enregistre aupres du server central
+        CatalogueRegisteringRemote centralServerRegistering = (CatalogueRegisteringRemote) context.lookup("CatalogueRegistering/remote");
 	
+        if(!centralServerRegistering.senregistrer("", "dejean-pottier", "CatalogueService")){
+        	System.out.println("Probleme : impossible de s'enregistrer aupres du server central");
+        }
+        
+        
+        
     	String categorie;
 		String marque;
 		String modele;
