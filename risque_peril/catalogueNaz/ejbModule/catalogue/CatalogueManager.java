@@ -9,6 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import entity.ECategorie;
 import entity.EProduit;
 
 import lib.CatalogueRemote;
@@ -34,8 +35,6 @@ public class CatalogueManager {
 		String marque;
 		String modele;
 		Double prix;
-		String client;
-		String adresse;
 		Integer quantite;
 		String description;
 		Long id;
@@ -57,17 +56,26 @@ public class CatalogueManager {
         do{
 			try {
 				System.out.println(" -------------- MENU -------------- ");
-				System.out.println(" 1 - Créer un produit");
-				System.out.println(" 2 - Effacer un produit");
-				System.out.println(" 3 - Créer une Catégorie");
-				System.out.println(" 4 - Effacer une Catégorie");
+				System.out.println(" 1 - liste des Produits");
+				System.out.println(" 2 - Créer un Produit");
+				System.out.println(" 3 - Effacer un Produit");
+				System.out.println(" 4 - liste des Catégories");
+				System.out.println(" 5 - Créer une Catégorie");
+				System.out.println(" 6 - Effacer une Catégorie");
 				System.out.println(" ---------------------------------- ");
 				System.out.println(" 0 - Quitter");
 				System.out.println(" ---------------------------------- ");
 				System.out.print(  "------> Choix : "); choix = myInput.readLine();
 				
 				switch(Integer.valueOf(choix)){
-				case 1 : System.out.print("--------> description : "); description = myInput.readLine();
+				case 1 : System.out.print("--------> id produit : "); id = Long.valueOf(myInput.readLine()); 
+						 for(EProduit p : catalogueLocal.getAllProduits()){
+							 System.out.println("--> description : "+ p.getDescription());
+							 System.out.println("--> id : "+ p.getId());
+							 System.out.println("--------------------------------");
+						 }
+						 break;
+				case 2 : System.out.print("--------> description : "); description = myInput.readLine();
 						 System.out.print("--------> Categorie : "); categorie = myInput.readLine();
 						 System.out.print("--------> marque : "); marque = myInput.readLine();
 				 		 System.out.print("--------> modele : "); modele = myInput.readLine();
@@ -75,14 +83,21 @@ public class CatalogueManager {
 				 		 System.out.print("--------> prix : "); prix = Double.valueOf(myInput.readLine());
 				 		 catalogueLocal.addProduct(description, prix, categorie, marque, modele, quantite);
 				 		 break;
-				case 2 : System.out.print("--------> id produit : "); id = Long.valueOf(myInput.readLine()); 
-						 System.out.println(">>>>>>>>>>>> fonction non implémenté <<<<<<<<<<<<"); // appel
+				case 3 : System.out.print("--------> id produit : "); id = Long.valueOf(myInput.readLine()); 
+						 catalogueLocal.deleteProduct(id);
 						 break;
-				case 3 : System.out.print("--------> Categorie : "); categorie = myInput.readLine();
+				case 4 : System.out.print("--------> id Categorie : "); id = Long.valueOf(myInput.readLine());
+						 for(ECategorie c : catalogueLocal.getAllCategories()){
+							 System.out.println("--> nom : "+ c.getName());
+							 System.out.println("--> id : "+ c.getId());
+							 System.out.println("--------------------------------");
+						 }
+						 break;
+				case 5 : System.out.print("--------> Categorie : "); categorie = myInput.readLine();
 				 		 catalogueLocal.addCategorie(categorie);
 				 		 break;
-				case 4 : System.out.print("--------> id Categorie : "); id = Long.valueOf(myInput.readLine());
-						 System.out.println(">>>>>>>>>>>> fonction non implémenté <<<<<<<<<<<<"); // appel
+				case 6 : System.out.print("--------> id Categorie : "); id = Long.valueOf(myInput.readLine());
+						 catalogueLocal.deleteCategorie(id);
 						 break;
 				case 0 : System.out.println(" Au revoir !");
 						 fin = true;			
