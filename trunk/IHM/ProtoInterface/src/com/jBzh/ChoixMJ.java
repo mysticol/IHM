@@ -1,8 +1,11 @@
 package com.jBzh;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 public class ChoixMJ extends Activity{
@@ -26,6 +29,25 @@ public class ChoixMJ extends Activity{
                 this, R.array.campagne_array, android.R.layout.simple_spinner_item);
         adapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         campagneSpinner.setAdapter(adapterC);
+        
+        final Button buttonRetour = (Button) findViewById(R.id.retour);
+        buttonRetour.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	
+            	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+    			Bundle objetbunble = new Bundle();
+     
+    			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+    			Intent intent = new Intent(ChoixMJ.this, ProtoInterface.class);
+     
+    			//On affecte à l'Intent le Bundle que l'on a créé
+    			intent.putExtras(objetbunble);
+     
+    			//On démarre l'autre Activity
+    			startActivityForResult(intent, 1);
+
+            }
+        });
 
 	}
 	
