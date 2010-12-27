@@ -3,7 +3,6 @@ package catalogue;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -11,8 +10,6 @@ import javax.naming.NamingException;
 
 import entity.ECategorie;
 import entity.EProduit;
-
-import lib.CatalogueRemote;
 
 public class CatalogueManager {
 

@@ -1,10 +1,5 @@
 package catalogue;
-import java.util.List;
-
 import javax.ejb.Local;
-
-import entity.ECategorie;
-import entity.EProduit;
 
 @Local
 public interface CatalogueServiceLocal {

@@ -1,5 +1,7 @@
 package entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +14,12 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name="PRODUIT",
 	   uniqueConstraints = @UniqueConstraint(columnNames = { "marque","modele" }))
-public class EProduit {
+public class EProduit implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private String fournisseur;
