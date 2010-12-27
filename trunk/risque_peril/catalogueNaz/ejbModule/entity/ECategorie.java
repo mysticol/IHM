@@ -1,5 +1,6 @@
 package entity;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -50,10 +51,10 @@ public class ECategorie {
 		super();
 	}
 
-	public ECategorie(String name, List<EProduit> produits) {
+	public ECategorie(String name) {
 		super();
 		this.name = name;
-		this.produits = produits;
+		this.produits = new LinkedList<EProduit>();
 	}
 	
 	
