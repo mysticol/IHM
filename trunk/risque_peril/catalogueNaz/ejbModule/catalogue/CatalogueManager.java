@@ -41,8 +41,8 @@ public class CatalogueManager {
 		Long id;
         
 		// création automatique du catalogue pour les tests !!
-		catalogueLocal.addCategorie("Jouet", new LinkedList<EProduit>());
-        catalogueLocal.addCategorie("jardin", new LinkedList<EProduit>()); 
+		catalogueLocal.addCategorie("Jouet");
+        catalogueLocal.addCategorie("jardin"); 
         
         catalogueLocal.addProduct(" vrai osselet juif ", 10.0, "Jouet", "Les Restes de la fosses", "osselets", 500);
         catalogueLocal.addProduct(" vrai toupie juive ", 15.0, "Jouet", "Les Restes de la fosses", "toupie", 100);
@@ -79,7 +79,7 @@ public class CatalogueManager {
 						 System.out.println(">>>>>>>>>>>> fonction non implémenté <<<<<<<<<<<<"); // appel
 						 break;
 				case 3 : System.out.print("--------> Categorie : "); categorie = myInput.readLine();
-				 		 catalogueLocal.addCategorie(categorie, new LinkedList<EProduit>());
+				 		 catalogueLocal.addCategorie(categorie);
 				 		 break;
 				case 4 : System.out.print("--------> id Categorie : "); id = Long.valueOf(myInput.readLine());
 						 System.out.println(">>>>>>>>>>>> fonction non implémenté <<<<<<<<<<<<"); // appel
