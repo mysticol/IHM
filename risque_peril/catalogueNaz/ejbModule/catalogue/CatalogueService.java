@@ -20,7 +20,7 @@ import lib.CatalogueRemote;
  * Session Bean implementation class Catalogue
  */
 @Stateless
-public class CatalogueService implements CatalogueRemote, CatalogueServiceLocal {
+public class CatalogueService implements CatalogueServiceRemote {
 
 	@PersistenceContext
 	private EntityManager em;
