@@ -1,34 +1,32 @@
-package catalogue;
+package entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
-import lib.ICategorie;
-import lib.IProduit;
 
 @Entity
 @Table(name="PRODUIT",
 	   uniqueConstraints = @UniqueConstraint(columnNames = { "marque","modele" }))
-public class Produit implements IProduit {
+public class EProduit {
 	
 	private Long id;
 	private String fournisseur;
 	private String description;
 	private Double price;
-	private ICategorie categorie;
+	private ECategorie categorie;
 	private String marque;
 	private String modele;
-	private Long quantity;
+	private Integer quantity;
 
-	public Produit(){
+	public EProduit(){
 	}
 	
-	public Produit(String description, Double price, ICategorie category, String marque, String modele, Long quantity){
+	public EProduit(String description, Double price, ECategorie category, String marque, String modele, Integer quantity){
 		this.description = description;
 		this.price = price;
 		this.categorie = category;
@@ -37,7 +35,8 @@ public class Produit implements IProduit {
 		this.quantity = quantity;
 	}
 	
-	public ICategorie getCategorie() {
+	@ManyToOne
+	public ECategorie getCategorie() {
 		return categorie;
 	}
 
@@ -73,11 +72,11 @@ public class Produit implements IProduit {
 		return price;
 	}
 
-	public Long getQuantity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
 
-	public void setCategorie(ICategorie category) {
+	public void setCategorie(ECategorie category) {
 		this.categorie = category;
 	}
 
@@ -101,8 +100,9 @@ public class Produit implements IProduit {
 		this.price = price;
 	}
 
-	public void setQuantity(Long quantity) {
+	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 
 }
+
