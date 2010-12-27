@@ -59,7 +59,11 @@ public class CatalogueService implements CatalogueServiceRemote {
 		TypedQuery<EProduit> query = em.createQuery("From EProduit Where id=:id", EProduit.class);
 		query.setParameter("id", id);
 		
-		em.remove(query.getSingleResult());
+		EProduit ep = query.getSingleResult();
+		
+		if(ep!=null){
+			em.remove(ep);
+		}
 	}
 	
 	public List<EProduit> getAllProduits() {
@@ -81,7 +85,11 @@ public class CatalogueService implements CatalogueServiceRemote {
 		TypedQuery<ECategorie> query = em.createQuery("From ECategorie Where id=:id", ECategorie.class);
 		query.setParameter("id", id);
 		
-		em.remove(query.getSingleResult());
+		ECategorie ec = query.getSingleResult();
+		
+		if((ec!=null)&&(ec.getProduits().size()==0)){
+			em.remove(ec);
+		}
 	}
 	
 	public List<ECategorie> getAllCategories(){
