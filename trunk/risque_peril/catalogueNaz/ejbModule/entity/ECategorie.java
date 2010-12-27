@@ -1,4 +1,4 @@
-package catalogue;
+package entity;
 
 import java.util.List;
 
@@ -10,16 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lib.ICategorie;
-import lib.IProduit;
-
 @Entity
 @Table(name="CATEGORY")
-public class Category implements ICategorie{
+public class ECategorie {
 
 	private Long id;
 	private String name;
-	private List<IProduit> produits;
+	private List<EProduit> produits;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -39,21 +36,21 @@ public class Category implements ICategorie{
 		this.name = name;
 	}
 
-	@OneToMany(fetch=FetchType.EAGER)
-	public List<IProduit> getProduits() {
+	@OneToMany(mappedBy="categorie", fetch=FetchType.EAGER)
+	public List<EProduit> getProduits() {
 		return produits;
 	}
 
-	public void setProduits(List<IProduit> produits) {
+	public void setProduits(List<EProduit> produits) {
 		this.produits = produits;
 	}
 
 		
-	public Category() {
+	public ECategorie() {
 		super();
 	}
 
-	public Category(String name, List<IProduit> produits) {
+	public ECategorie(String name, List<EProduit> produits) {
 		super();
 		this.name = name;
 		this.produits = produits;

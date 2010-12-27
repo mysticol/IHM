@@ -8,10 +8,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import lib.CatalogueRemote;
-import lib.ICategorie;
-import lib.IProduit;
+import dto.Categorie;
+import dto.Produit;
+import entity.ECategorie;
+import entity.EProduit;
 
+import lib.CatalogueRemote;
 
 
 /**
@@ -30,163 +32,118 @@ public class CatalogueService implements CatalogueRemote, CatalogueServiceLocal 
 
     }
 
-	public List<ICategorie> findAllCategories() {
-			
-		TypedQuery<ICategorie> query = em.createQuery("From Category",ICategorie.class);
-				
-		return query.getResultList();
-	}
-
-	public List<IProduit> findByCategorie(String catName) {
-
-		TypedQuery<ICategorie> query = em.createQuery("From Category Where name=:name",ICategorie.class);
-		query.setParameter("name", catName);
-		ICategorie cat = query.getSingleResult();
-
-		return ((Category) cat).getProduits();
-	}
-
-	public List<IProduit> findByCategorieAndPriceRange(String arg0,
-			Double arg1, Double arg2) {
-
-		TypedQuery<IProduit> query = em.createQuery("From Category" +
-													  " Where name=:name" +
-													  " and produits.price>=:prixMin" +
-													  " and produits.price<=:prixMax",IProduit.class);
-		query.setParameter("name", arg0);
-		query.setParameter("prixMin", arg1);
-		query.setParameter("PrixMax", arg2);
-
-		return query.getResultList();		
-		
-	}
-
-	public List<IProduit> findByMarque(String arg0) {
-
-		return null;
-	}
-
-	public IProduit findByMarqueAndModele(String arg0, String arg1) {
-
-		return null;
-	}
-
-	public ICategorie findCategorie(Long arg0) {
-
-		TypedQuery<ICategorie> query = em.createQuery("From Category" +
-				  " Where id=:id",ICategorie.class);
-		query.setParameter("id", arg0);
-		
-		return query.getSingleResult();
-
-	}
-
-	public ICategorie findCategorieByName(String arg0) {
-
-		TypedQuery<ICategorie> query = em.createQuery("From Category" +
-				  " Where name=:name",ICategorie.class);
-		query.setParameter("name", arg0);
-		
-		return query.getSingleResult();
-	}
-
+    // Methodes locales
 	public Long addProduct(String description, Double price,
-			ICategorie categorie, String marque, String modele, Long quantity) {
-
-		// On créé le produit
-		Produit newProduit = new Produit(description, price, categorie, marque, modele, quantity);
-		
-		em.persist(newProduit);
-		
-		// On l'ajoute à sa Catégorie si elle existe.
-		// Sinon, on créé la Catégorie et on y ajoute le Produit
-		
-		ICategorie cat = findCategorieByName(categorie.getName());
-		
-		if(cat == null){
-			//La Catégorie n'existe pas, on la créé donc
-			Category newCategorie = new Category();
-			
-			newCategorie.setName(categorie.getName());
-			
-			List<IProduit> prodTmp = new LinkedList<IProduit>();
-			prodTmp.add(newProduit);
-			
-			newCategorie.setProduits(prodTmp);
-			
-			em.persist(newCategorie);
-			
-		} else {
-			//La Catégorie existe : on y ajoute le Produit
-			((Category) cat).getProduits().add(newProduit);
-		}
-			
-		return newProduit.getId();
+			ECategorie categorie, String marque, String modele, Long quantity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public void deleteProduct(Long id) {
-		
-		//TODO
+		// TODO Auto-generated method stub
 		
 	}
 
-	public List<IProduit> findByCategorieAndMarque(String categorie,
-			String marque) {
-
-		
-		TypedQuery<IProduit> query = em.createQuery("From Category" +
-				  " Where name=:name" +
-				  " and produits.marque=:marque" +
-				  " and produits.price>=:prixMin" +
-				  " and produits.price<=:prixMax",IProduit.class);
-		
-		query.setParameter("name", categorie);
-		query.setParameter("marque", marque);
-
-		return query.getResultList();
+	public Long addCategorie(String name, List<EProduit> listProduit) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public List<IProduit> findByCategorieAndMarqueAndPriceRange(
-			String categorie, String marque, Double lowPrice, Double highPrice) {
+	public void deleteCategorie(Long id) {
+		// TODO Auto-generated method stub
 		
-		TypedQuery<IProduit> query = em.createQuery("From Category" +
-				  " Where name=:name" +
-				  " and produits.marque=:marque" +
-				  " and produits.price>=:prixMin" +
-				  " and produits.price<=:prixMax",IProduit.class);
-		  
-		query.setParameter("name", categorie);
+	}
+
+	
+	// Methodes distantes
+	public List<Categorie> findAllCategories() {
+		
+		TypedQuery<ECategorie> query = em.createQuery("From Categorie", ECategorie.class);
+				
+		return toListCategorie(query.getResultList());
+	}
+
+	public List<Produit> findByMarque(String marque) {
+		
+		TypedQuery<EProduit> query = em.createQuery("From Produit Where marque=:marque", EProduit.class);
 		query.setParameter("marque", marque);
-		query.setParameter("prixMin", lowPrice);
-		query.setParameter("PrixMax", highPrice);
 		
+		return toListProduit(query.getResultList());
+	}
+
+	public List<Produit> findByCategorie(String nomCateg) {
+		
+		TypedQuery<ECategorie> query = em.createQuery("From Categorie Where name=:nomCateg", ECategorie.class);
+		query.setParameter("nomCateg", nomCateg);
+		
+		return toListProduit(query.getSingleResult().getProduits());
+	}
+
+	public List<Produit> findByCategorieAndPriceRange(String nomCateg,
+			Double lowPrice, Double highPrice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Produit> findByCategorieAndMarque(String nomCateg, String marque) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Produit> findByCategorieAndMarqueAndPriceRange(String nomCateg,
+			String marque, Double lowPrice, Double highPrice) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public Boolean order(String marque, String model, Integer quantity,
 			String clientName, String clientAddress) {
-
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/* Nos méthodes non-présentes dans l'interface */
-	public Long addCategorie(String name, List<IProduit> listProduit) {
+
+	// Methodes de transformation d'un EProduit, ECategorie
+	// vers un Produit, Categorie, et vice-versa
+	
+	private Produit toProduit(EProduit ep) {
+		Produit p = new Produit();
 		
-		Category newCategorie = new Category(name, listProduit);
+		p.setCategorie(toCategorie(ep.getCategorie()));
+		p.setDescription(ep.getDescription());
+		p.setMarque(ep.getMarque());
+		p.setModele(ep.getModele());
+		p.setPrix(ep.getPrice());
+		p.setQuantite(ep.getQuantity());
 		
-		em.persist(newCategorie);
+		return p;
+	}
+	
+	private List<Produit> toListProduit(List<EProduit> lep){
+		List<Produit> lp = new LinkedList<Produit>();
 		
-		return newCategorie.getId();
+		for(EProduit ep : lep){
+			lp.add(toProduit(ep));
+		}
+			
+		return lp;
 	}
 
-	public void deleteCategorie(Long id) {
+	private Categorie toCategorie(ECategorie ec) {
+		Categorie c = new Categorie();
 		
-		em.detach(findCategorie(id));
+		c.setName(ec.getName());
 		
+		return c;
 	}
 	
-	
-	
-	
-
+	private List<Categorie> toListCategorie(List<ECategorie> lec){
+		List<Categorie> lc = new LinkedList<Categorie>();
+		
+		for(ECategorie ec : lec){
+			lc.add(toCategorie(ec));
+		}
+			
+		return lc;
+	}
 }
