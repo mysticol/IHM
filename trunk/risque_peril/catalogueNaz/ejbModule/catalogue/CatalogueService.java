@@ -127,7 +127,7 @@ public class CatalogueService implements CatalogueServiceRemote {
 		TypedQuery<EProduit> query = em.createQuery("From EProduit " +
 													"Where categorie.name=:nomCateg " +
 													"and price>=:lowPrice " +
-													"and price<=:highPrice" +
+													"and price<=:highPrice " +
 													"and marque=:marque ", EProduit.class);
 		query.setParameter("nomCateg", nomCateg);
 		query.setParameter("lowPrice", lowPrice);

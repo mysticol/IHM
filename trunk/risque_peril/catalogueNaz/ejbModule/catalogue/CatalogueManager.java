@@ -42,7 +42,7 @@ public class CatalogueManager {
         
 		// création automatique du catalogue pour les tests !!
 		catalogueLocal.addCategorie("Jouet");
-        catalogueLocal.addCategorie("jardin"); 
+        catalogueLocal.addCategorie("Jardin"); 
         
         catalogueLocal.addProduct(" vrai osselet juif ", 10.0, "Jouet", "Les Restes de la fosses", "osselets", 500);
         catalogueLocal.addProduct(" vrai toupie juive ", 15.0, "Jouet", "Les Restes de la fosses", "toupie", 100);
