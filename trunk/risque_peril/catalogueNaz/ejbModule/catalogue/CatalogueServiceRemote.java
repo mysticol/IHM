@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import entity.ECategorie;
+import entity.ECommande;
 import entity.EProduit;
 
 import lib.CatalogueRemote;
@@ -23,5 +24,7 @@ public interface CatalogueServiceRemote extends CatalogueRemote{
 	List<EProduit> getAllProduits();
 	
 	List<ECategorie> getAllCategories();
+	
+	List<ECommande> getAllCommandes();
 
 }
