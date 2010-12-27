@@ -14,18 +14,36 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:prompt="@string/univers"
-    />
+        android:layout_below="@id/univers"/>
     
     <TextView
         android:id="@+id/campagne"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Campagne :"/>
+        android:text="Campagne :"
+        android:layout_below="@id/UniversSpinner"/>
+        
 	<Spinner 
         android:id="@+id/CampagneSpinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:prompt="@string/campagne"
-    />
+        android:layout_below="@id/campagne"/>
+        
+    <Button
+        android:id="@+id/valider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/CampagneSpinner"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dip"
+        android:text="Valider" />
+        
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/valider"
+        android:layout_alignTop="@id/valider"
+        android:text="Retour" />
         
 </RelativeLayout>
