@@ -9,8 +9,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import entity.EProduit;
+
 import lib.CatalogueRemote;
-import lib.IProduit;
 
 public class CatalogueManager {
 
@@ -39,22 +40,27 @@ public class CatalogueManager {
 		String description;
 		Long id;
         
-		// création automatique du catalogue por les tests !!
-		catalogueLocal.addCategorie("Cosmétique", new LinkedList<IProduit>());
-        catalogueLocal.addCategorie("Outil", new LinkedList<IProduit>()); 
-        catalogueLocal.addCategorie("Jouet", new LinkedList<IProduit>()); 
-        catalogueLocal.addCategorie("Média", new LinkedList<IProduit>()); 
-        catalogueLocal.addCategorie("Antiquité", new LinkedList<IProduit>()); 
-
+		// création automatique du catalogue pour les tests !!
+		catalogueLocal.addCategorie("Jouet", new LinkedList<EProduit>());
+        catalogueLocal.addCategorie("jardin", new LinkedList<EProduit>()); 
+        
+        catalogueLocal.addProduct(" vrai osselet juif ", 10.0, "Jouet", "Les Restes de la fosses", "osselets", 500);
+        catalogueLocal.addProduct(" vrai toupie juive ", 15.0, "Jouet", "Les Restes de la fosses", "toupie", 100);
+        catalogueLocal.addProduct(" fait avec de vrai plombage ", 12.0, "Jouet", "Les Restes du four", "soldat de plomb", 100);
+        
+        catalogueLocal.addProduct(" un joli rateau en os ", 30.0, "Jardin", "Les Restes de la fosses", "rateau", 100);
+        catalogueLocal.addProduct(" un bon angraie plein de bonne chose ", 20.0, "Jardin", "Les Restes du four", "angraie", 900);
+        
+        // fin de la creation du catalogue
         
         // Menu admin
         do{
 			try {
 				System.out.println(" -------------- MENU -------------- ");
 				System.out.println(" 1 - Créer un produit");
-				System.out.println(" 2- Effacer un produit");
-				System.out.println(" 3- Créer une Catégorie");
-				System.out.println(" 4- Effacer une Catégorie");
+				System.out.println(" 2 - Effacer un produit");
+				System.out.println(" 3 - Créer une Catégorie");
+				System.out.println(" 4 - Effacer une Catégorie");
 				System.out.println(" ---------------------------------- ");
 				System.out.println(" 0 - Quitter");
 				System.out.println(" ---------------------------------- ");
@@ -67,13 +73,13 @@ public class CatalogueManager {
 				 		 System.out.print("--------> modele : "); modele = myInput.readLine();
 				 		 System.out.print("--------> quantité : "); quantite = Integer.valueOf(myInput.readLine());
 				 		 System.out.print("--------> prix : "); prix = Double.valueOf(myInput.readLine());
-				 		 System.out.println(">>>>>>>>>>>> fonction non implémenté <<<<<<<<<<<<"); // appel
+				 		 catalogueLocal.addProduct(description, prix, categorie, marque, modele, quantite);
 				 		 break;
 				case 2 : System.out.print("--------> id produit : "); id = Long.valueOf(myInput.readLine()); 
 						 System.out.println(">>>>>>>>>>>> fonction non implémenté <<<<<<<<<<<<"); // appel
 						 break;
 				case 3 : System.out.print("--------> Categorie : "); categorie = myInput.readLine();
-				 		 System.out.println(">>>>>>>>>>>> fonction non implémenté <<<<<<<<<<<<"); // appel
+				 		 catalogueLocal.addCategorie(categorie, new LinkedList<EProduit>());
 				 		 break;
 				case 4 : System.out.print("--------> id Categorie : "); id = Long.valueOf(myInput.readLine());
 						 System.out.println(">>>>>>>>>>>> fonction non implémenté <<<<<<<<<<<<"); // appel
