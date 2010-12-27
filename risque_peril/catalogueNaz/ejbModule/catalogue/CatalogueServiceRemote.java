@@ -1,6 +1,11 @@
 package catalogue;
 
+import java.util.List;
+
 import javax.ejb.Remote;
+
+import entity.ECategorie;
+import entity.EProduit;
 
 import lib.CatalogueRemote;
 
@@ -14,5 +19,9 @@ public interface CatalogueServiceRemote extends CatalogueRemote{
 	Long addCategorie(String name);
 	
 	void deleteCategorie(Long id);
+	
+	List<EProduit> getAllProduits();
+	
+	List<ECategorie> getAllCategories();
 
 }
