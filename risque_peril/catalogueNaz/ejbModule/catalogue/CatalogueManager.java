@@ -11,6 +11,7 @@ import javax.naming.NamingException;
 import lib.CatalogueRegisteringRemote;
 
 import entity.ECategorie;
+import entity.ECommande;
 import entity.EProduit;
 
 public class CatalogueManager {
@@ -69,6 +70,8 @@ public class CatalogueManager {
 				System.out.println(" 5 - Créer une Catégorie");
 				System.out.println(" 6 - Effacer une Catégorie");
 				System.out.println(" ---------------------------------- ");
+				System.out.println(" 7 - Afficher toute les commandes");
+				System.out.println(" ---------------------------------- ");
 				System.out.println(" 0 - Quitter");
 				System.out.println(" ---------------------------------- ");
 				System.out.print(  "------> Choix : "); choix = myInput.readLine();
@@ -102,6 +105,16 @@ public class CatalogueManager {
 				 		 break;
 				case 6 : System.out.print("--------> id Categorie : "); id = Long.valueOf(myInput.readLine());
 						 catalogueLocal.deleteCategorie(id);
+						 break;
+				case 7 : for(ECommande c : catalogueLocal.getAllCommandes()){
+							 System.out.println("--> id : "+ c.getId());
+							 System.out.println("--> nom du client : "+ c.getNomClient());
+							 System.out.println("--> adresse du client : "+ c.getAdresse());
+							 System.out.println("--> produit : "+ c.getProduit().getId());
+							 System.out.println("--> quantité : "+ c.getQuantite());
+							 System.out.println("--> date de la commande : "+ c.getDate());
+							 System.out.println("--------------------------------");
+						 }
 						 break;
 				case 0 : System.out.println(" Au revoir !");
 						 fin = true;			

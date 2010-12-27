@@ -58,5 +58,5 @@ public interface CatalogueRemote {
 
    public List<Produit> findByCategorieAndMarqueAndPriceRange(String nomCateg, String marque, Double lowPrice, Double highPrice);
 
-	public Boolean order(String marque, String model, Integer quantity, String clientName, String clientAddress);
+   public Boolean order(String marque, String model, Integer quantity, String clientName, String clientAddress);
 }
