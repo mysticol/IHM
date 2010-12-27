@@ -53,10 +53,18 @@ public class CatalogueService implements CatalogueServiceRemote {
 	}
 
 	public void deleteProduct(Long id) {
-		// TODO Auto-generated method stub
+		TypedQuery<EProduit> query = em.createQuery("From EProduit Where id=:id", EProduit.class);
+		query.setParameter("id", id);
 		
+		em.remove(query.getSingleResult());
 	}
-
+	
+	public List<EProduit> getAllProduits() {
+		TypedQuery<EProduit> query = em.createQuery("From EProduit", EProduit.class);
+		
+		return query.getResultList();
+	}
+	
 	public Long addCategorie(String name) {
 
 		ECategorie ec = new ECategorie(name);
@@ -67,8 +75,16 @@ public class CatalogueService implements CatalogueServiceRemote {
 	}
 
 	public void deleteCategorie(Long id) {
-		// TODO Auto-generated method stub
+		TypedQuery<ECategorie> query = em.createQuery("From ECategorie Where id=:id", ECategorie.class);
+		query.setParameter("id", id);
 		
+		em.remove(query.getSingleResult());
+	}
+	
+	public List<ECategorie> getAllCategories(){
+		TypedQuery<ECategorie> query = em.createQuery("From ECategorie", ECategorie.class);		
+		
+		return query.getResultList();
 	}
 
 	
