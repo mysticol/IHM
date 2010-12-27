@@ -68,8 +68,7 @@ public class CatalogueManager {
 				System.out.print(  "------> Choix : "); choix = myInput.readLine();
 				
 				switch(Integer.valueOf(choix)){
-				case 1 : System.out.print("--------> id produit : "); id = Long.valueOf(myInput.readLine()); 
-						 for(EProduit p : catalogueLocal.getAllProduits()){
+				case 1 : for(EProduit p : catalogueLocal.getAllProduits()){
 							 System.out.println("--> description : "+ p.getDescription());
 							 System.out.println("--> id : "+ p.getId());
 							 System.out.println("--------------------------------");
@@ -86,8 +85,7 @@ public class CatalogueManager {
 				case 3 : System.out.print("--------> id produit : "); id = Long.valueOf(myInput.readLine()); 
 						 catalogueLocal.deleteProduct(id);
 						 break;
-				case 4 : System.out.print("--------> id Categorie : "); id = Long.valueOf(myInput.readLine());
-						 for(ECategorie c : catalogueLocal.getAllCategories()){
+				case 4 : for(ECategorie c : catalogueLocal.getAllCategories()){
 							 System.out.println("--> nom : "+ c.getName());
 							 System.out.println("--> id : "+ c.getId());
 							 System.out.println("--------------------------------");
