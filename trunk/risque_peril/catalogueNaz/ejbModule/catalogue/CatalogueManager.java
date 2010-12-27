@@ -28,7 +28,7 @@ public class CatalogueManager {
 		
 		Context context = new InitialContext();
         // Nom de la classe d'implémentation + /local ou /remote
-        CatalogueServiceLocal catalogueLocal = (CatalogueServiceLocal) context.lookup("CatalogueService/local");
+        CatalogueServiceRemote catalogueLocal = (CatalogueServiceRemote) context.lookup("CatalogueService/remote");
 	
     	String categorie;
 		String marque;
