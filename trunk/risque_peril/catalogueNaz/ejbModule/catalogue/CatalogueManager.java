@@ -8,8 +8,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import lib.CatalogueRegisteringRemote;
-
 import entity.ECategorie;
 import entity.ECommande;
 import entity.EProduit;
