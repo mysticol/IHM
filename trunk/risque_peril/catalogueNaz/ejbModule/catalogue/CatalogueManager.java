@@ -31,13 +31,11 @@ public class CatalogueManager {
         CatalogueServiceRemote catalogueLocal = (CatalogueServiceRemote) context.lookup("CatalogueService/remote");
         
         // On s'enregistre aupres du server central
-        CatalogueRegisteringRemote centralServerRegistering = (CatalogueRegisteringRemote) context.lookup("CatalogueRegistering/remote");
-	
-        if(!centralServerRegistering.senregistrer("", "dejean-pottier", "CatalogueService")){
-        	System.out.println("Probleme : impossible de s'enregistrer aupres du server central");
-        }
-        
-        
+//        CatalogueRegisteringRemote centralServerRegistering = (CatalogueRegisteringRemote) context.lookup("CatalogueRegistering/remote");
+//	
+//        if(!centralServerRegistering.senregistrer("", "dejean-pottier", "CatalogueService")){
+//        	System.out.println("Probleme : impossible de s'enregistrer aupres du server central");
+//        }        
         
     	String categorie;
 		String marque;
