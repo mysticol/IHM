@@ -9,11 +9,11 @@ import entity.EProduit;
 @Local
 public interface CatalogueServiceLocal {
 	
-	Long addProduct(String description, Double price, ECategorie categorie, String marque, String modele, Long quantity);
+	Long addProduct(String description, Double price, String nomCateg, String marque, String modele, Integer quantity);
 
 	void deleteProduct(Long id);
 	
-	Long addCategorie(String name, List<EProduit> listProduit);
+	Long addCategorie(String name);
 	
 	void deleteCategorie(Long id);
 	

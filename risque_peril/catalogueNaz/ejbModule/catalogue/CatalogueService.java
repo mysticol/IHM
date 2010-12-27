@@ -34,9 +34,22 @@ public class CatalogueService implements CatalogueRemote, CatalogueServiceLocal 
 
     // Methodes locales
 	public Long addProduct(String description, Double price,
-			ECategorie categorie, String marque, String modele, Long quantity) {
-		// TODO Auto-generated method stub
-		return null;
+			String nomCateg, String marque, String modele, Integer quantity) {
+		
+		// On recupere la categorie de nom nomCateg
+		TypedQuery<ECategorie> query = em.createQuery("From ECategorie Where name=:nomCateg", ECategorie.class);
+		query.setParameter("nomCateg", nomCateg);
+		
+		ECategorie ec = query.getSingleResult();
+
+		EProduit ep = new EProduit(description, price, ec, marque, modele, quantity);
+		
+		ec.getProduits().add(ep);
+		
+		em.persist(ep);
+		em.merge(ec);
+		
+		return ep.getId();
 	}
 
 	public void deleteProduct(Long id) {
@@ -44,9 +57,13 @@ public class CatalogueService implements CatalogueRemote, CatalogueServiceLocal 
 		
 	}
 
-	public Long addCategorie(String name, List<EProduit> listProduit) {
-		// TODO Auto-generated method stub
-		return null;
+	public Long addCategorie(String name) {
+
+		ECategorie ec = new ECategorie(name);
+		
+		em.persist(ec);
+		
+		return ec.getId();
 	}
 
 	public void deleteCategorie(Long id) {
@@ -58,14 +75,14 @@ public class CatalogueService implements CatalogueRemote, CatalogueServiceLocal 
 	// Methodes distantes
 	public List<Categorie> findAllCategories() {
 		
-		TypedQuery<ECategorie> query = em.createQuery("From Categorie", ECategorie.class);
+		TypedQuery<ECategorie> query = em.createQuery("From ECategorie", ECategorie.class);
 				
 		return toListCategorie(query.getResultList());
 	}
 
 	public List<Produit> findByMarque(String marque) {
 		
-		TypedQuery<EProduit> query = em.createQuery("From Produit Where marque=:marque", EProduit.class);
+		TypedQuery<EProduit> query = em.createQuery("From EProduit Where marque=:marque", EProduit.class);
 		query.setParameter("marque", marque);
 		
 		return toListProduit(query.getResultList());
@@ -73,7 +90,7 @@ public class CatalogueService implements CatalogueRemote, CatalogueServiceLocal 
 
 	public List<Produit> findByCategorie(String nomCateg) {
 		
-		TypedQuery<ECategorie> query = em.createQuery("From Categorie Where name=:nomCateg", ECategorie.class);
+		TypedQuery<ECategorie> query = em.createQuery("From ECategorie Where name=:nomCateg", ECategorie.class);
 		query.setParameter("nomCateg", nomCateg);
 		
 		return toListProduit(query.getSingleResult().getProduits());
@@ -81,25 +98,51 @@ public class CatalogueService implements CatalogueRemote, CatalogueServiceLocal 
 
 	public List<Produit> findByCategorieAndPriceRange(String nomCateg,
 			Double lowPrice, Double highPrice) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		TypedQuery<EProduit> query = em.createQuery("From EProduit " +
+													"Where categorie.name=:nomCateg " +
+													"and price>=:lowPrice " +
+													"and price<=:highPrice", EProduit.class);
+		query.setParameter("nomCateg", nomCateg);
+		query.setParameter("lowPrice", lowPrice);
+		query.setParameter("highPrice", highPrice);
+		
+		return toListProduit(query.getResultList());
 	}
 
 	public List<Produit> findByCategorieAndMarque(String nomCateg, String marque) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		TypedQuery<EProduit> query = em.createQuery("From EProduit " +
+													"Where categorie.name=:nomCateg " +
+													"and marque=:marque", EProduit.class);
+		query.setParameter("nomCateg", nomCateg);
+		query.setParameter("marque", marque);		
+		
+		return toListProduit(query.getResultList());
 	}
 
 	public List<Produit> findByCategorieAndMarqueAndPriceRange(String nomCateg,
 			String marque, Double lowPrice, Double highPrice) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		TypedQuery<EProduit> query = em.createQuery("From EProduit " +
+													"Where categorie.name=:nomCateg " +
+													"and price>=:lowPrice " +
+													"and price<=:highPrice" +
+													"and marque=:marque ", EProduit.class);
+		query.setParameter("nomCateg", nomCateg);
+		query.setParameter("lowPrice", lowPrice);
+		query.setParameter("highPrice", highPrice);		
+		query.setParameter("marque", marque);
+		
+		return toListProduit(query.getResultList());
 	}
 
 	public Boolean order(String marque, String model, Integer quantity,
 			String clientName, String clientAddress) {
-		// TODO Auto-generated method stub
-		return null;
+
+		//TODO prevoir une mecanique interne de commande
+		
+		return true;
 	}
 
 
