@@ -25,7 +25,7 @@ public class EcriteurModele {
 		Element root = new Element("fiche");
 		Document doc = new Document(root);
 
-		doc.setDocType(new DocType("fiche", "fiche.dtd"));
+		doc.setDocType(new DocType("fiche", "extension.dtd"));
 
 		root.addContent(convertInfos(model));
 		root.addContent(convertCaractPrincipales(model));
