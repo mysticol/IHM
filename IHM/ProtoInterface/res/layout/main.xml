@@ -18,10 +18,17 @@
         android:onClick="choixjoueur"
         android:text="Joueur" />
      <Button
-        android:id="@+id/Edition"
+        android:id="@+id/Creation"
         android:layout_width="100px"
         android:layout_height="50px"
         android:layout_below="@+id/Joueur"
+        android:onClick="choixcreation"
+        android:text="Creation" />        
+     <Button
+        android:id="@+id/Edition"
+        android:layout_width="100px"
+        android:layout_height="50px"
+        android:layout_below="@+id/Creation"
         android:onClick="pageEdition"
         android:text="Edition" />
 </RelativeLayout>
