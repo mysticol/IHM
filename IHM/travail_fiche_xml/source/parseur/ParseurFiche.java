@@ -30,6 +30,15 @@ public class ParseurFiche {
 			document = sxb.build(f);
 			racine = document.getRootElement();
 			
+			
+			//parsejeu
+			Element jeu=racine.getChild("jeu");
+			fiche.setSystem(jeu.getChildText("systeme"));
+			fiche.setUnivers(jeu.getChildText("univers"));
+			fiche.setCampagne(jeu.getChildText("campagne"));
+			
+			
+			
 			//parse les infos
 			HashMap<String , String> infos= new HashMap<String, String>();
 			Element personnage=racine.getChild("personnage");
@@ -47,6 +56,11 @@ public class ParseurFiche {
 			fiche.setTaille(personnage.getChildText("taille"));
 			fiche.setXp(personnage.getChildText("xp"));
 		
+			
+			
+			
+			
+			
 			//parse caract primaire
 			HashMap<String, Caracteristique> mapCaractPrincipale= new HashMap<String, Caracteristique>();
 			Element caractPrincipale= racine.getChild("caracteristiquesPrincipales");
@@ -149,8 +163,12 @@ public class ParseurFiche {
 		Caracteristique caract= new Caracteristique();
 		
 		caract.setNom(e.getChildText("nom"));
-		caract.setValeur(e.getChildText("valeur"));
 		
+		try{
+		caract.setValeur(Integer.parseInt(e.getChildText("valeur")));
+		}catch(Exception ex){
+			System.err.println("Fiche incompatible erreur sur la caract "+e.getChildText("nom"));
+		}
 		String jauge =e.getChildText("jauge");
 		if (jauge!=null){
 			caract.setJauge(Boolean.parseBoolean(jauge));
@@ -169,10 +187,14 @@ public class ParseurFiche {
 		Competence compt = new Competence();
 
 		compt.setNom(e.getChildText("nom"));
-		compt.setValue(e.getChildText("valeur"));
-		
+		try{
+		compt.setValeur(Integer.parseInt(e.getChildText("valeur")));
+		}catch (Exception ex){
+			System.err.println("Fiche incompatible a la competence: "+e.getChildText("nom"));
+		}
 		return compt;
 	}
+	
 	
 	
 	

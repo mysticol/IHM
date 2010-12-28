@@ -5,6 +5,8 @@ import java.util.LinkedList;
 
 public class Modele {
 
+	private String univers;
+	private String system;
 	private LinkedList<Info> infos;
 	private LinkedList<Caracteristique> caractPrincipales;
 	private LinkedList<Caracteristique> caractSecondaires;
@@ -34,17 +36,32 @@ public class Modele {
 			HashMap<Categorie, LinkedList<Competence>> competences) {
 		this.competences = competences;
 	}
-	public Modele(LinkedList<Info> infos,
+
+	public String getUnivers() {
+		return univers;
+	}
+	public void setUnivers(String univers) {
+		this.univers = univers;
+	}
+	public String getSystem() {
+		return system;
+	}
+	public void setSystem(String system) {
+		this.system = system;
+	}
+	public Modele() {
+	
+	}
+	public Modele(String univers, String system, LinkedList<Info> infos,
 			LinkedList<Caracteristique> caractPrincipales,
 			LinkedList<Caracteristique> caractSecondaires,
 			HashMap<Categorie, LinkedList<Competence>> competences) {
+		this.univers = univers;
+		this.system = system;
 		this.infos = infos;
 		this.caractPrincipales = caractPrincipales;
 		this.caractSecondaires = caractSecondaires;
 		this.competences = competences;
-	}
-	public Modele() {
-	
 	}
 	
 	

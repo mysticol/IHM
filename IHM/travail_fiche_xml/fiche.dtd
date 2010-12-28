@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!ELEMENT fiche (personnage,caracteristiquesPrincipales,caracteristiquesSecondaire, 
+<!ELEMENT fiche (jeu,personnage,caracteristiquesPrincipales,caracteristiquesSecondaire, 
 competences, pouvoirs, barreDeVie, equipement, divers)>
 
 <!ELEMENT personnage (nom, poid, taille, age, concept, info*, xp)>
+
+<!ELEMENT jeu (univers, campagne, system?)>
+<!ELEMENT univers (#PCDATA)>
+<!ELEMENT campagne (#PCDATA)>
+<!ELEMENT systeme (#PCDATA)>
 
 <!ELEMENT nom (#PCDATA)>
 <!ELEMENT info (nom, valeur)>

@@ -13,6 +13,9 @@ public class Fiche {
 	private String age;
 	private String concept;
 	private String xp;
+	private String system;
+	private String univers;
+	private String campagne;
 	private HashMap<String, String> infos;
 	private HashMap<String, Caracteristique> caracteristiquesPrincipales;
 	private HashMap<String, Caracteristique> caracteristiquesSecondaire;
@@ -25,10 +28,21 @@ public class Fiche {
 	
 	
 	
+	
+
+
+
+	
+
+
+
+
 	public Fiche(String nom, String poid, String taille, String age,
-			String concept, String xp, HashMap<String, String> infos,
+			String concept, String xp, String system, String univers,
+			String campagne, HashMap<String, String> infos,
 			HashMap<String, Caracteristique> caracteristiquesPrincipales,
 			HashMap<String, Caracteristique> caracteristiquesSecondaire,
+			HashMap<Categorie, LinkedList<Competence>> competences,
 			LinkedList<Pouvoir> pouvoirs, LinkedList<Equipement> equipements,
 			String barreDeVie, String divers) {
 		this.nom = nom;
@@ -37,9 +51,13 @@ public class Fiche {
 		this.age = age;
 		this.concept = concept;
 		this.xp = xp;
+		this.system = system;
+		this.univers = univers;
+		this.campagne = campagne;
 		this.infos = infos;
 		this.caracteristiquesPrincipales = caracteristiquesPrincipales;
 		this.caracteristiquesSecondaire = caracteristiquesSecondaire;
+		this.competences = competences;
 		this.pouvoirs = pouvoirs;
 		this.equipements = equipements;
 		this.barreDeVie = barreDeVie;
@@ -49,17 +67,55 @@ public class Fiche {
 
 
 	public Fiche(String nom, String poid, String taille, String age,
-			String concept, String xp, String divers) {
+			String concept, String xp, String system, String univers,
+			String campagne, String divers) {
 		this.nom = nom;
 		this.poid = poid;
 		this.taille = taille;
 		this.age = age;
 		this.concept = concept;
 		this.xp = xp;
+		this.system = system;
+		this.univers = univers;
+		this.campagne = campagne;
 		this.divers = divers;
 	}
 
 
+
+	public String getSystem() {
+		return system;
+	}
+
+
+
+	public void setSystem(String system) {
+		this.system = system;
+	}
+
+
+
+	public String getUnivers() {
+		return univers;
+	}
+
+
+
+	public void setUnivers(String univers) {
+		this.univers = univers;
+	}
+
+
+
+	public String getCampagne() {
+		return campagne;
+	}
+
+
+
+	public void setCampagne(String campagne) {
+		this.campagne = campagne;
+	}
 
 
 
