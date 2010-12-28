@@ -1,0 +1,13 @@
+#TeXlipse project settings
+#Wed Nov 24 17:23:39 CET 2010
+builderNum=2
+outputDir=pdf/
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=UserStoriesIHM.tex
+outputFile=UserStoriesIHMt.pdf
+langSpell=en
+markDer=true
+srcDir=tex/
