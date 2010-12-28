@@ -12,6 +12,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ChoixMJ"></activity>
+        <activity android:name=".ChoixJoueur"></activity>
 
     </application>
 
