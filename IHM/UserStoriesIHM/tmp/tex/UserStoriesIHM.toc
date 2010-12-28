@@ -3,3 +3,4 @@
 \contentsline {chapter}{\numberline {1}User Stories pour le composant d\IeC {\'e}}{2}{chapter.1}
 \contentsline {chapter}{\numberline {2}User Stories pour la connectivit\IeC {\'e}}{3}{chapter.2}
 \contentsline {chapter}{\numberline {3}User Stories pour le Joueur}{4}{chapter.3}
+\contentsline {chapter}{\numberline {4}User Stories pour le MJ}{5}{chapter.4}
