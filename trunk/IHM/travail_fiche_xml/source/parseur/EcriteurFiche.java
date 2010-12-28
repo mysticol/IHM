@@ -12,6 +12,7 @@ import bean.Categorie;
 import bean.Competence;
 import bean.Equipement;
 import bean.Fiche;
+import bean.Modele;
 import bean.Pouvoir;
 
 public class EcriteurFiche {
@@ -23,6 +24,7 @@ public class EcriteurFiche {
 
 		doc.setDocType(new DocType("fiche", "fiche.dtd"));
 
+		root.addContent(convertJeu(fiche));
 		root.addContent(convertInfos(fiche));
 		root.addContent(convertCaractPrincipales(fiche));
 		root.addContent(convertCaractSecondaires(fiche));
@@ -59,6 +61,27 @@ public class EcriteurFiche {
 		}
 	}
 
+	private Element convertJeu(Fiche fiche){
+		Element jeu = new Element("jeu");
+		
+		Element univers= new Element("univers");
+		univers.addContent(fiche.getUnivers());
+		
+		Element campagne = new Element ("campagne");
+		campagne.addContent(fiche.getCampagne());
+		
+		
+		
+		Element system= new Element("system");
+		system.addContent(fiche.getSystem());
+		
+		jeu.addContent(univers);
+		jeu.addContent(campagne);
+		jeu.addContent(system);
+		return jeu;		
+	}
+	
+	
 	private Element convertInfos(Fiche fiche) {
 
 		Element personnage = new Element("personnage");
@@ -162,7 +185,7 @@ public class EcriteurFiche {
 			tempNom.addContent(caracte.getNom());
 
 			Element tempValeur = new Element("valeur");
-			tempValeur.addContent(caracte.getValeur());
+			tempValeur.addContent(caracte.getValeur().toString());
 
 			Element tempJauge = new Element("jauge");
 			tempJauge.addContent(String.valueOf(caracte.isJauge()));
@@ -196,7 +219,7 @@ public class EcriteurFiche {
 			tempNom.addContent(caracte.getNom());
 
 			Element tempValeur = new Element("valeur");
-			tempValeur.addContent(caracte.getValeur());
+			tempValeur.addContent(caracte.getValeur().toString());
 
 			Element tempJauge = new Element("jauge");
 			tempJauge.addContent(String.valueOf(caracte.isJauge()));
@@ -235,7 +258,7 @@ public class EcriteurFiche {
 				elNom.addContent(compt.getNom());
 
 				Element elValeur = new Element("valeur");
-				elValeur.addContent(compt.getValue());
+				elValeur.addContent(compt.getValeur().toString());
 
 				compTempEl.addContent(elNom);
 				compTempEl.addContent(elValeur);

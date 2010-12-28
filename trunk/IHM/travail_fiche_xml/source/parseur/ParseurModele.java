@@ -30,6 +30,11 @@ public class ParseurModele {
 			document = sxb.build(f);
 			racine = document.getRootElement();
 
+			Element jeu=racine.getChild("jeu");
+			fiche.setSystem(jeu.getChildText("systeme"));
+			fiche.setUnivers(jeu.getChildText("univers"));
+			
+			
 			HashMap<String , String> infos= new HashMap<String, String>();
 			Element personnage=racine.getChild("personnage");
 			for ( Element info:(List<Element> )personnage.getChildren("info")){
@@ -97,6 +102,12 @@ public class ParseurModele {
 			document = sxb.build(f);
 			racine = document.getRootElement();
 
+			
+			Element jeu=racine.getChild("jeu");
+			model.setSystem(jeu.getChildText("systeme"));
+			model.setUnivers(jeu.getChildText("univers"));
+			
+			
 			LinkedList<Info> infos= new LinkedList<Info>();
 			Element personnage=racine.getChild("personnage");
 			for ( Element info:(List<Element> )personnage.getChildren("info")){
@@ -189,7 +200,7 @@ public class ParseurModele {
 	public Competence parseCompetence(Element e){
 		Competence compt = new Competence();
 		compt.setNom(e.getText());
-		compt.setValue(null);
+		compt.setValeur(null);
 		
 		
 		return compt;

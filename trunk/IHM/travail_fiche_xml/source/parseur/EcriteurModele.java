@@ -12,11 +12,9 @@ import org.jdom.output.XMLOutputter;
 import bean.Caracteristique;
 import bean.Categorie;
 import bean.Competence;
-import bean.Equipement;
-import bean.Fiche;
 import bean.Info;
 import bean.Modele;
-import bean.Pouvoir;
+
 
 public class EcriteurModele {
 
@@ -27,6 +25,7 @@ public class EcriteurModele {
 
 		doc.setDocType(new DocType("fiche", "extension.dtd"));
 
+		root.addContent(convertJeu(model));
 		root.addContent(convertInfos(model));
 		root.addContent(convertCaractPrincipales(model));
 		root.addContent(convertCaractSecondaires(model));
@@ -59,6 +58,21 @@ public class EcriteurModele {
 		}
 	}
 
+	private Element convertJeu(Modele fiche){
+		Element jeu = new Element("jeu");
+		
+		Element univers= new Element("univers");
+		univers.addContent(fiche.getUnivers());
+		
+		Element system= new Element("system");
+		system.addContent(fiche.getSystem());
+		
+		jeu.addContent(univers);
+		jeu.addContent(system);
+		return jeu;		
+	}
+	
+	
 	private Element convertInfos(Modele fiche) {
 
 		Element personnage = new Element("personnage");

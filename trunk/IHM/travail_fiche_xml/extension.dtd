@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<!ELEMENT fiche (personnage ,caracteristiquesPrincipales ,caracteristiquesSecondaire , competences )>
+<!ELEMENT fiche (jeu, personnage ,caracteristiquesPrincipales ,caracteristiquesSecondaire , competences )>
+<!ELEMENT jeu (univers, system?)>
+<!ELEMENT univers (#PCDATA)>
+<!ELEMENT system(#PCDATA)>
 <!ELEMENT personnage (info*)>
 <!ELEMENT info (#PCDATA)>
 <!ELEMENT caracteristique (nom, jauge?, consommable?)>
