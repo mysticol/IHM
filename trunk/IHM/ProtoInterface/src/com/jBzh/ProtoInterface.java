@@ -53,5 +53,7 @@ public class ProtoInterface extends Activity {
 
             }
         });
+        
+        //Si on fait un bouton quitter : android.os.Process.killProcess(android.os.Process.myPid());
     }
 }
