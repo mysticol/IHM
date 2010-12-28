@@ -18,11 +18,19 @@ public class ChoixMJ extends Activity{
     	//on lui associe le layout afficahgequestionactivity.xml
     	setContentView(R.layout.choixmj);
     	
+    	
+    	
     	Spinner UniversSpinner = (Spinner) findViewById(R.id.UniversSpinner);
-        ArrayAdapter<CharSequence> adapterU = ArrayAdapter.createFromResource(
-                this, R.array.univers_array, android.R.layout.simple_spinner_item);
+        /*ArrayAdapter<CharSequence> adapterU = ArrayAdapter.createFromResource(
+                this, android.R.layout.simple_spinner_item, android.R.layout.simple_spinner_item);
         adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        UniversSpinner.setAdapter(adapterU);
+        UniversSpinner.setAdapter(adapterU);*/
+    	
+    	String[] array = {"aaaa", "bbb"};
+    	
+    	ArrayAdapter<String> adapterU = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, array);
+        adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        UniversSpinner.setAdapter(adapterU);    	
         
         Spinner campagneSpinner = (Spinner) findViewById(R.id.CampagneSpinner);
         ArrayAdapter<CharSequence> adapterC = ArrayAdapter.createFromResource(
