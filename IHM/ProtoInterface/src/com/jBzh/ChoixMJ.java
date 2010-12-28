@@ -48,6 +48,8 @@ public class ChoixMJ extends Activity{
 
             }
         });
+        
+        
 
 	}
 	
