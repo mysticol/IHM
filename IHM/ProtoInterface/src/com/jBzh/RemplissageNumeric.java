@@ -1,5 +1,6 @@
 package com.jBzh;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,23 +13,21 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class RemplissageNumeric extends ListActivity {
+public class RemplissageNumeric extends Activity {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
-
-	  //on lui associe le layout afficahgequestionactivity.xml
-  	  setContentView(R.layout.creation);
 	  
-	  String[] countries = new String[] {"Afghanistan", "Albania", "Algeria", "American Samoa"};
-	  
-	  setListAdapter(new ArrayAdapter<String>(this, R.layout.creation, countries));
+	  ListView lv1;
+	  String lv_arr[]={"Android","iPhone","BlackBerry","AndroidPeople"};
 
-	  ListView lv = getListView();
-	  lv.setTextFilterEnabled(true);
+	  setContentView(R.layout.creation);
+	  lv1=(ListView)findViewById(R.id.list);
+	  // By using setAdpater method in listview we an add string array in list.
+	  lv1.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1 , lv_arr));
 
-	  lv.setOnItemClickListener(new OnItemClickListener() {
+	  lv1.setOnItemClickListener(new OnItemClickListener() {
 	    public void onItemClick(AdapterView<?> parent, View view,
 	        int position, long id) {
 	      // When clicked, show a toast with the TextView text
@@ -37,7 +36,7 @@ public class RemplissageNumeric extends ListActivity {
 	    }
 	  });
 	  
-      /*final Button buttonRetour = (Button) findViewById(R.id.retour);
+      final Button buttonRetour = (Button) findViewById(R.id.retour);
       buttonRetour.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {
           	
@@ -54,7 +53,7 @@ public class RemplissageNumeric extends ListActivity {
   			startActivityForResult(intent, 1);
 
           }
-      });*/
+      });
       
       /*final Button buttonValider = (Button) findViewById(R.id.validerCreation);
       buttonValider.setOnClickListener(new View.OnClickListener() {
