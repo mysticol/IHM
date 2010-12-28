@@ -53,21 +53,24 @@ public class ChoixCreation extends Activity{
         final Button buttonValider = (Button) findViewById(R.id.valider);
         buttonValider.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            	/*
+            	
             	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
     			Bundle objetbunble = new Bundle();
      
     			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
-    			Intent intent = new Intent(Creation.this, CreationParam.class);
+    			Intent intent = new Intent(ChoixCreation.this, RemplissageNumeric.class);
      
     			//On affecte à l'Intent le Bundle que l'on a créé
     			intent.putExtras(objetbunble);
      
     			//On démarre l'autre Activity
     			startActivityForResult(intent, 1);
-*/
+
             }
         });
+        
+        
+        
 	}
 	
 	
