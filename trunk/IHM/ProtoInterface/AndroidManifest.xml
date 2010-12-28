@@ -13,6 +13,7 @@
         </activity>
         <activity android:name=".ChoixMJ"></activity>
         <activity android:name=".ChoixJoueur"></activity>
+        <activity android:name=".ChoixCreation"></activity>
 
     </application>
 

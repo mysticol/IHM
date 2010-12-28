@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-public class Creation extends Activity{
+public class ChoixCreation extends Activity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -16,13 +16,19 @@ public class Creation extends Activity{
 		super.onCreate(savedInstanceState);
 		
 		//on lui associe le layout afficahgequestionactivity.xml
-    	setContentView(R.layout.creation);
+    	setContentView(R.layout.choixcreation);
     	
     	Spinner UniversSpinner = (Spinner) findViewById(R.id.UniversSpinner);
-        ArrayAdapter<CharSequence> adapterU = ArrayAdapter.createFromResource(
+        /*ArrayAdapter<CharSequence> adapterU = ArrayAdapter.createFromResource(
                 this, R.array.univers_array, android.R.layout.simple_spinner_item);
         adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        UniversSpinner.setAdapter(adapterU);
+        UniversSpinner.setAdapter(adapterU);*/
+    	
+    	String[] array = {"aaaa", "bbb"};
+    	
+    	ArrayAdapter<String> adapterU = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, array);
+        adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        UniversSpinner.setAdapter(adapterU);  
         
         
         final Button buttonRetour = (Button) findViewById(R.id.retour);
@@ -33,7 +39,7 @@ public class Creation extends Activity{
     			Bundle objetbunble = new Bundle();
      
     			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
-    			Intent intent = new Intent(Creation.this, ProtoInterface.class);
+    			Intent intent = new Intent(ChoixCreation.this, ProtoInterface.class);
      
     			//On affecte à l'Intent le Bundle que l'on a créé
     			intent.putExtras(objetbunble);
@@ -45,9 +51,9 @@ public class Creation extends Activity{
         });
         
         final Button buttonValider = (Button) findViewById(R.id.valider);
-        buttonRetour.setOnClickListener(new View.OnClickListener() {
+        buttonValider.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            	
+            	/*
             	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
     			Bundle objetbunble = new Bundle();
      
@@ -59,7 +65,7 @@ public class Creation extends Activity{
      
     			//On démarre l'autre Activity
     			startActivityForResult(intent, 1);
-
+*/
             }
         });
 	}

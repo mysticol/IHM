@@ -54,6 +54,25 @@ public class ProtoInterface extends Activity {
             }
         });
         
+        final Button buttonCreation = (Button) findViewById(R.id.Creation);
+        buttonCreation.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	
+            	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+    			Bundle objetbunble = new Bundle();
+     
+    			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+    			Intent intent = new Intent(ProtoInterface.this, ChoixCreation.class);
+     
+    			//On affecte à l'Intent le Bundle que l'on a créé
+    			intent.putExtras(objetbunble);
+     
+    			//On démarre l'autre Activity
+    			startActivityForResult(intent, CODE_DE_MON_ACTIVITE);
+
+            }
+        });        
+        
         //Si on fait un bouton quitter : android.os.Process.killProcess(android.os.Process.myPid());
     }
 }
