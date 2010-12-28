@@ -7,6 +7,7 @@ public class Modele {
 
 	private String univers;
 	private String system;
+	private Integer vie;
 	private LinkedList<Info> infos;
 	private LinkedList<Caracteristique> caractPrincipales;
 	private LinkedList<Caracteristique> caractSecondaires;
@@ -52,16 +53,23 @@ public class Modele {
 	public Modele() {
 	
 	}
-	public Modele(String univers, String system, LinkedList<Info> infos,
+	public Modele(String univers, String system,Integer vie, LinkedList<Info> infos,
 			LinkedList<Caracteristique> caractPrincipales,
 			LinkedList<Caracteristique> caractSecondaires,
 			HashMap<Categorie, LinkedList<Competence>> competences) {
+		this.vie=vie;
 		this.univers = univers;
 		this.system = system;
 		this.infos = infos;
 		this.caractPrincipales = caractPrincipales;
 		this.caractSecondaires = caractSecondaires;
 		this.competences = competences;
+	}
+	public Integer getVie() {
+		return vie;
+	}
+	public void setVie(Integer vie) {
+		this.vie = vie;
 	}
 	
 	

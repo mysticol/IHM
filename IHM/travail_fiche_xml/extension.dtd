@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 
-<!ELEMENT fiche (jeu, personnage ,caracteristiquesPrincipales ,caracteristiquesSecondaire , competences )>
+<!ELEMENT fiche (jeu, personnage ,caracteristiquesPrincipales ,caracteristiquesSecondaire , competences, vie? )>
 <!ELEMENT jeu (univers, system?)>
 <!ELEMENT univers (#PCDATA)>
 <!ELEMENT system(#PCDATA)>
@@ -16,6 +16,7 @@
 <!ELEMENT caracteristiquesSecondaire (caracteristique+)>
 <!ELEMENT competences (categorie+)>
 <!ELEMENT categorie (nom, competence+)>
+<!ELEMENT vie (#PCDATA)>
 
 
 

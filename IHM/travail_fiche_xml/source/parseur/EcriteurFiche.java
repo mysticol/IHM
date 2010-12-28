@@ -8,10 +8,13 @@ import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 import bean.Caracteristique;
+import bean.Case;
 import bean.Categorie;
+import bean.Classic;
 import bean.Competence;
 import bean.Equipement;
 import bean.Fiche;
+import bean.Ligne;
 import bean.Modele;
 import bean.Pouvoir;
 
@@ -284,8 +287,49 @@ public class EcriteurFiche {
 
 	private Element convertBarreDeVie(Fiche fiche) {
 
+		
+		
 		Element hp = new Element("barreDeVie");
-		hp.addContent(fiche.getBarreDeVie());
+		
+		if( fiche.getBarreDeVie() instanceof Classic){
+			Classic temp= (Classic) fiche.getBarreDeVie();
+			Element classic= new Element("classic");
+			
+			Element total= new Element("total");
+			total.addContent(temp.getTotal().toString());
+			
+			Element actuel= new Element("actuel");
+			actuel.addContent(temp.getActuel().toString());
+			
+			classic.addContent(total);
+			classic.addContent(actuel);
+			hp.addContent(classic);
+			
+		}else{
+			Ligne temp = (Ligne) fiche.getBarreDeVie();
+			Element ligne = new Element("ligne");
+			
+			for (Case cas: temp.getListeCase()){
+				Element tempcas= new Element("case");
+				
+				
+				Element label= new Element("label");
+				label.addContent(cas.getLabel());
+				
+				
+				Element coche= new Element("coche");
+				coche.addContent(String.valueOf(cas.isCoche()));
+				tempcas.addContent(label);
+				tempcas.addContent(coche);
+				
+				ligne.addContent(tempcas);
+				
+			}
+			
+			hp.addContent(ligne);
+		}
+		
+	
 
 		return hp;
 

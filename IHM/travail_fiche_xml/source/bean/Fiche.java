@@ -23,7 +23,7 @@ public class Fiche {
 	private LinkedList<Pouvoir> pouvoirs;
 	
 	private LinkedList<Equipement> equipements;
-	private String barreDeVie;
+	private Vie barreDeVie;
 	private String divers;
 	
 	
@@ -44,7 +44,7 @@ public class Fiche {
 			HashMap<String, Caracteristique> caracteristiquesSecondaire,
 			HashMap<Categorie, LinkedList<Competence>> competences,
 			LinkedList<Pouvoir> pouvoirs, LinkedList<Equipement> equipements,
-			String barreDeVie, String divers) {
+			Vie barreDeVie, String divers) {
 		this.nom = nom;
 		this.poid = poid;
 		this.taille = taille;
@@ -253,13 +253,13 @@ public class Fiche {
 
 
 
-	public String getBarreDeVie() {
+	public Vie getBarreDeVie() {
 		return barreDeVie;
 	}
 
 
 
-	public void setBarreDeVie(String barreDeVie) {
+	public void setBarreDeVie(Vie barreDeVie) {
 		this.barreDeVie = barreDeVie;
 	}
 

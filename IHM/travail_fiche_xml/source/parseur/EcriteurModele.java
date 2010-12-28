@@ -30,6 +30,11 @@ public class EcriteurModele {
 		root.addContent(convertCaractPrincipales(model));
 		root.addContent(convertCaractSecondaires(model));
 		root.addContent(convertCompetences(model));
+		if ( model.getVie() !=null){
+			Element vie= new Element("vie");
+			vie.addContent(model.getVie().toString());
+			root.addContent(vie);
+		}
 
 		FileOutputStream fout = null;
 		try {
