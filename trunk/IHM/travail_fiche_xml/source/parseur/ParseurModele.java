@@ -6,11 +6,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 import bean.Caracteristique;
+import bean.Case;
 import bean.Categorie;
+import bean.Classic;
 import bean.Competence;
 import bean.Fiche;
 import bean.Info;
+import bean.Ligne;
 import bean.Modele;
+import bean.Vie;
 
 
 import org.jdom.Document;
@@ -33,6 +37,22 @@ public class ParseurModele {
 			Element jeu=racine.getChild("jeu");
 			fiche.setSystem(jeu.getChildText("systeme"));
 			fiche.setUnivers(jeu.getChildText("univers"));
+			
+			
+			if (racine.getChildText("vie")!=null){
+			LinkedList<Case> hp = new LinkedList<Case>();
+			
+			for (int i=0; i < Integer.parseInt(racine.getChildText("vie")); i++){
+				hp.add(new Case());
+				
+			}
+			fiche.setBarreDeVie(new Ligne(hp));
+			
+			}else{
+				Vie hp =new Classic(0,0);
+				fiche.setBarreDeVie(hp);
+			}
+			
 			
 			
 			HashMap<String , String> infos= new HashMap<String, String>();
@@ -102,6 +122,8 @@ public class ParseurModele {
 			document = sxb.build(f);
 			racine = document.getRootElement();
 
+			model.setVie(Integer.parseInt(racine.getChildText("vie")));
+			
 			
 			Element jeu=racine.getChild("jeu");
 			model.setSystem(jeu.getChildText("systeme"));

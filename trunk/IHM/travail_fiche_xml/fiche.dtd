@@ -39,7 +39,17 @@ competences, pouvoirs, barreDeVie, equipement, divers)>
 <!ELEMENT pouvoirs (pouvoir*)>
 <!ELEMENT pouvoir (nom,desc?)>
 
-<!ELEMENT barreDeVie (#PCDATA)>
+<!ELEMENT barreDeVie (classic | ligne)>
+<!ELEMENT classic (total, actuel)>
+<!ELEMENT total (#PCDATA)>
+<!ELEMENT actuel (#PCDATA)>
+
+<!ELEMENT ligne (case +)>
+<!ELEMENT case ( label, coche)>
+<!ELEMENT label (#PCDATA)>
+<!ELEMENT coche (#PCDATA)>
+
+
 <!ELEMENT equipements (equipement*)>
 <!ELEMENT equipement (nom, desc?)>
 
