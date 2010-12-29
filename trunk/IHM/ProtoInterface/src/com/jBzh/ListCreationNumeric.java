@@ -13,12 +13,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class RemplissageNumeric extends Activity {
+public class ListCreationNumeric extends Activity {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
-	  
+	  	  
 	  ListView lv1;
 	  String lv_arr[]={"Android","iPhone","BlackBerry","AndroidPeople"};
 
@@ -44,7 +44,7 @@ public class RemplissageNumeric extends Activity {
   			Bundle objetbunble = new Bundle();
    
   			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
-  			Intent intent = new Intent(RemplissageNumeric.this, ChoixCreation.class);
+  			Intent intent = new Intent(ListCreationNumeric.this, ChoixCreation.class);
    
   			//On affecte à l'Intent le Bundle que l'on a créé
   			intent.putExtras(objetbunble);
@@ -63,7 +63,7 @@ public class RemplissageNumeric extends Activity {
   			Bundle objetbunble = new Bundle();
    
   			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
-  			Intent intent = new Intent(RemplissageNumeric.this, ResumeCreation.class);
+  			Intent intent = new Intent(ListCreationNumeric.this, ResumeCreation.class);
    
   			//On affecte à l'Intent le Bundle que l'on a créé
   			intent.putExtras(objetbunble);

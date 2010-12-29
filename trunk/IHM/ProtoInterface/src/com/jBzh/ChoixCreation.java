@@ -58,7 +58,7 @@ public class ChoixCreation extends Activity{
     			Bundle objetbunble = new Bundle();
      
     			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
-    			Intent intent = new Intent(ChoixCreation.this, RemplissageNumeric.class);
+    			Intent intent = new Intent(ChoixCreation.this, ListCreationNumeric.class);
      
     			//On affecte à l'Intent le Bundle que l'on a créé
     			intent.putExtras(objetbunble);
