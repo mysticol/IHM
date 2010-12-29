@@ -1,5 +1,9 @@
 package com.jBzh;
 
+import dice.Dice;
+import dice.DiceType;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +19,7 @@ public class ChoixJet extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
-	  	  
+	  	  	  	  
 	  ListView lv1;
 	  // TODO recup la liste des type de jet possible !!!
 	  // grace au nom du systeme	  
@@ -65,6 +69,22 @@ public class ChoixJet extends Activity {
 
           }
       });
-	
+      
+      final Builder builder = new AlertDialog.Builder(this);
+      final Button buttonLibre = (Button) findViewById(R.id.libre);
+      buttonLibre.setOnClickListener(new View.OnClickListener() {
+          public void onClick(View v) {
+        	  Dice d = new Dice();
+        	  
+        	  builder.setTitle("Jet");
+        		         
+        	  builder.setMessage((d.roll(5, DiceType.D10)).toString());
+        	  builder.setPositiveButton("OK", null);
+        	  builder.show();
+
+          }
+      });
+      
+      
 	}	
 }
