@@ -10,21 +10,14 @@ import android.widget.ListView;
 
 public class RemplissageCreation extends Activity implements CreationNumericAdapterListener{
 	
-	private static ArrayList<Numeric> listN;
+	private static ArrayList<Numeric> listN = Numeric.getAListOfNumeric();
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 	  
 	  setContentView(R.layout.remplissagecreation);
-	  
-	  //liste de Numeric
-	  ArrayList<Numeric> listN = new ArrayList<Numeric>();
-	  
-	  listN.add(new Numeric("Force",0));
-	  listN.add(new Numeric("Agilite",0));
-	  
-	  
+
       CreationNumericAdapter adapter = new CreationNumericAdapter(this, listN);
      
       adapter.addListener(this);

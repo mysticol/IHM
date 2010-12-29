@@ -1,5 +1,7 @@
 package com.jBzh;
 
+import java.util.ArrayList;
+
 public class Numeric {
 	
 	public String nomNumeric;
@@ -27,6 +29,15 @@ public class Numeric {
 		this.valeur = valeur;
 	}
 	
+	public static ArrayList<Numeric> getAListOfNumeric() {
+		ArrayList<Numeric> listN = new ArrayList<Numeric>();
+		
+		  listN.add(new Numeric("Force",0));
+		  listN.add(new Numeric("Agilite",0));
+		
+		return listN;
+	}
+
 	public void incr(){
 		this.valeur++;
 	}
