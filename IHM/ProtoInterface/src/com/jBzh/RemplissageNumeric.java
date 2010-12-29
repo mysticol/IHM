@@ -55,7 +55,7 @@ public class RemplissageNumeric extends Activity {
           }
       });
       
-      /*final Button buttonValider = (Button) findViewById(R.id.validerCreation);
+      final Button buttonValider = (Button) findViewById(R.id.validerCreation);
       buttonValider.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {
           	
@@ -63,7 +63,7 @@ public class RemplissageNumeric extends Activity {
   			Bundle objetbunble = new Bundle();
    
   			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
-  			Intent intent = new Intent(Creation.this, CreationParam.class);
+  			Intent intent = new Intent(RemplissageNumeric.this, ResumeCreation.class);
    
   			//On affecte à l'Intent le Bundle que l'on a créé
   			intent.putExtras(objetbunble);
@@ -72,7 +72,7 @@ public class RemplissageNumeric extends Activity {
   			startActivityForResult(intent, 1);
           	
           }
-      });*/
+      });
       
 	}
 	
