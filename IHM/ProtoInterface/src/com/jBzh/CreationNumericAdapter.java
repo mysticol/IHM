@@ -1,5 +1,6 @@
 package com.jBzh;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -46,5 +47,15 @@ public class CreationNumericAdapter extends BaseAdapter {
 
 		return null;
 	}
+	
+    private ArrayList<CreationNumericAdapterListener> mListListener = new ArrayList<CreationNumericAdapterListener>();
+    public void addListener(CreationNumericAdapterListener aListener) {
+    	mListListener.add(aListener);
+    }
+	
+    public interface CreationNumericAdapterListener {
+    	public void onClickMoins(Numeric item, int position);
+    	public void onClickPlus(Numeric item, int position);
+    }
 
 }
