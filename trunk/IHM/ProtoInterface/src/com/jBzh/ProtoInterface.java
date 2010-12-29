@@ -1,6 +1,12 @@
 package com.jBzh;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +22,32 @@ public class ProtoInterface extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        // On recupere la racine des fichiers internes de l'application
+        //File root = getFilesDir();
+        File root = getFilesDir();
+                
+        // On cherche les directories racines de l'application.
+        // S'ils y sont, on ne cree pas l'arborescence, sinon oui
+        int nbDir = 0;
+        
+        for(File f : root.listFiles()){
+        	System.out.println(f.getName());
+        	if(f.getName().equalsIgnoreCase("Fiches")){
+        		nbDir++;
+        	} else if(f.getName().equalsIgnoreCase("Systeme")) {
+        		nbDir++;
+        	}
+        }
+        
+        if(nbDir!=2){
+        	// Il n'y a pas la bonne arborescence, on recree l'arborescence
+        	System.out.println("On créé l'arborescence nécessaire au fonctionnement de l'application");
+        	File fiches = getFileStreamPath("Fiches");
+        	fiches.mkdir();
+        	File systeme = getFileStreamPath("Systeme");
+        	systeme.mkdir();        	
+        }
+               
         final Button buttonMJ = (Button) findViewById(R.id.MJ);
         buttonMJ.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
