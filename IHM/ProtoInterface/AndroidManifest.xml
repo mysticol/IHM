@@ -16,7 +16,9 @@
         <activity android:name=".ChoixCreation"></activity>
         <activity android:name=".ListCreationNumeric"></activity>
         <activity android:name=".RemplissageCreation"></activity>
+		<activity android:name=".ChoixJet"></activity>
 		<activity android:name=".ResumeCreation"></activity>
+		<activity android:name=".SelectElemJet"></activity>
 		
     </application>
 

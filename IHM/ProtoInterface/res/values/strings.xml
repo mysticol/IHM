@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, ProtoInterface!</string>
-    <string name="app_name">ProtoInterface</string>
+    <string name="app_name">R Assist</string>
     <string name="univers">Choisir un univers :</string>
     <string-array name="univers_array">
-        <item>Univers 1</item>
-        <item>Univers 2</item>
-        <item>Univers 3</item>
+        <item>Tous</item>
     </string-array>
     <string name="campagne">Choisir une campagne :</string>
     <string-array name="campagne_array">
-        <item>Campagne 1</item>
-        <item>Campagne 2</item>
-        <item>Campagne 3</item>
+        <item>Toutes</item>
     </string-array>
 </resources>

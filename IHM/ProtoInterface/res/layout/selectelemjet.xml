@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+	<TextView android:id="@+id/affichejet"
+		android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ListView android:id="@+id/listelemjet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0" 
+        android:layout_below="@id/affichejet"/>
+
+    <Button android:id="@+id/retour"
+        android:layout_width="100px"
+        android:layout_height="50px"
+        android:text="Retour" 
+        android:layout_marginTop="5px"
+        android:layout_below="@id/listelemjet"
+        />
+</LinearLayout>
