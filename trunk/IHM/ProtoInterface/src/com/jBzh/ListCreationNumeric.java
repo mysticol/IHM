@@ -63,7 +63,7 @@ public class ListCreationNumeric extends Activity {
   			Bundle objetbunble = new Bundle();
    
   			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
-  			Intent intent = new Intent(ListCreationNumeric.this, ResumeCreation.class);
+  			Intent intent = new Intent(ListCreationNumeric.this, RemplissageCreation.class);
    
   			//On affecte à l'Intent le Bundle que l'on a créé
   			intent.putExtras(objetbunble);

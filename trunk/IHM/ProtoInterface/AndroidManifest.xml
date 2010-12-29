@@ -15,6 +15,7 @@
         <activity android:name=".ChoixJoueur"></activity>
         <activity android:name=".ChoixCreation"></activity>
         <activity android:name=".ListCreationNumeric"></activity>
+        <activity android:name=".RemplissageCreation"></activity>
 		<activity android:name=".ResumeCreation"></activity>
 		
     </application>
