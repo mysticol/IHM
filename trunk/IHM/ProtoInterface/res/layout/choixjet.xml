@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <ListView android:id="@+id/listtypejet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0" />
+
+	<Button android:id="@+id/libre"
+        android:layout_width="100px"
+        android:layout_height="50px"
+        android:layout_marginTop="5px"
+        android:text="Jet Libre" />
+
+    <Button android:id="@+id/retour"
+        android:layout_width="100px"
+        android:layout_height="50px"
+        android:text="Retour" 
+        android:layout_marginTop="5px"
+        android:layout_below="@id/libre"
+        />
+
+</LinearLayout>
+

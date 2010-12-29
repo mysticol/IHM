@@ -14,7 +14,7 @@ public class ChoixJoueur extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
+				
 		//on lui associe le layout afficahgequestionactivity.xml
     	setContentView(R.layout.choixjoueur);
     	
