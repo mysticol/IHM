@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT fiche (jeu,personnage,caracteristiquesPrincipales,caracteristiquesSecondaire, 
+competences, pouvoirs, barreDeVie, equipement, divers)>
+
+<!ELEMENT personnage (nom, poid, taille, age, concept, info*, xp)>
+
+<!ELEMENT jeu (univers, campagne, system?)>
+<!ELEMENT univers (#PCDATA)>
+<!ELEMENT campagne (#PCDATA)>
+<!ELEMENT systeme (#PCDATA)>
+
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT info (nom, valeur)>
+
+<!ELEMENT poid (#PCDATA)>
+<!ELEMENT taille (#PCDATA)>
+<!ELEMENT concept (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+<!ELEMENT xp (#PCDATA)>
+<!ELEMENT desc (#PCDATA)>
+
+
+<!ELEMENT caracteristiquesPrincipales (caracteristique+)>
+<!ELEMENT caracteristique (nom, valeur, jauge?, consommable?)>
+<!ELEMENT valeur (#PCDATA)>
+<!ELEMENT jauge (#PCDATA)>
+<!ELEMENT consommable (#PCDATA)>
+
+
+<!ELEMENT caracteristiquesSecondaire (caracteristique+)>
+<!ELEMENT competences (categorie+)>
+
+<!ELEMENT competence (nom, valeur)>
+
+
+<!ELEMENT categorie (nom, competence+)>
+
+<!ELEMENT pouvoirs (pouvoir*)>
+<!ELEMENT pouvoir (nom,desc?)>
+
+<!ELEMENT barreDeVie (classic | ligne)>
+<!ELEMENT classic (total, actuel)>
+<!ELEMENT total (#PCDATA)>
+<!ELEMENT actuel (#PCDATA)>
+
+<!ELEMENT ligne (case +)>
+<!ELEMENT case ( label, coche)>
+<!ELEMENT label (#PCDATA)>
+<!ELEMENT coche (#PCDATA)>
+
+
+<!ELEMENT equipements (equipement*)>
+<!ELEMENT equipement (nom, desc?)>
+
+
+
+<!ELEMENT divers (#PCDATA)>
