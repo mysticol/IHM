@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!ELEMENT fiche (jeu, personnage ,caracteristiquesPrincipales ,caracteristiquesSecondaire , competences, vie? )>
+<!ELEMENT jeu (univers, system?)>
+<!ELEMENT univers (#PCDATA)>
+<!ELEMENT system(#PCDATA)>
+<!ELEMENT personnage (info*)>
+<!ELEMENT info (#PCDATA)>
+<!ELEMENT caracteristique (nom, jauge?, consommable?)>
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT jauge (#PCDATA)>
+<!ELEMENT consommable (#PCDATA)>
+<!ELEMENT competence (#PCDATA)>
+<!ELEMENT caracteristiquesPrincipales (caracteristique+)>
+<!ELEMENT caracteristiquesSecondaire (caracteristique+)>
+<!ELEMENT competences (categorie+)>
+<!ELEMENT categorie (nom, competence+)>
+<!ELEMENT vie (#PCDATA)>
+
+
+
+
