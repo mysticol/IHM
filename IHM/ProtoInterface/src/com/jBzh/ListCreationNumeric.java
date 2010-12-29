@@ -20,7 +20,7 @@ public class ListCreationNumeric extends Activity {
 	  super.onCreate(savedInstanceState);
 	  	  
 	  ListView lv1;
-	  String lv_arr[]={"Android","iPhone","BlackBerry","AndroidPeople"};
+	  String lv_arr[]={"Caracteristiques","Competences"};
 
 	  setContentView(R.layout.creation);
 	  lv1=(ListView)findViewById(R.id.list);

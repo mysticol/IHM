@@ -84,6 +84,7 @@ public class CreationNumericAdapter extends BaseAdapter {
 						
 				//On prévient les listeners qu'il y a eu un clic sur le TextView "TV_Nom".
 				sendListener(listNumeric.get(position), position, true);
+				v.invalidate();
 			}
 		});
 		
@@ -96,6 +97,7 @@ public class CreationNumericAdapter extends BaseAdapter {
 						
 				//On prévient les listeners qu'il y a eu un clic sur le TextView "TV_Nom".
 				sendListener(listNumeric.get(position), position, false);
+				v.invalidate();
 			}
 		});		
 		
