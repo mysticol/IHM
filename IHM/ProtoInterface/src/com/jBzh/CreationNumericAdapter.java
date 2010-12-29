@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 
 public class CreationNumericAdapter extends BaseAdapter {
 	
@@ -32,20 +33,38 @@ public class CreationNumericAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public Object getItem(int arg0) {
-		return listNumeric.get(arg0);
+	public Object getItem(int position) {
+		return listNumeric.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-
-		return 0;
+		return position;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		LinearLayout layoutItem;
+		
+		//(1) : Réutilisation des layouts
+		if (convertView == null) {
+			//Initialisation de notre item à partir du  layout XML "personne_layout.xml"
+		    layoutItem = (LinearLayout) mInflater.inflate(R.layout.numeric_layout, parent, false);
+		} else {
+		  	layoutItem = (LinearLayout) convertView;
+		}
+		  
+		//(2) : Récupération des TextView de notre layout      
 
-		return null;
+		        
+		//(3) : Renseignement des valeurs       
+
+		  
+		//(4) Changement de la couleur du fond de notre item
+
+		
+		//On retourne l'item créé.
+		return layoutItem;
 	}
 	
     private ArrayList<CreationNumericAdapterListener> mListListener = new ArrayList<CreationNumericAdapterListener>();

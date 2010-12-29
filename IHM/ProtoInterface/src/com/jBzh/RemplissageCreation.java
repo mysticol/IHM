@@ -10,6 +10,8 @@ import android.widget.ListView;
 
 public class RemplissageCreation extends Activity implements CreationNumericAdapterListener{
 	
+	private static ArrayList<Numeric> listN;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
@@ -36,14 +38,14 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 
 	@Override
 	public void onClickMoins(Numeric item, int position) {
-		// TODO Auto-generated method stub
-		
+		item.decr();
+		System.out.println(item.getValeur());
 	}
 
 	@Override
 	public void onClickPlus(Numeric item, int position) {
-		// TODO Auto-generated method stub
-		
+		item.incr();
+		System.out.println(item.getValeur());
 	}
 
 	

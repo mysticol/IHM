@@ -27,6 +27,14 @@ public class Numeric {
 		this.valeur = valeur;
 	}
 	
+	public void incr(){
+		this.valeur++;
+	}
+	
+	public void decr(){
+		this.valeur--;
+	}	
+	
 	
 
 }
