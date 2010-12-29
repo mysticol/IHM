@@ -32,8 +32,7 @@
     <Button android:id="@+id/retour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/validerCreation"
-        android:layout_alignTop="@id/validerCreation"        
+        android:layout_below="@id/list"   
         android:text="Retour" />
 
 </RelativeLayout>
