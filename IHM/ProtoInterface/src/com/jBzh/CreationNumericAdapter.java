@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class CreationNumericAdapter extends BaseAdapter {
 	
@@ -54,14 +55,13 @@ public class CreationNumericAdapter extends BaseAdapter {
 		  	layoutItem = (LinearLayout) convertView;
 		}
 		  
-		//(2) : Récupération des TextView de notre layout      
-
+		//(2) : Récupération de la valeur du numeric de notre layout      
+		TextView valeurNumeric = (TextView) layoutItem.findViewById(R.id.ValeurNumeric);
+		TextView nomNumeric = (TextView) layoutItem.findViewById(R.id.NomNumeric);
 		        
 		//(3) : Renseignement des valeurs       
-
-		  
-		//(4) Changement de la couleur du fond de notre item
-
+		valeurNumeric.setText(listNumeric.get(position).getValeur());
+		nomNumeric.setText(listNumeric.get(position).getNomNumeric());
 		
 		//On retourne l'item créé.
 		return layoutItem;
