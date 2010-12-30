@@ -14,6 +14,7 @@ import android.widget.Spinner;
 
 public class ChoixCreation extends Activity{
 
+	private Spinner UniversSpinner;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -22,7 +23,7 @@ public class ChoixCreation extends Activity{
 		//on lui associe le layout afficahgequestionactivity.xml
     	setContentView(R.layout.choixcreation);
     	    	
-    	Spinner UniversSpinner = (Spinner) findViewById(R.id.UniversSpinner);
+    	UniversSpinner = (Spinner) findViewById(R.id.UniversSpinner);
         /*ArrayAdapter<CharSequence> adapterU = ArrayAdapter.createFromResource(
                 this, R.array.univers_array, android.R.layout.simple_spinner_item);
         adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -71,6 +72,8 @@ public class ChoixCreation extends Activity{
     			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
     			Intent intent = new Intent(ChoixCreation.this, ListCreationNumeric.class);
      
+    			objetbunble.putString("univers", UniversSpinner.getSelectedItem().toString());
+    			
     			//On affecte à l'Intent le Bundle que l'on a créé
     			intent.putExtras(objetbunble);
      
