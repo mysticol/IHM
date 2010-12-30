@@ -2,6 +2,8 @@ package com.jBzh;
 
 import java.util.ArrayList;
 
+import bean.Fiche;
+
 import com.jBzh.CreationNumericAdapter.CreationNumericAdapterListener;
 
 import android.app.Activity;
@@ -19,6 +21,10 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
+	  
+	  //Récupération de la fiche
+	  Bundle objetbunble  = this.getIntent().getExtras();
+	  Fiche fiche = (Fiche)((Object)objetbunble.getByteArray("fiche"));
 	  
 	  setContentView(R.layout.remplissagecreation);
 
