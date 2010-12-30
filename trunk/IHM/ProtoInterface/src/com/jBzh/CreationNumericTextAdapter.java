@@ -55,7 +55,7 @@ private List<NumericText> listNumeric;
 		//(1) : Réutilisation des layouts
 		if (convertView == null) {
 			//Initialisation de notre item à partir du  layout XML "personne_layout.xml"
-		    layoutItem = (LinearLayout) mInflater.inflate(R.layout.numeric_layout, parent, false);
+		    layoutItem = (LinearLayout) mInflater.inflate(R.layout.numerictext_layout, parent, false);
 		} else {
 		  	layoutItem = (LinearLayout) convertView;
 		}
