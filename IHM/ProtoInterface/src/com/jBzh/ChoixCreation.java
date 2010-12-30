@@ -21,7 +21,7 @@ public class ChoixCreation extends Activity{
 		
 		//on lui associe le layout afficahgequestionactivity.xml
     	setContentView(R.layout.choixcreation);
-    	
+    	    	
     	Spinner UniversSpinner = (Spinner) findViewById(R.id.UniversSpinner);
         /*ArrayAdapter<CharSequence> adapterU = ArrayAdapter.createFromResource(
                 this, R.array.univers_array, android.R.layout.simple_spinner_item);
