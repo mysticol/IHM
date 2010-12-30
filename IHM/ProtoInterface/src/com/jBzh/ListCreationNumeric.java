@@ -4,6 +4,7 @@ import java.io.File;
 
 import parseur.ParseurModele;
 
+import bean.Fiche;
 import bean.Modele;
 
 import android.app.Activity;
@@ -14,23 +15,31 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class ListCreationNumeric extends Activity {
 	
-	File modeleXML;
-	Modele modele;
+	Fiche fiche;
 	ParseurModele pModele;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
-	  /*String Chemin;
-	  modeleXML = 
-	  modele = pModele.parse(modeleXML);*/
+	  
+	  //Récupération de l'univers
+	  Bundle objetbunble  = this.getIntent().getExtras();
+	  String univers = objetbunble.getString("univers");
+	  
+	  //Création de la fiche par rapport au modèle
+	  File dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Modeles/"+univers);
+	  for(File f : dirTmp.listFiles()){
+		  fiche = pModele.parseToEmptyFiche(f);  
+  	  }
+	  
 	  
 	  ListView lv1;
-	  String lv_arr[]={"Caracteristiques","Competences"};
+	  String lv_arr[]={"Personnage","caracteristiquesPrincipales","competences","caracteristiquesSecondaire","vie"};
 
 	  setContentView(R.layout.creation);
 	  lv1=(ListView)findViewById(R.id.list);
@@ -75,6 +84,9 @@ public class ListCreationNumeric extends Activity {
   			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
   			Intent intent = new Intent(ListCreationNumeric.this, RemplissageCreation.class);
    
+  			//Passage de la fiche à RemplissageCreation
+			//objetbunble.put("fiche", (Object)fiche);
+			
   			//On affecte à l'Intent le Bundle que l'on a créé
   			intent.putExtras(objetbunble);
    
