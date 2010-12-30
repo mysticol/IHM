@@ -31,7 +31,6 @@ public class ChoixCreation extends Activity{
     	
     	ArrayList<String> listUnivers = new ArrayList<String>();
     	
-    	File root = getFilesDir();
     	File dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Modeles");
     	for(File f : dirTmp.listFiles()){
     		listUnivers.add(f.getName());
@@ -71,7 +70,8 @@ public class ChoixCreation extends Activity{
      
     			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
     			Intent intent = new Intent(ChoixCreation.this, ListCreationNumeric.class);
-     
+    			
+    			//Passage de l'univers à ListCreationNumeric
     			objetbunble.putString("univers", UniversSpinner.getSelectedItem().toString());
     			
     			//On affecte à l'Intent le Bundle que l'on a créé
