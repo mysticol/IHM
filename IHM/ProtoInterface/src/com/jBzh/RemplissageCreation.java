@@ -1,5 +1,8 @@
 package com.jBzh;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import bean.Fiche;
@@ -15,8 +18,10 @@ import android.widget.ListView;
 
 public class RemplissageCreation extends Activity implements CreationNumericAdapterListener{
 	
-	private static ArrayList<Numeric> listN = Numeric.getAListOfNumeric();
+	//private static ArrayList<Numeric> listN = Numeric.getAListOfNumeric();
+	static ArrayList<Numeric> listN = new ArrayList<Numeric>();
 	private static CreationNumericAdapter adapter;
+	Fiche fiche = new Fiche();
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -24,15 +29,44 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	  
 	  //Récupération de la fiche
 	  Bundle objetbunble  = this.getIntent().getExtras();
-	  Fiche fiche = (Fiche)((Object)objetbunble.getByteArray("fiche"));
+	  fiche = (Fiche)((Object)objetbunble.getByteArray("fiche"));
+	  System.out.println("fiche remplissageCreation: " + fiche);
+	  // Recuperation de la categorie
+	  String categorie = objetbunble.getString("categorie");
 	  
-	  setContentView(R.layout.remplissagecreation);
+	  //En fonction de la categorie choisir, on affiche des elements differents
+	  if(categorie.equalsIgnoreCase("Personnage")){
+		  
+		  setContentView(R.layout.remplissagecreation);
 
-      CreationNumericAdapter adapter = new CreationNumericAdapter(this, listN);
+	      CreationNumericAdapter adapter = new CreationNumericAdapter(this, listN);
 
-      this.adapter = adapter;
-     
-      adapter.addListener(this);
+	      this.adapter = adapter;
+	     
+	      adapter.addListener(this);
+
+	  } else if(categorie.equalsIgnoreCase("CaracteristiquesPrincipales")) {
+		  
+		  for(String c : fiche.getCaracteristiquesPrincipales().keySet()){
+			  if(fiche.getCaracteristiquesPrincipales().get(c).getValeur()!=null){
+				  listN.add(new Numeric(c, fiche.getCaracteristiquesPrincipales().get(c).getValeur()));
+			  } else {
+				  listN.add(new Numeric(c, 0));
+			  }
+		  }
+		  
+		  setContentView(R.layout.remplissagecreation);
+
+	      CreationNumericAdapter adapter = new CreationNumericAdapter(this, listN);
+
+	      this.adapter = adapter;
+	     
+	      adapter.addListener(this);		  
+		  
+	  }
+
+	  
+
       
       ListView list = (ListView)findViewById(R.id.list);
       
@@ -47,6 +81,22 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
    
   			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
   			Intent intent = new Intent(RemplissageCreation.this, ListCreationNumeric.class);
+  			
+  			//On sauvegarde les valeurs changees dans la fiche
+  			for(Numeric n : listN){
+  				System.out.println(n.getNomNumeric() + " => " + n.getValeur());
+  			}
+  			
+  			//Transformation de la fiche en byte[]
+  			byte[] ficheByte=null;
+			try {
+				ficheByte = getBytes(fiche);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+  			
+  			//Passage de la fiche à RemplissageCreation
+			objetbunble.putByteArray("fiche", ficheByte);
    
   			//On affecte à l'Intent le Bundle que l'on a créé
   			intent.putExtras(objetbunble);
@@ -63,16 +113,23 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	public void onClickMoins(Numeric item, int position) {
 		item.decr();
 		adapter.notifyDataSetChanged();
-		System.out.println(item.getValeur());
 	}
 
 	@Override
 	public void onClickPlus(Numeric item, int position) {
 		item.incr();
 		adapter.notifyDataSetChanged();		
-		System.out.println(item.getValeur());
 	}
 
-	
+	public static byte[] getBytes(Object obj) throws java.io.IOException{
+	      ByteArrayOutputStream bos = new ByteArrayOutputStream(); 
+	      ObjectOutputStream oos = new ObjectOutputStream(bos); 
+	      oos.writeObject(obj);
+	      oos.flush(); 
+	      oos.close(); 
+	      bos.close();
+	      byte [] data = bos.toByteArray();
+	      return data;
+	  }
 
 }
