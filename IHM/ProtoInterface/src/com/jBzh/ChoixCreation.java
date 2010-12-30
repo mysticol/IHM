@@ -1,5 +1,9 @@
 package com.jBzh;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,9 +28,16 @@ public class ChoixCreation extends Activity{
         adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         UniversSpinner.setAdapter(adapterU);*/
     	
-    	String[] array = {"aaaa", "bbb"};
+    	ArrayList<String> listUnivers = new ArrayList<String>();
     	
-    	ArrayAdapter<String> adapterU = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, array);
+    	File root = getFilesDir();
+    	File dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Modeles");
+    	for(File f : dirTmp.listFiles()){
+    		listUnivers.add(f.getName());
+    	}
+    	
+    	
+    	ArrayAdapter<String> adapterU = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listUnivers);
         adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         UniversSpinner.setAdapter(adapterU);  
         
