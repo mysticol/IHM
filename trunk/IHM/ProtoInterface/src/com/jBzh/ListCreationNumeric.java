@@ -26,6 +26,8 @@ public class ListCreationNumeric extends Activity {
 	Fiche fiche = new Fiche();
 	ParseurModele pModele = new ParseurModele();
 	static String univers;
+	private String lv_arr[]={"Personnage","CaracteristiquesPrincipales","Competences","CaracteristiquesSecondaire","Vie","Pouvoirs","Equipement"};
+
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,8 +48,7 @@ public class ListCreationNumeric extends Activity {
 	  
 	  
 	  ListView lv1;
-	  String lv_arr[]={"Personnage","CaracteristiquesPrincipales","Competences","CaracteristiquesSecondaire","Vie","Pouvoirs","Equipement"};
-
+	  
 	  setContentView(R.layout.creation);
 	  lv1=(ListView)findViewById(R.id.list);
 	  // By using setAdpater method in listview we an add string array in list.
@@ -70,9 +71,13 @@ public class ListCreationNumeric extends Activity {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-  			
+			
+			System.out.println("ficheListCreationNumeric : " + fiche.getCaracteristiquesPrincipales().size());
+  			System.out.println("ficheListCreationNumeric : " + ficheByte);
+			
   			//Passage de la fiche à RemplissageCreation
 			objetbunble.putByteArray("fiche", ficheByte);
+			objetbunble.putString("categorie", lv_arr[position]);
 			
 			
   			//On affecte à l'Intent le Bundle que l'on a créé
