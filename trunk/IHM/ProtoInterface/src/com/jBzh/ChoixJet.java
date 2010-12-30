@@ -1,5 +1,6 @@
 package com.jBzh;
 
+import bean.Systeme;
 import dice.Dice;
 import dice.DiceType;
 import android.app.AlertDialog;
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+
 public class ChoixJet extends Activity {
 
 	@Override
@@ -20,10 +22,23 @@ public class ChoixJet extends Activity {
 	  super.onCreate(savedInstanceState);
 	  	  	  	  
 	  ListView lv1;
-	  // TODO recup la liste des type de jet possible !!!
-	  // grace au nom du systeme	  
-	  final String lv_arr[]={"Type de jet 1","Type de jet 2","Type de jet 3","Type de jet 4","Type de jet 5","Type de jet 6","Type de jet 7","Type de jet 8"};
-
+	  
+	  final Bundle objetbunble  = this.getIntent().getExtras();
+	  
+	  System.out.println("<<<<<<<<<< <<<<<<<<<<<<");	  
+	  Systeme systeme = (Systeme) objetbunble.getSerializable("systeme");
+	  System.out.println("<<<<<<<<<< <<<<<<<<<<<<");	  
+	  
+	  //Systeme systeme = test.createSysteme();
+	  
+	  // recuperation de la liste des types de jets	  
+	  final String lv_arr[]= new String[systeme.getListRolls().size()];
+	  int i = 0;
+	  for(String r : systeme.getListRolls()){
+		  lv_arr[i]=r;
+		  i++;
+	  }
+	  
 	  setContentView(R.layout.choixjet);
 	  lv1=(ListView)findViewById(R.id.listtypejet);
 	  // By using setAdpater method in listview we an add string array in list.
@@ -55,7 +70,7 @@ public class ChoixJet extends Activity {
           public void onClick(View v) {
           	
           	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
-  			Bundle objetbunble = new Bundle();
+  			//Bundle objetbunble = new Bundle();
    
   			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
   			Intent intent = new Intent(ChoixJet.this, /*getParent().getClass()*/ ProtoInterface.class);
