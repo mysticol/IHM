@@ -39,13 +39,15 @@ public class ListCreationNumeric extends Activity {
 		  univers = objetbunble.getString("univers");
 	  }
 	  
-	  //Création de la fiche par rapport au modèle
-	  System.out.println(getFilesDir().getAbsolutePath() + "/Systeme/Modeles/"+univers);
-	  File dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Modeles/"+univers);
-	  for(File f : dirTmp.listFiles()){
-		  fiche = pModele.parseToEmptyFiche(f);
-  	  }
-	  
+	  if(objetbunble.getSerializable("fiche")!=null){
+		  fiche = (Fiche) objetbunble.getSerializable("fiche");
+	  } else {
+		  //Création de la fiche par rapport au modèle
+		  File dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Modeles/"+univers);
+		  for(File f : dirTmp.listFiles()){
+			  fiche = pModele.parseToEmptyFiche(f);
+	  	  } 
+	  }
 	  
 	  ListView lv1;
 	  
@@ -64,19 +66,8 @@ public class ListCreationNumeric extends Activity {
   			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
   			Intent intent = new Intent(ListCreationNumeric.this, RemplissageCreation.class);
    
-  			//Transformation de la fiche en byte[]
-  			byte[] ficheByte=null;
-			try {
-				ficheByte = getBytes(fiche);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			System.out.println("ficheListCreationNumeric : " + fiche.getCaracteristiquesPrincipales().size());
-  			System.out.println("ficheListCreationNumeric : " + ficheByte);
-			
   			//Passage de la fiche à RemplissageCreation
-			objetbunble.putByteArray("fiche", ficheByte);
+			objetbunble.putSerializable("fiche", fiche);
 			objetbunble.putString("categorie", lv_arr[position]);
 			
 			
@@ -117,17 +108,9 @@ public class ListCreationNumeric extends Activity {
    
   			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
   			Intent intent = new Intent(ListCreationNumeric.this, RemplissageCreation.class);
-   
-  			//Transformation de la fiche en byte[]
-  			byte[] ficheByte=null;
-			try {
-				ficheByte = getBytes(fiche);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-  			
+    			
   			//Passage de la fiche à RemplissageCreation
-			objetbunble.putByteArray("fiche", ficheByte);
+			objetbunble.putSerializable("fiche", fiche);
 			
   			//On affecte à l'Intent le Bundle que l'on a créé
   			intent.putExtras(objetbunble);
@@ -140,23 +123,4 @@ public class ListCreationNumeric extends Activity {
       
 	}
 	
-	
-	public static byte[] getBytes(Object obj) throws java.io.IOException{
-	      ByteArrayOutputStream bos = new ByteArrayOutputStream(); 
-	      ObjectOutputStream oos = new ObjectOutputStream(bos); 
-	      oos.writeObject(obj);
-	      oos.flush(); 
-	      oos.close(); 
-	      bos.close();
-	      byte [] data = bos.toByteArray();
-	      return data;
-	  }
-	
-	
-	
-	
-	
-	
-	
-
 }

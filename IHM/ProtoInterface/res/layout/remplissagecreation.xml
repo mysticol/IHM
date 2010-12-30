@@ -32,7 +32,6 @@
     <Button android:id="@+id/retour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/list"   
         android:text="Retour" />
 
 </RelativeLayout>
