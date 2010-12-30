@@ -25,17 +25,19 @@ public class ProtoInterface extends Activity {
         // On recupere la racine des fichiers internes de l'application
         //File root = getFilesDir();
         File root = getFilesDir();
-                
+                       
         // On cherche les directories racines de l'application.
         // S'ils y sont, on ne cree pas l'arborescence, sinon oui
         int nbDir = 0;
-        
+               
         for(File f : root.listFiles()){
         	System.out.println(f.getName());
         	if(f.getName().equalsIgnoreCase("Fiches")){
         		nbDir++;
         	} else if(f.getName().equalsIgnoreCase("Systeme")) {
         		nbDir++;
+        	} else {
+        		f.delete();
         	}
         }
         
@@ -47,7 +49,37 @@ public class ProtoInterface extends Activity {
         	File systeme = getFileStreamPath("Systeme");
         	systeme.mkdir();        	
         }
-               
+
+    	// Pour les besoins du test, on créé des dossiers prédéfinis
+        // Dossiers de fiches
+    	File dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire");
+    	dirTmp.mkdir();
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/L5R");
+    	dirTmp.mkdir();
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/Default");
+    	dirTmp.mkdir();
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/2ndCampagne");
+    	dirTmp.mkdir();
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/2ndCampagne/Pjs");
+    	dirTmp.mkdir();
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/2ndCampagne/Pnjs");
+    	dirTmp.mkdir();
+    	// Dossiers systeme
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Modeles");
+    	dirTmp.mkdir();
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Regles");
+    	dirTmp.mkdir();
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Modeles/Vampire");
+    	dirTmp.mkdir();    	
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Modeles/L5R");
+    	dirTmp.mkdir();    	
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Regles/Vampire");
+    	dirTmp.mkdir();    	
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Regles/L5R");
+    	dirTmp.mkdir();      	
+    	
+    	
+        
         final Button buttonMJ = (Button) findViewById(R.id.MJ);
         buttonMJ.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -63,7 +95,6 @@ public class ProtoInterface extends Activity {
      
     			//On démarre l'autre Activity
     			startActivityForResult(intent, CODE_DE_MON_ACTIVITE);
-
             }
         });
         
