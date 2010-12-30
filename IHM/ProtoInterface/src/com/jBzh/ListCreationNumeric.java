@@ -23,8 +23,9 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class ListCreationNumeric extends Activity {
 	
-	Fiche fiche;
-	ParseurModele pModele;
+	Fiche fiche = new Fiche();
+	ParseurModele pModele = new ParseurModele();
+	static String univers;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -32,9 +33,12 @@ public class ListCreationNumeric extends Activity {
 	  
 	  //Récupération de l'univers
 	  Bundle objetbunble  = this.getIntent().getExtras();
-	  String univers = objetbunble.getString("univers");
+	  if(objetbunble.getString("univers")!=null){
+		  univers = objetbunble.getString("univers");
+	  }
 	  
 	  //Création de la fiche par rapport au modèle
+	  System.out.println(getFilesDir().getAbsolutePath() + "/Systeme/Modeles/"+univers);
 	  File dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Modeles/"+univers);
 	  for(File f : dirTmp.listFiles()){
 		  fiche = pModele.parseToEmptyFiche(f);
