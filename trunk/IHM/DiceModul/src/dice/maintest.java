@@ -4,7 +4,9 @@ public class maintest {
 
 	public static void main(String[] args) {
 
-		DiceType dsix= DiceType.D6;
+		DiceType dsix = DiceType.stringToDiceType("d100");
+
+		System.out.println(dsix);
 		
 		System.out.println(dsix.getMaxForDiceType());
 
