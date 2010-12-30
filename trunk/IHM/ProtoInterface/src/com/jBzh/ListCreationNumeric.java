@@ -46,7 +46,7 @@ public class ListCreationNumeric extends Activity {
 	  
 	  
 	  ListView lv1;
-	  String lv_arr[]={"Personnage","caracteristiquesPrincipales","competences","caracteristiquesSecondaire","vie"};
+	  String lv_arr[]={"Personnage","CaracteristiquesPrincipales","Competences","CaracteristiquesSecondaire","Vie","Pouvoirs","Equipement"};
 
 	  setContentView(R.layout.creation);
 	  lv1=(ListView)findViewById(R.id.list);
@@ -56,9 +56,31 @@ public class ListCreationNumeric extends Activity {
 	  lv1.setOnItemClickListener(new OnItemClickListener() {
 	    public void onItemClick(AdapterView<?> parent, View view,
 	        int position, long id) {
-	      // When clicked, show a toast with the TextView text
-	      /*Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
-	          Toast.LENGTH_SHORT).show();*/
+	    	
+          	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+  			Bundle objetbunble = new Bundle();
+   
+  			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+  			Intent intent = new Intent(ListCreationNumeric.this, RemplissageCreation.class);
+   
+  			//Transformation de la fiche en byte[]
+  			byte[] ficheByte=null;
+			try {
+				ficheByte = getBytes(fiche);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+  			
+  			//Passage de la fiche à RemplissageCreation
+			objetbunble.putByteArray("fiche", ficheByte);
+			
+			
+  			//On affecte à l'Intent le Bundle que l'on a créé
+  			intent.putExtras(objetbunble);
+   
+  			//On démarre l'autre Activity
+  			startActivityForResult(intent, 1);
+
 	    }
 	  });
 	  
