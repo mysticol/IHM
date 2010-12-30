@@ -1,6 +1,9 @@
 package com.jBzh;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 import parseur.ParseurModele;
 
@@ -34,7 +37,7 @@ public class ListCreationNumeric extends Activity {
 	  //Création de la fiche par rapport au modèle
 	  File dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Modeles/"+univers);
 	  for(File f : dirTmp.listFiles()){
-		  fiche = pModele.parseToEmptyFiche(f);  
+		  fiche = pModele.parseToEmptyFiche(f);
   	  }
 	  
 	  
@@ -84,8 +87,16 @@ public class ListCreationNumeric extends Activity {
   			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
   			Intent intent = new Intent(ListCreationNumeric.this, RemplissageCreation.class);
    
+  			//Transformation de la fiche en byte[]
+  			byte[] ficheByte=null;
+			try {
+				ficheByte = getBytes(fiche);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+  			
   			//Passage de la fiche à RemplissageCreation
-			//objetbunble.put("fiche", (Object)fiche);
+			objetbunble.putByteArray("fiche", ficheByte);
 			
   			//On affecte à l'Intent le Bundle que l'on a créé
   			intent.putExtras(objetbunble);
@@ -99,7 +110,16 @@ public class ListCreationNumeric extends Activity {
 	}
 	
 	
-	
+	public static byte[] getBytes(Object obj) throws java.io.IOException{
+	      ByteArrayOutputStream bos = new ByteArrayOutputStream(); 
+	      ObjectOutputStream oos = new ObjectOutputStream(bos); 
+	      oos.writeObject(obj);
+	      oos.flush(); 
+	      oos.close(); 
+	      bos.close();
+	      byte [] data = bos.toByteArray();
+	      return data;
+	  }
 	
 	
 	
