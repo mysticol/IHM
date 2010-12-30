@@ -24,10 +24,8 @@ public class ChoixJet extends Activity {
 	  ListView lv1;
 	  
 	  final Bundle objetbunble  = this.getIntent().getExtras();
-	  
-	  System.out.println("<<<<<<<<<< <<<<<<<<<<<<");	  
-	  Systeme systeme = (Systeme) objetbunble.getSerializable("systeme");
-	  System.out.println("<<<<<<<<<< <<<<<<<<<<<<");	  
+	  	  
+	  Systeme systeme = (Systeme) objetbunble.getSerializable("systeme");  
 	  
 	  //Systeme systeme = test.createSysteme();
 	  
