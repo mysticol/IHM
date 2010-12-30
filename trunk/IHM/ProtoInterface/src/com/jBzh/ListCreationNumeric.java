@@ -1,5 +1,11 @@
 package com.jBzh;
 
+import java.io.File;
+
+import parseur.ParseurModele;
+
+import bean.Modele;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +18,17 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class ListCreationNumeric extends Activity {
 	
+	File modeleXML;
+	Modele modele;
+	ParseurModele pModele;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
-	  	  
+	  /*String Chemin;
+	  modeleXML = 
+	  modele = pModele.parse(modeleXML);*/
+	  
 	  ListView lv1;
 	  String lv_arr[]={"Caracteristiques","Competences"};
 
