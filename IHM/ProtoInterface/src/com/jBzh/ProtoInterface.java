@@ -143,7 +143,7 @@ public class ProtoInterface extends Activity {
             	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
     			Bundle objetbunble = new Bundle();
     			
-    			
+    			objetbunble.putSerializable("fiche", test.createFiche());
 				objetbunble.putSerializable("systeme", test.createSysteme());
     		
     			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
