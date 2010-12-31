@@ -1,7 +1,14 @@
 package bean;
 
-public class Case {
+import java.io.Serializable;
 
+public class Case implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 307714418934627886L;
+	
 	private String label;
 	private boolean coche;
 	public String getLabel() {

@@ -1,7 +1,14 @@
 package bean;
 
-public class Info {
+import java.io.Serializable;
 
+public class Info implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7137260640714633353L;
+	
 	private String nom;
 	private String value;
 	public String getNom() {

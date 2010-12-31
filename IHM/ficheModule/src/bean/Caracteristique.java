@@ -1,8 +1,15 @@
 package bean;
 
-public class Caracteristique extends Numeric{
+import java.io.Serializable;
+
+public class Caracteristique extends Numeric implements Serializable {
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1334884974546442411L;
+	
 	private boolean jauge=false;
 	private boolean consommable=false;
 

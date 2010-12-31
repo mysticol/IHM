@@ -1,7 +1,14 @@
 package bean;
 
-public class Categorie {
+import java.io.Serializable;
 
+public class Categorie implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1082611814071358880L;
+	
 	private String nom;
 
 	public String getNom() {

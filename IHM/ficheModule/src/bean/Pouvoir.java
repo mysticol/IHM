@@ -1,7 +1,14 @@
 package bean;
 
-public class Pouvoir {
+import java.io.Serializable;
 
+public class Pouvoir implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3962043494054205297L;
+	
 	private String nom;
 	private String description;
 	

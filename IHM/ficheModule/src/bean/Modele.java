@@ -1,10 +1,16 @@
 package bean;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class Modele {
+public class Modele implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3070223188482398162L;
+	
 	private String univers;
 	private String system;
 	private Integer vie;
