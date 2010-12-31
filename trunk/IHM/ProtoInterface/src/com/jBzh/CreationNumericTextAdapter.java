@@ -6,11 +6,13 @@ import java.util.List;
 import com.jBzh.CreationNumericAdapter.CreationNumericAdapterListener;
 
 import android.content.Context;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
+import android.view.View.OnKeyListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,28 +67,46 @@ private List<NumericText> listNumeric;
 		EditText valeurNumeric = (EditText) layoutItem.findViewById(R.id.ValeurNumericText);
 		TextView nomNumeric = (TextView) layoutItem.findViewById(R.id.NomNumericText);
 		        
-		//(3) : Renseignement des valeurs
+		//(3) : Rens eignement des valeurs
 	
 		System.out.println("dans le getview : " + String.valueOf(listNumeric.get(position).getValeur()));
 		
 		valeurNumeric.setText(listNumeric.get(position).getValeur());
 		nomNumeric.setText(listNumeric.get(position).getNomNumeric());
 
-		valeurNumeric.setOnFocusChangeListener(new OnFocusChangeListener() {
+		/*valeurNumeric.setOnFocusChangeListener(new OnFocusChangeListener() {
 			
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if(!hasFocus){
 				Integer position = (Integer)v.getTag();
-						
 				//On prévient les listeners qu'il y a eu un clic sur l'EditText.
 				sendListener(listNumeric.get(position), position, true);
 				v.invalidate();
 				}
 			}
+		});*/
+		valeurNumeric.setOnKeyListener(new OnKeyListener() {
+			
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				// If the event is a key-down event on the "enter" button
+		        if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+		            (keyCode == KeyEvent.KEYCODE_ENTER)) {
+		        	
+		        	Integer position = (Integer)v.getTag();
+		        	
+					//On prévient les listeners qu'il y a eu un clic sur l'EditText.
+					sendListener(listNumeric.get(position), position, true);
+					v.invalidate();
+					return true;
+		        }
+		        return false;
+			}
 		});
-		//On retourne l'item créé.
+		
 		return layoutItem;
+		
 	}
 	
     private ArrayList<CreationNumericTextAdapterListener> mListListener = new ArrayList<CreationNumericTextAdapterListener>();
