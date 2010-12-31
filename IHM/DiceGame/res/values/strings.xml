@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, DiceGame!</string>
+    <string name="app_name">Lanceur de dés</string>
+    <string name="diceTypeString">Type de dés : </string>
+    <string-array name="diceTypeArray">
+    	<item>d6</item>
+    	<item>d10</item>
+    	<item>d20</item>
+    	<item>d100</item>
+    	<item>d4</item>
+    	<item>d8</item>
+    	<item>d12</item>
+    	<item>d2</item>
+    	<item>d3</item>
+    </string-array>
+</resources>
