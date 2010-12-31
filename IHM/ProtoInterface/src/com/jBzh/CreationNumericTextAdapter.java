@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -71,29 +72,36 @@ private List<NumericText> listNumeric;
 		valeurNumeric.setText(listNumeric.get(position).getValeur());
 		nomNumeric.setText(listNumeric.get(position).getNomNumeric());
 
-		
+		valeurNumeric.setOnFocusChangeListener(new OnFocusChangeListener() {
+			
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if(!hasFocus){
+				Integer position = (Integer)v.getTag();
+						
+				//On prévient les listeners qu'il y a eu un clic sur l'EditText.
+				sendListener(listNumeric.get(position), position, true);
+				v.invalidate();
+				}
+			}
+		});
 		//On retourne l'item créé.
 		return layoutItem;
 	}
 	
-   /* private ArrayList<CreationNumericAdapterListener> mListListener = new ArrayList<CreationNumericAdapterListener>();
-    public void addListener(CreationNumericAdapterListener aListener) {
+    private ArrayList<CreationNumericTextAdapterListener> mListListener = new ArrayList<CreationNumericTextAdapterListener>();
+    public void addListener(CreationNumericTextAdapterListener aListener) {
     	mListListener.add(aListener);
     }
 	
-    public interface CreationNumericAdapterListener {
-    	public void onClickMoins(Numeric item, int position);
-    	public void onClickPlus(Numeric item, int position);
+    public interface CreationNumericTextAdapterListener {
+    	public void onTextChanged(NumericText item, int position);
     }
     
-    private void sendListener(Numeric item, int position, Boolean clicPlus) {
+    private void sendListener(NumericText item, int position, Boolean clicPlus) {
         for(int i = mListListener.size()-1; i >= 0; i--) {
-        	if(clicPlus){
-        		mListListener.get(i).onClickPlus(item, position);
-        	} else {
-        		mListListener.get(i).onClickMoins(item, position);
-        	}
+        		mListListener.get(i).onTextChanged(item, position);
         }
-    }*/
+    }
 
 }
