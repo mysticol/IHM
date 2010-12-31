@@ -9,6 +9,7 @@ import bean.Caracteristique;
 import bean.Fiche;
 
 import com.jBzh.CreationNumericAdapter.CreationNumericAdapterListener;
+import com.jBzh.CreationNumericTextAdapter.CreationNumericTextAdapterListener;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,7 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class RemplissageCreation extends Activity implements CreationNumericAdapterListener{
+public class RemplissageCreation extends Activity implements CreationNumericAdapterListener,CreationNumericTextAdapterListener{
 	
 	//private static ArrayList<Numeric> listN = Numeric.getAListOfNumeric();
 	ArrayList<Numeric> listN = new ArrayList<Numeric>();
@@ -116,5 +117,13 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 		item.incr();
 		adapter.notifyDataSetChanged();		
 	}
+
+	@Override
+	public void onTextChanged(NumericText item, int position) {
+		adapter.notifyDataSetChanged();
+		
+	}
+	
+	
 
 }
