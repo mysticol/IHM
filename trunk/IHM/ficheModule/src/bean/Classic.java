@@ -1,7 +1,14 @@
 package bean;
 
-public class Classic implements Vie {
+import java.io.Serializable;
 
+public class Classic implements Vie, Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5832364881113959193L;
+	
 	private Integer total;
 	private Integer actuel;
 	public Integer getTotal() {

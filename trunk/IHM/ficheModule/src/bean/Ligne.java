@@ -1,8 +1,14 @@
 package bean;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Ligne implements Vie{
+public class Ligne implements Vie, Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1461466061235521162L;
 	
 	private LinkedList<Case> listeCase;
 

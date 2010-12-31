@@ -1,7 +1,14 @@
 package bean;
 
-public abstract class Numeric {
+import java.io.Serializable;
 
+public abstract class Numeric implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8857917249701621551L;
+	
 	private String nom;
 	private Integer valeur;
 	public String getNom() {

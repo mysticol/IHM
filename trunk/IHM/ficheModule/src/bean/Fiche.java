@@ -1,11 +1,17 @@
 package bean;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class Fiche {
+public class Fiche implements Serializable {
 	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3495020224233774946L;
 	
 	private String nom;
 	private String poid;

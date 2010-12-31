@@ -1,5 +1,7 @@
 package bean;
 
-public interface Vie {
+import java.io.Serializable;
+
+public interface Vie extends Serializable {
 
 }
