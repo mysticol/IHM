@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+	<TextView  
+    	android:id="@+id/diceTypeText"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:text="Type de dés :" >
+	</TextView>
+	
+	<Spinner 
+	    android:id="@+id/diceTypeSpinner"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/diceTypeText"
+	    android:prompt="@string/diceTypeString"
+	    android:entries="@array/diceTypeArray"
+	    />
+		 
+	 
+	<Button android:id="@+id/launchButton"
+        android:layout_width="100px"
+        android:layout_height="50px"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:text="Lancer" /> 
+        
+    <TextView  
+    	android:id="@+id/nbDiceText"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:text="Nombre de dés :" >
+	</TextView>
+	
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:layout_alignLeft="@id/nbDiceText" 
+		android:layout_alignParentRight="true"
+		android:layout_below="@id/nbDiceText"
+		android:gravity="center"
+		>
+		
+		<Button
+	        android:id="@+id/plus"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentRight="true"
+	        android:layout_below="@id/nbDiceText"
+	        android:text="+" />
+			
+		<TextView 
+			android:id="@+id/nbDiceValue"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:text="1" >
+		</TextView>
+			
+		 <Button
+	        android:id="@+id/moins"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:text="-" />
+	</RelativeLayout>
+
+</RelativeLayout>
