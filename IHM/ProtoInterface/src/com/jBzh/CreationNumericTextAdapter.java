@@ -9,6 +9,7 @@ import android.content.Context;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 public class CreationNumericTextAdapter extends BaseAdapter{
 
 private List<NumericText> listNumeric;
+private Integer firstTime;
 	
 	//Le contexte dans lequel est présent notre adapter
 	private Context mContext;
@@ -34,6 +36,7 @@ private List<NumericText> listNumeric;
 		listNumeric = listNum;
 		mContext = context;
 		mInflater = LayoutInflater.from(mContext);
+		firstTime = listNumeric.size();
 	}
 
 	@Override
@@ -68,24 +71,19 @@ private List<NumericText> listNumeric;
 		TextView nomNumeric = (TextView) layoutItem.findViewById(R.id.NomNumericText);
 		        
 		//(3) : Rens eignement des valeurs
+		
+		valeurNumeric.setTag(position);
 	
-		System.out.println("dans le getview : " + String.valueOf(listNumeric.get(position).getValeur()));
+		//System.out.println("dans le getview : " + String.valueOf(listNumeric.get(position).getValeur()));
+		//System.out.println("CreationNumTextAdapter : " + listNumeric.get(position).getNomNumeric() + " => " + listNumeric.get(position).getValeur());
+			
+		/*if(!valeurNumeric.getEditableText().toString().equalsIgnoreCase(listNumeric.get(position).getValeur())){
+			listNumeric.get(position).setValeur(valeurNumeric.getEditableText().toString());
+		}*/
 		
 		valeurNumeric.setText(listNumeric.get(position).getValeur());
-		nomNumeric.setText(listNumeric.get(position).getNomNumeric());
-
-		/*valeurNumeric.setOnFocusChangeListener(new OnFocusChangeListener() {
-			
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-				if(!hasFocus){
-				Integer position = (Integer)v.getTag();
-				//On prévient les listeners qu'il y a eu un clic sur l'EditText.
-				sendListener(listNumeric.get(position), position, true);
-				v.invalidate();
-				}
-			}
-		});*/
+		nomNumeric.setText(listNumeric.get(position).getNomNumeric());		
+		
 		valeurNumeric.setOnKeyListener(new OnKeyListener() {
 			
 			@Override
@@ -96,14 +94,17 @@ private List<NumericText> listNumeric;
 		        	
 		        	Integer position = (Integer)v.getTag();
 		        	
+		        	listNumeric.get(position).setValeur(((EditText)v).getText().toString());
+		        	
 					//On prévient les listeners qu'il y a eu un clic sur l'EditText.
-					sendListener(listNumeric.get(position), position, true);
+					sendListener(listNumeric.get(position), position);
 					v.invalidate();
 					return true;
 		        }
 		        return false;
 			}
 		});
+
 		
 		return layoutItem;
 		
@@ -118,7 +119,7 @@ private List<NumericText> listNumeric;
     	public void onTextChanged(NumericText item, int position);
     }
     
-    private void sendListener(NumericText item, int position, Boolean clicPlus) {
+    private void sendListener(NumericText item, int position) {
         for(int i = mListListener.size()-1; i >= 0; i--) {
         		mListListener.get(i).onTextChanged(item, position);
         }

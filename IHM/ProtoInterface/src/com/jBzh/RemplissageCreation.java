@@ -22,7 +22,9 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	
 	//private static ArrayList<Numeric> listN = Numeric.getAListOfNumeric();
 	ArrayList<Numeric> listN = new ArrayList<Numeric>();
-	private static CreationNumericAdapter adapter;
+	ArrayList<NumericText> listNText = new ArrayList<NumericText>();
+	private CreationNumericAdapter adapter;
+	private CreationNumericTextAdapter adapterText;
 	Fiche fiche = new Fiche();
 	String categorie;
 	
@@ -36,16 +38,56 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	  // Recuperation de la categorie
 	  categorie = objetbunble.getString("categorie");
 	  
+	  setContentView(R.layout.remplissagecreation);
+	  
+      ListView list = (ListView)findViewById(R.id.list);
+	  
 	  //En fonction de la categorie choisir, on affiche des elements differents
 	  if(categorie.equalsIgnoreCase("Personnage")){
 		  
-		  setContentView(R.layout.remplissagecreation);
+		  if(fiche.getNom()!=null){
+			  listNText.add(new NumericText("nom", fiche.getNom()));
+		  } else {
+			  listNText.add(new NumericText("nom", ""));
+		  }
+		  if(fiche.getPoid()!=null){
+			  listNText.add(new NumericText("poids", fiche.getPoid()));
+		  } else {
+			  listNText.add(new NumericText("poids", ""));
+		  }
+		  if(fiche.getTaille()!=null){
+			  listNText.add(new NumericText("taille", fiche.getTaille()));
+		  } else {
+			  listNText.add(new NumericText("taille", ""));
+		  }
+		  if(fiche.getAge()!=null){
+			  listNText.add(new NumericText("age", fiche.getAge()));
+		  } else {
+			  listNText.add(new NumericText("age", ""));
+		  }
+		  if(fiche.getConcept()!=null){
+			  listNText.add(new NumericText("concept", fiche.getConcept()));
+		  } else {
+			  listNText.add(new NumericText("concept", ""));
+		  }
+		  if(fiche.getXp()!=null){
+			  listNText.add(new NumericText("experience", fiche.getXp()));
+		  } else {
+			  listNText.add(new NumericText("experience", ""));
+		  }
+		  if(fiche.getCampagne()!=null){
+			  listNText.add(new NumericText("campagne", fiche.getCampagne()));
+		  } else {
+			  listNText.add(new NumericText("campagne", "50"));
+		  }
+		  
+		  CreationNumericTextAdapter adapter = new CreationNumericTextAdapter(this, listNText);
 
-	      CreationNumericAdapter adapter = new CreationNumericAdapter(this, listN);
+	      this.adapterText = adapter;
 
-	      this.adapter = adapter;
-	     
 	      adapter.addListener(this);
+	      
+	      list.setAdapter(adapterText);
 
 	  } else if(categorie.equalsIgnoreCase("CaracteristiquesPrincipales")) {
 		  
@@ -56,20 +98,17 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 				  listN.add(new Numeric(c, 0));
 			  }
 		  }
-		  
-		  setContentView(R.layout.remplissagecreation);
 
 	      CreationNumericAdapter adapter = new CreationNumericAdapter(this, listN);
 
 	      this.adapter = adapter;
 	     
-	      adapter.addListener(this);		  
-		  
+	      adapter.addListener(this);
+	      
+	      list.setAdapter(this.adapter);
+	      		  
 	  }
      
-      ListView list = (ListView)findViewById(R.id.list);
-      
-      list.setAdapter(adapter);
 	  
       final Button buttonRetour = (Button) findViewById(R.id.retour);
       buttonRetour.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +122,18 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
   			
   			//On sauvegarde les valeurs changees dans la fiche
   			if(categorie.equalsIgnoreCase("Personnage")){
+  				
+  				fiche.setCampagne(listNText.get(listNText.size()-1).getValeur());
+  				fiche.setXp(listNText.get(listNText.size()-2).getValeur());
+  				fiche.setConcept(listNText.get(listNText.size()-3).getValeur());
+  				fiche.setAge(listNText.get(listNText.size()-4).getValeur());
+  				fiche.setTaille(listNText.get(listNText.size()-5).getValeur());
+  				fiche.setPoid(listNText.get(listNText.size()-6).getValeur());
+  				fiche.setNom(listNText.get(listNText.size()-7).getValeur());
+  				
+  				for(NumericText nt : listNText){
+  					System.out.println("Enregistrer Personnage : " + nt.getNomNumeric() + " => " + nt.getValeur());
+  				}
   				
   			} else if(categorie.equalsIgnoreCase("CaracteristiquesPrincipales")){
   				
@@ -120,8 +171,8 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 
 	@Override
 	public void onTextChanged(NumericText item, int position) {
-		adapter.notifyDataSetChanged();
-		
+		System.out.println("On a change : " + item.getNomNumeric() + " : " + item.getValeur());
+		adapterText.notifyDataSetChanged();
 	}
 	
 	
