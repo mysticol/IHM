@@ -96,6 +96,7 @@ public class ParseurFiche {
 
 				catComp.put(myCat, comps);
 			}
+			fiche.setCompetences(catComp);
 
 			// parse le pouvoir
 			LinkedList<Pouvoir> listPower = new LinkedList<Pouvoir>();
