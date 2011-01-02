@@ -98,7 +98,7 @@ public class ParseurModele {
 				
 				catComp.put(myCat, comps);
 			}
-			
+			fiche.setCompetences(catComp);
 			
 			
 			
@@ -173,7 +173,7 @@ public class ParseurModele {
 				
 				catComp.put(myCat, comps);
 			}
-			
+			model.setCompetences(catComp);
 			
 			
 			
