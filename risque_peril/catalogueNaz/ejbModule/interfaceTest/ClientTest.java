@@ -8,11 +8,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import dto.Categorie;
-import dto.Produit;
-
-import lib.CatalogueRemote;
-
+import fr.alma.dto.catalogue.Categorie;
+import fr.alma.dto.catalogue.Produit;
+import fr.alma.interfaces.CatalogueRemote;
 
 public class ClientTest {
 
