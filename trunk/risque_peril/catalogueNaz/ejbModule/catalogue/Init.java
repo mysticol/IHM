@@ -1,10 +1,22 @@
 package catalogue;
 
+import java.util.Hashtable;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import fr.alma.interfaces.CatalogueRegisteringRemote;
+
 public class Init {
+	
+	private final static Hashtable<String, String> conf;
+	
+	static {
+		conf = new Hashtable<String, String>();
+		conf.put("java.naming.factory.initial", "org.jnp.interfaces.NamingContextFactory");
+	    conf.put("java.naming.factory.url.pkgs", "org.jboss.naming:org.jnp.interfaces");
+	}
 
 	/**
 	 * @param args
@@ -13,15 +25,18 @@ public class Init {
 		
 		Context context = new InitialContext();
         // Nom de la classe d'implémentation + /local ou /remote
-        CatalogueServiceRemote catalogueLocal = (CatalogueServiceRemote) context.lookup("CatalogueService/remote");
+        CatalogueManagerRemote catalogueLocal = (CatalogueManagerRemote) context.lookup("CatalogueManagerService/remote");
         
         // On s'enregistre aupres du server central
-//      CatalogueRegisteringRemote centralServerRegistering = (CatalogueRegisteringRemote) context.lookup("CatalogueRegistering/remote");
-//	
-//      if(!centralServerRegistering.senregistrer("", "dejean-pottier", "CatalogueService")){
-//      	System.out.println("Probleme : impossible de s'enregistrer aupres du server central");
-//      }          
-        
+        Context contextServeur = new InitialContext(conf);
+        contextServeur.addToEnvironment("java.naming.provider.url", "172.16.134.152:1099");
+
+        CatalogueRegisteringRemote centralServerRegistering = (CatalogueRegisteringRemote) contextServeur.lookup("CatalogueRegistering/remote");
+		
+	      if(!centralServerRegistering.senregistrer("172.16.134.150", "dejean-pottier", "CatalogueService")){
+	      	System.out.println("Probleme : impossible de s'enregistrer aupres du server central");
+	      }          
+	        
 		// création automatique du catalogue pour les tests !!
 		catalogueLocal.addCategorie("Jouet");
         catalogueLocal.addCategorie("Jardin"); 

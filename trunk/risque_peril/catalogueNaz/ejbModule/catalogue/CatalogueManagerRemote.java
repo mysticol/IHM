@@ -8,10 +8,8 @@ import entity.ECategorie;
 import entity.ECommande;
 import entity.EProduit;
 
-import lib.CatalogueRemote;
-
 @Remote
-public interface CatalogueServiceRemote extends CatalogueRemote{
+public interface CatalogueManagerRemote {
 	
 	Long addProduct(String description, Double price, String nomCateg, String marque, String modele, Integer quantity);
 

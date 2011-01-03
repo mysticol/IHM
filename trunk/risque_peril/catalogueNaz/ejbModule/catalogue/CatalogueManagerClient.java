@@ -12,7 +12,7 @@ import entity.ECategorie;
 import entity.ECommande;
 import entity.EProduit;
 
-public class CatalogueManager {
+public class CatalogueManagerClient {
 
 	/**
 	 * @param args
@@ -27,7 +27,7 @@ public class CatalogueManager {
 		
 		Context context = new InitialContext();
         // Nom de la classe d'implémentation + /local ou /remote
-        CatalogueServiceRemote catalogueLocal = (CatalogueServiceRemote) context.lookup("CatalogueService/remote"); 
+        CatalogueManagerRemote catalogueLocal = (CatalogueManagerRemote) context.lookup("CatalogueManagerService/remote"); 
         
     	String categorie;
 		String marque;
