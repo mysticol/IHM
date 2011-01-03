@@ -37,18 +37,29 @@ public class Init {
 	      	System.out.println("Probleme : impossible de s'enregistrer aupres du server central");
 	      }          
 	        
-		// création automatique du catalogue pour les tests !!
-		catalogueLocal.addCategorie("Jouet");
-        catalogueLocal.addCategorie("Jardin"); 
+     // création automatique du catalogue pour les tests !!
+		catalogueLocal.addCategorie("Livres");
+		catalogueLocal.addProduct(" le classique avec un ballon ", 10.0, "Livres", "Jules Verne", "Le tour du monde en 80 jours", 500);
+        catalogueLocal.addProduct(" le classique sous l'eau ", 15.0, "Livres", "Jules Verne", "Vingt mille lieues sous les mers", 100);
+        catalogueLocal.addProduct(" un grand tintin ", 12.0, "Livres", "Hergé", "Tintin au Congo", 100);
+        catalogueLocal.addProduct(" un titin qui existe pas ", 30.0, "Livres", "Hergé", "Tintin chez les Helvètes", 100);
+        catalogueLocal.addProduct(" je prefere celui sur le canibalisme ", 20.0, "Livres", "Gilbert Delahaye", "Martine fait du poney", 900);
         
-        catalogueLocal.addProduct(" vrai osselet juif ", 10.0, "Jouet", "Les Restes de la fosses", "osselets", 500);
-        catalogueLocal.addProduct(" vrai toupie juive ", 15.0, "Jouet", "Les Restes de la fosses", "toupie", 100);
-        catalogueLocal.addProduct(" fait avec de vrai plombage ", 12.0, "Jouet", "Les Restes du four", "soldat de plomb", 100);
+		
+        catalogueLocal.addCategorie("Films"); 
+        catalogueLocal.addProduct(" horreur ", 20.0, "Films", "Tom Six", "The human centipede", 200);
+        catalogueLocal.addProduct(" classique ", 40.0, "Films", "Quentin Tarantino", "Pulp fiction", 300);
+        catalogueLocal.addProduct(" exelent ", 40.0, "Films", "David Fincher", "Fight Club", 200);
+        catalogueLocal.addProduct(" incontournable ", 50.0, "Films", "Darren Aronofsky", "Requiem for a dream", 400);
+        catalogueLocal.addProduct(" genial ", 30.0, "Films", "Robert Rodriguez", "Machete", 100);
         
-        catalogueLocal.addProduct(" un joli rateau en os ", 30.0, "Jardin", "Les Restes de la fosses", "rateau", 100);
-        catalogueLocal.addProduct(" un bon angraie plein de bonne chose ", 20.0, "Jardin", "Les Restes du four", "angraie", 900);
         
-        // fin de la creation du catalogue
+        catalogueLocal.addCategorie("Jeux"); 
+        catalogueLocal.addProduct(" fps ", 20.0, "Jeux", "Valve", "Counter-Strike Source", 400);
+        catalogueLocal.addProduct(" fps durant la 2nd guerre mondiale ", 20.0, "Jeux", "Valve", "Day of Defeat Source", 400);
+        catalogueLocal.addProduct(" flash ", 2.0, "Jeux", "Adult Swim Games", "Robot Unicorn Attack", 2000);
+        catalogueLocal.addProduct(" classique ", 40.0, "Jeux", "Nintendo", "Pokémon", 10);
+        catalogueLocal.addProduct(" fps massif ", 70.0, "Jeux", "EA games", "Battlefield Bad Company 2", 500);
 
 	}
 
