@@ -160,7 +160,7 @@ public class ParseurModele {
 			
 			HashMap<Categorie, LinkedList<Competence>> catComp= new HashMap<Categorie, LinkedList<Competence>>();
 			Element competences= racine.getChild("competences");
-			for (Element cat :(List<Element> )caractSecondaire.getChildren("categorie") ){
+			for (Element cat :(List<Element> )competences.getChildren("categorie") ){
 				LinkedList<Competence> comps= new LinkedList<Competence>();
 				
 				Categorie myCat= new Categorie();
