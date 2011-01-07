@@ -10,4 +10,16 @@
     <string-array name="campagne_array">
         <item>Toutes</item>
     </string-array>
+    <string name="diceTypeString">Type de dés : </string>
+    <string-array name="diceTypeArray">
+    	<item>d6</item>
+    	<item>d10</item>
+    	<item>d20</item>
+    	<item>d100</item>
+    	<item>d4</item>
+    	<item>d8</item>
+    	<item>d12</item>
+    	<item>d2</item>
+    	<item>d3</item>
+    </string-array>
 </resources>
