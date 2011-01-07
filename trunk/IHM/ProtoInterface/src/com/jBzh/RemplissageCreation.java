@@ -79,7 +79,7 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 		  if(fiche.getCampagne()!=null){
 			  listNText.add(new NumericText("campagne", fiche.getCampagne()));
 		  } else {
-			  listNText.add(new NumericText("campagne", "50"));
+			  listNText.add(new NumericText("campagne", ""));
 		  }
 		  
 		  CreationNumericTextAdapter adapter = new CreationNumericTextAdapter(this, listNText);
