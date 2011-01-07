@@ -81,7 +81,7 @@ public class ParseurFiche {
 			// parse les catégorie et compétences
 			HashMap<Categorie, LinkedList<Competence>> catComp = new HashMap<Categorie, LinkedList<Competence>>();
 			Element competences = racine.getChild("competences");
-			for (Element cat : (List<Element>) caractSecondaire
+			for (Element cat : (List<Element>) competences
 					.getChildren("categorie")) {
 				LinkedList<Competence> comps = new LinkedList<Competence>();
 
