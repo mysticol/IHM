@@ -31,7 +31,7 @@ public class ProtoInterface extends Activity {
         int nbDir = 0;
                
         for(File f : root.listFiles()){
-        	System.out.println(f.getName());
+        	//System.out.println(f.getName());
         	if(f.getName().equalsIgnoreCase("Fiches")){
         		nbDir++;
         	} else if(f.getName().equalsIgnoreCase("Systeme")) {

@@ -27,7 +27,7 @@ public class ResumeCreation extends Activity {
 	  setContentView(R.layout.resumecreation);
 	  
 	  ListView listv = (ListView)findViewById(R.id.list);
-	  /*
+	  
 	  //Infos Perso
 	  for(String c : fiche.getInfos().keySet()){
 		  if(fiche.getInfos().get(c)!=null){
@@ -44,7 +44,7 @@ public class ResumeCreation extends Activity {
 			  list.add(new ResumNumeric(c, ""));
 		  }
 	  }
-	  */
+	  
 	  ResumeAdapter adapter = new ResumeAdapter(this, list);
 
       this.adapter = adapter;

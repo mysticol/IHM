@@ -7,9 +7,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class ChoixMJ extends Activity{
 
@@ -23,32 +27,52 @@ public class ChoixMJ extends Activity{
     	
     	
     	
-    	Spinner UniversSpinner = (Spinner) findViewById(R.id.UniversSpinner);
-        /*ArrayAdapter<CharSequence> adapterU = ArrayAdapter.createFromResource(
-                this, android.R.layout.simple_spinner_item, android.R.layout.simple_spinner_item);
-        adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        UniversSpinner.setAdapter(adapterU);*/
+    	final Spinner UniversSpinner = (Spinner) findViewById(R.id.UniversSpinner);
     	
-    	//String[] array = {"aaaa", "bbb"};
-    	ArrayList<String> univers = new ArrayList<String>();
-    	ArrayList<String> campagnes = new ArrayList<String>();
+    	final ArrayList<String> univers = new ArrayList<String>();
+    	final ArrayList<String> campagnes = new ArrayList<String>();
     	
-    	File root = getFileStreamPath("Fiches");
+    	
+    	File root = getFilesDir();
+    	File universPath = new File(getFilesDir().getAbsolutePath() + "/Fiches");
     	
     	//Récupération des univers existant
-    	for(File f : root.listFiles()){
+    	for(File f : universPath.listFiles()){
     		univers.add(f.getName());
         }
     	
-    	//Récupération des campagnes existantes
-    	for(File f : root.listFiles()){
-    		campagnes.add(f.getName());
-        }
     	
     	
     	ArrayAdapter<String> adapterU = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, univers);
         adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        UniversSpinner.setAdapter(adapterU);    	
+        UniversSpinner.setAdapter(adapterU); 
+        
+		String universChoisi = UniversSpinner.getSelectedItem().toString();
+    	//Récupération des campagnes existantes
+        File campagnePath = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+universChoisi);
+        for(File f : campagnePath.listFiles()){
+        		campagnes.add(f.getName());
+        }
+        
+        UniversSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				campagnes.clear();
+				File path = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+UniversSpinner.getSelectedItem().toString());
+				for(File f : path.listFiles()){
+	        		campagnes.add(f.getName());
+	        }
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+        
+
         
         Spinner campagneSpinner = (Spinner) findViewById(R.id.CampagneSpinner);
         ArrayAdapter<String> adapterC = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, campagnes);
