@@ -113,9 +113,9 @@ public class ListCreationNumeric extends Activity {
     		
   			//Sauvegarde de la fiche
   			/*if(fiche.getCampagne()!=null){
-  				eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/"+fiche.getNom());
+  				eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/"+fiche.getNom()+".xml");
   			}else{
-  				eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/Default"+"/"+fiche.getNom());
+  				eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/Default"+"/"+fiche.getNom()+".xml");
   			}*/
   			
   			
