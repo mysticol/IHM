@@ -1,6 +1,7 @@
 package com.jBzh;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 	  
-	  //Récupération de la fiche
+	  //RÃ©cupÃ©ration de la fiche
 	  Bundle objetbunble  = this.getIntent().getExtras();
 	  fiche = (Fiche)(objetbunble.getSerializable("fiche"));
 	  // Recuperation de la categorie
@@ -114,10 +115,10 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
       buttonRetour.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {
           	
-          	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+          	//On crÃ©Ã© un objet Bundle, c'est ce qui va nous permetre d'envoyer des donnÃ©es Ã  l'autre Activity
   			Bundle objetbunble = new Bundle();
    
-  			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+  			//On crÃ©Ã© l'Intent qui va nous permettre d'afficher l'autre Activity
   			Intent intent = new Intent(RemplissageCreation.this, ListCreationNumeric.class);
   			
   			//On sauvegarde les valeurs changees dans la fiche
@@ -143,17 +144,18 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
   				
   			}
   			 			
-  			//Passage de la fiche à RemplissageCreation
+  			//Passage de la fiche Ã  RemplissageCreation
 			objetbunble.putSerializable("fiche", fiche);
    
-  			//On affecte à l'Intent le Bundle que l'on a créé
+  			//On affecte Ã  l'Intent le Bundle que l'on a crÃ©Ã©
   			intent.putExtras(objetbunble);
    
-  			//On démarre l'autre Activity
+  			//On dÃ©marre l'autre Activity
   			startActivityForResult(intent, 1);
 
           }
       });
+      
 	  
 	}
 

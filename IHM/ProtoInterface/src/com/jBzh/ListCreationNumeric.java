@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+import parseur.EcriteurFiche;
 import parseur.ParseurModele;
 
 import bean.Fiche;
@@ -25,6 +26,7 @@ public class ListCreationNumeric extends Activity {
 	
 	Fiche fiche = new Fiche();
 	ParseurModele pModele = new ParseurModele();
+	EcriteurFiche eFiche= new EcriteurFiche();
 	static String univers;
 	private String lv_arr[]={"Personnage","CaracteristiquesPrincipales","Competences","CaracteristiquesSecondaire","Vie","Pouvoirs","Equipement"};
 
@@ -33,7 +35,7 @@ public class ListCreationNumeric extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 	  
-	  //Récupération de l'univers
+	  //RÃ©cupÃ©ration de l'univers
 	  Bundle objetbunble  = this.getIntent().getExtras();
 	  if(objetbunble.getString("univers")!=null){
 		  univers = objetbunble.getString("univers");
@@ -42,7 +44,7 @@ public class ListCreationNumeric extends Activity {
 	  if(objetbunble.getSerializable("fiche")!=null){
 		  fiche = (Fiche) objetbunble.getSerializable("fiche");
 	  } else {
-		  //Création de la fiche par rapport au modèle
+		  //CrÃ©ation de la fiche par rapport au modÃ¨le
 		  File dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Modeles/"+univers);
 		  for(File f : dirTmp.listFiles()){
 			  fiche = pModele.parseToEmptyFiche(f);
@@ -60,21 +62,21 @@ public class ListCreationNumeric extends Activity {
 	    public void onItemClick(AdapterView<?> parent, View view,
 	        int position, long id) {
 	    	
-          	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+          	//On crÃ©Ã© un objet Bundle, c'est ce qui va nous permetre d'envoyer des donnÃ©es Ã  l'autre Activity
   			Bundle objetbunble = new Bundle();
    
-  			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+  			//On crÃ©Ã© l'Intent qui va nous permettre d'afficher l'autre Activity
   			Intent intent = new Intent(ListCreationNumeric.this, RemplissageCreation.class);
    
-  			//Passage de la fiche à RemplissageCreation
+  			//Passage de la fiche Ã  RemplissageCreation
 			objetbunble.putSerializable("fiche", fiche);
 			objetbunble.putString("categorie", lv_arr[position]);
 			
 			
-  			//On affecte à l'Intent le Bundle que l'on a créé
+  			//On affecte Ã  l'Intent le Bundle que l'on a crÃ©Ã©
   			intent.putExtras(objetbunble);
    
-  			//On démarre l'autre Activity
+  			//On dÃ©marre l'autre Activity
   			startActivityForResult(intent, 1);
 
 	    }
@@ -84,16 +86,16 @@ public class ListCreationNumeric extends Activity {
       buttonRetour.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {
           	
-          	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+        	//On crÃ©Ã© un objet Bundle, c'est ce qui va nous permetre d'envoyer des donnÃ©es Ã  l'autre Activity
   			Bundle objetbunble = new Bundle();
    
-  			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+  			//On crÃ©Ã© l'Intent qui va nous permettre d'afficher l'autre Activity
   			Intent intent = new Intent(ListCreationNumeric.this, ChoixCreation.class);
    
-  			//On affecte à l'Intent le Bundle que l'on a créé
+  			//On affecte Ã  l'Intent le Bundle que l'on a crÃ©Ã©
   			intent.putExtras(objetbunble);
    
-  			//On démarre l'autre Activity
+  			//On dÃ©marre l'autre Activity
   			startActivityForResult(intent, 1);
 
           }
@@ -103,19 +105,27 @@ public class ListCreationNumeric extends Activity {
       buttonValider.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {
           	
-          	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+          	//On crÃ©Ã© un objet Bundle, c'est ce qui va nous permetre d'envoyer des donnÃ©es Ã  l'autre Activity
   			Bundle objetbunble = new Bundle();
    
-  			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
-  			Intent intent = new Intent(ListCreationNumeric.this, RemplissageCreation.class);
-    			
-  			//Passage de la fiche à RemplissageCreation
+  			//On crÃ©Ã© l'Intent qui va nous permettre d'afficher l'autre Activity
+  			Intent intent = new Intent(ListCreationNumeric.this, ResumeCreation.class);
+    		
+  			//Sauvegarde de la fiche
+  			/*if(fiche.getCampagne()!=null){
+  				eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/"+fiche.getNom());
+  			}else{
+  				eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/Default"+"/"+fiche.getNom());
+  			}*/
+  			
+  			
+  			//Passage de la fiche Ã  RemplissageCreation
 			objetbunble.putSerializable("fiche", fiche);
 			
-  			//On affecte à l'Intent le Bundle que l'on a créé
+  			//On affecte Ã  l'Intent le Bundle que l'on a crÃ©Ã©
   			intent.putExtras(objetbunble);
    
-  			//On démarre l'autre Activity
+  			//On dÃ©marre l'autre Activity
   			startActivityForResult(intent, 1);
           	
           }
