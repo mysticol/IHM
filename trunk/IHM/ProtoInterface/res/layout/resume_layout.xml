@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:id="@+id/LL_Fond">
+	
+	<TextView android:text="ResumNom" android:id="@+id/ResumNom"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content">
+	</TextView>
+	
+	<TextView android:text="ResumValeur" android:id="@+id/ResumValeur"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content">
+	</TextView>
+		
+</LinearLayout>

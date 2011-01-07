@@ -43,14 +43,14 @@ public class ProtoInterface extends Activity {
         
         if(nbDir!=2){
         	// Il n'y a pas la bonne arborescence, on recree l'arborescence
-        	System.out.println("On créé l'arborescence nécessaire au fonctionnement de l'application");
+        	System.out.println("On crÃ©Ã© l'arborescence nÃ©cessaire au fonctionnement de l'application");
         	File fiches = getFileStreamPath("Fiches");
         	fiches.mkdir();
         	File systeme = getFileStreamPath("Systeme");
         	systeme.mkdir();        	
         }
 
-    	// Pour les besoins du test, on créé des dossiers prédéfinis
+    	// Pour les besoins du test, on crÃ©Ã© des dossiers prÃ©dÃ©finis
         // Dossiers de fiches
     	File dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire");
     	dirTmp.mkdir();
@@ -78,22 +78,21 @@ public class ProtoInterface extends Activity {
     	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Regles/L5R");
     	dirTmp.mkdir();      	
     	
-    	
         
         final Button buttonMJ = (Button) findViewById(R.id.MJ);
         buttonMJ.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	
-            	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+            	//On crï¿½ï¿½ un objet Bundle, c'est ce qui va nous permetre d'envoyer des donnï¿½es ï¿½ l'autre Activity
     			Bundle objetbunble = new Bundle();
      
-    			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+    			//On crï¿½ï¿½ l'Intent qui va nous permettre d'afficher l'autre Activity
     			Intent intent = new Intent(ProtoInterface.this, ChoixMJ.class);
      
-    			//On affecte à l'Intent le Bundle que l'on a créé
+    			//On affecte ï¿½ l'Intent le Bundle que l'on a crï¿½ï¿½
     			intent.putExtras(objetbunble);
      
-    			//On démarre l'autre Activity
+    			//On dï¿½marre l'autre Activity
     			startActivityForResult(intent, CODE_DE_MON_ACTIVITE);
             }
         });
@@ -102,16 +101,16 @@ public class ProtoInterface extends Activity {
         buttonJoueur.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	
-            	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+            	//On crï¿½ï¿½ un objet Bundle, c'est ce qui va nous permetre d'envoyer des donnï¿½es ï¿½ l'autre Activity
     			Bundle objetbunble = new Bundle();
      
-    			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+    			//On crï¿½ï¿½ l'Intent qui va nous permettre d'afficher l'autre Activity
     			Intent intent = new Intent(ProtoInterface.this, ChoixJoueur.class);
      
-    			//On affecte à l'Intent le Bundle que l'on a créé
+    			//On affecte ï¿½ l'Intent le Bundle que l'on a crï¿½ï¿½
     			intent.putExtras(objetbunble);
      
-    			//On démarre l'autre Activity
+    			//On dï¿½marre l'autre Activity
     			startActivityForResult(intent, CODE_DE_MON_ACTIVITE);
 
             }
@@ -121,16 +120,16 @@ public class ProtoInterface extends Activity {
         buttonCreation.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	
-            	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+            	//On crï¿½ï¿½ un objet Bundle, c'est ce qui va nous permetre d'envoyer des donnï¿½es ï¿½ l'autre Activity
     			Bundle objetbunble = new Bundle();
      
-    			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+    			//On crï¿½ï¿½ l'Intent qui va nous permettre d'afficher l'autre Activity
     			Intent intent = new Intent(ProtoInterface.this, ChoixCreation.class);
      
-    			//On affecte à l'Intent le Bundle que l'on a créé
+    			//On affecte ï¿½ l'Intent le Bundle que l'on a crï¿½ï¿½
     			intent.putExtras(objetbunble);
      
-    			//On démarre l'autre Activity
+    			//On dï¿½marre l'autre Activity
     			startActivityForResult(intent, CODE_DE_MON_ACTIVITE);
 
             }
@@ -140,19 +139,19 @@ public class ProtoInterface extends Activity {
         buttonTest.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	
-            	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+            	//On crï¿½ï¿½ un objet Bundle, c'est ce qui va nous permetre d'envoyer des donnï¿½es ï¿½ l'autre Activity
     			Bundle objetbunble = new Bundle();
     			
     			objetbunble.putSerializable("fiche", test.createFiche());
 				objetbunble.putSerializable("systeme", test.createSysteme());
     		
-    			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+    			//On crï¿½ï¿½ l'Intent qui va nous permettre d'afficher l'autre Activity
     			Intent intent = new Intent(ProtoInterface.this, ChoixJet.class);
      
-    			//On affecte à l'Intent le Bundle que l'on a créé
+    			//On affecte ï¿½ l'Intent le Bundle que l'on a crï¿½ï¿½
     			intent.putExtras(objetbunble);
      
-    			//On démarre l'autre Activity
+    			//On dï¿½marre l'autre Activity
     			startActivityForResult(intent, CODE_DE_MON_ACTIVITE);
 
             }

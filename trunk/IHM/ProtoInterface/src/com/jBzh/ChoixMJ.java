@@ -1,5 +1,8 @@
 package com.jBzh;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,15 +29,29 @@ public class ChoixMJ extends Activity{
         adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         UniversSpinner.setAdapter(adapterU);*/
     	
-    	String[] array = {"aaaa", "bbb"};
+    	//String[] array = {"aaaa", "bbb"};
+    	ArrayList<String> univers = new ArrayList<String>();
+    	ArrayList<String> campagnes = new ArrayList<String>();
     	
-    	ArrayAdapter<String> adapterU = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, array);
+    	File root = getFileStreamPath("Fiches");
+    	
+    	//RÃ©cupÃ©ration des univers existant
+    	for(File f : root.listFiles()){
+    		univers.add(f.getName());
+        }
+    	
+    	//RÃ©cupÃ©ration des campagnes existantes
+    	for(File f : root.listFiles()){
+    		campagnes.add(f.getName());
+        }
+    	
+    	
+    	ArrayAdapter<String> adapterU = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, univers);
         adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         UniversSpinner.setAdapter(adapterU);    	
         
         Spinner campagneSpinner = (Spinner) findViewById(R.id.CampagneSpinner);
-        ArrayAdapter<CharSequence> adapterC = ArrayAdapter.createFromResource(
-                this, R.array.campagne_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> adapterC = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, campagnes);
         adapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         campagneSpinner.setAdapter(adapterC);
         
@@ -42,16 +59,16 @@ public class ChoixMJ extends Activity{
         buttonRetour.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	
-            	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+            	//On crï¿½ï¿½ un objet Bundle, c'est ce qui va nous permetre d'envoyer des donnï¿½es ï¿½ l'autre Activity
     			Bundle objetbunble = new Bundle();
      
-    			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+    			//On crï¿½ï¿½ l'Intent qui va nous permettre d'afficher l'autre Activity
     			Intent intent = new Intent(ChoixMJ.this, ProtoInterface.class);
      
-    			//On affecte à l'Intent le Bundle que l'on a créé
+    			//On affecte ï¿½ l'Intent le Bundle que l'on a crï¿½ï¿½
     			intent.putExtras(objetbunble);
      
-    			//On démarre l'autre Activity
+    			//On dï¿½marre l'autre Activity
     			startActivityForResult(intent, 1);
 
             }
