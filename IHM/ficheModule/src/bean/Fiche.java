@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import bean.vie.Classic;
 import bean.vie.Vie;
 
 public class Fiche implements Serializable {
@@ -31,7 +32,7 @@ public class Fiche implements Serializable {
 	private LinkedList<Pouvoir> pouvoirs;
 	
 	private LinkedList<Equipement> equipements;
-	private Vie barreDeVie;
+	private Classic barreDeVie;
 	private String divers;
 	
 	
@@ -52,7 +53,7 @@ public class Fiche implements Serializable {
 			HashMap<String, Caracteristique> caracteristiquesSecondaire,
 			HashMap<Categorie, LinkedList<Competence>> competences,
 			LinkedList<Pouvoir> pouvoirs, LinkedList<Equipement> equipements,
-			Vie barreDeVie, String divers) {
+			Classic barreDeVie, String divers) {
 		this.nom = nom;
 		this.poid = poid;
 		this.taille = taille;
@@ -261,13 +262,13 @@ public class Fiche implements Serializable {
 
 
 
-	public Vie getBarreDeVie() {
+	public Classic getBarreDeVie() {
 		return barreDeVie;
 	}
 
 
 
-	public void setBarreDeVie(Vie barreDeVie) {
+	public void setBarreDeVie(Classic barreDeVie) {
 		this.barreDeVie = barreDeVie;
 	}
 

@@ -127,16 +127,16 @@ public class ParseurFiche {
 		return fiche;
 	}
 
-	private Vie parseVie(Element racine) {
+	private Classic parseVie(Element racine) {
 		Element temphp = racine.getChild("classic");
 
-		Vie vie = null;
+		Classic vie = null;
 		if (temphp != null) {
 			vie = new Classic(Integer.parseInt(temphp.getChildText("total")),
 					Integer.parseInt(temphp.getChildText("actuel")));
-
+return vie;
 		} else {
-temphp= racine.getChild("ligne");
+			/*temphp= racine.getChild("ligne");
 			 vie = new Ligne();
 			LinkedList<Case> cases= new LinkedList<Case>();
 			
@@ -150,11 +150,10 @@ temphp= racine.getChild("ligne");
 			}
 			((Ligne)vie).setListeCase(cases);
 			
-			
+			*/
 		}
+return new Classic(0, 0);
 
-
-		return vie;
 	}
 
 	public Equipement parseEquipement(Element e) {
