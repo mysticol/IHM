@@ -36,10 +36,9 @@ public class ChoixJoueur extends Activity{
         }
     	
     	
-        ArrayAdapter<CharSequence> adapterU = ArrayAdapter.createFromResource(
-                this, R.array.univers_array, android.R.layout.simple_spinner_item);
+    	ArrayAdapter<String> adapterU = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, univers);
         adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        UniversSpinner.setAdapter(adapterU);
+        UniversSpinner.setAdapter(adapterU); 
 
         String universChoisi = UniversSpinner.getSelectedItem().toString();
     	//Récupération des campagnes existantes
@@ -67,8 +66,7 @@ public class ChoixJoueur extends Activity{
 		});
         
         Spinner campagneSpinner = (Spinner) findViewById(R.id.CampagneSpinner);
-        ArrayAdapter<CharSequence> adapterC = ArrayAdapter.createFromResource(
-                this, R.array.campagne_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> adapterC = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, campagnes);
         adapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         campagneSpinner.setAdapter(adapterC);
 
