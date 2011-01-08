@@ -53,6 +53,7 @@ public class ParseurModele {
 				fiche.setBarreDeVie(hp);
 			}
 			*/
+			fiche.setBarreDeVie(new Classic(0, 0));
 			
 			
 			HashMap<String , String> infos= new HashMap<String, String>();
