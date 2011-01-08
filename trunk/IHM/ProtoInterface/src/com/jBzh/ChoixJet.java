@@ -22,9 +22,7 @@ public class ChoixJet extends Activity {
 	  final Bundle objetbunble  = this.getIntent().getExtras();
 	  	  
 	  Systeme systeme = (Systeme) objetbunble.getSerializable("systeme");  
-	  
-	  //Systeme systeme = test.createSysteme();
-	  
+	    
 	  // recuperation de la liste des types de jets	  
 	  final String lv_arr[]= new String[systeme.getListRolls().size()];
 	  int i = 0;
@@ -32,7 +30,7 @@ public class ChoixJet extends Activity {
 		  lv_arr[i]=r;
 		  i++;
 	  }
-	  
+
 	  setContentView(R.layout.choixjet);
 	  lv1=(ListView)findViewById(R.id.listtypejet);
 	  // By using setAdpater method in listview we an add string array in list.
@@ -60,7 +58,7 @@ public class ChoixJet extends Activity {
 
 	    }
 	  });
-	  
+
       final Button buttonRetour = (Button) findViewById(R.id.retour);
       buttonRetour.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {
@@ -79,7 +77,7 @@ public class ChoixJet extends Activity {
 
           }
       });
-      
+ 
       final Button buttonLibre = (Button) findViewById(R.id.libre);
       buttonLibre.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {

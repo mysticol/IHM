@@ -30,14 +30,6 @@
 	        android:layout_marginTop="5px"
 	        android:layout_alignParentLeft="true"
 	        />
-	        
-		<Button android:id="@+id/lancer"
-	        android:layout_width="100px"
-	        android:layout_height="50px"
-	        android:text="Lancer" 
-	        android:layout_marginTop="5px"
-	        android:layout_alignParentRight="true"
-	        />
 	
 	</RelativeLayout>  
         

@@ -5,6 +5,7 @@ import dice.DiceType;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,8 @@ public class DiceLauncher extends Activity {
         
         if(objectbunble.containsKey("diceType")){
         	// si le jet est deja parametrer on set les parametre directement
+        	TextView rollType = (TextView) findViewById(R.id.rollTypeText);
+        	rollType.setText(objectbunble.getString("type"));
         	
         	// on recupere le nombre de dés a lancer
         	TextView nbDice = (TextView) findViewById(R.id.nbDiceValue);
@@ -83,5 +86,22 @@ public class DiceLauncher extends Activity {
 	        	
 	        }
 	    }); 
+	    
+	    final Button buttonRetour = (Button) findViewById(R.id.retourButton);
+	      buttonRetour.setOnClickListener(new View.OnClickListener() {
+	          public void onClick(View v) {
+	          	 
+	  			//On cr�� l'Intent qui va nous permettre d'afficher l'autre Activity
+	  			Intent intent = new Intent(DiceLauncher.this, ProtoInterface.class);
+	   
+	  			//On affecte � l'Intent le Bundle que l'on a cr��
+	  			intent.putExtras(objectbunble);
+	   
+	  			//On d�marre l'autre Activity
+	  			startActivityForResult(intent, 1);
+
+	          }
+	      });
+	    
     }
 }
