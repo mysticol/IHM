@@ -22,7 +22,7 @@ public class ChoixJoueur extends Activity{
 				
 		//on lui associe le layout afficahgequestionactivity.xml
     	setContentView(R.layout.choixjoueur);
-    	
+
     	final Spinner UniversSpinner = (Spinner) findViewById(R.id.UniversSpinner);
     	
     	final ArrayList<String> univers = new ArrayList<String>();
@@ -40,7 +40,7 @@ public class ChoixJoueur extends Activity{
                 this, R.array.univers_array, android.R.layout.simple_spinner_item);
         adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         UniversSpinner.setAdapter(adapterU);
-        
+
         String universChoisi = UniversSpinner.getSelectedItem().toString();
     	//Récupération des campagnes existantes
         File campagnePath = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+universChoisi);
@@ -71,21 +71,21 @@ public class ChoixJoueur extends Activity{
                 this, R.array.campagne_array, android.R.layout.simple_spinner_item);
         adapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         campagneSpinner.setAdapter(adapterC);
-        
+
         final Button buttonRetour = (Button) findViewById(R.id.retour);
         buttonRetour.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	
-            	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+            	//On crï¿½ï¿½ un objet Bundle, c'est ce qui va nous permetre d'envoyer des donnï¿½es ï¿½ l'autre Activity
     			Bundle objetbunble = new Bundle();
      
-    			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+    			//On crï¿½ï¿½ l'Intent qui va nous permettre d'afficher l'autre Activity
     			Intent intent = new Intent(ChoixJoueur.this, ProtoInterface.class);
      
-    			//On affecte à l'Intent le Bundle que l'on a créé
+    			//On affecte ï¿½ l'Intent le Bundle que l'on a crï¿½ï¿½
     			intent.putExtras(objetbunble);
      
-    			//On démarre l'autre Activity
+    			//On dï¿½marre l'autre Activity
     			startActivityForResult(intent, 1);
 
             }

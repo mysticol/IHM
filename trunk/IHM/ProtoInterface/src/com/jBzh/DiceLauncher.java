@@ -92,7 +92,7 @@ public class DiceLauncher extends Activity {
 	          public void onClick(View v) {
 	          	 
 	  			//On cr�� l'Intent qui va nous permettre d'afficher l'autre Activity
-	  			Intent intent = new Intent(DiceLauncher.this, ProtoInterface.class);
+	  			Intent intent = new Intent(DiceLauncher.this, ChoixJet.class);
 	   
 	  			//On affecte � l'Intent le Bundle que l'on a cr��
 	  			intent.putExtras(objectbunble);
