@@ -19,6 +19,7 @@
 		<activity android:name=".ChoixJet"></activity>
 		<activity android:name=".ResumeCreation"></activity>
 		<activity android:name=".SelectElemJet"></activity>
+		<activity android:name=".DiceLauncher"></activity>
 		
     </application>
 
