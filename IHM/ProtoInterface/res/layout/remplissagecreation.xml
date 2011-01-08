@@ -32,7 +32,7 @@
     <Button android:id="@+id/retour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Retour au menu principal"
+        android:text="Retour"
         android:layout_below="@+id/list"/>
         
 

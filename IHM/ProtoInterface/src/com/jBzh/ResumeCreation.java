@@ -50,7 +50,7 @@ public class ResumeCreation extends ExpandableListActivity {
 		setListAdapter( expListAdapter );
 	  
 
-      final Button buttonRetour = (Button) findViewById(R.id.retour);
+      final Button buttonRetour = (Button) findViewById(R.id.retourMenu);
       buttonRetour.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {
           	
