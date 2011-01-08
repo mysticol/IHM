@@ -54,17 +54,12 @@ public class SelectElemJet extends Activity {
 		  }
 	  }else if(elmeType.equalsIgnoreCase("comp")){
 		  System.out.println("<<<<<< comp >>>>>>");
-		  int t =0;
-		  for(LinkedList<Competence> lc : fiche.getCompetences().values()){
-			  t = t + lc.size();
-		  }
-		  lv_arr = new String[t];
-		  listeVal = new Integer[t];
-		  for(LinkedList<Competence> lc : fiche.getCompetences().values()){
-			  for(Competence c : lc){
-				  listeVal[i] = c.getValeur();
-				  lv_arr[i++] = c.getNom();
-			  }
+		  LinkedList<Competence> lcomp = fiche.getListCompetences();
+		  lv_arr = new String[lcomp.size()];
+		  listeVal = new Integer[lcomp.size()];
+		  for(Competence c : lcomp){
+			  listeVal[i] = c.getValeur();
+			  lv_arr[i++] = c.getNom();
 		  }
 	  }else{
 		  System.out.println("<<<<<< Mauvais Systeme >>>>>>");
@@ -85,13 +80,14 @@ public class SelectElemJet extends Activity {
 	    	//On cr�� un objet Bundle, c'est ce qui va nous permetre d'envoyer des donn�es � l'autre Activity
   			//Bundle objetbunble = new Bundle();
    
-    		objetbunble.putString("type", objetbunble.getString("type") + lv_arr[position] + " + ");
+    		objetbunble.putString("type", objetbunble.getString("type") + lv_arr[position]);
   			objetbunble.putInt("numElem", numElem+1);
   			objetbunble.putInt("nbDice",objetbunble.getInt("nbDice") + listeVal[position]);
   			
   			//On cr�� l'Intent qui va nous permettre d'afficher l'autre Activity
   			Intent intent;
   			if(numElem+1 < sys.getRoll(typeJet).getElems().size()){
+  				objetbunble.putString("type", objetbunble.getString("type") + " + ");
   				intent = new Intent(SelectElemJet.this,SelectElemJet.class);
   			}else{
   				objetbunble.putString("diceType", sys.getRoll(typeJet).getDice().toString());
@@ -110,12 +106,9 @@ public class SelectElemJet extends Activity {
       final Button buttonRetour = (Button) findViewById(R.id.retour);
       buttonRetour.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {
-          	
-          	//On cr�� un objet Bundle, c'est ce qui va nous permetre d'envoyer des donn�es � l'autre Activity
-  			Bundle objetbunble = new Bundle();
-   
+          	 
   			//On cr�� l'Intent qui va nous permettre d'afficher l'autre Activity
-  			Intent intent = new Intent(SelectElemJet.this, getParent().getClass());
+  			Intent intent = new Intent(SelectElemJet.this, ChoixJet.class);
    
   			//On affecte � l'Intent le Bundle que l'on a cr��
   			intent.putExtras(objetbunble);

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	>
+  
+  	<TextView android:text="NomJauge" android:id="@+id/NomJauge"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		/>
+			
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		>
+		<Button
+        android:id="@+id/JaugePlus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+" />
+        <Button
+        android:id="@+id/JaugeMoins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-" />
+        
+	</LinearLayout>
+	
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		>
+		
+		<TextView android:text="/"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+		 />
+		
+		<TextView android:text="ValeurJauge" android:id="@+id/ValeurJauge"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:layout_alignParentTop="true"/>
+	
+	  	<TextView android:text="MaxJauge" android:id="@+id/MaxJauge"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"/>
+  
+  	</RelativeLayout>
+  
+  	<EditText android:text="0" android:id="@+id/ValChangeJauge"
+  		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"/>
+		
+	<Button
+        android:id="@+id/ChangeJauge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK" />
+ 
+
+</LinearLayout>
