@@ -38,7 +38,7 @@ public class ParseurModele {
 			fiche.setSystem(jeu.getChildText("systeme"));
 			fiche.setUnivers(jeu.getChildText("univers"));
 			
-			
+			/*
 			if (racine.getChildText("vie")!=null){
 			LinkedList<Case> hp = new LinkedList<Case>();
 			
@@ -52,7 +52,7 @@ public class ParseurModele {
 				Vie hp =new Classic(0,0);
 				fiche.setBarreDeVie(hp);
 			}
-			
+			*/
 			
 			
 			HashMap<String , String> infos= new HashMap<String, String>();

@@ -314,7 +314,7 @@ public class EcriteurFiche {
 			hp.addContent(classic);
 			
 		}else{
-			Ligne temp = (Ligne) fiche.getBarreDeVie();
+			/*Ligne temp = (Ligne) fiche.getBarreDeVie();
 			Element ligne = new Element("ligne");
 			
 			for (Case cas: temp.getListeCase()){
@@ -335,6 +335,7 @@ public class EcriteurFiche {
 			}
 			
 			hp.addContent(ligne);
+			*/
 		}
 		
 	
