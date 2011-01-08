@@ -59,15 +59,34 @@ public class ChoixJet extends Activity {
 	    }
 	  });
 
-      final Button buttonRetour = (Button) findViewById(R.id.retour);
-      buttonRetour.setOnClickListener(new View.OnClickListener() {
+      final Button buttonRollToJauge = (Button) findViewById(R.id.RollToJauge);
+      buttonRollToJauge.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {
           	
           	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
   			//Bundle objetbunble = new Bundle();
    
   			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
-  			Intent intent = new Intent(ChoixJet.this, /*getParent().getClass()*/ ProtoInterface.class);
+  			Intent intent = new Intent(ChoixJet.this, /*getParent().getClass()*/ Jauge.class);
+   
+  			//On affecte à l'Intent le Bundle que l'on a créé
+  			intent.putExtras(objetbunble);
+   
+  			//On démarre l'autre Activity
+  			startActivityForResult(intent, 1);
+
+          }
+      });
+      
+      final Button buttonRollToFiche = (Button) findViewById(R.id.RollToFiche);
+      buttonRollToFiche.setOnClickListener(new View.OnClickListener() {
+          public void onClick(View v) {
+          	
+          	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+  			//Bundle objetbunble = new Bundle();
+   
+  			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+  			Intent intent = new Intent(ChoixJet.this, FicheViewer.class);
    
   			//On affecte à l'Intent le Bundle que l'on a créé
   			intent.putExtras(objetbunble);

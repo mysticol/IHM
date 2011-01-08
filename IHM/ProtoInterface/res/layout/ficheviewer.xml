@@ -3,41 +3,30 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
-
-    <ListView android:id="@+id/listtypejet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.0" />
-
-	<Button android:id="@+id/libre"
-        android:layout_width="100px"
-        android:layout_height="50px"
-        android:layout_marginTop="5px"
-        android:text="Jet Libre" />
-
-	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="bottom">
+  
+        
+  <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="match_parent"
         android:layout_height="wrap_content"
 		android:layout_alignParentBottom="true">
 		
-  <Button android:id="@+id/RollToJauge"
+  	<Button android:id="@+id/FicheToRoll"
 	    android:layout_width="100px"
 	    android:layout_height="50px"
         android:layout_weight="1.0"  
         android:layout_marginTop="5px" 
         android:layout_alignParentLeft="true"
-        android:text="Jauge"/>
+        android:text="Jet de dés"/>
         
- 	<Button android:id="@+id/RollToFiche"
+	<Button android:id="@+id/FicheToJauge"
 	    android:layout_width="100px"
 	    android:layout_height="50px"
         android:layout_weight="1.0"
         android:layout_marginTop="5px"
         android:layout_alignParentRight="true"    
-        android:text="Fiche"/>
+        android:text="Jauge"/>
         
-   </RelativeLayout>
-
+   </RelativeLayout>  
+  
 </LinearLayout>
-
