@@ -23,14 +23,14 @@ public class ChoixJoueur extends Activity{
 		//on lui associe le layout afficahgequestionactivity.xml
     	setContentView(R.layout.choixjoueur);
 
-    	final Spinner UniversSpinner = (Spinner) findViewById(R.id.UniversSpinner);
+    	final Spinner UniversSpinner = (Spinner) findViewById(R.id.universspinner);
     	
     	final ArrayList<String> univers = new ArrayList<String>();
     	final ArrayList<String> campagnes = new ArrayList<String>();
     	
     	File universPath = new File(getFilesDir().getAbsolutePath() + "/Fiches");
     	
-    	//Récupération des univers existant
+    	//Rï¿½cupï¿½ration des univers existant
     	for(File f : universPath.listFiles()){
     		univers.add(f.getName());
         }
@@ -41,7 +41,7 @@ public class ChoixJoueur extends Activity{
         UniversSpinner.setAdapter(adapterU); 
 
         String universChoisi = UniversSpinner.getSelectedItem().toString();
-    	//Récupération des campagnes existantes
+    	//Rï¿½cupï¿½ration des campagnes existantes
         File campagnePath = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+universChoisi);
         for(File f : campagnePath.listFiles()){
         		campagnes.add(f.getName());
