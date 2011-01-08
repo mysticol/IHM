@@ -193,7 +193,7 @@ public class ParseurModele {
 	public Info parseInfo(Element e) {
 		Info result = new Info();
 		result.setNom(e.getText());
-		result.setValue(null);
+		result.setValue("");
 
 		return result;
 	}
@@ -203,7 +203,7 @@ public class ParseurModele {
 		Caracteristique caract= new Caracteristique();
 		
 		caract.setNom(e.getChildText("nom"));
-		caract.setValeur(null);
+		caract.setValeur(0);
 		
 		String jauge =e.getChildText("jauge");
 		if (jauge!=null){
@@ -228,7 +228,7 @@ public class ParseurModele {
 	public Competence parseCompetence(Element e){
 		Competence compt = new Competence();
 		compt.setNom(e.getText());
-		compt.setValeur(null);
+		compt.setValeur(0);
 		
 		
 		return compt;
