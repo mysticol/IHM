@@ -5,8 +5,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import bean.Caracteristique;
+import bean.Competence;
 import bean.vie.Classic;
 import bean.Fiche;
 
@@ -109,16 +112,12 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	      
 	      list.setAdapter(this.adapter);
 	      		  
-	  } else if(categorie.equalsIgnoreCase("Compétences")) {
-		  /*
-		  //Récupération des compétences
-		  for(String c : fiche.getListCompetences()){
-			  if(fiche.getCaracteristiquesPrincipales().get(c).getValeur()!=null){
-				  listN.add(new Numeric(c, fiche.getCaracteristiquesPrincipales().get(c).getValeur()));
-			  } else {
-				  listN.add(new Numeric(c, 0));
-			  }
-		  }
+	  } else if(categorie.equalsIgnoreCase("Competences")) {
+		  
+		  //récupération des compétences
+		  for(Competence c : fiche.getListCompetences()){
+				  listN.add(new Numeric(c.getNom(),c.getValeur()));
+		  }  
 		  
 	      CreationNumericAdapter adapter = new CreationNumericAdapter(this, listN);
 
@@ -126,7 +125,7 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	     
 	      adapter.addListener(this);
 	      
-	      list.setAdapter(this.adapter);*/
+	      list.setAdapter(this.adapter);
 		  
 	  }else if(categorie.equalsIgnoreCase("CaracteristiquesSecondaires")) {
 		  
