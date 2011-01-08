@@ -10,16 +10,16 @@ import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 
 import bean.Caracteristique;
-import bean.Case;
 import bean.Categorie;
-import bean.Classic;
 import bean.Competence;
 import bean.Equipement;
 import bean.Fiche;
 import bean.Info;
-import bean.Ligne;
 import bean.Pouvoir;
-import bean.Vie;
+import bean.vie.Case;
+import bean.vie.Classic;
+import bean.vie.Ligne;
+import bean.vie.Vie;
 
 public class ParseurFiche {
 
@@ -185,6 +185,8 @@ temphp= racine.getChild("ligne");
 
 		try {
 			caract.setValeur(Integer.parseInt(e.getChildText("valeur")));
+			
+			caract.setMaximum(Integer.parseInt(e.getChildText("maximum")));
 		} catch (Exception ex) {
 			System.err.println("Fiche incompatible erreur sur la caract "
 					+ e.getChildText("nom"));
@@ -194,6 +196,9 @@ temphp= racine.getChild("ligne");
 			caract.setJauge(Boolean.parseBoolean(jauge));
 		}
 
+		
+		
+		
 		String consommable = e.getChildText("consommable");
 		if (consommable != null) {
 			caract.setConsommable(Boolean.parseBoolean(consommable));

@@ -1,4 +1,4 @@
-package bean;
+package bean.vie;
 
 import java.io.Serializable;
 import java.util.LinkedList;

@@ -101,6 +101,9 @@ public class EcriteurModele {
 
 			Element tempNom = new Element("nom");
 			tempNom.addContent(car.getNom());
+			
+			Element tempMax= new Element("maximum");
+			tempMax.addContent(String.valueOf(car.getMaximum()));
 
 			Element tempJauge = new Element("jauge");
 			tempJauge.addContent(String.valueOf(car.isJauge()));
@@ -109,6 +112,7 @@ public class EcriteurModele {
 			tempConsommable.addContent(String.valueOf(car.isConsommable()));
 
 			caracTemp.addContent(tempNom);
+			caracTemp.addContent(tempMax);
 			caracTemp.addContent(tempJauge);
 			caracTemp.addContent(tempConsommable);
 
@@ -132,11 +136,15 @@ public class EcriteurModele {
 			Element tempJauge = new Element("jauge");
 			tempJauge.addContent(String.valueOf(caracte.isJauge()));
 
+			Element tempMax= new Element("maximum");
+			tempMax.addContent(String.valueOf(caracte.getMaximum()));
+			
+			
 			Element tempConsommable = new Element("consommable");
 			tempConsommable.addContent(String.valueOf(caracte.isConsommable()));
 
 			caracTemp.addContent(tempNom);
-
+			caracTemp.addContent(tempMax);
 			caracTemp.addContent(tempJauge);
 			caracTemp.addContent(tempConsommable);
 
