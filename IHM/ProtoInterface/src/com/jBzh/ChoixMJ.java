@@ -33,7 +33,6 @@ public class ChoixMJ extends Activity{
     	final ArrayList<String> campagnes = new ArrayList<String>();
     	
     	
-    	File root = getFilesDir();
     	File universPath = new File(getFilesDir().getAbsolutePath() + "/Fiches");
     	
     	//Récupération des univers existant
