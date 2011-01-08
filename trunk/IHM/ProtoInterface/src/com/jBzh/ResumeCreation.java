@@ -28,7 +28,7 @@ public class ResumeCreation extends ExpandableListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 	  
-	//RÃ©cupÃ©ration de la fiche
+	//Récupération de la fiche
 	  Bundle objetbunble  = this.getIntent().getExtras();
 	  fiche = (Fiche)(objetbunble.getSerializable("fiche"));
 	  
@@ -41,7 +41,7 @@ public class ResumeCreation extends ExpandableListActivity {
 				createGroupList(),	// groupData describes the first-level entries
 				R.layout.group_row,	// Layout for the first-level entries
 				new String[] { "categorie" },	// Key in the groupData maps to display
-				new int[] { R.id.categorie },		// Data under "colorName" key goes into this TextView
+				new int[] { R.id.categorie },		// Data under "categorie" key goes into this TextView
 				createChildList(),	// childData describes second-level entries
 				R.layout.child_row,	// Layout for second-level entries
 				new String[] { "nom", "valeur" }	,// Keys in childData maps to display
@@ -49,39 +49,7 @@ public class ResumeCreation extends ExpandableListActivity {
 			);
 		setListAdapter( expListAdapter );
 	  
-	  
-	  
-	/*  
-	  ListView listv = (ListView)findViewById(R.id.list);
-	  
-	  //Infos Perso
-	  for(String c : fiche.getInfos().keySet()){
-		  if(fiche.getInfos().get(c)!=null){
-			  list.add(new ResumNumeric(c, fiche.getInfos().get(c)));
-		  } else {
-			  list.add(new ResumNumeric(c, ""));
-		  }
-	  }
-	  //Caracs Principales
-	  for(String c : fiche.getCaracteristiquesPrincipales().keySet()){
-		  if(fiche.getCaracteristiquesPrincipales().get(c).getValeur()!=null){
-			  list.add(new ResumNumeric(c, fiche.getCaracteristiquesPrincipales().get(c).getValeur().toString()));
-		  } else {
-			  list.add(new ResumNumeric(c, ""));
-		  }
-	  }
-	  
-	  
-	  SeparatedListAdapter adapter = new SeparatedListAdapter(this); 
-	  adapter.addSection("Infos Personnage", new ArrayAdapter<ResumNumeric>(this,R.layout.resume_layout, list));
-	  //ResumeAdapter adapter = new ResumeAdapter(this, list);
 
-      this.adapter = adapter;
-
-      //adapter.addListener(this);
-      
-      listv.setAdapter(adapter);
-	  
       final Button buttonRetour = (Button) findViewById(R.id.retour);
       buttonRetour.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {
@@ -99,31 +67,11 @@ public class ResumeCreation extends ExpandableListActivity {
   			startActivityForResult(intent, 1);
 
           }
-      });*/
+      });
 	  
 	}
 	
-	 /*public void  onContentChanged  () {
-	        super.onContentChanged();
-	        Log.d( LOG_TAG, "onContentChanged" );
-	    }*/
-
-	   /* public boolean onChildClick(
-	            ExpandableListView parent, 
-	            View v, 
-	            int groupPosition,
-	            int childPosition,
-	            long id) {
-	        //Log.d( LOG_TAG, "onChildClick: "+childPosition );
-	        CheckBox cb = (CheckBox)v.findViewById( R.id.check1 );
-	        if( cb != null )
-	            cb.toggle();
-	        return false;
-	    }
-
-	    public void  onGroupExpand  (int groupPosition) {
-	        Log.d( LOG_TAG,"onGroupExpand: "+groupPosition );
-	    }*/
+	
 
 	/**
 	  * Creates the group list out of the colors[] array according to
@@ -150,30 +98,10 @@ public class ResumeCreation extends ExpandableListActivity {
 	  * shade and "rgb" is the RGB value for the shade.
 	  */
 	  private List createChildList() {
-		/*String shades[][]= {
-				{
-				"lightgrey","#D3D3D3",
-				"dimgray","#696969",
-				"sgi gray 92","#EAEAEA"
-			  },
-		// Shades of blue
-			  {
-				"dodgerblue 2","#1C86EE",
-				"steelblue 2","#5CACEE",
-				"powderblue","#B0E0E6"
-			  },
-		// Shades of yellow
-			  {
-				"yellow 1","#FFFF00",
-				"gold 1","#FFD700",
-				"darkgoldenrod 1","	#FFB90F"
-			  }};*/
-		
-		
-		
 		
 		ArrayList<ArrayList<HashMap<String,String>>> result = new ArrayList<ArrayList<HashMap<String,String>>>();
 		ArrayList<HashMap<String,String>> secList = new ArrayList<HashMap<String,String>>();
+		
 		//Infos Perso
 		for(String c : fiche.getInfos().keySet()){
 			HashMap<String,String> child = new HashMap<String,String>();
@@ -182,8 +110,9 @@ public class ResumeCreation extends ExpandableListActivity {
 			secList.add( child );
 		}
 		result.add( secList );
+		
 		ArrayList<HashMap<String,String>> secList2 = new ArrayList<HashMap<String,String>>();
-		//CaractÃ©ristiques Principales
+		//Caractéristiques Principales
 		for(String c : fiche.getCaracteristiquesPrincipales().keySet()){
 			HashMap<String,String> child = new HashMap<String,String>();
 			child.put( "nom", c );
@@ -191,23 +120,9 @@ public class ResumeCreation extends ExpandableListActivity {
 			secList2.add( child );
 		  }
 		result.add( secList2 );
+		
 		return result;
 	  }
-		
-	/*	for( int i = 0 ; i < shades.length ; ++i ) {
-	// Second-level lists
-		  ArrayList<HashMap<String,String>> secList = new ArrayList<HashMap<String,String>>();
-		  for( int n = 0 ; n < shades[i].length ; n += 2 ) {
-		    HashMap<String,String> child = new HashMap<String,String>();
-			child.put( "shadeName", shades[i][n] );
-		    child.put( "rgb", shades[i][n+1] );
-			secList.add( child );
-		  }
-		  result.add( secList );
-		}
-		return result;
-	  }*/
-
 }
 
 
