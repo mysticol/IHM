@@ -15,6 +15,20 @@
         android:layout_height="wrap_content"
         android:prompt="@string/univers"
         android:layout_below="@id/univers"/>
+        
+    <RadioGroup
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      <RadioButton android:id="@+id/pj"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="PJ" />
+      <RadioButton android:id="@+id/pnj"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="PNJ" />
+    </RadioGroup>
       
     <Button
         android:id="@+id/valider"

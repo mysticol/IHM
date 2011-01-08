@@ -28,6 +28,7 @@ public class ListCreationNumeric extends Activity {
 	ParseurModele pModele = new ParseurModele();
 	EcriteurFiche eFiche= new EcriteurFiche();
 	static String univers;
+	static String typePerso;
 	private String lv_arr[]={"Personnage","CaracteristiquesPrincipales","Competences","CaracteristiquesSecondaire","Vie","Pouvoirs","Equipement"};
 
 	
@@ -39,6 +40,10 @@ public class ListCreationNumeric extends Activity {
 	  Bundle objetbunble  = this.getIntent().getExtras();
 	  if(objetbunble.getString("univers")!=null){
 		  univers = objetbunble.getString("univers");
+	  }
+	  
+	  if(objetbunble.getString("typePerso")!=null){
+		  typePerso = objetbunble.getString("typePerso");
 	  }
 	  
 	  if(objetbunble.getSerializable("fiche")!=null){
@@ -112,11 +117,21 @@ public class ListCreationNumeric extends Activity {
   			Intent intent = new Intent(ListCreationNumeric.this, ResumeCreation.class);
     		
   			//Sauvegarde de la fiche
-  			/*if(fiche.getCampagne()!=null){
-  				eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/"+fiche.getNom()+".xml");
+  			/*if(typePerso=="PJ"){
+  				if(fiche.getCampagne()!=null){
+  					eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/PJ/"+fiche.getNom()+".xml");
+  				}else{
+  					eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/Default"+"/PJ/"+fiche.getNom()+".xml");
+  				}
   			}else{
-  				eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/Default"+"/"+fiche.getNom()+".xml");
+  				if(fiche.getCampagne()!=null){
+  					eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/PNJ/"+fiche.getNom()+".xml");
+  				}else{
+  					eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/Default"+"/PNJ/"+fiche.getNom()+".xml");
+  				}
   			}*/
+  			
+  			
   			
   			
   			//Passage de la fiche à RemplissageCreation

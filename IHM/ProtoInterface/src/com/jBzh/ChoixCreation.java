@@ -8,13 +8,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 public class ChoixCreation extends Activity{
 
 	private Spinner UniversSpinner;
+	private String typePerso;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -24,10 +29,6 @@ public class ChoixCreation extends Activity{
     	setContentView(R.layout.choixcreation);
     	    	
     	UniversSpinner = (Spinner) findViewById(R.id.UniversSpinner);
-        /*ArrayAdapter<CharSequence> adapterU = ArrayAdapter.createFromResource(
-                this, R.array.univers_array, android.R.layout.simple_spinner_item);
-        adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        UniversSpinner.setAdapter(adapterU);*/
     	
     	ArrayList<String> listUnivers = new ArrayList<String>();
     	
@@ -41,6 +42,17 @@ public class ChoixCreation extends Activity{
         adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         UniversSpinner.setAdapter(adapterU);  
         
+        OnClickListener radio_listener = new OnClickListener() {
+            public void onClick(View v) {
+                RadioButton rb = (RadioButton) v;
+                typePerso = rb.getText().toString();  
+            }
+        };
+        
+        final RadioButton radio_pj = (RadioButton) findViewById(R.id.pj);
+        final RadioButton radio_pnj = (RadioButton) findViewById(R.id.pnj);
+        radio_pj.setOnClickListener(radio_listener);
+        radio_pnj.setOnClickListener(radio_listener);
         
         final Button buttonRetour = (Button) findViewById(R.id.retour);
         buttonRetour.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +85,7 @@ public class ChoixCreation extends Activity{
     			
     			//Passage de l'univers à ListCreationNumeric
     			objetbunble.putString("univers", UniversSpinner.getSelectedItem().toString());
+    			objetbunble.putString("typePerso", typePerso);
     			
     			//On affecte à l'Intent le Bundle que l'on a créé
     			intent.putExtras(objetbunble);
