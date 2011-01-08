@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import bean.Caracteristique;
+import bean.vie.Classic;
 import bean.Fiche;
 
 import com.jBzh.CreationNumericAdapter.CreationNumericAdapterListener;
@@ -33,7 +34,7 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 	  
-	  //RÃ©cupÃ©ration de la fiche
+	  //Récupération de la fiche
 	  Bundle objetbunble  = this.getIntent().getExtras();
 	  fiche = (Fiche)(objetbunble.getSerializable("fiche"));
 	  // Recuperation de la categorie
@@ -43,7 +44,7 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	  
       ListView list = (ListView)findViewById(R.id.list);
 	  
-	  //En fonction de la categorie choisir, on affiche des elements differents
+	  //En fonction de la categorie choisie, on affiche des elements differents
 	  if(categorie.equalsIgnoreCase("Personnage")){
 		  
 		  if(fiche.getNom()!=null){
@@ -108,7 +109,59 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	      
 	      list.setAdapter(this.adapter);
 	      		  
+	  } else if(categorie.equalsIgnoreCase("Compétences")) {
+		  /*
+		  //Récupération des compétences
+		  for(String c : fiche.getListCompetences()){
+			  if(fiche.getCaracteristiquesPrincipales().get(c).getValeur()!=null){
+				  listN.add(new Numeric(c, fiche.getCaracteristiquesPrincipales().get(c).getValeur()));
+			  } else {
+				  listN.add(new Numeric(c, 0));
+			  }
+		  }
+		  
+	      CreationNumericAdapter adapter = new CreationNumericAdapter(this, listN);
+
+	      this.adapter = adapter;
+	     
+	      adapter.addListener(this);
+	      
+	      list.setAdapter(this.adapter);*/
+		  
+	  }else if(categorie.equalsIgnoreCase("CaracteristiquesSecondaires")) {
+		  
+		  for(String c : fiche.getCaracteristiquesSecondaire().keySet()){
+			  if(fiche.getCaracteristiquesSecondaire().get(c).getValeur()!=null){
+				  listN.add(new Numeric(c, fiche.getCaracteristiquesSecondaire().get(c).getValeur()));
+			  } else {
+				  listN.add(new Numeric(c, 0));
+			  }
+		  }
+		  
+		  CreationNumericAdapter adapter = new CreationNumericAdapter(this, listN);
+
+	      this.adapter = adapter;
+	     
+	      adapter.addListener(this);
+	      
+	      list.setAdapter(this.adapter);
+		  
+	  }else if(categorie.equalsIgnoreCase("Vie")){
+		  
+		  if(((Classic)fiche.getBarreDeVie()).getActuel()!=null){
+			  listN.add(new Numeric("Vie", ((Classic)fiche.getBarreDeVie()).getActuel()));
+		  } else{
+			  listN.add(new Numeric("Vie", 0));
+		  }		  
+		  
+	  }else if(categorie.equalsIgnoreCase("Pouvoirs")){
+		  
+		  
+	  }else if(categorie.equalsIgnoreCase("Equipement")){
+		  
 	  }
+
+
      
 	  
       final Button buttonRetour = (Button) findViewById(R.id.retour);
