@@ -14,10 +14,10 @@
                android:layout_height="fill_parent"
                android:text="Pas d'items"/>
                
-     <Button android:id="@+id/retour"
+     <Button android:id="@+id/retourMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Retour"
+        android:text="Retour au menu principal"
         android:layout_below="@+id/android:list"/>
                   
 </LinearLayout>
