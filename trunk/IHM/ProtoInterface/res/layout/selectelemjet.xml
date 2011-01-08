@@ -7,19 +7,38 @@
 
 	<TextView android:id="@+id/affichejet"
 		android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        />
 
     <ListView android:id="@+id/listelemjet"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1.0" 
-        android:layout_below="@id/affichejet"/>
-
-    <Button android:id="@+id/retour"
-        android:layout_width="100px"
-        android:layout_height="50px"
-        android:text="Retour" 
-        android:layout_marginTop="5px"
-        android:layout_below="@id/listelemjet"
+        android:layout_below="@id/affichejet"
         />
+	        
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true">
+
+	    <Button android:id="@+id/retour"
+	        android:layout_width="100px"
+	        android:layout_height="50px"
+	        android:text="Retour" 
+	        android:layout_marginTop="5px"
+	        android:layout_alignParentLeft="true"
+	        />
+	        
+		<Button android:id="@+id/lancer"
+	        android:layout_width="100px"
+	        android:layout_height="50px"
+	        android:text="Lancer" 
+	        android:layout_marginTop="5px"
+	        android:layout_alignParentRight="true"
+	        />
+	
+	</RelativeLayout>  
+        
 </LinearLayout>

@@ -1,10 +1,6 @@
 package com.jBzh;
 
 import bean.Systeme;
-import dice.Dice;
-import dice.DiceType;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,18 +42,20 @@ public class ChoixJet extends Activity {
 	    public void onItemClick(AdapterView<?> parent, View view,
 	        int position, long id) {
 
-	    	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
-  			Bundle objetbunble = new Bundle();
-   
-  			objetbunble.putString("type", lv_arr[position]);
+	    	//On crï¿½ï¿½ un objet Bundle, c'est ce qui va nous permetre d'envoyer des donnï¿½es ï¿½ l'autre Activity
+  			//Bundle objetbunble = new Bundle();
+	   
+	    	objetbunble.putInt("nbDice", 0);
+  			objetbunble.putString("type", lv_arr[position] + " : ");
+  			objetbunble.putInt("numElem",0);
   			
-  			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+  			//On crï¿½ï¿½ l'Intent qui va nous permettre d'afficher l'autre Activity
   			Intent intent = new Intent(ChoixJet.this, SelectElemJet.class);
    
-  			//On affecte à l'Intent le Bundle que l'on a créé
+  			//On affecte ï¿½ l'Intent le Bundle que l'on a crï¿½ï¿½
   			intent.putExtras(objetbunble);
    
-  			//On démarre l'autre Activity
+  			//On dï¿½marre l'autre Activity
   			startActivityForResult(intent, 1);
 
 	    }
@@ -67,33 +65,34 @@ public class ChoixJet extends Activity {
       buttonRetour.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {
           	
-          	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+          	//On crÃ©Ã© un objet Bundle, c'est ce qui va nous permetre d'envoyer des donnÃ©es Ã  l'autre Activity
   			//Bundle objetbunble = new Bundle();
    
-  			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+  			//On crÃ©Ã© l'Intent qui va nous permettre d'afficher l'autre Activity
   			Intent intent = new Intent(ChoixJet.this, /*getParent().getClass()*/ ProtoInterface.class);
    
-  			//On affecte à l'Intent le Bundle que l'on a créé
+  			//On affecte Ã  l'Intent le Bundle que l'on a crÃ©Ã©
   			intent.putExtras(objetbunble);
    
-  			//On démarre l'autre Activity
+  			//On dÃ©marre l'autre Activity
   			startActivityForResult(intent, 1);
 
           }
       });
       
-      final Builder builder = new AlertDialog.Builder(this);
       final Button buttonLibre = (Button) findViewById(R.id.libre);
       buttonLibre.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {
-        	  Dice d = new Dice();
         	  
-        	  builder.setTitle("Jet");
-        		         
-        	  builder.setMessage((d.roll(5, DiceType.D10)).toString());
-        	  builder.setPositiveButton("OK", null);
-        	  builder.show();
-
+        	//On crÃ©Ã© l'Intent qui va nous permettre d'afficher l'autre Activity
+    			Intent intent = new Intent(ChoixJet.this, DiceLauncher.class);
+        	  
+        	  //On affecte Ã  l'Intent le Bundle que l'on a crÃ©Ã©
+        	  intent.putExtras(objetbunble);
+        	  
+        	  //On dÃ©marre l'autre Activity
+        	  startActivityForResult(intent, 1);
+        	  
           }
       });
       
