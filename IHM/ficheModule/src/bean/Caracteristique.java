@@ -12,6 +12,7 @@ public class Caracteristique extends Numeric implements Serializable {
 	
 	private boolean jauge=false;
 	private boolean consommable=false;
+	private int maximum;
 
 	public boolean isJauge() {
 		return jauge;
@@ -37,6 +38,12 @@ public class Caracteristique extends Numeric implements Serializable {
 	}
 	public Caracteristique() {
 	
+	}
+	public int getMaximum() {
+		return maximum;
+	}
+	public void setMaximum(int maximum) {
+		this.maximum = maximum;
 	}
 	
 }

@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import bean.vie.Vie;
+
 public class Fiche implements Serializable {
 	
 	
@@ -301,6 +303,34 @@ public class Fiche implements Serializable {
 	}
 	
 	
+	public LinkedList<Competence> getListCompetences(){
+		LinkedList<Competence> compts= new LinkedList<Competence>();
+		
+		for (LinkedList<Competence> cc: this.competences.values()){
+			compts.addAll(cc);
+		}
+		
+		
+		return compts;
+		
+	}
 	
 	
+	public LinkedList<Caracteristique> getJauges (){
+		LinkedList<Caracteristique> jauges= new LinkedList<Caracteristique>();
+		
+		for( Caracteristique cc: this.caracteristiquesPrincipales.values()){
+			if (cc.isJauge()){
+				jauges.add(cc);
+			}
+		}
+		for( Caracteristique cc: this.caracteristiquesSecondaire.values()){
+			if (cc.isJauge()){
+				jauges.add(cc);
+			}
+		}
+		
+		
+		return jauges;
+	}
 }

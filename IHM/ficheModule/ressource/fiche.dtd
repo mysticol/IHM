@@ -22,9 +22,10 @@ competences, pouvoirs, barreDeVie, equipement, divers)>
 
 
 <!ELEMENT caracteristiquesPrincipales (caracteristique+)>
-<!ELEMENT caracteristique (nom, valeur, jauge?, consommable?)>
+<!ELEMENT caracteristique (nom, valeur, maximum, jauge?, consommable?)>
 <!ELEMENT valeur (#PCDATA)>
 <!ELEMENT jauge (#PCDATA)>
+<!ELEMENT maximum (#PCDATA)>
 <!ELEMENT consommable (#PCDATA)>
 
 

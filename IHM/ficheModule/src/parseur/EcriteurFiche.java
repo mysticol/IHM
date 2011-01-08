@@ -8,15 +8,15 @@ import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 import bean.Caracteristique;
-import bean.Case;
 import bean.Categorie;
-import bean.Classic;
 import bean.Competence;
 import bean.Equipement;
 import bean.Fiche;
-import bean.Ligne;
 import bean.Modele;
 import bean.Pouvoir;
+import bean.vie.Case;
+import bean.vie.Classic;
+import bean.vie.Ligne;
 
 public class EcriteurFiche {
 
@@ -189,6 +189,9 @@ public class EcriteurFiche {
 
 			Element tempValeur = new Element("valeur");
 			tempValeur.addContent(caracte.getValeur().toString());
+			
+			Element tempMax= new Element("maximum");
+			tempMax.addContent(String.valueOf(caracte.getMaximum()));
 
 			Element tempJauge = new Element("jauge");
 			tempJauge.addContent(String.valueOf(caracte.isJauge()));
@@ -198,6 +201,7 @@ public class EcriteurFiche {
 
 			caracTemp.addContent(tempNom);
 			caracTemp.addContent(tempValeur);
+			caracTemp.addContent(tempMax);
 			caracTemp.addContent(tempJauge);
 			caracTemp.addContent(tempConsommable);
 
@@ -221,6 +225,9 @@ public class EcriteurFiche {
 			Element tempNom = new Element("nom");
 			tempNom.addContent(caracte.getNom());
 
+			Element tempMax= new Element("maximum");
+			tempMax.addContent(String.valueOf(caracte.getMaximum()));
+			
 			Element tempValeur = new Element("valeur");
 			tempValeur.addContent(caracte.getValeur().toString());
 
@@ -232,6 +239,7 @@ public class EcriteurFiche {
 
 			caracTemp.addContent(tempNom);
 			caracTemp.addContent(tempValeur);
+			caracTemp.addContent(tempMax);
 			caracTemp.addContent(tempJauge);
 			caracTemp.addContent(tempConsommable);
 

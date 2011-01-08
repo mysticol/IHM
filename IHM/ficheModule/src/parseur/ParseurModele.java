@@ -6,15 +6,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 import bean.Caracteristique;
-import bean.Case;
 import bean.Categorie;
-import bean.Classic;
 import bean.Competence;
 import bean.Fiche;
 import bean.Info;
-import bean.Ligne;
 import bean.Modele;
-import bean.Vie;
+import bean.vie.Case;
+import bean.vie.Classic;
+import bean.vie.Ligne;
+import bean.vie.Vie;
 
 
 import org.jdom.Document;
@@ -209,6 +209,12 @@ public class ParseurModele {
 		if (jauge!=null){
 			caract.setJauge(Boolean.parseBoolean(jauge));
 		}
+		
+		String max= e.getChildText("maximum");
+		if (max!=null){
+			caract.setMaximum(Integer.parseInt(max));
+		}
+		
 		
 		String consommable =e.getChildText("consommable");
 		if (consommable!=null){
