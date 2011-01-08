@@ -51,6 +51,7 @@ public class ChoixCreation extends Activity{
         
         final RadioButton radio_pj = (RadioButton) findViewById(R.id.pj);
         final RadioButton radio_pnj = (RadioButton) findViewById(R.id.pnj);
+        radio_pj.setChecked(true);
         radio_pj.setOnClickListener(radio_listener);
         radio_pnj.setOnClickListener(radio_listener);
         
