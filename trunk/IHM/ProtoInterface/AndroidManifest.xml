@@ -20,6 +20,8 @@
 		<activity android:name=".ResumeCreation"></activity>
 		<activity android:name=".SelectElemJet"></activity>
 		<activity android:name=".DiceLauncher"></activity>
+		<activity android:name=".Jauge"></activity>
+		<activity android:name=".FicheViewer"></activity>
 		
     </application>
 
