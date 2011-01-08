@@ -22,7 +22,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Campagne :"
-        android:layout_below="@id/UniversSpinner"/>
+        android:layout_below="@id/universspinner"/>
         
 	<Spinner 
         android:id="@+id/CampagneSpinner"
