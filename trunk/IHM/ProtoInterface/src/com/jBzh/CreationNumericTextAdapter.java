@@ -25,10 +25,10 @@ public class CreationNumericTextAdapter extends BaseAdapter{
 private List<NumericText> listNumeric;
 private Integer firstTime;
 	
-	//Le contexte dans lequel est présent notre adapter
+	//Le contexte dans lequel est prï¿½sent notre adapter
 	private Context mContext;
 	    	
-	//Un mécanisme pour gérer l'affichage graphique depuis un layout XML
+	//Un mï¿½canisme pour gï¿½rer l'affichage graphique depuis un layout XML
 	private LayoutInflater mInflater;
 	
 	// Constructeur
@@ -58,15 +58,15 @@ private Integer firstTime;
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LinearLayout layoutItem;
 		
-		//(1) : Réutilisation des layouts
+		//(1) : Rï¿½utilisation des layouts
 		if (convertView == null) {
-			//Initialisation de notre item à partir du  layout XML "personne_layout.xml"
+			//Initialisation de notre item ï¿½ partir du  layout XML "personne_layout.xml"
 		    layoutItem = (LinearLayout) mInflater.inflate(R.layout.numerictext_layout, parent, false);
 		} else {
 		  	layoutItem = (LinearLayout) convertView;
 		}
 		  
-		//(2) : Récupération de la valeur du numericText de notre layout      
+		//(2) : Rï¿½cupï¿½ration de la valeur du numericText de notre layout      
 		EditText valeurNumeric = (EditText) layoutItem.findViewById(R.id.ValeurNumericText);
 		TextView nomNumeric = (TextView) layoutItem.findViewById(R.id.NomNumericText);
 		        
@@ -80,8 +80,9 @@ private Integer firstTime;
 		/*if(!valeurNumeric.getEditableText().toString().equalsIgnoreCase(listNumeric.get(position).getValeur())){
 			listNumeric.get(position).setValeur(valeurNumeric.getEditableText().toString());
 		}*/
-		
-		valeurNumeric.setText(listNumeric.get(position).getValeur());
+		if(listNumeric.get(position).getValeur()!=null){
+			valeurNumeric.setText(listNumeric.get(position).getValeur());
+		}
 		nomNumeric.setText(listNumeric.get(position).getNomNumeric());		
 		
 		valeurNumeric.setOnKeyListener(new OnKeyListener() {
@@ -96,7 +97,7 @@ private Integer firstTime;
 		        	
 		        	listNumeric.get(position).setValeur(((EditText)v).getText().toString());
 		        	
-					//On prévient les listeners qu'il y a eu un clic sur l'EditText.
+					//On prï¿½vient les listeners qu'il y a eu un clic sur l'EditText.
 					sendListener(listNumeric.get(position), position);
 					v.invalidate();
 					return true;

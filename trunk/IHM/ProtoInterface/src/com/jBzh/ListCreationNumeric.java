@@ -116,13 +116,40 @@ public class ListCreationNumeric extends Activity {
   			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
   			Intent intent = new Intent(ListCreationNumeric.this, ResumeCreation.class);
     		
+  			//tests des dossiers existants(Default, PJ, PNJ,...)
+  			File tmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/Default");
+  			if(!tmp.exists()){
+  				tmp.mkdir();
+  			}
+  			tmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/Default"+"/PJ/");
+  			if(!tmp.exists()){
+  				tmp.mkdir();
+  			}
+  			tmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/Default"+"/PNJ/");
+  			if(!tmp.exists()){
+  				tmp.mkdir();
+  			}
+  			tmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne());
+  			if(!tmp.exists()){
+  				tmp.mkdir();
+  			}
+  			tmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/PJ/");
+  			if(!tmp.exists()){
+  				tmp.mkdir();
+  			}
+  			tmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/PNJ/");
+  			if(!tmp.exists()){
+  				tmp.mkdir();
+  			}
+  			
   			//Sauvegarde de la fiche
+  			
   			/*if(typePerso=="PJ"){
-  				if(fiche.getCampagne()!=null){
-  					eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/PJ/"+fiche.getNom()+".xml");
-  				}else{
-  					eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/Default"+"/PJ/"+fiche.getNom()+".xml");
-  				}
+	  	  		if(fiche.getCampagne()!=null){
+	  				eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/PJ/"+fiche.getNom()+".xml");
+	  			}else{
+	  				eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/Default"+"/PJ/"+fiche.getNom()+".xml");
+	  			}
   			}else{
   				if(fiche.getCampagne()!=null){
   					eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/PNJ/"+fiche.getNom()+".xml");
@@ -133,7 +160,7 @@ public class ListCreationNumeric extends Activity {
   			
   			
   			
-  			
+  			System.out.println(fiche.getNom());
   			//Passage de la fiche à RemplissageCreation
 			objetbunble.putSerializable("fiche", fiche);
 			

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import bean.Competence;
 import bean.Fiche;
+import bean.vie.*;
 import android.app.Activity;
 import android.app.ExpandableListActivity;
 import android.content.Intent;
@@ -28,7 +30,7 @@ public class ResumeCreation extends ExpandableListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 	  
-	//Récupération de la fiche
+	//Rï¿½cupï¿½ration de la fiche
 	  Bundle objetbunble  = this.getIntent().getExtras();
 	  fiche = (Fiche)(objetbunble.getSerializable("fiche"));
 	  
@@ -103,7 +105,11 @@ public class ResumeCreation extends ExpandableListActivity {
 		ArrayList<HashMap<String,String>> secList = new ArrayList<HashMap<String,String>>();
 		
 		//Infos Perso
+		System.out.println(fiche.getNom());
+		System.out.println(fiche.getInfos().entrySet().toString());
 		for(String c : fiche.getInfos().keySet()){
+			System.out.println(c);
+			System.out.println(fiche.getInfos().get(c));
 			HashMap<String,String> child = new HashMap<String,String>();
 			child.put( "nom", c );
 			child.put( "valeur", fiche.getInfos().get(c) );
@@ -112,8 +118,9 @@ public class ResumeCreation extends ExpandableListActivity {
 		result.add( secList );
 		
 		ArrayList<HashMap<String,String>> secList2 = new ArrayList<HashMap<String,String>>();
-		//Caractéristiques Principales
+		//CaractÃ©ristiques Principales
 		for(String c : fiche.getCaracteristiquesPrincipales().keySet()){
+			System.out.println(fiche.getCaracteristiquesPrincipales().get(c).getValeur().toString());
 			HashMap<String,String> child = new HashMap<String,String>();
 			child.put( "nom", c );
 			child.put( "valeur", fiche.getCaracteristiquesPrincipales().get(c).getValeur().toString());
@@ -121,6 +128,35 @@ public class ResumeCreation extends ExpandableListActivity {
 		  }
 		result.add( secList2 );
 		
+		ArrayList<HashMap<String,String>> secList3 = new ArrayList<HashMap<String,String>>();
+		//CompÃ©tences
+		for(Competence c : fiche.getListCompetences()){
+			HashMap<String,String> child = new HashMap<String,String>();
+			child.put( "nom", c.getNom() );
+			child.put( "valeur", c.getValeur().toString());
+			secList3.add( child );
+		  }
+		result.add( secList3 );
+		
+		ArrayList<HashMap<String,String>> secList4 = new ArrayList<HashMap<String,String>>();
+		//CaractÃ©ristiques Secondaires
+		for(String c : fiche.getCaracteristiquesSecondaire().keySet()){
+			HashMap<String,String> child = new HashMap<String,String>();
+			child.put( "nom", c );
+			child.put( "valeur", fiche.getCaracteristiquesSecondaire().get(c).getValeur().toString());
+			secList4.add( child );
+		  }
+		result.add( secList4 );
+		
+		/*ArrayList<HashMap<String,String>> secList5 = new ArrayList<HashMap<String,String>>();
+		//Vie
+			HashMap<String,String> child = new HashMap<String,String>();
+			child.put( "nom", "Vie" );
+			child.put( "valeur", ((Classic)fiche.getBarreDeVie()).getActuel().toString());
+			secList5.add( child );
+			
+		result.add( secList5 );
+		*/
 		return result;
 	  }
 }
