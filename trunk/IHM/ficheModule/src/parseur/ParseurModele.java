@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import bean.Caracteristique;
+import bean.Pouvoir;
+import bean.Equipement;
 import bean.Categorie;
 import bean.Competence;
 import bean.Fiche;
@@ -101,6 +103,10 @@ public class ParseurModele {
 			}
 			fiche.setCompetences(catComp);
 			
+			
+			
+			fiche.setPouvoirs(new LinkedList<Pouvoir>());
+			fiche.setEquipements(new LinkedList<Equipement>());
 			
 			
 		} catch (Exception e) {
