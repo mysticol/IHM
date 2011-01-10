@@ -45,7 +45,7 @@ public class ListCreationNumeric extends Activity {
 	  if(objetbunble.getString("typePerso")!=null){
 		  typePerso = objetbunble.getString("typePerso");
 	  }
-	  
+	  System.out.println(typePerso);
 	  if(objetbunble.getSerializable("fiche")!=null){
 		  fiche = (Fiche) objetbunble.getSerializable("fiche");
 	  } else {
@@ -144,7 +144,7 @@ public class ListCreationNumeric extends Activity {
   			
   			//Sauvegarde de la fiche
   			
-  			/*if(typePerso=="PJ"){
+  			if(typePerso.equalsIgnoreCase("PJ")){
 	  	  		if(fiche.getCampagne()!=null){
 	  				eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/PJ/"+fiche.getNom()+".xml");
 	  			}else{
@@ -156,7 +156,7 @@ public class ListCreationNumeric extends Activity {
   				}else{
   					eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/Default"+"/PNJ/"+fiche.getNom()+".xml");
   				}
-  			}*/
+  			}
   			
   			
   			
