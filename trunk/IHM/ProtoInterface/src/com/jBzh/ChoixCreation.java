@@ -18,7 +18,7 @@ import android.widget.Spinner;
 public class ChoixCreation extends Activity{
 
 	private Spinner UniversSpinner;
-	private String typePerso;
+	private String typePerso="PJ";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class ChoixCreation extends Activity{
         OnClickListener radio_listener = new OnClickListener() {
             public void onClick(View v) {
                 RadioButton rb = (RadioButton) v;
-                typePerso = rb.getText().toString();  
+                typePerso = rb.getText().toString();
             }
         };
         
@@ -59,16 +59,16 @@ public class ChoixCreation extends Activity{
         buttonRetour.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	
-            	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+            	//On crï¿½ï¿½ un objet Bundle, c'est ce qui va nous permetre d'envoyer des donnï¿½es ï¿½ l'autre Activity
     			Bundle objetbunble = new Bundle();
      
-    			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+    			//On crï¿½ï¿½ l'Intent qui va nous permettre d'afficher l'autre Activity
     			Intent intent = new Intent(ChoixCreation.this, ProtoInterface.class);
      
-    			//On affecte à l'Intent le Bundle que l'on a créé
+    			//On affecte ï¿½ l'Intent le Bundle que l'on a crï¿½ï¿½
     			intent.putExtras(objetbunble);
      
-    			//On démarre l'autre Activity
+    			//On dï¿½marre l'autre Activity
     			startActivityForResult(intent, 1);
 
             }
@@ -78,20 +78,22 @@ public class ChoixCreation extends Activity{
         buttonValider.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	
-            	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
+            	//On crï¿½ï¿½ un objet Bundle, c'est ce qui va nous permetre d'envoyer des donnï¿½es ï¿½ l'autre Activity
     			Bundle objetbunble = new Bundle();
      
-    			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+    			//On crï¿½ï¿½ l'Intent qui va nous permettre d'afficher l'autre Activity
     			Intent intent = new Intent(ChoixCreation.this, ListCreationNumeric.class);
     			
-    			//Passage de l'univers à ListCreationNumeric
+    			
+    			//Passage de l'univers ï¿½ ListCreationNumeric
     			objetbunble.putString("univers", UniversSpinner.getSelectedItem().toString());
+    			System.out.println("passage du typePerso: "+typePerso);
     			objetbunble.putString("typePerso", typePerso);
     			
-    			//On affecte à l'Intent le Bundle que l'on a créé
+    			//On affecte ï¿½ l'Intent le Bundle que l'on a crï¿½ï¿½
     			intent.putExtras(objetbunble);
      
-    			//On démarre l'autre Activity
+    			//On dï¿½marre l'autre Activity
     			startActivityForResult(intent, 1);
 
             }
