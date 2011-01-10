@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,7 +38,7 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 	  
-	  //Récupération de la fiche
+	  //Rï¿½cupï¿½ration de la fiche
 	  Bundle objetbunble  = this.getIntent().getExtras();
 	  fiche = (Fiche)(objetbunble.getSerializable("fiche"));
 	  // Recuperation de la categorie
@@ -114,7 +115,7 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	      		  
 	  } else if(categorie.equalsIgnoreCase("Competences")) {
 		  
-		  //récupération des compétences
+		  //rï¿½cupï¿½ration des compï¿½tences
 		  for(Competence c : fiche.getListCompetences()){
 				  listN.add(new Numeric(c.getNom(),c.getValeur()));
 		  }  
@@ -176,6 +177,9 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
   			//On sauvegarde les valeurs changees dans la fiche
   			if(categorie.equalsIgnoreCase("Personnage")){
   				
+  				HashMap<String, String> infos = new HashMap<String, String>();
+  				
+	
   				fiche.setCampagne(listNText.get(listNText.size()-1).getValeur());
   				fiche.setXp(listNText.get(listNText.size()-2).getValeur());
   				fiche.setConcept(listNText.get(listNText.size()-3).getValeur());
@@ -184,9 +188,21 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
   				fiche.setPoid(listNText.get(listNText.size()-6).getValeur());
   				fiche.setNom(listNText.get(listNText.size()-7).getValeur());
   				
+  				infos.put("Campagne", fiche.getCampagne());
+  				infos.put("Experience", fiche.getXp());
+  				infos.put("Concept", fiche.getConcept());
+  				infos.put("Age", fiche.getAge());
+  				infos.put("Taille", fiche.getTaille());
+  				infos.put("Poids", fiche.getPoid());
+  				infos.put("Nom", fiche.getNom());
+  				
+  				fiche.setInfos(infos);
+  				
+  				
   				for(NumericText nt : listNText){
   					System.out.println("Enregistrer Personnage : " + nt.getNomNumeric() + " => " + nt.getValeur());
   				}
+  				
   				
   			} else if(categorie.equalsIgnoreCase("CaracteristiquesPrincipales")){
   				
