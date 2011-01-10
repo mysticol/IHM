@@ -134,6 +134,7 @@ public class EcriteurFiche {
 
 		Element pouvoirs = new Element("pouvoirs");
 
+		if (fiche.getPouvoirs()!=null){
 		for (Pouvoir pwer : fiche.getPouvoirs()) {
 			Element pouvoirTemp = new Element("pouvoir");
 
@@ -148,13 +149,15 @@ public class EcriteurFiche {
 
 			pouvoirs.addContent(pouvoirTemp);
 		}
-
+		}
 		return pouvoirs;
 	}
 
 	private Element convertEquipement(Fiche fiche) {
 		Element equipements = new Element("equipements");
 
+		if( fiche.getEquipements()!=null){
+		
 		for (Equipement equip : fiche.getEquipements()) {
 			Element equipementTemp = new Element("equipement");
 
@@ -170,6 +173,7 @@ public class EcriteurFiche {
 			equipements.addContent(equipementTemp);
 		}
 
+		}
 		return equipements;
 	}
 
