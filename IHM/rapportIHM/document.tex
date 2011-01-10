@@ -47,47 +47,125 @@ interprétation.
 \clearpage
 
 \section{Lucid 2}
-\label{utilisateurs}
 
+\subsection{Définition}
+
+Cette étape de la méthode permet de compléter la première étape, et donc de
+receuillir en fonction des catégories d'utilisateur et du concept de
+l'application les attentes des utilisateurs. D'obtenir aussi les choses qu'ils
+jugent indispensable, la façon qu'ils auraient d'appréhender l'application via
+des scénario, et donc les implications en termes de fonctionnalités.
+
+\subsubsection{Approche des utilisateurs}
+
+
+Trois grandes réactions, classique:
+Gens intéressé pour l'utilisation et l'enregistrement de ce qu'ils veulent:
+contrainte d'enrichissement facile, pas besoin de rentrer dans du technique
+
+
+Gens curieux de voir ce que ça va donner
+
+%%Note pour la relecture c'est important de conserver le fond et une partie de
+% la forme du discourt qui suit. Ca fera rire le prof, ça fait du point en
+% plus. Et merde on est des gros clampins. 
+irréductible accrocher à la symbolique du support physique de leur dés et de
+leur fiche. Parce que lancer un téléphone sur un joueur c'est vachement plus
+onéreux que lui lancer ses dés. Même remarque sur le fait de poignarder un
+joueur avec téléphone plutot que le sacro saint crayon de bois servant à
+l'édition de sa fiche.
+
+
+Les gens veulent des dés qui s'affiche et que l'on peut customiser, les gen
+veulent que l'application rêvete des thèmes différent en fonction du jeu.
+Pouvoir convertir leur fiche en vrai fiche à imprimer avec des belles fiches
+classique, voir pouvoir customiser la sortie en fiche papier.
+
+Gens inquiet par le coté connectivité chat, une partie ne comprend pas le
+concept tel qu'il a été écrit.
+
+
+Gens préférant une telle application sur tablette pc, plus adapté d'après eux.
+
+Faut que la synchronisation sur pc soit facile, via un outil de synch
+voir même un site web de relais pour le stockage facile
+
+Des gens on demandé si ce n'étais pas un jeu que nous faisions.
+
+Les gens trouvent que Joël il est tout petit.
+
+Interprétation au niveau IHM ? là nan je vois pas ce qu'on pourrait dire.
+
+\subsubsection{Userstory}
+
+Coller ici les users story en les ordonnants et tout le tintouin.
 
 
 \section{Lucid 3}
 
+\subsection{Définition}
+
+Cette étape de la méthode est la première étape visuelle, c'est à se moment là
+que on se sert des infos compilées des précédentes étapes pour pouvoir dessiner
+quelques chose qui aura un chance de plaire aux utilisateurs finaux.
+On se sert des indications utilisateurs visuel, de ce qui est possible et des
+users stories pour construire les interractions entre écran, enchainement.
+Pendant cette étape il est très important que sur les exquisses d'interfaces il
+n'y ait pas d'ambiguité possible, tout élément doit être nommé pertinement et
+correspondre à quelque chose qui à du sens. Le label ``accès fiche'' est
+préférable au label ``ponay''. 
+
+
+\subsubsection{Esquisses interface}
+
+Là on va coller l'interface dessiné dans le google docs, avec quelques
+commentaires quand même on est pas des animaux merde.
+Plus parler du look and feel
+Que pour le moment nous avons choisi d'utiliser celui de base contenu dans
+android puisque sobre et efficace et que l'aspect visuel customisable pour tous
+les aspect de jeu de role n'est pas une priorité. Que la première version
+s'attardera surtout sur le fonctionnel et ergonomie de l'affichage des données,
+de plus la propention de look and feel à changer cette ergonomie trop important
+pour être gérer de façon négligeable.
+
 \section{Lucid 4}
 
-\subsection{Pour tous les utilisateurs}
-Les fonctionnalités disponibles pour tous les utilisateurs sont les suivantes :
+\subsection{Définition}
 
-\begin{itemize}
-  \item Accéder à et visualiser toutes ses fiches de personnages.
-  \item Créer, éditer et supprimer une fiche de personnage.
-  \item Effectuer des jets de dés de différents types.
-  \item Effectuer des jets de dés en fonction de certaines caractéristiques et
-  compétences d'un personnage au cours d'une partie.
-  \item Chatter avec un ou plusieurs des joueurs ou avec le MJ.
-\end{itemize}
+Cette étape de la méthode est une étape presque introspective, elle permet de
+revenir, sur les étapes précédentes par rapport au retour client sur le
+prototypage. Et par la même de pouvoir commencer à établir le plan de
+construction de l'application au niveau des fonctionnalités. Il s'agit de
+plannifier les taches de dévellopement. 
 
-\subsection{Pour le MJ}
-Le MJ possède, quant à lui, des fonctionnalités spécifiques en plus de celles
-citées précédemment.
+\subsubsection{Notre organisation}
 
-Ces fonctionnalités sont les suivantes :
+Mentir sur les taches l'organisation en brique qui s'enboite comme des légos et
+tout le tintouint
+//Revoir la définition de cette étape
 
-\begin{itemize}
-  \item Visualiser les fiches des personnages participant à une partie.
-  \item Gestion du chat et visualisation de toutes les discussions.
-\item Gestion de la visualisation des jets de dés effectués par les joueurs
-\item Interface facilitante pour l'affichage de nombreuses fiches en même temps,
-permettant au MJ la gestion de ses pnj.
-\item Possibilté de la gestion des dégats reçus par les différents joueurs.
-\end{itemize}
 
 \clearpage
 
-\section{lucid 5}
+\section{Lucid 5}
 
+\subsection{Définition}
 
+Cette étape de la méthode est l'implémentation de l'application. C'est donc dans
+cette étape que l'interface est écrite en parrallèle avec le code effectif des
+fonctions. C'est aussi le moment où l'on commence à écrire les documentations et
+quelques structures communautaire autour de l'outil. C'est vraiment à ce moment
+là que l'on rentre dans un cycle logiciel avec du concret informatiquement
+parlant.
 
+\subsubsection{L'implémentation}
+
+Là on va parler de l'organisation du travail, à base de séparation en couche de
+l'application. Partie de l'application en brique qui s'emboite et des adapteurs
+pour une réutilisation.
+Ici on parle d'android et de ses défauts qu'il faut que vous me listiez. 
+
+\subsubsection{IHm android tout ça}
 
 \section{Lucid 6}
 
@@ -121,5 +199,21 @@ didactique, être a l'écoute des choses qu'ils voudraient comprenndre.
 \subsubsection{Utilisateur simple (joueur)}
 
 \subsubsection{Utilisateur novice (joueur)}
+  
+
+\section{Conclusion}
+Lucid ethno centré
+méthode pouvant entré en conflit avec les méthodes de dévellopement classic
+d'ingénièrie logiciel.
+On gagne en ethno sympathie, donc plus de chance que le produit soit accepté et
+conforme à ce que l'utilisateur final va vouloir, mais le temps nécessaire plus
+long que un cycle ``classique'' donc potentiellement plus d'argent à investir
+pour le client. L'idéal serait un mix des deux.
+Un autre soucis est l'aspect communication avec le client, et donc l'analyse de
+ses besoins et la transcription en élément informatique concret et utilisable,
+mais cet aspect social, communication des dévellopeurs généralement il est assez
+peu dévellopé, donc méthode complexe dans certain cas. Ce ne saurait pas le cas
+si le marché des informaticiens n'étais pas saturé(trusté) d'associals. 
+  
   
 \end{document}
