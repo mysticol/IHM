@@ -58,48 +58,54 @@ des scénario, et donc les implications en termes de fonctionnalités.
 
 \subsection{Approche des utilisateurs}
 
+Nous avons soumis notre projet à des rolistes, des rolistes pas tous experts en informatique, 
+le cliché des geeks informaticiens rolistes est loin d'être une vérité. Nous n'avons pas eut besoin 
+vraiment de partionner les résultats et de les analyser séparément en fonction des catégories d'utilisateurs.\\
 
-Trois grandes réactions, classique:
-Gens intéressé pour l'utilisation et l'enregistrement de ce qu'ils veulent:
-contrainte d'enrichissement facile, pas besoin de rentrer dans du technique
+De plus nous avons pensé qu'interroger des gens totalement ignorant du jeu de rôle, mais connaissant
+l'informatique ou les applications mobiles n'était pas pertinent. En effet séduire des gens "expert" en mobile
+au jeu de rôle n'est pas le but de l'application et même si c'était son but ce n'est pas ainsi que l'on séduit des clients.
+Donc cette partie de l'étude n'a pas été mené, c'est peut être un biais que nous n'aurions pas du prendre, mais 
+l'intérêt nous semblait très limité.\\
 
+Dans notre approche de l'étude des commentaires de futurs utilisateurs, nous avons pu nous rendre compte
+au départ nos explications n'étaient pas toujours clair. En effet certain premier "client" nous ont demandé si
+nous n'étions pas en train de faire un jeu. Par la suite nous avons mieux construit nos explications.\\
 
-Gens curieux de voir ce que ça va donner
+Dans les réponses que nous avons pu récolter il y a trois grand type de réaction commune, des réactions 
+assez prévisible dans l'ensemble.\\
 
-%%Note pour la relecture c'est important de conserver le fond et une partie de
-% la forme du discourt qui suit. Ca fera rire le prof, ça fait du point en
-% plus. Et merde on est des gros clampins. 
-irréductible accrocher à la symbolique du support physique de leur dés et de
-leur fiche. Parce que lancer un téléphone sur un joueur c'est vachement plus
-onéreux que lui lancer ses dés. Même remarque sur le fait de poignarder un
-joueur avec téléphone plutot que le sacro saint crayon de bois servant à
-l'édition de sa fiche.
+En général les gens trouvent que Joël il est tout petit.\\
 
+La première réaction est celle des irréductibles, accrochés à la symbolique du support physique de leur dés et de
+leurs fiches. Parce que lancer un téléphone sur un joueur c'est vachement plus onéreux que lui lancer ses dés. 
+Même remarque sur le fait de poignarder un joueur avec téléphone plutot que le sacro saint crayon de bois servant à
+l'édition de sa fiche.\\
 
-Les gens veulent des dés qui s'affiche et que l'on peut customiser, les gen
-veulent que l'application rêvete des thèmes différent en fonction du jeu.
-Pouvoir convertir leur fiche en vrai fiche à imprimer avec des belles fiches
-classique, voir pouvoir customiser la sortie en fiche papier.
+Ensuite il y a les gens très enthousiaste par l'idée, du coté joueur et MJ qui sont intéressés
+et souhaitent voir des choses comme la synchronisation facile avec ordinateur, 
+des thèmes personnalisables en fonction du jeu. Des dés "physiques" et visuel, personnalisable aussi.\\
 
-Gens inquiet par le coté connectivité chat, une partie ne comprend pas le
-concept tel qu'il a été écrit.
+Classiquement il y a aussi les gens curieux de voir ce que ça va donner.\\
 
+Passer ces premières réactions il y a quelques demandent particulières ou questions qui se sont posés.
+Comme le fait de pouvoir convertir ses fiches en fiches papiers qui s'imprimeraient rempli comme des fiches
+classique. La partie connectivité qui à été compliqué à expliquer, tant elle se rapproche d'un système de chat 
+classique mais en étant éloigné, ce qui se ressent c'est le sentiment d'espionnage par le MJ.\\
 
-Gens préférant une telle application sur tablette pc, plus adapté d'après eux.
+Au niveau IHM pur, et concept lié, les gens ont tendance à penser que le support téléphone tout en
+étant pratique est moins adapté qu'un tablette PC. Convaincre avec cette application peut être compliqué.
+Nous avons pu nous rendre compte par cette étude mené autour de partie et dans la façon qu'on les joueurs 
+d'utiliser leur fiche que la navigation entre différent niveau d'une fiche doit être rapide et simple. 
+De même les éditions de certain composant de personnage comme son niveau de vie doivent être
+très très rapide tant celà arrive souvent au cours d'une partie.\\
 
-Faut que la synchronisation sur pc soit facile, via un outil de synch
-voir même un site web de relais pour le stockage facile
+Celà nous à permis de compléter les UserStories que nous avions déjà commencé à définir.\\
 
-Des gens on demandé si ce n'étais pas un jeu que nous faisions.
+\subsection{User Stories}
 
-Les gens trouvent que Joël il est tout petit.
-
-Interprétation au niveau IHM ? là nan je vois pas ce qu'on pourrait dire.
-
-\subsection{Userstory}
-
-Coller ici les users story en les ordonnants et tout le tintouin.
-
+Cette partie regroupe donc nos scénarios construit en partie en amon de la phase de communication, et complété après
+analyse des réactions clients.
 
 \input{include/De}
 
@@ -108,8 +114,6 @@ Coller ici les users story en les ordonnants et tout le tintouin.
 \input{include/Joueur}
 
 \input{include/MJ}
-
-
 
 
 \section{Lucid 3}
@@ -123,21 +127,81 @@ On se sert des indications utilisateurs visuel, de ce qui est possible et des
 users stories pour construire les interractions entre écran, enchainement.
 Pendant cette étape il est très important que sur les exquisses d'interfaces il
 n'y ait pas d'ambiguité possible, tout élément doit être nommé pertinement et
-correspondre à quelque chose qui à du sens. Le label ``accès fiche'' est
-préférable au label ``ponay''. 
+correspondre à quelque chose qui à du sens. Le label "accès fiche'' est
+préférable au label "ponay''. 
 
 
 \subsubsection{Esquisses interface}
 
-Là on va coller l'interface dessiné dans le google docs, avec quelques
-commentaires quand même on est pas des animaux merde.
-Plus parler du look and feel
-Que pour le moment nous avons choisi d'utiliser celui de base contenu dans
-android puisque sobre et efficace et que l'aspect visuel customisable pour tous
-les aspect de jeu de role n'est pas une priorité. Que la première version
-s'attardera surtout sur le fonctionnel et ergonomie de l'affichage des données,
-de plus la propention de look and feel à changer cette ergonomie trop important
-pour être gérer de façon négligeable.
+Suite aux analyse nous avons fais des esquisses d'interface,
+nous avons travaillé grâce aux outils googledocs et en particulier l'outil drawning.
+Ces interfaces de l'application et l'enchainement des écrans ont été définis à l'aide 
+de l'analyse des besoins utilisateurs et de leur façon d'utiliser une fiche, ainsi que l'intégration de
+toutes nos fonctions.\\
+
+Pour l'interface nous choisis très simplement dans un premier temps de 
+s'attarder uniquement sur l'aspect fonctionnel. L'aspect fonctionnel niveau ergonomie 
+était un réel travail compte tenu du nombre d'information à afficher et à rendre éditable, utilisable facilement.\\
+
+En ce qui concerne le look and feel, il y a un fort souhait utilisateur de personnsalisation de celle-ci, 
+mais au départ le look and feel sera celui existant de base sous android. Le look and feel pouvant impacter
+la taille des éléments à afficher, ça sera une étape gérer dans une prochaine version de notre application.\\
+
+\begin{figure}[h]
+  	
+  		\includegraphics[height=14cm,width=15cm]{image/screen1.png}
+  		\caption{Ecran démarage/concept}
+  		\label{screen1}
+\end{figure}
+
+Sur la capture \ref{screen1} on peut voir le concept général, avec le transfert sur un écran suivant
+son choix, pas de chose qui s'affiche en sur impression des premiers écrans.
+
+\begin{figure}[h]
+  	
+  		\includegraphics[height=14cm,width=15cm]{image/screen2.png}
+  		\caption{Enchainement logique des écrans}
+  		\label{screen2}
+\end{figure}
+
+La capture \ref{screen2} permet de voir plus en détail la logique d'enchainement des écrans, 
+avec l'affichage des fonctionnalités clés, et le fait que l'on puisse rapidement basculé rapidement d'un écran à un autre.
+On le voit aussi la présence d'une partie jauge, les éléments d'une fiche qui évoluent à chaque instant du jeu, 
+élément pas toujours regroupé dans une fiche, qui là pour le coup se "trouvent" facilement. 
+
+\begin{figure}[h]
+  	
+  		\includegraphics[height=14cm,width=15cm]{image/screen3.png}
+  		\caption{Gestion des fiches}
+  		\label{screen3}
+\end{figure}
+
+La capture \ref{screen3} montre la gestion des fiches de personnage en fonction de l'univers (jeu en général), de 
+la campagne, nom donné à un ensemble de scénario généralement cohérent dans lesquels évolue des personnages, une histoire. 
+Ensuite une gestion joueur et non joueur pour un meilleur tri des informations, et affiner les critère de sélections.
+
+\begin{figure}[h]
+  	
+  		\includegraphics[height=14cm,width=15cm]{image/screen4.png}
+  		\caption{Gestion des jets en jeu}
+  		\label{screen4}
+\end{figure}
+
+La capture \ref{screen4} montre le choix du type du jet de dés, qui nous permet de gérer en partie
+les rêgles d'un jeu, et donc d'avoir des jets cohérents. Ensuite celui qui veut faire le jet
+choisis ses élements du jet.
+
+\begin{figure}[h]
+  	
+  		\includegraphics[height=14cm,width=15cm]{image/screen5.png}
+  		\caption{Création de personnage}
+  		\label{screen5}
+\end{figure}
+
+La capture \ref{screen5} nous montre la création de personnsage avec l'affichage, des différents 
+éléments de fiche à modifier à la création, l'écran ne suppose aucune gestion de rêgle de création 
+de personnage, et c'est le cas, l'application ne supporte pas le rêgle de création.
+
 
 \section{Lucid 4}
 
@@ -151,12 +215,38 @@ plannifier les taches de dévellopement.
 
 \subsubsection{Notre organisation}
 
-Mentir sur les taches l'organisation en brique qui s'enboite comme des légos et
-tout le tintouint
-//Revoir la définition de cette étape
+Pour cette étape de la méthode nous avons tous remis en parrallèle, les concepts initiaux 
+du produit, les réactions et analyse des utilisateurs et les exquisses. Nous avons pu faire remonter des
+remarques sur les première exquisses, ainsi que nous rendre compte de ce qui était possible concrétement
+avec la plateforme android.
 
+Cette étape à permis d'affiner clairement les fonctionnalités et de commencer à appréhender la façon dont elles 
+allaient éxister concrétement sous une plateforme mobile comme android. Remettre à plat tout celà
+nous a permis de dégager les grosses de dévellopements que nous avions à faire.
 
-\clearpage
+Les travaux de définition et de modélisation des éléments liés au jeu de rôle comme les éléments commun à toutes les fiches,
+la conception de modèle suffisament large pour assurer la prise en charge du plus de jeu possible, cette tâche à été commune à tous
+les membres de l'équipe. Nous y avons tous participé puisque nous avions tous des expériences différentes et qu'elles étaient relativement complémentaire.
+
+Nous avons défini aussi l'architecture globale de l'application, architecture de type composant, avec des composants comme:
+\begin{itemize}
+  \item Composant Dé
+  \item Composant gestion des fiches en xml
+  \item Composant connectivité(support bluetooh/wifi)
+\end{itemize}
+
+Ces composants sencé être élémentaire devant permettre la construction de l'application par dessus, avec l'application du pattern 
+adapter, pour permettre un éventuel réutilisation de ces composants, et surtout une relecture de code plus aisée.
+
+C'est pendant cette étape que nous avons choisis de ne pas implémenter la partie connectivité de l'application,
+la méconnaissance du support android nous ralentissant déja pour les fonctionnalités plus simple.
+
+Durant cette étape nous avons tous travailler à enrichir nos connaissances sur android, en mettant en place 
+des mini tutos et en recoupant les informations que nous avons receuilli sur la plateforme.
+
+De plus pour travailler en colaboration nous avons choisi de mettre en place un gestionnaire de version sous google code qui nous
+as accompagné tout du long du devellopement. De plus nous avions des réunions régulière sur Skype pour coordonnéer nos efforts 
+de devellomepent. Et nous avions en paralèlle googledocs pour certain document comme les esquisses.
 
 \section{Lucid 5}
 
@@ -171,10 +261,12 @@ parlant.
 
 \subsubsection{L'implémentation}
 
-Là on va parler de l'organisation du travail, à base de séparation en couche de
-l'application. Partie de l'application en brique qui s'emboite et des adapteurs
-pour une réutilisation.
-Ici on parle d'android et de ses défauts qu'il faut que vous me listiez. 
+Pour l'implémentation, il y a plusieurs phases, d'abord la définition et l'écriture des composants
+en java sur lesquels l'application devaient s'appuyer. Ce fut la première étape de devellopement.
+Cette première étape n'a pas forcément posé de problème au cours du projet.
+
+Ensuite le dévellopement s'est continué en s'appuyant sur ces premiers module de base.
+
 
 \subsubsection{IHm android tout ça}
 
