@@ -29,7 +29,7 @@ public class ListCreationNumeric extends Activity {
 	EcriteurFiche eFiche= new EcriteurFiche();
 	static String univers;
 	static String typePerso;
-	private String lv_arr[]={"Personnage","CaracteristiquesPrincipales","Competences","CaracteristiquesSecondaire","Vie","Pouvoirs","Equipement"};
+	private String lv_arr[]={"Personnage","Caracteristiques Principales","Competences","Caracteristiques Secondaires","Vie","Pouvoirs","Equipement"};
 
 	
 	@Override
