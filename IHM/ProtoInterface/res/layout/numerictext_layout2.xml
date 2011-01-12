@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:id="@+id/LL_Fond">
+	
+	<EditText 
+		android:text="ValeurNumeric" android:id="@+id/NomNumericText"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:background="@android:drawable/editbox_background">
+	</EditText>
+		
+	<EditText 
+		android:text="ValeurNumeric" android:id="@+id/ValeurNumericText"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:background="@android:drawable/editbox_background">
+	</EditText>
+		
+</LinearLayout>

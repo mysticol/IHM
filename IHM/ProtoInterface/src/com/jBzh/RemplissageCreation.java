@@ -7,30 +7,38 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import bean.Caracteristique;
+import bean.Categorie;
 import bean.Competence;
+import bean.Pouvoir;
 import bean.vie.Classic;
 import bean.Fiche;
 
 import com.jBzh.CreationNumericAdapter.CreationNumericAdapterListener;
 import com.jBzh.CreationNumericTextAdapter.CreationNumericTextAdapterListener;
+import com.jBzh.CreationNumericTextAdapter2.CreationNumericTextAdapterListener2;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
-public class RemplissageCreation extends Activity implements CreationNumericAdapterListener,CreationNumericTextAdapterListener{
+public class RemplissageCreation extends Activity implements CreationNumericAdapterListener,CreationNumericTextAdapterListener, CreationNumericTextAdapterListener2 {
 	
 	//private static ArrayList<Numeric> listN = Numeric.getAListOfNumeric();
 	ArrayList<Numeric> listN = new ArrayList<Numeric>();
 	ArrayList<NumericText> listNText = new ArrayList<NumericText>();
 	private CreationNumericAdapter adapter;
 	private CreationNumericTextAdapter adapterText;
+	private CreationNumericTextAdapter2 adapterText2;
 	Fiche fiche = new Fiche();
 	String categorie;
 	
@@ -95,7 +103,7 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	      
 	      list.setAdapter(adapterText);
 
-	  } else if(categorie.equalsIgnoreCase("CaracteristiquesPrincipales")) {
+	  } else if(categorie.equalsIgnoreCase("Caracteristiques Principales")) {
 		  
 		  for(String c : fiche.getCaracteristiquesPrincipales().keySet()){
 			  if(fiche.getCaracteristiquesPrincipales().get(c).getValeur()!=null){
@@ -128,7 +136,7 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	      
 	      list.setAdapter(this.adapter);
 		  
-	  }else if(categorie.equalsIgnoreCase("CaracteristiquesSecondaires")) {
+	  }else if(categorie.equalsIgnoreCase("Caracteristiques Secondaires")) {
 		  
 		  for(String c : fiche.getCaracteristiquesSecondaire().keySet()){
 			  if(fiche.getCaracteristiquesSecondaire().get(c).getValeur()!=null){
@@ -152,17 +160,93 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 			  listN.add(new Numeric("Vie", ((Classic)fiche.getBarreDeVie()).getActuel()));
 		  } else{
 			  listN.add(new Numeric("Vie", 0));
-		  }		  
+		  }
 		  
+	      CreationNumericAdapter adapter = new CreationNumericAdapter(this, listN);
+
+	      this.adapter = adapter;
+	     
+	      adapter.addListener(this);
+	      
+	      list.setAdapter(this.adapter);	
+	      
 	  }else if(categorie.equalsIgnoreCase("Pouvoirs")){
 		  
+		  // On cree les boutons + et - a la main
+		  
+//		  LinearLayout llh5 = new LinearLayout(this);
+//		  llh5.setOrientation(LinearLayout.HORIZONTAL);
+//		  llh5.setPadding(15, 10, 15, 10);
+//		  
+//		  
+//		  // Creation du bouton +
+//		  final Button boutonPLus = new Button (this);
+//		  
+//		  boutonPLus.setId(21);
+//		  boutonPLus.setOnClickListener(new View.OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				
+//				//TODO on ajoute une ligne
+//				
+//			}
+//		  });
+//		  boutonPLus.setText("+");
+//		  boutonPLus.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT,
+//				android.view.ViewGroup.LayoutParams.FILL_PARENT));
+//		  
+//		  llh5.addView(boutonPLus);
+//		  
+//		  // Creation du bouton -
+//		  final Button boutonMoins = new Button (this);
+//		  boutonMoins.setId(22);
+//		  boutonMoins.setOnClickListener(new View.OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				
+//				//TODO on enleve une ligne
+//				
+//			}
+//		  });
+//		  boutonMoins.setText("-");
+//		  boutonMoins.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT,
+//				android.view.ViewGroup.LayoutParams.FILL_PARENT));
+//		  
+//		  llh5.addView(boutonMoins);
+//		  
+//		  addContentView(llh5, new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT,
+//					android.view.ViewGroup.LayoutParams.FILL_PARENT));
+		  
+		  
+		  // On rempli la liste des pouvoirs deja rempli, si besoin
+		  if(fiche.getPouvoirs()!=null){
+			  
+			  for(Pouvoir p : fiche.getPouvoirs()){
+				  listNText.add(new NumericText(p.getNom(), p.getDescription()));				  
+			  }
+			  
+		  }
+		  
+		  if(listNText.size()==0){
+			  listNText.add(new NumericText("", ""));
+		  }
+		  
+		  CreationNumericTextAdapter2 adapter = new CreationNumericTextAdapter2(this, listNText);
+
+	      this.adapterText2 = adapter;
+
+	      adapter.addListener(this);
+	      
+	      list.setAdapter(adapterText2);	  
 		  
 	  }else if(categorie.equalsIgnoreCase("Equipement")){
 		  
+		  
+		  
 	  }
-
-
-     
+    
 	  
       final Button buttonRetour = (Button) findViewById(R.id.retour);
       buttonRetour.setOnClickListener(new View.OnClickListener() {
@@ -204,12 +288,48 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
   				}
   				
   				
-  			} else if(categorie.equalsIgnoreCase("CaracteristiquesPrincipales")){
+  			} else if(categorie.equalsIgnoreCase("Caracteristiques Principales")){
   				
   	  			for(Numeric n : listN){
   	  				fiche.getCaracteristiquesPrincipales().get(n.getNomNumeric()).setValeur(n.getValeur());
   	  			}  				
   				
+  			} else if(categorie.equalsIgnoreCase("Competences")){
+  				
+  	  			for(Numeric n : listN){
+  	  				for(List<Competence> lc : fiche.getCompetences().values()){
+  	  					for(Competence c : lc){
+  	  						if(c.getNom().equalsIgnoreCase(n.getNomNumeric())){
+  	  							c.setValeur(n.getValeur());
+  	  						}
+  	  					}
+  	  				}
+  	  			}
+  			} else if(categorie.equalsIgnoreCase("Caracteristiques Secondaires")){
+  				
+  	  			for(Numeric n : listN){
+  	  				fiche.getCaracteristiquesSecondaire().get(n.getNomNumeric()).setValeur(n.getValeur());
+  	  			}  				
+  				
+  			} else if(categorie.equalsIgnoreCase("Vie")){
+  				
+  				fiche.getBarreDeVie().setActuel(listN.get(0).getValeur());
+  				fiche.getBarreDeVie().setTotal(listN.get(0).getValeur());
+  				
+  			} else if(categorie.equalsIgnoreCase("Pouvoirs")){
+  				
+  				LinkedList<Pouvoir> lp = fiche.getPouvoirs();
+  				lp.clear();
+  				
+  				for(NumericText nt : listNText){
+  					lp.add(new Pouvoir(nt.getNomNumeric(), nt.getValeur()));
+  				}
+  				
+  				fiche.setPouvoirs(lp);
+  				
+  			} else if(categorie.equalsIgnoreCase("Equipement")){
+  				
+  				//TODO
   			}
   			 			
   			//Passage de la fiche à RemplissageCreation
@@ -245,6 +365,10 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 		adapterText.notifyDataSetChanged();
 	}
 	
-	
+	@Override
+	public void onTextChanged2(NumericText item, int position) {
+		System.out.println("On a change : " + item.getNomNumeric() + " : " + item.getValeur());
+		adapterText2.notifyDataSetChanged();
+	}	
 
 }
