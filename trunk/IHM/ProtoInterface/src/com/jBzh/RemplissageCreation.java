@@ -14,6 +14,7 @@ import java.util.Set;
 import bean.Caracteristique;
 import bean.Categorie;
 import bean.Competence;
+import bean.Equipement;
 import bean.Pouvoir;
 import bean.vie.Classic;
 import bean.Fiche;
@@ -39,6 +40,7 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	private CreationNumericAdapter adapter;
 	private CreationNumericTextAdapter adapterText;
 	private CreationNumericTextAdapter2 adapterText2;
+	private RemplissageCreation instance;
 	Fiche fiche = new Fiche();
 	String categorie;
 	
@@ -54,8 +56,10 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	  
 	  setContentView(R.layout.remplissagecreation);
 	  
-      ListView list = (ListView)findViewById(R.id.list);
+      final ListView list = (ListView)findViewById(R.id.list);
 	  
+      instance = this;
+      
 	  //En fonction de la categorie choisie, on affiche des elements differents
 	  if(categorie.equalsIgnoreCase("Personnage")){
 		  
@@ -172,54 +176,6 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 	      
 	  }else if(categorie.equalsIgnoreCase("Pouvoirs")){
 		  
-		  // On cree les boutons + et - a la main
-		  
-//		  LinearLayout llh5 = new LinearLayout(this);
-//		  llh5.setOrientation(LinearLayout.HORIZONTAL);
-//		  llh5.setPadding(15, 10, 15, 10);
-//		  
-//		  
-//		  // Creation du bouton +
-//		  final Button boutonPLus = new Button (this);
-//		  
-//		  boutonPLus.setId(21);
-//		  boutonPLus.setOnClickListener(new View.OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				
-//				//TODO on ajoute une ligne
-//				
-//			}
-//		  });
-//		  boutonPLus.setText("+");
-//		  boutonPLus.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT,
-//				android.view.ViewGroup.LayoutParams.FILL_PARENT));
-//		  
-//		  llh5.addView(boutonPLus);
-//		  
-//		  // Creation du bouton -
-//		  final Button boutonMoins = new Button (this);
-//		  boutonMoins.setId(22);
-//		  boutonMoins.setOnClickListener(new View.OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				
-//				//TODO on enleve une ligne
-//				
-//			}
-//		  });
-//		  boutonMoins.setText("-");
-//		  boutonMoins.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT,
-//				android.view.ViewGroup.LayoutParams.FILL_PARENT));
-//		  
-//		  llh5.addView(boutonMoins);
-//		  
-//		  addContentView(llh5, new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT,
-//					android.view.ViewGroup.LayoutParams.FILL_PARENT));
-		  
-		  
 		  // On rempli la liste des pouvoirs deja rempli, si besoin
 		  if(fiche.getPouvoirs()!=null){
 			  
@@ -233,16 +189,194 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 			  listNText.add(new NumericText("", ""));
 		  }
 		  
-		  CreationNumericTextAdapter2 adapter = new CreationNumericTextAdapter2(this, listNText);
+		 final CreationNumericTextAdapter2 adapter = new CreationNumericTextAdapter2(this, listNText);
 
 	      this.adapterText2 = adapter;
 
 	      adapter.addListener(this);
 	      
-	      list.setAdapter(adapterText2);	  
+	      list.setAdapter(adapterText2);	
+		  
+		  // On cree les boutons + et - a la main
+		  
+		  LinearLayout llh5 = new LinearLayout(this);
+		  llh5.setOrientation(LinearLayout.HORIZONTAL);
+		  llh5.setPadding(240, 0, 0, 0);
+		  
+		  
+		  
+		  // Creation du bouton -
+		  final Button boutonMoins = new Button (this);
+		  boutonMoins.setId(22);
+		  boutonMoins.setWidth(40);
+		  boutonMoins.setHeight(50);
+		  boutonMoins.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				
+				//TODO on enleve une ligne
+				if(listNText.size()!=0){
+					
+					listNText.remove((listNText.size())-1);
+					
+					CreationNumericTextAdapter2 adapterMoins = new CreationNumericTextAdapter2(instance, listNText);
+	
+				    adapterText2 = adapterMoins;
+	
+				    adapter.addListener(instance);
+				      
+				    list.setAdapter(adapterText2);
+				}
+			}
+		  });
+		  boutonMoins.setText("-");
+		  boutonMoins.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
+				android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+		  
+		  llh5.addView(boutonMoins);
+		  
+		// Creation du bouton +
+		  final Button boutonPLus = new Button (this);
+		  
+		  boutonPLus.setId(21);
+		  boutonPLus.setWidth(40);
+		  boutonPLus.setHeight(50);
+		  boutonPLus.setOnClickListener(new View.OnClickListener() {
+			
+			 
+			@Override
+			public void onClick(View v) {
+				
+				//TODO on ajoute une ligne
+					
+					listNText.add(new NumericText("", ""));
+					
+					CreationNumericTextAdapter2 adapterPlus = new CreationNumericTextAdapter2(instance, listNText);
+	
+				    adapterText2 = adapterPlus;
+	
+				    adapter.addListener(instance);
+				      
+				    list.setAdapter(adapterText2);
+				
+			}
+		  });
+		  boutonPLus.setText("+");
+		  boutonPLus.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
+				android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+		  
+		  llh5.addView(boutonPLus);
+		  
+		  
+		  addContentView(llh5, new LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
+					android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+		  
+		  
+		  
+		  
+		  
+
+		  
+  
 		  
 	  }else if(categorie.equalsIgnoreCase("Equipement")){
 		  
+		  // On rempli la liste des equipements deja rempli, si besoin
+		  if(fiche.getEquipements()!=null){
+			  
+			  for(Equipement p : fiche.getEquipements()){
+				  listNText.add(new NumericText(p.getNom(), p.getDescription()));				  
+			  }
+			  
+		  }
+		  
+		  if(listNText.size()==0){
+			  listNText.add(new NumericText("", ""));
+		  }
+		  
+		 final CreationNumericTextAdapter2 adapter = new CreationNumericTextAdapter2(this, listNText);
+
+	      this.adapterText2 = adapter;
+
+	      adapter.addListener(this);
+	      
+	      list.setAdapter(adapterText2);	
+		  
+		  // On cree les boutons + et - a la main
+		  
+		  LinearLayout llh5 = new LinearLayout(this);
+		  llh5.setOrientation(LinearLayout.HORIZONTAL);
+		  llh5.setPadding(240, 0, 0, 0);
+		  
+		  
+		  
+		  // Creation du bouton -
+		  final Button boutonMoins = new Button (this);
+		  boutonMoins.setId(22);
+		  boutonMoins.setWidth(40);
+		  boutonMoins.setHeight(50);
+		  boutonMoins.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				
+				//TODO on enleve une ligne
+				if(listNText.size()!=0){
+					
+					listNText.remove((listNText.size())-1);
+					
+					CreationNumericTextAdapter2 adapterMoins = new CreationNumericTextAdapter2(instance, listNText);
+	
+				    adapterText2 = adapterMoins;
+	
+				    adapter.addListener(instance);
+				      
+				    list.setAdapter(adapterText2);
+				}
+			}
+		  });
+		  boutonMoins.setText("-");
+		  boutonMoins.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
+				android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+		  
+		  llh5.addView(boutonMoins);
+		  
+		// Creation du bouton +
+		  final Button boutonPLus = new Button (this);
+		  
+		  boutonPLus.setId(21);
+		  boutonPLus.setWidth(40);
+		  boutonPLus.setHeight(50);
+		  boutonPLus.setOnClickListener(new View.OnClickListener() {
+			
+			 
+			@Override
+			public void onClick(View v) {
+				
+				//TODO on ajoute une ligne
+					
+					listNText.add(new NumericText("", ""));
+					
+					CreationNumericTextAdapter2 adapterPlus = new CreationNumericTextAdapter2(instance, listNText);
+	
+				    adapterText2 = adapterPlus;
+	
+				    adapter.addListener(instance);
+				      
+				    list.setAdapter(adapterText2);
+				
+			}
+		  });
+		  boutonPLus.setText("+");
+		  boutonPLus.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
+				android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+		  
+		  llh5.addView(boutonPLus);
+		  
+		  
+		  addContentView(llh5, new LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
+					android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 		  
 		  
 	  }
@@ -329,7 +463,14 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
   				
   			} else if(categorie.equalsIgnoreCase("Equipement")){
   				
-  				//TODO
+  				LinkedList<Equipement> lp = fiche.getEquipements();
+  				lp.clear();
+  				
+  				for(NumericText nt : listNText){
+  					lp.add(new Equipement(nt.getNomNumeric(), nt.getValeur()));
+  				}
+  				
+  				fiche.setEquipements(lp);
   			}
   			 			
   			//Passage de la fiche à RemplissageCreation
