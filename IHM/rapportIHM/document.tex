@@ -259,7 +259,7 @@ quelques structures communautaire autour de l'outil. C'est vraiment à ce moment
 là que l'on rentre dans un cycle logiciel avec du concret informatiquement
 parlant.
 
-\subsubsection{L'implémentation}
+\subsection{L'implémentation}
 
 Pour l'implémentation, il y a plusieurs phases, d'abord la définition et l'écriture des composants
 en java sur lesquels l'application devaient s'appuyer. Ce fut la première étape de devellopement.
@@ -268,7 +268,55 @@ Cette première étape n'a pas forcément posé de problème au cours du projet.
 Ensuite le dévellopement s'est continué en s'appuyant sur ces premiers module de base.
 
 
-\subsubsection{IHm android tout ça}
+\subsubsection{Modules de base}
+
+Ces modules sont utilisés par l'interface graphique. Ils fournissent des
+fonctionnalités propres au coeur de l'application.
+
+\begin{itemize}
+  \item DiceModule : il fournit différents méthodes permettant d'effectuer
+  plusieurs types de jet de dés.
+  \item FicheModule : il permet d'enregistrer/charger une fiche de personnage, à
+  partir d'un modèle de fiche, ou bien à partir d'une fiche même. Cela comprend
+  aussi le parseur xml nécessaire à ces opérations.
+  \item SystemModule : idem que FicheModule, mais pour un système de règle.
+\end{itemize}
+
+\subsubsection{IHM Android}
+
+Pour expliciter notre interface androïd, nous avons fait le choix d'expliquer
+les types d'écran utilisés et non chacun d'eux afin d'être plus synthétique.
+
+\paragraph{Interface à boutons}
+~\\
+~\\
+ Ce type d'interface est utilisé dans la page d'accueil de notre application.
+ Il permet un choix simplifié pour l'utilisateur.
+
+\paragraph{Interface avec listeView}
+~\\
+~\\
+Nous avons utilisé les listView dans des écran de séléction. Celui-ci est rempli
+dynamiquement avec du texte provenant du parsing de fiche ou d'un système de
+règles. Chaque élément est cliquable afin d'avancer dans le processus
+d'application. Par exemple, la sélection d'un des éléments d'un jet de dé.\\
+
+De plus, nous avons utilisé cet outil graphique afin de modifier des valeurs
+associées par exemple à des compétences. Nous avons donc personnalisé chaque
+ligne de la listView à l'aide d'un Adapter. Cette ListView ne comprend donc plus
+uniquement du texte mais des boutons ou encore des EditText.
+
+\paragraph{Interface avec Spinner}
+~\\
+~\\
+L'utilisation des Spinner a été nécessaire pour faciliter les choix de
+l'utilisateur. Ces Spinners permettent une séléction filtrées des univers et des
+campagnes. Par exemple, lorsque l'utilisateur veut voir une fiche, ilsélectionne dans un premier temps l'univers. Puis, il sélectionnera lesdifférentes campagnes disponible par rapport à cet univers et enfin les fichesdisponibles pour cet univers et cette campagne.
+
+\paragraph{Interface du jet de dé}
+~\\
+~\\
+Ce type d'interface permet d'effectuer un jet de dé utilisant différents outilsgraphiques androïd. Soit en le parametrant totalement, soit après avoirsélectionné les différents éléments du jet.
 
 \section{Lucid 6}
 
