@@ -6,6 +6,7 @@ import java.util.List;
 
 import bean.Competence;
 import bean.Fiche;
+import bean.Pouvoir;
 import bean.vie.*;
 import android.app.Activity;
 import android.app.ExpandableListActivity;
@@ -156,7 +157,17 @@ public class ResumeCreation extends ExpandableListActivity {
 			secList5.add( child );
 			
 		result.add( secList5 );
-		*/
+		
+		ArrayList<HashMap<String,String>> secList6 = new ArrayList<HashMap<String,String>>();
+		//Pouvoirs
+		for(Pouvoir p : fiche.getPouvoirs()){
+			HashMap<String,String> child2 = new HashMap<String,String>();
+			child2.put( "nom", p.getNom() );
+			child2.put( "valeur", p.getDescription());
+			secList6.add( child2 );
+		}			
+		result.add( secList6 );*/
+		
 		return result;
 	  }
 }
