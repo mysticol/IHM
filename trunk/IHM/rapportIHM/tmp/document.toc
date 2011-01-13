@@ -1,0 +1,24 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Introdution}{3}{section.1}
+\contentsline {section}{\numberline {2}Lucid 2}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}D\IeC {\'e}finition}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Approche des utilisateurs}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}User Stories}{5}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}User Stories pour le composant d\IeC {\'e}}{5}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}User Stories pour la connectivit\IeC {\'e}}{6}{subsubsection.2.3.2}
+\contentsline {subsubsection}{\numberline {2.3.3}User Stories pour le Joueur}{6}{subsubsection.2.3.3}
+\contentsline {subsubsection}{\numberline {2.3.4}User Stories pour le MJ}{7}{subsubsection.2.3.4}
+\contentsline {section}{\numberline {3}Lucid 3}{8}{section.3}
+\contentsline {subsection}{\numberline {3.1}D\IeC {\'e}finition}{8}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Esquisses interface}{8}{subsubsection.3.1.1}
+\contentsline {section}{\numberline {4}Lucid 4}{9}{section.4}
+\contentsline {subsection}{\numberline {4.1}D\IeC {\'e}finition}{9}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}Notre organisation}{10}{subsubsection.4.1.1}
+\contentsline {section}{\numberline {5}Lucid 5}{10}{section.5}
+\contentsline {subsection}{\numberline {5.1}D\IeC {\'e}finition}{10}{subsection.5.1}
+\contentsline {subsubsection}{\numberline {5.1.1}L'impl\IeC {\'e}mentation}{11}{subsubsection.5.1.1}
+\contentsline {subsubsection}{\numberline {5.1.2}IHm android tout \IeC {\c c}a}{11}{subsubsection.5.1.2}
+\contentsline {section}{\numberline {6}Lucid 6}{11}{section.6}
+\contentsline {subsection}{\numberline {6.1}D\IeC {\'e}finition}{11}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Plan d'\IeC {\'e}valution}{11}{subsection.6.2}
+\contentsline {section}{\numberline {7}Conclusion}{12}{section.7}
