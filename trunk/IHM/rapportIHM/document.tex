@@ -1,48 +1,37 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage{ifpdf}
-\usepackage[utf8]{inputenc}
-\usepackage[francais]{babel}
-\usepackage[T1]{fontenc}
-\usepackage[nottoc, notlof, notlot]{tocbibind}
+\usepackage[utf8]{inputenc} \usepackage[francais]{babel}
+\usepackage[T1]{fontenc} \usepackage[nottoc, notlof, notlot]{tocbibind}
 \usepackage[unicode=true,pdftex,colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black]{hyperref}
 \usepackage{natbib}
 \usepackage{graphicx}
 
 \parindent 0.8cm
-%\setlength{\parskip}{0.5em plus 0.2em minus 0.2em}
+% \setlength{\parskip}{0.5em plus 0.2em minus 0.2em}
 
 \title{Projet Androïd : Rapport}
 \author{Anthony \textsc{Caillaud} Manoël \textsc{Fortun} Vincent
 \textsc{Pottier} Charles \textsc{Dejean}}
 \date{\today}
-\ifpdf
-\pdfinfo {
-/Author (Anthony Caillaud Manoël Fortun Vincent Pottier Charles Dejean)
-/Title (RoadMapJDR)
-/Subject (RoadMapJDR)
-/Keywords ()
-/CreationDate (D:20100329212218)
-}
-\fi
+\ifpdf \pdfinfo { /Author (Anthony Caillaud Manoël Fortun Vincent Pottier
+Charles Dejean) /Title (RoadMapJDR) /Subject (RoadMapJDR) /Keywords ()
+/CreationDate (D:20100329212218) } \fi
 
 
 \begin{document}
 
 \maketitle
 
-\clearpage
-\tableofcontents
-\clearpage
+\clearpage \tableofcontents \clearpage
 \section{Introdution}
 
-Ce rapport reprend la suite de la Roadmap que nous avions définis pour notre
-projet d'ihm autour d'une application pour le jeu de rôle sous androïd.
-Dans la continuité du précédent rapport nous avons suivis la méthode LUCID pour
-la conception et réalisation de notre application. Ce rapport reprendra donc là
-ou nous nous étions arrêté, c'est à dire à l'étape 2 de LUCID, et finira à 6
-avec le plan d'évaluation si nous étions dans un contexte réel.
-Avant chaque étape nous rappelerons les enjeux de l'épate et notre
-interprétation.
+Ce rapport reprend la suite de la Roadmap que nous avions défini pour notre
+projet d'ihm autour d'une application pour jeux de rôles sous androïd. Dans la
+continuité du précédent rapport, nous avons suivi la méthode LUCID pour la
+conception et réalisation de notre application. Ce rapport reprendra donc à
+l'étape 2 de LUCID et finira à l'étape 6 avec le plan d'évaluation, effectif si
+nous étions dans un contexte réel. Avant chaque étape, nous rappelerons les
+enjeux de celle-ci et notre interprétation.
 
 \clearpage
 
@@ -50,62 +39,73 @@ interprétation.
 
 \subsection{Définition}
 
-Cette étape de la méthode permet de compléter la première étape, et donc de
-receuillir en fonction des catégories d'utilisateur et du concept de
-l'application les attentes des utilisateurs. D'obtenir aussi les choses qu'ils
-jugent indispensable, la façon qu'ils auraient d'appréhender l'application via
-des scénario, et donc les implications en termes de fonctionnalités.
+Cette étape de la méthode permet de compléter la RoadMap. Elle indique les
+attentes des utilisateurs receuillies en fonction des catégories d'utilisateur
+et du concept de l'application. Elle nous permet aussi de connaître les
+fonctionnalités qu'ils jugent indispensables, la façon qu'ils auraient
+d'appréhender l'application via des scénarios.
 
 \subsection{Approche des utilisateurs}
 
-Nous avons soumis notre projet à des rolistes, des rolistes pas tous experts en informatique, 
-le cliché des geeks informaticiens rolistes est loin d'être une vérité. Nous n'avons pas eut besoin 
-vraiment de partionner les résultats et de les analyser séparément en fonction des catégories d'utilisateurs.\\
+Nous avons soumis notre projet à des rôlistes, pas tous experts en
+informatique. Le cliché des geeks informaticiens rôlistes est loin d'être une
+vérité! Nous n'avons pas eu besoin de partitionner les résultats et de
+les analyser séparément en fonction des catégories d'utilisateurs.\\
 
-De plus nous avons pensé qu'interroger des gens totalement ignorant du jeu de rôle, mais connaissant
-l'informatique ou les applications mobiles n'était pas pertinent. En effet séduire des gens "expert" en mobile
-au jeu de rôle n'est pas le but de l'application et même si c'était son but ce n'est pas ainsi que l'on séduit des clients.
-Donc cette partie de l'étude n'a pas été mené, c'est peut être un biais que nous n'aurions pas du prendre, mais 
-l'intérêt nous semblait très limité.\\
+De plus, nous avons pensé qu'interroger des gens qui ne connaissent pas le jeu
+de rôle mais connaissant l'informatique ou les applications mobiles n'était pas
+pertinent. En effet, séduire des gens "experts" en mobile au jeu de rôle n'est
+pas le but de l'application. Cette partie de l'étude n'a donc pas été menée.
+C'est peut-être un biais que nous n'aurions pas dû prendre, mais l'intérêt nous
+semblait très limité.\\
 
-Dans notre approche de l'étude des commentaires de futurs utilisateurs, nous avons pu nous rendre compte
-au départ nos explications n'étaient pas toujours clair. En effet certain premier "client" nous ont demandé si
-nous n'étions pas en train de faire un jeu. Par la suite nous avons mieux construit nos explications.\\
+Dans notre approche de l'étude des commentaires de futurs utilisateurs, nous
+nous sommes rendu compte que nos explications n'étaient pas toujours
+claires. En effet, certains premiers "clients" nous ont demandé si nous n'étions
+pas en train de faire un jeu! Par la suite, nous avons mieux construis nos
+explications.\\
 
-Dans les réponses que nous avons pu récolter il y a trois grand type de réaction commune, des réactions 
-assez prévisible dans l'ensemble.\\
+Dans les réponses que nous avons pu récolter, il y a trois grand types de
+réaction commune qui étaient assez prévisible.\\
 
-En général les gens trouvent que Joël il est tout petit.\\
+%%En général les gens trouvent que Joël il est tout petit.\\
 
-La première réaction est celle des irréductibles, accrochés à la symbolique du support physique de leur dés et de
-leurs fiches. Parce que lancer un téléphone sur un joueur c'est vachement plus onéreux que lui lancer ses dés. 
-Même remarque sur le fait de poignarder un joueur avec téléphone plutot que le sacro saint crayon de bois servant à
-l'édition de sa fiche.\\
+La première réaction est celle des irréductibles, accrochés à la symbolique du
+support physique de leurs dés et de leurs fiches. "Parce que lancer un
+téléphone sur un joueur c'est quand même plus onéreux que lui lancer ses dés"!\\
 
-Ensuite il y a les gens très enthousiaste par l'idée, du coté joueur et MJ qui sont intéressés
-et souhaitent voir des choses comme la synchronisation facile avec ordinateur, 
-des thèmes personnalisables en fonction du jeu. Des dés "physiques" et visuel, personnalisable aussi.\\
+Ensuite il y a les gens très enthousiaste par l'idée. Les joueur et les MJ sont
+intéressés et souhaitent voir des choses comme la synchronisation facile avec
+un ordinateur ou encore des thèmes personnalisables en fonction du jeu. De
+plus, ils exprimaient aussi le fait d'avoir des dés visuels et personnalisable
+eux aussi.\\
 
-Classiquement il y a aussi les gens curieux de voir ce que ça va donner.\\
+Enfin, il y a les gens curieux de voir ce que l'application va être et de
+voir ce qu'elle apportera à leur manière de jouer.\\
 
-Passer ces premières réactions il y a quelques demandent particulières ou questions qui se sont posés.
-Comme le fait de pouvoir convertir ses fiches en fiches papiers qui s'imprimeraient rempli comme des fiches
-classique. La partie connectivité qui à été compliqué à expliquer, tant elle se rapproche d'un système de chat 
-classique mais en étant éloigné, ce qui se ressent c'est le sentiment d'espionnage par le MJ.\\
+Une fois ces premières réactions généralistes analysées, il y a quelques
+demandes particulières. Tout d'abord, le fait de pouvoir convertir ses fiches en
+fiches papiers imprimables et pré-remplies. Ensuite, la partie connectivité qui
+à été compliqué à expliquer tant elle est à la fois proche et éloignée d'un
+système de chat classique. Ce qui se ressent, c'est le sentiment d'espionnage
+par le MJ.\\
 
-Au niveau IHM pur, et concept lié, les gens ont tendance à penser que le support téléphone tout en
-étant pratique est moins adapté qu'un tablette PC. Convaincre avec cette application peut être compliqué.
-Nous avons pu nous rendre compte par cette étude mené autour de partie et dans la façon qu'on les joueurs 
-d'utiliser leur fiche que la navigation entre différent niveau d'une fiche doit être rapide et simple. 
-De même les éditions de certain composant de personnage comme son niveau de vie doivent être
-très très rapide tant celà arrive souvent au cours d'une partie.\\
+Au niveau IHM pur et concept lié, les gens ont tendance à penser que le support
+téléphone tout en étant pratique est moins adapté qu'une tablette graphique.
+Convaincre avec cette application peut être compliqué. Nous avons pu nous rendre
+compte par cette étude menée autour de parties et dans la façon qu'ont les
+joueurs d'utiliser leur fiche que la navigation entre différents niveaux d'une
+fiche doit être rapide et simple. De même, les éditions de certains composants
+de personnage comme son niveau de vie doivent être très rapide cette
+modification arrive souvent au cours d'une partie.\\
 
-Celà nous à permis de compléter les UserStories que nous avions déjà commencé à définir.\\
+Celà nous à permis de compléter les UserStories que nous avions déjà commencé à
+définir.\\
 
 \subsection{User Stories}
 
-Cette partie regroupe donc nos scénarios construit en partie en amon de la phase de communication, et complété après
-analyse des réactions clients.
+Cette partie regroupe donc nos scénarios construits en partie en amont de la
+phase de communication et complétés après analyse des réactions clients.
 
 \input{include/De}
 
@@ -120,133 +120,152 @@ analyse des réactions clients.
 
 \subsection{Définition}
 
-Cette étape de la méthode est la première étape visuelle, c'est à se moment là
-que on se sert des infos compilées des précédentes étapes pour pouvoir dessiner
-quelques chose qui aura un chance de plaire aux utilisateurs finaux.
-On se sert des indications utilisateurs visuel, de ce qui est possible et des
-users stories pour construire les interractions entre écran, enchainement.
-Pendant cette étape il est très important que sur les exquisses d'interfaces il
-n'y ait pas d'ambiguité possible, tout élément doit être nommé pertinement et
-correspondre à quelque chose qui à du sens. Le label "accès fiche'' est
-préférable au label "ponay''. 
+Cette étape de la méthode est la première étape visuelle. C'est à ce moment que
+l'on se sert des infos récupérées à l'aide des étapes précédentes afin de
+dessiner quelques écrans qui auront une chance de plaire aux utilisateurs
+finaux. On se sert des indications utilisateurs visuelles, de ce qui est
+possible et des users stories pour construire les interactions entre écran et
+les enchainements. Pendant cette étape, il est très important que sur les
+esquisses d'interfaces il n'y ait pas d'ambiguité possible. Tout élément doit
+être nommé pertinemment et correspondre à quelque chose qui à du sens.
 
 
-\subsubsection{Esquisses interface}
+\subsection{Esquisses interfaces}
 
-Suite aux analyse nous avons fais des esquisses d'interface,
-nous avons travaillé grâce aux outils googledocs et en particulier l'outil drawning.
-Ces interfaces de l'application et l'enchainement des écrans ont été définis à l'aide 
-de l'analyse des besoins utilisateurs et de leur façon d'utiliser une fiche, ainsi que l'intégration de
-toutes nos fonctions.\\
+Suite aux analyse, nous avons fait plusieurs esquisses d'interface. Pour
+cela, nous avons travaillé grâce aux outils GoogleDocs et en particulier l'outil
+Drawing. Ces interfaces de l'application et l'enchainement des écrans ont été
+définis à l'aide de l'analyse des besoins utilisateurs, de leur façon
+d'utiliser une fiche ainsi que l'intégration de toutes nos fonctions.\\
 
-Pour l'interface nous choisis très simplement dans un premier temps de 
-s'attarder uniquement sur l'aspect fonctionnel. L'aspect fonctionnel niveau ergonomie 
-était un réel travail compte tenu du nombre d'information à afficher et à rendre éditable, utilisable facilement.\\
+Pour l'interface, nous avons choisis dans un premier temps de s'attarder
+uniquement sur l'aspect fonctionnel. Cet aspect au niveau ergonomie
+était un réel travail compte tenu du nombre d'information à afficher et à rendre
+éditable facilement.\\
 
-En ce qui concerne le look and feel, il y a un fort souhait utilisateur de personnsalisation de celle-ci, 
-mais au départ le look and feel sera celui existant de base sous android. Le look and feel pouvant impacter
-la taille des éléments à afficher, ça sera une étape gérer dans une prochaine version de notre application.\\
+En ce qui concerne le look and feel, il y a un fort souhait utilisateur de
+personnalisation de celui-ci. Cependant, le look and feel de départ sera celui
+existant de base sous androïd. Le look and feel pouvant impacter
+la taille des éléments à afficher, cela sera une étape à gérer dans une
+prochaine version de notre application.\\
 
 \begin{figure}[h]
   	
-  		\includegraphics[height=14cm,width=15cm]{image/screen1.png}
-  		\caption{Ecran démarage/concept}
+\includegraphics[height=14cm,width=15cm]{image/screen1.png}
+  		\caption{Ecran démarrage/concept}
   		\label{screen1}
 \end{figure}
 
-Sur la capture \ref{screen1} on peut voir le concept général, avec le transfert sur un écran suivant
-son choix, pas de chose qui s'affiche en sur impression des premiers écrans.
+Sur la capture \ref{screen1} on peut voir le concept général, avec le transfert
+sur un écran suivant son choix, on ne souhaitait pas de surimpression des
+écrans.
 
 \begin{figure}[h]
   	
-  		\includegraphics[height=14cm,width=15cm]{image/screen2.png}
+\includegraphics[height=14cm,width=15cm]{image/screen2.png}
   		\caption{Enchainement logique des écrans}
   		\label{screen2}
 \end{figure}
 
-La capture \ref{screen2} permet de voir plus en détail la logique d'enchainement des écrans, 
-avec l'affichage des fonctionnalités clés, et le fait que l'on puisse rapidement basculé rapidement d'un écran à un autre.
-On le voit aussi la présence d'une partie jauge, les éléments d'une fiche qui évoluent à chaque instant du jeu, 
-élément pas toujours regroupé dans une fiche, qui là pour le coup se "trouvent" facilement. 
+La capture \ref{screen2} permet de voir plus en détail la logique d'enchainement
+des écrans, avec l'affichage des fonctionnalités clés. Il montre aussi le fait
+que l'on puisse basculer rapidement d'un écran à un autre. On voit aussi la
+présence d'une partie jauge pour les éléments d'une fiche qui évoluent à chaque
+instant du jeu. Ces éléments ne sont pas toujours regroupés dans une fiche et
+se trouvent facilement dans notre application.
 
 \begin{figure}[h]
   	
-  		\includegraphics[height=14cm,width=15cm]{image/screen3.png}
+\includegraphics[height=10cm,width=15cm]{image/screen3.png}
   		\caption{Gestion des fiches}
   		\label{screen3}
 \end{figure}
 
-La capture \ref{screen3} montre la gestion des fiches de personnage en fonction de l'univers (jeu en général), de 
-la campagne, nom donné à un ensemble de scénario généralement cohérent dans lesquels évolue des personnages, une histoire. 
-Ensuite une gestion joueur et non joueur pour un meilleur tri des informations, et affiner les critère de sélections.
+La capture \ref{screen3} montre la gestion des fiches de personnages en fonction
+de l'univers (jeu en général), de la campagne, nom donné à un ensemble de
+scénarios généralement cohérent dans lesquels évolue des personnages, une
+histoire. Ensuite, une gestion des personnages joueurs et non joueurs pour un
+meilleur tri des informations et un affinage des critères de sélections.
 
 \begin{figure}[h]
   	
-  		\includegraphics[height=14cm,width=15cm]{image/screen4.png}
+\includegraphics[height=10cm,width=12cm]{image/screen4.png}
   		\caption{Gestion des jets en jeu}
   		\label{screen4}
 \end{figure}
 
-La capture \ref{screen4} montre le choix du type du jet de dés, qui nous permet de gérer en partie
-les rêgles d'un jeu, et donc d'avoir des jets cohérents. Ensuite celui qui veut faire le jet
-choisis ses élements du jet.
+La capture \ref{screen4} montre le choix du type du jet de dés, qui nous permet
+de gérer en partie les règles d'un jeu et donc d'avoir des jets cohérents.
+Ensuite, le joueur qui veut faire un jet choisit ses élements du jet.
 
 \begin{figure}[h]
   	
-  		\includegraphics[height=14cm,width=15cm]{image/screen5.png}
+\includegraphics[height=12cm,width=15cm]{image/screen5.png}
   		\caption{Création de personnage}
   		\label{screen5}
 \end{figure}
 
-La capture \ref{screen5} nous montre la création de personnsage avec l'affichage, des différents 
-éléments de fiche à modifier à la création, l'écran ne suppose aucune gestion de rêgle de création 
-de personnage, et c'est le cas, l'application ne supporte pas le rêgle de création.
+La capture \ref{screen5} nous montre la création de personnsage avec
+l'affichage, des différents éléments de fiche à modifier à la création, l'écran
+ne suppose aucune gestion de rêgle de création de personnage, et c'est le cas,
+l'application ne supporte pas le rêgle de création.
 
-
+\clearpage
 \section{Lucid 4}
 
 \subsection{Définition}
 
-Cette étape de la méthode est une étape presque introspective, elle permet de
-revenir, sur les étapes précédentes par rapport au retour client sur le
-prototypage. Et par la même de pouvoir commencer à établir le plan de
-construction de l'application au niveau des fonctionnalités. Il s'agit de
-plannifier les taches de dévellopement. 
+Cette étape de la méthode LUCID est une étape presque introspective, elle permet
+de revenir sur les étapes précédentes par rapport au retour client sur le
+prototypage. Et elle permet de commencer à établir le plan de construction de
+l'application au niveau des fonctionnalités. Il s'agit de plannifier les tâches
+de développement.
 
-\subsubsection{Notre organisation}
+\subsection{Notre organisation}
 
-Pour cette étape de la méthode nous avons tous remis en parrallèle, les concepts initiaux 
-du produit, les réactions et analyse des utilisateurs et les exquisses. Nous avons pu faire remonter des
-remarques sur les première exquisses, ainsi que nous rendre compte de ce qui était possible concrétement
+Pour cette étape de la méthode, nous avons mis en parrallèle les
+concepts initiaux du produit, les réactions et analyses des utilisateurs et les
+esquisses. Nous avons pu faire remonter des remarques sur les premières
+esquisses ainsi que nous rendre compte de ce qui était concrétement faisable
 avec la plateforme android.
 
-Cette étape à permis d'affiner clairement les fonctionnalités et de commencer à appréhender la façon dont elles 
-allaient éxister concrétement sous une plateforme mobile comme android. Remettre à plat tout celà
-nous a permis de dégager les grosses de dévellopements que nous avions à faire.
+Cette étape à permis d'affiner clairement les fonctionnalités et de commencer à
+appréhender la façon dont elles allaient exister concrétement sous une
+plateforme mobile. Remettre à plat tout celà nous a permis de
+dégager les étapes de développements que nous avions à faire.
 
-Les travaux de définition et de modélisation des éléments liés au jeu de rôle comme les éléments commun à toutes les fiches,
-la conception de modèle suffisament large pour assurer la prise en charge du plus de jeu possible, cette tâche à été commune à tous
-les membres de l'équipe. Nous y avons tous participé puisque nous avions tous des expériences différentes et qu'elles étaient relativement complémentaire.
+Les travaux de définition et de modélisation des éléments liés au jeu de rôle a
+été commune à tous les membres de l'équipe. La conception de modèle suffisamment
+large pour assurer la prise en charge du plus de jeux possibles a été important.
+Nous y avons tous participé puisque nous avions tous des expériences différentes
+et qu'elles étaient relativement complémentaires.
 
-Nous avons défini aussi l'architecture globale de l'application, architecture de type composant, avec des composants comme:
+Nous avons défini aussi l'architecture globale de l'application, architecture de
+type composant, avec des composants comme:
 \begin{itemize}
   \item Composant Dé
   \item Composant gestion des fiches en xml
   \item Composant connectivité(support bluetooh/wifi)
 \end{itemize}
 
-Ces composants sencé être élémentaire devant permettre la construction de l'application par dessus, avec l'application du pattern 
-adapter, pour permettre un éventuel réutilisation de ces composants, et surtout une relecture de code plus aisée.
+Ces composants censés être élémentaires doivent permettre la construction de
+l'application. Nous avons appliqué le pattern adapter pour permettre
+une éventuelle réutilisation de ces composants et surtout une relecture de code
+plus aisée.
 
-C'est pendant cette étape que nous avons choisis de ne pas implémenter la partie connectivité de l'application,
-la méconnaissance du support android nous ralentissant déja pour les fonctionnalités plus simple.
+C'est pendant cette étape que nous avons choisi de ne pas implémenter la partie
+connectivité de l'application. La méconnaissance du support androïd nous
+ralentissant déjà pour les fonctionnalités plus simples.
 
-Durant cette étape nous avons tous travailler à enrichir nos connaissances sur android, en mettant en place 
-des mini tutos et en recoupant les informations que nous avons receuilli sur la plateforme.
+Nous avons tous travaillé à enrichir nos connaissances sur androïd, en mettant
+en place des petits tutoriels internes et en recoupant les informations
+receuillies sur la plateforme.
 
-De plus pour travailler en colaboration nous avons choisi de mettre en place un gestionnaire de version sous google code qui nous
-as accompagné tout du long du devellopement. De plus nous avions des réunions régulière sur Skype pour coordonnéer nos efforts 
-de devellomepent. Et nous avions en paralèlle googledocs pour certain document comme les esquisses.
+De plus, pour travailler en collaboration nous avons choisi de mettre en place
+un gestionnaire de version sous Google Code qui nous a accompagné tout au long
+du developpement. De plus, nous avions des réunions régulières sur Skype pour
+coordonnéer nos efforts de developpement. Enfin, nous utilisions en paralèlle
+googledocs pour certains documents comme les esquisses.
 
 \section{Lucid 5}
 
@@ -255,17 +274,19 @@ de devellomepent. Et nous avions en paralèlle googledocs pour certain document 
 Cette étape de la méthode est l'implémentation de l'application. C'est donc dans
 cette étape que l'interface est écrite en parrallèle avec le code effectif des
 fonctions. C'est aussi le moment où l'on commence à écrire les documentations et
-quelques structures communautaire autour de l'outil. C'est vraiment à ce moment
-là que l'on rentre dans un cycle logiciel avec du concret informatiquement
+quelques structures communautaires autour de l'application. C'est vraiment à ce
+moment que l'on rentre dans un cycle logiciel avec du concret informatiquement
 parlant.
 
 \subsection{L'implémentation}
 
-Pour l'implémentation, il y a plusieurs phases, d'abord la définition et l'écriture des composants
-en java sur lesquels l'application devaient s'appuyer. Ce fut la première étape de devellopement.
-Cette première étape n'a pas forcément posé de problème au cours du projet.
+Pour l'implémentation, il y a eu plusieurs phases mis en place. Tout d'abord, la
+définition et l'écriture des composants en java sur lesquels l'application
+devaient s'appuyer. Ce fut la première étape de developpement. Cette première
+étape n'a pas forcément posé de problème au cours du projet.
 
-Ensuite le dévellopement s'est continué en s'appuyant sur ces premiers module de base.
+Ensuite le développement s'est continué en s'appuyant sur ces premiers modules
+de base.
 
 
 \subsubsection{Modules de base}
@@ -274,12 +295,12 @@ Ces modules sont utilisés par l'interface graphique. Ils fournissent des
 fonctionnalités propres au coeur de l'application.
 
 \begin{itemize}
-  \item DiceModule : il fournit différents méthodes permettant d'effectuer
+  \item DiceModule : il fournit différentes méthodes permettant d'effectuer
   plusieurs types de jet de dés.
-  \item FicheModule : il permet d'enregistrer/charger une fiche de personnage, à
-  partir d'un modèle de fiche, ou bien à partir d'une fiche même. Cela comprend
+  \item FicheModule : il permet d'enregistrer/charger une fiche de personnage à
+  partir d'un modèle de fiche ou bien à partir d'une fiche même. Cela comprend
   aussi le parseur xml nécessaire à ces opérations.
-  \item SystemModule : idem que FicheModule, mais pour un système de règle.
+  \item SystemModule : idem que FicheModule mais pour un système de règles.
 \end{itemize}
 
 \subsubsection{IHM Android}
@@ -296,27 +317,27 @@ les types d'écran utilisés et non chacun d'eux afin d'être plus synthétique.
 \paragraph{Interface avec listeView}
 ~\\
 ~\\
-Nous avons utilisé les listView dans des écran de séléction. Celui-ci est rempli
+Nous avons utilisé les listView dans des écran de sélection. Celui-ci est rempli
 dynamiquement avec du texte provenant du parsing de fiche ou d'un système de
 règles. Chaque élément est cliquable afin d'avancer dans le processus
 d'application. Par exemple, la sélection d'un des éléments d'un jet de dé.\\
 
 De plus, nous avons utilisé cet outil graphique afin de modifier des valeurs
 associées par exemple à des compétences. Nous avons donc personnalisé chaque
-ligne de la listView à l'aide d'un Adapter. Cette ListView ne comprend donc plus
-uniquement du texte mais des boutons ou encore des EditText.
+ligne de la listView à l'aide d'un Adapter. Cette ListView ne comprend donc
+plus uniquement du texte mais des boutons ou encore des EditText.
 
 \paragraph{Interface avec Spinner}
 ~\\
 ~\\
-L'utilisation des Spinner a été nécessaire pour faciliter les choix de
-l'utilisateur. Ces Spinners permettent une séléction filtrées des univers et des
-campagnes. Par exemple, lorsque l'utilisateur veut voir une fiche, ilsélectionne dans un premier temps l'univers. Puis, il sélectionnera lesdifférentes campagnes disponible par rapport à cet univers et enfin les fichesdisponibles pour cet univers et cette campagne.
+L'utilisation des Spinners a été nécessaire pour faciliter les choix de
+l'utilisateur. Ces Spinners permettent une sélection filtrées des univers et des
+campagnes. Par exemple, lorsque l'utilisateur veut voir une fiche, ilsélectionne dans un premier temps l'univers. Puis, il sélectionnera lesdifférentes campagnes disponibles par rapport à cet univers et enfin les fichesdisponibles pour cet univers et cette campagne.
 
 \paragraph{Interface du jet de dé}
 ~\\
 ~\\
-Ce type d'interface permet d'effectuer un jet de dé utilisant différents outilsgraphiques androïd. Soit en le parametrant totalement, soit après avoirsélectionné les différents éléments du jet.
+Ce type d'interface permet d'effectuer un jet de dé utilisant différents outilsgraphiques androïd. Soit en le paramétrant totalement, soit après avoirsélectionné les différents éléments du jet.
 
 \section{Lucid 6}
 
@@ -324,66 +345,78 @@ Ce type d'interface permet d'effectuer un jet de dé utilisant différents outil
 
 Cette étape de la méthode est l'évaluation externe du projet. Elle s'accompagne
 généralement de la diffusion d'une première version public du produit qui
-normalement est proche de la version finale tant par l'aspect que par ses
+normalement, est proche de la version finale tant par l'aspect que par ses
 fonctionnalités.
-Cette étape permet de lever les dernières remarques du public visé, et de
-corriger les bugs induit par la différence d'utilisation des utilisateurs finaux
-par rapport à l'utilisation des devellopeurs.
+Cette étape permet de lever les dernières remarques du public visé et de
+corriger les bugs induits par la différence d'utilisation de chaque personne par
+rapport à l'utilisation des developpeurs.
 
 
 \subsection{Plan d'évalution}
 
-Pour l'évalutation de notre application nous avons pensé à plusieurs niveau d'écoute
-des utilisateurs. Nous proposons une application qui se veut pour un large panel 
-de joueurs et de MJ avec des attentes différentes.
+Pour l'évalutation de notre application, nous avons pensé à plusieurs niveaux
+d'écoute des utilisateurs. Nous proposons une application qui se veut pour un
+large panel de joueurs et de MJ avec des attentes différentes.
 
-Nous avons pensé à trois niveau d'évaluation par les utilisateurs, trois type de niveau de communication
- avec la communauté. Un pour les MJ, utilisateur amené à faire évoluer les modèles de fiche modèle de système
-et les contraintes d'affichage pour information multiple.
+Nous avons pensé à trois niveaux d'évaluation par les utilisateurs ou trois
+types de niveaux de communication avec la communauté. Un pour les MJ,
+utilisateur amené à faire évoluer les modèles de fiches et les contraintes
+d'affichage pour information multiple.
 
-Un autre pour les "simples" utilisateur, client/consommateur voulant s'en servir pour se séparer
-du support physique pour plus de facilité. La synchro de fiche, édition, jeu, jet de dés etc.
-Et donc pour ce "niveau" l'écoute de joueur avancé ayant dépassé la phase d'apprentissage 
-du média, pour une ergonomie optimal pour l'utilisation de l'application. 
+Un autre pour les "simples" utilisateur, client/consommateur voulant s'en servir
+pour se séparer du support physique pour plus de facilité. La synchronisation de
+fiche, édition, jeu, jets de dés etc. De plus, pour ce "niveau", l'écoute de
+joueurs avancés ayant dépassés la phase d'apprentissage du média sera
+importante pour une ergonomie optimale de l'application.
 
-Ensuite le dernier type correspondrait aux retour des utilisateurs ne maîtrisant que peu le support
-android. Donc presque la cible privilégié de cette approche sur le retour, le but étant d'être particulièrement
-à l'écioute de ces utilisateurs, afin qu'ils prennent bien en main l'application, mettre en place un apprentissage
-efficace pour faire d'eux des utilisateurs "simple" 
+Enfin, le dernier type correspondrait aux retour des utilisateurs ne maîtrisant
+que peu le support androïd. Ceux-ci représentent une cible privilégié sur le
+retour, le but étant d'être particulièrement à l'écoute de ces utilisateurs. En
+effet, pour leur permettre de bien prendre en main l'application, nous devons
+mettre en place un apprentissage efficace pour faire d'eux des utilisateurs
+"simple".
 
-Le but final est un nivellement du niveau des utilisateurs vers le niveau simple, ou tout du moins 
-qu'a terme il n'y ait que deux niveaux d'utilisateur, que très vite tout utilisateur novice devienne rapidement
-un utilisateur simple pour qu'il puisse profiter pleinement de l'application, que celà ne le ralentisse pas lors 
-des parties, que ce ne soit pas un handicap.
+Le but final est un nivellement du niveau des utilisateurs vers le niveau
+simple, ou tout du moins qu'à terme il n'y ait que deux niveaux d'utilisateur.
+C'est-à-dire que tout utilisateur novice devienne rapidement un utilisateur
+simple pour qu'il puisse profiter pleinement de l'application. En effet, si
+l'utilisation de l'application le ralentit lors d'une partie cela irait à
+l'encontre des objectifs de l'application.
 
-Un des avantages à être sur une plateforme tactile c'est que l'aprentissage est assez rapide et simple
-pour peu que l'application ait bien été construite, ce que nous espérons dans notre cas.
+Un des avantages à être sur une plateforme tactile c'est que l'aprentissage est
+assez rapide et simple pour peu que l'application ait bien été construite, ce
+que nous espérons dans notre cas.
 
-
+\clearpage
 \section{Conclusion}
 
-Lucid est une méthode résolument ethno centré, c'est un fait indéniable, nous l'avons constaté
-du fait de la proximité nécessaire avec les futurs utilisateur. C'est un avantage certain pour 
-l'acceptation finale du produit par l'utilisateur. 
+Lucid est une méthode résolument ethno-centré, c'est un fait indéniable et nous
+l'avons constaté du fait de la proximité nécessaire avec les futurs
+utilisateurs. C'est un avantage certain pour l'acceptation finale du produit par
+l'utilisateur.
 
-Le soucis serait que cette méthode par certain aspect, entre en conflit avec les méthodes
-d'ingénièrie logiciel classic, bien qu'il y ait des similitudes, il y a quelques incompatiblités.
+Le reproche que l'on pourrait faire serait que cette méthode par certains
+aspects, entre en conflit avec les méthodes d'ingénierie logicielle classique. 
+Bien qu'il y ait des similitudes, il y a quelques incompatiblités entre ces
+deux méthodes.
 
-On gagne pourtant à l'utiliser, on a  plus de chance que le produit soit accepté et
-conforme à ce que l'utilisateur final va vouloir, mais le temps nécessaire plus
-long que un cycle "classique'' implique potentiellement plus d'argent à investir
-pour le client, et généralement ça ne leur plait pa ça. L'idéal serait une méthode de devellopement 
-intégrant l'ethno centrisme de lucid avec la performance de d'autres méthodes.
+On gagne pourtant à utiliser LUCID, on a  plus de chance que le produit soit
+accepté et conforme à ce que l'utilisateur final va vouloir. Cependant, le temps
+nécessaire plus long qu'un cycle "classique" implique potentiellement plus
+d'argent à investir pour le client. L'idéal serait une méthode de developpement
+intégrant l'ethno-centrisme de LUCID avec la performance de d'autres méthodes.
 
-Un autre soucis que l'on peut remarquer avec lucid c'est l'aspect communication avec le client,
-allant de pair avec l'analyse ses besoins et la transcription en élément informatique concret et utilisable.
-Cet aspect social, la communication des dévellopeurs avec les client généralement compliqué, ici la méthode 
-est basé sur cet aspect. Or en fait actuellement il ne faut pas se leurer, le marché des informaticiens
-est saturé par des gens associaux qui ont naturellement des problèmes de communication.
+Un autre soucis que l'on peut remarquer avec LUCID c'est l'aspect communication
+avec le client, allant de paire avec l'analyse de ses besoins et la
+transcription en élément informatique concret et utilisable. Cet aspect social,
+la communication des développeurs avec les clients est généralement compliquée.
+Or, actuellement, les clients ne prennent pas souvent le temps de parler avec
+l'équipe de développement et le marché des informaticiens est saturé par des
+gens associaux qui ont naturellement des problèmes de communication!
 
-Conclusion cette méthode est très intéressante, mais peut être trop utopiste compte tenu 
-de la situation actuelle.
+En conclusion, cette méthode est très intéressante mais peut-être trop utopiste
+compte tenu de la situation actuelle.
 
   
   
-\end{document}
+\end{document}
