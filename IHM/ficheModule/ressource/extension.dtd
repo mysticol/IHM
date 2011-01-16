@@ -4,7 +4,7 @@
 <!ELEMENT fiche (jeu, personnage ,caracteristiquesPrincipales ,caracteristiquesSecondaire , competences, vie? )>
 <!ELEMENT jeu (univers, system?)>
 <!ELEMENT univers (#PCDATA)>
-<!ELEMENT system(#PCDATA)>
+<!ELEMENT system (#PCDATA)>
 <!ELEMENT personnage (info*)>
 <!ELEMENT info (#PCDATA)>
 <!ELEMENT caracteristique (nom,maximum, jauge?, consommable?)>
