@@ -6,8 +6,8 @@ import java.util.List;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -17,10 +17,10 @@ public class CreationNumericAdapter extends BaseAdapter {
 	
 	private List<Numeric> listNumeric;
 	
-	//Le contexte dans lequel est présent notre adapter
+	//Le contexte dans lequel est prï¿½sent notre adapter
 	private Context mContext;
 	    	
-	//Un mécanisme pour gérer l'affichage graphique depuis un layout XML
+	//Un mï¿½canisme pour gï¿½rer l'affichage graphique depuis un layout XML
 	private LayoutInflater mInflater;
 	
 	// Constructeur
@@ -49,15 +49,15 @@ public class CreationNumericAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LinearLayout layoutItem;
 		
-		//(1) : Réutilisation des layouts
+		//(1) : Rï¿½utilisation des layouts
 		if (convertView == null) {
-			//Initialisation de notre item à partir du  layout XML "personne_layout.xml"
+			//Initialisation de notre item ï¿½ partir du  layout XML "personne_layout.xml"
 		    layoutItem = (LinearLayout) mInflater.inflate(R.layout.numeric_layout, parent, false);
 		} else {
 		  	layoutItem = (LinearLayout) convertView;
 		}
 		  
-		//(2) : Récupération de la valeur du numeric de notre layout      
+		//(2) : Rï¿½cupï¿½ration de la valeur du numeric de notre layout      
 		TextView valeurNumeric = (TextView) layoutItem.findViewById(R.id.ValeurNumeric);
 		TextView nomNumeric = (TextView) layoutItem.findViewById(R.id.NomNumeric);
 		        
@@ -79,10 +79,10 @@ public class CreationNumericAdapter extends BaseAdapter {
 			
 			@Override
 			public void onClick(View v) {
-				//Lorsque l'on clique sur le nom, on récupère la position de la "Personne"
+				//Lorsque l'on clique sur le nom, on rï¿½cupï¿½re la position de la "Personne"
 				Integer position = (Integer)v.getTag();
 						
-				//On prévient les listeners qu'il y a eu un clic sur le TextView "TV_Nom".
+				//On prï¿½vient les listeners qu'il y a eu un clic sur le TextView "TV_Nom".
 				sendListener(listNumeric.get(position), position, true);
 				v.invalidate();
 			}
@@ -92,17 +92,17 @@ public class CreationNumericAdapter extends BaseAdapter {
 			
 			@Override
 			public void onClick(View v) {
-				//Lorsque l'on clique sur le nom, on récupère la position de la "Personne"
+				//Lorsque l'on clique sur le nom, on rï¿½cupï¿½re la position de la "Personne"
 				Integer position = (Integer)v.getTag();
 						
-				//On prévient les listeners qu'il y a eu un clic sur le TextView "TV_Nom".
+				//On prï¿½vient les listeners qu'il y a eu un clic sur le TextView "TV_Nom".
 				sendListener(listNumeric.get(position), position, false);
 				v.invalidate();
 			}
 		});		
 		
 		
-		//On retourne l'item créé.
+		//On retourne l'item crï¿½ï¿½.
 		return layoutItem;
 	}
 	

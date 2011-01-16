@@ -1,27 +1,9 @@
 package com.jBzh;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
-
-import bean.Caracteristique;
-import bean.Categorie;
-import bean.Competence;
-import bean.Equipement;
-import bean.Pouvoir;
-import bean.vie.Classic;
-import bean.Fiche;
-
-import com.jBzh.CreationNumericAdapter.CreationNumericAdapterListener;
-import com.jBzh.CreationNumericTextAdapter.CreationNumericTextAdapterListener;
-import com.jBzh.CreationNumericTextAdapter2.CreationNumericTextAdapterListener2;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -31,6 +13,15 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import bean.Competence;
+import bean.Equipement;
+import bean.Fiche;
+import bean.Pouvoir;
+import bean.vie.Classic;
+
+import com.jBzh.CreationNumericAdapter.CreationNumericAdapterListener;
+import com.jBzh.CreationNumericTextAdapter.CreationNumericTextAdapterListener;
+import com.jBzh.CreationNumericTextAdapter2.CreationNumericTextAdapterListener2;
 
 public class RemplissageCreation extends Activity implements CreationNumericAdapterListener,CreationNumericTextAdapterListener, CreationNumericTextAdapterListener2 {
 	
