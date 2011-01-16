@@ -27,6 +27,8 @@ public class ChoixJoueur extends Activity{
     	
     	final ArrayList<String> univers = new ArrayList<String>();
     	final ArrayList<String> campagnes = new ArrayList<String>();
+    	final ArrayList<String> persos = new ArrayList<String>();
+    	
     	
     	File universPath = new File(getFilesDir().getAbsolutePath() + "/Fiches");
     	
@@ -55,7 +57,7 @@ public class ChoixJoueur extends Activity{
 				File path = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+UniversSpinner.getSelectedItem().toString());
 				for(File f : path.listFiles()){
 	        		campagnes.add(f.getName());
-	        }
+				}
 			}
 
 			@Override
@@ -65,10 +67,42 @@ public class ChoixJoueur extends Activity{
 			}
 		});
         
-        Spinner campagneSpinner = (Spinner) findViewById(R.id.CampagneSpinner);
+        final Spinner campagneSpinner = (Spinner) findViewById(R.id.CampagneSpinner);
         ArrayAdapter<String> adapterC = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, campagnes);
         adapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         campagneSpinner.setAdapter(adapterC);
+        
+        String campagneChoisie = campagneSpinner.getSelectedItem().toString();
+    	//R�cup�ration des persos existantes
+        File persoPath = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+universChoisi+"/"+campagneChoisie+"/PJ/");
+        for(File f : persoPath.listFiles()){
+        		persos.add(f.getName());
+        }
+        
+        campagneSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {
+				persos.clear();
+				File path = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+UniversSpinner.getSelectedItem().toString()+"/"+campagneSpinner.getSelectedItem().toString()+"/PJ/");
+				for(File f : path.listFiles()){
+	        		persos.add(f.getName());
+				}
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+        	
+		});
+        
+        final Spinner persoSpinner = (Spinner) findViewById(R.id.persoSpinner);
+        ArrayAdapter<String> adapterP = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, persos);
+        adapterP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        campagneSpinner.setAdapter(adapterP);
 
         final Button buttonRetour = (Button) findViewById(R.id.retour);
         buttonRetour.setOnClickListener(new View.OnClickListener() {
