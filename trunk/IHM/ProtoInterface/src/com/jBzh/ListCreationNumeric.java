@@ -1,16 +1,9 @@
 package com.jBzh;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 import parseur.EcriteurFiche;
 import parseur.ParseurModele;
-
-import bean.Fiche;
-import bean.Modele;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+import bean.Fiche;
 
 public class ListCreationNumeric extends Activity {
 	

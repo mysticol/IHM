@@ -4,22 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import bean.Competence;
-import bean.Fiche;
-import bean.Pouvoir;
-import bean.vie.*;
-import android.app.Activity;
 import android.app.ExpandableListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
-import android.widget.ListView;
 import android.widget.SimpleExpandableListAdapter;
+import bean.Competence;
+import bean.Fiche;
 
 public class ResumeCreation extends ExpandableListActivity {
 	

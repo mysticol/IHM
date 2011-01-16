@@ -2,9 +2,6 @@ package com.jBzh;
 
 import java.util.LinkedList;
 
-import bean.Competence;
-import bean.Fiche;
-import bean.Systeme;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +12,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+import bean.Competence;
+import bean.Fiche;
+import bean.Systeme;
 
 public class SelectElemJet extends Activity {
 	

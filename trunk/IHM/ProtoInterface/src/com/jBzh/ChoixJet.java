@@ -1,6 +1,5 @@
 package com.jBzh;
 
-import bean.Systeme;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import bean.Systeme;
 
 public class ChoixJet extends Activity {
 
