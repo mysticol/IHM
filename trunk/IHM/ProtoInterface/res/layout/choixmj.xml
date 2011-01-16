@@ -29,21 +29,7 @@
         android:layout_height="wrap_content"
         android:prompt="@string/campagne"
         android:layout_below="@id/campagne"/>
-        
-    <TextView
-        android:id="@+id/textperso"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Personnage :"
-        android:layout_below="@id/CampagneSpinner"
-        android:layout_marginTop = "10px"/>
-        
-	<Spinner 
-        android:id="@+id/persoSpinner"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textperso"/>
-        
+               
     <Button
         android:id="@+id/valider"
         android:layout_width="wrap_content"
