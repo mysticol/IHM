@@ -73,7 +73,7 @@ public class ChoixJoueur extends Activity{
         campagneSpinner.setAdapter(adapterC);
         
         String campagneChoisie = campagneSpinner.getSelectedItem().toString();
-    	//R�cup�ration des persos existantes
+    	//R�cup�ration des persos existants
         File persoPath = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+universChoisi+"/"+campagneChoisie+"/PJ/");
         for(File f : persoPath.listFiles()){
         		persos.add(f.getName());
@@ -102,7 +102,7 @@ public class ChoixJoueur extends Activity{
         final Spinner persoSpinner = (Spinner) findViewById(R.id.persoSpinner);
         ArrayAdapter<String> adapterP = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, persos);
         adapterP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        campagneSpinner.setAdapter(adapterP);
+        persoSpinner.setAdapter(adapterP);
 
         final Button buttonRetour = (Button) findViewById(R.id.retour);
         buttonRetour.setOnClickListener(new View.OnClickListener() {
