@@ -25,6 +25,7 @@ public class ChoixEdition extends Activity{
 	private String typePerso="PJ";
 	private Fiche fiche;
 	private ParseurFiche pFiche = new ParseurFiche();
+	private ChoixEdition instance;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class ChoixEdition extends Activity{
 		super.onCreate(savedInstanceState);
 				
 		//on lui associe le layout afficahgequestionactivity.xml
-    	setContentView(R.layout.choixjoueur);
+    	setContentView(R.layout.choixedition);
 
     	final Spinner UniversSpinner = (Spinner) findViewById(R.id.universspinner);
     	
@@ -40,6 +41,7 @@ public class ChoixEdition extends Activity{
     	final ArrayList<String> campagnes = new ArrayList<String>();
     	final ArrayList<String> persos = new ArrayList<String>();
     	
+    	this.instance = this;
     	
     	File universPath = new File(getFilesDir().getAbsolutePath() + "/Fiches");
     	
@@ -88,6 +90,18 @@ public class ChoixEdition extends Activity{
             public void onClick(View v) {
                 RadioButton rb = (RadioButton) v;
                 typePerso = rb.getText().toString();
+                
+				persos.clear();
+				File path = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+UniversSpinner.getSelectedItem().toString()+"/"+campagneSpinner.getSelectedItem().toString()+"/"+getTypePerso()+"/");
+				for(File f : path.listFiles()){
+	        		persos.add(f.getName().substring(0, f.getName().length()-4));
+				}
+				
+		        final Spinner persoSpinner = (Spinner) findViewById(R.id.persoSpinner);
+		        ArrayAdapter<String> adapterP = new ArrayAdapter<String>(instance, android.R.layout.simple_spinner_item, persos);
+		        adapterP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		        persoSpinner.setAdapter(adapterP);
+                
             }
         };
         
@@ -115,6 +129,11 @@ public class ChoixEdition extends Activity{
 				for(File f : path.listFiles()){
 	        		persos.add(f.getName().substring(0, f.getName().length()-4));
 				}
+				
+		        final Spinner persoSpinner = (Spinner) findViewById(R.id.persoSpinner);
+		        ArrayAdapter<String> adapterP = new ArrayAdapter<String>(instance, android.R.layout.simple_spinner_item, persos);
+		        adapterP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		        persoSpinner.setAdapter(adapterP);
 				
 			}
 

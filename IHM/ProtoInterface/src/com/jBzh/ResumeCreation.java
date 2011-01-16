@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import bean.Competence;
+import bean.Equipement;
+import bean.Fiche;
+import bean.Pouvoir;
+import bean.vie.*;
+import android.app.Activity;
 import android.app.ExpandableListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -85,21 +91,14 @@ public class ResumeCreation extends ExpandableListActivity {
 		  return result;
 	    }
 
-	/**
-	  * Creates the child list out of the shades[] array according to the
-	  * structure required by SimpleExpandableListAdapter. The resulting List
-	  * contains one list for each group. Each such second-level group contains
-	  * Maps. Each such Map contains two keys: "shadeName" is the name of the
-	  * shade and "rgb" is the RGB value for the shade.
-	  */
 	  private List createChildList() {
 		
 		ArrayList<ArrayList<HashMap<String,String>>> result = new ArrayList<ArrayList<HashMap<String,String>>>();
 		ArrayList<HashMap<String,String>> secList = new ArrayList<HashMap<String,String>>();
 		
 		//Infos Perso
-		System.out.println(fiche.getNom());
-		System.out.println(fiche.getInfos().entrySet().toString());
+		//System.out.println(fiche.getNom());
+		//System.out.println(fiche.getInfos().entrySet().toString());
 		for(String c : fiche.getInfos().keySet()){
 			System.out.println(c);
 			System.out.println(fiche.getInfos().get(c));
@@ -141,7 +140,7 @@ public class ResumeCreation extends ExpandableListActivity {
 		  }
 		result.add( secList4 );
 		
-		/*ArrayList<HashMap<String,String>> secList5 = new ArrayList<HashMap<String,String>>();
+		ArrayList<HashMap<String,String>> secList5 = new ArrayList<HashMap<String,String>>();
 		//Vie
 			HashMap<String,String> child = new HashMap<String,String>();
 			child.put( "nom", "Vie" );
@@ -158,7 +157,18 @@ public class ResumeCreation extends ExpandableListActivity {
 			child2.put( "valeur", p.getDescription());
 			secList6.add( child2 );
 		}			
-		result.add( secList6 );*/
+		result.add( secList6 );
+		
+		ArrayList<HashMap<String,String>> secList7 = new ArrayList<HashMap<String,String>>();
+		//Equipements
+		for(Equipement e : fiche.getEquipements()){
+			HashMap<String,String> child2 = new HashMap<String,String>();
+			child2.put( "nom", e.getNom() );
+			child2.put( "valeur", e.getDescription());
+			secList7.add( child2 );
+		}			
+		result.add( secList7 );		
+		
 		
 		return result;
 	  }

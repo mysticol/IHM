@@ -56,9 +56,9 @@ public class ProtoInterface extends Activity {
     	dirTmp.mkdir();
     	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/2ndCampagne");
     	dirTmp.mkdir();
-    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/2ndCampagne/Pjs");
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/2ndCampagne/PJ");
     	dirTmp.mkdir();
-    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/2ndCampagne/Pnjs");
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/2ndCampagne/PNJ");
     	dirTmp.mkdir();
     	// Dossiers systeme
     	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Modeles");
@@ -73,6 +73,28 @@ public class ProtoInterface extends Activity {
     	dirTmp.mkdir();    	
     	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Systeme/Regles/L5R");
     	dirTmp.mkdir();      	
+    	
+    	/* Suppression des dossiers incorrect */
+/*    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/2ndCampagne/Pjs");
+    	dirTmp.delete();
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/2ndCampagne/Pnjs");
+    	dirTmp.delete();    	
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/null/PJ");
+    	dirTmp.delete();    	
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/null/PNJ");
+    	dirTmp.delete();
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/null");
+    	dirTmp.delete();
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/PJ/.xml");
+    	dirTmp.delete();    	
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/PJ");
+    	System.out.println(dirTmp.listFiles().length);
+    	for(File f : dirTmp.listFiles()){
+    		System.out.println(f.getName());
+    	}   	
+    	dirTmp.delete();    	
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/PNJ");
+    	dirTmp.delete();*/  	
     	
         
         final Button buttonMJ = (Button) findViewById(R.id.MJ);
@@ -130,6 +152,25 @@ public class ProtoInterface extends Activity {
 
             }
         });        
+
+        final Button buttonEdition = (Button) findViewById(R.id.Edition);
+        buttonEdition.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	
+            	//On cr�� un objet Bundle, c'est ce qui va nous permetre d'envoyer des donn�es � l'autre Activity
+    			Bundle objetbunble = new Bundle();
+     
+    			//On cr�� l'Intent qui va nous permettre d'afficher l'autre Activity
+    			Intent intent = new Intent(ProtoInterface.this, ChoixEdition.class);
+     
+    			//On affecte � l'Intent le Bundle que l'on a cr��
+    			intent.putExtras(objetbunble);
+     
+    			//On d�marre l'autre Activity
+    			startActivityForResult(intent, CODE_DE_MON_ACTIVITE);
+
+            }
+        });   
         
         final Button buttonTest = (Button) findViewById(R.id.Test);
         buttonTest.setOnClickListener(new View.OnClickListener() {
