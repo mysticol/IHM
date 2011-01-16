@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    >
+    <TextView
+        android:id="@+id/univers"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Univers :"/>
+        
+	<Spinner 
+        android:id="@+id/universspinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/univers"
+        android:layout_below="@id/univers"/>
+    
+    <TextView
+        android:id="@+id/campagne"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Campagne :"
+        android:layout_below="@id/universspinner"/>
+        
+	<Spinner 
+        android:id="@+id/CampagneSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/campagne"
+        android:layout_below="@id/campagne"/>
+        
+        
+    <RadioGroup
+      android:id="@+id/radioPerso"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_below="@+id/CampagneSpinner">
+      <RadioButton android:id="@+id/pj"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="PJ" />
+      <RadioButton android:id="@+id/pnj"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="PNJ" />
+    </RadioGroup>
+        
+    <TextView
+        android:id="@+id/textperso"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Personnage :"
+        android:layout_below="@id/radioPerso"
+        android:layout_marginTop = "10px"/>
+        
+	<Spinner 
+        android:id="@+id/persoSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textperso"/>    
+        
+        
+    <Button
+        android:id="@+id/valider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/persoSpinner"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dip"
+        android:text="Valider" />
+        
+    <Button
+    	android:id="@+id/retour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/valider"
+        android:layout_alignTop="@id/valider"
+        android:text="Retour" />
+        
+</RelativeLayout>
