@@ -45,7 +45,9 @@ public class test {
 		f.setCaracteristiquesPrincipales(caracP);
 			
 		HashMap<String, Caracteristique> caracS = new HashMap<String, Caracteristique>();
-			caracS.put("volonte",new Caracteristique("volonte",3));
+			Caracteristique c = new Caracteristique("volonte",3);
+			c.setJauge(true);
+			caracS.put("volonte",c);
 			caracS.put("courage",new Caracteristique("courage",4));
 			caracS.put("voie",new Caracteristique("voie",4));
 		f.setCaracteristiquesSecondaire(caracS);

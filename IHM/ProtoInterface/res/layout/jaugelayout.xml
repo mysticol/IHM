@@ -21,22 +21,32 @@
 		android:layout_toLeftOf="@id/Slash"
 		android:layout_centerInParent="true"/>
 		
+		
+		
   	<TextView android:text="YYY" android:id="@+id/MaxJauge"
 		android:layout_width="wrap_content" 
 		android:layout_height="wrap_content"
 		android:layout_toRightOf="@id/Slash"
 		android:layout_centerInParent="true"/>
   		
-	<Button
-        android:id="@+id/ChangeJauge"
+  	<Button
+        android:id="@+id/JaugePlus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:text="OK" />
- 
- 	<EditText android:text="0" android:id="@+id/ValChangeJauge"
+        android:text="+" />
+  		 
+ 	<EditText android:text="1" android:id="@+id/ValChangeJauge"
   		android:layout_width="wrap_content" 
 		android:layout_height="wrap_content"
-		android:layout_toLeftOf="@id/ChangeJauge"/>
+		android:layout_toLeftOf="@id/JaugePlus"/>
+		
+	<Button
+        android:id="@+id/JaugeMoins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/ValChangeJauge"
+        android:text="-" />
+	
 
 </RelativeLayout>

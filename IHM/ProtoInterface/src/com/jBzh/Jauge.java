@@ -1,24 +1,41 @@
 package com.jBzh;
 
+import java.util.ArrayList;
+
+import com.jBzh.CreationJaugeAdapter.CreationJaugeAdapterListener;
+
+import bean.Caracteristique;
 import bean.Fiche;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 
-public class Jauge extends Activity {
+public class Jauge extends Activity implements CreationJaugeAdapterListener {
 
+	ArrayList<Caracteristique> listN = new ArrayList<Caracteristique>();
+	private CreationJaugeAdapter adapter;	
+	private Fiche fiche;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	    
+		
 	    setContentView(R.layout.jaugemodifier);
-        
+        	    
 	    final Bundle objectbunble  = this.getIntent().getExtras();
+	    fiche = (Fiche) objectbunble.getSerializable("fiche");
+	    final ListView listJauge = (ListView)findViewById(R.id.listJauge);
 	    
-	    final Fiche fiche = (Fiche) objectbunble.getSerializable("fiche");
-	    
+	    // creation de l'adapter
+	    CreationJaugeAdapter adapter = new CreationJaugeAdapter(this, fiche.getJauges());
+	    this.adapter = adapter;
+	    adapter.addListener(this);
+	    listJauge.setAdapter(this.adapter);
+
 	    final Button buttonJaugeToRoll = (Button) findViewById(R.id.jaugeToRoll);
 	    buttonJaugeToRoll.setOnClickListener(new View.OnClickListener() {
 	          public void onClick(View v) {
@@ -56,11 +73,28 @@ public class Jauge extends Activity {
 
 	          }
 	      });
-	    
-	    
-	    
-	    
-	    
-	    
+	    	    
+	}
+
+	@Override
+	public void onClickMoins(Caracteristique item, int position) {
+		
+		EditText changeVal = (EditText) findViewById(R.id.ValChangeJauge);
+		
+		item.setValeur(item.getValeur() - Integer.valueOf(changeVal.getText().toString()));
+		
+		adapter.notifyDataSetChanged();
+		
+	}
+
+	@Override
+	public void onClickPlus(Caracteristique item, int position) {
+		
+		EditText changeVal = (EditText) findViewById(R.id.ValChangeJauge);
+		
+		item.setValeur(item.getValeur() + Integer.valueOf(changeVal.getText().toString()));
+		
+		adapter.notifyDataSetChanged();
+		
 	}	
 }
