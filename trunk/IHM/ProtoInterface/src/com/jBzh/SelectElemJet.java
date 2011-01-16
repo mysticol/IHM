@@ -35,6 +35,8 @@ public class SelectElemJet extends Activity {
 	  final String lv_arr[];
 	  final Integer listeVal[];
 	  int i = 0;
+	  
+	  // on recherche les type d'element a afficher
 	  if(elmeType.equalsIgnoreCase("caracP")){
 		  System.out.println("<<<<<< caracP >>>>>>");
 		  lv_arr = new String[fiche.getCaracteristiquesPrincipales().keySet().size()];
