@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE fiche SYSTEM "extension.dtd" >
+<fiche>
+
+	<jeu>
+		<univers>vampire</univers>
+		<system>wod1_vampire</system>
+	</jeu>
+		
+	<personnage>
+		<info>nom</info>
+		<info>poids</info>
+		<info>taille</info>
+		<info>concept</info>
+		<info>experience</info>
+		<info>description</info>
+	</personnage>
+
+	<caracteristiquesPrincipales>
+		<caracteristique><nom>force</nom></caracteristique>
+		<caracteristique><nom>dexterite</nom></caracteristique>
+		<caracteristique><nom>vigueur</nom></caracteristique>
+		<caracteristique><nom>charisme</nom></caracteristique>
+		<caracteristique><nom>manipulation</nom></caracteristique>
+		<caracteristique><nom>apparence</nom></caracteristique>
+		<caracteristique><nom>perception</nom></caracteristique>
+		<caracteristique><nom>intelligence</nom></caracteristique>
+		<caracteristique><nom>astuce</nom></caracteristique>
+	</caracteristiquesPrincipales>
+
+	<caracteristiquesSecondaire>
+		<caracteristique>
+			<nom>volonte</nom>
+			<jauge></jauge>
+			<consommable></consommable>
+		</caracteristique>
+		<caracteristique>
+			<nom>points de sang</nom>
+			<consommable></consommable>
+		</caracteristique>
+		<caracteristique>
+			<nom>voie</nom>
+		</caracteristique>		
+	</caracteristiquesSecondaire>
+	
+	<competences> 
+		<categorie>
+			<nom>talents</nom>
+			<competence>vigilance</competence>
+			<competence>athletisme</competence>
+			<competence>bagarre</competence>
+			<competence>esquive</competence>
+			<competence>empathie</competence>
+			<competence>expression</competence>
+			<competence>intimidation</competence>
+			<competence>commandement</competence>
+			<competence>experience de la rue</competence>
+			<competence>subterfuge</competence>					
+		</categorie>
+		<categorie>
+			<nom>competences</nom>
+			<competence>animaux</competence>
+			<competence>artisanats</competence>
+			<competence>conduite</competence>
+			<competence>etiquette</competence>
+			<competence>armes a feu</competence>
+			<competence>melee</competence>
+			<competence>representation</competence>
+			<competence>securite</competence>
+			<competence>furtivite</competence>
+			<competence>survie</competence>					
+		</categorie>
+		<categorie>
+			<nom>connaissances</nom>
+			<competence>erudition</competence>
+			<competence>informatique</competence>
+			<competence>finances</competence>
+			<competence>investigation</competence>
+			<competence>droit</competence>
+			<competence>linguistique</competence>
+			<competence>medecine</competence>
+			<competence>occultisme</competence>
+			<competence>politique</competence>
+			<competence>sciences</competence>					
+		</categorie>
+	</competences>
+
+	<vie>7</vie>
+
+
+</fiche>

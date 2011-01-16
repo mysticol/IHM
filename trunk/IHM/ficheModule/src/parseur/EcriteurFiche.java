@@ -101,7 +101,7 @@ public class EcriteurFiche {
 		poid.addContent(fiche.getPoid());
 		personnage.addContent(poid);
 
-		Element concept = new Element("taille");
+		Element concept = new Element("concept");
 		concept.addContent(fiche.getConcept());
 		personnage.addContent(concept);
 
