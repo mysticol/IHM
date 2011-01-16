@@ -22,7 +22,10 @@
 		<activity android:name=".DiceLauncher"></activity>
 		<activity android:name=".Jauge"></activity>
 		<activity android:name=".FicheViewer"></activity>
-		
+        <activity android:name=".ChoixEdition"></activity>
+        <activity android:name=".ListEditionNumeric"></activity>
+        <activity android:name=".RemplissageEdition"></activity>		
+		<activity android:name=".ResumeEdition"></activity>
     </application>
 
 

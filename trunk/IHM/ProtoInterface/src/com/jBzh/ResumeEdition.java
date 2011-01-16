@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import bean.Competence;
+import bean.Equipement;
 import bean.Fiche;
 import bean.Pouvoir;
 import bean.vie.*;
@@ -149,7 +150,7 @@ public class ResumeEdition extends ExpandableListActivity {
 		  }
 		result.add( secList4 );
 		
-		/*ArrayList<HashMap<String,String>> secList5 = new ArrayList<HashMap<String,String>>();
+		ArrayList<HashMap<String,String>> secList5 = new ArrayList<HashMap<String,String>>();
 		//Vie
 			HashMap<String,String> child = new HashMap<String,String>();
 			child.put( "nom", "Vie" );
@@ -166,7 +167,17 @@ public class ResumeEdition extends ExpandableListActivity {
 			child2.put( "valeur", p.getDescription());
 			secList6.add( child2 );
 		}			
-		result.add( secList6 );*/
+		result.add( secList6 );
+		
+		ArrayList<HashMap<String,String>> secList7 = new ArrayList<HashMap<String,String>>();
+		//Equipements
+		for(Equipement e : fiche.getEquipements()){
+			HashMap<String,String> child2 = new HashMap<String,String>();
+			child2.put( "nom", e.getNom() );
+			child2.put( "valeur", e.getDescription());
+			secList7.add( child2 );
+		}			
+		result.add( secList7 );		
 		
 		return result;
 	  }

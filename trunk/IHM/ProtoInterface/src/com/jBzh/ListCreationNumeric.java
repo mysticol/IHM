@@ -21,7 +21,7 @@ public class ListCreationNumeric extends Activity {
 	ParseurModele pModele = new ParseurModele();
 	EcriteurFiche eFiche= new EcriteurFiche();
 	static String univers;
-	static String typePerso;
+	static String typePerso = "PJ";
 	private String lv_arr[]={"Personnage","Caracteristiques Principales","Competences","Caracteristiques Secondaires","Vie","Pouvoirs","Equipement"};
 
 	
@@ -122,17 +122,20 @@ public class ListCreationNumeric extends Activity {
   			if(!tmp.exists()){
   				tmp.mkdir();
   			}
-  			tmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne());
-  			if(!tmp.exists()){
-  				tmp.mkdir();
-  			}
-  			tmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/PJ/");
-  			if(!tmp.exists()){
-  				tmp.mkdir();
-  			}
-  			tmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/PNJ/");
-  			if(!tmp.exists()){
-  				tmp.mkdir();
+  			
+  			if(fiche.getCampagne()!=null){
+	  			tmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne());
+	  			if(!tmp.exists()){
+	  				tmp.mkdir();
+	  			}
+	  			tmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/PJ/");
+	  			if(!tmp.exists()){
+	  				tmp.mkdir();
+	  			}
+	  			tmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/PNJ/");
+	  			if(!tmp.exists()){
+	  				tmp.mkdir();
+	  			}
   			}
   			
   			//Sauvegarde de la fiche
@@ -153,7 +156,7 @@ public class ListCreationNumeric extends Activity {
   			
   			
   			
-  			System.out.println(fiche.getNom());
+  			//System.out.println(fiche.getNom());
   			//Passage de la fiche à RemplissageCreation
 			objetbunble.putSerializable("fiche", fiche);
 			

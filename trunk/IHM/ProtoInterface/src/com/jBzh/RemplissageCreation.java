@@ -417,6 +417,7 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
   				
   	  			for(Numeric n : listN){
   	  				fiche.getCaracteristiquesPrincipales().get(n.getNomNumeric()).setValeur(n.getValeur());
+  	  				fiche.getCaracteristiquesPrincipales().get(n.getNomNumeric()).setMaximum(n.getValeur());
   	  			}  				
   				
   			} else if(categorie.equalsIgnoreCase("Competences")){
@@ -434,6 +435,7 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
   				
   	  			for(Numeric n : listN){
   	  				fiche.getCaracteristiquesSecondaire().get(n.getNomNumeric()).setValeur(n.getValeur());
+  	  				fiche.getCaracteristiquesSecondaire().get(n.getNomNumeric()).setMaximum(n.getValeur());
   	  			}  				
   				
   			} else if(categorie.equalsIgnoreCase("Vie")){

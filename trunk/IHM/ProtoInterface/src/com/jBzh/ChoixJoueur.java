@@ -14,6 +14,8 @@ import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class ChoixJoueur extends Activity{
+	
+	private ChoixJoueur instance;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class ChoixJoueur extends Activity{
     	final ArrayList<String> campagnes = new ArrayList<String>();
     	final ArrayList<String> persos = new ArrayList<String>();
     	
+    	this.instance = this;
     	
     	File universPath = new File(getFilesDir().getAbsolutePath() + "/Fiches");
     	
@@ -86,8 +89,13 @@ public class ChoixJoueur extends Activity{
 				persos.clear();
 				File path = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+UniversSpinner.getSelectedItem().toString()+"/"+campagneSpinner.getSelectedItem().toString()+"/PJ/");
 				for(File f : path.listFiles()){
-	        		persos.add(f.getName());
+	        		persos.add(f.getName().substring(0, f.getName().length()-4));
 				}
+				
+		        final Spinner persoSpinner = (Spinner) findViewById(R.id.persoSpinner);
+		        ArrayAdapter<String> adapterP = new ArrayAdapter<String>(instance, android.R.layout.simple_spinner_item, persos);
+		        adapterP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		        persoSpinner.setAdapter(adapterP);				
 				
 			}
 
@@ -98,12 +106,13 @@ public class ChoixJoueur extends Activity{
 			}
         	
 		});
-        
+
         final Spinner persoSpinner = (Spinner) findViewById(R.id.persoSpinner);
         ArrayAdapter<String> adapterP = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, persos);
         adapterP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         persoSpinner.setAdapter(adapterP);
-
+        
+        
         final Button buttonRetour = (Button) findViewById(R.id.retour);
         buttonRetour.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
