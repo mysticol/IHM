@@ -3,6 +3,9 @@ package com.jBzh;
 import java.io.File;
 import java.util.ArrayList;
 
+import parseur.ParseurFiche;
+import bean.Fiche;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +19,9 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class ChoixJoueur extends Activity{
 	
 	private ChoixJoueur instance;
-
+	private Fiche fiche;
+	private ParseurFiche pFiche = new ParseurFiche();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -79,7 +84,7 @@ public class ChoixJoueur extends Activity{
     	//R�cup�ration des persos existants
         File persoPath = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+universChoisi+"/"+campagneChoisie+"/PJ/");
         for(File f : persoPath.listFiles()){
-        		persos.add(f.getName());
+        		persos.add(f.getName().substring(0, f.getName().length()-4));
         }
         
         campagneSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -123,6 +128,31 @@ public class ChoixJoueur extends Activity{
     			//On cr�� l'Intent qui va nous permettre d'afficher l'autre Activity
     			Intent intent = new Intent(ChoixJoueur.this, ProtoInterface.class);
      
+    			//On affecte � l'Intent le Bundle que l'on a cr��
+    			intent.putExtras(objetbunble);
+     
+    			//On d�marre l'autre Activity
+    			startActivityForResult(intent, 1);
+
+            }
+        });
+        
+        final Button buttonValider = (Button) findViewById(R.id.valider);
+        buttonValider.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	
+            	//On cr�� un objet Bundle, c'est ce qui va nous permetre d'envoyer des donn�es � l'autre Activity
+    			Bundle objetbunble = new Bundle();
+     
+    			//On cr�� l'Intent qui va nous permettre d'afficher l'autre Activity
+    			Intent intent = new Intent(ChoixJoueur.this, FicheViewer.class);
+    			
+    			File tmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+UniversSpinner.getSelectedItem().toString()+"/"+campagneSpinner.getSelectedItem().toString()+"/PJ/"+persoSpinner.getSelectedItem().toString()+".xml");
+    			fiche = pFiche.parse(tmp);
+    			
+    			//Passage de l'univers � ListCreationNumeric
+    			objetbunble.putSerializable("fiche", fiche);
+    			
     			//On affecte � l'Intent le Bundle que l'on a cr��
     			intent.putExtras(objetbunble);
      
