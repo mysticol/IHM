@@ -65,7 +65,7 @@ public class CreationJaugeAdapter extends BaseAdapter {
 		TextView maxJauge = (TextView) layoutItem.findViewById(R.id.MaxJauge);
 		
 		//(3) : Renseignement des valeurs
-		nomJauge.setText(listJauge.get(position).getNom());
+		nomJauge.setText(listJauge.get(position).getNom() + " : ");
 		valeurJauge.setText(String.valueOf(listJauge.get(position).getValeur()));
 		maxJauge.setText(String.valueOf(listJauge.get(position).getMaximum()));
 		
