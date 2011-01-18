@@ -18,7 +18,7 @@ public class test {
 		Systeme r = new Systeme();
 
 		r.setName("wod1");
-		
+			
 		LinkedList<String> le1 = new LinkedList<String>();
 		le1.add("caracP");
 		le1.add("comp");
@@ -34,7 +34,7 @@ public class test {
 	
 	static public Fiche createFiche(){
 		Fiche f = new Fiche();
-
+			
 		HashMap<String, Caracteristique> caracP = new HashMap<String, Caracteristique>();
 			caracP.put("force",new Caracteristique("force",3));
 			caracP.put("dex",new Caracteristique("dex",4));
@@ -69,6 +69,8 @@ public class test {
 				comps.add(new Competence("etre gentil",5));
 			lcomp.put(new Categorie("social"), comps);
 		f.setCompetences(lcomp);
+		
+		f.setNom("toto");
 		
 		return f;
 	}
