@@ -34,18 +34,27 @@ public class Fiche implements Serializable {
 	private LinkedList<Equipement> equipements;
 	private Classic barreDeVie;
 	private String divers;
+
+	public Fiche() {
+		this.nom = "";
+		this.poid = "";
+		this.taille = "";
+		this.age = "";
+		this.concept = "";
+		this.system = "";
+		this.univers = "";
+		this.campagne = "";
+		this.infos = new HashMap<String, String>();
+		this.caracteristiquesPrincipales = new HashMap<String, Caracteristique>();
+		this.caracteristiquesSecondaire = new HashMap<String, Caracteristique>();
+		this.competences = new HashMap<Categorie, LinkedList<Competence>>();
+		this.pouvoirs = new LinkedList<Pouvoir>();
+		this.equipements = new LinkedList<Equipement>();
+		this.barreDeVie = new Classic(0, 0);
+		this.divers = "";
+	}
 	
 	
-	
-	
-
-
-
-	
-
-
-
-
 	public Fiche(String nom, String poid, String taille, String age,
 			String concept, String xp, String system, String univers,
 			String campagne, HashMap<String, String> infos,
@@ -283,13 +292,6 @@ public class Fiche implements Serializable {
 	public void setDivers(String divers) {
 		this.divers = divers;
 	}
-
-
-
-	public Fiche() {
-		
-	}
-
 
 
 	public HashMap<Categorie, LinkedList<Competence>> getCompetences() {
