@@ -21,8 +21,9 @@ public class ChoixJet extends Activity {
 	  
 	  final Bundle objetbunble  = this.getIntent().getExtras();
 	  	  
-	  Systeme systeme = (Systeme) objetbunble.getSerializable("systeme");  
-	    
+	  //Systeme systeme = (Systeme) objetbunble.getSerializable("systeme");  
+	  Systeme systeme = test.createSysteme();
+	  objetbunble.putSerializable("systeme", systeme);
 	  // recuperation de la liste des types de jets	  
 	  final String lv_arr[]= new String[systeme.getListRolls().size()];
 	  int i = 0;
