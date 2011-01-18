@@ -3,16 +3,23 @@
 	android:layout_width="wrap_content" android:layout_height="wrap_content"
 	android:id="@+id/LL_Fond">
 	
-	<TextView android:text="NomNumeric" android:id="@+id/NomNumeric"
+	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:stretchColumns="1">
+    <TableRow>
+    
+        <TextView android:text="NomNumeric" android:id="@+id/NomNumeric"
 		android:layout_width="wrap_content" 
 		android:layout_height="wrap_content">
-	</TextView>
-	
-	<Button
+		</TextView>
+
+        <Button
         android:id="@+id/Moins"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="-" />
+        android:text="-" 
+        />
 		
 	<TextView android:text="ValeurNumeric" android:id="@+id/ValeurNumeric"
 		android:layout_width="wrap_content" 
@@ -23,6 +30,14 @@
         android:id="@+id/Plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+" />
+        android:text="+"/>
+    </TableRow>
+</TableLayout>
+	
+	
+	
+	
+	
+        
 
 </LinearLayout>
