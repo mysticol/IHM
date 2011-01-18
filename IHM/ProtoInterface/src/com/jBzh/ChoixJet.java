@@ -102,8 +102,13 @@ public class ChoixJet extends Activity {
       buttonLibre.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {
         	  
-        	//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
-    			Intent intent = new Intent(ChoixJet.this, DiceLauncher.class);
+        	  if(objetbunble.containsKey("type")){
+        		  objetbunble.remove("type");
+        		  objetbunble.remove("nbDice");
+        	  }
+        	  
+        	  //On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+        	  Intent intent = new Intent(ChoixJet.this, DiceLauncher.class);
         	  
         	  //On affecte à l'Intent le Bundle que l'on a créé
         	  intent.putExtras(objetbunble);

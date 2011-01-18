@@ -39,16 +39,16 @@ public class SelectElemJet extends Activity {
 	  // on recherche les type d'element a afficher
 	  if(elmeType.equalsIgnoreCase("caracP")){
 		  System.out.println("<<<<<< caracP >>>>>>");
-		  lv_arr = new String[fiche.getCaracteristiquesPrincipales().keySet().size()];
-		  listeVal = new Integer[fiche.getCaracteristiquesPrincipales().keySet().size()];
+		  lv_arr = new String[fiche.getCaracteristiquesPrincipales().keySet().size()+1];
+		  listeVal = new Integer[fiche.getCaracteristiquesPrincipales().keySet().size()+1];
 		  for(String s : fiche.getCaracteristiquesPrincipales().keySet()){
 			  listeVal[i] = fiche.getCaracteristiquesPrincipales().get(s).getValeur();
 			  lv_arr[i++] = s;
 		  }
 	  }else if(elmeType.equalsIgnoreCase("caracS")){
 		  System.out.println("<<<<<< caracS >>>>>>");
-		  lv_arr = new String[fiche.getCaracteristiquesSecondaire().keySet().size()];
-		  listeVal = new Integer[fiche.getCaracteristiquesSecondaire().keySet().size()];
+		  lv_arr = new String[fiche.getCaracteristiquesSecondaire().keySet().size()+1];
+		  listeVal = new Integer[fiche.getCaracteristiquesSecondaire().keySet().size()+1];
 		  
 		  for(String s : fiche.getCaracteristiquesSecondaire().keySet()){
 			  listeVal[i] = fiche.getCaracteristiquesSecondaire().get(s).getValeur();
@@ -57,8 +57,8 @@ public class SelectElemJet extends Activity {
 	  }else if(elmeType.equalsIgnoreCase("comp")){
 		  System.out.println("<<<<<< comp >>>>>>");
 		  LinkedList<Competence> lcomp = fiche.getListCompetences();
-		  lv_arr = new String[lcomp.size()];
-		  listeVal = new Integer[lcomp.size()];
+		  lv_arr = new String[lcomp.size()+1];
+		  listeVal = new Integer[lcomp.size()+1];
 		  for(Competence c : lcomp){
 			  listeVal[i] = c.getValeur();
 			  lv_arr[i++] = c.getNom();
@@ -68,6 +68,8 @@ public class SelectElemJet extends Activity {
 		  lv_arr = null;
 		  listeVal = null;
 	  }
+	  lv_arr[i] = "Défaut";
+	  listeVal[i] = 0 ;
 	  	  
 	  ((TextView)findViewById(R.id.affichejet)).setText(objetbunble.getString("type"));
 	  
