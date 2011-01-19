@@ -178,6 +178,7 @@ public class ProtoInterface extends Activity {
             }
         });   
         
+        /*
         final Button buttonTest = (Button) findViewById(R.id.Test);
         buttonTest.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -198,7 +199,7 @@ public class ProtoInterface extends Activity {
     			startActivityForResult(intent, CODE_DE_MON_ACTIVITE);
 
             }
-        });
+        });*/
         //Si on fait un bouton quitter : android.os.Process.killProcess(android.os.Process.myPid());
     }
 }
