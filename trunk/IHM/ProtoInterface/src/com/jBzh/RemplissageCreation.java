@@ -13,6 +13,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import bean.Categorie;
 import bean.Competence;
 import bean.Equipement;
 import bean.Fiche;
@@ -206,7 +207,6 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 			@Override
 			public void onClick(View v) {
 				
-				//TODO on enleve une ligne
 				if(listNText.size()!=0){
 					
 					listNText.remove((listNText.size())-1);
@@ -239,17 +239,15 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 			@Override
 			public void onClick(View v) {
 				
-				//TODO on ajoute une ligne
-					
-					listNText.add(new NumericText("", ""));
-					
-					CreationNumericTextAdapter2 adapterPlus = new CreationNumericTextAdapter2(instance, listNText);
-	
-				    adapterText2 = adapterPlus;
-	
-				    adapter.addListener(instance);
-				      
-				    list.setAdapter(adapterText2);
+				listNText.add(new NumericText("", ""));
+				
+				CreationNumericTextAdapter2 adapterPlus = new CreationNumericTextAdapter2(instance, listNText);
+
+			    adapterText2 = adapterPlus;
+
+			    adapter.addListener(instance);
+			      
+			    list.setAdapter(adapterText2);
 				
 			}
 		  });
@@ -312,7 +310,6 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 			@Override
 			public void onClick(View v) {
 				
-				//TODO on enleve une ligne
 				if(listNText.size()!=0){
 					
 					listNText.remove((listNText.size())-1);
@@ -344,18 +341,16 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
 			 
 			@Override
 			public void onClick(View v) {
+					
+				listNText.add(new NumericText("", ""));
 				
-				//TODO on ajoute une ligne
-					
-					listNText.add(new NumericText("", ""));
-					
-					CreationNumericTextAdapter2 adapterPlus = new CreationNumericTextAdapter2(instance, listNText);
-	
-				    adapterText2 = adapterPlus;
-	
-				    adapter.addListener(instance);
-				      
-				    list.setAdapter(adapterText2);
+				CreationNumericTextAdapter2 adapterPlus = new CreationNumericTextAdapter2(instance, listNText);
+
+			    adapterText2 = adapterPlus;
+
+			    adapter.addListener(instance);
+			      
+			    list.setAdapter(adapterText2);
 				
 			}
 		  });
@@ -412,7 +407,6 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
   					System.out.println("Enregistrer Personnage : " + nt.getNomNumeric() + " => " + nt.getValeur());
   				}
   				
-  				
   			} else if(categorie.equalsIgnoreCase("Caracteristiques Principales")){
   				
   	  			for(Numeric n : listN){
@@ -431,6 +425,14 @@ public class RemplissageCreation extends Activity implements CreationNumericAdap
   	  					}
   	  				}
   	  			}
+  	  			
+//  	  			for(Categorie c : fiche.getCompetences().keySet()){
+//  	  				System.out.println(c.getNom());
+//  	  				for(Competence l : fiche.getCompetences().get(c)){
+//  	  					System.out.println(l.getNom() + " : " + l.getValeur());
+//  	  				} 	  					
+//  	  			}
+  	  			
   			} else if(categorie.equalsIgnoreCase("Caracteristiques Secondaires")){
   				
   	  			for(Numeric n : listN){

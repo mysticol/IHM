@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import bean.Categorie;
+import bean.Competence;
 import bean.Fiche;
 
 public class ListCreationNumeric extends Activity {
@@ -139,6 +141,13 @@ public class ListCreationNumeric extends Activity {
   			}
   			
   			//Sauvegarde de la fiche
+  			
+//  			for(Categorie c : fiche.getCompetences().keySet()){
+//  				System.out.println(c.getNom());
+//  				for(Competence l : fiche.getCompetences().get(c)){
+//  					System.out.println(l.getNom() + " : " + l.getValeur());
+//  				} 	  					
+//  			}
   			
   			if(typePerso.equalsIgnoreCase("PJ")){
 	  	  		if(fiche.getCampagne()!=null){
