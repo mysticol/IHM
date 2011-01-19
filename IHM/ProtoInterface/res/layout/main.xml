@@ -21,6 +21,7 @@
         android:id="@+id/Creation"
         android:layout_width="100px"
         android:layout_height="50px"
+        android:layout_marginTop="25px"
         android:layout_below="@+id/Joueur"
         android:onClick="choixcreation"
         android:text="Creation" />        
@@ -31,11 +32,12 @@
         android:layout_below="@+id/Creation"
         android:onClick="pageEdition"
         android:text="Edition" />
+<!-- 
      <Button
         android:id="@+id/Test"
         android:layout_width="100px"
         android:layout_height="50px"
         android:layout_below="@+id/Edition"
-        android:onClick="choixjet"
-        android:text="Test" />
+        android:text="Test" /> 
+-->
 </RelativeLayout>
