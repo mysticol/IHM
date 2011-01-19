@@ -12,6 +12,9 @@ import bean.Fiche;
 import bean.Modele;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -99,6 +102,50 @@ public class ListEditionNumeric extends Activity {
 
           }
       });
+      
+    final DialogInterface.OnClickListener Quitte = new DialogInterface.OnClickListener() {
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			
+			// On supprimer la fiche
+			if(typePerso.equalsIgnoreCase("PJ")){
+	  		
+				File f = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/PJ/"+fiche.getNom()+".xml");
+	  	  		f.delete();
+	  	  		
+			}else{
+				
+				File f = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/"+fiche.getCampagne()+"/PNJ/"+fiche.getNom()+".xml");
+				f.delete();
+				
+			}
+			
+			//On créé l'Intent qui va nous permettre d'afficher l'autre Activity
+  			Intent intent = new Intent(ListEditionNumeric.this, ProtoInterface.class);
+   
+  			//On affecte à l'Intent le Bundle que l'on a créé
+  			intent.putExtras(new Bundle());
+   
+  			//On démarre l'autre Activity
+  			startActivityForResult(intent, 1);
+			
+		}
+      };
+      
+	  final Builder builder = new AlertDialog.Builder(this);
+      final Button buttonSupprimer = (Button) findViewById(R.id.supprimerCreation);
+      buttonSupprimer.setOnClickListener(new View.OnClickListener() {
+          public void onClick(View v) {
+        	  
+    	  builder.setTitle("Suppression de la fiche " + fiche.getNom());
+	         
+	    	  builder.setMessage("Supprimer?");
+	    	  builder.setPositiveButton("OUI", Quitte);
+	    	  builder.setNegativeButton("NON", null);
+	    	  builder.show();
+        	  
+          }
+      });      
       
       final Button buttonValider = (Button) findViewById(R.id.validerCreation);
       buttonValider.setOnClickListener(new View.OnClickListener() {

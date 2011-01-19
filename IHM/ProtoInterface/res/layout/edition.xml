@@ -30,6 +30,17 @@
         android:text="Valider"
         android:layout_below="@+id/list"/>
         
+    <Button
+        android:id="@+id/supprimerCreation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"    
+        android:layout_toRightOf="@id/validerCreation"
+        android:layout_alignTop="@id/validerCreation"
+        android:layout_alignParentRight="true"
+        android:text="Supprimer"
+        android:layout_below="@+id/list"/>        
+        
     </RelativeLayout>
 
 </LinearLayout>
