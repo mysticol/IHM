@@ -22,54 +22,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center">>
 
     <ListView android:id="@+id/list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="3.0" />
-    
+            
+    <Button
+        android:id="@+id/quitter"
+		android:layout_width="100px"
+        android:layout_height="50px"
+        android:layout_centerInParent="true"    
+        android:text="Quitter"/>    
+               
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
-    
-    <Button android:id="@+id/jetLibre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.0"
-        android:layout_below="@+id/list"        
-        android:text="Jet Libre" />
-        
+     
     <Button
         android:id="@+id/pnj"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.0"    
-        android:layout_toRightOf="@id/jetLibre"
-        android:layout_alignTop="@id/jetLibre"
-        android:text="PNJ"
-        android:layout_below="@+id/list"/>
+        android:layout_width="100px"
+        android:layout_height="50px" 
+        android:layout_alignParentRight="true" 
+        android:text="PNJ"/>
         
     <Button
         android:id="@+id/pj"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.0"    
-        android:layout_toRightOf="@id/pnj"
-        android:layout_alignTop="@id/pnj"
-        android:text="PJ"
-        android:layout_below="@+id/list"/>        
-        
-    <Button
-        android:id="@+id/quitter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.0"    
-        android:layout_toRightOf="@id/pj"
-        android:layout_alignTop="@id/pj"
-        android:text="Quitter"
-        android:layout_below="@+id/list"/>        
+        android:layout_width="100px"
+        android:layout_height="50px"
+        android:layout_alignParentLeft="true"
+        android:text="PJ"/>        
+    
+     <Button android:id="@+id/jetLibre"
+        android:layout_width="100px"
+        android:layout_height="50px"
+        android:layout_centerInParent="true"        
+        android:text="Jet Libre" />
+       
+       
                 
-    </RelativeLayout>
+   </RelativeLayout>
+    
+    
 
 </LinearLayout>
