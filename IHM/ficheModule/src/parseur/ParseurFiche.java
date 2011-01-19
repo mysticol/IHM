@@ -128,13 +128,14 @@ public class ParseurFiche {
 	}
 
 	private Classic parseVie(Element racine) {
-		Element temphp = racine.getChild("classic");
+		
+		Element temphp = racine.getChild("barreDeVie").getChild("classic");
 
 		Classic vie = null;
 		if (temphp != null) {
 			vie = new Classic(Integer.parseInt(temphp.getChildText("total")),
 					Integer.parseInt(temphp.getChildText("actuel")));
-return vie;
+			return vie;
 		} else {
 			/*temphp= racine.getChild("ligne");
 			 vie = new Ligne();
@@ -152,7 +153,8 @@ return vie;
 			
 			*/
 		}
-return new Classic(0, 0);
+		
+		return new Classic(0, 0);
 
 	}
 

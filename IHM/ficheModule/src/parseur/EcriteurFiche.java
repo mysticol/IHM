@@ -278,7 +278,7 @@ public class EcriteurFiche {
 				compTempEl.addContent(elNom);
 				compTempEl.addContent(elValeur);
 
-				competences.addContent(compTempEl);
+				elCatTemp.addContent(compTempEl);
 			}
 
 			competences.addContent(elCatTemp);
