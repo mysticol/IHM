@@ -2,42 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="wrap_content" android:layout_height="wrap_content"
 	android:id="@+id/LL_Fond">
-	
+	   
 	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:stretchColumns="1">
-    <TableRow>
-    
-        <TextView android:text="NomNumeric" android:id="@+id/NomNumeric"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content">
-		</TextView>
+	   
+	    <TableRow>
+		    <TextView android:text="NomNumeric" android:id="@+id/NomNumeric"
+		    	android:layout_column="1"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content">
+			</TextView>
 
-        <Button
-        android:id="@+id/Moins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-" 
-        />
-		
-	<TextView android:text="ValeurNumeric" android:id="@+id/ValeurNumeric"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content">
-	</TextView>
-		
-	<Button
-        android:id="@+id/Plus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+"/>
-    </TableRow>
-</TableLayout>
-	
-	
-	
-	
-	
-        
+	        <Button
+	        android:id="@+id/Moins"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:gravity="right"
+	        android:text="-" 
+	        />
+			
+		<TextView android:text="ValeurNumeric" android:id="@+id/ValeurNumeric"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:gravity="right">
+		</TextView>
+			
+		<Button
+	        android:id="@+id/Plus"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:gravity="right"
+	        android:text="+"/>
+		</TableRow>
+    </TableLayout>    
 
 </LinearLayout>

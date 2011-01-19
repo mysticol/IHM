@@ -162,13 +162,13 @@ public class RemplissageEdition extends Activity implements EditionNumericAdapte
 	      list.setAdapter(this.adapter);
 		  
 	  }else if(categorie.equalsIgnoreCase("Vie")){
-		  
+		  	  
 		  if(((Classic)fiche.getBarreDeVie()).getActuel()!=null){
 			  listN.add(new Numeric("Vie", ((Classic)fiche.getBarreDeVie()).getActuel()));
 		  } else{
 			  listN.add(new Numeric("Vie", 0));
 		  }
-		  
+		  	  
 	      EditionNumericAdapter adapter = new EditionNumericAdapter(this, listN);
 
 	      this.adapter = adapter;

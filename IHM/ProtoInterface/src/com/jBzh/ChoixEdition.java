@@ -182,6 +182,8 @@ public class ChoixEdition extends Activity{
     			File tmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+UniversSpinner.getSelectedItem().toString()+"/"+campagneSpinner.getSelectedItem().toString()+"/"+getTypePerso()+"/"+persoSpinner.getSelectedItem().toString()+".xml");
     			fiche = pFiche.parse(tmp);
     			
+    			System.out.println("Barre de vie apres chargement (Edition) : " + fiche.getBarreDeVie().getActuel());
+    			
     			//Passage de l'univers � ListCreationNumeric
     			objetbunble.putString("univers", UniversSpinner.getSelectedItem().toString());
     			objetbunble.putString("typePerso", typePerso);
