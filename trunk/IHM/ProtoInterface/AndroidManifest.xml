@@ -26,6 +26,11 @@
         <activity android:name=".ListEditionNumeric"></activity>
         <activity android:name=".RemplissageEdition"></activity>		
 		<activity android:name=".ResumeEdition"></activity>
+		<activity android:name=".EcranMJ"></activity>
+		<activity android:name=".FicheViewerMJ"></activity>
+		<activity android:name=".DiceLauncherMJ"></activity>		
+		<activity android:name=".ChoixJetMJ"></activity>		
+		<activity android:name=".JaugeMJ"></activity>		
     </application>
 
 

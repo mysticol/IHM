@@ -197,8 +197,7 @@ public class ListEditionNumeric extends Activity {
   				}else{
   					eFiche.convertFicheToFile(fiche, getFilesDir().getAbsolutePath() + "/Fiches/"+univers+"/Default"+"/PNJ/"+fiche.getNom()+".xml");
   				}
-  			}
-  			
+  			}  			
   			
   			//Passage de la fiche à RemplissageEdition
 			objetbunble.putSerializable("fiche", fiche);

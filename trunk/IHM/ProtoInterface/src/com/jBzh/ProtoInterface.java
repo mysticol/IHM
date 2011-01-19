@@ -75,26 +75,32 @@ public class ProtoInterface extends Activity {
     	dirTmp.mkdir();      	
     	
     	/* Suppression des dossiers incorrect */
-/*    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/2ndCampagne/Pjs");
-    	dirTmp.delete();
-    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/2ndCampagne/Pnjs");
-    	dirTmp.delete();    	
-    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/null/PJ");
-    	dirTmp.delete();    	
-    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/null/PNJ");
-    	dirTmp.delete();
-    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/null");
-    	dirTmp.delete();
-    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/PJ/.xml");
-    	dirTmp.delete();    	
-    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/PJ");
-    	System.out.println(dirTmp.listFiles().length);
-    	for(File f : dirTmp.listFiles()){
-    		System.out.println(f.getName());
-    	}   	
-    	dirTmp.delete();    	
-    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/PNJ");
-    	dirTmp.delete();*/  	
+//    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/2ndCampagne/Pjs");
+//    	dirTmp.delete();
+//    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/2ndCampagne/Pnjs");
+//    	dirTmp.delete();    	
+//    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/null/PJ");
+//    	dirTmp.delete();    	
+//    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/null/PNJ");
+//    	dirTmp.delete();
+//    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/null");
+//    	dirTmp.delete();
+//    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/PJ/.xml");
+//    	dirTmp.delete();    	
+//    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/PJ");
+//    	System.out.println(dirTmp.listFiles().length);
+//    	for(File f : dirTmp.listFiles()){
+//    		System.out.println(f.getName());
+//    	}   	
+//    	dirTmp.delete();    	
+//    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/PNJ");
+//    	dirTmp.delete();
+//    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/PJ");
+//    	dirTmp.delete();
+//    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/PNJ/pnj1.xml");
+//    	dirTmp.delete();
+//    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/PNJ");
+//    	dirTmp.delete();    	
     	
         
         final Button buttonMJ = (Button) findViewById(R.id.MJ);

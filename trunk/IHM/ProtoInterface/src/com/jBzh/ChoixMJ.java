@@ -19,7 +19,7 @@ public class ChoixMJ extends Activity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+		
 		super.onCreate(savedInstanceState);
 		
     	//on lui associe le layout afficahgequestionactivity.xml
@@ -33,7 +33,7 @@ public class ChoixMJ extends Activity{
     	final ArrayList<String> campagnes = new ArrayList<String>();
     	final ArrayList<String> persos = new ArrayList<String>();
     	
-    	this.instance = instance;
+    	this.instance = this;
     	
     	File universPath = new File(getFilesDir().getAbsolutePath() + "/Fiches");
     	
@@ -41,8 +41,6 @@ public class ChoixMJ extends Activity{
     	for(File f : universPath.listFiles()){
     		univers.add(f.getName());
         }
-    	
-    	
     	
     	ArrayAdapter<String> adapterU = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, univers);
         adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -68,17 +66,15 @@ public class ChoixMJ extends Activity{
 		        final Spinner campagneSpinner = (Spinner) findViewById(R.id.CampagneSpinner);
 		        ArrayAdapter<String> adapterC = new ArrayAdapter<String>(instance, android.R.layout.simple_spinner_item, campagnes);
 		        adapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		        System.out.println("campagneSpinner : " + campagneSpinner);
 		        campagneSpinner.setAdapter(adapterC);
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
 				
 			}
-		});
-        
-
+		});      
         
         final Spinner campagneSpinner = (Spinner) findViewById(R.id.CampagneSpinner);
         ArrayAdapter<String> adapterC = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, campagnes);
@@ -94,12 +90,15 @@ public class ChoixMJ extends Activity{
     			Bundle objetbunble = new Bundle();
      
     			//On cr�� l'Intent qui va nous permettre d'afficher l'autre Activity
-    			Intent intent = new Intent(ChoixMJ.this, FicheViewer.class);
+    			Intent intent = new Intent(ChoixMJ.this, EcranMJ.class);
     			
     			String pathCampagne = "/Fiches/"+UniversSpinner.getSelectedItem().toString()+"/"+campagneSpinner.getSelectedItem().toString();
     			
-    			//Passage de l'univers � ListCreationNumeric
-    			objetbunble.putSerializable("pathCampagne", pathCampagne);
+    			//Passage du path de la campagne
+    			objetbunble.putString("pathCampagne", getFilesDir().getAbsolutePath() + pathCampagne);
+    			
+    			//Passage de l'univers choisi
+    			objetbunble.putString("univers", UniversSpinner.getSelectedItem().toString());
     			
     			//On affecte � l'Intent le Bundle que l'on a cr��
     			intent.putExtras(objetbunble);

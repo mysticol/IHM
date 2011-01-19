@@ -104,6 +104,10 @@ public class ListCreationNumeric extends Activity {
       final Button buttonValider = (Button) findViewById(R.id.validerCreation);
       buttonValider.setOnClickListener(new View.OnClickListener() {
           public void onClick(View v) {
+        	  
+        	if(fiche.getCampagne().equalsIgnoreCase("")){
+        		fiche.setCampagne("Default");
+        	}
           	
           	//On créé un objet Bundle, c'est ce qui va nous permetre d'envoyer des données à l'autre Activity
   			Bundle objetbunble = new Bundle();
