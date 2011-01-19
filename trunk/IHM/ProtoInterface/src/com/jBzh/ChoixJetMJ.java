@@ -49,7 +49,7 @@ public class ChoixJetMJ extends Activity {
   			objetbunble.putInt("numElem",0);
   			
   			//On cr�� l'Intent qui va nous permettre d'afficher l'autre Activity
-  			Intent intent = new Intent(ChoixJetMJ.this, SelectElemJet.class);
+  			Intent intent = new Intent(ChoixJetMJ.this, SelectElemJetMJ.class);
    
   			//On affecte � l'Intent le Bundle que l'on a cr��
   			intent.putExtras(objetbunble);
