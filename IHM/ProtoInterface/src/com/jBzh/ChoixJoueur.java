@@ -44,13 +44,14 @@ public class ChoixJoueur extends Activity{
     	for(File f : universPath.listFiles()){
     		univers.add(f.getName());
         }
-    	
+    		
     	
     	ArrayAdapter<String> adapterU = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, univers);
         adapterU.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         UniversSpinner.setAdapter(adapterU); 
 
         String universChoisi = UniversSpinner.getSelectedItem().toString();
+        
     	//R�cup�ration des campagnes existantes
         File campagnePath = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+universChoisi);
         for(File f : campagnePath.listFiles()){
@@ -63,9 +64,20 @@ public class ChoixJoueur extends Activity{
 			public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				campagnes.clear();
 				File path = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+UniversSpinner.getSelectedItem().toString());
+				System.out.println(UniversSpinner.getSelectedItem().toString());
+
 				for(File f : path.listFiles()){
+					System.out.println(f.getName());
 	        		campagnes.add(f.getName());
 				}
+				
+		        final Spinner campagneSpinner = (Spinner) findViewById(R.id.CampagneSpinner);
+		        ArrayAdapter<String> adapterC = new ArrayAdapter<String>(instance, android.R.layout.simple_spinner_item, campagnes);
+		        adapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		        System.out.println("campagneSpinner : " + campagneSpinner);
+		        campagneSpinner.setAdapter(adapterC);
+				
+				
 			}
 
 			@Override
@@ -80,13 +92,14 @@ public class ChoixJoueur extends Activity{
         adapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         campagneSpinner.setAdapter(adapterC);
         
+       
         String campagneChoisie = campagneSpinner.getSelectedItem().toString();
     	//R�cup�ration des persos existants
         File persoPath = new File(getFilesDir().getAbsolutePath() + "/Fiches/"+universChoisi+"/"+campagneChoisie+"/PJ/");
-        for(File f : persoPath.listFiles()){
-        		persos.add(f.getName().substring(0, f.getName().length()-4));
-        }
-        
+	    for(File f : persoPath.listFiles()){
+	        persos.add(f.getName().substring(0, f.getName().length()-4));
+	    }
+	    
         campagneSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override

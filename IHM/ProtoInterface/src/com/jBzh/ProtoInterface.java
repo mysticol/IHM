@@ -52,6 +52,12 @@ public class ProtoInterface extends Activity {
     	dirTmp.mkdir();
     	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/L5R");
     	dirTmp.mkdir();
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/L5R/Default");
+    	dirTmp.mkdir();
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/L5R/Default/PJ");
+    	dirTmp.mkdir();
+    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/L5R/Default/PNJ");
+    	dirTmp.mkdir();
     	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/Default");
     	dirTmp.mkdir();
     	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/2ndCampagne");
@@ -97,7 +103,7 @@ public class ProtoInterface extends Activity {
 //    	dirTmp.delete();
 //    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/PJ");
 //    	dirTmp.delete();
-//    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/PNJ/pnj1.xml");
+//    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/PJ/toto.xml");
 //    	dirTmp.delete();
 //    	dirTmp = new File(getFilesDir().getAbsolutePath() + "/Fiches/Vampire/PNJ");
 //    	dirTmp.delete();    	

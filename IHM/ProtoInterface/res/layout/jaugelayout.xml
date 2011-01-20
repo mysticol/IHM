@@ -1,41 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="wrap_content"
-	android:gravity="center"
-	>
-  
-  	<TextView android:text="NomJauge : " android:id="@+id/NomJauge"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		/>
-			
-	<TextView android:text="XXX" android:id="@+id/ValeurJauge"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"/>
-		
-	<TextView android:text=" / " android:id="@+id/Slash"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"/>	
-		
-  	<TextView android:text="YYY" android:id="@+id/MaxJauge"
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"
-		android:layout_centerInParent="true"/>
-  		
-  	<Button
-        android:id="@+id/JaugeMoins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-" />
-  		  		 
- 	<EditText android:text="1" android:id="@+id/ValChangeJauge"
-  		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content"/>
+	android:gravity="center">
 	
-	<Button
-        android:id="@+id/JaugePlus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+" />	
-	
+  	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:stretchColumns="1">
+    	    <TableRow>
+			    	    
+			  	<TextView android:text="NomJauge : " android:id="@+id/NomJauge"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content"
+					android:layout_column="1"
+					/>
+						
+				<TextView android:text="XXX" android:id="@+id/ValeurJauge"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content"
+					/>
+					
+				<TextView android:text=" / " android:id="@+id/Slash"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content"/>	
+					
+			  	<TextView android:text="YYY" android:id="@+id/MaxJauge"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content"
+					android:layout_centerInParent="true"/>
+			  		
+			  	<Button
+			        android:id="@+id/JaugeMoins"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="-" 
+			        android:gravity="right"/>
+			  		  		 
+			 	<EditText android:text="1" android:id="@+id/ValChangeJauge"
+			  		android:layout_width="wrap_content" 
+					android:layout_height="wrap_content"
+					android:gravity="right"/>
+				
+				<Button
+			        android:id="@+id/JaugePlus"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="+" 
+			        android:gravity="right"/>	
+		</TableRow>
+	</TableLayout>
 </LinearLayout>
