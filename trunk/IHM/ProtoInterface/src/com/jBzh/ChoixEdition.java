@@ -71,6 +71,13 @@ public class ChoixEdition extends Activity{
 				for(File f : path.listFiles()){
 	        		campagnes.add(f.getName());
 				}
+				
+		        final Spinner campagneSpinner = (Spinner) findViewById(R.id.CampagneSpinner);
+		        ArrayAdapter<String> adapterC = new ArrayAdapter<String>(instance, android.R.layout.simple_spinner_item, campagnes);
+		        adapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		        System.out.println("campagneSpinner : " + campagneSpinner);
+		        campagneSpinner.setAdapter(adapterC);
+		        
 			}
 
 			@Override
