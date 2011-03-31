@@ -1,0 +1,130 @@
+
+
+
+
+En tant qu'utilisateur de wikitty-publication je vais manipuler des objets WikittyPubText
+qui correspondent à des fichiers sources. Ces objets possèdent un nom unique dans le wikitty service
+ils possèdent une version, ils possèdent un type mime qui permet de déterminer le langage associé
+et donc l'extension du fichier, ils possèdent un contenu qui correspond à
+au contenu du fichier et  ils possèdent une collection d'objet wikittylabel dont les noms
+permet de replacer ces fichiers dans des hierarchies de fichier/dossier
+
+
+En tant qu'utilisateur de wikitty-publication je vais manipuler des objets wikittypubData
+qui correspondent à des fichiers de donnée. Ces objets possèdent un nom unique dans le wikitty service
+ils possèdent une version, ils possèdent un type mime qui permet de déterminer le type de fichier
+et donc l'extension du fichier, ils possèdent un contenu qui correspond à
+au contenu du fichier et  ils possèdent une collection d'objet wikittylabel dont les noms
+permet de replacer ces fichiers dans des hierarchies de fichier/dossier
+
+En tant qu'utilisateur de wikitty-publication je vais manipuler des wikitty qui
+proviendrons d'un wikitty service nommé, l'adresse du wikitty service sera stocké
+à la racine de mon dossier de travail dans un dossier caché .wp/
+
+
+Tous les wikitty disposent d'une version, quand les wikittypubdata et pubtext seront
+transformé en fichier on devra mettre dans un dossier caché .wp/
+les labels et nom ainsi que leur version dans un fichier de properties
+lire le contenu d'un tel fichier permettra de faire des diff facilement au niveau architectural
+au moins. (facilitant les opérations de commit et delete)
+
+
+
+
+
+Import:
+
+
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir 
+importer auprès un service wikitty un ensemble cohérent(eg: une arborescence)
+de fichier. Si le fichier est un fichier source il sera stocké en tant que
+wikittypubtext avec en nom son nom, un label qui sera le chemin du fichier
+et son extention sera convertit en type mime attribut de l'objet.
+Si le fichier est un fichier "binaire" (eg image) il sera stocké en tant que 
+wikittypubdata, et son nom et label seront déterminé comme pour une source.
+On peut importer un fichier récursivement si on le souhaite.
+
+
+* ''import  [--recursion (true|false)] [url du WikittyService] [directory]
+
+exemple d'utilisation avec file système
+
+sous wikitty service
+
+wikittypub
+	name
+
+
+
+
+CheckOut
+
+
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir 
+checkout auprès d'un service wikitty en donnant un label,
+je récupérais un fichier dont la localisation dépendra du label, sous
+un nom dépendant de son name et une extension en fonction du mimetype.
+Si l'opération checkout est demandé récursivement je récupérerais l'ensemble
+des fichiers stocker sous le même label.
+
+
+* ''checkout [--recursion (true|false)] [url du WikittyService] [Label à extraire] [directory local d'accueil]''
+
+exemple d'utilisation avec file système
+
+
+Relocate
+
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir changer l'adresse du service
+wikitty cible de mon espace de travail. Cette opération ne pourra être éxécuté que à partir du
+fichier racine de l'espace de travail, donc celui possédant le fichier caché contenant 
+l'adresse du wikitty service. Celà implique que l'on enregistre dans le fichier caché de properties que l'on 
+effectué cette action de relocate, et que du coup commit et update ne se passeront p'etre pas de la même façon.
+
+
+* ''relocate [nouvelle url du WikittyService par defaut] ''
+
+
+
+Commit
+
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir 
+commit auprès un service wikitty un ensemble cohérent(eg: une arborescence)
+de fichier sous un même label, si un tel label existe déja sur le wiki on 
+regardera la version, si la version du service est antérieur ou équivalente, alors
+la précédente version sera écrasé par notre version.
+Le commit commitera aussi les fichiers qui n'existait pas avant et fera les 
+delete conséquent
+
+* ''commit [--recursion (true|false)] [--ws (url du WikittyService)] [répertoire à pousser]''
+
+
+
+
+
+
+Update
+
+
+
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir update mon espace de travail,
+pour les fichiers sources on effectue un diff pour mettre en relief les différences entre local 
+et distant, pour les fichiers binaire on écrase, pour les fichiers qui localement ont été supprimé
+on ne les remplacent pas. Pour les fichiers qui ont été supprimé sur le serveur, on les supprimes localement 
+aussi.
+
+
+* ''update [--recursion (true|false)] [--ws (url du WikittyService)] [répertoire à mettre à jour]''
+
+
+
+Delete
+
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir delete 
+un fichier ou dossier de mon espace de travail. Concrétement il faudra supprimer le label associé 
+au wikitty, et si le wikitty se retrouve sans label, alors il devra être supprimé 
+du wikitty service.
+
+* ''delete [--ws (url du WikittyService)] [répertoire ou fichier à supprimer]''
+
+
