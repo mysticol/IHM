@@ -1,0 +1,20 @@
+-Commit/sync tout ça
+-wikitty data et wikitty source
+-login/admin
+
+
+
+A chaque étape faire des users stories clair
+de façon à bien reformuler isoler tout les éléments
+ensuite poser les questions adéquat sur le sujet
+isoler tout les points de doute possible
+
+voir si on est en TDD ou pas ?
+
+
+Ecrire scénarios de tests pour les user story
+et la façon donc je suis sencé appelé le programme et tout
+
+
+dans un premier temps faire tout avec un mains sale
+pour finalement passé en mode avec une bonne vieille ligne de commande

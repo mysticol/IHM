@@ -1,0 +1,12 @@
+try {
+
+var result =
+"    <a href='"+wpContext.makeUrl("/eval/Wiki/Home")+"'>Home</a>\n"+
+"    <a href='"+wpContext.makeUrl("/eval/Wiki/Stat")+"'>Stat</a>\n";
+
+wpContext.setContentType("text/html");
+result;
+} catch (eee) {
+wpContext.setContentType("text/plain");
+eee
+}

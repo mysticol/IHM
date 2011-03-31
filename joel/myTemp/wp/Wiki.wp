@@ -1,0 +1,25 @@
+try {
+
+var result = "<html>\n"+
+"  <head>\n"+
+"    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>\n"+
+"    <title>Wikitty Wiki</title>\n"+
+"    <link rel='stylesheet' type='text/css' href='"+wpContext.makeUrl("/raw/WikiCSS")+"'>\n"+
+"  </head>\n"+
+"  <body>\n"+
+""+
+"    <div class='header'><img src='"+wpContext.makeUrl("/raw/WikiLogo")+"'/> Wikitty Wiki</div>\n"+
+"    <div class='content'>\n"+
+wpEval.doAction(wpContext, wpSubContext)+
+"    </div>\n"+
+"    <div class='footer'>Copyright Code Lutin</div>\n"+
+"  </body>\n"+
+"</html>";
+
+wpContext.setContentType("text/html");
+result;
+} catch(eee) {
+    wpContext.setContentType("text/plain");
+    eee;
+//    ExceptionUtil.stackTrace(eee.javaException);
+}
