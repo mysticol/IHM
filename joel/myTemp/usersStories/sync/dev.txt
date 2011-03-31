@@ -8,7 +8,14 @@ Ordre des choses:
 
 
 
+Un dossier tout seul peut être sauvegardé ?
+surement directement sous forme de label je suppose.
 
+
+recherche en deux temps auprès du wikitty service
+récup tout le label ou les label si récursion
+et on va chercher tout les éléments avec les label correspondant
+ensuite on va faire la création de fichier et tout ça.
 
 
 
@@ -172,8 +179,10 @@ on stock dans le dossier /truc/ ou dans un dossier au dessus ? ou dans /machin/ 
 ça va dépendre de si on est en mode svn ou non
 
 
-
-
+Ca nan ça veut plus rien dire 
+/*
 ->En tant qu'utilisateur de wikitty-publication je dois pouvoir 
 décider que les éléments de type WikittyPubText et WikittyPubData seront stocker auprès d'un wikitty service
-désigné et que les données auprès d'un autre, avec la commande relocate. [--data] 
+désigné et que les données auprès d'un autre, avec la commande relocate. [--data]
+
+*/ 
