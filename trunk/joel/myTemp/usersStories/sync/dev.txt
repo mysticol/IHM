@@ -1,0 +1,179 @@
+Ordre des choses:
+-Import
+-CheckOut
+-Commit
+-Delete
+-Update
+-relocate
+
+
+
+
+
+
+
+
+label nom du fichier et/ou label un tag collé sur un 
+ensemble d'éléments ?
+org.bob.truc.java   @tag ?
+wikitty-publication.src.org.bob.truc.java @tag ?
+
+
+Recursion sur les labels/nom 
+
+Revoir l'architecture parce ça me semble chelou cette histoire de servlet
+et de wikitty service
+
+
+
+
+Version serveur== version => local lors d'un checkout
+Commit if versionlocal>=version serveur
+versionlocal = versionlocal+1 si commit
+
+
+
+ 
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir 
+mettre à jour mes fichiers que j'ai récupéré auprès d'un wikitty service
+celà si mon numéro de version est antérieur. Update
+
+gestion des fusions ? diff ? si localement pas la même
+version on écrase directement ou on cherche à faire un diff ?
+
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir 
+supprimer un fichier qui a été commit auprès d'un service wikitty. Delete
+
+Si un utilisateur fait des modifications locale dans ses fichiers
+genre suppression en plus d'ajout de fichier, je dois faire une diff
+des deux arborescence de label et faire les delete corespondant ?
+
+
+@@@ commit
+
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir 
+commit auprès un service wikitty un ensemble cohérent(eg: une arborescence)
+de fichier sous un même label, si un tel label existe déja sur le wiki on 
+regardera la version, si la version du service est antérieur ou équivalente, alors
+la précédente version sera écrasé par notre version.
+Le commit commitera aussi les fichiers qui n'existait pas avant et fera les 
+delete conséquent
+
+* ''commit [--recursion (true|false)] [--ws (url du WikittyService)] [répertoire à pousser]''
+
+@@@
+
+
+
+
+@@@ checkout
+
+Le concept de récursion sur un label tag à du sens ?
+
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir 
+checkout auprès d'un service wikitty un ensemble cohérent de 
+fichier qui a été enregistré sous un même label, et je dois pouvoir
+choisir de récupérer les éléments sous le label de façon récursive ou non
+ e.g.: org.bob.truc sera optenu si on demande org.bob récursif
+
+* ''checkout [--recursion (true|false)] [url du WikittyService] [Label à extraire] [directory local d'accueil]''
+
+@@@
+
+
+
+
+
+@@@ Import
+
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir 
+importer auprès un service wikitty un ensemble cohérent(eg: une arborescence)
+de fichier sous un même label, si le label existe déja il faudra renvoyer une 
+erreur.
+
+* ''import  [--recursion (true|false)] [url du WikittyService] [directory]
+
+
+@@@ 
+
+
+
+
+@@@ Relocate
+
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir 
+changer le service wikitty cible, l'adresse du service original est stocker
+localement à la racine du label qui à été extrait
+
+
+
+* ''relocate [nouvelle url du WikittyService par defaut] [directory a relocaliser]''
+
+@@@
+
+
+
+Si on veux commit un truc qui n'a jamais été mis dans un service wikitty ?
+Je fais comment ? si pas de fichier de config ? on le passe en argument et 
+on renvois une erreur si il le manque ?
+Si je fais un commit sans le fichier de conf existant après le commit
+on considère que j'ai fais un checkout derrière ? Rajouter une option dans 
+la ligne de commande ?
+
+
+Gestion java sécu pour attaquer les files
+
+
+Pour les versions, si chaque élément à sa propre version, ça signifie que on doit garder pour chaque 
+élément sa version quelque part, pas juste à la racine du dossier téléchargé.
+
+Ensuite es ce que on se place dans un mode comme svn, c'est à dire que on peut commit tout indépendemant du reste
+et de n'importe quoi, genre je checkout le label: projet wikitty et dedans il ya : org.truc.bob.java, org.truc.un.java,
+org.a.java, org.b.java, es ce que après je peut commit que org.truc.bob.java par exemple ou es ce que on doit recommit par
+la racine donc "projet wikitty" ?
+
+à la mode svn faut conserver partout la property du wikitty service
+
+
+
+* ''checkout [--recursion (true|false)] [url du WikittyService] [Label à extraire] [directory local d'accueil]''
+* ''update [--recursion (true|false)] [--ws (url du WikittyService)] [répertoire à mettre à jour]''
+* ''commit [--recursion (true|false)] [--ws (url du WikittyService)] [répertoire à pousser]''
+* ''delete [--ws (url du WikittyService)] [répertoire ou fichier à supprimer]''
+* ''relocate [nouvelle url du WikittyService par defaut] [directory a relocaliser]''
+* ''import (url du WikittyService) [directory]
+
+
+
+fonction de l'extention: on change le type mime du wikipubText
+
+WikittyPubText: pour les sources et tout
+Content: contenu
+label: le nom plus arboressence
+mimetype: extension
+
+WikittyPubData: pour les autres types de données
+
+Voir si je fais ça à la maven ? ou un truc plus différent ?
+Maven/svn en ligne de commande pareil. 
+
+
+
+Dans les fichiers type WikittyPubText je peut avoir une référence
+qui cible directement un wikittypubData ? Je dois le gérer
+dans le fait que je peut avoir des wikitty différent pour les 
+types d'objets ?
+Celà concerne les DATA
+
+
+
+stocker à la racine ? genre dans un truc truc.bob.machin.ressource.java
+on stock dans le dossier /truc/ ou dans un dossier au dessus ? ou dans /machin/ ?
+ça va dépendre de si on est en mode svn ou non
+
+
+
+
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir 
+décider que les éléments de type WikittyPubText et WikittyPubData seront stocker auprès d'un wikitty service
+désigné et que les données auprès d'un autre, avec la commande relocate. [--data] 

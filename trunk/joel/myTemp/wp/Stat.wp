@@ -1,0 +1,29 @@
+try {
+importPackage(org.nuiton.wikitty.search);
+importPackage(org.nuiton.wikitty.search.operators);
+importPackage(org.nuiton.util);
+
+var proxy = wpContext.getWikittyProxy();
+var criteria = Search.query().keyword("*").criteria()
+                .setFirstIndex(0).setEndIndex(0)
+                .addFacetField(Element.ELT_EXTENSION);
+
+var resultFind = proxy.findAllByCriteria(criteria);
+var topic = resultFind.getFacets().get(Element.ELT_EXTENSION);
+
+var name="";
+var count="0";
+for (var i = 0; i != topic.size(); ++i) {
+  name = name + "|" + topic.get(i).getTopicName();
+  count = count + "," + topic.get(i).getCount();
+}
+var result =
+"    <p>Statistique sur le type d'objet stocké dans le repository Wikitty<p>\n"+
+"      <img src='http://demo.codelutin.com/eastwood/chart?cht=p3&chd=t:"+count+"&chs=250x100&chl="+name+"'/>\n";
+
+wpContext.setContentType("text/html");
+result;
+} catch (eee) {
+wpContext.setContentType("text/plain");
+eee
+}
