@@ -1,4 +1,4 @@
-
+* ''update [--recursion (true|false)] [--ws (url du WikittyService)] [répertoire à mettre à jour]''
 
 
 
