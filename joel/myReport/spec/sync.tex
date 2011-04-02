@@ -1,0 +1,187 @@
+%%This is a very basic article template.
+%%There is just one section and two subsections.
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[nottoc, notlof, notlot]{tocbibind}
+\usepackage[unicode=true,pdftex,colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black]{hyperref}
+\usepackage{natbib}
+\usepackage{graphicx}
+
+
+\title{Spécification Wikitty publication module de synchronisation}
+\author{ Mano\"el \textsc{Fortun}}
+\date{\today}
+
+
+
+\begin{document}
+
+\maketitle
+
+\section{Définitions}
+
+\subsection{Objets wikitty <-> Fichier }
+
+Un fichier est défini par un nom, une extention, un contenu et un chemin.
+dans wikitty publication les fichiers sont convertis en fonction de leurs type
+en objet wikitty. les fichiers sources sont convertit en WikittyPubText et les
+fichiers binaires(eg image, etc) en WikittyPubData. \\
+
+Les deux types d'objet ont les mêmes attribut:
+\begin{itemize}
+\item Name: correspondant au nom du fichier
+\item MimeType: crrespondant au type, qui donnera l'extension
+\item Content: le contenu binaire pour pour les PubData et textuel pour les PubText
+\end{itemize} 
+
+
+Le mimetype donne l'extention par exemple pour un PubData si on a en mimetype ``image/png
+`` alors l'extension du fichier associé sera ``.png''. Dans le cas d'un PubText
+le mimetype donnera l'extension et le langage de la source par exemple si on a
+en mimetype ``application/javascript'' le langage est javascript et l'extension
+sera donc ``.js''. \\
+
+A ces objets wikitty on associe un wikittyLabel, c'est un objet qui peut
+contenir un ensemble de label différent, un label par exemple
+``src.org.chorem.entities'' sert ici pour contenir le chemin menant au fichier
+sur le file system. Un wikitty peut avoir un certain nombre de label, pour les
+wikittyPub celà indiquera qu'ils appartiennent à plusieurs arborescence. 
+
+\subsection{Propriétés}
+
+\subsubsection{WikittyService cible}
+
+L'adresse du wikitty service auprès duquel notre espace de travail(ensemble des
+fichiers provenant d'un wikitty service) est lié sera stocké à la racine du dis
+espace de travail(premier dossier), dans un dossier caché ``.wp\/''. Cette
+adresse sera dans un fichier de propriété très certainement.
+
+\subsubsection{Versions des wikitty et labels}
+
+Tout objet wikitty dispose d'une version qui est modifier par le wikitty service
+à chaque modification de l'objet wikitty, les wikittypub donc aussi. Cette
+information de la version sera stocké dans un fichier de propriété dans le
+dossier caché ``.wp\/'' afin que l'on garde trâce des versions des objets que
+l'on aura transformé en fichier, celà pour mieux gérer les commit et update. \\
+
+On conservera trace ainsi dans ce même fichier de propriété des labels, celà
+permettra de pouvoir comparer les différences entre ce qui existe sur le file
+system et les objets présents dans le wikitty service, et donc de voir les
+suppressions, créations, etc.
+
+
+
+\section{Fonctionnalités}
+
+
+
+\subsection{Import}
+
+La fonctionnalités import doit permettre d'importer auprès d'un wikitty service
+un dossier, récurssivement ou non. Si on choisi récursivement alors tout les
+sous dossier du dossier cible seront traité, sinon seulement les fichiers
+contenu dans le dossier cible. Les fichiers sources seront transformé en
+wikittyPubText et les binaires en WikittyPubData
+
+
+\subsubsection{Définitions}
+
+\begin{verbatim}
+* ''import  [--recursion (true|false)] [url du WikittyService] [directory]
+\end{verbatim}
+
+\subsubsection{Prototype commande et exemples}
+
+\subsection{CheckOut}
+\subsubsection{Définitions}
+
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir 
+checkout auprès d'un service wikitty en donnant un label,
+je récupérais un fichier dont la localisation dépendra du label, sous
+un nom dépendant de son name et une extension en fonction du mimetype.
+Si l'opération checkout est demandé récursivement je récupérerais l'ensemble
+des fichiers stocker sous le même label.
+
+\subsubsection{Prototype commande et exemples}
+\begin{verbatim}
+* ''checkout [--recursion (true|false)] [url du WikittyService] [Label à
+extraire] [directory local d'accueil]''
+\end{verbatim}
+
+\subsection{Relocate}
+\subsubsection{Définitions}
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir changer l'adresse du service
+wikitty cible de mon espace de travail. Cette opération ne pourra être éxécuté que à partir du
+fichier racine de l'espace de travail, donc celui possédant le fichier caché contenant 
+l'adresse du wikitty service. Celà implique que l'on enregistre dans le fichier caché de properties que l'on 
+effectué cette action de relocate, et que du coup commit et update ne se passeront p'etre pas de la même façon.
+
+\subsubsection{Prototype commande et exemples}
+
+\begin{verbatim}
+* ''relocate [nouvelle url du WikittyService par defaut] [directory a
+relocaliser]''
+\end{verbatim}
+
+\subsection{Commit}
+\subsubsection{Définitions}
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir 
+commit auprès un service wikitty un ensemble cohérent(eg: une arborescence)
+de fichier sous un même label, si un tel label existe déja sur le wiki on 
+regardera la version, si la version du service est antérieur ou équivalente, alors
+la précédente version sera écrasé par notre version.
+Le commit commitera aussi les fichiers qui n'existait pas avant et fera les 
+delete conséquent
+
+\subsubsection{Prototype commande et exemples}
+
+\begin{verbatim}
+* ''commit [--recursion (true|false)] [--ws (url du WikittyService)] [répertoire
+à pousser]''
+\end{verbatim}
+
+
+
+\subsection{Delete}
+\subsubsection{Définitions}
+
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir delete 
+un fichier ou dossier de mon espace de travail. Concrétement il faudra supprimer le label associé 
+au wikitty, et si le wikitty se retrouve sans label, alors il devra être supprimé 
+du wikitty service.
+
+\subsubsection{Prototype commande et exemples}
+
+\begin{verbatim}
+* ''delete [--ws (url du WikittyService)] [répertoire ou fichier à supprimer]''
+\end{verbatim}
+
+
+
+
+\subsection{Update}
+\subsubsection{Définitions}
+
+->En tant qu'utilisateur de wikitty-publication je dois pouvoir update mon espace de travail,
+pour les fichiers sources on effectue un diff pour mettre en relief les différences entre local 
+et distant, pour les fichiers binaire on écrase, pour les fichiers qui localement ont été supprimé
+on ne les remplacent pas. Pour les fichiers qui ont été supprimé sur le serveur, on les supprimes localement 
+aussi.
+
+\subsubsection{Prototype commande et exemples}
+
+\begin{verbatim}
+* ''update [--recursion (true|false)] [--ws (url du WikittyService)] [répertoire
+à mettre à jour]''
+\end{verbatim}
+
+
+
+
+
+
+
+\end{document}
