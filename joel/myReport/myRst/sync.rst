@@ -2,17 +2,17 @@
 
 
 Spécification Wikitty publication module de synchronisation
-============================================================
+===========================================================
 :Authors: Manoël Fortun
 
 
 
 
 Définitions
------------- 
+-----------
 
 Objets wikitty <-> Fichier 
-++++++++++++++++++++++++++++
+++++++++++++++++++++++++++
 
 Un fichier est défini par un nom, une extention, un contenu et un chemin.
 dans wikitty publication les fichiers sont convertis en fonction de leurs type
@@ -40,10 +40,10 @@ sur le file system. Un wikitty peut avoir un certain nombre de label, pour les
 wikittyPub celà indiquera qu'ils appartiennent à plusieurs arborescence. 
 
 Propriétés
-+++++++++++
+++++++++++
 
 WikittyService cible
-**********************
+********************
 
 L'adresse du wikitty service auprès duquel notre espace de travail(ensemble des
 fichiers provenant d'un wikitty service) est lié sera stocké à la racine du dis
@@ -55,7 +55,7 @@ wikitty.service= http://www.adresse.com:8080
 
 
 Versions des wikitty et labels
-********************************
+******************************
 
 Tout objet wikitty dispose d'une version qui est modifier par le wikitty service
 à chaque modification de l'objet wikitty, les wikittypub donc aussi. Cette
@@ -67,7 +67,13 @@ Système de clé/valeur avec en clé le nom du fichier, et en valeur sa version
 On conservera trace ausi dans ce même fichier de propriété sous labels direct
 du label courant, celà permettra de pouvoir comparer les différences entre 
 ce qui existe sur le file system et les objets présents dans le wikitty service, 
-et donc de voir les suppressions et créations
+et donc de voir les suppressions et créations.
+
+Dans ces fichiers de propriété on conservera aussi les id des wikitty liés aux fichiers, 
+celà pour permettre de les retrouver plus facilement.
+
+On va garder en propriété le checksum des fichiers "de base" permettant ainsi de savoir ce qui a besoion
+d'etre commit ou non.
 
 Exemple pour un contenu de file system:
 
@@ -75,31 +81,44 @@ Exemple pour un contenu de file system:
  |script.js
  |scripttut.js
  |image.png
+ |+.wp
+ ||ws.properties # l'adresse du WikittyService
+ ||versions.properties # le nom des fichiers avec leur version
  |+directory2
  ||script3.js
+ ||+.wp
+ |||versions.properties
  ||+directory3
  |||truc.js
+ |||+.wp
+ ||||versions.properties
  |+directory22
  ||machin.png
+ ||+.wp
+ |||versions.properties
 
 Fichier de propriétés correspondant:
 
-script=numéroVersion
-scripttut=numéroVersion
-image=numéroVersion
+script.js=numéroVersion7
+id.script.js= id du wikitty
+scripttut.js=numéroVersion
+id.scripttut.js= id du wikitty
+image.png=numéroVersion
+id.image.png= id du wikitty
 label= racine.directory2, racine.directory22
+checksum.script.js= checksum
 
 
 
 
 Fonctionnalités
-----------------
+---------------
 
 Import
-++++++++
+++++++
 
 Définitions
-************
+***********
 La fonctionnalité import doit permettre d'importer auprès d'un wikitty service
 un dossier, récurssivement ou non. Si on choisi récursivement alors tout les
 sous dossier du dossier cible seront traité, sinon seulement les fichiers
@@ -107,8 +126,8 @@ contenu dans le dossier cible. Les fichiers sources seront transformé en
 wikittyPubText et les binaires en WikittyPubData
 
 Prototype commande et exemples
-********************************
- ''wp import  [--recursion (true|false)] [url du WikittyService] [directory]''
+******************************
+ ''wp import  [--norecursion] [url du WikittyService] [directory]''
  
  Exemple pour le contenu un file system:
  
@@ -127,10 +146,10 @@ script.js, scripttut.js et image.png seront envoyés et convertis en wikitty.
  
  
 CheckOut
-+++++++++
+++++++++
 
 Définitions
-************
+***********
 
 La fonctionnalité checkout permet de récupérer l'ensemble des wikittyPub qui possèdent
 un label donné, et de l'option de récursion sur le label. La récupération passe par
@@ -140,9 +159,9 @@ L'option de récursion permet de récupérer les sous labels d'un label par exem
 de propriété caché permettant le bon fonctionnement des autres fonctions.
 
 Prototype commande et exemples
-********************************
+******************************
 
- ''wp checkout [--recursion (true|false)] [url du WikittyService] [Label à extraire] [directory local d'accueil]''
+ ''wp checkout [--norecursion] [url du WikittyService] [Label à extraire] [directory local d'accueil]''
 
 Si on lance la commande "checkout --recursion true http:// org racine" on récpérera tout les éléments dont un des labels
 commence par org et on les placera dans le dossier racine, et sous le dossier "org" on trouvera caché le fichier de 
@@ -155,10 +174,10 @@ propriété donnant l'adresse du wikitty service.
 
 
 Relocate
-+++++++++
+++++++++
 
 Définitions
-************
+***********
 
 La fonctionnalités relocate permet de changer le wikitty service cible d'un espace de travail
 ce qui signifie que l'on va modifier le fichier de propriété caché à la racine de notre espace de 
@@ -166,17 +185,17 @@ travail qui contient l'adresse du wikitty avec lequel on travail, l'adresse par 
 update, delete et commit. La devra s'effectuer dans le dossier père de l'espace de travail.
 
 Prototype commande 
-*******************
+******************
 
  ''wp relocate [nouvelle url du WikittyService par defaut] [directory a relocaliser]''
  
 
 
 Commit
-+++++++
+++++++
 
 Définitions
-************
+***********
 
 La fonctionnalité commit permet d'envoyer l'espace de travail ou une partie de cet espace,
 que l'on a précédement checkout depuis un wikitty service, au wikitty service enregistré
@@ -196,9 +215,9 @@ en fouillant les fichiers de propriétés caché dans les dossiers parents.
 
 
 Prototype commande et exemples
-*******************************
+******************************
 
- ''wp commit [--recursion (true|false)] [--ws (url du WikittyService)] [répertoire à pousser]''
+ ''wp commit [--norecursion] [--ws (url du WikittyService)] [répertoire à pousser]''
 
 L'option "ws" permet de donner explicitement un wikitty service pour le commit, par
 défaut on cherchera le fichier de propriété contenant l'adresse du wikitty service.
@@ -206,10 +225,10 @@ défaut on cherchera le fichier de propriété contenant l'adresse du wikitty se
 
 
 Delete
-++++++++
+++++++
 
 Définitions
-************
+***********
 
 La fonctionnalité delete permet de supprimer un fichier ou dossier de l'espace de travail
 et de le supprimer dans le wikitty service associé, ou le wikitty service explicitement donné.
@@ -223,8 +242,8 @@ on peut le supprimer du wkittyservice.
 Dans les deux cas on supprime localement fichier ou dossier de la cible de la commande, dans les 
 fichiers de propriétés aussi. 
 
-Prototype commande 
-*******************
+Prototype commande
+******************
 
  ''wp delete [--ws (url du WikittyService)] [répertoire ou fichier à supprimer]''
 
@@ -234,10 +253,10 @@ défaut on cherchera le fichier de propriété contenant l'adresse du wikitty se
 
 
 Update
-++++++++
+++++++
 
 Définitions
-************
+***********
 
 La fonctionnalité update permet de mettre à jour l'espace de travail ou une partie de cet espace,
 que l'on a précédement checkout depuis un wikitty service, au wikitty service enregistré
@@ -261,9 +280,9 @@ en fouillant les fichiers de propriétés caché dans les dossiers parents.
 
 
 Prototype commande
-*******************
+******************
 
- ''wp update [--recursion (true|false)] [--ws (url du WikittyService)] [répertoire à mettre à jour]''
+ ''wp update [--norecursion] [--ws (url du WikittyService)] [répertoire à mettre à jour]''
 
 L'option "ws" permet de donner explicitement un wikitty service pour le delete, par
 défaut on cherchera le fichier de propriété contenant l'adresse du wikitty service.
