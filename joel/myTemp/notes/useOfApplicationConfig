@@ -1,0 +1,21 @@
+	/*
+		 * addAlias("-v", "--option", "verbose", "true"); addAlias("-o",
+		 * "--option", "outputfile"); addAlias("-i",
+		 * "--mon.package.MaClass#MaMethode", "import");
+		 */
+
+		// ordre des truc check
+		// voir les allias pour avoir des lignes de commande comme prévu check
+		// ça va pouvoir le faire
+		// voir les clé avec des . dedans check
+		
+		
+			/*
+		 * System.out.println(applicationConfig.getUnparsed());
+		 * System.out.println(applicationConfig.getOption("chausette"));
+		 * System.out.println(applicationConfig.getOption("ws"));
+		 * System.out.println(applicationConfig.getOption("autre"));
+		 * System.out.println(applicationConfig.getOption("id.chausette.truc"));
+		 * System.out.println(applicationConfig.getOption("action"));
+		 * System.out.println(applicationConfig.getOption("wikitty.service"));
+		 */
