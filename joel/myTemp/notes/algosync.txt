@@ -1,0 +1,46 @@
+/*
+         * Algo update origin, target: wikitty service quelconque: -on
+         * vachercher sur origin les wikitty avec le label ciblé (recur ou non)
+         * -on va chercher sur target les wikitty avec le label ciblé (recur ou
+         * non)
+         * 
+         * Tout ceux qui sont dans origin et pas target on les envois sans se
+         * poser de question (c'est les nouveaux)
+         * 
+         * Pour ceux en commun on va faire une différence sur les versions si
+         * version orign est plus récente que celle sur target on envoit gérer
+         * ici la problématique de merge ?
+         * 
+         * sinon pas plus récente on fait rien.
+         */
+
+        /*
+         * Algo delete
+         * 
+         * origin, target: wikitty service quelconque: -on va chercher sur
+         * origin les wikitty avec le label ciblé (recur ou non) -on va chercher
+         * sur target les wikitty avec le label ciblé (recur ou non)
+         * 
+         * Tout ceux qui sont dans origin et pas target on en fait rien. Ceux en
+         * commun on n'en fait rien non plus.
+         * 
+         * Ceux qui sont uniquement dans target on les met à jour en virant le
+         * label correspondant
+         */
+
+        /*
+         * Algo existing
+         * 
+         * origin, target: wikitty service quelconque: -on va chercher sur
+         * origin les wikitty avec le label ciblé (recur ou non) -on va chercher
+         * sur target les wikitty avec le label ciblé (recur ou non)
+         * 
+         * Tout ceux qui sont dans origin et pas target on en fait rien, et pour
+         * le reste application du même algo que pour update classique
+         * 
+         * Pour ceux en commun on va faire une différence sur les versions si
+         * version orign est plus récente que celle sur target on envoit gérer
+         * ici la problématique de merge ?
+         * 
+         * sinon pas plus récente on fait rien.
+         */

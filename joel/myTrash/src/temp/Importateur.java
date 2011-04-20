@@ -22,7 +22,7 @@ public class Importateur {
     static protected ApplicationConfig applicationConfig;
 
     /*
-     * static string for allias, wrong named attribut TODO mfortun-2011-04-06
+     * 
      * need to set better name
      */
     
@@ -71,7 +71,7 @@ public class Importateur {
         applicationConfig.addAlias("--dir", "--option", DIRECTORY_KEY);
 
         /*
-         * TODO mfortun-2011-04-05 once application fixed setdefault value and
+         * 
          * enumclass for initialisation
          */
 
@@ -163,7 +163,7 @@ public class Importateur {
     }
 
     /*
-     * TODO mfortun-2011-04-05 just prototyping, remove when really implements
+   
      * the method linked: importToWikitty
      */
     static public void printDirectory(File dir, boolean recur) {

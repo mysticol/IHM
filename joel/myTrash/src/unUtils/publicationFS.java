@@ -4,6 +4,16 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.nuiton.util.FileUtil;
+import org.nuiton.wikitty.entities.Wikitty;
+import org.nuiton.wikitty.entities.WikittyImpl;
+import org.nuiton.wikitty.entities.WikittyLabelHelper;
+import org.nuiton.wikitty.entities.WikittyLabelImpl;
+import org.nuiton.wikitty.publication.entities.WikittyPubDataHelper;
+import org.nuiton.wikitty.publication.entities.WikittyPubDataImpl;
+import org.nuiton.wikitty.publication.entities.WikittyPubTextHelper;
+import org.nuiton.wikitty.publication.entities.WikittyPubTextImpl;
+
 public class publicationFS {
 
     static public String WIKITTYPUBLICATION_PROPERTIES_FILE = "ws.properties";
@@ -40,7 +50,7 @@ public class publicationFS {
         } else {
             // Exception
             /*
-             * TODO mfortun-2011-04-06 write/set the appropriate exception here
+             *  mfortun-2011-04-06 write/set the appropriate exception here
              */
             return null;
         }
@@ -73,6 +83,83 @@ public class publicationFS {
             }
         }
         return result;
+    }
+    
+    
+    
+    /**
+     * Transform an object into a wikitty object in this case a File into a
+     * wikittyPubText/Data
+     * 
+     * @param fileToTransform
+     *            the objet to transform
+     * @param starts
+     *            the home directory of the fileToTransform use to contruct the
+     *            label
+     * @return the wikitty
+     * @throws Exception
+     */
+    /*
+     *  mfortun-2011-04-07 correct the Exception's type
+     */
+    protected Wikitty fileToWikitty(File fileToTransform, File starts,
+            boolean writeProperties) throws Exception {
+
+        String completeName = fileToTransform.getName();
+        // isolate extension and file name
+
+        String extension = FileUtil.extension(fileToTransform);
+        String name = FileUtil.basename(completeName, "." + extension);
+        // search for the mimetype
+        String mimeType = mimeTypeForExtension(extension);
+
+        // prepare wikitty basics
+        Wikitty result = new WikittyImpl();
+        result.addExtension(WikittyLabelImpl.extensionWikittyLabel);
+
+        // creation of the label
+        /*
+         *
+         */
+        String pathToFile = fileToTransform.getParent();
+        String pathToStart = starts.getCanonicalPath();
+        String startDirName = starts.getName();
+
+        /*
+         * remove path from root to start dir to have path from start to current
+         * working dir e.g.: if current file=
+         * /home/foo/bob/chaine.chaussette.tar.gz and starts dir = /home/foo/
+         * then path will be = foo/bob
+         */
+        String path = startDirName + pathToFile.replaceAll(pathToStart, "");
+
+        /*
+         *  actually with a dot as a wikittylabel_separator, when
+         * restauring label to directory it destroy directory that containt dot
+         * in the name e.g.: /home/truc.machin/bob
+         */
+
+        String label = path.replaceAll(File.separator, WIKITTYLABEL_SEPARATOR);
+
+        WikittyLabelHelper.addLabels(result, label);
+
+        // complete with the correct extension with content
+        if (isMimeWikittyPubText(mimeType)) {
+            result.addExtension(WikittyPubTextImpl.extensionWikittyPubText);
+            WikittyPubTextHelper.setName(result, name);
+            WikittyPubTextHelper.setMimeType(result, mimeType);
+            WikittyPubTextHelper.setContent(result,
+                    FileUtil.readAsString(fileToTransform));
+        } else {
+            result.addExtension(WikittyPubDataImpl.extensionWikittyPubData);
+            WikittyPubDataHelper.setName(result, name);
+            WikittyPubDataHelper.setMimeType(result, mimeType);
+            WikittyPubDataHelper.setContent(result,
+                    FileUtil.fileToByte(fileToTransform));
+        }
+
+        return result;
+
     }
     
 }
