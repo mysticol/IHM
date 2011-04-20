@@ -67,7 +67,7 @@ public class WikittyPublication {
     static protected ApplicationConfig applicationConfig;
 
     /*
-     * static string for allias, wrong named attribut TODO mfortun-2011-04-06
+     * static string for allias, wrong named attribut  mfortun-2011-04-06
      * need to set better name
      */
     
@@ -116,7 +116,7 @@ public class WikittyPublication {
         applicationConfig.addAlias("--dir", "--option", WikittyPublication.DIRECTORY_KEY);
 
         /*
-         * TODO mfortun-2011-04-05 once application fixed setdefault value and
+         *  mfortun-2011-04-05 once application fixed setdefault value and
          * enumclass for initialisation
          */
 
@@ -210,7 +210,7 @@ public class WikittyPublication {
     }
 
     /*
-     * TODO mfortun-2011-04-05 just prototyping, remove when really implements
+     *  mfortun-2011-04-05 just prototyping, remove when really implements
      * the method linked: importToWikitty
      */
     static public void printDirectory(File dir, boolean recur) {
@@ -337,7 +337,7 @@ public class WikittyPublication {
 
         Properties oldProperties = new Properties();
 
-        // TODO mfortun-2011-04-06 catch exception instead of throws
+        //  mfortun-2011-04-06 catch exception instead of throws
         File propertiesFile = new File(wpHomeDir + File.separator
                 + WikittyPublicationFileSystem.WIKITTYPUBLICATION_PROPERTIES_FILE);
         // load the old file just for loggin
@@ -390,7 +390,7 @@ public class WikittyPublication {
 
         Properties properties = new Properties();
 
-        // TODO mfortun-2011-04-06 catch exception instead of throws
+        //  mfortun-2011-04-06 catch exception instead of throws
         File propertiesFile = new File(wpHomeDir.getCanonicalPath()
                 + File.separator + WikittyPublicationFileSystem.WIKITTYPUBLICATION_PROPERTIES_FILE);
         // load the old file just for loggin
@@ -481,7 +481,7 @@ public class WikittyPublication {
 
             Properties properties = new Properties();
 
-            // TODO mfortun-2011-04-06 catch exception instead of throws
+            //  mfortun-2011-04-06 catch exception instead of throws
             File propertiesFile = new File(wpHomeDir.getCanonicalPath()
                     + File.separator + WikittyPublicationFileSystem.WIKITTYPUBLICATION_PROPERTIES_FILE);
             // load the old file just for loggin
@@ -616,7 +616,7 @@ public class WikittyPublication {
 
         Properties properties = new Properties();
 
-        // TODO mfortun-2011-04-06 catch exception instead of throws
+        //  mfortun-2011-04-06 catch exception instead of throws
         File propertiesFile = new File(wpHomeDir.getCanonicalPath()
                 + File.separator + WikittyPublicationFileSystem.WIKITTYPUBLICATION_PROPERTIES_FILE);
         // load the old file just for loggin
