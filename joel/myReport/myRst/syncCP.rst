@@ -6,6 +6,23 @@ Spécification Wikitty publication module de synchronisation
 :Authors: Manoël Fortun
 
 
+Nouvelle approche sur le modèle Rsync
+-------------------------------------
+
+Cette nouvelle approche du module wikitty publication, basé sur Rsync, et plus
+un "simple" système de commit/update/import/delete/relocate comme svn, est motivé
+par l'aspect plus généraliste que celà apporte.
+
+Cette approche permet de syncrhoniser le contenu de n'importe quel wikitty service 
+avec un autre, et donc de redéployer simplement tout les wikittys que l'on souhaite
+d'un wikitty service à un autre. 
+
+La nature du wikitty service cible importe pas, on peut synchroniser un wikitty service
+sur un file system avec un wikitty service sur un serveur cajo, ou deux wikitty service
+sur des serveurs cajo, cette approche se veut plus universelle. Et pourra être testé justement
+entre deux wikitty service sur serveur.
+
+
 Définitions
 -----------
 
@@ -62,11 +79,20 @@ autre wikitty service.
 
 On conservera trace ausi dans ce même fichier de propriété du label courant, permettant
 de ne pas faire d'opération "complexes" et pénible sur les noms de fichier afin de retrouver
-le label de travail.
+le label de travail. Conserver trace du label actuel à l'avantage de n'avoir pas
+besoin de rechercher dans l'arborescence la première occurence du fichier de propriété
+pour pouvoir reconstituer le label complet. 
 
 On distinguera deux fichiers de propriétés pour les informations un qui conservera 
 les id des wikitty lié à leur nom de fichier. Et un autre fichiers de propriété 
-qui conservera un checksum et la version.
+qui conservera un checksum, la version et les id aussi.
+
+On conserve les id dans un premier fichier puisque celà permet simplement de récupérer
+l'ensemble des id et leurs noms de fichier lié sans avoir besoin de faire le tri
+parmis toutes les propriétés enregistrées. On converse l'id aussi dans un autre fichier de
+propriété, à défaut d'avoir un system de type bidimap pour les proriétés, celà permet 
+de récupérer l'id d'un wikitty à partir de son nom de fichier, et inversement du nom de fichier
+à l'id. 
 
 La propriété checksum sera utilisée pour enregistrer la somme de controle de 
 l'objet lors de son enregistrement, pour plus tard, savoir si celui ci à été
@@ -108,6 +134,9 @@ current.label=racine
 script.js.checksum= checksum
 scripttut.js.checksum= checksum
 image.png.checksum= checksum
+id.image.png=uubdazudba
+id.scripttut.js=11daz5facz
+id.script.js=jbdub1dza8
 
 id.properties:
 
@@ -160,6 +189,13 @@ Avec URI sous forme:
 
 Evidement le path pour le protocole File indiquant le répertoire où aller
 chercher/mettre les wikitties.
+
+Les labels de l'uri cible et local peuvent être différent, et pendant ils seront
+conservé, c'est à dire que des wikitties de la cible si ils ont besoin de se
+mettre à jour, leurs labels seront conservés.
+Dans le cas de wikitty qui n'existe pas dans la cible, on remplacera le label
+origine qui à permis de trouver ces wikitties et le remplacer par le label cible,
+les autres labels du wikitty seront transmit.
  
 
 Wikitty Service File System
@@ -168,6 +204,12 @@ Wikitty Service File System
 Un tel service devra fournir les méthodes suivantes les méthodes de sauvegarde
 des wikitty, de restauration, ainsi qu'un certain nombre de fonctionnalités concernant
 les recherches de wikitty.
- 
+
+Le wikitty service sur file system prendra en charge les recherches sur critéria
+de façon compléte. A chaque recherche sur le wikitty service file system, il faudra
+indexer les nouveaux wikitty, enlever les property des fichiers/wikitty supprimé,
+incrémenter la version mineur si il y a eut des modifications depuis la dernière 
+indexation.
+
 
 
