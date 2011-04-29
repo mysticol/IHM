@@ -4,27 +4,48 @@
 \subsection{principe}
 
 Ce projet est une base de données orientée documents et API de persistance pour
-Java. 
+Java. Il permet d'enregistrer dans une base clé/valeur des objets wikitty, la
+clé est un id généré qui est unique pour chaque wikitty.
 
-Principe de clé/valeur
+Un wikitty possède des extensions et les extensions possèdent des champs nommés
+et chaque champ est une clé à laquelle on associe des valeurs. Et des extensions
+peuvent dépendre d'autre extension.
 
-principe des extensions
+Par exemple une extension personne qui possède deux champs : nom et prénon.
+Une autre extension ressource qui possède un champs numéro et qui dépends de
+l'extension personne.
 
-il y a un certain nombre d'extension déja existante.
+Si un wikitty possède l'extension ressource alors ce wikitty possèdera les
+champs de l'extension ressource et de l'extension employé, puisque ressource
+dépends d'employé.
 
-Basiquement on peut se servir de wikitty comme une base de donnée
-si on a besoin d'objet à stocker en plus il suffit d'écrire le model
-uml avec argouml et de faire générer les classes correspondante par
-l'application et tout ça.
+L'api de wikitty prévois un certain nombre d'extension basique, mais tout
+l'intéret est que l'on peut créer ses propres extensions, simplement en écrivant
+un modèle uml de classe, qui servira ensuite pour générer les classes java
+effectives.
 
-op là
+Ensuite il suffit de développer sont applications simplement en utilisant les
+classes générées et les passer à un wikitty service pour le stockage sans plus
+se poser de question le tout très simplement.
+
+Cette api à été conçu pour supporter les monter en charge et une utilisation
+intensive. Elle supporte aussi la recherche par criteria, et par facette.
+
+faire une description ici de criteria et facette.
+Mettre un dessin qui montre l'application tel qu'elle peut être déployé.
+détailler comment faire ses classes java en uml.
+
 
 faut parler de la gestion de version des wikitty.
 
 
-
-
-Cette base stock des objets de type Wikitty, cette base enre
-
-
 \subsection{existant}
+
+L'application peut être déployé sur serveur avec le protocole cajo, hessian et
+d'autre chose.
+
+Wikitty sert de base de donnée pour une partie des applications de l'entreprise,
+puisque il permet une grande flexibilité, et à partir du moment ou on peut
+modéliser les donnés en objet on peut les stocker en base.
+
+
