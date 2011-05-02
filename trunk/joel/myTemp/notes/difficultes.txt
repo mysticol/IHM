@@ -1,0 +1,9 @@
+Au niveau de quelques requirements qui ont changé en cours de route.
+ce qui fait que pas mal de chose ont changé, notament la façon de voir les choses
+pas de soucis avec le mercy less refactoring. en gardant ce qui avait été fait.
+
+
+ensuite difficultés au niveau de reformulation en specs des demande
+pas toujours évidente, communication entre informaticien pas toujours facile.
+on se moque souvent de la communication entre client et informaticien
+entre informaticien s'est pareil
