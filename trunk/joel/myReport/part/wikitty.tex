@@ -1,5 +1,9 @@
 \section{Projet Wikitty}
 
+Wikitty est un projet important chez code lutin, mon travail à été sur un sous
+projet de wikitty, et donc pour le comprendre il est important de présenter
+le projet Wikitty.
+
 
 \subsection{principe}
 
@@ -24,28 +28,35 @@ l'intéret est que l'on peut créer ses propres extensions, simplement en écriv
 un modèle uml de classe, qui servira ensuite pour générer les classes java
 effectives.
 
-Ensuite il suffit de développer sont applications simplement en utilisant les
+Ensuite il suffit de développer son application simplement en utilisant les
 classes générées et les passer à un wikitty service pour le stockage sans plus
 se poser de question le tout très simplement.
 
-Cette api à été conçu pour supporter les monter en charge et une utilisation
+Cette api à été conçue pour supporter les monter en charge et une utilisation
 intensive. Elle supporte aussi la recherche par criteria, et par facette.
 
-faire une description ici de criteria et facette.
-Mettre un dessin qui montre l'application tel qu'elle peut être déployé.
-détailler comment faire ses classes java en uml.
+La recherche par criteria permet de rechercher des wikitty en fonction de leurs
+extensions et des valeurs des différents éléments de ces extensions.
 
+Les facettes permettent de regrouper les résultats de recherche par criteria. 
 
-faut parler de la gestion de version des wikitty.
-
+Tout wikitty posséde un numéro de version, qui évolue en fonction des
+modifications faites dessus. L'api prévois que l'on puisse restaurer une version
+ciblé d'un wikitty.
+%quand wikitty version sera mieux gérer en parler.
 
 \subsection{existant}
 
-L'application peut être déployé sur serveur avec le protocole cajo, hessian et
-d'autre chose.
-
 Wikitty sert de base de donnée pour une partie des applications de l'entreprise,
-puisque il permet une grande flexibilité, et à partir du moment ou on peut
-modéliser les donnés en objet on peut les stocker en base.
+puisque il permet une grande flexibilité. Dès lors ou on peut modéliser les
+données en objet on peut les stocker dans avec Wikitty.
 
+Différentes applications ?
+Extension, sous projet existant.
 
+Wikitty à été étofé par des sous projet autorisant le déploiement de base
+wikitty sur des serveurs avec des protocole Hessian ou Cajo.
+
+Parler de quelques projet se basant dessus.
+
+Objectif concernant ce projet les aspirations de wikitty.
