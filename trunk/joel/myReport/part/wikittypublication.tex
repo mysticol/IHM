@@ -1,31 +1,58 @@
 \section{Wikitty Publication}
 
+Wikitty publication est le sous projet sur lequel j'ai été amené à travailler
+durant mon stage.
+
+On parle du projet du but du projet
+a quoi c'est censé servir
+
+découpage en sous partie, lister les fonctionnalités dans l'ensemble ?
+parler du sous découpage que c'esr sensé bien partimenter le taff et tout le
+tintouint.
+
+
+
 Cette partie du rapport, nous parlerons du sous projet de wikitty: wikitty
 publication sur lequel j'ai été amené à travailler durant mon stage. 
 Le travail sur ce sous projet à été découper en plusieurs sous partie plus ou
 moins indépendantes. 
 
 Dans son ensemble Wikitty publication est un projet basé sur wikitty, dont le
-but est de pouvoir d'avoir des applications stockéess au sein d'un wikitty et
+but est de pouvoir d'avoir des applications stockées au sein d'un wikitty et
 via une interface web de faire en sorte que ces applications soient directement
 éxécutées. 
 
-falloir enrichir ce que je dis ici
+Wikitty publication une plateforme de stockage exécution d'application
+d'application qui peut se
 
-\subsection{Synchronisation}
 
-La partie synchronisation de wikitty publication concerne des fonctionnalités
-destinées à importer une application auprès d'un wikitty service. D'avoir des
-fichiers sources et autres de les envoyer sur un wikitty et que celà s'éxécute.
 
-L'inverse aussi récupérer des wikitty et les transformer en file.
 
-De façon plus général syncrhoniser ensemble le contenu de wikitty pas seulement
-un wikitty file system.
 
-DOnc ici on colle les specs en gros de la partie sync.
+Code Lutin souhaite se lancer dans la création d'une plate-forme Web permettant à des développeurs
+et aux utilisateurs de l'application de la modifier aussi simplement qu'elle est utilisée.
+Inspirée du concept wiki, cette plate-forme devra permettre de structurer des documents, des
+modèles ou des formulaires à l'aide d'un langage spécifique simplifié (semblable à JSP). Cette
+approche est celle mise en œuvre dans XWiki, mais cette solution n'est pas adaptée
 
-On va parler des solutions comment ça se fait et tout ça.
+
+L'objectif du stage est de partir d'une preuve de concept (déjà réalisée) qu'il faudra reprendre et
+compléter pour intégrer notamment les mécanismes d'authentification et d'administration afin
+d'arriver à une version utilisable. Comme il s'agit d'une application Web, Struts 2 sera utilisé côté
+serveur conjointement avec une base de données Wikitty.
+La réalisation de ce projet implique notamment de se pencher sur la réalisation d'un script-engine
+(définit dans la JSR 223) et la réutilisation de ceux existants. Cela permettra d'intégrer les différents
+langages qui pourront être utilisés pour décrire le contenu du wiki.
+Par ailleurs, afin que le système soit compatible avec les pratiques usuelles du développement
+(gestion de version, release), il faudra réaliser un outil de synchronisation qui permettra d'extraire le
+contenu du wiki de façon structurée, de le modifier puis de publier à nouveau (éventuellement vers
+une autre instance du wiki).
+Enfin, il faudra produire une documentation de la solution ainsi que travailler à une intégration
+Maven, l'outil de construction utilisé chez Code Lutin.
+
+
+
+
 
 \subsection{Publication Site}
 

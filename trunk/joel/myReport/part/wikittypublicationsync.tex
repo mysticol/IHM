@@ -1,0 +1,269 @@
+\section{Synchronisation}
+
+La partie synchronisation de wikitty publication concerne des fonctionnalités
+destinées à importer une application auprès d'un wikitty service. Mais pas
+seulement, on doit pouvoir synchroniser deux wikittyService quelque soit son
+implémentation, que ce soit un client cajo, hessian, un client base de donné ou
+même un wikittyService sur file system.
+
+Cette approche de la synchronisation permet une grande flexibilité de
+l'application et permet à terme la synchronisation de wikitty entre wikitty
+service, et pas seulement ceux concerné par l'aspect publication.
+
+Cette approche implique la création d'une implémentation spécifique d'un wikitty
+service pour stocker des wikitty en fichier et restaurer des fichiers en
+wikitty.
+
+
+\subsection{Correspondance Fichiers/Wikitty}
+
+Un fichier est défini par un nom, une extention, un contenu et un chemin.
+dans wikitty publication les fichiers sont convertis en fonction de leurs type
+en objet wikitty. les fichiers sources sont convertit en WikittyPubText et les
+fichiers binaires(eg image, etc) en WikittyPubData.
+
+Ces deux types de wikitty pourrons être dénommé dans la suite sous le nom
+WikittyPub. 
+
+Les deux types d'objet ont les mêmes attribut:
+\begin{itemize}
+\item Name: correspondant au nom du fichier
+\item MimeType: crrespondant au type, qui donnera l'extension
+\item Content: le contenu binaire pour pour les PubData et textuel pour les
+PubText
+\item extension: l'extension du fichier original
+\end{itemize}
+
+Le mimetype est détermine le contenu, on enregistre en plus l'extension car il
+n'y a pas une correspondance parfaite entre extension et mime type, donc pour
+ne pas perdre d'information on conserve les deux, par exemple il y a 4
+extensions distinct possible pour un mime type: image/jpg. 
+
+A ces objets wikitty on associe un wikittyLabel, c'est un objet qui peut
+contenir un ensemble de label différent, un label une chaine de texte.
+Par exemple le label : "src.org.chorem.entities" sert ici pour contenir le
+chemin menant au fichier sur le file system. Un WikittyPub peut avoir un
+plusieurs de label, pour les wikittyPub celà indiquera qu'ils appartiennent à
+plusieurs arborescences.
+
+Pour enregistrer un wikitty en fichier, il suffira de construire l'arborescence
+des dossiers en fonction du label du WikittyPub. Le nom du fichier sera donné
+par l'attribut nom du WikittyPub, son contenu aussi et l'extension aussi, à
+défaut d'une extension le mimeType pourra être utilisé pour la déterminer.
+
+Pour assurer la restauration d'un WikittyPub qui aura été sauvegardé en fichier,
+il faut enregistrer en plus des informations supplémentaire. Comme tout Wikitty,
+les WikittyPub possèdent un numéro de version ainsi qu'un id qui les identifient
+de façon unique.
+
+Il faut donc enregistrer ses informations, de plus il faut que le wikitty
+service sur file système gère les modifications sur Wikitty et donc modifie la
+version des Wikitty si besoin.
+
+La solution qui à été trouvée pour celà est les fichiers de propriété dans un
+dossier ``.wp/''. 
+
+On distinguera deux fichiers de propriétés pour les informations un qui 
+conservera les id des wikitty lié à leur nom de fichier. Et un autre fichiers de
+propriété qui conservera un checksum, la version et les id aussi. En sus de
+la sauvegarde des ``meta information" des Wikitty, ce fichier de propriété
+conservera le nom du label courant, rendant immediat la restauration (pas
+besoin de traitement complexe sur les noms de fichier/dossier).
+
+On conserve les id dans un premier fichier puisque celà permet simplement de 
+récupérer l'ensemble des id et leurs noms de fichier lié sans avoir besoin de 
+faire le tri parmis toutes les propriétés enregistrées. On converse l'id aussi 
+dans un autre fichier de propriété, à défaut d'avoir un system d'enregistrement
+clé/valeur bidirectionnel. 
+
+La propriété checksum sera utilisée pour enregistrer la somme de controle de 
+l'objet lors de son enregistrement, pour plus tard, savoir si celui ci à été
+modifié depuis lors.
+
+Exemple pour un contenu de file system:
+\begin{verbatim}
+ +racine
+ |script.js
+ |scripttut.js
+ |image.png
+ |+.wp
+ ||id.properties 
+ ||meta.properties 
+ |+directory2
+ ||script3.js
+ ||+.wp
+ |||meta.properties
+ |||id.properties 
+ ||+directory3
+ |||truc.js
+ |||+.wp
+ ||||meta.properties
+ ||||id.properties 
+ |+directory22
+ ||machin.png
+ ||+.wp
+ |||versions.properties
+ |||id.properties 
+\end{verbatim}
+
+
+Exemples de fichiers de propriétés:
+\begin{verbatim}
+racine/.wp/meta.properties:
+
+current.label=racine
+script.js.version=numéroVersion7
+version.scripttut.js=numéroVersion
+version.image.png=numéroVersion
+checksum.script.js= checksum
+checksum.scripttut.js= checksum
+checksum.image.png= checksum
+id.image.png=uubdazudba
+id.scripttut.js=11daz5facz
+id.script.js=jbdub1dza8
+\end{verbatim}
+
+\begin{verbatim}
+racine/.wp/id.properties:
+
+uubdazudba=image.png
+11daz5facz=scripttut.js
+jbdub1dza8=script.js
+\end{verbatim}
+
+\subsection{Un wikitty service file system}
+
+Un wikitty service implémenter pour système de fichier doit pouvoir enregistrer
+des wikitty en fichier et inversement. Pour se faire il se servira des fichiers
+de propriété précédement exposé, et des conversions telles qu'elles le sont
+proposées.
+
+En plus de la sauvegarde, restauration et supression, ce type de wikitty service
+doit, c'est la base du système de synchronisation, gérer les recherches par
+critère des wikitty comme si il était stocké de façon classique dans une base.
+
+Pour correctement gérer ces options de sauvegarde, restauration, gestion de
+version des wikitty, pour tout appel à la recherche ce wikitty service indexe
+l'ensemble des fichiers:
+\begin{itemize}
+\item vérifie si il y a des nouveaux fichiers en comparant les valeurs dans les
+fichier de propriétés ``id.properties''. Si il ya des nouveaux fichiers il créé
+des id, calcul les sommes de contrôle et enregistre le tout dans les fichiers de
+propriétés.
+\item il vérifie la somme de controle des fichiers existant, et incrémente la
+version pour ceux qui ont changé, et il met à jour la somme de contrôle
+\item il cherche si des fichiers ont été supprimé, et le cas échéant enlève les
+infos concernant le wikitty correspondant au fichier
+\end{itemize}
+
+Avec ces fonctions le wikitty service file system est ``complet'' pour la
+synchronisation.
+
+Le mécanisme qui indexe créer automatiquement les fichiers de propriété
+nécessaire, ce qui implique que une arborescence de fichier peut être converti
+en wikitty de cette façon, nul besoin d'initialiser un espace de travail en en
+le créant à partir de wikitty, tout dossier peut devenir ``une base wikitty''.
+
+\subsection{Fonctionnalitées de synchronisation}
+
+\subsubsection{Sync}
+
+La fonctionnalité sync permet de transférer l'ensemble des wikittys ciblés par 
+l'uri, d'un service wikitty à un autre. Son fonctionnement doit est similaire à
+la commande linux "rsync".
+
+Quelques options on été reprise:
+\begin{itemize}
+\item Recursion pour savoir si l'on s'occupe des sous labels du label ciblé.
+\item Update, qui permettra de mettre à jour ce qui est présent et antérieur
+sur la cible et d'y envoyer les nouveaux wikitty. Par défaut cette option est
+active, et sera desactivée lorsque les autres options (delete ou existing)
+seront choisis.
+\item Existing qui est un update mais sans l'envois des nouveaux fichiers, on
+envois juste ce qui à été mis à jour et qui existe sur le wikitty service cible.
+\item Delete pour supprimer dans le wikitty service cible, ce qui n'existe plus
+dans le wikitty service origine.
+\end{itemize}
+
+La suppression n'est pas une vraie suppression elle se contente de supprimer le 
+label ciblé du wikitty, l'éventuel suppresion définitive du wikitty si celui ci
+se retrouve sans label est à la charge du service.
+
+Le type de l'implémentation des wikitty service nécessaire pour la communication
+avec les uris passé en paramètre sont à la charge d'une factory. 
+
+La commande:
+
+''wp sync [--norecursion] [--delete|--existing] [URI orgirine] [URI cible]''
+
+Avec URI sous forme: 
+\begin{itemize}
+\item file:///truc/machin/\#label
+\item hessian://www.adresse.com:8827/etc/etc\#label
+\item cajo://www.adresse.com:8827/etc/etc\#label
+\end{itemize}
+
+Evidement le path et le label pour une uri de type file détermine l'espace de
+travail wikitty. eg: /truc/machin/label est le repertoire racine
+
+Les labels de l'uri cible et origine peuvent être différent, ce qui signifie que
+les labels ne sont pas forcément transmit, le wikitty sur la cible est modifié
+mais pas ses labels.
+
+Dans le cas de wikitty qui n'existe pas dans la cible, on remplacera le label
+origine qui à permis de trouver ces wikitties par le label cible.
+
+\subsubsection{Commit/update}
+
+Les fonctionnalités commit/update sont des alias pour la commande sync.
+L'utilisation de ces commandes implique la présence d'un espace de travail
+précédement initialisé avec la commande sync.
+
+Les commandes commit et update permette de ne pas avoir besoin de préciser le
+wikitty service cible de la synchronisation, synchroniser avec le dernier
+wikitty service utilisé pour. Celà implique que un wikitty service file system
+enregistre l'adresse du wikitty service avec lequel on le synchronise.
+
+Pour ce faire un fichier de propriété enregistre l'adresse du wikitty service
+servant pour une synchronisation.
+
+Un commit sera équivalent à un sync de l'espace de travail local vers un autre
+wikitty service. 
+
+Un update sera équivalent à un sync d'un autre wikitty service vers l'espace de
+travail local.
+
+La commande:
+
+''wp [update|commit] [--norecursion] [--delete|--existing] [label] [URI file]''
+
+L'URI file est optionnelle, si pas précisée on va commit/update le dossier 
+courrant.
+
+Pour le commit/update, on doit forcément préciser le label pour le wikitty 
+service cible, celà pour permettre de commit ou update au bon endroit.
+La commande supporte évidement les mêmes options que pour une commande sync, en
+toute logique.
+
+
+\subsection{Fonctionnement de sync}
+
+
+Une synchronisation entre deux wikitty service se fait en comparant les wikitty
+qu'ils ont chacun, wikitty qui possèdent soit des labels préçis ou des labels
+commençant par une chaine, fonction de l'option récusion.
+
+On distinguera les wikittys qui existent dans les deux services, ceux présent
+uniquement dans le wikitty service cible et ceux uniquement sur le wikitty
+service d'origine.
+
+Ensuite en fonction de l'option de synchronisation ces différentes collection de
+wikitty sont utilisé.
+
+Dans le cas d'une uptate tout les wikitty qui existe uniquement dans l'origine
+son envoyé, et ceux présent dans les deux sont mis à jour.
+
+Dans le cas d'un existing seulement ceux présent dans les deux sont mis à jour.
+Et dans le cas d'un delete on va supprimer les labels des wikitty seulement
+présent sur la cible.
+

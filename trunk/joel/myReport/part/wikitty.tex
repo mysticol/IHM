@@ -5,11 +5,11 @@ projet de wikitty, et donc pour le comprendre il est important de présenter
 le projet Wikitty.
 
 
-\subsection{principe}
+\subsection{Principe}
 
 Ce projet est une base de données orientée documents et API de persistance pour
 Java. Il permet d'enregistrer dans une base clé/valeur des objets wikitty, la
-clé est un id généré qui est unique pour chaque wikitty.
+clé est un id généré qui est unique pour chaque wikitty. 
 
 Un wikitty possède des extensions et les extensions possèdent des champs nommés
 et chaque champ est une clé à laquelle on associe des valeurs. Et des extensions
@@ -36,7 +36,8 @@ Cette api à été conçue pour supporter les monter en charge et une utilisatio
 intensive. Elle supporte aussi la recherche par criteria, et par facette.
 
 La recherche par criteria permet de rechercher des wikitty en fonction de leurs
-extensions et des valeurs des différents éléments de ces extensions.
+extensions et des valeurs des différents éléments de ces extensions, sans jamais
+écrire de sql, on écrit un critère sur le modèle objet. 
 
 Les facettes permettent de regrouper les résultats de recherche par criteria. 
 
@@ -51,12 +52,31 @@ Wikitty sert de base de donnée pour une partie des applications de l'entreprise
 puisque il permet une grande flexibilité. Dès lors ou on peut modéliser les
 données en objet on peut les stocker dans avec Wikitty.
 
-Différentes applications ?
-Extension, sous projet existant.
+Actuellement wikitty peut être déployé localement, pour une base de données
+d'une application, mais il peut être déployé sur un serveur et interrogé grâce
+au protocole de communication hessian ou au framework cajo.
 
-Wikitty à été étofé par des sous projet autorisant le déploiement de base
-wikitty sur des serveurs avec des protocole Hessian ou Cajo.
+Hessian est un protocole de communication pour web service, et cajo est un
+framework pour les communications d'application java réparties. 
 
-Parler de quelques projet se basant dessus.
+Une partie des projets actuel de Code Lutin dès lors où ils ont besoin d'une
+base de donné utilise un stockage Wikitty, l'objectif est à la généralisation de
+cette solution pour les projets de Code Lutin.
 
-Objectif concernant ce projet les aspirations de wikitty.
+\subsection{Utilisation}
+
+A l'utilisation pour créer ses propres wikitty il faut écrire un diagramme de
+classe grâce à l'outil argouml, et que chaque classe porte le stereotype
+<<Entity>>, et remplir les différents attribut des classes avec les types
+reconnus par java. 
+
+Le fait de stereotyper correctement permet ensuite aux générateurs de générer
+les classes java correspondante, et s'assurer qu'elles puissent être stocker
+ensuite par wikitty.
+
+Ensuite il suffit d'avoir la base de déployée, et d'utiliser l'interface
+wikittyProxy qui offre les services pour les requêtes de wikitty, les
+sauvegardes, restauration de wikitty. La base de donnée est totalement déléguée
+au wikittyService, pas besoin d'écrire du sql.
+
+Rajouter que on se sert de wikitty service
