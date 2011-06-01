@@ -52,16 +52,16 @@ Wikitty sert de base de donnée pour une partie des applications de l'entreprise
 puisque il permet une grande flexibilité. Dès lors ou on peut modéliser les
 données en objet on peut les stocker dans avec Wikitty.
 
-Actuellement wikitty peut être déployé localement, pour une base de données
+Actuellement Wikitty peut être déployé localement, pour une base de données
 d'une application, mais il peut être déployé sur un serveur et interrogé grâce
 au protocole de communication hessian ou au framework cajo.
 
 Hessian est un protocole de communication pour web service, et cajo est un
 framework pour les communications d'application java réparties. 
 
-Une partie des projets actuel de Code Lutin dès lors où ils ont besoin d'une
-base de donné utilise un stockage Wikitty, l'objectif est à la généralisation de
-cette solution pour les projets de Code Lutin.
+Une partie des projets actuel de Code Lutin utilise un stockage Wikitty, 
+l'objectif est à la généralisation de cette solution pour les projets de 
+Code Lutin.
 
 \subsection{Utilisation}
 
@@ -72,11 +72,49 @@ reconnus par java.
 
 Le fait de stereotyper correctement permet ensuite aux générateurs de générer
 les classes java correspondante, et s'assurer qu'elles puissent être stocker
-ensuite par wikitty.
+ensuite par Wikitty.
 
-Ensuite il suffit d'avoir la base de déployée, et d'utiliser l'interface
-wikittyProxy qui offre les services pour les requêtes de wikitty, les
-sauvegardes, restauration de wikitty. La base de donnée est totalement déléguée
-au wikittyService, pas besoin d'écrire du sql.
+Le déploiement ensuite passe par des fichiers configuration qui permettent la
+mise en place des différentes couche de service nécessaire au bon fonctionnement
+on peut choisir ainsi d'avoir une base de donnée embarquée ou d'utiliser un
+Wikitty service distant.
 
-Rajouter que on se sert de wikitty service
+Celà sans écrire le moindre sql, pour faire des recherches il suffit d'écrire
+ses criterias, qui peuvent être construit à partir d'objet wikitty, par exemple 
+on veut des wikitty qui ressemble à un modèle, on génère les criterias à partir
+de ce modèle.
+
+C'est une approche tout objet, tout java, on se concentre sur l'écriture du code
+métier et pas sur l'écriture des couches basses. Puisque le service permet la
+sauvegarde, restauration, et recherche.
+
+% Ensuite il suffit d'avoir la base de déployée, et d'utiliser l'interface
+% wikittyProxy qui offre les services pour les requêtes de wikitty, les
+% sauvegardes, restauration de wikitty. La base de donnée est totalement déléguée
+% au wikittyService, pas besoin d'écrire du sql.
+% 
+% Rajouter que on se sert de wikitty service
+% 
+% mécanisme de wikitty service et de fichier de propriété liée et tout ça
+
+
+\subsection{Wikitty Service, Wikitty Proxy et Wikitty Service Factory}
+
+
+Fonctionnement des couches 
+tout ça
+
+Role de la factory exemple de fichier de propriété 
+factory instancie les services et les donnent à manger les uns au autres en
+fonction des besoins.
+
+Interface Wikitty Service implémenté par tout les services wikitty
+chacun implémentes les fonctions qu'il a besoin
+délégation du reste
+
+interception Chain-of-responsibility pattern pour les successions de couche de
+wikitty service. 
+
+
+Rapide truc de application config qui sert pour avoir toutes les propriétés 
+
