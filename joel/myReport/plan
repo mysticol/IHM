@@ -15,18 +15,26 @@ introduction (6)
 -présentation wikitty  (2)
 	-principe
 	-existant
-	-etc
+	-etc	
+	
 
--présentation concept de wikitty publication  (3)
-	-xwiki
-	-autre
+- wikitty publication base
+	concept et tout
+	decoupage en module
+	planning travail tout ça
 	
-	
--présentation du travail  (4)
-	-planning
-	-phases
-	-architecture
-	-
+- Module sync
+
+- module site
+
+- module externalize
+
+- module script engine
+
+
+
+
+
 	
 Conclusion   (5)
 	-travail sur le libre
@@ -36,3 +44,30 @@ Conclusion   (5)
 
 
 Annexes
+
+
+
+
+
+
+<---------------------------------------------------------->
+
+
+temps:
+
+ -présentation concept de wikitty publication  (3)
+	-xwiki
+	-autre
+différentes parties du travail
+synchronisation
+site
+externalize
+amélioration du script engine et tout.
+
+
+	
+-présentation du travail  (4)
+	-planning
+	-phases
+	-architecture
+	-
