@@ -1,24 +1,151 @@
 \section{Publication Site}
 
+La partie site de Wikitty Publication concerne des fonctionnalités
+destinées à l'administration et les éléments coeur du moteur de publication
+comme l'interprétation du code contenu dans les WikittyPubText. Ces
+fonctionnalités principales sont :
+\begin{itemize}
+\item Raw, qui permet l'affichage des WikittyPubData exemple des images
+\item Edit, qui permet de créer ou d'éditer des Wikitty
+\item Eval, qui permet l'évaluation du code contenu dans un WikittyPubText
+\item View, qui permet l'affichage et la recherche des Wikitty
+\end{itemize}
+
+Un premier prototype avait été réalisé c'était la base de travail, ce prototype
+était fait avec des jsp/servlet simplement sans support d'un quelconque
+framework comme struts.
+
+Le travail sur cette partie de publication se concentrait donc sur
+l'amélioration de ce prototype sous différent aspect.
+
+
 \subsection{Migration vers struts}
 
-Parler de la base du truc de son fonctionnement tout ça de ce que c'était
+Le premier aspect de l'amélioration du prototype était de migrer les jsp/servlet
+vers le framework struts. Struts est un donc un framework qui permet un bon
+support du modèle MVC pour les applications web.
+
+Struts permet au dévelloppeurs de se concentrer sur la vue et le modèle de son
+application Web, à la charge de struts l'aspect contrôleur du modèle MVC. En
+effet on peut définir l'enchainement des actions effectuées et la page qui sera
+affiché en conséquence.
+
+Dans struts on parle d'action, de package et d'intercepteur, les packages
+regroupent les actions et les piles d'intercepteurs, 
+
+Format des urls 
+construction des url
+action ?
+Adapter les actions ?
+Particulier de eval et raw ?
 
 
-
-\subsection{Amélioration des pages d'affichage et d'édition}
-page d'édition 
+Principe de package dans struts
 
 
+  /[context]/[action]/[mandatory_args]?[args key=value]
+  
+  eval
+  raw
+  edit
+  view
+  
+  
+    /eval/WikittyPubText.name:Wiki
+  /eval/Wiki
+  
+  /raw/WikittyPubText.name:WikiLogo
+  /raw/WikiLogo
+  
+
+
+Le travail à donc consister à supprimer les servlets, changer les jsp 
 
 
 
 \subsection{Ajout d'un mécanisme de login/logout}
 
+Le fonctionnement du mécanisme de droit est relativement simple, il est lié au
+fonctionnement de struts. Avant d'accèder à une page d'un application sous
+struts la requête passe par des intercepteurs, qui traite la requête en fonction
+de ce qu'elle contient.
+
+Dans le cas d'un système d'authentification avec struts on défini une pile
+d'intercepteur personnalisée avec un intercepteur spécifique pour l'application
+que l'on écrit en héritant d'une interface de de struts.
+
+
+
+
+L'intercepteur vérifie donc que l'utilisateur est bien présent dans la session
+courante, si non présent il redirige vers la page de Login, en conservant
+l'adresse désiré par l'utilisateur de sorte que une redirection est effectuée
+après un login correct.
+
+Une fois ces 
+
+
+
 gestion de droit
+Login sur un wikitty contexte
+avec intercepteur struts tout ça
 
 
-\subsection{Mécanisme de multicontexte}
+\subsection{Amélioration des pages d'affichage et d'édition}
 
-un même wikitty service qui va chercher dans plusieur wikitty service
+Les pages d'édition et d'affichage des wikitty étaient relativement simple, le
+but étant une administration simple et efficace des wikitty. L'amélioration de
+ces pages à consister en la correction des bugs présent déjà dans le prototype.
+
+Par exemple le support pour les recherches dans wikitty dans la page view,
+dans le prototype cette recherche était très limité et donc ne fonctionnait pas
+très bien. De plus l'affichage des résultats nécessitait une amélioration.
+
+Ensuite pour l'interface d'édition des wikitty j'ai intégré un décorateur de
+Text Area qui permet une colorisation du contenu du champ, on peut choisir le
+langage présent dans le champ pour avoir une colorisation, de l'indentation, des
+outils de recherche/remplacer et d'autre, basiquement une sorte d'ide pour
+faciliter le dévellopement de code dans les WikittyPubText.
+
+
+
+
+page d'édition gestion des champs collection de string
+pas grand chose de plus ici en fait.
+
+Intégration d'un décorateur de text area pour code mirror ui, 
+
+ 
+
+Page de view avec la recherche et d'autre truc
+comme des liens qui manquait, plus d'info à afficher ou des trucs comme ça.
+
+
+
+
+\subsection{Mécanisme de multicontext}
+
+Cette fonctionnalité consiste en fait à l'encapsulation par un wikitty service
+de deux autres wikitty service, quelque soit leurs natures.
+
+Ce multi contexte éxécute ses recherches un wikitty service principal, et
+compléte ses recherches si besoin avec les données du wikitty service dit
+fallback.
+
+De même l'écriture s'effectue sur le service principale, la restoration d'un
+wikitty sur le principal et si il n'est pas dessus on va interroger le fallback
+service.
+
+%coller un schéma ici ?  ouai coller un schéma
+
+Son utilisation n'est pas nécessairement limité à Wikitty Publication, il s'agit
+finalement d'une implémentation différente de l'interface wikitty service. 
+
+Ce mécanisme peut permettre la surcharge d'un wikitty, dans le sens ou on peut
+modifier un wikitty qui aura été chargé depuis le fallback, mais à la sauvegarde
+il sera restaurer depuis le wikitty principal, puisque celui ci est prioritaire.
+
+On peut avoir ainsi un wikitty service statique, et un autre dynamique, par
+exemple le wikitty service statique qui serait partagé et utilisé par d'autre
+wikitty service multicontext, une base commune de wikitty.
 
