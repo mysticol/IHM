@@ -2,8 +2,9 @@
 
 La partie site de Wikitty Publication concerne des fonctionnalités
 destinées à l'administration et les éléments coeur du moteur de publication
-comme l'interprétation du code contenu dans les WikittyPubText. Ces
-fonctionnalités principales sont :
+comme l'interprétation du code contenu dans les WikittyPubText. 
+
+Ces fonctionnalités principales sont :
 \begin{itemize}
 \item Raw, qui permet l'affichage des WikittyPubData exemple des images
 \item Edit, qui permet de créer ou d'éditer des Wikitty
@@ -31,65 +32,100 @@ effet on peut définir l'enchainement des actions effectuées et la page qui ser
 affiché en conséquence.
 
 Dans struts on parle d'action, de package et d'intercepteur, les packages
-regroupent les actions et les piles d'intercepteurs, 
+regroupent les actions et les piles d'intercepteurs, ces packages peuvent en
+étendre d'autre et donc hériter de leurs propriétés. Les packages peuvent
+posséder un 'namespace' qui leur permet d'être défini pour un sous espace de
+l'application.
 
-Format des urls 
-construction des url
-action ?
-Adapter les actions ?
-Particulier de eval et raw ?
+Les intercepteurs et piles d'intercepteur sont des objets qui effectue un pré
+traitement sur les requêtes http reçu par l'application, par défaut struts
+disposent d'une pile qui lui permet de gérer l'envois de fichier, le mapping
+de bean avec des champs d'une page et d'autres.
 
+Les actions permettent de décrire l'enchainement des 'écrans', les classes java
+qui doivent éxécuter un traitement après la validation d'un formulaire jsp, la
+jsp à afficher et d'autres.
 
-Principe de package dans struts
+Cette configuration de struts se fait grâce à des xml, ensuite il suffit
+simplement d'écrire des classes java qui implémentent des interfaces
+spécifiques. Je dévelloperais pas plus le fonctionnement de struts.
 
+Un des aspect important de la migration vers struts aura été la conversation des
+url correspondant aux actions de publications, les url doivent être sous cette
+forme : 
+\begin{verbatim}
+/[context]/[action]/[mandatory_args]?[args key=value]
+\end{verbatim}
 
-  /[context]/[action]/[mandatory_args]?[args key=value]
-  
-  eval
-  raw
-  edit
-  view
-  
-  
-    /eval/WikittyPubText.name:Wiki
-  /eval/Wiki
-  
-  /raw/WikittyPubText.name:WikiLogo
-  /raw/WikiLogo
-  
+Les actions: 
+\begin{itemize}
+\item Raw
+\item Edit
+\item Eval
+\item View
+\end{itemize}
 
+Le context sert pour trouver le bon Wikitty Service. Les mandatory args servent
+pour les actions: Raw, Eval et Edit pour trouver le bon objet wikitty
+correspondant. Par exemple :
 
-Le travail à donc consister à supprimer les servlets, changer les jsp 
+\begin{verbatim}
+/edit/elt_id:928b573e-b76f-4ffc-95a1-205798034330 
+/eval/WikittyPubText.name:Wiki
+/raw/Wiki
+\end{verbatim}
 
+Respectivement :
+\begin{itemize}
+\item l'action edit pour le wikitty avec l'id correspondant
+\item l'action eval pour le wikittyPubText qui possèdent le champ name égal à
+Wiki
+\item l'action raw pour le wikitty qui possède un champ nom égal à Wiki
+\end{itemize}
+
+Ces deux derniers exemples montrent plusieurs formats pour retrouver un même
+wikitty. 
+
+Les actions de publication Raw et Eval sont un peu particulières, contrairement
+aux deux autres elles n'ont pas de page jsp de rendu, les actions View et Edit
+ont des jsp pour l'affichage et l'édition/création de wikitty.
+
+L'action Raw par exemple pour les WikittyPubText et PubData affiche le contenu
+des wikitty en fonction de leur mime type, et donc construit lui même son rendu
+html sans passer par une jsp.
+
+L'action Eval elle sert sert du mime type d'un WikittyPubText pour déterminer le
+langage associé au contenu et finalement execute le code, le resultat de
+l'éxécution est donc ensuite renvoyé en tant que résultat.
 
 
 \subsection{Ajout d'un mécanisme de login/logout}
 
-Le fonctionnement du mécanisme de droit est relativement simple, il est lié au
-fonctionnement de struts. Avant d'accèder à une page d'un application sous
-struts la requête passe par des intercepteurs, qui traite la requête en fonction
-de ce qu'elle contient.
+Les couches sécurité des wikitty service s'occupe déjà d'un mécanisme de login
+et d'une gestion des droits en fonction. Les utilisateurs sont stocker en tant
+que wikitty dans la base et on peut attribué des droits à ces utilisateurs.
+Ensuite via un wikitty service on peut se loger, sur une authentification on
+récupére un jeton qui sera à passer pour chaque action, celà est géré par le
+wikitty proxy qui encapsule le wikitty service.
 
-Dans le cas d'un système d'authentification avec struts on défini une pile
-d'intercepteur personnalisée avec un intercepteur spécifique pour l'application
-que l'on écrit en héritant d'une interface de de struts.
+Donc pour vérifier qu'une authentification s'est bien passé il faut regarder
+dans le proxy si l'utilisateur est présent. Dans le cas de wikitty publication
+au moment de l'action de login, délégué au proxy, on va stocker le jeton et
+l'utilisateur dans la session.
 
+Evidement le mécanisme de Logout lui nettoie simplement la session en la vidant
+de ces informations.
 
+Ensuite le fonction de la gestion de l'authentification se repose sur le
+méchanisme d'intercepteur et de package de struts. On défini une pile
+d'intercepteur personalisé qui en plus de la pile par defaut rajoute un
+intercepteur d'authenfication qui vérifiera la présence des informations
+utilisateur dans la session, et bloquera l'accès à la page demandé si
+l'utilisateur n'est pas authentifié.
 
-
-L'intercepteur vérifie donc que l'utilisateur est bien présent dans la session
-courante, si non présent il redirige vers la page de Login, en conservant
-l'adresse désiré par l'utilisateur de sorte que une redirection est effectuée
-après un login correct.
-
-Une fois ces 
-
-
-
-gestion de droit
-Login sur un wikitty contexte
-avec intercepteur struts tout ça
-
+On définit que l'accès aux actions publication utilise cette pile d'intercepteur
+qui gère l'authentification, c'est ainsi que fonctionne le méchanisme dans
+wikitty publication.
 
 \subsection{Amélioration des pages d'affichage et d'édition}
 
@@ -107,20 +143,7 @@ langage présent dans le champ pour avoir une colorisation, de l'indentation, de
 outils de recherche/remplacer et d'autre, basiquement une sorte d'ide pour
 faciliter le dévellopement de code dans les WikittyPubText.
 
-
-
-
-page d'édition gestion des champs collection de string
-pas grand chose de plus ici en fait.
-
-Intégration d'un décorateur de text area pour code mirror ui, 
-
- 
-
-Page de view avec la recherche et d'autre truc
-comme des liens qui manquait, plus d'info à afficher ou des trucs comme ça.
-
-
+% mettre screen shot du décorateur de textarea
 
 
 \subsection{Mécanisme de multicontext}
