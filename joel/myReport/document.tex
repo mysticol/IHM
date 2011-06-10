@@ -1,11 +1,132 @@
+\documentclass[12pt,a4paper,utf8x]{article}
+\usepackage [frenchb]{babel}
+
+% Pour pouvoir utiliser 
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{url} % Pour avoir de belles url
+\usepackage {geometry}
+
+% Pour mettre du code source
+\usepackage {listings}
+% Pour pouvoir passer en paysage
+\usepackage{lscape}
+
+% Pour pouvoir faire plusieurs colonnes
+\usepackage {multicol}
+% Pour crééer un index
+\usepackage{makeidx}
+\makeindex
+
+% Pour afficher la bibliographie, mais pas nottoc (Table of Contents), notlof (List of Figures) ni notlot (List of Tables)
+\usepackage[notlof, notlot]{tocbibind}
+
+
+% Pour les entetes de page
+% \usepackage{fancyheadings}
+%\pagestyle{fancy}
+%\renewcommand{\sectionmark}[1]{\markboth{#1}{}} 
+%\renewcommand{\subsectionmark}[1]{\markright{#1}} 
+
+% Pour l'interligne de 1.5
+\usepackage {setspace}
+% Pour les marges de la page
+\geometry{a4paper, top=2.5cm, bottom=3.5cm, left=1.5cm, right=1.5cm, marginparwidth=1.2cm}
+
+\parskip=5pt %% distance entre § (paragraphe)
+\sloppy %% respecter toujours la marge de droite 
+
+% Pour les pénalités :
+\interfootnotelinepenalty=150 %note de bas de page
+\widowpenalty=150 %% veuves et orphelines
+\clubpenalty=150 
+
+%Pour la longueur de l'indentation des paragraphes
+\setlength{\parindent}{15mm}
+
+
+
+%%%% debut macro pour enlever le nom chapitre %%%%
+\makeatletter
+\def\@makechapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \interlinepenalty\@M
+    \ifnum \c@secnumdepth >\m@ne
+        \Huge\bfseries \thechapter\quad
+    \fi
+    \Huge \bfseries #1\par\nobreak
+    \vskip 40\p@
+  }}
+
+\def\@makeschapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries  #1\par\nobreak
+    \vskip 40\p@
+  }}
+\makeatother
+%%%% fin macro %%%%
+
+%Couverture 
+
+\title
+{
+	\normalsize{Master Alma\\
+	Université de Nantes\\
+	2010-2011}\\
+	\vspace{15mm}
+	\Huge{Titre du rapport de stage}
+}
+\author{Nom Auteur\\
+	\vspace{45mm}
+}
+
+\date{	
+	\normalsize{Lieu du stage\\
+	Adresse du stage\\
+	Ville du stage\\ 
+	\vspace{5mm}	
+	Directeur de recherche : M. DUPONT \\
+	Rapporteur universitaire : Mme DUPUIS
+	}
+}
+
+
+
+
 %%This is a very basic article template.
 %%There is just one section and two subsections.
-\documentclass{article}
+
 
 
 
 
 \begin{document}
+\maketitle
+
+\clearpage
+
+\newpage
+\null
+\newpage
+
+
+
+\include{part/remerciement}
+
+
+
+\clearpage
+
+\include{part/introduction}
+
+
+\clearpage
+
 
 
 \tableofcontents
@@ -13,15 +134,18 @@
 
 
 \include{part/codelutin}
-
+\clearpage
 
 \include{part/wikitty}
-
+\clearpage
 
 \include{part/wikittypublication}
-
+\clearpage
 \include{part/wikittypublicationsync}
+\clearpage
+
 \include{part/wikittypublicationsite}
+\clearpage
 
 
 \end{document}
