@@ -56,7 +56,7 @@
     \ifnum \c@secnumdepth >\m@ne
         \Huge\bfseries \thechapter\quad
     \fi
-    \Huge \bfseries #1\par\nobreak
+    \Huge \bfseries #1\par\nobreaka
     \vskip 40\p@
   }}
 
@@ -79,19 +79,20 @@
 	Université de Nantes\\
 	2010-2011}\\
 	\vspace{15mm}
-	\Huge{Titre du rapport de stage}
+	\Huge{Wikitty Publication}\\
+	\normalsize{Rapport de stage}
 }
-\author{Nom Auteur\\
+\author{FORTUN Manoël\\
 	\vspace{45mm}
 }
 
 \date{	
-	\normalsize{Lieu du stage\\
+	\normalsize{Code Lutin\\
 	Adresse du stage\\
 	Ville du stage\\ 
 	\vspace{5mm}	
-	Directeur de recherche : M. DUPONT \\
-	Rapporteur universitaire : Mme DUPUIS
+	Maitre de stage : POUSSIN Benjamin \\
+	Encadrant de stage : MOLLY Pascal
 	}
 }
 
@@ -112,13 +113,18 @@
 
 \newpage
 \null
+
 \newpage
 
 
 
 \include{part/remerciement}
 
+\clearpage
 
+\include{part/resume}
+
+\clearpage
 
 \clearpage
 
@@ -146,6 +152,8 @@
 
 \include{part/wikittypublicationsite}
 \clearpage
+
+\include{part/conclusion}
 
 
 \end{document}
