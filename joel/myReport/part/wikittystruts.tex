@@ -1,0 +1,35 @@
+\subsection{Une taglib struts}
+
+L'édition de wikitty est un élément récurent dans les applications developpée 
+chez code lutin, puisque en effet Wikitty est largement utilisé comme support
+de base de donnée.
+
+Ecrire des formulaires d'édition de wikitty dans les pages jsp est devenu
+quelque chose récurrent avec les actions struts lié pour l'édition des dit wikitty.
+
+L'objectif de ce module wikitty-struts à donc été de créer une taglib permettant
+la génération des formulaires plus aisée pour les wikitty. 
+
+La tag lib devait s'appuyer sur le support de tag struts qui permet de découpler
+la logique et l'affichage avec un système de template. 
+
+La création de tag se passe donc en plusieurs étape:
+\begin{itemize}
+\item -Définition du tag dans un fichier tld, un descripteur xml
+\item -une première classe java qui étends une classe
+\item -une seconde classe java qui étends une pile d'héritage qui hérite de component
+\item -l'écriture du template
+\end{itemize}
+
+expliquer comment ça marche avec un schéma des architectures tout ça
+
+Présenter ici les différents tag rapidement avec les plus pertinent de façon plus 
+détaillés.
+
+
+En plus de fournir des tags pour la création de formulaire, la tag lib propose 
+une action qui permet de prendre en compte les modifications de wikitty envoyé
+par le formulaire. Il s'agit d'une action abstraite struts que l'utilisateur à 
+besoin d'étendre pour implémenter la méthode get proxy
+
+
