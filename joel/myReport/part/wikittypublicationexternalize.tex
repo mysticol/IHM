@@ -1,0 +1,134 @@
+\subsection{Externalize}
+
+
+Le but d'externaliser les wikitty est de précompiler les wikitty pour gagner en 
+performance et fixer les wikittyPubText empêchant leurs modifications. 
+Ainsi avoir un wikitty service contenant le code applicatif "fixé" et des 
+wikitty service qui viennent se connecter dessus et exploiter l'application avec
+les wikitty "données" que eux possèdent.
+
+La précompilation devrait permettre plus facilement un tel fonctionnement. 
+
+Ce méchanisme sous entends qu'en plus de les précompiler on stocke les wikitty
+compilé dans un jar, pour empêcher la modification.
+
+
+Lecture/écriture
+++++++++++++++++
+
+Ecriture
+--------
+
+L'écriture du jar et des wikitty compilé se fera par l'intermédiaire d'un
+main java, qui pourra ensuite être étendu en plug in maven ou tâche ant.
+Son role sera d'a partir d'un repos filesystem de wikitty, donc selon 
+le modèle de sauvegarde de wikittyPublicationFileSystem on compile les wikitty
+et on les sauvegardes dans un jar en y joignant les sources des wikitty compilés.
+
+Lecture
+-------
+
+La lecture de ce jar avec les wikitty sera à la charge d'un wikitty service qui
+implémentera donc les méthodes de recherche et restauration de wikitty dans le
+jar, il n'aura pas besoin des methodes de sauvegarde puisque le jar n'est 
+pas sensé être modifié.
+
+
+Un nouveau type de wikittyPub
++++++++++++++++++++++++++++++
+
+Pour que les wikitty compilés soient utilisés et éxécuté, il faut qu'ils soient
+encore des wikitty, ils ne peuvent plus être considéré comme des wikittyPubText,
+et on ne doit pas pouvoir les modifier.
+
+Il faut une nouvelle extension de wikittyPubText wikittyPubTextCompiled.
+
+Qui aurait un champ qui contiendrait le byteCode java.
+
+Cette extension serait utilisé en plus de l'extension wikittyPubText, évidement
+puisque c'est une extension, mais celà signifie que dans le jar on aura les 
+source du wikitty, et donc à la restoration on pourra remplir le champ content 
+du wikittyPubText.
+
+
+
+Conservation des propriétés des wikitty
++++++++++++++++++++++++++++++++++++++++
+
+Comme pour le stockage des wikitty sur file system dans wikitty publication, 
+afin de pouvoir réutiliser les wikitty il faut pouvoir conserver certaines 
+propriété des wikitty, comme l'id et la version.
+
+Dans le jar on sauvegardera donc les fichiers correspondant aux classes 
+compilés et les sources des wikitty ayant servit à la compilation, donc des
+wikittyPubText. 
+
+Une solution serait comme pour les wikitty dans le file système de sauvegarde
+les propriétés dans des fichiers de propriétés. Mais dans le minimum possible,
+on aurait à la racine du jar dans un sous dossier externalIndex deux fichiers de 
+propriétés pour les attributs des wikitty.
+
+Le fait que tout soit enregistré dans seulement deux fichiers de propriétés 
+permet de ne pas avoir à chercher dans toute l'arborescence du jar pour 
+retrouver les wikitty, contrairement au cas de la synchronisation où c'était 
+nécessaire.
+
+Exemple:
+--------
+
+
+jar:
+
++jar
+|externalIndex/
+||id.properties
+||meta.properties
+|+label
+||unwikittyCompilé.class
+||unautre.class    
+||+chausette
+|||autre.class
+|||fff.class
+|wi.jpg
+
+Fichiers de propriétés correspondant:
+-------------------------------------
+
+id.properties:
+11daz5facz=/label/unwikittyCompilé # je ne sais pas si on stocke le chemin
+jbdub1dza8=/label/unautre         # direct vers le class ou le source
+dadzadzac=/label/chausette/autre
+dcdzcve678=/label/chausette/fff
+oniifdefe4=/wi.jpg
+
+
+meta.properties
+11daz5facz.version=8
+jbdub1dza8.version=2
+dadzadzac.version=3
+dcdzcve678.version=1
+oniifdefe4.version=1.2
+11daz5facz.extension=wp
+jbdub1dza8.extension=png
+dadzadzac.extension=js
+dcdzcve678.extension=wp
+oniifdefe4.extension=jpg
+
+On sauvegarde l'extension qui permet de récupérer le fichier original avec le
+chemin enregistré dans ids.properties
+
+Mechanisme de transformation
+++++++++++++++++++++++++++++
+
+Le mechanisme de transformation d'un wikittyPubText en wikitty externalizé 
+implique de décorer le code du wikittyPubText par du code java pour le compiler 
+et le stocker sous forme de classe.
+
+Le mechanisme de décoration/compilation s'appliquera pour tout les langages, 
+pour ceux qui ne sont pas compilable, il sera chargé de décorer le script
+avec les éléments (scriptEngine, etc) nécessaire à son interprétation,
+et ce code proposera une méthode qui en entré à besoin des éléments de context
+d'interprétation et renverra le résultat de l'exécution.
+
+
+
