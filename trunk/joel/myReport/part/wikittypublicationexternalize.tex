@@ -11,126 +11,100 @@ compilé. Et du code non modifiable, par exemple dans le cadre de l'utilisation
 multicontexte, on pourrait avoir un service s'appuyant sur des wikitty stocké 
 dans un jar.
 
+Comme pour la synchronisation vers file system, sont concernés par ce méchanisme
+uniquement les Wikitty représentable sur file system, comme les wikittyPubData,
+qui ne seront pas affecté par le méchanisme, et les wikittyPubText qui eux seront
+compilé dans le processus d'externalisation.
 
+Un des objectifs, plus secondaire, est la possibilité d'intégrer ce méchanisme
+en tache Ant, ou un plug in maven.
 
-\subsection{Un nouveau type de wikittyPub}
+\subsection{Une nouvelle extension de wikittyPub}
 
-Pour que les wikitty compilés soient utilisés et éxécuté, il faut qu'ils soient
-encore des wikitty, ils ne peuvent plus être considéré comme des wikittyPubText,
-et on ne doit pas pouvoir les modifier.
+Les wikittyPubText qui auront été externalizé, et donc compilé, doivent toujours 
+être considéré comme des wikitty, avec toutes les propriétés liées. Pour ce 
+faire on défini une extension de wikittyPubText qui contiendra un champ nommé 
+ByteCode de type tableau de byte.
 
-Il faut une nouvelle extension de wikittyPubText wikittyPubTextCompiled.
-
-Qui aurait un champ qui contiendrait le byteCode java.
-
-Cette extension serait utilisé en plus de l'extension wikittyPubText, évidement
-puisque c'est une extension, mais celà signifie que dans le jar on aura les 
-source du wikitty, et donc à la restoration on pourra remplir le champ content 
-du wikittyPubText.
+Ainsi pour ce type de wikitty d'un coté on aura le code original du 
+wikittyPubText dans le champ content et le code java compilé dans le champ
+ByteCode. Celà permet d'avoir l'original dans le cas où l'on voudrait écrire
+un nouveau wikitty avec le même code, ou dans le cas d'une surcharge si 
+multicontexte.
 
 \subsection{Mechanisme de transformation/compilation}
 
-Le mechanisme de transformation d'un wikittyPubText en wikitty externalizé 
-implique de décorer le code du wikittyPubText par du code java pour le compiler 
-et le stocker sous forme de classe.
+Tout le méchanisme de transformation des wikittyPubText en wikittyPubTextCompiled
+doit doit respecter la finalité de ces wikitty, c'est à dire que le code qu'ils
+contiennent soit exécutable et exécuté. 
 
-Le mechanisme de décoration/compilation s'appliquera pour tout les langages, 
-pour ceux qui ne sont pas compilable, il sera chargé de décorer le script
-avec les éléments (scriptEngine, etc) nécessaire à son interprétation,
-et ce code proposera une méthode qui en entré à besoin des éléments de context
-d'interprétation et renverra le résultat de l'exécution.
+Quelque soit le contenu des wikittyPubText ils sont compilé, normalement pour les
+langages visé, tel le javascript on ne peut pas le compilé comme on le pourrais 
+pour du java. Ce qui est fait c'est que ce code est encapsuler dans un morceau
+de java qui invoque le script engine chargé de son exécution. 
+
+Pour les langages comme le java on met simplement le code dans une méthode qui 
+sera appellée quand on évaluera le code.
+
+Pour ces deux cas le code java qui décore est presque le même, on à une classe
+abstraite de décoration qui possède une méthode abstraitre eval, qui prend en 
+paramètre la map contenant les Bindings[ref binding] nécessaire à l'éxécution 
+du code.
+
+% code décorer java
+% code décoré non java
+
+En dehors de la compilation et décoration des wikitty, le mechanisme est 
+relativement simple. On sélectionne tous les wikitty du dossier local où on
+se trouve avec le service file system, on créer un dossier temporaire, 
+on y écrit les wikitty, on compile ceux qui doivent l'être, on y met le fichier
+wikitty original avec le code qu'il contient, un .java et le .class, puis le 
+dossier est packager en jar, et le dossier temporaire supprimé.
+
 
 \subsection{Sauvegarde des propriétés des wikitty}
 
+De la même façon que pour le stockage des wikitty sur file system afin de 
+pouvoir réutiliser les wikitty et garantir que ce sont toujours des wikitty,
+il faut une inversabilité de la sauvegarde, et donc conserver des propriétés des
+wikitty.
 
--présenter le concept
--plug in maven tout ça ?
--tache ant ?
+Contrairement à la sauvegarde des wikitty sur File System, ici on peut se 
+permettre de centraliser toutes les informations dans les mêmes fichiers de 
+propriété. 
 
--sauvegarde des wikittys en fichier
--mechanisme
--compilation/decoration tout ça
+Les propriétés conservée seront: les ids, les versions ainsi que les extensions
+des fichiers correspondant. On utilise deux fichiers de propriétés distinct, 
+un pour les id et les localisations des wikitty, et un autre pour les autres 
+propriété.
 
-
--service pour lire les jar
-
-
-
-Le but d'externaliser les wikitty est de précompiler les wikitty pour gagner en 
-performance et fixer les wikittyPubText empêchant leurs modifications. 
-Ainsi avoir un wikitty service contenant le code applicatif "fixé" et des 
-wikitty service qui viennent se connecter dessus et exploiter l'application avec
-les wikitty "données" que eux possèdent.
-
-La précompilation devrait permettre plus facilement un tel fonctionnement. 
-
-Ce méchanisme sous entends qu'en plus de les précompiler on stocke les wikitty
-compilé dans un jar, pour empêcher la modification.
-
-
-Lecture/écriture
-
-
-Ecriture
-
-
-L'écriture du jar et des wikitty compilé se fera par l'intermédiaire d'un
-main java, qui pourra ensuite être étendu en plug in maven ou tâche ant.
-Son role sera d'a partir d'un repos filesystem de wikitty, donc selon 
-le modèle de sauvegarde de wikittyPublicationFileSystem on compile les wikitty
-et on les sauvegardes dans un jar en y joignant les sources des wikitty compilés.
-
-Lecture
-
-
-La lecture de ce jar avec les wikitty sera à la charge d'un wikitty service qui
-implémentera donc les méthodes de recherche et restauration de wikitty dans le
-jar, il n'aura pas besoin des methodes de sauvegarde puisque le jar n'est 
-pas sensé être modifié.
-
-
-
-
-
-
-Conservation des propriétés des wikitty
-
-
-Comme pour le stockage des wikitty sur file system dans wikitty publication, 
-afin de pouvoir réutiliser les wikitty il faut pouvoir conserver certaines 
-propriété des wikitty, comme l'id et la version.
-
-Dans le jar on sauvegardera donc les fichiers correspondant aux classes 
-compilés et les sources des wikitty ayant servit à la compilation, donc des
-wikittyPubText. 
-
-Une solution serait comme pour les wikitty dans le file système de sauvegarde
-les propriétés dans des fichiers de propriétés. Mais dans le minimum possible,
-on aurait à la racine du jar dans un sous dossier externalIndex deux fichiers de 
-propriétés pour les attributs des wikitty.
-
-Le fait que tout soit enregistré dans seulement deux fichiers de propriétés 
-permet de ne pas avoir à chercher dans toute l'arborescence du jar pour 
-retrouver les wikitty, contrairement au cas de la synchronisation où c'était 
-nécessaire.
-
-Exemple:
-
-
+Exemple: % plutot mettre une image
 
 jar:
 \begin{verbatim}
 +jar
-|externalIndex/
-||id.properties
-||meta.properties
-|+label
-||unwikittyCompilé.class
-||unautre.class    
-||+chausette
-|||autre.class
-|||fff.class
-|wi.jpg
+|id.properties
+|meta.properties
+|+wp
+||Wiki.wp
+||Wiki.java
+||Wiki.class
+||Logo.png
+||Stat.wp
+||Stat.java
+||Stat.class
+||Home.wp
+||Home.java
+||Home.class
+||WikiMenu.wp
+||WikiMenu.java
+||WikiMenu.class
+||+dossier
+|||dummy.wp
+|||dummy.java
+|||dummy.class
+|||uneAutreImage.jpg
+|||uneImage.jpg
 \end{verbatim}
 
 Fichiers de propriétés correspondant:
@@ -138,35 +112,62 @@ Fichiers de propriétés correspondant:
 
 ids.properties:
 \begin{verbatim}
-11daz5facz=/label/unwikittyCompilé 
-jbdub1dza8=/label/unautre         
-dadzadzac=/label/chausette/autre
-dcdzcve678=/label/chausette/fff
-oniifdefe4=/wi.jpg
+62c7d0cd-91c2-4607-bdcf-f0cac6c78d6e=wp/Wiki
+4120d1ba-18ac-4ac5-a329-7f515f704fd0=wp/Logo
+8225d3cb-beb3-4a85-a4ea-4b0e660fab96=wp/Stat
+1968c510-6ba6-4de7-bbb0-67e029119520=wp/WikiMenu
+2ca85aa8-2869-4ad6-8976-c0b0b5526934=wp/dossier/dummy
+12f55beb-af63-49b1-9d74-62131bd0a67a=wp/Home
+b7599025-f425-4dcf-88e6-55e154430d7e=wp/dossier/uneAutreImage
+e443dbbe-b461-41bd-b5b6-b612e964cb0d=wp/dossier/uneImage
 \end{verbatim}
 
 
 meta.properties
 \begin{verbatim}
-11daz5facz.version=8
-jbdub1dza8.version=2
-dadzadzac.version=3
-dcdzcve678.version=1
-oniifdefe4.version=1.2
-11daz5facz.extension=wp
-jbdub1dza8.extension=png
-dadzadzac.extension=js
-dcdzcve678.extension=wp
-oniifdefe4.extension=jpg
+#
+#Tue Jul 12 11:19:46 CEST 2011
+path.separator=/
+8225d3cb-beb3-4a85-a4ea-4b0e660fab96.extension=wp
+4120d1ba-18ac-4ac5-a329-7f515f704fd0.extension=png
+12f55beb-af63-49b1-9d74-62131bd0a67a.extension=wp
+1968c510-6ba6-4de7-bbb0-67e029119520.extension=wp
+62c7d0cd-91c2-4607-bdcf-f0cac6c78d6e.extension=wp
+e443dbbe-b461-41bd-b5b6-b612e964cb0d.extension=jpg
+b7599025-f425-4dcf-88e6-55e154430d7e.extension=jpg
+2ca85aa8-2869-4ad6-8976-c0b0b5526934.extension=wp
+12f55beb-af63-49b1-9d74-62131bd0a67a.version=1.0
+1968c510-6ba6-4de7-bbb0-67e029119520.version=1.0
+2ca85aa8-2869-4ad6-8976-c0b0b5526934.version=1.0
+4120d1ba-18ac-4ac5-a329-7f515f704fd0.version=1.0
+62c7d0cd-91c2-4607-bdcf-f0cac6c78d6e.version=1.0
+b7599025-f425-4dcf-88e6-55e154430d7e.version=1.0
+e443dbbe-b461-41bd-b5b6-b612e964cb0d.version=1.0
+8225d3cb-beb3-4a85-a4ea-4b0e660fab96.version=1.0
 \end{verbatim}
 
-On sauvegarde l'extension qui permet de récupérer le fichier original avec le
-chemin enregistré dans ids.properties
+
+Sous l'id on sauvegarde le chemin pour retrouver le wikitty correspondant, 
+avec l'extension on peut retrouver le mimeType correspondant et le fichier
+initial contenant le code, puisque naturellement on aura au même endroit
+le fichier initial, le ".java" correspondant et le ".class". 
 
 \subsection{Wikitty service sur jar}
 
-Un service qui prend en entré un jar
-l'explore tout ça
-réutilisation de certain concept déjà utilisé dans wikitty publication file system
+Une fois que les wikitty sont sauvegardé dans un jar, on doit pouvoir les 
+récupérer pour les utiliser comme n'importe quels autres wikitty. Pour celà il 
+faut donc un wikitty service qui s'appuiera sur un jar et qui exposera les 
+wikitty de la même façon.
+
+Ce service propose donc les méthodes de recherche, et de restauration de wikitty,
+mais évidement pas les méthodes de sauvegarde, puisque le but est bien d'avoir
+des wikitty non modifiable.
+
+La création de ce service à été facilité par l'existence du service sur file
+system, puisque le fonctionnement est relativement le même, pour la recherche
+on ne délègue pas à une base de donnée, on manipule directement les objets en
+java, donc pour la recherche c'est le même méchanisme que pour le service sur
+File system.
+
 
 
