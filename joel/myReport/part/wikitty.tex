@@ -98,23 +98,32 @@ sauvegarde, restauration, et recherche.
 % mécanisme de wikitty service et de fichier de propriété liée et tout ça
 
 
-\subsection{Wikitty Service, Wikitty Proxy et Wikitty Service Factory}
+\subsection{WikittyService, WikittyProxy et WikittyServiceFactory}
 
+Le WikittyService est une interface qui permet de sauvegarder, rechercher,
+récupérer des wikitty, il existe des implémentations de service pour différente
+base de données, pour des services à distance. Tout les services n'implémentent 
+pas toutes les méthodes, par exemple la gestion des authentifications ou la 
+gestion d'un cache sont à la charge d'implémentation particulière. Et les
+services sont disposés en couche successives pour s'occuper de certain aspect
+et déléguant les autres aspect à la couche suuivante.
+%ce n'est pas pas un pattern de chain of responsability
 
-Fonctionnement des couches 
-tout ça
+%schéma d'encapsulation de wikitty service
 
-Role de la factory exemple de fichier de propriété 
-factory instancie les services et les donnent à manger les uns au autres en
-fonction des besoins.
+La WikittyServiceFactory est une factory au sens pattern, c'est à dire qu'a 
+partir de fichier de propriété elle construit et retourne les WikittyServices 
+demandé, c'est elle aussi qui organise les couches de service en fonction de ce 
+qui est défini dans les fichiers de propriétés.
 
-Interface Wikitty Service implémenté par tout les services wikitty
-chacun implémentes les fonctions qu'il a besoin
-délégation du reste
+%exemple de fichier de propriété
 
-interception Chain-of-responsibility pattern pour les successions de couche de
-wikitty service. 
+Le WikittyProxy est une surcouche qui encapsule un wikitty service et cache 
+certaines complexités pour finalement offrir plus de méthodes et des méthodes 
+plus simple. Par exemple l'interface WikittyService ne propose que des 
+restore de liste de wikitty, alors que le proxy propose des restore de resultat
+unique. Dans le cas d'une session ou l'on s'authentifie auprès d'un wikitty 
+service, dans ce cas on récupère un jeton, c'est le proxy qui se charge 
+d'injecter le jeton dans chaque demande auprès du Service.
 
-
-Rapide truc de application config qui sert pour avoir toutes les propriétés 
 
