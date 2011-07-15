@@ -46,7 +46,7 @@ modifications faites dessus. L'api prévois que l'on puisse restaurer une versio
 ciblé d'un wikitty.
 %quand wikitty version sera mieux gérer en parler.
 
-\subsection{existant}
+\subsection{Existant}
 
 Wikitty sert de base de donnée pour une partie des applications de l'entreprise,
 puisque il permet une grande flexibilité. Dès lors ou on peut modéliser les
@@ -117,6 +117,10 @@ demandé, c'est elle aussi qui organise les couches de service en fonction de ce
 qui est défini dans les fichiers de propriétés.
 
 %exemple de fichier de propriété
+
+Les propriétés ne sont pas directement manipulé, on se sert d'un object 
+ApplicationConfig qui permet de gérer différent niveau de propriétés,
+avec des propriétés par default si tout n'est pas défini.
 
 Le WikittyProxy est une surcouche qui encapsule un wikitty service et cache 
 certaines complexités pour finalement offrir plus de méthodes et des méthodes 
