@@ -1,35 +1,71 @@
-\subsection{Une taglib struts}
+\section{Wikitty Struts}
 
-L'édition de wikitty est un élément récurent dans les applications developpée 
+Cette partie sur wikitty n'était pas prévu au départ, mais à l'utilisation
+il s'est avéré que le dévellopement d'un tel module était nécessaire, et que
+le travail précédement effectué sur la partie site de wikitty publication
+pouvait rendre la tache plus rapide.
+
+
+\subsection{Objectfifs}
+
+L'édition de wikitty ou tout simplement l'utilisation de wikitty au sein de 
+formulaire sont des éléments récurents dans les applications developpée 
 chez code lutin, puisque en effet Wikitty est largement utilisé comme support
-de base de donnée.
-
-Ecrire des formulaires d'édition de wikitty dans les pages jsp est devenu
-quelque chose récurrent avec les actions struts lié pour l'édition des dit wikitty.
+de base de donnée. 
 
 L'objectif de ce module wikitty-struts à donc été de créer une taglib permettant
-la génération des formulaires plus aisée pour les wikitty. 
+la génération des formulaires plus aisée pour les wikitty, afin de ne pas 
+avoir à refaire ce que l'on a déjà fait pour une autre application.
 
-La tag lib devait s'appuyer sur le support de tag struts qui permet de découpler
-la logique et l'affichage avec un système de template. 
+Pour avoir une tag lib la plus complète possible il a été décidé d'en faire une
+qui marcherait de la même façon que la taglib struts de base, et se reservirait
+de ses méchanismes interne, avec les templates.
 
-La création de tag se passe donc en plusieurs étape:
+\subsection{La création d'un tag}
+
+Pour se faire la création d'un tag se passe en plusieurs étapes :
+
 \begin{itemize}
 \item -Définition du tag dans un fichier tld, un descripteur xml
-\item -une première classe java qui étends une classe
-\item -une seconde classe java qui étends une pile d'héritage qui hérite de component
-\item -l'écriture du template
+\item -écriture d'une classe pour le tag, qui étend une classe abstraite de struts
+\item -écriture d'une classe pour le tag qui est construite par la précédente 
+classe à l'éxécution, classe qui généralement contient de la logique
+\item -l'écriture du template qui lui va construire réelement le morceau de html 
+correspondant, en cherchant les éléments du tag.
 \end{itemize}
 
-expliquer comment ça marche avec un schéma des architectures tout ça
+% coller ici schéma 
+
+
+
+\subsection{La taglib wikitty struts "ws"}
+
+Les tags ainsi developpé ont deux utilisations possible, la création d'un 
+formulaire d'édition de wikitty, ou la création de formulaire utilisant les 
+champs de wikitty comme champs. 
+
+La différenciation de l'utilisation des tags passent par l'utilisation du tag 
+de la taglib ws:form, qui implique que dans ce cas on se trouve dans l'édition d'un
+wikitty.
+
+A l'utilisation si on met seulement le tag ws:form et la source de donné 
+(le wikitty) un formulaire basic va être créé en fonction du type des champs
+du wikitty, ensuite en utilisant les autres tag ou différent attribut du tag 
+ws:form il est possible de choisir d'exclure de l'édition des extensions,
+des champs ou de choisir le type d'affichage pour un champ donné (et identifié
+par son nom complet soit nomExtention.nomChamp).
+
+En plus de fournir des tags pour la création de formulaire, la tag lib propose 
+une action qui permet de prendre en compte les modifications de wikitty envoyé
+par le formulaire. Il s'agit d'une action abstraite struts que l'utilisateur à 
+besoin d'étendre pour implémenter la méthode accédant au proxy.
+
+%utilisation des tags ? avec des exemples ou hje met tout en annexe  ?
 
 Présenter ici les différents tag rapidement avec les plus pertinent de façon plus 
 détaillés.
 
 
-En plus de fournir des tags pour la création de formulaire, la tag lib propose 
-une action qui permet de prendre en compte les modifications de wikitty envoyé
-par le formulaire. Il s'agit d'une action abstraite struts que l'utilisateur à 
-besoin d'étendre pour implémenter la méthode get proxy
+
 
 

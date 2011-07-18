@@ -7,65 +7,67 @@ présenter le module Wikitty Publication.
 
 \subsection{Concept}
 
-stocker des application dans un wikitty et pouvoir 
-dévelloper des application web simplement 
+Wikitty publication est un projet basé sur wikitty, dont le but est de permettre
+la création d'application web et leur éxécution directement par wikitty
+publication. 
+
+Publication se présente comme un ensemble de page web qui permettent le rendu 
+des wikitty dans un navigateur, pour les wikitty de type data, comme les images,
+et comme le résultat de l'évaluation du code contenu dans les wikitty type text
+qui eux contiennent le code des applications.
+
+Les applications doivent pouvoir être developpées dans plusieurs langage, pas 
+dans un langage specifique à publication, des langages tel que:
+\begin{itemize}
+\item javascript
+\item groovy
+\item jruby
+\item jython
+\end{itemize}
+
+Ce module doit permettre le dévellopement des applications naturellement 
+en devellopant sur un système de fichier, puis l'importation des applications
+directement dans wikitty publication.
+
+Un des objectifs de wikitty publication est aussi d'avoir un coeur métier 
+écrit en wikitty, qui manipulerait des données d'un autres wikitty, ainsi on
+pourrait avoir une mutualisation du code métier et des données spécifique 
+pour chaque client, utilisateur de wikitty publication.
+
+Wikitty publication s'appuie sur le scripting pour l'éxécution du code contenu 
+dans les wikitty.
 
 
-Cette partie du rapport, nous parlerons du sous projet de wikitty: wikitty
-publication sur lequel j'ai été amené à travailler durant mon stage. 
-Le travail sur ce sous projet à été découper en plusieurs sous partie plus ou
-moins indépendantes. 
+\subsection{Scripting}
 
-Dans son ensemble Wikitty publication est un projet basé sur wikitty, dont le
-but est de pouvoir d'avoir des applications stockées au sein d'un wikitty et
-via une interface web de faire en sorte que ces applications soient directement
-éxécutées. 
+Le scripting permet l'éxécution de langage de script par un autre langage, dans
+notre cas ici, le java qui peut interpréter de langage comme javascript.
 
-Wikitty publication une plateforme de stockage exécution d'application
-d'application qui peut se
+Le langage de script est interprété par un script engine tel que le concept est 
+défini dans la JSR-223, un script engine permet l'interprétation et l'éxécution
+du langage pour lequel il est défini, mais il permet aussi d'insérer des élements
+de code provenant de l'environnement qui éxécute. Par exemple on peut initialiser
+une variable javascript avec le contenu d'une variable java, et on peut appeler 
+des méthodes java sur des variables java dans le javascript.
 
+Ce méchanisme est un binding, le script engine pour les symboles qu'il ne connait
+pas, avant de renvoyer une erreur, il va chercher dans une map dit de binding 
+pour trouver l'objet qui correspond au symbole, et l'intépréter en java pour
+insérer le résultat dans le code.
 
+Exemple :
 
+un objet personne dans la map binding, en clé la chaine "personneBob" et en valeur 
+l'objet, avec en attribut un nom égal à "Paulson"
 
+Un morceau de code js qui sera éxécuté:
 
-Code Lutin souhaite se lancer dans la création d'une plate-forme Web permettant à des développeurs
-et aux utilisateurs de l'application de la modifier aussi simplement qu'elle est utilisée.
-Inspirée du concept wiki, cette plate-forme devra permettre de structurer des documents, des
-modèles ou des formulaires à l'aide d'un langage spécifique simplifié (semblable à JSP). Cette
-approche est celle mise en œuvre dans XWiki, mais cette solution n'est pas adaptée
+alert("hello world Mister " + personneBob.getNom());
 
-
-L'objectif du stage est de partir d'une preuve de concept (déjà réalisée) qu'il faudra reprendre et
-compléter pour intégrer notamment les mécanismes d'authentification et d'administration afin
-d'arriver à une version utilisable. Comme il s'agit d'une application Web, Struts 2 sera utilisé côté
-serveur conjointement avec une base de données Wikitty.
-La réalisation de ce projet implique notamment de se pencher sur la réalisation d'un script-engine
-(définit dans la JSR 223) et la réutilisation de ceux existants. Cela permettra d'intégrer les différents
-langages qui pourront être utilisés pour décrire le contenu du wiki.
-Par ailleurs, afin que le système soit compatible avec les pratiques usuelles du développement
-(gestion de version, release), il faudra réaliser un outil de synchronisation qui permettra d'extraire le
-contenu du wiki de façon structurée, de le modifier puis de publier à nouveau (éventuellement vers
-une autre instance du wiki).
-Enfin, il faudra produire une documentation de la solution ainsi que travailler à une intégration
-Maven, l'outil de construction utilisé chez Code Lutin.
+A l'éxécution sera affiché "hello world Mister Paulson"
 
 
 
 
 
-on va mettre le planning du travail et comment ça a été fait
-donc découpage en module que on va présenter dans les parties correspondantes
-l'organisation avec des tickets
-les phases de travail
-présentation pendant les réunion dev qui permettent de mettre en exerbe des
-points à améliorer.
-
-
-
-
-Ici coller les specs
-
-\subsection{scripting}
-
-Le scripting 
 
