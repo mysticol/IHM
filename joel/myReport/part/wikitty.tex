@@ -21,7 +21,6 @@ l'extension personne. Chaque champs d'extension est défini par son nom et son
 extension par exemple pour notre extension WikittyPersonne ses champs son nommés:
 WikittyPersonne.nom et WikittyPersonne.prenom
 
-
 Si un wikitty possède l'extension ressource alors ce wikitty possèdera les
 champs de l'extension ressource et de l'extension employé, puisque ressource
 dépends d'employé.
@@ -109,10 +108,18 @@ base de données, pour des services à distance. Tout les services n'implémente
 pas toutes les méthodes, par exemple la gestion des authentifications ou la 
 gestion d'un cache sont à la charge d'implémentation particulière. Et les
 services sont disposés en couche successives pour s'occuper de certain aspect
-et déléguant les autres aspect à la couche suuivante.
+et déléguant les autres aspect à la couche suivante comme on peut le voir sur 
+la figure \ref{pileService}.
 %ce n'est pas pas un pattern de chain of responsability
 
 %schéma d'encapsulation de wikitty service
+\begin{figure}[!ht]
+  	%[height=12cm,width=15cm]
+\centering
+\includegraphics[height=5cm,width=8cm]{image/pileService.png}
+  		\caption{Couche de Wikitty Service}
+  		\label{pileService}
+\end{figure}
 
 La WikittyServiceFactory est une factory au sens pattern, c'est à dire qu'a 
 partir de fichier de propriété elle construit et retourne les WikittyServices 
@@ -120,6 +127,17 @@ demandé, c'est elle aussi qui organise les couches de service en fonction de ce
 qui est défini dans les fichiers de propriétés.
 
 %exemple de fichier de propriété
+
+Un extrait de fichier de propriétés avec les couches de wikitty service:
+\begin{verbatim}
+wikitty.WikittyService.components=\
+org.nuiton.wikitty.services.WikittyServiceStorage,\
+org.nuiton.wikitty.services.WikittyServiceNotifier,\
+org.nuiton.wikitty.services.WikittyServiceCached,\
+org.nuiton.wikitty.services.WikittyServiceSecurity,\
+org.nuiton.wikitty.services.WikittyServiceAccessStat,\
+org.nuiton.wikitty.services.WikittyServiceCajoServer
+\end{verbatim}
 
 Les propriétés ne sont pas directement manipulé, on se sert d'un object 
 ApplicationConfig qui permet de gérer différent niveau de propriétés,

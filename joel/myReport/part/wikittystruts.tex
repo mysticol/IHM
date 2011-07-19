@@ -23,19 +23,48 @@ de ses méchanismes interne, avec les templates.
 
 \subsection{La création d'un tag}
 
-Pour se faire la création d'un tag se passe en plusieurs étapes :
+\begin{figure}[!ht]
+  	%[height=12cm,width=15cm]
+\centering
+\includegraphics[height=7cm,width=9cm]{image/explicationTag.png}
+  		\caption{Diagramme des tags avec struts}
+  		\label{diagtagstruts}
+\end{figure}
+
+La création d'un tag classique, sans struts se fait par héritage de classe 
+tel que "TagSupport" qui est une des classes défini dans la norme J2E pour la 
+création des tags. En plus de la définition de la classe java, il faut écrire
+dans un fichier xml (.tld) la définition du tag. La création de tag ainsi oblige
+à écrire le code html directement dans le corps de la classe ou de devoir prévoir
+l'architecture de support pour des templates.
+
+Les templates permettent en fait de séparer le rendu du post traitement effectué
+sur les attributs d'un tag, il permettent aussi de supporter plusieurs "thèmes", 
+c'est à dire des collections de css pour changer le rendu, etc.
+
+Faire des tag comme struts c'est un peu différent donc, sur la figure \ref{diagtagstruts} 
+on voit qu'il y a une certaine architecture déjà mise en place. Il y a une chaine 
+d'héritage étendant la norme pour les tag, et de l'autre une chaine d'héritage 
+de classe spécifique à struts. 
+
+Pour créer des tags spécifique on se place en bout de chaine, comme on le voit 
+avec \emph{classeMontag} en héritant de \emph{AbstractClosingTag} on ne fait pas
+grand chose, on délégue à la classe héritant de \emph{ClosingUiBean} qui contient 
+elle la logique de traitement des éléments du tag. Ensuite il faut définir le
+template écrit en \emph{freemarker}, qui lui contient le code html effectif 
+qui sera écrit avec les éléments récupéré par la classe héritant de \emph{ClosingUiBean}.
+Il faut aussi écrire le fichier tld pour la description.\\
+\\
+Pour résumer la création d'une taglib c'est:
 
 \begin{itemize}
-\item -Définition du tag dans un fichier tld, un descripteur xml
-\item -écriture d'une classe pour le tag, qui étend une classe abstraite de struts
-\item -écriture d'une classe pour le tag qui est construite par la précédente 
-classe à l'éxécution, classe qui généralement contient de la logique
-\item -l'écriture du template qui lui va construire réelement le morceau de html 
-correspondant, en cherchant les éléments du tag.
+\item un fichier descripteur pour la taglib avec chaque tag de décrit 
+\item une classe héritant de ClosingUiBean pour chaque tag
+\item une classe héritant de AbstractClosingTag pour chaque tag qui délègue à son ClosingUiBean correspondant
+\item des fichiers de template en freemarker pour chaque tag
 \end{itemize}
 
-% coller ici schéma 
-
+%mettre un exemple de template ?
 
 
 \subsection{La taglib wikitty struts "ws"}
@@ -48,10 +77,11 @@ La différenciation de l'utilisation des tags passent par l'utilisation du tag
 de la taglib ws:form, qui implique que dans ce cas on se trouve dans l'édition d'un
 wikitty.
 
-A l'utilisation si on met seulement le tag ws:form et la source de donné 
+
+A l'utilisation si on met seulement le tag \verb!ws:form! et la source de donné 
 (le wikitty) un formulaire basic va être créé en fonction du type des champs
 du wikitty, ensuite en utilisant les autres tag ou différent attribut du tag 
-ws:form il est possible de choisir d'exclure de l'édition des extensions,
+\verb!ws:form! il est possible de choisir d'exclure de l'édition des extensions,
 des champs ou de choisir le type d'affichage pour un champ donné (et identifié
 par son nom complet soit nomExtention.nomChamp).
 
@@ -62,8 +92,8 @@ besoin d'étendre pour implémenter la méthode accédant au proxy.
 
 %utilisation des tags ? avec des exemples ou hje met tout en annexe  ?
 
-Présenter ici les différents tag rapidement avec les plus pertinent de façon plus 
-détaillés.
+%Présenter ici les différents tag rapidement avec les plus pertinent de façon plus 
+%détaillés.
 
 
 
