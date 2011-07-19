@@ -41,7 +41,7 @@ extensions distinct possible pour un mime type: image/jpg.
 
 A ces objets wikitty on associe un wikittyLabel, c'est un objet qui peut
 contenir un ensemble de label différent, un label une chaine de texte.
-Par exemple le label : "src.org.chorem.entities" sert ici pour contenir le
+Par exemple le label : \emph{src.org.chorem.entities} sert ici pour contenir le
 chemin menant au fichier sur le file system. Un WikittyPub peut avoir un
 plusieurs de label, pour les wikittyPub celà indiquera qu'ils appartiennent à
 plusieurs arborescences.
@@ -61,7 +61,7 @@ service sur file système gère les modifications sur Wikitty et donc modifie la
 version des Wikitty si besoin.
 
 La solution qui à été trouvée pour celà est les fichiers de propriété dans un
-dossier ``.wp/''. 
+dossier \emph{.wp/}. 
 
 On distinguera deux fichiers de propriétés pour les informations un qui 
 conservera les id des wikitty lié à leur nom de fichier. Et un autre fichiers de
@@ -87,23 +87,23 @@ Exemple pour un contenu de file system:
  |scripttut.js
  |image.png
  |+.wp
- ||id.properties 
+ ||ids.properties 
  ||meta.properties 
  |+directory2
  ||script3.js
  ||+.wp
  |||meta.properties
- |||id.properties 
+ |||ids.properties 
  ||+directory3
  |||truc.js
  |||+.wp
  ||||meta.properties
- ||||id.properties 
+ ||||ids.properties 
  |+directory22
  ||machin.png
  ||+.wp
  |||versions.properties
- |||id.properties 
+ |||ids.properties 
 \end{verbatim}
 
 
@@ -124,7 +124,7 @@ id.script.js=jbdub1dza8
 \end{verbatim}
 
 \begin{verbatim}
-racine/.wp/id.properties:
+racine/.wp/ids.properties:
 
 uubdazudba=image.png
 11daz5facz=scripttut.js
@@ -194,7 +194,7 @@ avec les uris passé en paramètre sont à la charge d'une factory.
 
 La commande:
 
-''wp sync [--norecursion] [--delete|--existing] [URI orgirine] [URI cible]''
+\verb!wp sync [--norecursion] [--delete|--existing] [URI orgirine] [URI cible]!
 
 Avec URI sous forme: 
 \begin{itemize}
@@ -235,7 +235,7 @@ travail local.
 
 La commande:
 
-''wp [update|commit] [--norecursion] [--delete|--existing] [label] [URI file]''
+\verb!wp [update|commit] [--norecursion] [--delete|--existing] [label] [URI file]!
 
 L'URI file est optionnelle, si pas précisée on va commit/update le dossier 
 courrant.
