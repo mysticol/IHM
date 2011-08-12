@@ -37,6 +37,8 @@ regroupent les actions et les piles d'intercepteurs, ces packages peuvent en
 posséder un 'namespace' qui leur permet d'être défini pour un sous espace de
 l'application.
 
+%rajouter schéma de fonctionnement de struts
+
 Les intercepteurs et piles d'intercepteur sont des objets qui effectue un pré
 traitement sur les requêtes http reçu par l'application, par défaut struts
 disposent d'une pile qui lui permet de gérer l'envois de fichier, le mapping
@@ -54,7 +56,7 @@ Un des aspect important de la migration vers struts aura été la conversation d
 url correspondant aux actions de publications, les url doivent être sous cette
 forme : 
 \begin{verbatim}
-/[context]/[action]/[mandatory_args]?[args key=value]
+/[contextData]/[contextApps]/[action]/[mandatory_args]?[args key=value]
 \end{verbatim}
 
 Les actions: 
@@ -74,6 +76,8 @@ correspondant. Par exemple :
 /eval/WikittyPubText.name:Wiki
 /raw/Wiki
 \end{verbatim}
+
+%format des urls à mettre ici
 
 Respectivement :
 \begin{itemize}
@@ -172,5 +176,34 @@ On peut avoir ainsi un wikitty service statique, et un autre dynamique, par
 exemple le wikitty service statique qui serait partagé et utilisé par d'autre
 wikitty service multicontext, une base commune de wikitty.
 
+\subsection{Intégration d'interface graphique}
+
+Les applications éxécuté au sein de wikitty publication le seront à travers 
+un navigateur web donc le résultat présenté dans un format compatible.
+Donc générélament pour proposer des choix utilisateurs il faudra des interfaces
+en html.
+
+Le html peut être aisément intégré dans du javascript et quand l'évaluateur
+evaluera le javacript et écrira le html contenu dans les variables javascript
+mais cette solution rends l'écriture du code interface pénible.
+
+%mettre un exemple de code ici.
+
+La solution la plus simple qui a été trouvé est d'avoir la possibilité d'écrire 
+du html (pour le moment plus tard d'autre langage) et de faire comme si on était
+dans une jsp, quand on a besoin d'écrire code on ouvre des balises : <\% \%>
+ou <\%= \%> et on écrit le code correspondant.
+
+Ce qui se passe derrière c'est que on inverse le code, ce qui se trouve entre
+les balises devient du code exécutable, et ce qui se trouve autour se retrouve
+décoré. Tout simplement comme si initialement le html avait été intégré dans
+le code d'un langage interprété par publication.
+
+Une autre solution était envisagé, qui voulait considérer le html comme un langage
+supporté par publication, et extraire les éléments de binding 
 
 
+evaluer des scripts c'est jolie mais ça fait pas avancer l'histoire
+décorer le code interface comme de rien
+
+Solutions ?
