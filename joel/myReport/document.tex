@@ -1,6 +1,8 @@
 \documentclass[12pt,a4paper,utf8x]{article}
 \usepackage [frenchb]{babel}
-
+%pour avoir du code source dans le code
+\usepackage{listings}
+\usepackage{color}
 % Pour pouvoir utiliser 
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
@@ -91,8 +93,8 @@
 
 \date{	
 	\normalsize{Code Lutin\\
-	Adresse du stage\\
-	Ville du stage\\ 
+	44, boulevard des Pas Enchantés\\
+	44230 Saint-Sébastien-Sur-Loire\\
 	\vspace{5mm}	
 	Maitre de stage : POUSSIN Benjamin \\
 	Encadrant de stage : MOLLY Pascal
@@ -145,6 +147,9 @@
 \include{part/codelutin}
 \clearpage
 
+\include{part/organisation}
+\clearpage
+
 \include{part/wikitty}
 \clearpage
 
@@ -154,6 +159,7 @@
 \clearpage
 
 \include{part/wikittypublicationsite}
+\clearpage
 \include{part/wikittystruts}
 \clearpage
 

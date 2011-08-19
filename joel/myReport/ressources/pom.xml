@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.exemple</groupId>
+  <artifactId>stub</artifactId>
+  <version>1.0</version>
+  <description>exemple project</description>
+  <build>
+	<plugins>
+	   <plugin>
+		<groupId>org.nuiton.wikitty</groupId>
+		<artifactId>wp-maven-plugin</artifactId>
+		<version>3.2-SNAPSHOT</version>
+		<configuration>
+			<applicationName>example</applicationName>
+			<wikittyServiceUrl>cajo://localhost:1111/wikitty</wikittyServiceUrl>
+			<serveurID>serveurTest</serveurID>
+			<uploadUrl>http://localhost/</uploadUrl>
+		</configuration>
+	   </plugin>
+	</plugins>
+  </build>
+</project>

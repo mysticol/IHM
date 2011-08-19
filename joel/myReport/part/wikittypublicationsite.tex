@@ -102,7 +102,6 @@ L'action Eval elle sert sert du mime type d'un WikittyPubText pour déterminer l
 langage associé au contenu et finalement execute le code, le resultat de
 l'éxécution est donc ensuite renvoyé en tant que résultat.
 
-
 \subsection{Ajout d'un mécanisme de login/logout}
 
 Les couches sécurité des wikitty service s'occupe déjà d'un mécanisme de login
@@ -153,17 +152,33 @@ faciliter le dévellopement de code dans les WikittyPubText.
 \subsection{Mécanisme de multicontext}
 
 Cette fonctionnalité consiste en fait à l'encapsulation par un wikitty service
-de deux autres wikitty service, quelque soit leurs natures.
+de deux autres wikitty service, quelque soit leurs natures, c'est un 
+WikittyFallbackService. On peut voir un schéma de fonctionnement sur la figure
+\ref{diagmulticontext}
 
 Ce multi contexte éxécute ses recherches un wikitty service principal, et
 compléte ses recherches si besoin avec les données du wikitty service dit
-fallback.
+fallback. A titre d'exemple si on effectue une recherche que l'on réclame un
+résultat d'au moins 30 wikitty, si à l'issue de la recherche sur le wikitty 
+service principal il n'y a pas 30 wikitty, alors on cherchera sur le service
+fallback pour compléter la recherche. 
 
-De même l'écriture s'effectue sur le service principale, la restoration d'un
-wikitty sur le principal et si il n'est pas dessus on va interroger le fallback
+Ainsi si l'on cherche à retrouver un wikitty particulier avec son id, si il
+se trouve sur le principal ça sera le wikitty du principal qui sera renvoyé, 
+par contre si il ne se trouve pas sur celui si, on ira le chercher sur le second
 service.
 
-%coller un schéma ici ?  ouai coller un schéma
+De même l'écriture s'effectue sur le service principale, on n'écrit pas sur le
+service de fallback.
+
+\begin{figure}[!ht]
+  	%[height=12cm,width=15cm]
+\centering
+\includegraphics{image/multicontext.png}
+  		\caption{Diagramme multicontexte}
+  		\label{diagmulticontext}
+\end{figure}
+
 
 Son utilisation n'est pas nécessairement limité à Wikitty Publication, il s'agit
 finalement d'une implémentation différente de l'interface wikitty service. 
@@ -174,7 +189,16 @@ il sera restaurer depuis le wikitty principal, puisque celui ci est prioritaire.
 
 On peut avoir ainsi un wikitty service statique, et un autre dynamique, par
 exemple le wikitty service statique qui serait partagé et utilisé par d'autre
-wikitty service multicontext, une base commune de wikitty.
+wikitty service multicontext, une base commune de wikitty. 
+
+Ce Wikitty Service à été pensé et écrit pendant l'enrichissement de la partie 
+site de Wikitty Publication, l'idée d'utilisation d'un tel service, est la 
+mutualisation d'une application dans un wikitty service, et que cette 
+application utilise des données issue de d'autre service. On mutualise le code 
+métier, de sorte que plusieurs clients puissent utiliser la même application, 
+avec le même service, mais que leurs données soit sur leurs services, 
+le service fallback contiendrait l'application et le service principal 
+l'application.
 
 \subsection{Intégration d'interface graphique}
 
@@ -187,7 +211,7 @@ Le html peut être aisément intégré dans du javascript et quand l'évaluateur
 evaluera le javacript et écrira le html contenu dans les variables javascript
 mais cette solution rends l'écriture du code interface pénible.
 
-%mettre un exemple de code ici.
+%mettre un exemple de code ici.TODO
 
 La solution la plus simple qui a été trouvé est d'avoir la possibilité d'écrire 
 du html (pour le moment plus tard d'autre langage) et de faire comme si on était

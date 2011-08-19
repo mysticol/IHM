@@ -1,9 +1,7 @@
 \section{Projet Wikitty}
 
-Wikitty est un projet important chez code lutin, mon travail à été sur un sous
-projet de wikitty, et donc pour le comprendre il est important de présenter
-le projet Wikitty.
-
+Wikitty est un projet libre de Code Lutin, il est nécessaire de le présenter car
+durant mon stage j'ai été amené à travailer sur des sous modules de ce projet.
 
 \subsection{Principe}
 
@@ -25,7 +23,7 @@ Si un wikitty possède l'extension ressource alors ce wikitty possèdera les
 champs de l'extension ressource et de l'extension employé, puisque ressource
 dépends d'employé.
 
-L'api de wikitty prévois un certain nombre d'extension basique, mais tout
+L'api de wikitty prévoit un certain nombre d'extension basique, mais tout
 l'intéret est que l'on peut créer ses propres extensions, simplement en écrivant
 un modèle uml de classe, qui servira ensuite pour générer les classes java
 effectives.
@@ -70,11 +68,28 @@ Code Lutin.
 A l'utilisation pour créer ses propres wikitty il faut écrire un diagramme de
 classe grâce à l'outil argouml, et que chaque classe porte le stereotype
 <<Entity>>, et remplir les différents attribut des classes avec les types
-reconnus par java. 
+reconnus par java, comme on peut le voir pour les entités utilisés pour Wikitty
+Publication sur la figure \ref{umlwikittypub}. 
 
-Le fait de stereotyper correctement permet ensuite aux générateurs de générer
+\begin{figure}[!ht]
+  	%[height=12cm,width=15cm]
+\centering
+\includegraphics[height=8cm,width=8cm]{image/wikittypubuml.png}
+  		\caption{Les entités de wikitty publication}
+  		\label{umlwikittypub}
+\end{figure}
+
+%mettre un exemple de diagramme
+% expliquer pourquoi c'est un générateur maison
+
+Le fait de stereotyper correctement permet ensuite au générateur de générer
 les classes java correspondante, et s'assurer qu'elles puissent être stocker
 ensuite par Wikitty.
+
+Le générateur qui génère le code java à partir du fichier zargo issue d'argouml
+est un générateur dévellopé en tant que projet libre par Code Lutin: Eugene.
+Ce générateur est née de la nécessité d'un générateur libre, dont la génération
+pouvait être intégré au build, en java, indépendant de tout ide.
 
 Le déploiement ensuite passe par des fichiers configuration qui permettent la
 mise en place des différentes couche de service nécessaire au bon fonctionnement
@@ -88,7 +103,7 @@ de ce modèle.
 
 C'est une approche tout objet, tout java, on se concentre sur l'écriture du code
 métier et pas sur l'écriture des couches basses. Puisque le service permet la
-sauvegarde, restauration, et recherche.
+sauvegarde, restauration, et recherche. 
 
 % Ensuite il suffit d'avoir la base de déployée, et d'utiliser l'interface
 % wikittyProxy qui offre les services pour les requêtes de wikitty, les
@@ -101,6 +116,10 @@ sauvegarde, restauration, et recherche.
 
 
 \subsection{WikittyService, WikittyProxy et WikittyServiceFactory}
+
+Comme évoqué précédement ces éléments sont important dans l'utilisation et 
+l'intégration de Wikitty dans un projet, je vais donc en parler plus en détail
+ici.
 
 Le WikittyService est une interface qui permet de sauvegarder, rechercher,
 récupérer des wikitty, il existe des implémentations de service pour différente
@@ -150,5 +169,4 @@ restore de liste de wikitty, alors que le proxy propose des restore de resultat
 unique. Dans le cas d'une session ou l'on s'authentifie auprès d'un wikitty 
 service, dans ce cas on récupère un jeton, c'est le proxy qui se charge 
 d'injecter le jeton dans chaque demande auprès du Service.
-
 

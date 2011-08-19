@@ -1,18 +1,228 @@
-\section{Wikitty Publication maven plugin}
+\lstset{ %
+language=XML,                % the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code               % where to put the line-numbers
+  % the size of the fonts that are used for the line-numbers
+                  % the step between two line-numbers. If it's 1, each line 
+keywordstyle=\color[rgb]{0,0,1},
+                      % will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+tabsize=2,                      % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                % also try caption instead of title
+escapeinside={\%*}{*)},         % if you want to add a comment with
+morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,configuration, applicationName, wikittyServiceUrl, artifactId,serverID,uploadUrl} 
+}
 
-\subsection{objectif}
-facilité la vie des dev pour le devellopement d'appli sur wikitty publication
-tout clés en mains 
-et tout et tout et tout.
 
+\section{Wikitty Publication Maven Plugin}
+
+Wikitty publication maven plugin, est un plugin maven intégrant les 
+fonctionnalités développées pour wikitty publication, permettant une une
+utilisation facilitées de ses fonctionnalités.
+
+\subsection{Objectifs}
+
+L'objectif de ce plugin était de rendre utilisable les outils dévellopé pour 
+wikitty publication, comme la synchronisation ou l'externalisation, mais 
+pour celà il fallait passer par les classes java associées. 
+
+Or passer par les classes n'est pas "optimal" pour les développeurs, il faut
+leur simplifier la vie, pour que ce genre de d'outil soit disponible 
+immédiatement pour leurs besoins.
+
+La meilleure façon pour celà est donc d'avoir un plugin maven associé à 
+wikitty publication, pour que l'utilisation soit aisée, une solution clé en 
+main.
+
+L'utilisation la plus simple consiste donc en la création d'un pom élémentaire
+avec les paramètres pour le plugin, et ensuite de dévelloper sont application
+pour wikitty publication et d'utiliser les goals pour publier, essayer, etc.
+
+Pom élémentaire :
+
+\begin{lstlisting}
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.exemple</groupId>
+  <artifactId>stub</artifactId>
+  <version>1.0</version>
+  <description>exemple project</description>
+  <build>
+	<plugins>
+	   <plugin>
+		<groupId>org.nuiton.wikitty</groupId>
+		<artifactId>wp-maven-plugin</artifactId>
+		<version>3.2-SNAPSHOT</version>
+		<configuration>
+			<applicationName>example</applicationName>
+			<wikittyServiceUrl>cajo://localhost:1111/wikitty</wikittyServiceUrl>
+			<serverID>serveurTest</serveurID>
+			<uploadUrl>http://localhost/</uploadUrl>
+		</configuration>
+	   </plugin>
+	</plugins>
+  </build>
+</project>
+\end{lstlisting}
+
+%facilité la vie des dev pour le devellopement d'appli sur wikitty publication
+%tout clés en mains 
+%et tout et tout et tout.
 
 \subsection{Goal}
 
-définition de tout les goals avec ce qu'ils font exactement
-exemple de pom
+Les goals suivant ont donc été fait pour ce plugin:
 
-\subsection{fonctionnement}
+\begin{itemize}
+\item wp:init
+\item wp:run
+\item wp:deploy
+\item wp:update
+\item wp:jar
+\item wp:jar-deploy
+\end{itemize}
 
-rééutilisation de plug in existant
+La commande wp:init sert pour initialiser la bonne architecture pour le projet
+d'application de wikitty publication. Comme suit :
+
+\begin{verbatim}
+src/main/wp
+       #toute les pages
+src/main/ressources/images
+       #stocker les images
+src/main/ressources/jar
+       #stoker les binaires
+\end{verbatim}
+
+La commande wp:run pour lancer Wikitty Publication et y charger l'application
+en cours de développement, cette commande lance un serveur avec wikitty publication
+en utilisant un service type "fallback" qui est un service sur système de fichier,
+l'application peut ainsi être modifiée/testée sans rédémarrer le serveur. 
+
+La commande wp:deploy pour déployer l'application sur un wikitty service donné,
+l'url de ce service est un paramètre dans le pom : wikittyServiceUrl. 
+L'application sera déployé à l'aide du système de syncrhonisation, et le label
+src/main tel que sur le file system sera remplacé par applicationName paramètre
+aussi dans le pom, il représente le nom de l'application. Sur le wikitty service
+on retrouvera cette organisation:
+\begin{verbatim}
+applicationName.wp
+       #toute les pages
+applicationName.ressources.images
+       #stocker les images
+applicationName.ressources.jar
+       #stoker les binaires
+\end{verbatim}
+
+
+La commande wp:update sert pour mettre à jour le wikitty service sur lequel
+on a précédement déployé l'application.
+
+La commande wp:jar sert pour externaliser l'application dans un jar avec le
+fonctionnement de l'externalisation, tout en substituant src/main par applicationName,
+un jar parfaitement formé.
+
+La commande wp:jar-deploy sert pour envoyer le jar sur un serveur ou copier
+le jar ailleur sur le file system. Plus tard son role sera la publication 
+des jar auprès d'un WikittyServiceJarLoader. Les paramètres de configuration dans
+le pom serverID et uploadUrl sont respectivement pour retrouver dans les 
+setting les éléments de configuration du serveur cible, et l'url ou l'on 
+doit envoyer le jar.
+
+
+\subsection{Fonctionnement}
+
+L'écriture de ce plugin maven n'a pas été une tache trop compliqué, du fait de 
+l'existence des implémentations des différents besoin, comme l'externalisation
+ou la synchronisation, il aura fallu juste réutiliser ces fonctionnalités, voir
+de corriger quelques signature pour permettre leur réutilisation.
+
+Il aura aussi fallu réutiliser quelques plugin maven déjà existant comme jetty:run
+pour le déploiment de l'application dans un serveur de test local. 
+
+La création d'un plugin maven passe simplement par une implémentation java d'un
+projet avec un pom définissant sa nature de plugin maven. Le reste c'est du java,
+on implémente une interface "Mojo" défini dans maven, on doit aussi à l'aide de 
+tag définir certain paramètre, d'autres tag servent aussi pour que le moteur
+de maven puisse injecter des paramètres à l'éxécution du plugin permettant de
+récupérer des composants/objet de maven comme le build ou le l'objet correspondant
+au pom.
+
+\lstset{ %
+language=java,                % the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code               % where to put the line-numbers
+  % the size of the fonts that are used for the line-numbers
+                  % the step between two line-numbers. If it's 1, each line 
+keywordstyle=\color[rgb]{1,0,1},
+                      % will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+tabsize=2,                      % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                % also try caption instead of title
+escapeinside={\%*}{*)},         % if you want to add a comment with
+morekeywords={@goal} 
+}
+
+Exemples:
+
+\begin{lstlisting}
+/**
+ * @goal init
+ */
+public class WPInitMojo extends AbstractWPMojo {
+...
+}
+\end{lstlisting}
+
+Ici le tag goal permet de définir que la commande pour cette classe sera wp:init
+(le wp le préfix du plugin en question). 
+
+\begin{lstlisting}
+    /**
+     * The mandatory application name.
+     *
+     * @parameter expression="${wp.applicationName}"
+     * @required
+     * @since 1.2.5
+     */
+    protected String applicationName;
+
+    /**
+     * The component used for creating artifact instances.
+     * @required
+     * @component
+     */
+    private ArtifactFactory artifactFactory;
+
+\end{lstlisting}
+
+Le tag parameter associé à l'expression permet de récupérer le paramètre de 
+configuration du plugin wp dans le pom(comme présenté précédement). 
+Le tag component est un tag traité par le moteur de maven qui à l'éxécution
+du plugin l'injection de l'objet demandé. C'est à ça que peuvent servir les 
+tag dans un plugin maven. 
+
+
+%rééutilisation de plug in existant
+
+%Comment qu'on fait un plug in maven:
+%héritage de mojo
+%utilisation de taglet
+%pour récupérer les éléments de l'éxécution 
+%comme le pom et tout
 
 

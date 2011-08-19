@@ -31,13 +31,14 @@ Les deux types d'objet ont les mêmes attribut:
 \item MimeType: crrespondant au type, qui donnera l'extension
 \item Content: le contenu binaire pour pour les PubData et textuel pour les
 PubText
-\item extension: l'extension du fichier original
 \end{itemize}
 
-Le mimetype est détermine le contenu, on enregistre en plus l'extension car il
-n'y a pas une correspondance parfaite entre extension et mime type, donc pour
-ne pas perdre d'information on conserve les deux, par exemple il y a 4
-extensions distinct possible pour un mime type: image/jpg. 
+Le mimetype est détermine le contenu, le mime type est un élément très important,
+la détermination du mimetype d'un fichier n'est pas laissé à une librairie,
+elle est déterminer par un mimeTypeHandler qui contient un mapping défini
+qui permet de connaitre l'extension du fichier et si il s'agit d'un 
+WikittyPubText ou WikittyPubData. Le mimeType est aussi très important dans 
+le processus d'évaluation d'un WikittyPub.
 
 A ces objets wikitty on associe un wikittyLabel, c'est un objet qui peut
 contenir un ensemble de label différent, un label une chaine de texte.
