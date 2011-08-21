@@ -128,14 +128,14 @@ meta.properties
 #
 #Tue Jul 12 11:19:46 CEST 2011
 path.separator=/
-8225d3cb-beb3-4a85-a4ea-4b0e660fab96.extension=wp
-4120d1ba-18ac-4ac5-a329-7f515f704fd0.extension=png
-12f55beb-af63-49b1-9d74-62131bd0a67a.extension=wp
-1968c510-6ba6-4de7-bbb0-67e029119520.extension=wp
-62c7d0cd-91c2-4607-bdcf-f0cac6c78d6e.extension=wp
-e443dbbe-b461-41bd-b5b6-b612e964cb0d.extension=jpg
-b7599025-f425-4dcf-88e6-55e154430d7e.extension=jpg
-2ca85aa8-2869-4ad6-8976-c0b0b5526934.extension=wp
+8225d3cb-beb3-4a85-a4ea-4b0e660fab96.mime=text/javascript
+4120d1ba-18ac-4ac5-a329-7f515f704fd0.mime=image/png
+12f55beb-af63-49b1-9d74-62131bd0a67a.mime=text/javascript
+1968c510-6ba6-4de7-bbb0-67e029119520.mime=text/javascript
+62c7d0cd-91c2-4607-bdcf-f0cac6c78d6e.mime=text/javascript
+e443dbbe-b461-41bd-b5b6-b612e964cb0d.mime=image/jpg
+b7599025-f425-4dcf-88e6-55e154430d7e.mime=image/jpeg
+2ca85aa8-2869-4ad6-8976-c0b0b5526934.mime=text/javascript
 12f55beb-af63-49b1-9d74-62131bd0a67a.version=1.0
 1968c510-6ba6-4de7-bbb0-67e029119520.version=1.0
 2ca85aa8-2869-4ad6-8976-c0b0b5526934.version=1.0
@@ -148,9 +148,10 @@ e443dbbe-b461-41bd-b5b6-b612e964cb0d.version=1.0
 
 
 Sous l'id on sauvegarde le chemin pour retrouver le wikitty correspondant, 
-avec l'extension on peut retrouver le mimeType correspondant et le fichier
-initial contenant le code, puisque naturellement on aura au même endroit
-le fichier initial, le ".java" correspondant et le ".class". 
+avec le mimeType qui permet de retrouver l'extension du fichier, qui sera sauvegardé
+aussi dans le jar, on aura ainsi le fichier original un ".js" par exemple, 
+et à coté les ".java" et ".class" correspondant aux version décoré, compilé.
+
 
 \subsection{Wikitty service sur jar}
 
@@ -169,5 +170,8 @@ on ne délègue pas à une base de donnée, on manipule directement les objets e
 java, donc pour la recherche c'est le même méchanisme que pour le service sur
 File system.
 
+Ce service sur jar peut s'appuyer sur plusieurs jar, dans sa configuration 
+il prend un dossier, dossier qui contient des jar, et il construit un index 
+des wikitty disponible avec les fichiers de propriétés. 
 
 

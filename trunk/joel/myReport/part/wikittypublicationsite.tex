@@ -37,12 +37,17 @@ regroupent les actions et les piles d'intercepteurs, ces packages peuvent en
 posséder un 'namespace' qui leur permet d'être défini pour un sous espace de
 l'application.
 
-%rajouter schéma de fonctionnement de struts
+\begin{figure}[!ht]
+\centering
+\includegraphics[height=6cm,width=17cm]{image/strutsexplain.png}
+  		\caption{Diagramme Struts}
+  		\label{diagstruts}
+\end{figure}
 
 Les intercepteurs et piles d'intercepteur sont des objets qui effectue un pré
-traitement sur les requêtes http reçu par l'application, par défaut struts
-disposent d'une pile qui lui permet de gérer l'envois de fichier, le mapping
-de bean avec des champs d'une page et d'autres.
+traitement sur les requêtes http reçu par l'application, la figure \ref{diagstruts}
+montre le cheminement possible d'une requête. Le champ d'action des intercepteurs
+est grand, ils ont accès à la session, le contexte etc.
 
 Les actions permettent de décrire l'enchainement des 'écrans', les classes java
 qui doivent éxécuter un traitement après la validation d'un formulaire jsp, la
@@ -101,6 +106,34 @@ html sans passer par une jsp.
 L'action Eval elle sert sert du mime type d'un WikittyPubText pour déterminer le
 langage associé au contenu et finalement execute le code, le resultat de
 l'éxécution est donc ensuite renvoyé en tant que résultat.
+
+\subsection{Moteur d'évaluation}
+
+%mettre ici ce que c'est les contextApp et contextData et la signification
+Avant les actions il y a plusieurs paramètres dans l'adresses des actions
+
+
+Contextdata
+
+Comme expliqué avant tout charger avec des fichiers de propriété.
+Propriété par défault qui chargent une base de donnée postgrès 
+dans un dossier en fonction du nom du context.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[height=3cm,width=6cm]{image/propertiescontext.png}
+  		\caption{Fonctionnement du ContextData}
+  		\label{propertiescontext}
+\end{figure}
+
+
+
+Context app
+QUi est en fait le nom de l'application, le début du label des wikitty.
+ça permet pendant l'évaluation d'allerchercher uniquement les wikitty par
+nom qui sont directement sous le même label application mère.
+ça permet d'éviter les collisions de nom entre wikitty 
+
 
 \subsection{Ajout d'un mécanisme de login/logout}
 
@@ -211,6 +244,9 @@ Le html peut être aisément intégré dans du javascript et quand l'évaluateur
 evaluera le javacript et écrira le html contenu dans les variables javascript
 mais cette solution rends l'écriture du code interface pénible.
 
+
+
+
 %mettre un exemple de code ici.TODO
 
 La solution la plus simple qui a été trouvé est d'avoir la possibilité d'écrire 
@@ -224,10 +260,8 @@ décoré. Tout simplement comme si initialement le html avait été intégré da
 le code d'un langage interprété par publication.
 
 Une autre solution était envisagé, qui voulait considérer le html comme un langage
-supporté par publication, et extraire les éléments de binding 
+supporté par publication, et extraire les éléments de binding mais c'était plus 
+compliqué.
 
+Utilisation des mimes types composé pour déterminer un prétraitement
 
-evaluer des scripts c'est jolie mais ça fait pas avancer l'histoire
-décorer le code interface comme de rien
-
-Solutions ?
