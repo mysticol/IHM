@@ -64,7 +64,52 @@ Pour résumer la création d'une taglib c'est:
 \item des fichiers de template en freemarker pour chaque tag
 \end{itemize}
 
-%mettre un exemple de template ? TODO
+Exemple de template freemarker:
+
+\lstset{ %
+language=HTML,                % the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code               % where to put the line-numbers
+  % the size of the fonts that are used for the line-numbers
+                  % the step between two line-numbers. If it's 1, each line 
+keywordstyle=\color[rgb]{0,0,1},
+                      % will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+tabsize=2,                      % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                % also try caption instead of title
+escapeinside={\%*}{*)},         % if you want to add a comment with
+morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,configuration, applicationName, wikittyServiceUrl, artifactId,serverID,uploadUrl} 
+}
+
+
+
+\begin{lstlisting}
+<#include "/${parameters.templateDir}/${parameters.theme}/ws-label-commons.ftl" />
+<select 
+<#include "/${parameters.templateDir}/${parameters.theme}/ws-commons.ftl" />
+ size="${parameters.selectSize}">
+<#assign optionKeys = parameters.value/>
+    <#list optionKeys as optionKey>
+	<option value="${optionKey.valeur}"
+	<#if  optionKey.valeur==parameters.value >
+		selected
+	</#if>
+	> ${optionKey.description} </option>
+	</#list>
+</select>
+\end{lstlisting}
+
+Ce template, est le template pour le rendu en combobox ou liste de sélection,
+il y a les éléments html et les éléments de langages freemarker. Avant que le
+template soit remplit, les classes java correspondantes au tag remplissent 
+un map de paramètre à laquelle a accès le template, d'où les structure de controle
+pour itérer dans cette exemple. 
 
 
 \subsection{La taglib wikitty struts "ws"}
@@ -77,11 +122,10 @@ La différenciation de l'utilisation des tags passent par l'utilisation du tag
 de la taglib ws:form, qui implique que dans ce cas on se trouve dans l'édition d'un
 wikitty.
 
-
-A l'utilisation si on met seulement le tag \verb!ws:form! et la source de donné 
+A l'utilisation si on met seulement le tag \emph{ws:form} et la source de donné 
 (le wikitty) un formulaire basic va être créé en fonction du type des champs
 du wikitty, ensuite en utilisant les autres tag ou différent attribut du tag 
-\verb!ws:form! il est possible de choisir d'exclure de l'édition des extensions,
+\emph{ws:form} il est possible de choisir d'exclure de l'édition des extensions,
 des champs ou de choisir le type d'affichage pour un champ donné (et identifié
 par son nom complet soit nomExtention.nomChamp).
 
@@ -90,12 +134,30 @@ une action qui permet de prendre en compte les modifications de wikitty envoyé
 par le formulaire. Il s'agit d'une action abstraite struts que l'utilisateur à 
 besoin d'étendre pour implémenter la méthode accédant au proxy.
 
-%utilisation des tags ? avec des exemples ou hje met tout en annexe  ? TODO
+Tag commun aux deux types d'utilisation:
+\begin{itemize}
+\item ws:hidden permet d'insérer le champ en tant que champs caché
+\item ws:boolean permet d'insérer le champ en tant que checkbox 
+\item ws:textArea permet d'insérer le champ en tant que textArea
+\item ws:textField permet d'insérer le champ en tant que textField
+\item ws:date permet d'avoir un composant inteligent pour les dates 
+\item ws:selectFixed permet d'afficher un combo box avec des valeurs fixées à 
+l'avance, sera sélectionnée celle correspondant au champs wikitty lié
+\item ws:selectCriteria permet d'afficher un combox box avec des wikitty, 
+sera selectionnée le wikitty correspondant à l'id du wikitty du champ
+(utilisé donc dans le cadre de relation entre wikitty)\\
+\end{itemize}
 
-%Présenter ici les différents tag rapidement avec les plus pertinent de façon plus 
-%détaillés. 
+Tag spécifique pour la création de formulaire:
+\begin{itemize}
+\item ws:form tag pour la création d'un formulaire d'édition des wikitty \\
+\end{itemize}
 
-
+Tag spécifiques à l'utilisation champ:
+\begin{itemize}
+\item ws:selectAssociation tag pour l'affichage de champ wikitty de type collection
+\item ws:select tag pour l'affichage de collection de wikitty en tant que list ou combobox html
+\end{itemize}
 
 
 
