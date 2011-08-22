@@ -1,14 +1,24 @@
 \section{Annexes}
 
+\subsection*{Bindings}
 
-\subsection*{Extrait tld}
+Voici les éléments de bindings disponible dans le moteur d'évaluation:
+	
+\begin{itemize}
+\item wpEval, correspond à l'instance de la classe java qui évalue courament le wikittyPub
+\item wpSubContext, correspond à l'instance de collection contenant 
+\item wpPage, nom de la page 
+\item wpWikitty, wikitty en cours d'évaluation
+\item wpContext, correspond à l'instance de la classe java du context (voir interface)
+\end{itemize}
 
+Interface du context:
 \lstset{ %
-language=XML,                % the language of the code
+language=JAVA,                % the language of the code
 basicstyle=\footnotesize,       % the size of the fonts that are used for the code               % where to put the line-numbers
   % the size of the fonts that are used for the line-numbers
                   % the step between two line-numbers. If it's 1, each line 
-keywordstyle=\color[rgb]{0,0,1},
+keywordstyle=\color[rgb]{1,0,1},
                       % will be numbered
 numbersep=5pt,                  % how far the line-numbers are from the code
 showspaces=false,               % show spaces adding particular underscores
@@ -25,60 +35,33 @@ morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,con
 }
 
 
-
 \begin{lstlisting}
-       <tag>
-        <name>textField</name>
-        <description><![CDATA[tag to show wikitty field as textfield]]></description>        
-        <tagclass>org.nuiton.wikitty.struts.tag.TextFieldTag</tagclass>
-        <bodycontent>empty</bodycontent>
-        <attribute>
-            <description><![CDATA[id for the field]]></description>
-            <name>id</name>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description><![CDATA[name for html element. Ignored if tag used inside tag form.]]></description>
-            <name>name</name>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description><![CDATA[the wikitty to edit(needed if businessEntity not set)]]></description>
-            <name>wikitty</name>
-            <rtexprvalue>true</rtexprvalue>
-            <required>false</required>
-        </attribute>
-        <attribute>
-            <description><![CDATA[the businessEntity to edit(needed if wikitty not set)]]></description>
-            <name>businessEntity</name>
-            <rtexprvalue>true</rtexprvalue>
-            <required>false</required>
-        </attribute>
-        <attribute>
-            <description><![CDATA[the name of the field that have to be specialize]]></description>
-            <name>fqFieldName</name>
-            <rtexprvalue>true</rtexprvalue>
-            <required>true</required>
-        </attribute>
-        <attribute>
-            <description><![CDATA[the label of the field]]></description>
-            <name>label</name>
-            <rtexprvalue>true</rtexprvalue>
-            <required>false</required>
-        </attribute>
-                <attribute>
-            <description><![CDATA[if the textfiel have to hide the content, flag: true/false, default: false]]></description>
-            <name>password</name>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
+package org.nuiton.wikitty.publication;
+
+import org.nuiton.wikitty.WikittyProxy;
+import org.nuiton.wikitty.WikittyService;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.Map;
+
+public interface PublicationContext {
+
+    HttpServletRequest getRequest();
+    HttpServletResponse getResponse();
+    WikittyProxy getWikittyProxy();
+    String makeUrl(String url);
+    WikittyService getWikittyService();
+    List<String> getMandatoryArguments();
+    String getArgument(String name, String defaultValue);
+    String getContentType();
+    void setContentType(String contentType);
+    String toString();
+    Map<String,String> getArguments();
+}
+
 \end{lstlisting}
-
-
-
-
-\subsection*{Utilisation de la tagLib}
-
 
 \subsection*{struts.xml}
 
@@ -159,6 +142,161 @@ morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,con
 
 
 
+\subsection*{Décoration de code pour compilation}
 
 
-\subsection*{ponay}
+\subsubsection*{Javascript}
+
+\lstset{ %
+language=JAVA,                % the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code               % where to put the line-numbers
+  % the size of the fonts that are used for the line-numbers
+                  % the step between two line-numbers. If it's 1, each line 
+keywordstyle=\color[rgb]{1,0,1},
+                      % will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+tabsize=2,                      % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                % also try caption instead of title
+escapeinside={\%*}{*)},         % if you want to add a comment with
+morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,configuration, applicationName, wikittyServiceUrl, artifactId,serverID,uploadUrl} 
+}
+
+
+Ce code contenu dans un WikittyPubText avec le type mime text/javascript:
+
+\begin{lstlisting}
+try {
+
+var result =
+"    <a href='"+wpContext.makeUrl("/eval/Wiki/Home")+"'>Home</a>\n"+
+"    <a href='"+wpContext.makeUrl("/eval/Wiki/Stat")+"'>Stat</a>\n";
+
+wpContext.setContentType("text/html");
+result;
+} catch (eee) {
+wpContext.setContentType("text/plain");
+eee
+}
+\end{lstlisting}
+
+
+Une fois décoré et inclus dans une classe java devient: 
+
+\begin{lstlisting}
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.nuiton.wikitty.ScriptEvaluator;
+import org.nuiton.wikitty.publication.AbstractDecoredClass;
+import org.nuiton.wikitty.entities.*;
+import org.nuiton.wikitty.publication.entities.*;
+import org.nuiton.wikitty.publication.*;
+import java.util.*;
+
+public class WikiMenu extends AbstractDecoredClass {
+    public Object eval(Map<String, Object> bindings) throws Exception {
+        Object result = null;
+        String content = "try {\n\nvar result =\n\"    <a href='\"+wpContext.makeUrl(\"/eval/Wiki/Home\")+\"'>Home</a>\\n\"+\n\"    <a href='\"+wpContext.makeUrl(\"/eval/Wiki/Stat\")+\"'>Stat</a>\\n\";\n\nwpContext.setContentType(\"text/html\");\nresult;\n} catch (eee) {\nwpContext.setContentType(\"text/plain\");\neee\n}\n";
+        String mimeType = "text/javascript";
+        String criteriaName = "elt_id:b48bb6c6-b38d-4abe-b8d4-97ad29457fa1";
+        result = ScriptEvaluator.eval(null, criteriaName, content, mimeType,
+                bindings);
+        return result;
+    }
+}
+\end{lstlisting}
+
+
+\subsubsection*{Java}
+
+Et pour un code java tel que :
+
+\begin{lstlisting}
+return "Hello world on "+wpPage;
+\end{lstlisting}
+
+Une fois décoré pour la compilation devient :
+
+\begin{lstlisting}
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.nuiton.wikitty.ScriptEvaluator;
+import org.nuiton.wikitty.publication.AbstractDecoredClass;
+import org.nuiton.wikitty.entities.*;
+import org.nuiton.wikitty.publication.entities.*;
+import org.nuiton.wikitty.publication.*;
+import java.util.*;
+
+public class hello extends AbstractDecoredClass {
+    public Object eval(Map<String, Object> bindings) throws Exception {
+        PublicationContext wpContext = (PublicationContext) bindings
+                .get("wpContext");
+        EvalInterface wpEval = (EvalInterface) bindings.get("wpEval");
+        String wpPage = (String) bindings.get("wpPage");
+        List<String> wpSubContext = (List<String>) bindings.get("wpSubContext");
+        Wikitty wpWikitty = (Wikitty) bindings.get("wpWikitty");
+        return "Hello world on " + wpPage;
+
+    }
+}
+\end{lstlisting}
+
+\subsubsection*{Interface graphique}
+
+Un joli WikittyPubText le mimeType "text/html.javascript" avec ce contenu:
+
+\begin{lstlisting}
+<html>
+<body>
+
+<h1> Bonjour, ceci est une page de test qui contient du html et des balises comme dans une jsp</h1>
+
+<p>.Le but est de pouvoir mettre du html facilement avec du code aussi.
+</p>
+
+<p>ici on va afficher le nom de la page qui est dans l'adresse et dans le binding <%=wpPage%>.</p>
+
+Op le logo:
+<img src='<%=wpContext.makeUrl("/raw/Logo")%>'/>
+
+<%
+
+wp_result += "<p>Ici c'est du code js</p>";
+
+if (0<1){
+wp_result += "on est rentre dans un if";
+}
+%>
+</body>
+</html>
+\end{lstlisting}
+
+Après transformation il deviendra de mimeType "text/javascript" avec ce contenu:
+
+\begin{lstlisting}
+wpContext.setContentType("text/html");
+var wp_result="<html>\n";
+wp_result+="<head>\n";
+wp_result+="</head>\n";
+wp_result+="<body>\n";
+wp_result+="<h1> Bonjour, ceci est une page de test qui contient du html et des balises comme dans une jsp</h1>\n";
+wp_result+="<p>Le but est de pouvoir mettre du html facilement avec du code aussi.\n";
+wp_result+="</p>\n";
+wp_result+="<p>ici on va afficher le nom de la page qui est dans l'adresse et dans le binding "+wpPage+".</p>\n";
+wp_result+="Op le logo:\n";
+wp_result+="<img src='"+wpContext.makeUrl("/raw/Logo")+"'/>\n";
+result += "<p>Ici c'est du code js</p>";
+if (0<1){
+result+= "on est rentre dans un if";
+}
+wp_result+="</body>\n";
+wp_result+="</html>\n";
+\end{lstlisting}
+
+

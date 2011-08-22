@@ -110,17 +110,24 @@ l'éxécution est donc ensuite renvoyé en tant que résultat.
 \subsection{Moteur d'évaluation}
 
 Le moteur d'évaluation s'appuie sur le concept de scripting comme précédement 
-évoqué, 
+évoqué, on a pu voir que dans les adresses des actions il ya deux paramètres
+dont je n'ai pas vraiment parlé: \emph{contextData} et \emph{contextApps}.
 
-%mettre ici ce que c'est les contextApp et contextData et la signification
-Avant les actions il y a plusieurs paramètres dans l'adresses des actions
+C'est qu'ils prennent toutes leurs importance dans le méchanisme d'évaluation,
+ce méchanisme est délégué au script engine qui va intépréter le contenu
+d'un wikittyPubText en fonction de son mimeType et renvoyer simplement un 
+wikittyPubData de la même façon.
 
+Dans ce cadre contextData sert pour savoir connaitre les propriétés, donc
+quels wikitty service instancier. Comme précédement expliqué les wikitty service 
+sont instancié avec des fichiers de propriété, par défaut il existe deux fichier
+dans l'application qui définisse un wikitty service "classique" avec une base
+de données h2, un dossier de stockage, ainsi qu'un wikitty service sur jar
+en fallback. 
 
-Contextdata
-
-Comme expliqué avant tout charger avec des fichiers de propriété.
-Propriété par défault qui chargent une base de donnée postgrès 
-dans un dossier en fonction du nom du context.
+Le contextData sert pour deux choses dans ce cadre, il permet de charger un 
+fichier de propriété supplémentaire s'il existe voir sur la figure 
+\ref{propertiescontext} , et de définir le dossier de stockage de la base. 
 
 \begin{figure}[!ht]
 \centering
@@ -129,13 +136,24 @@ dans un dossier en fonction du nom du context.
   		\label{propertiescontext}
 \end{figure}
 
+Si par exemple l'adresse de l'action est \verb!/codelutin/chorem/eval/menu.action!
+alors on chargera les propriétés par défaut, on cherchera un fichier de propriété
+codelutin s'il existe(qui peut écraser des propriétés existantes) et un sous dossier
+sera créé pour le contexte de l'application \verb!codelutin!, isolant totalement
+d'un autre contexte \verb!/wp/chorem/eval/menu.action! par exemple, ça ne sera
+pas les mêmes base de donnée, on peut isoler ainsi les contextes
 
+ContextData sert donc pour isoler les services et leurs bases.
 
-Context app
-QUi est en fait le nom de l'application, le début du label des wikitty.
-ça permet pendant l'évaluation d'allerchercher uniquement les wikitty par
-nom qui sont directement sous le même label application mère.
-ça permet d'éviter les collisions de nom entre wikitty 
+ContextApps lui son rôle est "d'isoler" les applications et éviter les collisions
+de nom entre les wikitty, les noms ne sont pas unique et on peut se retrouver
+dans un même wikitty service avoir plusieurs wikittyPub qui ont les mêmes nom par
+exemple: "menu". Le but est d'éviter des confusions, par exemple une action
+\verb!/codelutin/chorem/eval/menu.action! on va aller chercher le wikittyPub 
+avec le nom "menu" dont l'un des labels commence par "chorem", celà permet de 
+regrouper les applications sous les mêmes label, ainsi si dans le contenu du 
+"menu" il y a un appel vers un autre wikitty le moteur "sait" qu'il doit 
+aller le chercher sous le même label.
 
 
 \subsection{Ajout d'un mécanisme de login/logout}
@@ -247,15 +265,10 @@ Le html peut être aisément intégré dans du javascript et quand l'évaluateur
 evaluera le javacript et écrira le html contenu dans les variables javascript
 mais cette solution rends l'écriture du code interface pénible.
 
-
-
-
-%mettre un exemple de code ici.TODO
-
 La solution la plus simple qui a été trouvé est d'avoir la possibilité d'écrire 
 du html (pour le moment plus tard d'autre langage) et de faire comme si on était
-dans une jsp, quand on a besoin d'écrire code on ouvre des balises : <\% \%>
-ou <\%= \%> et on écrit le code correspondant.
+dans une jsp, quand on a besoin d'écrire code on ouvre des balises : \verb!<% \%>!
+ou \verb!<%= \%>! et on écrit le code correspondant.
 
 Ce qui se passe derrière c'est que on inverse le code, ce qui se trouve entre
 les balises devient du code exécutable, et ce qui se trouve autour se retrouve
@@ -266,5 +279,10 @@ Une autre solution était envisagé, qui voulait considérer le html comme un la
 supporté par publication, et extraire les éléments de binding mais c'était plus 
 compliqué.
 
-Utilisation des mimes types composé pour déterminer un prétraitement
+Une nouvelle fois on va jouer avec le mimeType pour les WikittyPubText qui 
+seront des IHM, on leur mettra un mimeType composé de forme: text/html.javascript,
+ce qui signifiera que l'on a un WikittyPubText qui entre les balises de délimitation
+contient du javascript, et que l'on doit se servir des rêgles de décoration javascript.
+Et que après décoration le contenu sera de mimeType: text/javascript.
 
+Voir annexes pour exemples de décoration interface.
