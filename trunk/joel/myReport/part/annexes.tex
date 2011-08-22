@@ -3,12 +3,162 @@
 
 \subsection*{Extrait tld}
 
+\lstset{ %
+language=XML,                % the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code               % where to put the line-numbers
+  % the size of the fonts that are used for the line-numbers
+                  % the step between two line-numbers. If it's 1, each line 
+keywordstyle=\color[rgb]{0,0,1},
+                      % will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+tabsize=2,                      % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                % also try caption instead of title
+escapeinside={\%*}{*)},         % if you want to add a comment with
+morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,configuration, applicationName, wikittyServiceUrl, artifactId,serverID,uploadUrl} 
+}
+
+
+
+\begin{lstlisting}
+       <tag>
+        <name>textField</name>
+        <description><![CDATA[tag to show wikitty field as textfield]]></description>        
+        <tagclass>org.nuiton.wikitty.struts.tag.TextFieldTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <attribute>
+            <description><![CDATA[id for the field]]></description>
+            <name>id</name>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description><![CDATA[name for html element. Ignored if tag used inside tag form.]]></description>
+            <name>name</name>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description><![CDATA[the wikitty to edit(needed if businessEntity not set)]]></description>
+            <name>wikitty</name>
+            <rtexprvalue>true</rtexprvalue>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <description><![CDATA[the businessEntity to edit(needed if wikitty not set)]]></description>
+            <name>businessEntity</name>
+            <rtexprvalue>true</rtexprvalue>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <description><![CDATA[the name of the field that have to be specialize]]></description>
+            <name>fqFieldName</name>
+            <rtexprvalue>true</rtexprvalue>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <description><![CDATA[the label of the field]]></description>
+            <name>label</name>
+            <rtexprvalue>true</rtexprvalue>
+            <required>false</required>
+        </attribute>
+                <attribute>
+            <description><![CDATA[if the textfiel have to hide the content, flag: true/false, default: false]]></description>
+            <name>password</name>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+\end{lstlisting}
+
+
+
+
 \subsection*{Utilisation de la tagLib}
 
 
 \subsection*{struts.xml}
 
-Fichier de configuration xml de struts:
+Fichier de configuration xml de struts (partiel):
+
+\lstset{ %
+language=XML,                % the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code               % where to put the line-numbers
+  % the size of the fonts that are used for the line-numbers
+                  % the step between two line-numbers. If it's 1, each line 
+keywordstyle=\color[rgb]{0,0,1},
+                      % will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+tabsize=2,                      % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                % also try caption instead of title
+escapeinside={\%*}{*)},         % if you want to add a comment with
+morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,configuration, applicationName, wikittyServiceUrl, artifactId,serverID,uploadUrl} 
+}
+
+
+
+\begin{lstlisting}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	  "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	  "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+    <constant name="struts.enable.SlashesInActionNames" value="true" />
+
+    <!-- Define a package for the restricted area must be logged to access -->
+    <package name="restrictedArea" extends="publicArea">
+        <interceptors>
+            <interceptor name="login"
+                class="org.nuiton.wikitty.publication.ui.interceptor.LoginInterceptor">
+                <param name="error">/login_input.action</param>
+            </interceptor>
+            <interceptor-stack name="restrictedAreaStack">
+                <interceptor-ref name="login" />
+                <interceptor-ref name="publicAreaStack" />
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="restrictedAreaStack" />
+    </package>
+    <!-- Action aviable only to logged user extends="restrictedArea" -->
+    <package name="publication" extends="publicArea">
+        <action name="*/*/raw/*"
+            class="org.nuiton.wikitty.publication.ui.action.PublicationActionRaw">
+            <param name="contextData">{1}</param>
+            <param name="contextApps">{2}</param>
+            <param name="args">{3}</param>
+            <result type="stream">
+                <param name="contentType">${mimeType}</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+
+        <action name="*/*/eval/*"
+            class="org.nuiton.wikitty.publication.ui.action.PublicationActionEval">
+            <param name="contextData">{1}</param>
+            <param name="contextApps">{2}</param>
+            <param name="args">{3}</param>
+            <result type="stream">
+                <param name="contentType">${contentType}</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+    </package>
+</struts>
+\end{lstlisting}
+
+
+
 
 
 \subsection*{ponay}

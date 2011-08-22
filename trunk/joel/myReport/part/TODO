@@ -1,7 +1,7 @@
 
 Intro
 Résumé
-Remerciement
+
 Conclusion
 
 Organisation
@@ -13,7 +13,8 @@ wikitty
 WIkittySite
 >Méchanisme d'évaluation
 
-Codelutin a compléter
+Codelutin
+>a compléter OK ?!
 
 
 Externalize
@@ -24,7 +25,6 @@ Externalize
 
 Annexes
 
+Faire quelque chose pour l'index.jsp
+genre mettre un truc pour les adresses à cet endroit là ?
 
--changer la variable result en autre chose
--corriger le wikitty service sur jar
--corriger le plugin maven
