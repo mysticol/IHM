@@ -58,17 +58,52 @@ insérer le résultat dans le code.
 Exemple :
 
 un objet personne dans la map binding, en clé la chaine "personneBob" et en valeur 
-l'objet, avec en attribut un nom égal à "Paulson"
+l'objet, avec en attribut un nom égal à "Paulson" et un attribut prénom égal à
+"Robert".
 
 Un morceau de code js qui sera éxécuté:
 
-alert("hello world Mister " + personneBob.getNom());
+\lstset{ %
+language=JAVA,                % the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code               % where to put the line-numbers
+  % the size of the fonts that are used for the line-numbers
+                  % the step between two line-numbers. If it's 1, each line 
+keywordstyle=\color[rgb]{,0,1},
+                      % will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+tabsize=2,                      % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                % also try caption instead of title
+escapeinside={\%*}{*)},         % if you want to add a comment with
+morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,configuration, applicationName, wikittyServiceUrl, artifactId,serverID,uploadUrl} 
+}
 
-A l'éxécution sera affiché "hello world Mister Paulson"
+\begin{lstlisting}
+var result =
+"    <h1>Index</h1>\n"+
+"    His name was "+ personneBob.getPrenom() + personneBob.getNom()\n";
+var ponay ="";
 
 
-%mettre ici ce qui est disponible au niveau des bindings 
-%ça va servir aussi pour la doc TODO
+wpContext.setContentType("text/html");
+result;
+\end{lstlisting}
+
+
+
+A l'éxécution sera affiché "His name was Robert Paulson", le javascript sera interprété
+normalement, en y joignant les chaines récuépérée dans les bindings. Là l'exemple
+est simple, mais en pratique celà permet de faire beaucoup de chose.
+
+Dans notre cas avec nos bindings (voir les annexes pour les bindings disponible),
+on peut dans du code qui se fera évaluer appeller l'évaluator sur un autre contenu.
+
 
 
 

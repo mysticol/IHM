@@ -44,7 +44,13 @@ Les facettes permettent de regrouper les résultats de recherche par criteria.
 Tout wikitty posséde un numéro de version, qui évolue en fonction des
 modifications faites dessus. L'api prévois que l'on puisse restaurer une version
 ciblé d'un wikitty.
-%quand wikitty version sera mieux gérer en parler.
+
+Durant le développement de la partie synchronisation s'est posé le problème de 
+gestion de version des wikitty, puisque d'un service à l'autre les versions ne 
+sont forcément les mêmes, en envoyant un wikitty en version 8.0 vers un wikitty
+service qui ne connait pas ce wikitty, il sera enregistré en version 1.0 (avec les
+même données), posant problème pour les mises à jour ultérieurement. A l'heure
+de finalisation de ce rapport le "problème" n'a pas encore été résolut.
 
 \subsection{Existant}
 
@@ -78,9 +84,6 @@ Publication sur la figure \ref{umlwikittypub}.
   		\caption{Les entités de wikitty publication}
   		\label{umlwikittypub}
 \end{figure}
-
-%mettre un exemple de diagramme
-% expliquer pourquoi c'est un générateur maison
 
 Le fait de stereotyper correctement permet ensuite au générateur de générer
 les classes java correspondante, et s'assurer qu'elles puissent être stocker
