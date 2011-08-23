@@ -39,38 +39,40 @@
 
 \section{Wikitty} 
 \subsection{C'est quoi ?}
-\begin{frame}\frametitle{Concept} 
+\begin{frame}\frametitle{C'est quoi ?} 
 \begin{itemize}
 \item Base de données orientées document.
 \item Clé $\to$ Valeur
-\item Entité généré grace à un modèle uml
+\item Entités générées grace à un modèle UML
+\item champ nommé: WikittyPubText.name
 \end{itemize}
 \end{frame}
 
 \subsection{Wikitty Service}
 \begin{frame} \frametitle{Wikitty Service} 
-Toute les interraction avec le véritable stockage masqué par le service
-et souvent encapsuler dans un proxy pour en plus 
-
+\begin{itemize}
+\item Restauration 
+\item Sauvegarde
+\item Recherche
+\item Configuré par fichier de propriétés
+\item Cache la réalité de la base de données
+\end{itemize}
 \end{frame}
 
 
-\section{Scripting - JSR 223} 
+\section{Scripting - JSR 223}
+\subsection{Concept}
 \begin{frame}\frametitle{Concept}
 Interprétation de langage dans un autre langage.
-
-
-
-
+Le javascript dans du java
 \end{frame}
-
+\subsection{Bindings}
 \begin{frame}\frametitle{Bindings}
 Possibilité des bindings
 appel au méthode java
 invocation
 ?
-
-
+exemple
 \end{frame}
 
 
@@ -81,7 +83,11 @@ invocation
 Implémentation de la jsr
 s'appuie sur wikitty
 prototype
-
+On y stocke une application 
+que l'on peut modifier comme un wiki
+application qui exploite un wikitty
+donc peut se modifier
+SKYNET !
 \end{frame}
 
 
@@ -90,8 +96,67 @@ prototype
 \section{Wikitty Struts} 
 
 \begin{frame}\frametitle{Concept}
-
+Une tag lib pour
+la création de formulaire d'édition de wikitty
+ou formulaire utilisant les valeurs d'un wikitty
 
 \end{frame}
+
+\subsection{Fonctionnalités}
+\subsubsection{Synchronisation entre service}
+\begin{frame}\frametitle{Synchronisation entre service}
+comment ça marche 
+commen sync
+\end{frame}
+
+\subsubsection{Externalisation}
+\begin{frame}\frametitle{Externalisation}
+dans un jar tout ça
+à partir d'un wikitty service
+\end{frame}
+
+
+\subsubsection{Moteur d'évaluation}
+\begin{frame}\frametitle{Moteur d'évaluation}
+Les mimes type pour les interfaces
+Pour les types à évaluer etc 
+COntext data
+COntex Apps
+format des urls
+\end{frame}
+
+\subsubsection{Migration vers struts}
+\begin{frame}\frametitle{Migration vers struts}
+\begin{itemize}
+\item mechanisme de login logout
+\item action struts/interceptor
+\item suport struts pour les sessions et tout
+\end{itemize}
+\end{frame}
+
+
+\subsection{Nouveau type de wikitty service}
+\begin{frame}\frametitle{Nouveau type de wikitty service}
+\begin{itemize}
+\item wikitty service sur système de fichier
+\item wikitty service sur jar
+\item wikitty service fallback
+\end{itemize}
+%insert image
+
+\end{frame}
+
+\subsection{Maven}
+\begin{frame}\frametitle{Maven}
+\begin{itemize}
+\item Facilité l'utilisation
+\item pas besoin de chercher dans les classes java
+\item immediat
+\end{itemize}
+%pom exemple
+%liste des goals
+
+\end{frame}	
+
 
 \end{document}
