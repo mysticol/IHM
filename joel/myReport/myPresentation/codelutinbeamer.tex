@@ -1,0 +1,97 @@
+% This text is proprietary.
+% It's a part of presentation made by myself.
+% It may not used commercial.
+% The noncommercial use such as private and study is free
+% Dec 2007
+% Author: Sascha Frank 
+% University Freiburg 
+% www.informatik.uni-freiburg.de/~frank/
+%
+% 
+
+\documentclass[12pt,a4paper,utf8x]{beamer}
+\setbeamertemplate{navigation symbols}{}
+
+\usepackage [frenchb]{babel}
+\usepackage{color}
+% Pour pouvoir utiliser 
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{amsmath}
+
+\usetheme{Marburg}
+
+\addtobeamertemplate{footline}{\hfill\insertframenumber/\inserttotalframenumber} 
+
+\beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+\begin{document}
+\title{Wikitty Publication}  
+\author{Manoël Fortun}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}\frametitle{Sommaire}\tableofcontents
+\end{frame} 
+
+
+\section{Wikitty} 
+\subsection{C'est quoi ?}
+\begin{frame}\frametitle{Concept} 
+\begin{itemize}
+\item Base de données orientées document.
+\item Clé $\to$ Valeur
+\item Entité généré grace à un modèle uml
+\end{itemize}
+\end{frame}
+
+\subsection{Wikitty Service}
+\begin{frame} \frametitle{Wikitty Service} 
+Toute les interraction avec le véritable stockage masqué par le service
+et souvent encapsuler dans un proxy pour en plus 
+
+\end{frame}
+
+
+\section{Scripting - JSR 223} 
+\begin{frame}\frametitle{Concept}
+Interprétation de langage dans un autre langage.
+
+
+
+
+\end{frame}
+
+\begin{frame}\frametitle{Bindings}
+Possibilité des bindings
+appel au méthode java
+invocation
+?
+
+
+\end{frame}
+
+
+\section{Wikitty Publication} 
+\subsection{Concept}
+\begin{frame}\frametitle{Concept}
+
+Implémentation de la jsr
+s'appuie sur wikitty
+prototype
+
+\end{frame}
+
+
+
+
+\section{Wikitty Struts} 
+
+\begin{frame}\frametitle{Concept}
+
+
+\end{frame}
+
+\end{document}
