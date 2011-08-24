@@ -33,7 +33,7 @@
 \titlepage
 \end{frame}
 
-\begin{frame}\frametitle{Sommaire}\tableofcontents
+\begin{frame}\tableofcontents	
 \end{frame} 
 
 
@@ -42,7 +42,8 @@
 \begin{frame}\frametitle{C'est quoi ?} 
 \begin{itemize}
 \item Base de données orientées document.
-\item Clé $\to$ Valeur
+\item Clé $\to$ Valeur 
+\item Des extensions
 \item Entités générées grace à un modèle UML
 \item champ nommé: WikittyPubText.name
 \end{itemize}
@@ -55,106 +56,204 @@
 \item Sauvegarde
 \item Recherche
 \item Configuré par fichier de propriétés
-\item Cache la réalité de la base de données
+\item "Complexité" de la base masqué
 \end{itemize}
 \end{frame}
 
 
 \section{Scripting - JSR 223}
-\subsection{Concept}
-\begin{frame}\frametitle{Concept}
-Interprétation de langage dans un autre langage.
-Le javascript dans du java
+\subsection{Pardon ?}
+\begin{frame}\frametitle{Pardon ?}
+Concept très simple, la possibilité d'intrepréter un langage de script dans un
+autre langage.\\
+
+Par exemple, interpréter et éxécuter du \emph{javascript} dans du \emph{java}.
 \end{frame}
 \subsection{Bindings}
 \begin{frame}\frametitle{Bindings}
-Possibilité des bindings
-appel au méthode java
-invocation
-?
-exemple
+
+Très important:
+\begin{itemize}
+\item Langage de script peut utiliser le langage qui l'interprète
+\item Donc insérer du java dans du javascript
+\item Méthode, Objets 
+\item Map$\textless$String, Object$\textgreater$
+\end{itemize}
 \end{frame}
 
 
 \section{Wikitty Publication} 
-\subsection{Concept}
-\begin{frame}\frametitle{Concept}
-
-Implémentation de la jsr
-s'appuie sur wikitty
-prototype
-On y stocke une application 
-que l'on peut modifier comme un wiki
-application qui exploite un wikitty
-donc peut se modifier
-SKYNET !
-\end{frame}
-
-
-
-
-\section{Wikitty Struts} 
-
-\begin{frame}\frametitle{Concept}
-Une tag lib pour
-la création de formulaire d'édition de wikitty
-ou formulaire utilisant les valeurs d'un wikitty
-
-\end{frame}
-
-\subsection{Fonctionnalités}
-\subsubsection{Synchronisation entre service}
-\begin{frame}\frametitle{Synchronisation entre service}
-comment ça marche 
-commen sync
-\end{frame}
-
-\subsubsection{Externalisation}
-\begin{frame}\frametitle{Externalisation}
-dans un jar tout ça
-à partir d'un wikitty service
-\end{frame}
-
-
-\subsubsection{Moteur d'évaluation}
-\begin{frame}\frametitle{Moteur d'évaluation}
-Les mimes type pour les interfaces
-Pour les types à évaluer etc 
-COntext data
-COntex Apps
-format des urls
-\end{frame}
-
-\subsubsection{Migration vers struts}
-\begin{frame}\frametitle{Migration vers struts}
+\subsection{Pourquoi faire ?}
+\begin{frame}\frametitle{Pourquoi faire ?}
 \begin{itemize}
-\item mechanisme de login logout
-\item action struts/interceptor
-\item suport struts pour les sessions et tout
+\item Utilise le concept du scripting
+\item Intégre un moteur d'évaluation de script
+\item Script stocké sous forme de Wikitty
+\item Wikitty Service en binding
+\item Moteur de script en binding
+\item WikittyPubText
+\item WikittyPubData
 \end{itemize}
-\end{frame}
 
+\end{frame}
 
 \subsection{Nouveau type de wikitty service}
 \begin{frame}\frametitle{Nouveau type de wikitty service}
 \begin{itemize}
 \item wikitty service sur système de fichier
 \item wikitty service sur jar
-\item wikitty service fallback
+\item wikitty service fallback\pause
+\end{itemize}\pause
+
+\begin{figure}
+\includegraphics[scale=0.5]{../image/multicontext.png} 
+\caption{Service avec fallback}
+\end{figure}
+\end{frame}
+
+
+\subsection{Nouvelles Fonctionnalités}
+\subsubsection*{Synchronisation entre service}
+\begin{frame}\frametitle{Synchronisation entre service}
+\begin{itemize}
+\item Transférer des wikitty d'un service à un autre
+\item Basé sur les labels
+\item Mise à jour
+\item "Suppression"
+\item "Déplacement" de wikitty
 \end{itemize}
-%insert image
+\pause
+Exemple de label :
+\verb!org.nuiton.wikitty!
+\end{frame}
+
+\begin{frame}
+Exemple de synchronisation:
+\begin{itemize}
+\item cajo://localhost:1111\#com
+\item cajo://wwikitty.nuiton.org:2222\#org
+\end{itemize}
+
+Les wikitty sous le label \verb!com! contenu sur le premier service vont
+être envoyé sur le second service sous le label org.\\
+
+Le label \verb!com.nuiton.wikitty! deviendra \verb!org.nuiton.wikitty! sur 
+le second service.\\
+\end{frame}
+
+\subsubsection*{Externalisation}
+\begin{frame}\frametitle{Externalisation}
+\begin{itemize}
+\item "Fixer" les wikitty
+\item Compiler les scripts
+\item Création d'un jar
+\item WikittyPubTextCompiled
+\end{itemize}
+\end{frame}
+
+\subsubsection*{Migration vers struts}
+\begin{frame}\frametitle{Migration vers struts}
+\begin{itemize}
+\item Migration depuis une application en jsp "classic/simple"
+\item Mécanisme de login/logout
+\item action struts/interceptor
+\item support struts pour les sessions etc
+\end{itemize}
+\end{frame}
+
+
+
+
+\subsubsection*{Moteur d'évaluation}
+\begin{frame}\frametitle{Moteur d'évaluation}
+
+Moteur d'évaluation dans un navigateur à l'adresse:\\
+\verb!/[contextData]/[contextApps]/eval/[mandatory]!
+
+\begin{itemize}
+\item mandatory pour retrouver le wikitty correspondant
+\item eval, c'est le nom de l'action
+\item contextApps, pour ne pas se tromper de wikitty.
+\item contextData, pour trouver le bon wikitty service
+\end{itemize}
+
+
 
 \end{frame}
 
-\subsection{Maven}
-\begin{frame}\frametitle{Maven}
+\begin{frame}\frametitle{Moteur d'évaluation}
+
+Comment ça marche contextData:
+
+\begin{figure}
+\includegraphics[scale=0.5]{../image/propertiescontext.png} 
+\caption{Surcharge des propriétés}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}\frametitle{Moteur d'évaluation}
+Le mime type des WikittyPub détermine le traitement effectué.
 \begin{itemize}
-\item Facilité l'utilisation
-\item pas besoin de chercher dans les classes java
-\item immediat
+\item text/javascript, passera par l'évaluateur de javascript
+\item image/png, renvoyé tel quel en mettant le bon type mime dans la réponse 
+pour interprétation du navigateur
+\item text/html.javascript, passera par un décorateur pour transformer le contenu
+en text/javascript pour interprétation
+\item text/java, sera compilé pour évaluation
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Moteur d'évaluation}
+
+Exemple:
+\verb!codelutin/chorem/eval/Menu! 
+
+On va "évaluer" le wikittyPub qui possède le nom "Menu" avec un label qui
+commence par "chorem" et qui se trouve dans le service correspondant à Code Lutin.
+Le rendu sera déterminé par le mime Type du wikittyPub correspondant.
+\end{frame}
+
+
+
+
+
+\section{Wikitty Struts} 
+\begin{frame}\frametitle{Wikitty Struts}
+Création d'une Tag lib struts pour une intégration facilité de wikitty dans des 
+formulaire.
+Deux possibilités d'utilisation
+\begin{itemize}
+\item Formulaire d'édition de wikitty, avec action pré-construite 
+\item Intégration des champs de wikitty dans un formulaire, avec choix de la forme
+de l'affichage en fonction du tag utilisé.
+\end{itemize}
+
+\end{frame}
+
+
+\section{Plugin Maven}
+\subsection{Un plugin?!}
+\begin{frame}\frametitle{Un plugin?!}
+\begin{itemize}
+\item Motivation: Plus simple pour l'utilisateur
+\item Clés en mains
+\item Intègre de façon ciblée les fonctionnalités (externalize-synchronize)
 \end{itemize}
 %pom exemple
 %liste des goals
+\end{frame}	
+
+\subsection{Les goals}
+\begin{frame}\frametitle{Les goals}
+\begin{itemize}
+\item wp:init
+\item wp:run
+\item wp:deploy
+\item wp:update
+\item wp:jar
+\item wp:jar-deploy
+\end{itemize}
 
 \end{frame}	
 
