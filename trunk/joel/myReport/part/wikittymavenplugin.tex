@@ -22,27 +22,27 @@ morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,con
 
 \section{Wikitty Publication Maven Plugin}
 
-Wikitty publication maven plugin, est un plugin maven intégrant les 
-fonctionnalités développées pour wikitty publication, permettant une une
-utilisation facilitées de ses fonctionnalités.
+Wikitty Publication maven plugin, est un plugin maven intégrant les 
+fonctionnalités développées pour Wikitty Publication, permettant une une
+utilisation facilitées de ces fonctionnalités.
 
 \subsection{Objectifs}
 
-L'objectif de ce plugin était de rendre utilisable les outils dévellopé pour 
-wikitty publication, comme la synchronisation ou l'externalisation, mais 
-pour celà il fallait passer par les classes java associées. 
+L'objectif de ce plugin était de rendre utilisable les outils développés pour 
+Wikitty Publication, comme la synchronisation ou l'externalisation, mais 
+pour cela il fallait passer par les classes java associées. 
 
 Or passer par les classes n'est pas "optimal" pour les développeurs, il faut
 leur simplifier la vie, pour que ce genre de d'outil soit disponible 
 immédiatement pour leurs besoins.
 
-La meilleure façon pour celà est donc d'avoir un plugin maven associé à 
-wikitty publication, pour que l'utilisation soit aisée, une solution clé en 
+La meilleure façon pour cela est donc d'avoir un plugin maven associé à 
+Wikitty Publication, pour que l'utilisation soit aisée, une solution clé en 
 main.
 
 L'utilisation la plus simple consiste donc en la création d'un pom élémentaire
-avec les paramètres pour le plugin, et ensuite de dévelloper sont application
-pour wikitty publication et d'utiliser les goals pour publier, essayer, etc.
+avec les paramètres pour le plugin, et ensuite de développer sont application
+pour Wikitty Publication et d'utiliser les goals pour publier, essayer, etc.
 
 Pom élémentaire :
 
@@ -103,15 +103,15 @@ src/main/ressources/jar
 \end{verbatim}
 
 La commande wp:run pour lancer Wikitty Publication et y charger l'application
-en cours de développement, cette commande lance un serveur avec wikitty publication
+en cours de développement. Cette commande lance un serveur avec Wikitty Publication
 en utilisant un service type "fallback" qui est un service sur système de fichier,
-l'application peut ainsi être modifiée/testée sans rédémarrer le serveur. 
+l'application peut ainsi être modifiée/testée sans redémarrer le serveur. 
 
-La commande wp:deploy pour déployer l'application sur un wikitty service donné,
+La commande wp:deploy pour déployer l'application sur un WikittyService donné,
 l'url de ce service est un paramètre dans le pom : wikittyServiceUrl. 
-L'application sera déployé à l'aide du système de syncrhonisation, et le label
-src/main tel que sur le file system sera remplacé par applicationName paramètre
-aussi dans le pom, il représente le nom de l'application. Sur le wikitty service
+L'application sera déployée à l'aide du système de synchronisation, et le label
+src/main tel que sur le file system sera remplacée par applicationName paramètre
+aussi dans le pom, il représente le nom de l'application. Sur le WikittyService
 on retrouvera cette organisation:
 \begin{verbatim}
 applicationName.wp
@@ -123,18 +123,18 @@ applicationName.ressources.jar
 \end{verbatim}
 
 
-La commande wp:update sert pour mettre à jour le wikitty service sur lequel
-on a précédement déployé l'application.
+La commande wp:update sert pour mettre à jour le WikittyService sur lequel
+on a précédemment déployé l'application.
 
 La commande wp:jar sert pour externaliser l'application dans un jar avec le
 fonctionnement de l'externalisation, tout en substituant src/main par applicationName,
 un jar parfaitement formé.
 
 La commande wp:jar-deploy sert pour envoyer le jar sur un serveur ou copier
-le jar ailleur sur le file system. Plus tard son role sera la publication 
+le jar ailleurs sur le file system. Plus tard son rôle sera la publication 
 des jar auprès d'un WikittyServiceJarLoader. Les paramètres de configuration dans
 le pom serverID et uploadUrl sont respectivement pour retrouver dans les 
-setting les éléments de configuration du serveur cible, et l'url ou l'on 
+setting les éléments de configuration du serveur cible, et l'url où l'on 
 doit envoyer le jar.
 
 
@@ -142,18 +142,18 @@ doit envoyer le jar.
 
 L'écriture de ce plugin maven n'a pas été une tache trop compliqué, du fait de 
 l'existence des implémentations des différents besoin, comme l'externalisation
-ou la synchronisation, il aura fallu juste réutiliser ces fonctionnalités, voir
-de corriger quelques signature pour permettre leur réutilisation.
+ou la synchronisation. Il aura fallu juste réutiliser ces fonctionnalités, voir
+de corriger quelques signature pour permettre leurs réutilisations.
 
 Il aura aussi fallu réutiliser quelques plugin maven déjà existant comme jetty:run
-pour le déploiment de l'application dans un serveur de test local. 
+pour le déploiement de l'application dans un serveur de test local. 
 
 La création d'un plugin maven passe simplement par une implémentation java d'un
 projet avec un pom définissant sa nature de plugin maven. Le reste c'est du java,
-on implémente une interface "Mojo" défini dans maven, on doit aussi à l'aide de 
-tag définir certain paramètre, d'autres tag servent aussi pour que le moteur
-de maven puisse injecter des paramètres à l'éxécution du plugin permettant de
-récupérer des composants/objet de maven comme le build ou le l'objet correspondant
+on implémente une interface "Mojo" défini dans maven. On doit aussi à l'aide de 
+tag définir certains paramètres, d'autres tag servent aussi pour que le moteur
+de maven puisse injecter des paramètres à l'exécution du plugin permettant de
+récupérer des composants/objet de maven comme le build ou l'objet correspondant
 au pom.
 
 \lstset{ %
@@ -189,7 +189,7 @@ public class WPInitMojo extends AbstractWPMojo {
 \end{lstlisting}
 
 Ici le tag goal permet de définir que la commande pour cette classe sera wp:init
-(le wp le préfix du plugin en question). 
+(le wp le préfixe du plugin en question). 
 
 \begin{lstlisting}
     /**
@@ -211,7 +211,7 @@ Ici le tag goal permet de définir que la commande pour cette classe sera wp:ini
 
 Le tag parameter associé à l'expression permet de récupérer le paramètre de 
 configuration du plugin wp dans le pom(comme présenté précédement). 
-Le tag component est un tag traité par le moteur de maven qui à l'éxécution
+Le tag component est un tag traité par le moteur de maven qui à l'exécution
 du plugin l'injection de l'objet demandé. C'est à ça que peuvent servir les 
 tag dans un plugin maven. 
 

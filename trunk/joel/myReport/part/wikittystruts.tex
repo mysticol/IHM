@@ -1,25 +1,25 @@
 \section{Wikitty Struts}
 
-Cette partie sur wikitty n'était pas prévu au départ, mais à l'utilisation
-il s'est avéré que le dévellopement d'un tel module était nécessaire, et que
-le travail précédement effectué sur la partie site de wikitty publication
+Cette partie sur Wikitty n'était pas prévu au départ, mais à l'utilisation
+il s'est avéré que le développement d'un tel module était nécessaire, et que
+le travail précédemment effectué sur la partie site de Wikitty Publication
 pouvait rendre la tache plus rapide.
 
 
 \subsection{Objectfifs}
 
 L'édition de wikitty ou tout simplement l'utilisation de wikitty au sein de 
-formulaire sont des éléments récurents dans les applications developpée 
-chez code lutin, puisque en effet Wikitty est largement utilisé comme support
-de base de donnée. 
+formulaire deviennent des éléments récurents dans les applications développées 
+chez code lutin. Cela puisque devient Wikitty une solution plus utilisée pour 
+le stockage.
 
-L'objectif de ce module wikitty-struts à donc été de créer une taglib permettant
-la génération des formulaires plus aisée pour les wikitty, afin de ne pas 
-avoir à refaire ce que l'on a déjà fait pour une autre application.
+L'objectif de ce module wikitty-struts a donc été de créer une taglib permettant
+une génération des formulaires pour les wikitty, afin de ne pas avoir à refaire
+ce que l'on a déjà fait pour une autre application.
 
-Pour avoir une tag lib la plus complète possible il a été décidé d'en faire une
-qui marcherait de la même façon que la taglib struts de base, et se reservirait
-de ses méchanismes interne, avec les templates.
+Pour avoir une tag lib la plus complète possible, il a été décidé d'en faire une
+qui marcherait de la même façon que la taglib struts de base, et se resservirait
+de ses mécanismes interne, avec les templates.
 
 \subsection{La création d'un tag}
 
@@ -32,13 +32,13 @@ de ses méchanismes interne, avec les templates.
 \end{figure}
 
 La création d'un tag classique, sans struts se fait par héritage de classe 
-tel que "TagSupport" qui est une des classes défini dans la norme J2E pour la 
+tel que "TagSupport" qui est une des classes définie dans la norme J2E pour la 
 création des tags. En plus de la définition de la classe java, il faut écrire
 dans un fichier xml (.tld) la définition du tag. La création de tag ainsi oblige
 à écrire le code html directement dans le corps de la classe ou de devoir prévoir
 l'architecture de support pour des templates.
 
-Les templates permettent en fait de séparer le rendu du post traitement effectué
+Les templates permettent en fait de séparer le rendu du post-traitement effectué
 sur les attributs d'un tag, il permettent aussi de supporter plusieurs "thèmes", 
 c'est à dire des collections de css pour changer le rendu, etc.
 
@@ -47,12 +47,12 @@ on voit qu'il y a une certaine architecture déjà mise en place. Il y a une cha
 d'héritage étendant la norme pour les tag, et de l'autre une chaine d'héritage 
 de classe spécifique à struts. 
 
-Pour créer des tags spécifique on se place en bout de chaine, comme on le voit 
+Pour créer des tags spécifiques on se place en bout de chaine, comme on le voit 
 avec \emph{classeMontag} en héritant de \emph{AbstractClosingTag} on ne fait pas
-grand chose, on délégue à la classe héritant de \emph{ClosingUiBean} qui contient 
+grand chose, on délègue à la classe héritant de \emph{ClosingUiBean} qui contient 
 elle la logique de traitement des éléments du tag. Ensuite il faut définir le
 template écrit en \emph{freemarker}, qui lui contient le code html effectif 
-qui sera écrit avec les éléments récupéré par la classe héritant de \emph{ClosingUiBean}.
+qui sera écrit avec les éléments récupérés par la classe héritant de \emph{ClosingUiBean}.
 Il faut aussi écrire le fichier tld pour la description.\\
 \\
 Pour résumer la création d'une taglib c'est:
@@ -108,13 +108,13 @@ morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,con
 Ce template, est le template pour le rendu en combobox ou liste de sélection,
 il y a les éléments html et les éléments de langages freemarker. Avant que le
 template soit remplit, les classes java correspondantes au tag remplissent 
-un map de paramètre à laquelle a accès le template, d'où les structure de controle
+un map de paramètres à laquelle a accès le template, d'où les structures de contrôle
 pour itérer dans cette exemple. 
 
 
 \subsection{La taglib wikitty struts "ws"}
 
-Les tags ainsi developpé ont deux utilisations possible, la création d'un 
+Les tags ainsi développés ont deux utilisations possibles, la création d'un 
 formulaire d'édition de wikitty, ou la création de formulaire utilisant les 
 champs de wikitty comme champs. 
 
@@ -122,15 +122,15 @@ La différenciation de l'utilisation des tags passent par l'utilisation du tag
 de la taglib ws:form, qui implique que dans ce cas on se trouve dans l'édition d'un
 wikitty.
 
-A l'utilisation si on met seulement le tag \emph{ws:form} et la source de donné 
-(le wikitty) un formulaire basic va être créé en fonction du type des champs
-du wikitty, ensuite en utilisant les autres tag ou différent attribut du tag 
+A l'utilisation si on met seulement le tag \emph{ws:form} et la source de donnée 
+(le wikitty) un formulaire basique va être créé en fonction du type des champs
+du wikitty. Ensuite en utilisant les autres tag ou différents attributs du tag 
 \emph{ws:form} il est possible de choisir d'exclure de l'édition des extensions,
 des champs ou de choisir le type d'affichage pour un champ donné (et identifié
 par son nom complet soit nomExtention.nomChamp).
 
 En plus de fournir des tags pour la création de formulaire, la tag lib propose 
-une action qui permet de prendre en compte les modifications de wikitty envoyé
+une action qui permet de prendre en compte les modifications de wikitty envoyées
 par le formulaire. Il s'agit d'une action abstraite struts que l'utilisateur à 
 besoin d'étendre pour implémenter la méthode accédant au proxy.
 
@@ -140,11 +140,11 @@ Tag commun aux deux types d'utilisation:
 \item ws:boolean permet d'insérer le champ en tant que checkbox 
 \item ws:textArea permet d'insérer le champ en tant que textArea
 \item ws:textField permet d'insérer le champ en tant que textField
-\item ws:date permet d'avoir un composant inteligent pour les dates 
-\item ws:selectFixed permet d'afficher un combo box avec des valeurs fixées à 
-l'avance, sera sélectionnée celle correspondant au champs wikitty lié
+\item ws:date permet d'avoir un composant intelligent pour les dates 
+\item ws:selectFixed permet d'afficher un combobox avec des valeurs fixées à 
+l'avance, sera sélectionnée celle correspondant au champs wikitty liés
 \item ws:selectCriteria permet d'afficher un combox box avec des wikitty, 
-sera selectionnée le wikitty correspondant à l'id du wikitty du champ
+sera sélectionnée le wikitty correspondant à l'id du wikitty du champ
 (utilisé donc dans le cadre de relation entre wikitty)\\
 \end{itemize}
 
