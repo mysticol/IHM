@@ -23,46 +23,46 @@ morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,con
 
 \section{Wikitty Publication Externalize}
 
-La partie externalize de wikitty publication concerne les fonctionnalités 
-d'externalisation des wikitty. C'est à dire prendre des wikitty stocker sur un 
-système de fichier, via le service correspondant précédement dévellopé, compiler
-ces wikitty et les stockers dans un jar.
+La partie Externalize de Wikitty Publication concerne les fonctionnalités 
+d'externalisation des wikitty. C'est à dire prendre des wikitty stockés sur un 
+système de fichier, via le service correspondant précédemment développé, compiler
+ces wikitty et les stocker dans un jar.
 
-L'objectif recherché par cette partie de wikitty publication est la performance,
-en ayant du code compilé on gagne évidement en rapidité d'éxécution des wikitty
+L'objectif recherché par cette partie de Wikitty Publication est la performance,
+en ayant du code compilé on gagne évidement en rapidité d'exécution des wikitty
 compilé. Et du code non modifiable, par exemple dans le cadre de l'utilisation 
-multicontexte, on pourrait avoir un service s'appuyant sur des wikitty stocké 
+multi-contexte, on pourrait avoir un service s'appuyant sur des wikitty stockés 
 dans un jar.
 
-Comme pour la synchronisation vers file system, sont concernés par ce méchanisme
-uniquement les Wikitty représentable sur file system, comme les wikittyPubData,
-qui ne seront pas affecté par le méchanisme, et les wikittyPubText qui eux seront
+Comme pour la synchronisation vers file system, sont concernés par ce mécanisme
+uniquement les Wikitty représentable sur file system. Comme les wikittyPubData,
+qui ne seront pas affecté par le mécanisme. Et les wikittyPubText qui eux seront
 compilé dans le processus d'externalisation.
 
-Un des objectifs, plus secondaire, est la possibilité d'intégrer ce méchanisme
+Un des objectifs, plus secondaire, est la possibilité d'intégrer ce mécanisme
 en tache Ant, ou un plug in maven.
 
-\subsection{Une nouvelle extension de wikittyPub}
+\subsection{Une nouvelle extension de WikittyPub}
 
 Les wikittyPubText qui auront été externalizé, et donc compilé, doivent toujours 
 être considéré comme des wikitty, avec toutes les propriétés liées. Pour ce 
-faire on défini une extension de wikittyPubText qui contiendra un champ nommé 
+faire on définit une extension de WikittyPubText qui contiendra un champ nommé 
 ByteCode de type tableau de byte.
 
 Ainsi pour ce type de wikitty d'un coté on aura le code original du 
 wikittyPubText dans le champ content et le code java compilé dans le champ
-ByteCode. Celà permet d'avoir l'original dans le cas où l'on voudrait écrire
+ByteCode. Cela permet d'avoir l'original dans le cas où l'on voudrait écrire
 un nouveau wikitty avec le même code, ou dans le cas d'une surcharge si 
-multicontexte.
+multi-contexte.
 
-\subsection{Mechanisme de transformation/compilation}
+\subsection{Mécanisme de transformation/compilation}
 
-Tout le méchanisme de transformation des wikittyPubText en wikittyPubTextCompiled
+Tout le mécanisme de transformation des WikittyPubText en WikittyPubTextCompiled
 doit doit respecter la finalité de ces wikitty, c'est à dire que le code qu'ils
 contiennent soit exécutable et exécuté. 
 
-Quelque soit le contenu des wikittyPubText ils sont compilé, normalement pour les
-langages visé, tel le javascript on ne peut pas le compilé comme on le pourrait 
+Quelque soit le contenu des WikittyPubText ils sont compilé, normalement pour les
+langages visé, tel le javascript on ne peut pas le compiler comme on le pourrait 
 pour du java. Ce qui est fait c'est que ce code est encapsuler dans un morceau
 de java qui invoque le script engine chargé de son exécution. 
 
@@ -82,14 +82,14 @@ public abstract class AbstractDecoredClass {
 
 Donc dans les deux cas le code java qui décore est presque le même, dans le 
 cas de java on dépile les éléments de binding avant de remplir le corps de la 
-méthode, et dans le cas de wikittyPubText on délégue les bindings à l'évaluator.
+méthode, et dans le cas de wikittyPubText on délègue les bindings à l'évaluator.
 Des exemples de code décoré en annexe.
 
-Et donc dans le processus d'évaluation par wikitty publication de ces 
+Et donc dans le processus d'évaluation par Wikitty Publication de ces 
 WikittyPubTextCompiled on invoquera directement la méthode eval en lui passant
 les bindings.
 
-En dehors de la compilation et décoration des wikitty, le mechanisme est 
+En dehors de la compilation et décoration des wikitty, le mécanisme est 
 relativement simple. On sélectionne tous les wikitty du dossier local où on
 se trouve avec le service file system, on créer un dossier temporaire, 
 on y écrit les wikitty, on compile ceux qui doivent l'être, on y met le fichier
@@ -101,14 +101,14 @@ dossier est packager en jar, et le dossier temporaire supprimé.
 
 De la même façon que pour le stockage des wikitty sur file system afin de 
 pouvoir réutiliser les wikitty et garantir que ce sont toujours des wikitty,
-il faut une inversabilité de la sauvegarde, et donc conserver des propriétés des
+il faut une inversibilité de la sauvegarde, et donc conserver des propriétés des
 wikitty.
 
 Contrairement à la sauvegarde des wikitty sur File System, ici on peut se 
 permettre de centraliser toutes les informations dans les mêmes fichiers de 
-propriété. 
+propriétés. 
 
-Les propriétés conservée seront: les ids, les versions ainsi que les extensions
+Les propriétés conservées seront: les id, les versions ainsi que les MimeType
 des fichiers correspondant. On utilise deux fichiers de propriétés distinct, 
 un pour les id et les localisations des wikitty, et un autre pour les autres 
 propriété.
@@ -162,7 +162,6 @@ meta.properties
 \begin{verbatim}
 #
 #Tue Jul 12 11:19:46 CEST 2011
-path.separator=/
 8225d3cb-beb3-4a85-a4ea-4b0e660fab96.mime=text/javascript
 4120d1ba-18ac-4ac5-a329-7f515f704fd0.mime=image/png
 12f55beb-af63-49b1-9d74-62131bd0a67a.mime=text/javascript
@@ -185,12 +184,12 @@ e443dbbe-b461-41bd-b5b6-b612e964cb0d.version=1.0
 Sous l'id on sauvegarde le chemin pour retrouver le wikitty correspondant, 
 avec le mimeType qui permet de retrouver l'extension du fichier, qui sera sauvegardé
 aussi dans le jar, on aura ainsi le fichier original un ".js" par exemple, 
-et à coté les ".java" et ".class" correspondant aux version décoré, compilé.
+et à coté les ".java" et ".class" correspondant aux versions décorées, compilées	.
 
 
-\subsection{Wikitty service sur jar}
+\subsection{Wikitty Service sur jar}
 
-Une fois que les wikitty sont sauvegardé dans un jar, on doit pouvoir les 
+Une fois que les wikitty sont sauvegardés dans un jar, on doit pouvoir les 
 récupérer pour les utiliser comme n'importe quels autres wikitty. Pour celà il 
 faut donc un wikitty service qui s'appuiera sur un jar et qui exposera les 
 wikitty de la même façon.
@@ -202,8 +201,8 @@ des wikitty non modifiable.
 La création de ce service à été facilité par l'existence du service sur file
 system, puisque le fonctionnement est relativement le même, pour la recherche
 on ne délègue pas à une base de donnée, on manipule directement les objets en
-java, donc pour la recherche c'est le même méchanisme que pour le service sur
-File system.
+java, donc pour la recherche c'est le même mécanisme que pour le service sur
+file system.
 
 Ce service sur jar peut s'appuyer sur plusieurs jar, dans sa configuration 
 il prend un dossier, dossier qui contient des jar, et il construit un index 

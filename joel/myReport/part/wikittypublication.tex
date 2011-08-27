@@ -8,16 +8,14 @@ présenter le module Wikitty Publication.
 \subsection{Concept}
 
 Wikitty publication est un projet basé sur wikitty, dont le but est de permettre
-la création d'application web et leur éxécution directement par wikitty
-publication. 
+la création d'application web et leur exécution directement à l'intérieur de
+Wikitty Publication. Publication se présente comme un ensemble de page web qui 
+permettent le rendu des wikitty dans un navigateur, ainsi que leurs modifications,
+comme dans un wiki. On distingue des extensions particulières, une extension
+pour les data comme les images et une extension pour le code applicatif.
 
-Publication se présente comme un ensemble de page web qui permettent le rendu 
-des wikitty dans un navigateur, pour les wikitty de type data, comme les images,
-et comme le résultat de l'évaluation du code contenu dans les wikitty type text
-qui eux contiennent le code des applications.
-
-Les applications doivent pouvoir être developpées dans plusieurs langage, pas 
-dans un langage specifique à publication, des langages tel que:
+Les applications doivent pouvoir être développées dans plusieurs langage, pas 
+dans un langage spécifique à publication, des langages tel que:
 \begin{itemize}
 \item javascript
 \item groovy
@@ -25,16 +23,16 @@ dans un langage specifique à publication, des langages tel que:
 \item jython
 \end{itemize}
 
-Ce module doit permettre le dévellopement des applications naturellement 
-en devellopant sur un système de fichier, puis l'importation des applications
-directement dans wikitty publication.
+Ce module doit permettre le développement des applications naturellement 
+en développant sur un système de fichier, puis l'importation des applications
+directement dans Wikitty Publication.
 
-Un des objectifs de wikitty publication est aussi d'avoir un coeur métier 
-écrit en wikitty, qui manipulerait des données d'un autres wikitty, ainsi on
+Un des objectifs de Wikitty Publication est aussi d'avoir un cœur métier 
+écrit en wikitty, qui manipulerait des données d'un autres WikittyService, ainsi on
 pourrait avoir une mutualisation du code métier et des données spécifique 
-pour chaque client, utilisateur de wikitty publication.
+pour chaque client, utilisateur de Wikitty Publication.
 
-Wikitty publication s'appuie sur le scripting pour l'éxécution du code contenu 
+Wikitty publication s'appuie sur le scripting pour l'exécution du code contenu 
 dans les wikitty.
 
 
@@ -44,15 +42,15 @@ Le scripting permet l'éxécution de langage de script par un autre langage, dan
 notre cas ici, le java qui peut interpréter de langage comme javascript.
 
 Le langage de script est interprété par un script engine tel que le concept est 
-défini dans la JSR-223, un script engine permet l'interprétation et l'éxécution
+défini dans la JSR-223. Un script engine permet l'interprétation et l'éxécution
 du langage pour lequel il est défini, mais il permet aussi d'insérer des élements
-de code provenant de l'environnement qui éxécute. Par exemple on peut initialiser
+de code provenant de l'environnement qui l'exécute. Par exemple on peut initialiser
 une variable javascript avec le contenu d'une variable java, et on peut appeler 
 des méthodes java sur des variables java dans le javascript.
 
-Ce méchanisme est un binding, le script engine pour les symboles qu'il ne connait
+Ce mécanisme est un binding, le script engine pour les symboles qu'il ne connait
 pas, avant de renvoyer une erreur, il va chercher dans une map dit de binding 
-pour trouver l'objet qui correspond au symbole, et l'intépréter en java pour
+pour trouver l'objet qui correspond au symbole, et l'interpréter en java pour
 insérer le résultat dans le code.
 
 Exemple :
@@ -61,7 +59,7 @@ un objet personne dans la map binding, en clé la chaine "personneBob" et en val
 l'objet, avec en attribut un nom égal à "Paulson" et un attribut prénom égal à
 "Robert".
 
-Un morceau de code js qui sera éxécuté:
+Un morceau de code js qui sera exécuté:
 
 \lstset{ %
 language=JAVA,                % the language of the code
@@ -97,12 +95,12 @@ result;
 
 
 
-A l'éxécution sera affiché "His name was Robert Paulson", le javascript sera interprété
-normalement, en y joignant les chaines récuépérée dans les bindings. Là l'exemple
-est simple, mais en pratique celà permet de faire beaucoup de chose.
+A l'exécution sera affiché "His name was Robert Paulson", le javascript sera interprété
+normalement, en y joignant les chaines récupérées dans les bindings. Là l'exemple
+est simple, mais en pratique cela permet de faire beaucoup de chose.
 
 Dans notre cas avec nos bindings (voir les annexes pour les bindings disponible),
-on peut dans du code qui se fera évaluer appeller l'évaluator sur un autre contenu.
+on peut dans du code qui se fera évaluer appeler l'évaluator sur un autre contenu.
 
 
 

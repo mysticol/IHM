@@ -1,11 +1,13 @@
 \section{Projet Wikitty}
 
 Wikitty est un projet libre de Code Lutin, il est nécessaire de le présenter car
-durant mon stage j'ai été amené à travailer sur des sous modules de ce projet.
+durant mon stage j'ai été amené à travailler sur des sous modules de ce projet.
+Dans la suite Wikitty avec une majuscule désignera le projet, et wikitty avec
+une minuscule désignera les objets.
 
 \subsection{Principe}
 
-Ce projet est une base de données orientée documents et API de persistance pour
+Ce projet est une base de données orientée colonne et API de persistance pour
 Java. Il permet d'enregistrer dans une base clé/valeur des objets wikitty, la
 clé est un id généré qui est unique pour chaque wikitty. 
 
@@ -13,10 +15,10 @@ Un wikitty possède des extensions et les extensions possèdent des champs nomm�
 et chaque champ est une clé à laquelle on associe des valeurs. Et des extensions
 peuvent dépendre d'autre extension.
 
-Par exemple une extension personne qui possède deux champs : nom et prénon.
+Par exemple une extension personne qui possède deux champs : nom et prénom.
 Une autre extension ressource qui possède un champs numéro et qui dépends de
 l'extension personne. Chaque champs d'extension est défini par son nom et son 
-extension par exemple pour notre extension WikittyPersonne ses champs son nommés:
+extension. Par exemple pour notre extension WikittyPersonne ses champs son nommés:
 WikittyPersonne.nom et WikittyPersonne.prenom
 
 Si un wikitty possède l'extension ressource alors ce wikitty possèdera les
@@ -26,10 +28,15 @@ dépends d'employé.
 L'api de wikitty prévoit un certain nombre d'extension basique, mais tout
 l'intéret est que l'on peut créer ses propres extensions, simplement en écrivant
 un modèle uml de classe, qui servira ensuite pour générer les classes java
-effectives.
+effectives, les entity business.
+
+On distinguera wikitty et entity business, wikitty pour l'objet contenant toute
+les extensions sur lequel on peut récupérer les valeurs avec les champs nommés.
+Et les entity business les objets correspondant aux extensions sur lesquels 
+on accède aux champs avec des accesseurs classique.
 
 Ensuite il suffit de développer son application simplement en utilisant les
-classes générées et les passer à un wikitty service pour le stockage sans plus
+classes générées et les passer à un WikittyService pour le stockage sans plus
 se poser de question le tout très simplement.
 
 Cette api à été conçue pour supporter les monter en charge et une utilisation
@@ -46,16 +53,16 @@ modifications faites dessus. L'api prévois que l'on puisse restaurer une versio
 ciblé d'un wikitty.
 
 Durant le développement de la partie synchronisation s'est posé le problème de 
-gestion de version des wikitty, puisque d'un service à l'autre les versions ne 
-sont forcément les mêmes, en envoyant un wikitty en version 8.0 vers un wikitty
-service qui ne connait pas ce wikitty, il sera enregistré en version 1.0 (avec les
-même données), posant problème pour les mises à jour ultérieurement. A l'heure
-de finalisation de ce rapport le "problème" n'a pas encore été résolut.
+gestion de version des wikitty. D'un service à l'autre les versions ne 
+sont pas les mêmes, en envoyant un wikitty en version 8.0 vers un WikittyService
+qui ne connait pas ce wikitty, il sera enregistré en version 1.0 (avec les
+même données). Ce mécanisme posant problème pour les mises à jour ultérieurement. 
+A l'heure de finalisation de ce rapport le "problème" n'a pas encore été résolut.
 
 \subsection{Existant}
 
 Wikitty sert de base de donnée pour une partie des applications de l'entreprise,
-puisque il permet une grande flexibilité. Dès lors ou on peut modéliser les
+puisque il permet une grande flexibilité. Dès lors où l'on peut modéliser les
 données en objet on peut les stocker dans avec Wikitty.
 
 Actuellement Wikitty peut être déployé localement, pour une base de données
@@ -72,8 +79,8 @@ Code Lutin.
 \subsection{Utilisation}
 
 A l'utilisation pour créer ses propres wikitty il faut écrire un diagramme de
-classe grâce à l'outil argouml, et que chaque classe porte le stereotype
-<<Entity>>, et remplir les différents attribut des classes avec les types
+classe en XMI (par exemple avec Argouml) et que chaque classe porte le stéréotype
+<<Entity>>, et remplir les différents attributs des classes avec les types
 reconnus par java, comme on peut le voir pour les entités utilisés pour Wikitty
 Publication sur la figure \ref{umlwikittypub}. 
 
@@ -85,19 +92,19 @@ Publication sur la figure \ref{umlwikittypub}.
   		\label{umlwikittypub}
 \end{figure}
 
-Le fait de stereotyper correctement permet ensuite au générateur de générer
-les classes java correspondante, et s'assurer qu'elles puissent être stocker
+Le fait de stéréotyper correctement permet ensuite au générateur de générer
+les classes java correspondantes, et s'assurer qu'elles puissent être stockées
 ensuite par Wikitty.
 
 Le générateur qui génère le code java à partir du fichier zargo issue d'argouml
-est un générateur dévellopé en tant que projet libre par Code Lutin: Eugene.
+est un générateur développé en tant que projet libre par Code Lutin: Eugene.
 Ce générateur est née de la nécessité d'un générateur libre, dont la génération
-pouvait être intégré au build, en java, indépendant de tout ide.
+pouvait être intégré au processus de build maven, en java, indépendant de tout ide.
 
 Le déploiement ensuite passe par des fichiers configuration qui permettent la
-mise en place des différentes couche de service nécessaire au bon fonctionnement
-on peut choisir ainsi d'avoir une base de donnée embarquée ou d'utiliser un
-Wikitty service distant.
+mise en place des différentes couche de service nécessaire au bon fonctionnement.
+On peut choisir ainsi d'avoir une base de donnée embarquée ou d'utiliser un
+WikittyService distant.
 
 Celà sans écrire le moindre sql, pour faire des recherches il suffit d'écrire
 ses criterias, qui peuvent être construit à partir d'objet wikitty, par exemple 
@@ -120,17 +127,17 @@ sauvegarde, restauration, et recherche.
 
 \subsection{WikittyService, WikittyProxy et WikittyServiceFactory}
 
-Comme évoqué précédement ces éléments sont important dans l'utilisation et 
+Comme évoqué précédemment ces éléments sont important dans l'utilisation et 
 l'intégration de Wikitty dans un projet, je vais donc en parler plus en détail
 ici.
 
 Le WikittyService est une interface qui permet de sauvegarder, rechercher,
-récupérer des wikitty, il existe des implémentations de service pour différente
-base de données, pour des services à distance. Tout les services n'implémentent 
+récupérer des wikitty. Il existe des implémentations de service pour différentes
+base de données, pour des services à distance. Tous les services n'implémentent 
 pas toutes les méthodes, par exemple la gestion des authentifications ou la 
 gestion d'un cache sont à la charge d'implémentation particulière. Et les
 services sont disposés en couche successives pour s'occuper de certain aspect
-et déléguant les autres aspect à la couche suivante comme on peut le voir sur 
+et déléguant les autres aspects à la couche suivante comme on peut le voir sur 
 la figure \ref{pileService}.
 %ce n'est pas pas un pattern de chain of responsability
 
@@ -144,13 +151,13 @@ la figure \ref{pileService}.
 \end{figure}
 
 La WikittyServiceFactory est une factory au sens pattern, c'est à dire qu'a 
-partir de fichier de propriété elle construit et retourne les WikittyServices 
-demandé, c'est elle aussi qui organise les couches de service en fonction de ce 
+partir de fichier de propriétés elle construit et retourne les WikittyServices 
+demandés. C'est elle aussi qui organise les couches de service en fonction de ce 
 qui est défini dans les fichiers de propriétés.
 
 %exemple de fichier de propriété
 
-Un extrait de fichier de propriétés avec les couches de wikitty service:
+Un extrait de fichier de propriétés avec les couches de WikittyService:
 \begin{verbatim}
 wikitty.WikittyService.components=\
 org.nuiton.wikitty.services.WikittyServiceStorage,\
@@ -161,15 +168,15 @@ org.nuiton.wikitty.services.WikittyServiceAccessStat,\
 org.nuiton.wikitty.services.WikittyServiceCajoServer
 \end{verbatim}
 
-Les propriétés ne sont pas directement manipulé, on se sert d'un object 
+Les propriétés ne sont pas directement manipulé, on se sert d'un objet 
 ApplicationConfig qui permet de gérer différent niveau de propriétés,
-avec des propriétés par default si tout n'est pas défini.
+avec des propriétés par défaut si tout n'est pas défini.
 
-Le WikittyProxy est une surcouche qui encapsule un wikitty service et cache 
+Le WikittyProxy est une surcouche qui encapsule un WikittyService et cache 
 certaines complexités pour finalement offrir plus de méthodes et des méthodes 
 plus simple. Par exemple l'interface WikittyService ne propose que des 
 restore de liste de wikitty, alors que le proxy propose des restore de resultat
-unique. Dans le cas d'une session ou l'on s'authentifie auprès d'un wikitty 
-service, dans ce cas on récupère un jeton, c'est le proxy qui se charge 
-d'injecter le jeton dans chaque demande auprès du Service.
-
+unique. Dans le cas d'une session ou l'on s'authentifie auprès d'un WikittyService,
+ dans ce cas on récupère un jeton, c'est le proxy qui se charge d'injecter le
+jeton dans chaque demande auprès du Service. De plus la conversion wikitty
+vers entity business se fait par l'intermédiaire du WikittyProxy.
