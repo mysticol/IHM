@@ -63,9 +63,27 @@ public interface PublicationContext {
 
 \end{lstlisting}
 
+Et donc dans le code des WikittyPubText à n'importe quel moment on peut faire 
+appel à ces éléments pour invoquer des méthodes dessus. Mais on peut aussi
+instancier des classes et les utiliser comme ceci:
+
+\begin{lstlisting}
+
+	importPackage(org.nuiton.wikitty.entities);
+	var ressource = new WikittyRessourceImpl();
+
+	ressource.setName(wpContext.getArgument("nom"));
+	ressource.setDescription(wpContext.getArgument("description"));
+\end{lstlisting}
+
+On importe le package de la classe, et on peut en créer une nouvelle instance, 
+et faire tout ce que l'on pourrait faire en java dessus, tout naturellement.
+\clearpage
+
 \subsection*{struts.xml}
 
-Fichier de configuration xml de struts (partiel):
+Fichier de configuration xml de struts (partiel) avec des intercepteurs et quelques
+action, et le mécanisme d'héritage de package:
 
 \lstset{ %
 language=XML,                % the language of the code
@@ -85,7 +103,8 @@ breakatwhitespace=false,        % sets if automatic breaks should only happen at
 title=\lstname,                 % show the filename of files included with \lstinputlisting;
                                 % also try caption instead of title
 escapeinside={\%*}{*)},         % if you want to add a comment with
-morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,configuration, applicationName, wikittyServiceUrl, artifactId,serverID,uploadUrl} 
+morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,configuration, applicationName, wikittyServiceUrl, artifactId,serverID,uploadUrl
+,constant,package,interceptors,interceptor,param,action, struts, result} 
 }
 
 
@@ -140,12 +159,17 @@ morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,con
 </struts>
 \end{lstlisting}
 
+\clearpage
 
 
-\subsection*{Décoration de code pour compilation}
+\subsection*{Décoration de code}
+
+Il y a une interface commune pour la décoration des WikittyPubText en fonction
+de leur type, si ils sont en java ou dans un langage interprété par un
+script engine.
 
 
-\subsubsection*{Javascript}
+\subsubsection*{Langage de script}
 
 \lstset{ %
 language=JAVA,                % the language of the code
@@ -168,8 +192,8 @@ escapeinside={\%*}{*)},         % if you want to add a comment with
 morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,configuration, applicationName, wikittyServiceUrl, artifactId,serverID,uploadUrl} 
 }
 
-
-Ce code contenu dans un WikittyPubText avec le type mime text/javascript:
+Un exemple avec un WikittyPubText de type mime text/javascript, assez simple
+juste une page présentant deux liens.
 
 \begin{lstlisting}
 try {
@@ -187,7 +211,8 @@ eee
 \end{lstlisting}
 
 
-Une fois décoré et inclus dans une classe java devient: 
+La classe java correspondante après décoration, le javascript est toujours là
+mais encapsulé dans un chaine de caractère, prêt à être interprété.
 
 \begin{lstlisting}
 import org.apache.commons.logging.Log;
@@ -215,13 +240,16 @@ public class WikiMenu extends AbstractDecoredClass {
 
 \subsubsection*{Java}
 
-Et pour un code java tel que :
+Pour un WikittyPubText contenant du java c'est un peu différent, on voit
+que le code java pour le moment est limité qu'aux corps de méthodes.
 
 \begin{lstlisting}
 return "Hello world on "+wpPage;
 \end{lstlisting}
 
-Une fois décoré pour la compilation devient :
+Dans la classe décorée, finale qui sera compilée on voit que les éléments 
+contenu dans les bindings auront été dépilé pour que le code java écrit qui les 
+utilise puissent fonctionner simplement.
 
 \begin{lstlisting}
 import org.apache.commons.logging.Log;
@@ -247,14 +275,42 @@ public class hello extends AbstractDecoredClass {
 }
 \end{lstlisting}
 
+
+
+\lstset{ %
+language=HTML,                % the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code               % where to put the line-numbers
+  % the size of the fonts that are used for the line-numbers
+                  % the step between two line-numbers. If it's 1, each line 
+keywordstyle=\color[rgb]{1,0,1},
+                      % will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+tabsize=2,                      % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                % also try caption instead of title
+escapeinside={\%*}{*)},         % if you want to add a comment with
+morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,configuration, applicationName, wikittyServiceUrl, artifactId,serverID,uploadUrl} 
+}
+
+
+
 \subsubsection*{Interface graphique}
 
-Un joli WikittyPubText le mimeType "text/html.javascript" avec ce contenu:
+Pour intégrer plus facilement des interfaces graphiques, il y a le mécanisme 
+d'inversion, pour finalement avoir le code de l'interface dans celui du langage
+de script.
+
+Un exemple avec un WikittyPubText de mimeType "text/html.javascript" avec ce contenu:
 
 \begin{lstlisting}
 <html>
 <body>
-
 <h1> Bonjour, ceci est une page de test qui contient du html et des balises comme dans une jsp</h1>
 
 <p>.Le but est de pouvoir mettre du html facilement avec du code aussi.
@@ -264,9 +320,7 @@ Un joli WikittyPubText le mimeType "text/html.javascript" avec ce contenu:
 
 Op le logo:
 <img src='<%=wpContext.makeUrl("/raw/Logo")%>'/>
-
 <%
-
 wp_result += "<p>Ici c'est du code js</p>";
 
 if (0<1){
@@ -276,8 +330,31 @@ wp_result += "on est rentre dans un if";
 </body>
 </html>
 \end{lstlisting}
+Après transformation il deviendra de mimeType "text/javascript". Et tout ce qui
+était entre les balises \verb!<%! et \verb!%>! est intégré tel quel au script, alors
+que ce qui était autour est maintenant entouré pour être dans une variable de retour.\\
 
-Après transformation il deviendra de mimeType "text/javascript" avec ce contenu:
+\lstset{ %
+language=JAVA,                % the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code               % where to put the line-numbers
+  % the size of the fonts that are used for the line-numbers
+                  % the step between two line-numbers. If it's 1, each line 
+keywordstyle=\color[rgb]{1,0,1},
+                      % will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+tabsize=2,                      % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                % also try caption instead of title
+escapeinside={\%*}{*)},         % if you want to add a comment with
+morekeywords={project,modelVersion,groupId,description,build, plugin,plugins,configuration, applicationName, wikittyServiceUrl, artifactId,serverID,uploadUrl,var, if} 
+}
+
 
 \begin{lstlisting}
 wpContext.setContentType("text/html");
@@ -290,13 +367,13 @@ wp_result+="<p>Le but est de pouvoir mettre du html facilement avec du code auss
 wp_result+="</p>\n";
 wp_result+="<p>ici on va afficher le nom de la page qui est dans l'adresse et dans le binding "+wpPage+".</p>\n";
 wp_result+="Op le logo:\n";
-wp_result+="<img src='"+wpContext.makeUrl("/raw/Logo")+"'/>\n";
+wp_result+="<img src='"+wpContext.makeUrl("/raw/Logo")+"'/>";
 result += "<p>Ici c'est du code js</p>";
 if (0<1){
 result+= "on est rentre dans un if";
 }
 wp_result+="</body>\n";
-wp_result+="</html>\n";
+wp_result+="</html>";
 \end{lstlisting}
 
 
