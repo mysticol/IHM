@@ -13,7 +13,7 @@ clé est un id généré qui est unique pour chaque wikitty.
 
 Un wikitty possède des extensions et les extensions possèdent des champs nommés
 et chaque champ est une clé à laquelle on associe des valeurs. Et des extensions
-peuvent dépendre d'autre extension.
+peuvent dépendre d'autres extensions.
 
 Par exemple une extension personne qui possède deux champs : nom et prénom.
 Une autre extension ressource qui possède un champs numéro et qui dépends de
@@ -32,8 +32,8 @@ effectives, les entity business.
 
 On distinguera wikitty et entity business, wikitty pour l'objet contenant toute
 les extensions sur lequel on peut récupérer les valeurs avec les champs nommés.
-Et les entity business les objets correspondant aux extensions sur lesquels 
-on accède aux champs avec des accesseurs classique.
+Et les entity business les objets correspondants aux extensions sur lesquels 
+on accède aux champs avec des accesseurs classiques.
 
 Ensuite il suffit de développer son application simplement en utilisant les
 classes générées et les passer à un WikittyService pour le stockage sans plus
@@ -48,7 +48,7 @@ extensions et des valeurs des différents éléments de ces extensions, sans jam
 
 Les facettes permettent de regrouper les résultats de recherche par criteria. 
 
-Tout wikitty posséde un numéro de version, qui évolue en fonction des
+Tout wikitty possède un numéro de version, qui évolue en fonction des
 modifications faites dessus. L'api prévois que l'on puisse restaurer une version
 ciblé d'un wikitty.
 
@@ -72,9 +72,7 @@ au protocole de communication hessian ou au framework cajo.
 Hessian est un protocole de communication pour web service, et cajo est un
 framework pour les communications d'application java réparties. 
 
-Une partie des projets actuel de Code Lutin utilise un stockage Wikitty, 
-l'objectif est à la généralisation de cette solution pour les projets de 
-Code Lutin.
+Une partie des projets actuel de Code Lutin utilise un stockage Wikitty.
 
 \subsection{Utilisation}
 
@@ -101,7 +99,7 @@ est un générateur développé en tant que projet libre par Code Lutin: Eugene.
 Ce générateur est née de la nécessité d'un générateur libre, dont la génération
 pouvait être intégré au processus de build maven, en java, indépendant de tout ide.
 
-Le déploiement ensuite passe par des fichiers configuration qui permettent la
+Le déploiement ensuite passe par des fichiers de configuration qui permettent la
 mise en place des différentes couche de service nécessaire au bon fonctionnement.
 On peut choisir ainsi d'avoir une base de donnée embarquée ou d'utiliser un
 WikittyService distant.
@@ -168,14 +166,14 @@ org.nuiton.wikitty.services.WikittyServiceAccessStat,\
 org.nuiton.wikitty.services.WikittyServiceCajoServer
 \end{verbatim}
 
-Les propriétés ne sont pas directement manipulé, on se sert d'un objet 
+Les propriétés ne sont pas directement manipulées, on se sert d'un objet 
 ApplicationConfig qui permet de gérer différent niveau de propriétés,
 avec des propriétés par défaut si tout n'est pas défini.
 
 Le WikittyProxy est une surcouche qui encapsule un WikittyService et cache 
 certaines complexités pour finalement offrir plus de méthodes et des méthodes 
-plus simple. Par exemple l'interface WikittyService ne propose que des 
-restore de liste de wikitty, alors que le proxy propose des restore de resultat
+plus simples. Par exemple l'interface WikittyService ne propose que des 
+restaurations de liste de wikitty, alors que le proxy propose des restaurations de résultat
 unique. Dans le cas d'une session ou l'on s'authentifie auprès d'un WikittyService,
  dans ce cas on récupère un jeton, c'est le proxy qui se charge d'injecter le
 jeton dans chaque demande auprès du Service. De plus la conversion wikitty
