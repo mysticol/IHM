@@ -141,9 +141,9 @@ doit envoyer le jar.
 \subsection{Fonctionnement}
 
 L'écriture de ce plugin maven n'a pas été une tache trop compliqué, du fait de 
-l'existence des implémentations des différents besoin, comme l'externalisation
+l'existence des implémentations des différents besoins, comme l'externalisation
 ou la synchronisation. Il aura fallu juste réutiliser ces fonctionnalités, voir
-de corriger quelques signature pour permettre leurs réutilisations.
+de corriger quelques signatures pour permettre leurs réutilisations.
 
 Il aura aussi fallu réutiliser quelques plugin maven déjà existant comme jetty:run
 pour le déploiement de l'application dans un serveur de test local. 
@@ -151,7 +151,7 @@ pour le déploiement de l'application dans un serveur de test local.
 La création d'un plugin maven passe simplement par une implémentation java d'un
 projet avec un pom définissant sa nature de plugin maven. Le reste c'est du java,
 on implémente une interface "Mojo" défini dans maven. On doit aussi à l'aide de 
-tag définir certains paramètres, d'autres tag servent aussi pour que le moteur
+tag définir certains paramètres, d'autres tags servent aussi pour que le moteur
 de maven puisse injecter des paramètres à l'exécution du plugin permettant de
 récupérer des composants/objet de maven comme le build ou l'objet correspondant
 au pom.
@@ -213,7 +213,7 @@ Le tag parameter associé à l'expression permet de récupérer le paramètre de
 configuration du plugin wp dans le pom(comme présenté précédement). 
 Le tag component est un tag traité par le moteur de maven qui à l'exécution
 du plugin l'injection de l'objet demandé. C'est à ça que peuvent servir les 
-tag dans un plugin maven. 
+tags dans un plugin maven. 
 
 
 %rééutilisation de plug in existant

@@ -9,7 +9,7 @@ pouvait rendre la tache plus rapide.
 \subsection{Objectfifs}
 
 L'édition de wikitty ou tout simplement l'utilisation de wikitty au sein de 
-formulaire deviennent des éléments récurents dans les applications développées 
+formulaire deviennent des éléments récurrents dans les applications développées 
 chez code lutin. Cela puisque devient Wikitty une solution plus utilisée pour 
 le stockage.
 
@@ -32,7 +32,7 @@ de ses mécanismes interne, avec les templates.
 \end{figure}
 
 La création d'un tag classique, sans struts se fait par héritage de classe 
-tel que "TagSupport" qui est une des classes définie dans la norme J2E pour la 
+tel que "TagSupport" qui est une des classes définies dans la norme J2E pour la 
 création des tags. En plus de la définition de la classe java, il faut écrire
 dans un fichier xml (.tld) la définition du tag. La création de tag ainsi oblige
 à écrire le code html directement dans le corps de la classe ou de devoir prévoir
@@ -124,7 +124,7 @@ wikitty.
 
 A l'utilisation si on met seulement le tag \emph{ws:form} et la source de donnée 
 (le wikitty) un formulaire basique va être créé en fonction du type des champs
-du wikitty. Ensuite en utilisant les autres tag ou différents attributs du tag 
+du wikitty. Ensuite en utilisant les autres tags ou différents attributs du tag 
 \emph{ws:form} il est possible de choisir d'exclure de l'édition des extensions,
 des champs ou de choisir le type d'affichage pour un champ donné (et identifié
 par son nom complet soit nomExtention.nomChamp).
@@ -134,7 +134,7 @@ une action qui permet de prendre en compte les modifications de wikitty envoyée
 par le formulaire. Il s'agit d'une action abstraite struts que l'utilisateur à 
 besoin d'étendre pour implémenter la méthode accédant au proxy.
 
-Tag commun aux deux types d'utilisation:
+Tags commun aux deux types d'utilisations:
 \begin{itemize}
 \item ws:hidden permet d'insérer le champ en tant que champs caché
 \item ws:boolean permet d'insérer le champ en tant que checkbox 
@@ -153,7 +153,7 @@ Tag spécifique pour la création de formulaire:
 \item ws:form tag pour la création d'un formulaire d'édition des wikitty \\
 \end{itemize}
 
-Tag spécifiques à l'utilisation champ:
+Tags spécifiques à l'utilisation champ:
 \begin{itemize}
 \item ws:selectAssociation tag pour l'affichage de champ wikitty de type collection
 \item ws:select tag pour l'affichage de collection de wikitty en tant que list ou combobox html

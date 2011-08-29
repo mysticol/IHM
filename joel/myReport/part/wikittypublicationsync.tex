@@ -60,11 +60,11 @@ Il faut donc enregistrer ces informations, de plus il faut que le wikitty
 service sur file système gère les modifications sur wikitty et donc modifie la
 version des wikitty si besoin.
 
-La solution qui à été trouvée pour celà est les fichiers de propriété dans un
+La solution qui à été trouvée pour celà est les fichiers de propriétés dans un
 dossier \emph{.wp/}. 
 
 On distinguera deux fichiers de propriétés pour les informations, un qui 
-conservera les id des wikitty lié à leur nom de fichier. Et un autre fichiers de
+conservera les id des wikitty liés à leur nom de fichier. Et un autre fichiers de
 propriété qui conservera un checksum, la version et les id aussi. En sus de
 la sauvegarde des "meta information" des wikitty, ce fichier de propriété
 conservera le nom du label courant, rendant immédiat la restauration (pas
@@ -135,7 +135,7 @@ d5a2597f-c44f-4ed6-a16e-01371ec6d2d0=script.js
 
 Un WikittyService implémenté pour un système de fichier doit pouvoir enregistrer
 des wikitty en fichier et inversement. Pour se faire il se servira des fichiers
-de propriété précédemment exposé, et des conversions telles qu'elles le sont
+de propriétés précédemment exposé, et des conversions telles qu'elles le sont
 proposées.
 
 En plus de la sauvegarde, restauration et suppression, ce type de WikittyService
@@ -147,7 +147,7 @@ version des wikitty, pour tout appel à la recherche ce wikitty service indexe
 l'ensemble des fichiers:
 \begin{itemize}
 \item vérifie si il y a des nouveaux fichiers en comparant les valeurs dans les
-fichier de propriétés "id.properties". Si il ya des nouveaux fichiers il créé
+fichier de propriétés "id.properties". Si il ya des nouveaux fichiers, il créer
 des id, calcul les sommes de contrôle et enregistre le tout dans les fichiers de
 propriétés.
 \item il vérifie les sommes de contrôles des fichiers existants, et incrémente la

@@ -44,13 +44,13 @@ l'application.
   		\label{diagstruts}
 \end{figure}
 
-Les intercepteurs et piles d'intercepteur sont des objets qui effectue un pré
+Les intercepteurs et piles d'intercepteurs sont des objets qui effectue un pré
 traitement sur les requêtes http reçu par l'application, la figure \ref{diagstruts}
 montre le cheminement possible d'une requête. Le champ d'action des intercepteurs
-est grand, ils ont accès à la session, le contexte etc.
+est grand, ils ont accès à la session, le contexte, les requêtes http et d'autres choses.
 
 Les actions permettent de décrire l'enchainement des 'écrans', les classes java
-qui doivent éxécuter un traitement après la validation d'un formulaire jsp, la
+qui doivent exécuter un traitement après la validation d'un formulaire jsp, la
 jsp à afficher et d'autres.
 
 Cette configuration de struts se fait grâce à des xml, ensuite il suffit
@@ -113,7 +113,7 @@ Le moteur d'évaluation s'appuie sur le concept de scripting comme précédemmen
 évoqué, on a pu voir que dans les adresses des actions il y a deux paramètres
 dont je n'ai pas vraiment parlé: \emph{contextData} et \emph{contextApps}.
 
-C'est qu'ils prennent toutes leurs importance dans le mécanisme d'évaluation,
+C'est qu'ils prennent toutes leurs importances dans le mécanisme d'évaluation,
 ce mécanisme est délégué au script engine qui va interpréter le contenu
 d'un WikittyPubText en fonction de son mimeType et renvoyer simplement un 
 WikittyPubData de la même façon.
@@ -147,11 +147,11 @@ ContextData sert donc pour isoler les services et leurs bases.
 
 ContextApps lui son rôle est "d'isoler" les applications et éviter les collisions
 de nom entre les wikitty. Les noms ne sont pas unique et on peut se retrouver
-dans un même wikitty service avoir plusieurs wikittyPub qui ont les mêmes nom par
+dans un même wikitty service avoir plusieurs wikittyPub qui ont les mêmes noms par
 exemple: "menu". Le but est d'éviter des confusions, par exemple une action
 \verb!/codelutin/chorem/eval/menu.action! on va aller chercher le wikittyPub 
 avec le nom "menu" dont l'un des labels commence par "chorem", cela permet de 
-regrouper les applications sous les mêmes label, ainsi si dans le contenu du 
+regrouper les applications sous les mêmes labels, ainsi si dans le contenu du 
 "menu" il y a un appel vers un autre wikitty, le moteur "sait" qu'il doit 
 aller le chercher sous le même label.
 
@@ -188,7 +188,7 @@ Wikitty Publication.
 
 Les pages d'édition et d'affichage des wikitty étaient relativement simple, le
 but étant une administration simple et efficace des wikitty. L'amélioration de
-ces pages à consister en la correction des bugs présent déjà dans le prototype.
+ces pages à consisté en la correction des bugs présent déjà dans le prototype.
 
 Par exemple le support pour les recherches dans wikitty dans la page view,
 dans le prototype cette recherche était très limité et donc ne fonctionnait pas
@@ -248,7 +248,7 @@ WikittyService multicontext, une base commune de wikitty.
 Ce WikittyService à été pensé et écrit pendant l'enrichissement de la partie 
 site de Wikitty Publication, l'idée d'utilisation d'un tel service, est la 
 mutualisation d'une application dans un WikittyService, et que cette 
-application utilise des données issue de d'autre service. On mutualise le code 
+application utilise des données issues de d'autre service. On mutualise le code 
 métier, de sorte que plusieurs clients puissent utiliser la même application, 
 avec le même service, mais que leurs données soit sur leurs services.
 Le service fallback contiendrait l'application et le service principal 
