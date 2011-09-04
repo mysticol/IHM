@@ -20,7 +20,18 @@
 
 \usepackage{amsmath}
 
-\usetheme{Marburg}
+\usetheme{Malmoe}
+
+
+\AtBeginSection[]
+{
+\begin{frame}{Plan}
+\tableofcontents[currentsection]
+ \end{frame}
+}
+
+
+
 
 \addtobeamertemplate{footline}{\hfill\insertframenumber/\inserttotalframenumber} 
 
@@ -37,54 +48,101 @@
 \end{frame} 
 
 
-\section{Wikitty} 
-\subsection{C'est quoi ?}
-\begin{frame}\frametitle{C'est quoi ?} 
+\section{Code Lutin}
+
+\begin{frame}\frametitle{Code Lutin} 
 \begin{itemize}
-\item Base de données orientées document.
-\item Clé $\to$ Valeur 
-\item Des extensions
-\item Entités générées grace à un modèle UML
-\item champ nommé: WikittyPubText.name
+\item SSLL
+\item Créée en 2002
+\item Technologies JAVA
+\item Des solutions Libres
+\item Valeurs du Libre appliquées à l'entreprise
 \end{itemize}
 \end{frame}
 
-\subsection{Wikitty Service}
-\begin{frame} \frametitle{Wikitty Service} 
+
+
+\section{Wikitty} 
+\subsection*{Présentation} 
+\begin{frame}\frametitle{Présentation} 
+\begin{itemize}
+\item Base de données orientées colonnes
+\item Clé $\to$ Valeur 
+\item Super Objet : Wikitty
+\item Getter/Setter avec le nom des champs
+\item Mécanisme d'extension
+\end{itemize}
+\end{frame}
+
+
+\subsection*{Des extentions} 
+\begin{frame}\frametitle{Des extentions} 
+\begin{itemize}
+\item Définitions des champs : nomExtension.nomChamp
+\item Génération depuis un modèle
+\item Héritage d'extension
+\item Objets Entités
+\item concentration sur le métier
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Des extentions} 
+\begin{figure}
+\includegraphics[scale=0.5]{../image/wikittypubuml.png} 
+\caption{Exemple de diagramme}
+\end{figure}
+\end{frame}
+
+
+\subsection*{Wikitty Service}
+\begin{frame} \frametitle{Wikitty Service et Proxy} 
 \begin{itemize}
 \item Restauration 
 \item Sauvegarde
 \item Recherche
 \item Configuré par fichier de propriétés
-\item "Complexité" de la base masqué
+\item Stockage masqué
 \end{itemize}
 \end{frame}
 
 
-\section{Scripting - JSR 223}
-\subsection{Pardon ?}
-\begin{frame}\frametitle{Pardon ?}
-Concept très simple, la possibilité d'intrepréter un langage de script dans un
-autre langage.\\
+\section{Le scripting}
+\subsection*{Qu'es ce c'est ?}
+\begin{frame}\frametitle{Qu'es ce c'est ?}
 
-Par exemple, interpréter et éxécuter du \emph{javascript} dans du \emph{java}.
+Ca permet d'interpréter et d'éxécuter un langage de script avec un autre langage.
+
+
+\vspace{5mm}
+Par exemple, interpréter et éxécuter du \emph{javascript} par du \emph{java}.
 \end{frame}
-\subsection{Bindings}
+\subsection*{Bindings}
 \begin{frame}\frametitle{Bindings}
-
-Très important:
+Très important, ça permet d'insérer des éléments du langage qui interprète, dans le script.\\
+\vspace{5mm}
+Par exemple dans le cas java, javascript ça permet dans d'insérer dans le javascript:
 \begin{itemize}
-\item Langage de script peut utiliser le langage qui l'interprète
-\item Donc insérer du java dans du javascript
-\item Méthode, Objets 
-\item Map$\textless$String, Object$\textgreater$
+\item Instanciation d'objet java
+\item Invocation de méthode sur les objets
 \end{itemize}
 \end{frame}
 
 
 \section{Wikitty Publication} 
-\subsection{Pourquoi faire ?}
-\begin{frame}\frametitle{Pourquoi faire ?}
+\subsection*{Motivations}
+\begin{frame}\frametitle{Motivations}
+
+Des applications web que l'on peut modifier et utiliser dans un navigateur.\pause
+
+
+\begin{figure}\pause
+\includegraphics[scale=0.5]{../image/wpwhy.png} 
+\caption{Motivations}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
 \begin{itemize}
 \item Utilise le concept du scripting
 \item Intégre un moteur d'évaluation de script
@@ -93,11 +151,17 @@ Très important:
 \item Moteur de script en binding
 \item WikittyPubText
 \item WikittyPubData
+
+
+
+
+
 \end{itemize}
 
 \end{frame}
 
-\subsection{Nouveau type de wikitty service}
+
+\subsection*{Nouveau type de wikitty service}
 \begin{frame}\frametitle{Nouveau type de wikitty service}
 \begin{itemize}
 \item wikitty service sur système de fichier
@@ -112,7 +176,13 @@ Très important:
 \end{frame}
 
 
-\subsection{Nouvelles Fonctionnalités}
+\subsection*{Nouvelles Fonctionnalités}
+
+
+
+
+
+
 \subsubsection*{Synchronisation entre service}
 \begin{frame}\frametitle{Synchronisation entre service}
 \begin{itemize}
@@ -133,12 +203,12 @@ Exemple de synchronisation:
 \item cajo://localhost:1111\#com
 \item cajo://wwikitty.nuiton.org:2222\#org
 \end{itemize}
-
+\vspace{5mm}
 Les wikitty sous le label \verb!com! contenu sur le premier service vont
-être envoyé sur le second service sous le label org.\\
-
+être envoyé sur le second service sous le label org.
+\vspace{5mm}
 Le label \verb!com.nuiton.wikitty! deviendra \verb!org.nuiton.wikitty! sur 
-le second service.\\
+le second service.
 \end{frame}
 
 \subsubsection*{Externalisation}
@@ -218,7 +288,7 @@ Le rendu sera déterminé par le mime Type du wikittyPub correspondant.
 
 
 
-\section{Wikitty Struts} 
+\section*{Wikitty Struts} 
 \begin{frame}\frametitle{Wikitty Struts}
 Création d'une Tag lib struts pour une intégration facilité de wikitty dans des 
 formulaire.
@@ -233,7 +303,7 @@ de l'affichage en fonction du tag utilisé.
 
 
 \section{Plugin Maven}
-\subsection{Un plugin?!}
+\subsection*{Un plugin?!}
 \begin{frame}\frametitle{Un plugin?!}
 \begin{itemize}
 \item Motivation: Plus simple pour l'utilisateur
@@ -244,7 +314,7 @@ de l'affichage en fonction du tag utilisé.
 %liste des goals
 \end{frame}	
 
-\subsection{Les goals}
+\subsection*{Les goals}
 \begin{frame}\frametitle{Les goals}
 \begin{itemize}
 \item wp:init
@@ -254,6 +324,11 @@ de l'affichage en fonction du tag utilisé.
 \item wp:jar
 \item wp:jar-deploy
 \end{itemize}
+
+\end{frame}	
+
+\section{Conclusion}
+\begin{frame}\frametitle{Conclusion}
 
 \end{frame}	
 
