@@ -142,20 +142,14 @@ Des applications web que l'on peut modifier et utiliser dans un navigateur.\paus
 
 \end{frame}
 
-\begin{frame}
+\subsection*{Comment ?}
+\begin{frame} 
 \begin{itemize}
 \item Utilise le concept du scripting
-\item Intégre un moteur d'évaluation de script
 \item Script stocké sous forme de Wikitty
-\item Wikitty Service en binding
-\item Moteur de script en binding
-\item WikittyPubText
-\item WikittyPubData
-
-
-
-
-
+\item WikittyPubText pour les script
+\item WikittyPubData pour les données binaires
+\item Moteur d'évaluation en Bindings
 \end{itemize}
 
 \end{frame}
@@ -168,7 +162,6 @@ Des applications web que l'on peut modifier et utiliser dans un navigateur.\paus
 \item wikitty service sur jar
 \item wikitty service fallback\pause
 \end{itemize}\pause
-
 \begin{figure}
 \includegraphics[scale=0.5]{../image/multicontext.png} 
 \caption{Service avec fallback}
@@ -176,18 +169,12 @@ Des applications web que l'on peut modifier et utiliser dans un navigateur.\paus
 \end{frame}
 
 
-\subsection*{Nouvelles Fonctionnalités}
 
-
-
-
-
-
-\subsubsection*{Synchronisation entre service}
+\subsection*{Synchronisation entre service}
 \begin{frame}\frametitle{Synchronisation entre service}
 \begin{itemize}
 \item Transférer des wikitty d'un service à un autre
-\item Basé sur les labels
+\item Basé sur l'extension WikittyLabel
 \item Mise à jour
 \item "Suppression"
 \item "Déplacement" de wikitty
@@ -211,7 +198,7 @@ Le label \verb!com.nuiton.wikitty! deviendra \verb!org.nuiton.wikitty! sur
 le second service.
 \end{frame}
 
-\subsubsection*{Externalisation}
+\subsection*{Externalisation}
 \begin{frame}\frametitle{Externalisation}
 \begin{itemize}
 \item "Fixer" les wikitty
@@ -221,7 +208,7 @@ le second service.
 \end{itemize}
 \end{frame}
 
-\subsubsection*{Migration vers struts}
+\subsection*{Migration vers struts}
 \begin{frame}\frametitle{Migration vers struts}
 \begin{itemize}
 \item Migration depuis une application en jsp "classic/simple"
@@ -234,15 +221,15 @@ le second service.
 
 
 
-\subsubsection*{Moteur d'évaluation}
+\subsection*{Moteur d'évaluation}
 \begin{frame}\frametitle{Moteur d'évaluation}
 
 Moteur d'évaluation dans un navigateur à l'adresse:\\
-\verb!/[contextData]/[contextApps]/eval/[mandatory]!
+\verb!/[contextData]/[contextApps]/[action]/[mandatory]!
 
 \begin{itemize}
 \item mandatory pour retrouver le wikitty correspondant
-\item eval, c'est le nom de l'action
+\item action, c'est le nom de l'action
 \item contextApps, pour ne pas se tromper de wikitty.
 \item contextData, pour trouver le bon wikitty service
 \end{itemize}
@@ -250,6 +237,19 @@ Moteur d'évaluation dans un navigateur à l'adresse:\\
 
 
 \end{frame}
+\begin{frame}\frametitle{Moteur d'évaluation}
+Les actions :
+\begin{itemize}
+\item eval, évaluation du code
+\item raw, rendu en fonction du type mime
+\item edit, édition/création de wikitty
+\item view, moteur de recherche, affichage wikitty
+\end{itemize}
+
+
+
+\end{frame}
+
 
 \begin{frame}\frametitle{Moteur d'évaluation}
 
