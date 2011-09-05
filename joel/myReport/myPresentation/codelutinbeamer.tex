@@ -37,11 +37,24 @@
 
 \beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
 \begin{document}
+
+
+
+
+
 \title{Wikitty Publication}  
 \author{Manoël Fortun}
 
 \begin{frame}
 \titlepage
+\begin{figure}[htb]
+  \begin{center}$
+    \begin{array}{cc}
+      \includegraphics[scale=0.15]{../image/logofac.png} &	
+      \includegraphics[scale=1]{../image/logolutin.png}	
+    \end{array}$
+  \end{center}
+\end{figure}
 \end{frame}
 
 \begin{frame}\tableofcontents	
@@ -82,13 +95,13 @@
 \item Génération depuis un modèle
 \item Héritage d'extension
 \item Objets Entités
-\item concentration sur le métier
+\item Concentration sur le métier
 \end{itemize}
 \end{frame}
 
 \begin{frame}\frametitle{Des extentions} 
 \begin{figure}
-\includegraphics[scale=0.5]{../image/wikittypubuml.png} 
+\includegraphics[scale=0.6]{../image/wikittypub.png} 
 \caption{Exemple de diagramme}
 \end{figure}
 \end{frame}
@@ -146,9 +159,10 @@ Des applications web que l'on peut modifier et utiliser dans un navigateur.\paus
 \begin{frame} 
 \begin{itemize}
 \item Utilise le concept du scripting
-\item Script stocké sous forme de Wikitty
+\item Script stocké sous forme de wikitty
 \item WikittyPubText pour les script
 \item WikittyPubData pour les données binaires
+\item type mime des WikittyPub très important
 \item Moteur d'évaluation en Bindings
 \end{itemize}
 
@@ -167,8 +181,6 @@ Des applications web que l'on peut modifier et utiliser dans un navigateur.\paus
 \caption{Service avec fallback}
 \end{figure}
 \end{frame}
-
-
 
 \subsection*{Synchronisation entre service}
 \begin{frame}\frametitle{Synchronisation entre service}
@@ -245,16 +257,12 @@ Les actions :
 \item edit, édition/création de wikitty
 \item view, moteur de recherche, affichage wikitty
 \end{itemize}
-
-
-
 \end{frame}
 
 
 \begin{frame}\frametitle{Moteur d'évaluation}
 
 Comment ça marche contextData:
-
 \begin{figure}
 \includegraphics[scale=0.5]{../image/propertiescontext.png} 
 \caption{Surcharge des propriétés}
@@ -290,23 +298,20 @@ Le rendu sera déterminé par le mime Type du wikittyPub correspondant.
 
 \section{Wikitty Struts} 
 \begin{frame}\frametitle{Wikitty Struts}
-Création d'une Tag lib struts pour une intégration facilité de wikitty dans des 
-formulaire.
-Deux possibilités d'utilisation
+Une tag Lib Struts:
 \begin{itemize}
 \item Formulaire d'édition de wikitty, avec action pré-construite 
-\item Intégration des champs de wikitty dans un formulaire, avec choix de la forme
-de l'affichage en fonction du tag utilisé.
+\item Intégration de champ de wikitty dans un formulaire
 \end{itemize}
 
 \end{frame}
 
 
 \section{Plugin Maven}
-\subsection*{Un plugin?!}
-\begin{frame}\frametitle{Un plugin?!}
+\subsection*{Motivations}
+\begin{frame}\frametitle{Motivations}
 \begin{itemize}
-\item Motivation: Plus simple pour l'utilisateur
+\item Plus simple pour l'utilisateur
 \item Clés en mains
 \item Intègre de façon ciblée les fonctionnalités (externalize-synchronize)
 \end{itemize}
@@ -314,21 +319,27 @@ de l'affichage en fonction du tag utilisé.
 %liste des goals
 \end{frame}	
 
-\subsection*{Les goals}
-\begin{frame}\frametitle{Les goals}
+\subsection*{Role}
+\begin{frame}\frametitle{Role}
 \begin{itemize}
-\item wp:init
-\item wp:run
-\item wp:deploy
-\item wp:update
-\item wp:jar
-\item wp:jar-deploy
+\item Créer un environnement de developpement
+\item Tester l'application
+\item Externaliser
+\item Synchroniser
 \end{itemize}
 
 \end{frame}	
 
 \section{Conclusion}
 \begin{frame}\frametitle{Conclusion}
+\begin{itemize}
+\item Stage très complet
+\item Techniquement très intéressant
+\item Organisation
+\item Objectifs remplis
+\item Nouvel outil utilisable
+\end{itemize}
+
 
 \end{frame}	
 
