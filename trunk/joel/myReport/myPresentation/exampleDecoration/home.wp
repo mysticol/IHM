@@ -1,0 +1,17 @@
+try {
+
+var result =
+""+
+"    <div class='menu'>\n"+
+wpEval.doAction(wpContext, "WikiMenu")+
+"    </div>\n"+
+"    <h1>Bonjour Les Lutins,</h1>\n"+
+"    Bienvenue sur le Wikitty Wiki\n";
+
+wpContext.setContentType("text/html");
+result;
+} catch (eee) {
+wpContext.setContentType("text/plain");
+eee
+}
+

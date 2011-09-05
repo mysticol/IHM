@@ -162,8 +162,9 @@ Des applications web que l'on peut modifier et utiliser dans un navigateur.\paus
 \item Script stocké sous forme de wikitty
 \item WikittyPubText pour les script
 \item WikittyPubData pour les données binaires
-\item type mime des WikittyPub très important
+\item Type mime des WikittyPub très important
 \item Moteur d'évaluation en Bindings
+\item WikittyService en Bindings
 \end{itemize}
 
 \end{frame}
@@ -182,8 +183,8 @@ Des applications web que l'on peut modifier et utiliser dans un navigateur.\paus
 \end{figure}
 \end{frame}
 
-\subsection*{Synchronisation entre service}
-\begin{frame}\frametitle{Synchronisation entre service}
+\subsection*{Synchronisation}
+\begin{frame}\frametitle{Synchronisation}
 \begin{itemize}
 \item Transférer des wikitty d'un service à un autre
 \item Basé sur l'extension WikittyLabel
@@ -200,7 +201,7 @@ Exemple de label :
 Exemple de synchronisation:
 \begin{itemize}
 \item cajo://localhost:1111\#com
-\item cajo://wwikitty.nuiton.org:2222\#org
+\item cajo://wikit.nuiton.org:2222\#org
 \end{itemize}
 \vspace{5mm}
 Les wikitty sous le label \verb!com! contenu sur le premier service vont
@@ -215,10 +216,12 @@ le second service.
 \begin{itemize}
 \item "Fixer" les wikitty
 \item Compiler les scripts
-\item Création d'un jar
 \item WikittyPubTextCompiled
+\item Création d'un jar
+\item "décoration du code"
 \end{itemize}
 \end{frame}
+
 
 \subsection*{Migration vers struts}
 \begin{frame}\frametitle{Migration vers struts}
@@ -229,8 +232,6 @@ le second service.
 \item support struts pour les sessions etc
 \end{itemize}
 \end{frame}
-
-
 
 
 \subsection*{Moteur d'évaluation}
@@ -255,7 +256,7 @@ Les actions :
 \item eval, évaluation du code
 \item raw, rendu en fonction du type mime
 \item edit, édition/création de wikitty
-\item view, moteur de recherche, affichage wikitty
+\item view, moteur de recherche, affichage des wikitty
 \end{itemize}
 \end{frame}
 
@@ -337,7 +338,6 @@ Une tag Lib Struts:
 \item Techniquement très intéressant
 \item Organisation
 \item Objectifs remplis
-\item Nouvel outil utilisable
 \end{itemize}
 
 
