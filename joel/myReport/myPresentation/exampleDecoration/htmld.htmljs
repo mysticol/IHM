@@ -1,0 +1,17 @@
+wpContext.setContentType("text/html");
+var wp_result="<html>\n";
+wp_result+="<head>\n";
+wp_result+="</head>\n";
+wp_result+="<body>\n";
+wp_result+="<h1> Bonjour, ceci est une page de test qui contient du html et des balises comme dans une jsp</h1>\n";
+wp_result+="<p>Le but est de pouvoir mettre du html facilement avec du code aussi.\n";
+wp_result+="</p>\n";
+wp_result+="<p>ici on va afficher le nom de la page qui est dans l'adresse et dans le binding "+wpPage+".</p>\n";
+wp_result+="Op le logo:\n";
+wp_result+="<img src='"+wpContext.makeUrl("/raw/Logo")+"'/>";
+result += "<p>Ici c'est du code js</p>";
+if (0<1){
+result+= "on est rentre dans un if";
+}
+wp_result+="</body>\n";
+wp_result+="</html>";
